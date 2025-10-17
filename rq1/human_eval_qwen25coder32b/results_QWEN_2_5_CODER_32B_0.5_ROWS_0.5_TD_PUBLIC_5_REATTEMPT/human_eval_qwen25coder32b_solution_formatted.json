@@ -1,0 +1,740 @@
+[
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 0,
+    "solution": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    numbers.sort()\n    for i in range(len(numbers) - 1):\n        if abs(numbers[i] - numbers[i + 1]) < threshold:\n            return True\n    return False",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:",
+    "timestamp": "2025-10-17T17:30:36.252145",
+    "response_time": "3.69"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 1,
+    "solution": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    paren_string = paren_string.replace(\" \", \"\")\n    result = []\n    current_group = []\n    balance = 0\n\n    for char in paren_string:\n        current_group.append(char)\n        if char == '(':\n            balance += 1\n        elif char == ')':\n            balance -= 1\n\n        if balance == 0 and current_group:\n            result.append(''.join(current_group))\n            current_group = []\n\n    return result",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:",
+    "timestamp": "2025-10-17T17:30:40.136275",
+    "response_time": "3.88"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 2,
+    "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:",
+    "timestamp": "2025-10-17T17:30:41.211246",
+    "response_time": "1.07"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 3,
+    "solution": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:",
+    "timestamp": "2025-10-17T17:30:43.269661",
+    "response_time": "2.06"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 4,
+    "solution": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    if not numbers:\n        return 0.0\n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(x - mean) for x in numbers) / len(numbers)\n    return mad",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:",
+    "timestamp": "2025-10-17T17:30:45.800128",
+    "response_time": "2.53"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 5,
+    "solution": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    if not numbers:\n        return []\n    result = [numbers[0]]\n    for number in numbers[1:]:\n        result.extend([delimeter, number])\n    return result",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n\n### Signature\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:",
+    "timestamp": "2025-10-17T17:30:48.215205",
+    "response_time": "2.41"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 6,
+    "solution": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    def max_depth(s: str) -> int:\n        depth = max_depth = 0\n        for char in s:\n            if char == '(':\n                depth += 1\n                max_depth = max(max_depth, depth)\n            elif char == ')':\n                depth -= 1\n        return max_depth\n\n    return [max_depth(group) for group in paren_string.split()]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:",
+    "timestamp": "2025-10-17T17:30:51.879183",
+    "response_time": "3.66"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 7,
+    "solution": "from typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:",
+    "timestamp": "2025-10-17T17:30:53.519012",
+    "response_time": "1.64"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 8,
+    "solution": "from typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    if not numbers:\n        return (0, 1)\n    \n    total_sum = 0\n    total_product = 1\n    \n    for number in numbers:\n        total_sum += number\n        total_product *= number\n    \n    return (total_sum, total_product)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:",
+    "timestamp": "2025-10-17T17:30:56.465734",
+    "response_time": "2.94"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 9,
+    "solution": "from typing import List\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    if not numbers:\n        return []\n    \n    max_list = []\n    current_max = numbers[0]\n    \n    for number in numbers:\n        if number > current_max:\n            current_max = number\n        max_list.append(current_max)\n    \n    return max_list",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:",
+    "timestamp": "2025-10-17T17:30:59.291163",
+    "response_time": "2.82"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 10,
+    "solution": "def make_palindrome(string: str) -> str:\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n\n    if not string:\n        return string\n\n    for i in range(len(string), 0, -1):\n        if is_palindrome(string[:i]):\n            return string + string[i:][::-1]\n\n    return string + string[::-1]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:",
+    "timestamp": "2025-10-17T17:31:02.486418",
+    "response_time": "3.19"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 11,
+    "solution": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    # Ensure both strings are of the same length\n    if len(a) != len(b):\n        raise ValueError(\"Input strings must be of the same length\")\n    \n    # Perform XOR operation character by character\n    result = []\n    for char_a, char_b in zip(a, b):\n        # XOR operation: 1 if characters are different, 0 if they are the same\n        xor_result = '1' if char_a != char_b else '0'\n        result.append(xor_result)\n    \n    # Join the list into a string and return\n    return ''.join(result)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n\n### Signature\ndef string_xor(a: str, b: str) -> str:",
+    "timestamp": "2025-10-17T17:31:07.549500",
+    "response_time": "5.06"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 12,
+    "solution": "from typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    longest_string = strings[0]\n    for string in strings[1:]:\n        if len(string) > len(longest_string):\n            longest_string = string\n    return longest_string",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:",
+    "timestamp": "2025-10-17T17:31:10.150069",
+    "response_time": "2.60"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 13,
+    "solution": "from math import gcd\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    return gcd(a, b)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n\n### Signature\ndef greatest_common_divisor(a: int, b: int) -> int:",
+    "timestamp": "2025-10-17T17:31:11.529436",
+    "response_time": "1.38"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 14,
+    "solution": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    return [string[:i] for i in range(1, len(string) + 1)]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:",
+    "timestamp": "2025-10-17T17:31:13.210042",
+    "response_time": "1.68"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 15,
+    "solution": "from typing import List\n\ndef string_sequence(n: int) -> str:\n    numbers: List[str] = [str(i) for i in range(n + 1)]\n    return ' '.join(numbers)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n\n### Signature\ndef string_sequence(n: int) -> str:",
+    "timestamp": "2025-10-17T17:31:14.996425",
+    "response_time": "1.78"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 16,
+    "solution": "from collections import Counter\n\ndef count_distinct_characters(string: str) -> int:\n    return len(Counter(string.lower()))",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n\n### Signature\ndef count_distinct_characters(string: str) -> int:",
+    "timestamp": "2025-10-17T17:31:16.336245",
+    "response_time": "1.34"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 17,
+    "solution": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    beats = []\n    i = 0\n    while i < len(music_string):\n        if music_string[i] == 'W':\n            beats.append(4)\n            i += 1\n        elif music_string[i] == 'H':\n            beats.append(2)\n            i += 1\n        elif music_string[i] == 'Q':\n            beats.append(1)\n            i += 1\n        else:\n            i += 1\n    return beats",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:",
+    "timestamp": "2025-10-17T17:31:20.587721",
+    "response_time": "4.25"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 18,
+    "solution": "from typing import List\n\ndef how_many_times(string: str, substring: str) -> int:\n    count = 0\n    start = 0\n    while start <= len(string) - len(substring):\n        pos = string.find(substring, start)\n        if pos != -1:\n            count += 1\n            start = pos + 1\n        else:\n            break\n    return count",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n\n### Signature\ndef how_many_times(string: str, substring: str) -> int:",
+    "timestamp": "2025-10-17T17:31:23.801085",
+    "response_time": "3.21"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 19,
+    "solution": "from typing import List\n\ndef sort_numbers(numbers: str) -> str:\n    numeral_map = {\n        'zero': 0,\n        'one': 1,\n        'two': 2,\n        'three': 3,\n        'four': 4,\n        'five': 5,\n        'six': 6,\n        'seven': 7,\n        'eight': 8,\n        'nine': 9\n    }\n    \n    # Split the input string into a list of words\n    words = numbers.split()\n    \n    # Sort the list based on the numeric value of each word\n    sorted_words = sorted(words, key=lambda word: numeral_map[word])\n    \n    # Join the sorted list back into a string\n    return ' '.join(sorted_words)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n\n### Signature\ndef sort_numbers(numbers: str) -> str:",
+    "timestamp": "2025-10-17T17:31:29.496471",
+    "response_time": "5.69"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 20,
+    "solution": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    numbers.sort()\n    closest_pair = (numbers[0], numbers[1])\n    min_diff = abs(numbers[1] - numbers[0])\n    \n    for i in range(1, len(numbers) - 1):\n        diff = abs(numbers[i + 1] - numbers[i])\n        if diff < min_diff:\n            min_diff = diff\n            closest_pair = (numbers[i], numbers[i + 1])\n    \n    return closest_pair",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n\n### Signature\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:",
+    "timestamp": "2025-10-17T17:31:33.851383",
+    "response_time": "4.35"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 21,
+    "solution": "from typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    min_val = min(numbers)\n    max_val = max(numbers)\n    range_val = max_val - min_val\n    return [(num - min_val) / range_val for num in numbers]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n\n### Signature\ndef rescale_to_unit(numbers: List[float]) -> List[float]:",
+    "timestamp": "2025-10-17T17:31:36.163901",
+    "response_time": "2.31"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 22,
+    "solution": "from typing import List, Any\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    return [value for value in values if isinstance(value, int)]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n\n### Signature\ndef filter_integers(values: List[Any]) -> List[int]:",
+    "timestamp": "2025-10-17T17:31:37.787299",
+    "response_time": "1.62"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 23,
+    "solution": "def strlen(string: str) -> int:\n    return len(string)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n\n### Signature\ndef strlen(string: str) -> int:",
+    "timestamp": "2025-10-17T17:31:38.695738",
+    "response_time": "0.91"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 24,
+    "solution": "def largest_divisor(n: int) -> int:\n    for i in range(n - 1, 0, -1):\n        if n % i == 0:\n            return i",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n\n### Signature\ndef largest_divisor(n: int) -> int:",
+    "timestamp": "2025-10-17T17:31:40.351018",
+    "response_time": "1.65"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 25,
+    "solution": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    factors = []\n    divisor = 2\n    while n >= 2:\n        while n % divisor == 0:\n            factors.append(divisor)\n            n //= divisor\n        divisor += 1\n    return factors",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n\n### Signature\ndef factorize(n: int) -> List[int]:",
+    "timestamp": "2025-10-17T17:31:42.927040",
+    "response_time": "2.57"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 26,
+    "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    counts = {}\n    for number in numbers:\n        if number in counts:\n            counts[number] += 1\n        else:\n            counts[number] = 1\n    \n    return [number for number in numbers if counts[number] == 1]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:",
+    "timestamp": "2025-10-17T17:31:45.668460",
+    "response_time": "2.74"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 27,
+    "solution": "def flip_case(string: str) -> str:\n    return ''.join([char.lower() if char.isupper() else char.upper() for char in string])",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n\n### Signature\ndef flip_case(string: str) -> str:",
+    "timestamp": "2025-10-17T17:31:47.208724",
+    "response_time": "1.54"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 28,
+    "solution": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    return ''.join(strings)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n\n### Signature\ndef concatenate(strings: List[str]) -> str:",
+    "timestamp": "2025-10-17T17:31:48.279297",
+    "response_time": "1.07"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 29,
+    "solution": "from typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    return [s for s in strings if s.startswith(prefix)]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n\n### Signature\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:",
+    "timestamp": "2025-10-17T17:31:49.826954",
+    "response_time": "1.55"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 30,
+    "solution": "from typing import List\n\ndef get_positive(l: List[int]) -> List[int]:\n    return [num for num in l if num > 0]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n\n### Signature\ndef get_positive(l: list):",
+    "timestamp": "2025-10-17T17:31:51.238755",
+    "response_time": "1.41"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 31,
+    "solution": "import math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n\n### Signature\ndef is_prime(n):",
+    "timestamp": "2025-10-17T17:31:55.034471",
+    "response_time": "3.79"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 32,
+    "solution": "from typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n\ndef find_zero(xs: List[float]) -> float:\n    def derivative(xs: List[float]) -> List[float]:\n        return [i * coeff for i, coeff in enumerate(xs)][1:]\n    \n    def newton_raphson(x: float) -> float:\n        fx = poly(xs, x)\n        fpx = poly(derivative(xs), x)\n        if fpx == 0:\n            return x\n        return x - fx / fpx\n    \n    x = 0.0\n    for _ in range(100):  # Max iterations to avoid infinite loop\n        x = newton_raphson(x)\n        if abs(poly(xs, x)) < 1e-7:\n            break\n    return x",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n\n### Signature\ndef poly(xs: list, x: float):\n\n### Prompt\n     xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n\n### Signature\ndef find_zero(xs: list):",
+    "timestamp": "2025-10-17T17:32:01.550297",
+    "response_time": "6.51"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 33,
+    "solution": "from typing import List\n\ndef sort_third(l: List[int]) -> List[int]:\n    # Extract elements at indices divisible by 3\n    divisible_by_three = [l[i] for i in range(len(l)) if i % 3 == 0]\n    \n    # Sort these elements\n    divisible_by_three.sort()\n    \n    # Create a new list to store the result\n    result = l[:]\n    \n    # Replace elements at indices divisible by 3 with sorted elements\n    sorted_index = 0\n    for i in range(len(l)):\n        if i % 3 == 0:\n            result[i] = divisible_by_three[sorted_index]\n            sorted_index += 1\n    \n    return result",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n\n### Signature\ndef sort_third(l: list):",
+    "timestamp": "2025-10-17T17:32:06.704269",
+    "response_time": "5.15"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 34,
+    "solution": "from typing import List\n\ndef unique(l: List[int]) -> List[int]:\n    return sorted(set(l))",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n\n### Signature\ndef unique(l: list):",
+    "timestamp": "2025-10-17T17:32:07.861634",
+    "response_time": "1.16"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 35,
+    "solution": "from typing import List\n\ndef max_element(l: List[int]) -> int:\n    if not l:\n        raise ValueError(\"The list is empty\")\n    max_val = l[0]\n    for num in l:\n        if num > max_val:\n            max_val = num\n    return max_val",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n\n### Signature\ndef max_element(l: list):",
+    "timestamp": "2025-10-17T17:32:10.398206",
+    "response_time": "2.53"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 36,
+    "solution": "from typing import List\n\ndef fizz_buzz(n: int) -> int:\n    count = 0\n    for i in range(n):\n        if i % 11 == 0 or i % 13 == 0:\n            count += str(i).count('7')\n    return count",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n\n### Signature\ndef fizz_buzz(n: int):",
+    "timestamp": "2025-10-17T17:32:12.773850",
+    "response_time": "2.37"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 37,
+    "solution": "from typing import List\n\ndef sort_even(l: List[int]) -> List[int]:\n    even_indices_values = sorted(l[i] for i in range(0, len(l), 2))\n    result = l[:]\n    even_index = 0\n    for i in range(0, len(l), 2):\n        result[i] = even_indices_values[even_index]\n        even_index += 1\n    return result",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n\n### Signature\ndef sort_even(l: list):",
+    "timestamp": "2025-10-17T17:32:16.096896",
+    "response_time": "3.32"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 38,
+    "solution": "from typing import List\n\ndef encode_cyclic(s: str) -> str:\n    def cycle_group(group: str) -> str:\n        if len(group) == 3:\n            return group[1:] + group[0]\n        return group\n    \n    groups = [s[i:i+3] for i in range(0, len(s), 3)]\n    cycled_groups = [cycle_group(group) for group in groups]\n    return ''.join(cycled_groups)\n\ndef decode_cyclic(s: str) -> str:\n    def decycle_group(group: str) -> str:\n        if len(group) == 3:\n            return group[-1] + group[:-1]\n        return group\n    \n    groups = [s[i:i+3] for i in range(0, len(s), 3)]\n    decycled_groups = [decycle_group(group) for group in groups]\n    return ''.join(decycled_groups)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    returns encoded string by cycling groups of three characters.\n\n### Signature\ndef encode_cyclic(s: str):\n\n### Prompt\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n\n### Signature\ndef decode_cyclic(s: str):",
+    "timestamp": "2025-10-17T17:32:22.837534",
+    "response_time": "6.74"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 39,
+    "solution": "from math import sqrt\n\ndef is_prime(num: int) -> bool:\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    i = 5\n    while i * i <= num:\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef prime_fib(n: int) -> int:\n    fib1, fib2 = 1, 1\n    count = 0\n    while True:\n        if is_prime(fib2):\n            count += 1\n            if count == n:\n                return fib2\n        fib1, fib2 = fib2, fib1 + fib2",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n\n### Signature\ndef prime_fib(n: int):",
+    "timestamp": "2025-10-17T17:32:29.416849",
+    "response_time": "6.58"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 40,
+    "solution": "from typing import List\n\ndef triples_sum_to_zero(l: List[int]) -> bool:\n    l.sort()\n    n = len(l)\n    for i in range(n - 2):\n        if i > 0 and l[i] == l[i - 1]:\n            continue\n        left, right = i + 1, n - 1\n        while left < right:\n            total = l[i] + l[left] + l[right]\n            if total == 0:\n                return True\n            elif total < 0:\n                left += 1\n            else:\n                right -= 1\n    return False",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n### Signature\ndef triples_sum_to_zero(l: list):",
+    "timestamp": "2025-10-17T17:32:34.102995",
+    "response_time": "4.68"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 41,
+    "solution": "from typing import List\n\ndef car_race_collision(n: int) -> List[int]:\n    # Since all cars move at the same speed and are infinitely sturdy,\n    # each car moving left to right will collide with each car moving right to left.\n    # Therefore, each car will collide with exactly one car from the opposite direction.\n    return [1] * n",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n### Signature\ndef car_race_collision(n: int):",
+    "timestamp": "2025-10-17T17:32:36.978544",
+    "response_time": "2.87"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 42,
+    "solution": "from typing import List\n\ndef incr_list(l: List[int]) -> List[int]:\n    return [x + 1 for x in l]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n\n### Signature\ndef incr_list(l: list):",
+    "timestamp": "2025-10-17T17:32:38.520561",
+    "response_time": "1.54"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 43,
+    "solution": "from typing import List\n\ndef pairs_sum_to_zero(l: List[int]) -> bool:\n    seen = set()\n    for num in l:\n        if -num in seen:\n            return True\n        seen.add(num)\n    return False",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    >>> pairs_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> pairs_sum_to_zero([1, 3, -2, 1])\n    False\n    >>> pairs_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])\n    True\n    >>> pairs_sum_to_zero([1])\n    False\n\n### Signature\ndef pairs_sum_to_zero(l):",
+    "timestamp": "2025-10-17T17:32:40.573923",
+    "response_time": "2.05"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 44,
+    "solution": "def change_base(x: int, base: int) -> str:\n    if x == 0:\n        return \"0\"\n    digits = []\n    while x:\n        digits.append(int(x % base))\n        x //= base\n    return ''.join(str(x) for x in digits[::-1])",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Change numerical base of input number x to base.\n    return string representation after the conversion.\n    base numbers are less than 10.\n    >>> change_base(8, 3)\n    '22'\n    >>> change_base(8, 2)\n    '1000'\n    >>> change_base(7, 2)\n    '111'\n\n### Signature\ndef change_base(x: int, base: int):",
+    "timestamp": "2025-10-17T17:32:43.083326",
+    "response_time": "2.51"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 45,
+    "solution": "def triangle_area(a, h):\n    return 0.5 * a * h",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n\n### Signature\ndef triangle_area(a, h):",
+    "timestamp": "2025-10-17T17:32:44.124444",
+    "response_time": "1.04"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 46,
+    "solution": "from typing import List\n\ndef fib4(n: int) -> int:\n    if n == 0 or n == 1 or n == 3:\n        return 0\n    if n == 2:\n        return 2\n    \n    fib4_values: List[int] = [0, 0, 2, 0]\n    for i in range(4, n + 1):\n        next_value = fib4_values[-1] + fib4_values[-2] + fib4_values[-3] + fib4_values[-4]\n        fib4_values.append(next_value)\n    \n    return fib4_values[n]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n\n### Signature\ndef fib4(n: int):",
+    "timestamp": "2025-10-17T17:32:48.796535",
+    "response_time": "4.67"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 47,
+    "solution": "from typing import List\n\ndef median(l: List[float]) -> float:\n    sorted_l = sorted(l)\n    n = len(sorted_l)\n    mid = n // 2\n    if n % 2 == 0:\n        return (sorted_l[mid - 1] + sorted_l[mid]) / 2.0\n    else:\n        return sorted_l[mid]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n\n### Signature\ndef median(l: list):",
+    "timestamp": "2025-10-17T17:32:51.938017",
+    "response_time": "3.14"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 48,
+    "solution": "def is_palindrome(text: str):\n    return text == text[::-1]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n\n### Signature\ndef is_palindrome(text: str):",
+    "timestamp": "2025-10-17T17:32:52.909878",
+    "response_time": "0.97"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 49,
+    "solution": "import math\n\ndef modp(n: int, p: int):\n    return pow(2, n, p)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n\n### Signature\ndef modp(n: int, p: int):",
+    "timestamp": "2025-10-17T17:32:54.121226",
+    "response_time": "1.21"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 50,
+    "solution": "from string import ascii_lowercase, ascii_uppercase\n\ndef encode_shift(s: str):\n    def shift_char(c):\n        if c in ascii_lowercase:\n            return ascii_lowercase[(ascii_lowercase.index(c) + 5) % 26]\n        elif c in ascii_uppercase:\n            return ascii_uppercase[(ascii_uppercase.index(c) + 5) % 26]\n        else:\n            return c\n    return ''.join(shift_char(c) for c in s)\n\ndef decode_shift(s: str):\n    def unshift_char(c):\n        if c in ascii_lowercase:\n            return ascii_lowercase[(ascii_lowercase.index(c) - 5) % 26]\n        elif c in ascii_uppercase:\n            return ascii_uppercase[(ascii_uppercase.index(c) - 5) % 26]\n        else:\n            return c\n    return ''.join(unshift_char(c) for c in s)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    returns encoded string by shifting every character by 5 in the alphabet.\n\n### Signature\ndef encode_shift(s: str):\n\n### Prompt\n    takes as input string encoded with encode_shift function. Returns decoded string.\n\n### Signature\ndef decode_shift(s: str):",
+    "timestamp": "2025-10-17T17:33:00.541684",
+    "response_time": "6.42"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 51,
+    "solution": "def remove_vowels(text):\n    vowels = set('aeiouAEIOU')\n    return ''.join(char for char in text if char not in vowels)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n\n### Signature\ndef remove_vowels(text):",
+    "timestamp": "2025-10-17T17:33:02.086156",
+    "response_time": "1.54"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 52,
+    "solution": "from typing import List\n\ndef below_threshold(l: List[int], t: int) -> bool:\n    for number in l:\n        if number >= t:\n            return False\n    return True",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return True if all numbers in the list l are below threshold t.\n    >>> below_threshold([1, 2, 4, 10], 100)\n    True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n\n### Signature\ndef below_threshold(l: list, t: int):",
+    "timestamp": "2025-10-17T17:33:03.763017",
+    "response_time": "1.67"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 53,
+    "solution": "def add(x: int, y: int):\n    return x + y",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n\n### Signature\ndef add(x: int, y: int):",
+    "timestamp": "2025-10-17T17:33:04.680610",
+    "response_time": "0.91"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 54,
+    "solution": "from collections import Counter\n\ndef same_chars(s0: str, s1: str):\n    return Counter(s0) == Counter(s1)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n\n### Signature\ndef same_chars(s0: str, s1: str):",
+    "timestamp": "2025-10-17T17:33:06.063476",
+    "response_time": "1.38"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 55,
+    "solution": "from typing import Dict\n\ndef fib(n: int) -> int:\n    memo: Dict[int, int] = {0: 0, 1: 1}\n    \n    def helper(x: int) -> int:\n        if x not in memo:\n            memo[x] = helper(x - 1) + helper(x - 2)\n        return memo[x]\n    \n    return helper(n)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n\n### Signature\ndef fib(n: int):",
+    "timestamp": "2025-10-17T17:33:09.221929",
+    "response_time": "3.16"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 56,
+    "solution": "from typing import List\n\ndef correct_bracketing(brackets: str) -> bool:\n    stack: List[str] = []\n    \n    for bracket in brackets:\n        if bracket == '<':\n            stack.append(bracket)\n        elif bracket == '>':\n            if not stack:\n                return False\n            stack.pop()\n    \n    return len(stack) == 0",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n### Signature\ndef correct_bracketing(brackets: str):",
+    "timestamp": "2025-10-17T17:33:11.988548",
+    "response_time": "2.76"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 57,
+    "solution": "from typing import List\n\ndef monotonic(l: List[int]) -> bool:\n    if not l:\n        return True\n    \n    increasing = decreasing = True\n    \n    for i in range(1, len(l)):\n        if l[i] > l[i - 1]:\n            decreasing = False\n        elif l[i] < l[i - 1]:\n            increasing = False\n    \n    return increasing or decreasing",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n\n### Signature\ndef monotonic(l: list):",
+    "timestamp": "2025-10-17T17:33:15.155130",
+    "response_time": "3.16"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 58,
+    "solution": "from typing import List\n\ndef common(l1: List[int], l2: List[int]) -> List[int]:\n    return sorted(set(l1).intersection(set(l2)))",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n### Signature\ndef common(l1: list, l2: list):",
+    "timestamp": "2025-10-17T17:33:16.701681",
+    "response_time": "1.54"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 59,
+    "solution": "import math\n\ndef largest_prime_factor(n: int):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        if num <= 3:\n            return True\n        if num % 2 == 0 or num % 3 == 0:\n            return False\n        i = 5\n        while i * i <= num:\n            if num % i == 0 or num % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    largest_factor = None\n    # Check for number of 2s that divide n\n    while n % 2 == 0:\n        largest_factor = 2\n        n //= 2\n\n    # n must be odd at this point, so a skip of 2 (i.e., i = i + 2) can be used\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        while n % i == 0:\n            largest_factor = i\n            n //= i\n\n    # This condition is to check if n is a prime number greater than 2\n    if n > 2:\n        largest_factor = n\n\n    return largest_factor",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n\n### Signature\ndef largest_prime_factor(n: int):",
+    "timestamp": "2025-10-17T17:33:25.420540",
+    "response_time": "8.72"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 60,
+    "solution": "def sum_to_n(n: int):\n    return n * (n + 1) // 2",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n\n### Signature\ndef sum_to_n(n: int):",
+    "timestamp": "2025-10-17T17:33:26.614454",
+    "response_time": "1.19"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 61,
+    "solution": "from typing import List\n\ndef correct_bracketing(brackets: str) -> bool:\n    stack: List[str] = []\n    \n    for bracket in brackets:\n        if bracket == '(':\n            stack.append(bracket)\n        elif bracket == ')':\n            if not stack:\n                return False\n            stack.pop()\n    \n    return len(stack) == 0",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n### Signature\ndef correct_bracketing(brackets: str):",
+    "timestamp": "2025-10-17T17:33:29.425956",
+    "response_time": "2.81"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 62,
+    "solution": "from typing import List\n\ndef derivative(xs: List[int]) -> List[int]:\n    return [i * xs[i] for i in range(1, len(xs))]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n     xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n     Return derivative of this polynomial in the same form.\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n\n### Signature\ndef derivative(xs: list):",
+    "timestamp": "2025-10-17T17:33:30.860836",
+    "response_time": "1.43"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 63,
+    "solution": "from typing import List\n\ndef fibfib(n: int) -> int:\n    if n == 0 or n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    \n    fibfib_sequence: List[int] = [0, 0, 1]\n    for i in range(3, n + 1):\n        next_value = fibfib_sequence[i - 1] + fibfib_sequence[i - 2] + fibfib_sequence[i - 3]\n        fibfib_sequence.append(next_value)\n    \n    return fibfib_sequence[n]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).\n    Please write a function to efficiently compute the n-th element of the fibfib number sequence.\n    >>> fibfib(1)\n    0\n    >>> fibfib(5)\n    4\n    >>> fibfib(8)\n    24\n\n### Signature\ndef fibfib(n: int):",
+    "timestamp": "2025-10-17T17:33:35.284058",
+    "response_time": "4.42"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 64,
+    "solution": "def vowels_count(s):\n    vowels = {'a', 'e', 'i', 'o', 'u'}\n    count = 0\n    for i, char in enumerate(s.lower()):\n        if char in vowels:\n            count += 1\n        elif char == 'y' and i == len(s) - 1:\n            count += 1\n    return count",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n### Signature\ndef vowels_count(s):",
+    "timestamp": "2025-10-17T17:33:38.327538",
+    "response_time": "3.04"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 65,
+    "solution": "import math\n\ndef circular_shift(x, shift):\n    digits = str(x)\n    num_digits = len(digits)\n    \n    if shift >= num_digits:\n        return digits[::-1]\n    \n    shift = shift % num_digits\n    return digits[-shift:] + digits[:-shift]",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n\n### Signature\ndef circular_shift(x, shift):",
+    "timestamp": "2025-10-17T17:33:40.550187",
+    "response_time": "2.22"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 66,
+    "solution": "import string\n\ndef digitSum(s):\n    return sum(ord(char) for char in s if char in string.ascii_uppercase)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Task\n    Write a function that takes a string as input and returns the sum of the upper characters only'\n    ASCII codes.\n\n### Signature\ndef digitSum(s):",
+    "timestamp": "2025-10-17T17:33:41.753004",
+    "response_time": "1.20"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 67,
+    "solution": "import re\n\ndef fruit_distribution(s, n):\n    numbers = re.findall(r'\\d+', s)\n    apples = int(numbers[0])\n    oranges = int(numbers[1])\n    return n - apples - oranges",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    In this task, you will be given a string that represents a number of apples and oranges\n    that are distributed in a basket of fruit this basket contains\n    apples, oranges, and mango fruits. Given the string that represents the total number of\n    the oranges and apples and an integer that represent the total number of the fruits\n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n\n### Signature\ndef fruit_distribution(s,n):",
+    "timestamp": "2025-10-17T17:33:43.725372",
+    "response_time": "1.97"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 68,
+    "solution": "import sys\n\ndef pluck(arr):\n    min_even_value = sys.maxsize\n    min_index = -1\n    \n    for index, value in enumerate(arr):\n        if value % 2 == 0 and value < min_even_value:\n            min_even_value = value\n            min_index = index\n    \n    return arr[min_index] if min_index != -1 else None",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n### Signature\ndef pluck(arr):",
+    "timestamp": "2025-10-17T17:33:46.678201",
+    "response_time": "2.95"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 69,
+    "solution": "from collections import Counter\n\ndef search(lst):\n    count = Counter(lst)\n    max_value = -1\n    for num, freq in count.items():\n        if num <= freq and num > max_value:\n            max_value = num\n    return max_value",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than\n    zero, and has a frequency greater than or equal to the value of the integer itself.\n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n\n### Signature\ndef search(lst):",
+    "timestamp": "2025-10-17T17:33:48.648063",
+    "response_time": "1.97"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 70,
+    "solution": "from typing import List\n\ndef strange_sort_list(lst: List[int]) -> List[int]:\n    lst.sort()\n    result = []\n    left, right = 0, len(lst) - 1\n    while left <= right:\n        if left == right:\n            result.append(lst[left])\n        else:\n            result.append(lst[left])\n            result.append(lst[right])\n        left += 1\n        right -= 1\n    return result",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n### Signature\ndef strange_sort_list(lst):",
+    "timestamp": "2025-10-17T17:33:52.106027",
+    "response_time": "3.45"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 71,
+    "solution": "import math\n\ndef triangle_area(a, b, c):\n    # Check if the sides form a valid triangle\n    if a + b > c and a + c > b and b + c > a:\n        # Calculate the semi-perimeter\n        s = (a + b + c) / 2\n        # Calculate the area using Heron's formula\n        area = math.sqrt(s * (s - a) * (s - b) * (s - c))\n        # Return the area rounded to 2 decimal points\n        return round(area, 2)\n    else:\n        # Return -1 if the sides do not form a valid triangle\n        return -1",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle.\n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater\n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n\n### Signature\ndef triangle_area(a, b, c):",
+    "timestamp": "2025-10-17T17:33:57.061894",
+    "response_time": "4.95"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 72,
+    "solution": "from typing import List\n\ndef will_it_fly(q: List[int], w: int) -> bool:\n    return q == q[::-1] and sum(q) <= w",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n\n### Signature\ndef will_it_fly(q,w):",
+    "timestamp": "2025-10-17T17:33:58.636252",
+    "response_time": "1.57"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 73,
+    "solution": "from typing import List\n\ndef smallest_change(arr: List[int]) -> int:\n    changes = 0\n    left, right = 0, len(arr) - 1\n    while left < right:\n        if arr[left] != arr[right]:\n            changes += 1\n        left += 1\n        right -= 1\n    return changes",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n\n### Signature\ndef smallest_change(arr):",
+    "timestamp": "2025-10-17T17:34:01.668736",
+    "response_time": "3.03"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 74,
+    "solution": "from typing import List\n\ndef total_match(lst1: List[str], lst2: List[str]) -> List[str]:\n    total_chars_lst1 = sum(len(s) for s in lst1)\n    total_chars_lst2 = sum(len(s) for s in lst2)\n    \n    if total_chars_lst1 < total_chars_lst2:\n        return lst1\n    else:\n        return lst2",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Write a function that accepts two lists of strings and returns the list that has\n    total number of chars in the all strings of the list less than the other list.\n\n### Signature\ndef total_match(lst1, lst2):",
+    "timestamp": "2025-10-17T17:34:04.646204",
+    "response_time": "2.98"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 75,
+    "solution": "import math\n\ndef is_multiply_prime(a):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    primes = [i for i in range(2, 100) if is_prime(i)]\n    \n    for i in range(len(primes)):\n        for j in range(i, len(primes)):\n            for k in range(j, len(primes)):\n                if primes[i] * primes[j] * primes[k] == a:\n                    return True\n    return False",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100.\n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n\n### Signature\ndef is_multiply_prime(a):",
+    "timestamp": "2025-10-17T17:34:11.177602",
+    "response_time": "6.53"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 76,
+    "solution": "import math\n\ndef is_simple_power(x, n):\n    if n <= 1:\n        return x == 1\n    power = 1\n    while power < x:\n        power *= n\n    return power == x",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n\n### Signature\ndef is_simple_power(x, n):",
+    "timestamp": "2025-10-17T17:34:13.104080",
+    "response_time": "1.92"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 77,
+    "solution": "import math\n\ndef iscube(a):\n    if a == 0:\n        return True\n    abs_a = abs(a)\n    cube_root = round(abs_a ** (1/3))\n    return cube_root ** 3 == abs_a",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    Write a function that takes an integer a and returns True\n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n\n### Signature\ndef iscube(a):",
+    "timestamp": "2025-10-17T17:34:15.119937",
+    "response_time": "2.01"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 78,
+    "solution": "from typing import Set\n\ndef hex_key(num: str) -> int:\n    prime_hex_digits: Set[str] = {'2', '3', '5', '7', 'B', 'D'}\n    return sum(1 for digit in num if digit in prime_hex_digits)",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    You have been tasked to write a function that receives\n    a hexadecimal number as a string and counts the number of hexadecimal\n    digits that are primes (prime number, or a prime, is a natural number\n    greater than 1 that is not a product of two smaller natural numbers).\n    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.\n    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...\n    So you have to determine a number of the following digits: 2, 3, 5, 7,\n    B (=decimal 11), D (=decimal 13).\n    Note: you may assume the input is always correct or empty string,\n    and symbols A,B,C,D,E,F are always uppercase.\n    Examples:\n    For num = \"AB\" the output should be 1.\n    For num = \"1077E\" the output should be 2.\n    For num = \"ABED1A33\" the output should be 4.\n    For num = \"123456789ABCDEF0\" the output should be 6.\n    For num = \"2020\" the output should be 2.\n\n### Signature\ndef hex_key(num):",
+    "timestamp": "2025-10-17T17:34:17.475395",
+    "response_time": "2.35"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 79,
+    "solution": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"0\"\n    binary = \"\"\n    while decimal > 0:\n        binary = str(decimal % 2) + binary\n        decimal = decimal // 2\n    return binary",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n### Signature\ndef decimal_to_binary(decimal):",
+    "timestamp": "2025-10-17T17:34:19.767912",
+    "response_time": "2.29"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 80,
+    "solution": "def is_happy(s):\n    if len(s) < 3:\n        return False\n    for i in range(len(s) - 2):\n        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n            return False\n    return True",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    You are given a string s.\n    Your task is to check if the string is happy or not.\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct\n    For example:\n    is_happy(a) => False\n    is_happy(aa) => False\n    is_happy(abcd) => True\n    is_happy(aabb) => False\n    is_happy(adb) => True\n    is_happy(xyy) => False\n\n### Signature\ndef is_happy(s):",
+    "timestamp": "2025-10-17T17:34:22.462465",
+    "response_time": "2.69"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b",
+    "dataset_row_id": 81,
+    "solution": "def numerical_letter_grade(grades):\n    letter_grades = []\n    for gpa in grades:\n        if gpa == 4.0:\n            letter_grades.append('A+')\n        elif gpa > 3.7:\n            letter_grades.append('A')\n        elif gpa > 3.3:\n            letter_grades.append('A-')\n        elif gpa > 3.0:\n            letter_grades.append('B+')\n        elif gpa > 2.7:\n            letter_grades.append('B')\n        elif gpa > 2.3:\n            letter_grades.append('B-')\n        elif gpa > 2.0:\n            letter_grades.append('C+')\n        elif gpa > 1.7:\n            letter_grades.append('C')\n        elif gpa > 1.3:\n            letter_grades.append('C-')\n        elif gpa > 1.0:\n            letter_grades.append('D+')\n        elif gpa > 0.7:\n            letter_grades.append('D')\n        elif gpa > 0.0:\n            letter_grades.append('D-')\n        else:\n            letter_grades.append('E')\n    return letter_grades",
+    "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "prompt": "### Prompt\n    It is the last week of the semester and the teacher has to give the grades\n    to students. The teacher has been making her own algorithm for grading.\n    The only problem is, she has lost the code she used for grading.\n    She has given you a list of GPAs for some students and you have to write\n    a function that can output a list of letter grades using the following table:\n             GPA       |    Letter grade\n              4.0                A+\n            > 3.7                A\n            > 3.3                A-\n            > 3.0                B+\n            > 2.7                B\n            > 2.3                B-\n            > 2.0                C+\n            > 1.7                C\n            > 1.3                C-\n            > 1.0                D+\n            > 0.7                D\n            > 0.0                D-\n              0.0                E\n\n### Signature\ndef numerical_letter_grade(grades):",
+    "timestamp": "2025-10-17T17:34:31.464589",
+    "response_time": "9.00"
+  }
+]

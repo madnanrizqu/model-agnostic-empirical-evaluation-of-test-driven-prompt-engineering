@@ -1,0 +1,74 @@
+{
+  "Qwen/Qwen2.5-Coder-3B-Instruct": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n\n### Test\nassert candidate(13,9) == True\nassert candidate(15,8) == False\nassert candidate(2,4) == False",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 1, in <module>\n    from llm_output import differ_At_One_Bit_Pos\nImportError: cannot import name 'differ_At_One_Bit_Pos' from 'llm_output' (/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output.py)\n",
+      "solution": "def is_Power_Of_Two (x):\n    return x > 0 and (x & (x - 1)) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):\n\n### Test\nassert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    return ''.join([char for char in string if char not in \"pros\"])",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):\n\n### Test\nassert candidate(70) == False",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "def check(num):\n    return num == 2 * int(str(num)[::-1]) - 1",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 124,
+      "prompt": "### Prompt\nWrite a function to get the angle of a complex number.\n\n### Signature\ndef angle_complex(a,b):\n\n### Test\nassert math.isclose(candidate(0,1j), 1.5707963267948966, rel_tol=0.001)",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 9, in <module>\n    check(angle_complex)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 5, in check\n    assert math.isclose(candidate(0,1j), 1.5707963267948966, rel_tol=0.001)\n                        ^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output.py\", line 4, in angle_complex\n    return math.atan2(b, a)\n           ^^^^^^^^^^^^^^^^\nTypeError: must be real number, not complex\n",
+      "solution": "import math\n\ndef angle_complex(a, b):\n    return math.atan2(b, a)",
+      "test_content": "from llm_output import angle_complex\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(0,1j), 1.5707963267948966, rel_tol=0.001)\n    assert math.isclose(candidate(2,1j), 0.4636476090008061, rel_tol=0.001)\n    assert math.isclose(candidate(0,2j), 1.5707963267948966, rel_tol=0.001)\n\ncheck(angle_complex)",
+      "context": "{\"function_name\": \"angle_complex\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 126,
+      "prompt": "### Prompt\nWrite a python function to find the sum of common divisors of two given numbers.\n\n### Signature\ndef sum(a,b):\n\n### Test\nassert candidate(10,15) == 6",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 8, in <module>\n    check(sum)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 4, in check\n    assert candidate(10,15) == 6\n           ^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output.py\", line 12, in sum\n    return sum(common_divisors)\n           ^^^^^^^^^^^^^^^^^^^^\nTypeError: sum() missing 1 required positional argument: 'b'\n",
+      "solution": "def sum(a, b):\n    def gcd(x, y):\n        while y:\n            x, y = y, x % y\n        return x\n\n    common_divisors = set()\n    for i in range(1, gcd(a, b) + 1):\n        if a % i == 0 and b % i == 0:\n            common_divisors.add(i)\n\n    return sum(common_divisors)",
+      "test_content": "from llm_output import sum\n\ndef check(candidate):\n    assert candidate(10,15) == 6\n    assert candidate(100,150) == 93\n    assert candidate(4,6) == 3\n\ncheck(sum)",
+      "context": "{\"function_name\": \"sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 164,
+      "prompt": "### Prompt\nWrite a function to determine if the sum of the divisors of two integers are the same.\n\n### Signature\ndef div_sum(n):\n\n### Test\nassert candidate(36, 57) == False",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 8, in <module>\n    check(are_equivalent)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 4, in check\n    assert candidate(36, 57) == False\n           ^^^^^^^^^^^^^^^^^\nTypeError: are_equivalent() takes 1 positional argument but 2 were given\n",
+      "solution": "def are_equivalent(n):\n    def sum_of_divisors(num):\n        total = 0\n        for i in range(1, num + 1):\n            if num % i == 0:\n                total += i\n        return total\n    \n    return sum_of_divisors(n) == sum_of_divisors(n)",
+      "test_content": "from llm_output import are_equivalent\n\ndef check(candidate):\n    assert candidate(36, 57) == False\n    assert candidate(2, 4) == False\n    assert candidate(23, 47) == True\n\ncheck(are_equivalent)",
+      "context": "{\"function_name\": \"are_equivalent\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 223,
+      "prompt": "### Prompt\nWrite a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)\n\n### Signature\ndef is_majority(arr, n, x):\n\n### Test\nassert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\nassert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder3b_td_1758368982773131/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "solution": "def binary_search(arr, n, x):\n    left = 0\n    right = n - 1\n    mid = (left + right) // 2\n    \n    while left <= right:\n        if arr[mid] == x:\n            count = 0\n            # Count occurrences of x in the left half\n            for i in range(left, mid + 1):\n                if arr[i] == x:\n                    count += 1\n            # Count occurrences of x in the right half\n            for i in range(mid, right + 1):\n                if arr[i] == x:\n                    count += 1\n            # Check if x is the majority element\n            if count > n // 2:\n                return True\n            else:\n                return False\n        elif arr[mid] < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return False",
+      "test_content": "from llm_output import binary_search\n\ndef check(candidate):\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n    assert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False\n    assert is_majority([1, 1, 1, 2, 2], 5, 1) == True\n    assert is_majority([1, 1, 2, 2], 5, 1) == False\n\ncheck(binary_search)",
+      "context": "{\"function_name\": \"binary_search\"}",
+      "attempt_num": 1
+    }
+  ]
+}

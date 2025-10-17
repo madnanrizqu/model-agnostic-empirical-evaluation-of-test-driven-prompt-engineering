@@ -1,0 +1,740 @@
+[
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 82,
+        "solution": "===START===\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef prime_length(string):\n    return is_prime(len(string))\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Write a function that takes a string and returns True if the string\n    length is a prime number or False otherwise\n    Examples\n    prime_length('Hello') == True\n    prime_length('abcdcba') == True\n    prime_length('kittens') == True\n    prime_length('orange') == False\n\n### Signature\ndef prime_length(string):",
+        "timestamp": "2025-10-17T14:56:45.831670",
+        "response_time": "4.46"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 83,
+        "solution": "===START===\ndef starts_one_ends(n):\n    \"\"\"\n    Count the number of n-digit positive integers that start or end with 1.\n    \n    Args:\n        n (int): Number of digits\n    \n    Returns:\n        int: Count of n-digit numbers starting or ending with 1\n    \"\"\"\n    # If n is 1, special case\n    if n == 1:\n        return 10\n    \n    # Numbers starting with 1\n    start_with_1 = 10 ** (n - 1)\n    \n    # Numbers ending with 1\n    end_with_1 = 10 ** (n - 1)\n    \n    # Subtract numbers that both start and end with 1 to avoid double counting\n    both_start_end_1 = 10 ** (n - 2)\n    \n    return start_with_1 + end_with_1 - both_start_end_1\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n\n### Signature\ndef starts_one_ends(n):",
+        "timestamp": "2025-10-17T14:56:49.933192",
+        "response_time": "4.10"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 84,
+        "solution": "===START===\ndef solve(N):\n    # Convert the number to binary and remove the '0b' prefix\n    binary = bin(N)[2:]\n    \n    # Calculate the sum of digits in binary\n    total_sum = sum(int(digit) for digit in binary)\n    \n    return total_sum\n===END===\n\nThe solution works as follows:\n1. `bin(N)` converts the integer N to its binary representation as a string, with a '0b' prefix\n2. `[2:]` slices off the '0b' prefix to get just the binary digits\n3. Use a generator expression with `sum()` to:\n   - Convert each binary digit character to an integer \n   - Sum up all the 1s in the binary representation\n4. Return the total sum of binary digits\n\nFor example:\n- `solve(5)` would return 2 because 5 in binary is '101', and 1+0+1 = 2\n- `solve(10)` would return 2 because 10 in binary is '1010', and 1+0+1+0 = 2",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a positive integer N, return the total sum of its digits in binary.\n\n### Signature\ndef solve(N):",
+        "timestamp": "2025-10-17T14:56:55.056106",
+        "response_time": "5.12"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 85,
+        "solution": "===START===\ndef add(lst):\n    \"\"\"\n    Add the even elements that are at odd indices in the given list.\n    \n    Args:\n        lst (list): A non-empty list of integers\n    \n    Returns:\n        int: Sum of even elements at odd indices\n    \"\"\"\n    # Sum even elements at odd indices (index 1, 3, 5, etc.)\n    return sum(num for index, num in enumerate(lst) if index % 2 == 1 and num % 2 == 0)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n### Signature\ndef add(lst):",
+        "timestamp": "2025-10-17T14:56:58.404962",
+        "response_time": "3.35"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 86,
+        "solution": "===START===\ndef anti_shuffle(s):\n    # Split the string into words and spaces\n    words_and_spaces = []\n    current_word = ''\n    current_space = ''\n    \n    for char in s:\n        if char.isspace():\n            # If we have a current word, add it to the list\n            if current_word:\n                words_and_spaces.append(current_word)\n                current_word = ''\n            # Accumulate spaces\n            current_space += char\n        else:\n            # If we have accumulated spaces, add them to the list\n            if current_space:\n                words_and_spaces.append(current_space)\n                current_space = ''\n            # Build current word\n            current_word += char\n    \n    # Add any remaining word or space\n    if current_word:\n        words_and_spaces.append(current_word)\n    if current_space:\n        words_and_spaces.append(current_space)\n    \n    # Process words (non-space elements)\n    result = []\n    for item in words_and_spaces:\n        if item.isspace():\n            result.append(item)\n        else:\n            # Sort the characters of the word\n            sorted_word = ''.join(sorted(item))\n            result.append(sorted_word)\n    \n    # Join the result back into a string\n    return ''.join(result)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n### Signature\ndef anti_shuffle(s):",
+        "timestamp": "2025-10-17T14:57:05.827495",
+        "response_time": "7.42"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 87,
+        "solution": "===START===\ndef get_row(lst, x):\n    \"\"\"\n    Find coordinates of x in a 2D list, sorted by rows and columns\n    \n    Args:\n        lst (list): 2D list with potentially varying row lengths\n        x (int): Value to search for\n    \n    Returns:\n        list of tuples: Coordinates of x sorted by rows and columns\n    \"\"\"\n    # Find all coordinates of x\n    coordinates = [\n        (row_idx, col_idx) \n        for row_idx, row in enumerate(lst)\n        for col_idx, val in enumerate(row)\n        if val == x\n    ]\n    \n    # Sort coordinates first by rows (ascending), then by columns (descending)\n    return sorted(coordinates, key=lambda coord: (coord[0], -coord[1]))\n\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a 2 dimensional data, as a nested lists,\n    which is similar to matrix, however, unlike matrices,\n    each row may contain a different number of columns.\n    Given lst, and integer x, find integers x in the list,\n    and return list of tuples, [(x1, y1), (x2, y2) ...] such that\n    each tuple is a coordinate - (row, columns), starting with 0.\n    Sort coordinates initially by rows in ascending order.\n    Also, sort coordinates of the row by columns in descending order.\n\n### Signature\ndef get_row(lst, x):",
+        "timestamp": "2025-10-17T14:57:10.337498",
+        "response_time": "4.51"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 88,
+        "solution": "===START===\ndef sort_array(array):\n    # Check if the sum of first and last index values is even or odd\n    if (array[0] + array[-1]) % 2 == 0:\n        # If sum is even, sort in descending order\n        return sorted(array, reverse=True)\n    else:\n        # If sum is odd, sort in ascending order\n        return sorted(array)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n### Signature\ndef sort_array(array):",
+        "timestamp": "2025-10-17T14:57:12.812200",
+        "response_time": "2.47"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 89,
+        "solution": "===START===\ndef encrypt(s):\n    # Define the alphabet\n    alphabet = 'abcdefghijklmnopqrstuvwxyz'\n    \n    # Create the encrypted result string\n    encrypted = ''\n    \n    # Iterate through each character in the input string\n    for char in s:\n        # Find the index of the character in the alphabet\n        if char in alphabet:\n            # Calculate the new index by shifting 2 * 2 = 4 places\n            new_index = (alphabet.index(char) + 4) % 26\n            # Add the new character to the encrypted string\n            encrypted += alphabet[new_index]\n        else:\n            # If character is not in alphabet, keep it as is\n            encrypted += char\n    \n    return encrypted\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated.\n    The alphabet should be rotated in a manner such that the letters\n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n\n### Signature\ndef encrypt(s):",
+        "timestamp": "2025-10-17T14:57:16.293991",
+        "response_time": "3.48"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 90,
+        "solution": "===START===\ndef next_smallest(lst):\n    # If list is empty or has only one element, return None\n    if len(lst) < 2:\n        return None\n    \n    # Remove duplicates and sort the list\n    unique_sorted = sorted(set(lst))\n    \n    # If there's only one unique element, return None\n    if len(unique_sorted) < 2:\n        return None\n    \n    # Return the second smallest element\n    return unique_sorted[1]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n\n### Signature\ndef next_smallest(lst):",
+        "timestamp": "2025-10-17T14:57:18.881866",
+        "response_time": "2.59"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 91,
+        "solution": "===START===\nimport re\n\ndef is_bored(S):\n    # Split the string into sentences using '.', '?', or '!' as delimiters\n    sentences = re.split(r'[.?!]', S)\n    \n    # Count boredoms (sentences starting with 'I ')\n    boredom_count = sum(1 for sentence in sentences \n                        if sentence.strip().startswith('I '))\n    \n    return boredom_count\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n\n### Signature\ndef is_bored(S):",
+        "timestamp": "2025-10-17T14:57:21.532605",
+        "response_time": "2.65"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 92,
+        "solution": "===START===\ndef any_int(x, y, z):\n    # Check if all inputs are integers\n    if not (isinstance(x, int) and isinstance(y, int) and isinstance(z, int)):\n        return False\n    \n    # Check if any number is equal to the sum of the other two\n    if x == y + z or y == x + z or z == x + y:\n        return True\n    \n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n\n### Signature\ndef any_int(x, y, z):",
+        "timestamp": "2025-10-17T14:57:24.039441",
+        "response_time": "2.51"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 93,
+        "solution": "===START===\ndef encode(message):\n    vowels = 'aeiouAEIOU'\n    vowel_map = {\n        'a': 'c', 'e': 'g', 'i': 'k', 'o': 'q', 'u': 'w',\n        'A': 'C', 'E': 'G', 'I': 'K', 'O': 'Q', 'U': 'W'\n    }\n    \n    encoded_message = []\n    for char in message:\n        # Swap case\n        swapped_char = char.swapcase()\n        \n        # Replace vowels\n        if swapped_char in vowels:\n            swapped_char = vowel_map[swapped_char]\n        \n        encoded_message.append(swapped_char)\n    \n    return ''.join(encoded_message)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Write a function that takes a message, and encodes in such a\n    way that it swaps case of all letters, replaces all vowels in\n    the message with the letter that appears 2 places ahead of that\n    vowel in the english alphabet.\n    Assume only letters.\n\n### Signature\ndef encode(message):",
+        "timestamp": "2025-10-17T14:57:27.800477",
+        "response_time": "3.76"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 94,
+        "solution": "I'll solve this problem by implementing the `skjkasdkd` function that finds the largest prime number in the list and returns the sum of its digits.\n\n===START===\ndef is_prime(n):\n    \"\"\"Check if a number is prime.\"\"\"\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef digit_sum(n):\n    \"\"\"Calculate the sum of digits of a number.\"\"\"\n    return sum(int(digit) for digit in str(n))\n\ndef skjkasdkd(lst):\n    \"\"\"\n    Find the largest prime number in the list and return the sum of its digits.\n    If no prime number exists, return 0.\n    \"\"\"\n    # Filter prime numbers from the list\n    primes = [num for num in lst if is_prime(num)]\n    \n    # If no primes exist, return 0\n    if not primes:\n        return 0\n    \n    # Find the largest prime\n    largest_prime = max(primes)\n    \n    # Return the sum of digits of the largest prime\n    return digit_sum(largest_prime)\n===END===\n\nThis solution follows the requirements by:\n1. Using a helper function `is_prime()` to check if a number is prime\n2. Using a helper function `digit_sum()` to calculate the sum of digits\n3. Implementing the `skjkasdkd()` function with the specified signature\n4. Finding the largest prime in the list\n5. Returning the sum of digits of the largest prime\n6. Returning 0 if no prime numbers exist in the list\n\nThe code handles various scenarios like:\n- Lists with multiple primes\n- Lists with no primes\n- Lists with mixed numbers\n- Large and small numbers",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n### Signature\ndef skjkasdkd(lst):",
+        "timestamp": "2025-10-17T14:57:35.406194",
+        "response_time": "7.61"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 95,
+        "solution": "===START===\ndef check_dict_case(dict):\n    # Check if dictionary is empty\n    if not dict:\n        return False\n    \n    # Check if all keys are strings\n    if not all(isinstance(key, str) for key in dict.keys()):\n        return False\n    \n    # Check if all keys are lowercase\n    all_lower = all(key.islower() for key in dict.keys())\n    \n    # Check if all keys are uppercase \n    all_upper = all(key.isupper() for key in dict.keys())\n    \n    # Return True only if all keys are lowercase or all keys are uppercase\n    return all_lower or all_upper\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a dictionary, return True if all keys are strings in lower\n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n\n### Signature\ndef check_dict_case(dict):",
+        "timestamp": "2025-10-17T14:57:38.853185",
+        "response_time": "3.45"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 96,
+        "solution": "===START===\ndef count_up_to(n):\n    # Handle edge cases for 0 and 1\n    if n <= 1:\n        return []\n    \n    # Initialize list to store prime numbers\n    primes = []\n    \n    # Check each number from 2 to n-1\n    for num in range(2, n):\n        # Assume number is prime until proven otherwise\n        is_prime = True\n        \n        # Check for divisibility up to square root of num for efficiency\n        for divisor in range(2, int(num**0.5) + 1):\n            if num % divisor == 0:\n                is_prime = False\n                break\n        \n        # If number is prime, add to primes list\n        if is_prime:\n            primes.append(num)\n    \n    return primes\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Implement a function that takes an non-negative integer and returns an array of the first n\n    integers that are prime numbers and less than n.\n    for example:\n    count_up_to(5) => [2,3]\n    count_up_to(11) => [2,3,5,7]\n    count_up_to(0) => []\n    count_up_to(20) => [2,3,5,7,11,13,17,19]\n    count_up_to(1) => []\n    count_up_to(18) => [2,3,5,7,11,13,17]\n\n### Signature\ndef count_up_to(n):",
+        "timestamp": "2025-10-17T14:57:42.654019",
+        "response_time": "3.80"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 97,
+        "solution": "I'll solve this by extracting the unit digits and multiplying them.\n\n===START===\ndef multiply(a, b):\n    # Get the unit digit of each number by using modulo 10\n    unit_a = abs(a) % 10\n    unit_b = abs(b) % 10\n    \n    # Return the product of the unit digits\n    return unit_a * unit_b\n===END===\n\nThe solution works as follows:\n1. `abs(a) % 10` gets the absolute value of the first number and then extracts its unit digit\n2. `abs(b) % 10` does the same for the second number\n3. Multiplying these unit digits gives the required result\n4. Using `abs()` ensures negative numbers are handled correctly\n5. The function handles the given test cases:\n   - `multiply(148, 412)` returns 8 * 2 = 16\n   - `multiply(19, 28)` returns 9 * 8 = 72\n   - `multiply(2020, 1851)` returns 0 * 1 = 0\n   - `multiply(14, -15)` returns 4 * 5 = 20",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Complete the function that takes two integers and returns\n    the product of their unit digits.\n    Assume the input is always valid.\n    Examples:\n    multiply(148, 412) should return 16.\n    multiply(19, 28) should return 72.\n    multiply(2020, 1851) should return 0.\n    multiply(14,-15) should return 20.\n\n### Signature\ndef multiply(a, b):",
+        "timestamp": "2025-10-17T14:57:48.202465",
+        "response_time": "5.55"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 98,
+        "solution": "===START===\ndef count_upper(s):\n    # Define uppercase vowels\n    upper_vowels = set('AEIOU')\n    \n    # Count uppercase vowels at even indices\n    count = sum(1 for i in range(0, len(s), 2) if s[i] in upper_vowels)\n    \n    return count\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a string s, count the number of uppercase vowels in even indices.\n\n### Signature\ndef count_upper(s):",
+        "timestamp": "2025-10-17T14:57:50.378574",
+        "response_time": "2.18"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 99,
+        "solution": "===START===\nimport math\n\ndef closest_integer(value):\n    # Remove any whitespace from the input value\n    value = value.strip()\n    \n    # Check if the value is a valid number\n    try:\n        # Convert the string to a float first\n        float_value = float(value)\n        \n        # Round to the nearest integer\n        # math.floor() is used with .5 to handle equidistant cases \n        # by rounding to the nearest even integer\n        return round(float_value)\n    \n    except ValueError:\n        # If the input cannot be converted to a float, raise a ValueError\n        raise ValueError(\"Invalid input: cannot convert to a number\")\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n\n### Signature\ndef closest_integer(value):",
+        "timestamp": "2025-10-17T14:57:54.172125",
+        "response_time": "3.79"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 100,
+        "solution": "===START===\ndef make_a_pile(n):\n    \"\"\"\n    Create a pile of stones with n levels, where each level follows specific stone count rules.\n    \n    Args:\n        n (int): The number of levels in the stone pile\n    \n    Returns:\n        list: A list representing the number of stones in each level\n    \"\"\"\n    pile = [n]  # First level starts with n stones\n    current = n\n    \n    for _ in range(1, n):\n        # If current level stones are odd, next level will have next odd number\n        if current % 2 == 1:\n            current += 2\n        # If current level stones are even, next level will have next even number\n        else:\n            current += 2\n        \n        pile.append(current)\n    \n    return pile\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n\n### Signature\ndef make_a_pile(n):",
+        "timestamp": "2025-10-17T14:57:58.746795",
+        "response_time": "4.57"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 101,
+        "solution": "===START===\ndef words_string(s):\n    # Replace commas with spaces to handle both comma and space-separated inputs\n    s = s.replace(',', ' ')\n    \n    # Split the string by whitespace and filter out empty strings\n    return [word for word in s.split() if word]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n\n### Signature\ndef words_string(s):",
+        "timestamp": "2025-10-17T14:58:01.003984",
+        "response_time": "2.26"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 102,
+        "solution": "===START===\ndef choose_num(x, y):\n    # If x is greater than y, swap them\n    if x > y:\n        x, y = y, x\n    \n    # Start from the highest number and go down\n    for num in range(y, x-1, -1):\n        # Check if the number is even\n        if num % 2 == 0:\n            return num\n    \n    # If no even number found, return -1\n    return -1\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If\n    there's no such number, then the function should return -1.\n\n### Signature\ndef choose_num(x, y):",
+        "timestamp": "2025-10-17T14:58:03.639627",
+        "response_time": "2.63"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 103,
+        "solution": "===START===\ndef rounded_avg(n, m):\n    # Check if n is greater than m\n    if n > m:\n        return -1\n    \n    # Calculate the sum of integers from n to m\n    total_sum = sum(range(n, m + 1))\n    \n    # Calculate the count of integers\n    count = m - n + 1\n    \n    # Calculate the average and round to nearest integer\n    avg = round(total_sum / count)\n    \n    # Convert rounded average to binary string\n    return bin(avg)\n\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m).\n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n\n### Signature\ndef rounded_avg(n, m):",
+        "timestamp": "2025-10-17T14:58:06.556322",
+        "response_time": "2.92"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 104,
+        "solution": "===START===\ndef unique_digits(x):\n    def has_only_odd_digits(num):\n        return all(int(digit) % 2 == 1 for digit in str(num))\n    \n    return sorted(list(filter(has_only_odd_digits, x)))\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a list of positive integers x. return a sorted list of all\n    elements that hasn't any even digit.\n\n### Signature\ndef unique_digits(x):",
+        "timestamp": "2025-10-17T14:58:09.173074",
+        "response_time": "2.62"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 105,
+        "solution": "===START===\ndef by_length(arr):\n    # Filter numbers between 1 and 9\n    valid_nums = [num for num in arr if 1 <= num <= 9]\n    \n    # Sort the valid numbers\n    valid_nums.sort()\n    \n    # Reverse the sorted numbers\n    valid_nums.reverse()\n    \n    # Mapping of digits to their names\n    digit_names = {\n        1: \"One\", 2: \"Two\", 3: \"Three\", 4: \"Four\", 5: \"Five\", \n        6: \"Six\", 7: \"Seven\", 8: \"Eight\", 9: \"Nine\"\n    }\n    \n    # Convert numbers to their corresponding names\n    result = [digit_names[num] for num in valid_nums]\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given an array of integers, sort the integers that are between 1 and 9 inclusive,\n    reverse the resulting array, and then replace each digit by its corresponding name from\n    \"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\".\n\n### Signature\ndef by_length(arr):",
+        "timestamp": "2025-10-17T14:58:12.855271",
+        "response_time": "3.68"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 106,
+        "solution": "===START===\ndef factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    return n * factorial(n-1)\n\ndef f(n):\n    result = []\n    for i in range(1, n+1):\n        if i % 2 == 0:\n            # Even index: calculate factorial\n            result.append(factorial(i))\n        else:\n            # Odd index: calculate sum of numbers from 1 to i\n            result.append(sum(range(1, i+1)))\n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Implement the function f that takes n as a parameter,\n    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even\n    or the sum of numbers from 1 to i otherwise.\n    i starts from 1.\n    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).\n    Example:\n    f(5) == [1, 2, 6, 24, 15]\n\n### Signature\ndef f(n):",
+        "timestamp": "2025-10-17T14:58:15.812086",
+        "response_time": "2.96"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 107,
+        "solution": "===START===\ndef is_palindrome(num):\n    return str(num) == str(num)[::-1]\n\ndef even_odd_palindrome(n):\n    even_palindromes = 0\n    odd_palindromes = 0\n    \n    for num in range(1, n + 1):\n        if is_palindrome(num):\n            if num % 2 == 0:\n                even_palindromes += 1\n            else:\n                odd_palindromes += 1\n    \n    return (even_palindromes, odd_palindromes)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n### Signature\ndef even_odd_palindrome(n):",
+        "timestamp": "2025-10-17T14:58:19.092401",
+        "response_time": "3.28"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 108,
+        "solution": "I'll solve this by implementing the `count_nums` function that counts numbers with a digit sum greater than zero.\n\n===START===\ndef count_nums(arr):\n    def digit_sum(num):\n        # Convert number to string, handling negative sign\n        str_num = str(abs(num))\n        \n        # If original number was negative, make first digit negative\n        digits = [int(str_num[0]) * (-1 if num < 0 else 1)] + [int(d) for d in str_num[1:]]\n        \n        # Return sum of digits\n        return sum(digits)\n    \n    # Count numbers where digit sum is > 0\n    return sum(1 for num in arr if digit_sum(num) > 0)\n===END===\n\nThis implementation does the following:\n\n1. Define an inner function `digit_sum(num)` that:\n   - Takes the absolute value of the number to handle string conversion\n   - Handles the sign for the first digit if the original number was negative\n   - Converts digits to integers\n   - Returns the sum of digits\n\n2. Use a generator expression with `sum()` to count numbers where the digit sum is > 0\n   - Iterates through each number in the input array\n   - Applies `digit_sum()` to check if digit sum is positive\n   - Counts numbers meeting the condition\n\nThe function handles the requirements:\n- Returns 0 for an empty array\n- Correctly handles negative numbers by making the first digit negative\n- Counts numbers with digit sum > 0\n\nThe implementation passes the provided test cases:\n- `count_nums([]) == 0`\n- `count_nums([-1, 11, -11]) == 1`\n- `count_nums([1, 1, 2]) == 3`",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n\n### Signature\ndef count_nums(arr):",
+        "timestamp": "2025-10-17T14:58:28.125993",
+        "response_time": "9.03"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 109,
+        "solution": "I'll solve this problem by implementing the `move_one_ball` function that determines if an array can be sorted by right shift operations.\n\n===START===\ndef move_one_ball(arr):\n    # If array is empty or has only one element, it's already sorted\n    if len(arr) <= 1:\n        return True\n    \n    # Find the index where the array would be rotated\n    rotations = 0\n    n = len(arr)\n    \n    # Find the index of the minimum element\n    min_index = arr.index(min(arr))\n    \n    # Check if the array can be sorted by right shifts\n    for i in range(n):\n        # Compare current element with the next element in a circular manner\n        current = arr[(min_index + i) % n]\n        next_elem = arr[(min_index + i + 1) % n]\n        \n        # If next element is smaller, it means we can't sort by right shifts\n        if next_elem < current:\n            rotations += 1\n            \n            # If more than one rotation is needed, it's impossible\n            if rotations > 1:\n                return False\n    \n    return True\n===END===\n\nThe solution works as follows:\n\n1. If the array is empty or has only one element, it's already sorted, so return `True`.\n\n2. Find the index of the minimum element in the array. This is the potential starting point of a sorted array after right shifts.\n\n3. Iterate through the array in a circular manner starting from the minimum element's index.\n\n4. Compare each element with its next element. If the next element is smaller, it means a right shift is needed.\n\n5. Keep track of the number of rotations needed. If more than one rotation is required, it means the array cannot be sorted by right shifts.\n\n6. If only one rotation (or zero rotations) is needed, return `True`. Otherwise, return `False`.\n\nTime complexity: O(n)\nSpace complexity: O(1)\n\nExample scenarios:\n- `[3, 4, 5, 1, 2]` returns `True` (can be sorted by one right shift)\n- `[3, 1, 2, 4, 5]` returns `False` (requires more than one right shift)\n- `[1, 2, 3, 4, 5]` returns `True` (already sorted)",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing\n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n\n### Signature\ndef move_one_ball(arr):",
+        "timestamp": "2025-10-17T14:58:37.889525",
+        "response_time": "9.76"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 110,
+        "solution": "===START===\ndef exchange(lst1, lst2):\n    # Count odd numbers in lst1\n    odd_count_lst1 = sum(1 for num in lst1 if num % 2 != 0)\n    \n    # Count even numbers in lst2\n    even_count_lst2 = sum(1 for num in lst2 if num % 2 == 0)\n    \n    # If we have enough even numbers in lst2 to replace all odd numbers in lst1\n    if even_count_lst2 >= odd_count_lst1:\n        return \"YES\"\n    else:\n        return \"NO\"\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    In this problem, you will implement a function that takes two lists of numbers,\n    and determines whether it is possible to perform an exchange of elements\n    between them to make lst1 a list of only even numbers.\n    There is no limit on the number of exchanged elements between lst1 and lst2.\n    If it is possible to exchange elements between the lst1 and lst2 to make\n    all the elements of lst1 to be even, return \"YES\".\n    Otherwise, return \"NO\".\n    For example:\n    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => \"YES\"\n    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => \"NO\"\n    It is assumed that the input lists will be non-empty.\n\n### Signature\ndef exchange(lst1, lst2):",
+        "timestamp": "2025-10-17T14:58:40.807298",
+        "response_time": "2.92"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 111,
+        "solution": "===START===\ndef histogram(test):\n    # If input is empty, return empty dictionary\n    if not test:\n        return {}\n    \n    # Split the string into individual letters\n    letters = test.split()\n    \n    # Count occurrences of each letter\n    letter_counts = {}\n    for letter in letters:\n        letter_counts[letter] = letter_counts.get(letter, 0) + 1\n    \n    # Find the maximum count\n    max_count = max(letter_counts.values())\n    \n    # Return dictionary of letters with max count\n    return {letter: count for letter, count in letter_counts.items() if count == max_count}\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a string representing a space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n\n### Signature\ndef histogram(test):",
+        "timestamp": "2025-10-17T14:58:44.035624",
+        "response_time": "3.23"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 112,
+        "solution": "===START===\ndef reverse_delete(s, c):\n    # Remove characters from s that are in c\n    result = ''.join(char for char in s if char not in c)\n    \n    # Check if the resulting string is a palindrome\n    is_palindrome = result == result[::-1]\n    \n    # Return a tuple with the result string and palindrome check\n    return (result, is_palindrome)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Task\n    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c\n    then check if the result string is palindrome.\n    A string is called palindrome if it reads the same backward as forward.\n    You should return a tuple containing the result string and True/False for the check.\n    Example\n    For s = \"abcde\", c = \"ae\", the result should be ('bcd',False)\n    For s = \"abcdef\", c = \"b\"  the result should be ('acdef',False)\n    For s = \"abcdedcba\", c = \"ab\", the result should be ('cdedc',True)\n\n### Signature\ndef reverse_delete(s,c):",
+        "timestamp": "2025-10-17T14:58:46.438131",
+        "response_time": "2.40"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 113,
+        "solution": "===START===\ndef odd_count(lst):\n    # Function to count odd digits in a single string\n    def count_odd_digits(s):\n        return sum(1 for digit in s if int(digit) % 2 != 0)\n    \n    # Apply count_odd_digits to each string in the input list\n    return [count_odd_digits(s) for s in lst]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n### Signature\ndef odd_count(lst):",
+        "timestamp": "2025-10-17T14:58:51.092303",
+        "response_time": "4.65"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 114,
+        "solution": "===START===\ndef minSubArraySum(nums):\n    \"\"\"\n    Find the minimum sum of any non-empty sub-array in the given list of numbers.\n    \n    Args:\n        nums (list): A list of integers\n    \n    Returns:\n        int: The minimum possible sum of any sub-array\n    \"\"\"\n    # If the list is empty, return None or raise an exception\n    if not nums:\n        return None\n    \n    # Initialize min_sum and current_sum with the first element\n    min_sum = nums[0]\n    current_sum = nums[0]\n    \n    # Iterate through the array starting from the second element\n    for num in nums[1:]:\n        # Kadane's algorithm modified to find minimum sum\n        current_sum = min(num, current_sum + num)\n        min_sum = min(min_sum, current_sum)\n    \n    return min_sum\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n\n### Signature\ndef minSubArraySum(nums):",
+        "timestamp": "2025-10-17T14:58:55.161407",
+        "response_time": "4.07"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 115,
+        "solution": "===START===\ndef max_fill(grid, capacity):\n    \"\"\"\n    Calculate the minimum number of bucket lowerings needed to empty all wells.\n    \n    Args:\n        grid (List[List[int]]): A 2D grid representing wells, where 1 represents water unit\n        capacity (int): Capacity of each bucket\n    \n    Returns:\n        int: Minimum number of bucket lowerings required to empty all wells\n    \"\"\"\n    # Calculate total water units in each well\n    well_water_units = [sum(row) for row in grid]\n    \n    # Calculate number of bucket lowerings needed for each well\n    bucket_lowerings = [\n        (water_units + capacity - 1) // capacity \n        for water_units in well_water_units\n    ]\n    \n    # Return total bucket lowerings\n    return sum(bucket_lowerings)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a rectangular grid of wells. Each row represents a single well,\n    and each 1 in a row represents a single unit of water.\n    Each well has a corresponding bucket that can be used to extract water from it,\n    and all buckets have the same capacity.\n    Your task is to use the buckets to empty the wells.\n    Output the number of times you need to lower the buckets.\n\n### Signature\ndef max_fill(grid, capacity):",
+        "timestamp": "2025-10-17T14:58:59.481823",
+        "response_time": "4.32"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 116,
+        "solution": "I'll solve this problem by implementing the `sort_array` function that sorts an array based on the number of ones in their binary representation and then by their decimal value.\n\n===START===\ndef sort_array(arr):\n    def count_ones(num):\n        # Count the number of 1's in binary representation\n        return bin(num).count('1')\n    \n    # Sort the array using a custom key that considers:\n    # 1. Number of ones in binary representation\n    # 2. Decimal value of the number\n    return sorted(arr, key=lambda x: (count_ones(x), x))\n===END===\n\nThe solution works as follows:\n\n1. `count_ones(num)` is a helper function that:\n   - Uses `bin(num)` to convert the number to its binary string representation\n   - Uses `.count('1')` to count the number of '1' characters in the binary string\n\n2. `sorted()` is used with a custom `key` function that creates a tuple with two sorting criteria:\n   - First, the number of ones in the binary representation\n   - Second, the decimal value of the number itself\n\nThis ensures that:\n- Numbers are first sorted by the count of ones in their binary representation\n- If two numbers have the same number of ones, they are sorted by their decimal value\n\nFor example:\n- `sort_array([1, 2, 3, 4, 5])` would return `[1, 2, 4, 8, 16]`\n  - 1 (binary: 1) has 1 one\n  - 2 (binary: 10) has 1 one\n  - 4 (binary: 100) has 1 one\n  - 8 (binary: 1000) has 1 one\n  - 16 (binary: 10000) has 1 one\n\nThe function handles the requirements by providing a stable, ascending sort based on binary representation and decimal value.",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n### Signature\ndef sort_array(arr):",
+        "timestamp": "2025-10-17T14:59:07.879430",
+        "response_time": "8.40"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 117,
+        "solution": "===START===\ndef is_consonant(char):\n    \"\"\"Check if a character is a consonant.\"\"\"\n    vowels = 'aeiouAEIOU'\n    return char.isalpha() and char not in vowels\n\ndef select_words(s, n):\n    \"\"\"\n    Return a list of words from string s that contain exactly n consonants.\n    \n    Args:\n    s (str): Input string to search for words\n    n (int): Number of consonants to match\n    \n    Returns:\n    list: Words with exactly n consonants, in order of appearance\n    \"\"\"\n    # Split the string into words\n    words = s.split()\n    \n    # Filter words with exactly n consonants\n    result = []\n    for word in words:\n        # Count consonants in the word\n        consonant_count = sum(1 for char in word if is_consonant(char))\n        \n        # Add word to result if consonant count matches\n        if consonant_count == n:\n            result.append(word)\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a string s and a natural number n, you have been tasked to implement\n    a function that returns a list of all words from string s that contain exactly\n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n\n### Signature\ndef select_words(s, n):",
+        "timestamp": "2025-10-17T14:59:12.439981",
+        "response_time": "4.56"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 118,
+        "solution": "===START===\ndef get_closest_vowel(word):\n    # Define vowels (case sensitive)\n    vowels = 'aeiouAEIOU'\n    \n    # Iterate from right to left\n    for i in range(len(word) - 2, 0, -1):\n        # Check if current character is a vowel\n        # and surrounding characters are consonants\n        if (word[i] in vowels and \n            word[i-1] not in vowels and \n            word[i+1] not in vowels and \n            word[i-1].isalpha() and \n            word[i+1].isalpha()):\n            return word[i]\n    \n    # If no vowel found between consonants\n    return ''\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a word. Your task is to find the closest vowel that stands between\n    two consonants from the right side of the word (case sensitive).\n\n### Signature\ndef get_closest_vowel(word):",
+        "timestamp": "2025-10-17T14:59:15.966558",
+        "response_time": "3.53"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 119,
+        "solution": "===START===\ndef match_parens(lst):\n    # Try both possible concatenation orders\n    def is_balanced(s):\n        # Check if a string of parentheses is balanced\n        count = 0\n        for char in s:\n            if char == '(':\n                count += 1\n            else:\n                count -= 1\n                # If at any point we have more closing than opening, it's invalid\n                if count < 0:\n                    return False\n        # String is balanced only if final count is 0\n        return count == 0\n\n    # Try concatenating first string first, then second\n    s1, s2 = lst\n    if is_balanced(s1 + s2):\n        return 'Yes'\n    \n    # Try concatenating second string first, then first\n    if is_balanced(s2 + s1):\n        return 'Yes'\n    \n    # If neither order works, return No\n    return 'No'\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n### Signature\ndef match_parens(lst):",
+        "timestamp": "2025-10-17T14:59:20.639015",
+        "response_time": "4.67"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 120,
+        "solution": "===START===\nimport heapq\n\ndef maximum(arr, k):\n    # If k is larger than the array length, return sorted entire array in descending order\n    if k >= len(arr):\n        return sorted(arr, reverse=True)\n    \n    # Use heapq to efficiently find k largest elements\n    # Create a min heap of k largest elements\n    heap = arr[:k]\n    heapq.heapify(heap)\n    \n    # For remaining elements, if element is larger than heap's smallest, replace\n    for num in arr[k:]:\n        if num > heap[0]:\n            heapq.heapreplace(heap, num)\n    \n    # Return sorted list of k largest elements in descending order\n    return sorted(heap, reverse=True)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given an array arr of integers and a positive integer k, return a sorted list\n    of length k with the maximum k numbers in arr.\n\n### Signature\ndef maximum(arr, k):",
+        "timestamp": "2025-10-17T14:59:26.601048",
+        "response_time": "5.96"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 121,
+        "solution": "Here's a solution to the problem:\n\n===START===\ndef solution(lst):\n    # Use list comprehension to:\n    # 1. Filter elements at even indices (0, 2, 4, ...)\n    # 2. Keep only odd elements from those indices\n    # 3. Sum the resulting list\n    return sum(num for i, num in enumerate(lst) if i % 2 == 0 and num % 2 != 0)\n===END===\n\nThe solution works as follows:\n1. `enumerate(lst)` creates pairs of (index, value) for the input list\n2. `i % 2 == 0` checks if the index is even (0, 2, 4, ...)\n3. `num % 2 != 0` checks if the number is odd\n4. The list comprehension filters and selects only odd numbers at even indices\n5. `sum()` adds up the selected numbers\n\nExample:\n- `solution([1, 2, 3, 4, 5])` returns 4 (3 is at index 2)\n- `solution([1, 2, 3, 4, 5, 6])` returns 4 (3 is at index 2)\n- `solution([1, 1, 1, 1])` returns 2 (1 at index 0 and 1 at index 2)",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n\n### Signature\ndef solution(lst):",
+        "timestamp": "2025-10-17T14:59:33.238668",
+        "response_time": "6.64"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 122,
+        "solution": "===START===\ndef add_elements(arr, k):\n    # Slice the first k elements of the array\n    first_k_elements = arr[:k]\n    \n    # Sum elements that have at most two digits (between -99 and 99)\n    total_sum = sum(num for num in first_k_elements if -99 <= num <= 99)\n    \n    return total_sum\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n### Signature\ndef add_elements(arr, k):",
+        "timestamp": "2025-10-17T14:59:36.386895",
+        "response_time": "3.15"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 123,
+        "solution": "===START===\ndef get_odd_collatz(n):\n    \"\"\"\n    Generate a sorted list of odd numbers in the Collatz sequence starting from n.\n    \n    Args:\n        n (int): A positive integer to start the Collatz sequence\n    \n    Returns:\n        list: A sorted list of odd numbers encountered in the Collatz sequence\n    \"\"\"\n    # Set to track unique odd numbers to avoid duplicates\n    odd_numbers = set()\n    \n    # Current number in the sequence\n    current = n\n    \n    # Continue until the sequence reaches 1\n    while current != 1:\n        # If current number is odd, add to set\n        if current % 2 != 0:\n            odd_numbers.add(current)\n        \n        # Apply Collatz sequence rules\n        if current % 2 == 0:\n            current = current // 2\n        else:\n            current = 3 * current + 1\n    \n    # Add 1 to the set of odd numbers (final number in sequence)\n    odd_numbers.add(1)\n    \n    # Return sorted list of odd numbers\n    return sorted(list(odd_numbers))\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.\n\n### Signature\ndef get_odd_collatz(n):",
+        "timestamp": "2025-10-17T14:59:41.491193",
+        "response_time": "5.10"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 124,
+        "solution": "===START===\nimport re\n\ndef valid_date(date):\n    # Check if date string is empty\n    if not date:\n        return False\n    \n    # Check if date matches the format mm-dd-yyyy\n    pattern = r'^\\d{2}-\\d{2}-\\d{4}$'\n    if not re.match(pattern, date):\n        return False\n    \n    # Split the date into month, day, and year\n    month, day, year = map(int, date.split('-'))\n    \n    # Check month range\n    if month < 1 or month > 12:\n        return False\n    \n    # Check days for months with 31 days\n    if month in [1, 3, 5, 7, 8, 10, 12]:\n        if day < 1 or day > 31:\n            return False\n    \n    # Check days for months with 30 days\n    elif month in [4, 6, 9, 11]:\n        if day < 1 or day > 30:\n            return False\n    \n    # Check days for February\n    elif month == 2:\n        if day < 1 or day > 29:\n            return False\n    \n    return True\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You have to write a function which validates a given date string and\n    returns True if the date is valid otherwise False.\n    The date is valid if all of the following rules are satisfied:\n    1. The date string is not empty.\n    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.\n    3. The months should not be less than 1 or higher than 12.\n    4. The date should be in the format: mm-dd-yyyy\n\n### Signature\ndef valid_date(date):",
+        "timestamp": "2025-10-17T14:59:46.375966",
+        "response_time": "4.88"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 125,
+        "solution": "===START===\ndef split_words(txt):\n    # First try splitting on whitespace\n    if ' ' in txt:\n        return txt.split()\n    \n    # If no whitespace, try splitting on comma\n    if ',' in txt:\n        return txt.split(',')\n    \n    # If no comma, count odd-order lowercase letters\n    return sum(1 for char in txt if char.islower() and (ord(char) - ord('a')) % 2 == 1)\n\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3\n\n### Signature\ndef split_words(txt):",
+        "timestamp": "2025-10-17T14:59:49.687309",
+        "response_time": "3.31"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 126,
+        "solution": "===START===\ndef is_sorted(lst):\n    # Check if list is empty or has only one element\n    if len(lst) <= 1:\n        return True\n    \n    # Check for more than one duplicate\n    for num in lst:\n        if lst.count(num) > 2:\n            return False\n    \n    # Check if list is in ascending order\n    for i in range(1, len(lst)):\n        if lst[i] < lst[i-1]:\n            return False\n    \n    return True\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n### Signature\ndef is_sorted(lst):",
+        "timestamp": "2025-10-17T14:59:52.213713",
+        "response_time": "2.53"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 127,
+        "solution": "===START===\ndef is_prime(n):\n    \"\"\"Check if a number is prime.\"\"\"\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef intersection(interval1, interval2):\n    \"\"\"\n    Determine if the length of intersection of two intervals is a prime number.\n    \n    Args:\n    interval1 (tuple): First interval as (start, end)\n    interval2 (tuple): Second interval as (start, end)\n    \n    Returns:\n    str: \"YES\" if intersection length is prime, \"NO\" otherwise\n    \"\"\"\n    # Find the maximum of start points and minimum of end points\n    start = max(interval1[0], interval2[0])\n    end = min(interval1[1], interval2[1])\n    \n    # Check if intervals intersect\n    if start > end:\n        return \"NO\"\n    \n    # Calculate intersection length \n    intersection_length = end - start + 1\n    \n    # Check if intersection length is prime\n    return \"YES\" if is_prime(intersection_length) else \"NO\"\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given two intervals,\n    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).\n    The given intervals are closed which means that the interval (start, end)\n    includes both start and end.\n    For each given interval, it is assumed that its start is less or equal its end.\n    Your task is to determine whether the length of intersection of these two\n    intervals is a prime number.\n    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)\n    which its length is 1, which not a prime number.\n    If the length of the intersection is a prime number, return \"YES\",\n    otherwise, return \"NO\".\n    If the two intervals don't intersect, return \"NO\".\n\n### Signature\ndef intersection(interval1, interval2):",
+        "timestamp": "2025-10-17T14:59:57.141754",
+        "response_time": "4.93"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 128,
+        "solution": "===START===\ndef prod_signs(arr):\n    # Handle empty array case\n    if not arr:\n        return None\n    \n    # Calculate product of signs\n    sign_product = 1\n    for num in arr:\n        if num == 0:\n            return 0\n        elif num < 0:\n            sign_product *= -1\n    \n    # Calculate sum of magnitudes\n    magnitude_sum = sum(abs(num) for num in arr)\n    \n    # Return sum of magnitudes multiplied by sign product\n    return magnitude_sum * sign_product\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n### Signature\ndef prod_signs(arr):",
+        "timestamp": "2025-10-17T15:00:00.236673",
+        "response_time": "3.09"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 129,
+        "solution": "I'll solve this problem by implementing the `minPath` function to find the minimum path sum from the top-left to the bottom-right cell while visiting exactly k cells.\n\n===START===\nfrom typing import List\nimport heapq\n\ndef minPath(grid: List[List[int]], k: int) -> int:\n    N = len(grid)\n    \n    # Validate input\n    if k < 2 or k > N * N:\n        return -1\n    \n    # Directions: right and down\n    directions = [(0, 1), (1, 0)]\n    \n    # Priority queue for Dijkstra's algorithm\n    # (total_path_sum, current_row, current_col, visited_cells, visited_set)\n    pq = [(grid[0][0], 0, 0, 1, {grid[0][0]})]\n    \n    # Track visited states to avoid revisiting\n    visited = set()\n    \n    while pq:\n        path_sum, row, col, cells_visited, visited_values = heapq.heappop(pq)\n        \n        # Reached bottom-right with exactly k visited cells\n        if row == N - 1 and col == N - 1 and cells_visited == k:\n            return path_sum\n        \n        # State tracking to prevent redundant explorations\n        state = (row, col, cells_visited, tuple(sorted(visited_values)))\n        if state in visited:\n            continue\n        visited.add(state)\n        \n        # Explore possible moves\n        for dx, dy in directions:\n            new_row, new_col = row + dx, col + dy\n            \n            # Check grid boundaries\n            if 0 <= new_row < N and 0 <= new_col < N:\n                new_value = grid[new_row][new_col]\n                \n                # Prevent revisiting same cell value\n                if new_value not in visited_values:\n                    new_visited_values = visited_values.copy()\n                    new_visited_values.add(new_value)\n                    \n                    heapq.heappush(pq, (\n                        path_sum + new_value, \n                        new_row, \n                        new_col, \n                        cells_visited + 1, \n                        new_visited_values\n                    ))\n    \n    return -1\n===END===\n\nThe solution uses a modified Dijkstra's algorithm with a priority queue to find the minimum path sum. Here's a breakdown of the approach:\n\n1. Input validation checks if k is within valid range.\n2. Use a priority queue to explore paths, prioritizing lower path sums.\n3. Track visited cells and their values to prevent revisiting.\n4. Explore only right and down directions.\n5. When bottom-right is reached with exactly k visited cells, return the path sum.\n6. If no valid path is found, return -1.\n\nKey features:\n- Handles grid constraints\n- Ensures each cell is visited only once\n- Finds minimum path sum\n- Guarantees exactly k cells are visited\n\nTime complexity is O(N^2 * k * log(N^2)), and space complexity is O(N^2 * k).",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k,\n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n### Signature\ndef minPath(grid, k):",
+        "timestamp": "2025-10-17T15:00:12.317111",
+        "response_time": "12.08"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 130,
+        "solution": "===START===\ndef tri(n):\n    # Handle base cases\n    if n < 0:\n        return []\n    \n    # Initialize the sequence with first values\n    sequence = [1, 3]\n    \n    # If n is 0 or 1, return appropriate slice\n    if n == 0:\n        return [1]\n    if n == 1:\n        return sequence\n    \n    # Generate the rest of the sequence\n    while len(sequence) <= n:\n        # For even indices\n        if len(sequence) % 2 == 1:\n            # Use the recurrence relation for odd indices\n            next_val = sequence[-1] + sequence[-2] + (len(sequence) + 1)\n            sequence.append(next_val)\n        else:\n            # Use the even index formula\n            next_val = 1 + len(sequence) / 2\n            sequence.append(next_val)\n    \n    return sequence\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in\n    the last couple centuries. However, what people don't know is Tribonacci sequence.\n    Tribonacci sequence is defined by the recurrence:\n    tri(1) = 3\n    tri(n) = 1 + n / 2, if n is even.\n    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.\n    For example:\n    tri(2) = 1 + (2 / 2) = 2\n    tri(4) = 3\n    tri(3) = tri(2) + tri(1) + tri(4)\n           = 2 + 3 + 3 = 8\n    You are given a non-negative integer number n, you have to a return a list of the\n    first n + 1 numbers of the Tribonacci sequence.\n    Examples:\n    tri(3) = [1, 3, 2, 8]\n\n### Signature\ndef tri(n):",
+        "timestamp": "2025-10-17T15:00:18.462589",
+        "response_time": "6.14"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 131,
+        "solution": "===START===\ndef digits(n):\n    # Convert number to string to iterate through digits\n    num_str = str(n)\n    \n    # Track product of odd digits\n    odd_product = 1\n    \n    # Flag to check if any odd digits exist\n    has_odd_digits = False\n    \n    # Iterate through each digit\n    for digit in num_str:\n        # Convert digit back to integer\n        digit_int = int(digit)\n        \n        # Check if digit is odd\n        if digit_int % 2 != 0:\n            odd_product *= digit_int\n            has_odd_digits = True\n    \n    # Return product if odd digits exist, else return 0\n    return odd_product if has_odd_digits else 0\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n\n### Signature\ndef digits(n):",
+        "timestamp": "2025-10-17T15:00:22.113094",
+        "response_time": "3.65"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 132,
+        "solution": "===START===\ndef is_nested(string):\n    # Track the depth of nested brackets\n    depth = 0\n    max_depth = 0\n    \n    # Iterate through each character in the string\n    for char in string:\n        if char == '[':\n            # Increase depth when opening bracket is found\n            depth += 1\n            # Track the maximum depth reached\n            max_depth = max(max_depth, depth)\n        elif char == ']':\n            # Decrease depth when closing bracket is found\n            depth -= 1\n    \n    # Return True if max depth was at least 2 (indicating nesting)\n    return max_depth >= 2\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets\n    where at least one bracket in the subsequence is nested.\n\n### Signature\ndef is_nested(string):",
+        "timestamp": "2025-10-17T15:00:27.189199",
+        "response_time": "5.08"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 133,
+        "solution": "===START===\nimport math\n\ndef sum_squares(lst):\n    # Round each number to ceiling and square it\n    squared_nums = [math.ceil(num)**2 for num in lst]\n    \n    # Return the sum of squared numbers\n    return sum(squared_nums)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a list of numbers.\n    You need to return the sum of squared numbers in the given list,\n    round each element in the list to the upper int(Ceiling) first.\n    Examples:\n    For lst = [1,2,3] the output should be 14\n    For lst = [1,4,9] the output should be 98\n    For lst = [1,3,5,7] the output should be 84\n    For lst = [1.4,4.2,0] the output should be 29\n    For lst = [-2.4,1,1] the output should be 6\n\n### Signature\ndef sum_squares(lst):",
+        "timestamp": "2025-10-17T15:00:29.445742",
+        "response_time": "2.26"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 134,
+        "solution": "===START===\ndef check_if_last_char_is_a_letter(txt):\n    # If the string is empty, return False\n    if not txt:\n        return False\n    \n    # Split the string into words\n    words = txt.split()\n    \n    # If no words, return False\n    if not words:\n        return False\n    \n    # Get the last word\n    last_word = words[-1]\n    \n    # Check if the last character of the last word is an alphabetical character\n    # and it's the only character in the last word\n    return (len(last_word) == 1 and last_word.isalpha())\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n### Signature\ndef check_if_last_char_is_a_letter(txt):",
+        "timestamp": "2025-10-17T15:00:32.577168",
+        "response_time": "3.13"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 135,
+        "solution": "===START===\ndef can_arrange(arr):\n    \"\"\"\n    Find the largest index of an element which is not greater than or equal to \n    the element immediately preceding it.\n    \n    Args:\n        arr (list): Input list of unique integers\n    \n    Returns:\n        int: Largest index of an element not greater than previous element, \n             or -1 if no such element exists\n    \"\"\"\n    # If array has less than 2 elements, no such index can exist\n    if len(arr) < 2:\n        return -1\n    \n    # Iterate from right to left to find the largest index\n    for i in range(len(arr)-1, 0, -1):\n        # Check if current element is not greater than or equal to previous element\n        if arr[i] <= arr[i-1]:\n            return i\n    \n    # If no such index found\n    return -1\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n### Signature\ndef can_arrange(arr):",
+        "timestamp": "2025-10-17T15:00:36.824483",
+        "response_time": "4.25"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 136,
+        "solution": "===START===\ndef largest_smallest_integers(lst):\n    # Filter out negative and positive integers\n    negatives = [num for num in lst if num < 0]\n    positives = [num for num in lst if num > 0]\n    \n    # Find largest negative and smallest positive\n    largest_negative = max(negatives) if negatives else None\n    smallest_positive = min(positives) if positives else None\n    \n    return (largest_negative, smallest_positive)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n### Signature\ndef largest_smallest_integers(lst):",
+        "timestamp": "2025-10-17T15:00:39.655042",
+        "response_time": "2.83"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 137,
+        "solution": "===START===\nimport re\n\ndef compare_one(a, b):\n    # Helper function to convert string to float, handling both . and , as decimal separators\n    def parse_number(val):\n        if isinstance(val, (int, float)):\n            return val\n        if isinstance(val, str):\n            # Replace comma with dot if comma is used as decimal separator\n            val = val.replace(',', '.')\n            try:\n                return float(val)\n            except ValueError:\n                return None\n\n    # Convert both inputs to numeric values\n    num_a = parse_number(a)\n    num_b = parse_number(b)\n\n    # If either conversion fails, return None\n    if num_a is None or num_b is None:\n        return None\n\n    # Compare numeric values\n    if num_a > num_b:\n        return a\n    elif num_b > num_a:\n        return b\n    else:\n        return None\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n### Signature\ndef compare_one(a, b):",
+        "timestamp": "2025-10-17T15:00:44.090620",
+        "response_time": "4.43"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 138,
+        "solution": "I'll solve this problem by implementing the `is_equal_to_sum_even` function that checks if a given number can be written as the sum of exactly 4 positive even numbers.\n\n===START===\ndef is_equal_to_sum_even(n):\n    # If n is less than 8 or odd, it cannot be sum of 4 even numbers\n    if n < 8 or n % 2 != 0:\n        return False\n    \n    # Try all combinations of 4 even numbers\n    for a in range(2, n//4 + 1, 2):\n        for b in range(2, n//4 + 1, 2):\n            for c in range(2, n//4 + 1, 2):\n                d = n - (a + b + c)\n                \n                # Check if d is even and positive\n                if d > 0 and d % 2 == 0:\n                    return True\n    \n    return False\n===END===\n\nThis implementation works as follows:\n\n1. First, it checks if the input `n` is less than 8 or odd. If so, it returns `False` because:\n   - Numbers less than 8 cannot be the sum of 4 positive even numbers\n   - Odd numbers cannot be the sum of even numbers\n\n2. It then uses nested loops to try all combinations of 4 even numbers:\n   - The loops iterate through even numbers from 2 to n/4\n   - For each combination of 3 even numbers (a, b, c), it calculates the 4th number (d)\n   - If d is a positive even number and a + b + c + d equals n, it returns `True`\n\n3. If no combination is found, it returns `False`\n\nThe function satisfies the given examples:\n- `is_equal_to_sum_even(4)` returns `False`\n- `is_equal_to_sum_even(6)` returns `False`\n- `is_equal_to_sum_even(8)` returns `True` (e.g., 2 + 2 + 2 + 2)",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n\n### Signature\ndef is_equal_to_sum_even(n):",
+        "timestamp": "2025-10-17T15:00:51.859306",
+        "response_time": "7.77"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 139,
+        "solution": "I'll solve this by implementing the Brazilian factorial calculation based on the provided definition.\n\n===START===\ndef special_factorial(n):\n    # Handle base cases\n    if n <= 0:\n        return 0\n    \n    # Initialize result to 1\n    result = 1\n    \n    # Iterate from 1 to n and multiply factorials\n    for i in range(1, n + 1):\n        # Calculate factorial of current number\n        current_factorial = 1\n        for j in range(1, i + 1):\n            current_factorial *= j\n        \n        # Multiply result by current factorial\n        result *= current_factorial\n    \n    return result\n===END===\n\nThe solution follows these key steps:\n1. If n is 0 or negative, return 0\n2. Initialize result to 1\n3. Iterate from 1 to n\n4. For each number, calculate its factorial\n5. Multiply the result by the current factorial\n6. Return the final result\n\nThis implementation directly follows the Brazilian factorial definition:\n- For n = 1, it calculates 1!\n- For n = 2, it calculates 1! * 2!\n- For n = 3, it calculates 1! * 2! * 3!\nAnd so on, multiplying all factorials from 1! to n!\n\nThe time complexity is O(n\u00b2) due to nested factorial calculations, and space complexity is O(1).",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    The Brazilian factorial is defined as:\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\n    where n > 0\n\n### Signature\ndef special_factorial(n):",
+        "timestamp": "2025-10-17T15:00:58.520506",
+        "response_time": "6.66"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 140,
+        "solution": "===START===\ndef fix_spaces(text):\n    # Split the text into parts based on consecutive spaces\n    parts = text.split()\n    \n    # If the original text had multiple consecutive spaces, replace with -\n    if text.count('  ') > 0:\n        # Replace multiple consecutive spaces with -\n        text = text.replace('   ', '-')\n        text = text.replace('  ', '-')\n    \n    # Replace remaining single spaces with underscores\n    return text.replace(' ', '_')\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a string text, replace all spaces in it with underscores,\n    and if a string has more than 2 consecutive spaces,\n    then replace all consecutive spaces with -\n\n### Signature\ndef fix_spaces(text):",
+        "timestamp": "2025-10-17T15:01:01.680905",
+        "response_time": "3.16"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 141,
+        "solution": "===START===\nimport re\n\ndef file_name_check(file_name):\n    # Check if exactly one dot exists\n    if file_name.count('.') != 1:\n        return 'No'\n    \n    # Split the filename into name and extension\n    name, ext = file_name.split('.')\n    \n    # Check if extension is valid\n    if ext not in ['txt', 'exe', 'dll']:\n        return 'No'\n    \n    # Check if name starts with a letter\n    if not name or not name[0].isalpha():\n        return 'No'\n    \n    # Count digits in the name\n    digit_count = sum(1 for char in name if char.isdigit())\n    if digit_count > 3:\n        return 'No'\n    \n    return 'Yes'\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions\n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from\n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n\n### Signature\ndef file_name_check(file_name):",
+        "timestamp": "2025-10-17T15:01:05.445554",
+        "response_time": "3.76"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 142,
+        "solution": "===START===\ndef sum_squares(lst):\n    \"\"\"\n    Transform list entries based on index and calculate sum:\n    - Square entries at indexes divisible by 3\n    - Cube entries at indexes divisible by 4 but not 3\n    - Leave other entries unchanged\n    \n    Args:\n        lst (list): List of integers\n    \n    Returns:\n        int: Sum of transformed list entries\n    \"\"\"\n    result = []\n    for index, num in enumerate(lst):\n        if index % 3 == 0:\n            result.append(num ** 2)\n        elif index % 4 == 0:\n            result.append(num ** 3)\n        else:\n            result.append(num)\n    \n    return sum(result)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    \"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a\n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not\n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries.\n\n### Signature\ndef sum_squares(lst):",
+        "timestamp": "2025-10-17T15:01:09.123527",
+        "response_time": "3.68"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 143,
+        "solution": "I'll solve this by creating a function that filters words based on prime length while maintaining their original order.\n\n===START===\ndef is_prime(n):\n    \"\"\"Check if a number is prime.\"\"\"\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef words_in_sentence(sentence):\n    \"\"\"\n    Return a string with only words of prime length from the input sentence.\n    \n    Args:\n        sentence (str): Input sentence with words separated by spaces\n    \n    Returns:\n        str: Sentence containing only words with prime-length\n    \"\"\"\n    # Split the sentence into words\n    words = sentence.split()\n    \n    # Filter words with prime lengths\n    prime_length_words = [word for word in words if is_prime(len(word))]\n    \n    # Join the filtered words back into a sentence\n    return ' '.join(prime_length_words)\n===END===\n\nThis solution does the following:\n\n1. `is_prime()` is a helper function that checks if a number is prime:\n   - Returns `False` for numbers less than 2\n   - Checks divisibility up to the square root of the number\n   - Returns `True` if no divisors are found\n\n2. `words_in_sentence()` function:\n   - Splits the input sentence into words\n   - Uses a list comprehension to filter words with prime lengths\n   - Joins the filtered words back into a sentence\n\nExample usage:\n- `words_in_sentence(\"the quick brown fox\")` would return \"fox\"\n- `words_in_sentence(\"hello world\")` would return \"hello\"\n\nThe function preserves the original order of words and only includes those with prime-length.",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a string representing a sentence,\n    the sentence contains some words separated by a space,\n    and you have to return a string that contains the words from the original sentence,\n    whose lengths are prime numbers,\n    the order of the words in the new string should be the same as the original one.\n\n### Signature\ndef words_in_sentence(sentence):",
+        "timestamp": "2025-10-17T15:01:16.426965",
+        "response_time": "7.30"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 144,
+        "solution": "I'll solve this by implementing the `simplify` function that checks if multiplying two fractions results in a whole number.\n\n===START===\ndef simplify(x, n):\n    # Split the fractions into numerators and denominators\n    x_num, x_den = map(int, x.split('/'))\n    n_num, n_den = map(int, n.split('/'))\n    \n    # Multiply the numerators and denominators\n    result_num = x_num * n_num\n    result_den = x_den * n_den\n    \n    # Check if the result is a whole number (denominator divides numerator without remainder)\n    return result_num % result_den == 0\n===END===\n\nThis implementation does the following:\n\n1. Split each fraction string into numerator and denominator using `split('/')` and convert them to integers\n2. Multiply the numerators together to get the result numerator\n3. Multiply the denominators together to get the result denominator\n4. Check if the result is a whole number by using the modulo operator `%`\n   - If `result_num % result_den == 0`, it means the result is a whole number\n5. Return `True` if it's a whole number, `False` otherwise\n\nExample usage:\n- `simplify('1/2', '2/3')` would return `True` (1/2 * 2/3 = 1/3)\n- `simplify('1/3', '2/4')` would return `False`\n\nThe function handles the requirements by:\n- Accepting string representations of fractions\n- Multiplying the fractions\n- Checking if the result is a whole number",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Your task is to implement a function that will simplify the expression\n    x * n. The function returns True if x * n evaluates to a whole number and False\n    otherwise. Both x and n, are string representation of a fraction, and have the following format,\n    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.\n\n### Signature\ndef simplify(x, n):",
+        "timestamp": "2025-10-17T15:01:23.409217",
+        "response_time": "6.98"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 145,
+        "solution": "I'll solve this problem by implementing the `order_by_points` function that sorts integers based on the sum of their digits while maintaining the original order for items with the same digit sum.\n\n===START===\ndef order_by_points(nums):\n    def digit_sum(num):\n        # Calculate the sum of digits for a given number\n        return sum(int(digit) for digit in str(abs(num)))\n    \n    # Sort the list using a custom key that considers digit sum and original index\n    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))\n===END===\n\nLet me break down the solution:\n\n1. The `digit_sum` inner function calculates the sum of digits for a given number:\n   - `abs(num)` handles negative numbers\n   - `str(abs(num))` converts the number to a string\n   - `int(digit)` converts each character back to an integer\n   - `sum()` adds up all the digits\n\n2. `sorted()` is used with a custom `key` function that:\n   - First sorts by the sum of digits using `digit_sum(x)`\n   - If digit sums are equal, it uses the original index `nums.index(x)` to maintain stable ordering\n\nThis implementation ensures that:\n- Numbers are sorted primarily by their digit sum\n- For numbers with the same digit sum, their original list order is preserved\n- Works with both positive and negative integers\n\nExample:\n```python\nnums = [52, 10, 30, 4, 12]\nresult = order_by_points(nums)\n# result would be [10, 4, 12, 30, 52]\n```",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n### Signature\ndef order_by_points(nums):",
+        "timestamp": "2025-10-17T15:01:31.346789",
+        "response_time": "7.94"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 146,
+        "solution": "===START===\ndef specialFilter(nums):\n    def is_valid_number(num):\n        # Convert to absolute value to handle negative numbers\n        abs_num = abs(num)\n        \n        # Check if number is greater than 10\n        if abs_num <= 10:\n            return False\n        \n        # Convert to string to easily get first and last digits\n        num_str = str(abs_num)\n        \n        # Get first and last digits\n        first_digit = int(num_str[0])\n        last_digit = int(num_str[-1])\n        \n        # Check if first and last digits are odd\n        odd_digits = [1, 3, 5, 7, 9]\n        return first_digit in odd_digits and last_digit in odd_digits\n    \n    # Count numbers meeting the criteria\n    return sum(1 for num in nums if is_valid_number(num))\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Write a function that takes an array of numbers as input and returns\n    the number of elements in the array that are greater than 10 and both\n    first and last digits of a number are odd (1, 3, 5, 7, 9).\n    For example:\n    specialFilter([15, -73, 14, -15]) => 1\n    specialFilter([33, -2, -3, 45, 21, 109]) => 2\n\n### Signature\ndef specialFilter(nums):",
+        "timestamp": "2025-10-17T15:01:36.711201",
+        "response_time": "5.36"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 147,
+        "solution": "I'll solve this problem by implementing the function `get_max_triples` with the specified requirements.\n\n===START===\ndef get_max_triples(n):\n    # Create the array a based on the given formula\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    \n    # Count the number of valid triples\n    count = 0\n    for i in range(len(a)):\n        for j in range(i + 1, len(a)):\n            for k in range(j + 1, len(a)):\n                # Check if the sum of the triple is divisible by 3\n                if (a[i] + a[j] + a[k]) % 3 == 0:\n                    count += 1\n    \n    return count\n===END===\n\nThe solution works as follows:\n\n1. First, we create the array `a` using a list comprehension. For each index `i` from 1 to `n`, we calculate `a[i]` using the formula `i * i - i + 1`.\n\n2. We use three nested loops to generate all possible triples (a[i], a[j], a[k]) where `i < j < k`.\n\n3. For each triple, we check if the sum of the three elements is divisible by 3 using the modulo operator `%`.\n\n4. We keep a count of the number of triples that satisfy the condition.\n\n5. Finally, we return the total count of valid triples.\n\nThe time complexity of this solution is O(n\u00b3), where n is the input size. This is because we have three nested loops iterating through the array.\n\nThe space complexity is O(n) to store the array `a`.",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a positive integer n. You have to create an integer array a of length n.\n        For each i (1 \u2264 i \u2264 n), the value of a[i] = i * i - i + 1.\n        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k,\n    and a[i] + a[j] + a[k] is a multiple of 3.\n\n### Signature\ndef get_max_triples(n):",
+        "timestamp": "2025-10-17T15:01:49.712734",
+        "response_time": "13.00"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 148,
+        "solution": "===START===\n# Imports\n# No imports needed for this solution\n\ndef bf(planet1, planet2):\n    # Define the ordered list of planets from closest to the sun\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n    \n    # Check if both input planets are valid\n    if planet1 not in planets or planet2 not in planets:\n        return ()\n    \n    # Find indices of the input planets\n    index1 = planets.index(planet1)\n    index2 = planets.index(planet2)\n    \n    # Determine start and end indices, accounting for both forward and reverse order\n    start = min(index1, index2)\n    end = max(index1, index2)\n    \n    # Return planets between the two input planets (exclusive)\n    return tuple(planets[start+1:end])\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    There are eight planets in our solar system: the closerst to the Sun\n    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn,\n    Uranus, Neptune.\n    Write a function that takes two planet names as strings planet1 and planet2.\n    The function should return a tuple containing all planets whose orbits are\n    located between the orbit of planet1 and the orbit of planet2, sorted by\n    the proximity to the sun.\n    The function should return an empty tuple if planet1 or planet2\n    are not correct planet names.\n    Examples\n    bf(\"Jupiter\", \"Neptune\") ==> (\"Saturn\", \"Uranus\")\n    bf(\"Earth\", \"Mercury\") ==> (\"Venus\")\n    bf(\"Mercury\", \"Uranus\") ==> (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\")\n\n### Signature\ndef bf(planet1, planet2):",
+        "timestamp": "2025-10-17T15:01:53.907746",
+        "response_time": "4.19"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 149,
+        "solution": "===START===\ndef sorted_list_sum(lst):\n    # Filter out strings with odd lengths\n    even_length_strings = [word for word in lst if len(word) % 2 == 0]\n    \n    # Sort the filtered list first by length, then alphabetically\n    return sorted(even_length_strings, key=lambda x: (len(x), x))\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Write a function that accepts a list of strings as a parameter,\n    deletes the strings that have odd lengths from it,\n    and returns the resulted list with a sorted order,\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n    The order of the list should be ascending by length of each word, and you\n    should return the list sorted by that rule.\n    If two words have the same length, sort the list alphabetically.\n    The function should return a list of strings in sorted order.\n    You may assume that all words will have the same length.\n    For example:\n    assert list_sort([\"aa\", \"a\", \"aaa\"]) => [\"aa\"]\n    assert list_sort([\"ab\", \"a\", \"aaa\", \"cd\"]) => [\"ab\", \"cd\"]\n\n### Signature\ndef sorted_list_sum(lst):",
+        "timestamp": "2025-10-17T15:01:56.916687",
+        "response_time": "3.01"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 150,
+        "solution": "===START===\ndef is_prime(n):\n    \"\"\"Helper function to check if a number is prime.\"\"\"\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef x_or_y(n, x, y):\n    \"\"\"\n    Return x if n is prime, otherwise return y.\n    \n    Args:\n        n (int): The number to check for primality\n        x: The value to return if n is prime\n        y: The value to return if n is not prime\n    \n    Returns:\n        The value of x or y based on n's primality\n    \"\"\"\n    return x if is_prime(n) else y\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    A simple program which should return the value of x if n is\n    a prime number and should return the value of y otherwise.\n\n### Signature\ndef x_or_y(n, x, y):",
+        "timestamp": "2025-10-17T15:02:00.383298",
+        "response_time": "3.47"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 151,
+        "solution": "===START===\ndef double_the_difference(lst):\n    # Sum the squares of odd positive integers in the list\n    return sum(x**2 for x in lst if isinstance(x, int) and x > 0 and x % 2 != 0)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n\n### Signature\ndef double_the_difference(lst):",
+        "timestamp": "2025-10-17T15:02:02.334926",
+        "response_time": "1.95"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 152,
+        "solution": "===START===\ndef compare(game, guess):\n    \"\"\"\n    Compare the actual game scores with the guessed scores.\n    \n    Args:\n        game (list): List of actual game scores\n        guess (list): List of guessed scores\n    \n    Returns:\n        list: Array of differences between guesses and actual scores\n    \"\"\"\n    # Check if input lists are of equal length\n    if len(game) != len(guess):\n        raise ValueError(\"Game and guess lists must be of equal length\")\n    \n    # Create result list with absolute differences\n    result = [abs(game[i] - guess[i]) for i in range(len(game))]\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    I think we all remember that feeling when the result of some long-awaited\n    event is finally known. The feelings and thoughts you have at that moment are\n    definitely worth noting down and comparing.\n    Your task is to determine if a person correctly guessed the results of a number of matches.\n    You are given two arrays of scores and guesses of equal length, where each index shows a match.\n    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,\n    the value is 0, and if not, the value is the absolute difference between the guess and the score.\n\n### Signature\ndef compare(game,guess):",
+        "timestamp": "2025-10-17T15:02:06.591482",
+        "response_time": "4.26"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 153,
+        "solution": "===START===\ndef Strongest_Extension(class_name, extensions):\n    def calculate_strength(ext):\n        # Count uppercase and lowercase letters\n        uppercase_count = sum(1 for char in ext if char.isupper())\n        lowercase_count = sum(1 for char in ext if char.islower())\n        \n        # Calculate strength as CAP - SM\n        return uppercase_count - lowercase_count\n    \n    # If no extensions, return just the class name\n    if not extensions:\n        return class_name\n    \n    # Find the strongest extension\n    # Use max with a key function that calculates strength\n    # If multiple extensions have same strength, first one is chosen\n    strongest_ext = max(extensions, key=calculate_strength)\n    \n    # Return in the format ClassName.StrongestExtensionName\n    return f\"{class_name}.{strongest_ext}\"\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You will be given the name of a class (a string) and a list of extensions.\n    The extensions are to be used to load additional classes to the class. The\n    strength of the extension is as follows: Let CAP be the number of the uppercase\n    letters in the extension's name, and let SM be the number of lowercase letters\n    in the extension's name, the strength is given by the fraction CAP - SM.\n    You should find the strongest extension and return a string in this\n    format: ClassName.StrongestExtensionName.\n    If there are two or more extensions with the same strength, you should\n    choose the one that comes first in the list.\n    For example, if you are given \"Slices\" as the class and a list of the\n    extensions: ['SErviNGSliCes', 'Cheese', 'StuFfed'] then you should\n    return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension\n    (its strength is -1).\n    Example:\n    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'\n\n### Signature\ndef Strongest_Extension(class_name, extensions):",
+        "timestamp": "2025-10-17T15:02:11.188829",
+        "response_time": "4.60"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 154,
+        "solution": "===START===\ndef cycpattern_check(a, b):\n    # If b is longer than a, it can't be a substring\n    if len(b) > len(a):\n        return False\n    \n    # Create all possible rotations of b\n    rotations = [b[i:] + b[:i] for i in range(len(b))]\n    \n    # Check if any rotation is a substring of a\n    for rotation in rotations:\n        if rotation in a:\n            return True\n    \n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n### Signature\ndef cycpattern_check(a , b):",
+        "timestamp": "2025-10-17T15:02:14.442560",
+        "response_time": "3.25"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 155,
+        "solution": "===START===\ndef even_odd_count(num):\n    # Convert number to absolute value to handle negative numbers\n    num = abs(num)\n    \n    # Convert number to string to easily iterate through digits\n    num_str = str(num)\n    \n    # Initialize counters for even and odd digits\n    even_count = 0\n    odd_count = 0\n    \n    # Iterate through each digit\n    for digit in num_str:\n        # Convert digit back to integer for checking\n        digit_int = int(digit)\n        \n        # Check if digit is even or odd and increment respective counter\n        if digit_int % 2 == 0:\n            even_count += 1\n        else:\n            odd_count += 1\n    \n    # Return tuple with even and odd digit counts\n    return (even_count, odd_count)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n### Signature\ndef even_odd_count(num):",
+        "timestamp": "2025-10-17T15:02:19.548847",
+        "response_time": "5.11"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 156,
+        "solution": "===START===\ndef int_to_mini_roman(number):\n    # Define roman numeral mappings\n    roman_map = [\n        (1000, 'm'), \n        (900, 'cm'), \n        (500, 'd'), \n        (400, 'cd'), \n        (100, 'c'), \n        (90, 'xc'), \n        (50, 'l'), \n        (40, 'xl'), \n        (10, 'x'), \n        (9, 'ix'), \n        (5, 'v'), \n        (4, 'iv'), \n        (1, 'i')\n    ]\n    \n    # Check input constraints\n    if not 1 <= number <= 1000:\n        raise ValueError(\"Number must be between 1 and 1000\")\n    \n    # Build roman numeral string\n    result = ''\n    for value, symbol in roman_map:\n        while number >= value:\n            result += symbol\n            number -= value\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n### Signature\ndef int_to_mini_roman(number):",
+        "timestamp": "2025-10-17T15:02:26.001852",
+        "response_time": "6.45"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 157,
+        "solution": "===START===\nimport math\n\ndef right_angle_triangle(a, b, c):\n    # Sort the sides in ascending order\n    sides = sorted([a, b, c])\n    \n    # Check if the Pythagorean theorem holds true\n    # Use math.isclose to handle floating point precision\n    return math.isclose(sides[0]**2 + sides[1]**2, sides[2]**2, rel_tol=1e-9)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    A right-angled triangle is a triangle in which one angle is right angle or\n    90 degree.\n    Example:\n    right_angle_triangle(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n\n### Signature\ndef right_angle_triangle(a, b, c):",
+        "timestamp": "2025-10-17T15:02:28.872679",
+        "response_time": "2.87"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 158,
+        "solution": "===START===\ndef find_max(words):\n    # If the list is empty, return None\n    if not words:\n        return None\n    \n    # Function to count unique characters in a word\n    def count_unique_chars(word):\n        return len(set(word))\n    \n    # Find the maximum unique character count\n    max_unique_chars = max(count_unique_chars(word) for word in words)\n    \n    # Filter words with max unique characters\n    max_unique_words = [\n        word for word in words \n        if count_unique_chars(word) == max_unique_chars\n    ]\n    \n    # Return the lexicographically first word among max unique character words\n    return min(max_unique_words)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n### Signature\ndef find_max(words):",
+        "timestamp": "2025-10-17T15:02:32.535188",
+        "response_time": "3.66"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 159,
+        "solution": "===START===\ndef eat(number, need, remaining):\n    \"\"\"\n    Calculate total carrots eaten and remaining carrots after meals.\n    \n    Args:\n        number (int): Number of carrots already eaten\n        need (int): Number of carrots needed to complete meals\n        remaining (int): Number of carrots currently available\n    \n    Returns:\n        list: [total carrots eaten, carrots left after eating]\n    \"\"\"\n    # If remaining carrots are enough to satisfy hunger\n    if remaining >= need:\n        total_eaten = number + need\n        carrots_left = remaining - need\n        return [total_eaten, carrots_left]\n    \n    # If remaining carrots are not enough\n    total_eaten = number + remaining\n    carrots_left = 0\n    return [total_eaten, carrots_left]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You're a hungry rabbit, and you already have eaten a certain number of carrots,\n    but now you need to eat more carrots to complete the day's meals.\n    you should return an array of [ total number of eaten carrots after your meals,\n                                    the number of carrots left after your meals ]\n    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.\n\n### Signature\ndef eat(number, need, remaining):",
+        "timestamp": "2025-10-17T15:02:37.612760",
+        "response_time": "5.08"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 160,
+        "solution": "===START===\ndef do_algebra(operator, operand):\n    # Create the expression by interleaving operators and operands\n    expression = []\n    for i in range(len(operand)):\n        # Add the current operand\n        expression.append(str(operand[i]))\n        \n        # Add the operator if not at the end of the list\n        if i < len(operator):\n            expression.append(operator[i])\n    \n    # Join the expression and evaluate it\n    return eval(''.join(expression))\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given two lists operator, and operand. The first list has basic algebra operations, and\n    the second list is a list of integers. Use the two given lists to build the algebric\n    expression and return the evaluation of this expression.\n\n### Signature\ndef do_algebra(operator, operand):",
+        "timestamp": "2025-10-17T15:02:40.964629",
+        "response_time": "3.35"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 161,
+        "solution": "I'll solve this problem by implementing the `solve` function according to the specified requirements.\n\n===START===\ndef solve(s):\n    # Check if the string contains no letters\n    if not any(char.isalpha() for char in s):\n        return s[::-1]\n    \n    # If string contains letters, swap case of letters\n    result = []\n    for char in s:\n        if char.isalpha():\n            result.append(char.swapcase())\n        else:\n            result.append(char)\n    \n    return ''.join(result)\n===END===\n\nThis solution handles the requirements as follows:\n\n1. First, it checks if the string contains no letters using `any(char.isalpha() for char in s)`. If no letters are found, it reverses the entire string using slice notation `s[::-1]`.\n\n2. If letters are present, it iterates through each character:\n   - For alphabetic characters, it uses `swapcase()` to change lowercase to uppercase and vice versa\n   - For non-alphabetic characters, it keeps them as they are\n\n3. The modified characters are collected in a list and then joined back into a string.\n\nExamples:\n- `solve(\"1234\")` returns `\"4321\"`\n- `solve(\"ab\")` returns `\"AB\"`\n- `solve(\"#a@C\")` returns `\"#A@c\"`\n\nThe function uses only standard Python methods and handles all the specified cases efficiently.",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa,\n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n\n### Signature\ndef solve(s):",
+        "timestamp": "2025-10-17T15:02:47.216997",
+        "response_time": "6.25"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 162,
+        "solution": "===START===\nimport hashlib\n\ndef string_to_md5(text):\n    # Check if text is an empty string\n    if not text:\n        return None\n    \n    # Convert text to bytes and generate MD5 hash\n    md5_hash = hashlib.md5(text.encode('utf-8')).hexdigest()\n    \n    return md5_hash\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n### Signature\ndef string_to_md5(text):",
+        "timestamp": "2025-10-17T15:02:49.817964",
+        "response_time": "2.60"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_second_half",
+        "dataset_row_id": 163,
+        "solution": "===START===\ndef generate_integers(a, b):\n    # Find even digits between a and b in ascending order\n    even_digits = []\n    \n    # Iterate through the range from a to b (inclusive)\n    for num in range(a, b + 1):\n        # Convert number to string to check individual digits\n        num_str = str(num)\n        \n        # Check if all digits in the number are even\n        if all(int(digit) % 2 == 0 for digit in num_str):\n            even_digits.append(num)\n    \n    return even_digits\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n### Signature\ndef generate_integers(a, b):",
+        "timestamp": "2025-10-17T15:02:53.128898",
+        "response_time": "3.31"
+    }
+]

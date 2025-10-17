@@ -1,0 +1,886 @@
+{
+  "anthropic/claude-3.5-haiku": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):\n\n### Test\nassert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Tuple\n\ndef similar_elements(test_tup1: Tuple[int, ...], test_tup2: Tuple[int, ...]) -> Tuple[int, ...]:\n    \"\"\"\n    Find the shared elements between two tuples.\n    \n    Args:\n        test_tup1 (Tuple[int, ...]): First input tuple\n        test_tup2 (Tuple[int, ...]): Second input tuple\n    \n    Returns:\n        Tuple[int, ...]: Tuple of shared elements\n    \"\"\"\n    # Convert tuples to sets for efficient intersection\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    \n    # Find common elements and convert back to tuple\n    return tuple(set1.intersection(set2))",
+      "test_content": "from llm_output import similar_elements\n\ndef check(candidate):\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n    assert set(candidate((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))\n    assert set(candidate((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))\n\ncheck(similar_elements)",
+      "context": "{\"function_name\": \"similar_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):\n\n### Test\nassert candidate(2) == False\nassert candidate(10) == True",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef is_not_prime(n: int) -> bool:\n    \"\"\"\n    Identify if a given number is not a prime number.\n    \n    Args:\n        n (int): The number to check for primality\n    \n    Returns:\n        bool: True if the number is not prime, False if the number is prime\n    \"\"\"\n    # Handle edge cases\n    if n <= 1:\n        return True\n    \n    # Check for divisibility from 2 to square root of n\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return True\n    \n    return False",
+      "test_content": "from llm_output import is_not_prime\n\ndef check(candidate):\n    assert candidate(2) == False\n    assert candidate(10) == True\n    assert candidate(35) == True\n    assert candidate(37) == False\n\ncheck(is_not_prime)",
+      "context": "{\"function_name\": \"is_not_prime\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):\n\n### Test\nassert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\nimport heapq\n\ndef heap_queue_largest(nums: List[int], n: int) -> List[int]:\n    # Use heapq to efficiently find the n largest numbers\n    # heapq.nlargest returns the n largest elements in descending order\n    return heapq.nlargest(n, nums)",
+      "test_content": "from llm_output import heap_queue_largest\n\ndef check(candidate):\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]\n\ncheck(heap_queue_largest)",
+      "context": "{\"function_name\": \"heap_queue_largest\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n\n### Test\nassert candidate(13,9) == True\nassert candidate(15,8) == False\nassert candidate(2,4) == False",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef differ_At_One_Bit_Pos(x: int, y: int) -> bool:\n    # XOR the two numbers to get the bit differences\n    xor_result = x ^ y\n    \n    # Count the number of set bits in the XOR result\n    # If exactly one bit is set, it means they differ at only one bit position\n    return bin(xor_result).count('1') == 1",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):\n\n### Test\nassert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef find_char_long(text: str) -> List[str]:\n    # Split the text into words\n    words = text.split()\n    \n    # Filter words that are at least 4 characters long\n    long_words = [word for word in words if len(word) >= 4]\n    \n    return long_words",
+      "test_content": "from llm_output import find_char_long\n\ndef check(candidate):\n    assert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])\n    assert set(candidate('Jing Eco and Tech')) == set(['Jing', 'Tech'])\n    assert set(candidate('Jhingai wulu road Zone 3')) == set(['Jhingai', 'wulu', 'road', 'Zone'])\n\ncheck(find_char_long)",
+      "context": "{\"function_name\": \"find_char_long\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    return [num * num for num in nums]",
+      "test_content": "from llm_output import square_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n    assert candidate([10,20,30])==([100,400,900])\n    assert candidate([12,15])==([144,225])\n\ncheck(square_nums)",
+      "context": "{\"function_name\": \"square_nums\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):\n\n### Test\nassert candidate(\"aaaa\") == 1\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(find_Rotations)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 5, in check\n    assert candidate(\"ab\") == 2\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef find_Rotations(str: str) -> int:\n    # If string is empty or single character, no rotations possible\n    if len(str) <= 1:\n        return 0\n    \n    # Check all possible rotations\n    for rotations in range(1, len(str) + 1):\n        # Rotate the string\n        rotated = str[rotations:] + str[:rotations]\n        \n        # If rotated string matches original, return number of rotations\n        if rotated == str:\n            return rotations\n    \n    # If no rotation makes the string same\n    return 0",
+      "test_content": "from llm_output import find_Rotations\n\ndef check(candidate):\n    assert candidate(\"aaaa\") == 1\n    assert candidate(\"ab\") == 2\n    assert candidate(\"abc\") == 3\n\ncheck(find_Rotations)",
+      "context": "{\"function_name\": \"find_Rotations\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):\n\n### Test\nassert candidate(\"hello\",\"l\") == \"heo\"",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Optional\n\ndef remove_Occ(s: str, ch: str) -> str:\n    # Find the first occurrence of the character\n    first_index = s.find(ch)\n    \n    # Find the last occurrence of the character \n    last_index = s.rfind(ch)\n    \n    # If character not found, return original string\n    if first_index == -1:\n        return s\n    \n    # If first and last index are the same, remove that single occurrence\n    if first_index == last_index:\n        return s[:first_index] + s[first_index+1:]\n    \n    # Remove first and last occurrence\n    return s[:first_index] + s[first_index+1:last_index] + s[last_index+1:]",
+      "test_content": "from llm_output import remove_Occ\n\ndef check(candidate):\n    assert candidate(\"hello\",\"l\") == \"heo\"\n    assert candidate(\"abcda\",\"a\") == \"bcd\"\n    assert candidate(\"PHP\",\"P\") == \"H\"\n\ncheck(remove_Occ)",
+      "context": "{\"function_name\": \"remove_Occ\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):\n\n### Test\nassert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef sort_matrix(M: List[List[int]]) -> List[List[int]]:\n    # Sort the matrix based on the sum of each row in ascending order\n    return sorted(M, key=lambda row: sum(row))",
+      "test_content": "from llm_output import sort_matrix\n\ndef check(candidate):\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n    assert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\n    assert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]\n\ncheck(sort_matrix)",
+      "context": "{\"function_name\": \"sort_matrix\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 14,
+      "prompt": "### Prompt\nWrite a python function to find the volume of a triangular prism.\n\n### Signature\ndef find_Volume(l,b,h) :\n\n### Test\nassert candidate(10,8,6) == 240",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef find_Volume(l: Union[int, float], b: Union[int, float], h: Union[int, float]) -> float:\n    \"\"\"\n    Calculate the volume of a triangular prism.\n    \n    Args:\n        l (float/int): Length of the base triangle's base\n        b (float/int): Width/breadth of the base triangle \n        h (float/int): Height of the prism\n    \n    Returns:\n        float: Volume of the triangular prism\n    \"\"\"\n    # Volume of triangular prism = (1/2 * base * height) * length of prism\n    volume = (0.5 * l * b) * h\n    return volume",
+      "test_content": "from llm_output import find_Volume\n\ndef check(candidate):\n    assert candidate(10,8,6) == 240\n    assert candidate(3,2,2) == 6\n    assert candidate(1,2,1) == 1\n\ncheck(find_Volume)",
+      "context": "{\"function_name\": \"find_Volume\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 16,
+      "prompt": "### Prompt\nWrite a function to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise.\n\n### Signature\ndef text_lowercase_underscore(text):\n\n### Test\nassert candidate(\"aab_cbbbc\")==(True)",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "import re\nfrom typing import Any\n\ndef text_lowercase_underscore(text: str) -> bool:\n    \"\"\"\n    Check if the input string contains sequences of lowercase letters joined with an underscore\n    \n    Args:\n        text (str): Input string to check\n    \n    Returns:\n        bool: True if string contains only lowercase letters and underscores, False otherwise\n    \"\"\"\n    # Use regex pattern to match only lowercase letters and underscores\n    pattern = r'^[a-z]+(_[a-z]+)*$'\n    return bool(re.match(pattern, text))",
+      "test_content": "from llm_output import text_lowercase_underscore\n\ndef check(candidate):\n    assert candidate(\"aab_cbbbc\")==(True)\n    assert candidate(\"aab_Abbbc\")==(False)\n    assert candidate(\"Aaab_abbbc\")==(False)\n\ncheck(text_lowercase_underscore)",
+      "context": "{\"function_name\": \"text_lowercase_underscore\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 17,
+      "prompt": "### Prompt\nWrite a function that returns the perimeter of a square given its side length as input.\n\n### Signature\ndef square_perimeter(a):\n\n### Test\nassert candidate(10)==40",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef square_perimeter(a: Union[int, float]) -> Union[int, float]:\n    \"\"\"\n    Calculate the perimeter of a square given its side length.\n    \n    Args:\n        a (int or float): Length of a side of the square\n    \n    Returns:\n        int or float: Perimeter of the square (4 * side length)\n    \"\"\"\n    return 4 * a",
+      "test_content": "from llm_output import square_perimeter\n\ndef check(candidate):\n    assert candidate(10)==40\n    assert candidate(5)==20\n    assert candidate(4)==16\n\ncheck(square_perimeter)",
+      "context": "{\"function_name\": \"square_perimeter\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):\n\n### Test\nassert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef remove_dirty_chars(string: str, remove_chars: str) -> str:\n    \"\"\"\n    Remove characters from the first string which are present in the second string.\n    \n    Args:\n        string (str): The original string to remove characters from\n        remove_chars (str): The string containing characters to be removed\n    \n    Returns:\n        str: A new string with characters from remove_chars removed from string\n    \"\"\"\n    # Convert remove_chars to a set for efficient lookup\n    remove_set = set(remove_chars)\n    \n    # Use list comprehension to keep only characters not in remove_set\n    result = ''.join(char for char in string if char not in remove_set)\n    \n    return result",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 19,
+      "prompt": "### Prompt\nWrite a function to find whether a given array of integers contains any duplicate element.\n\n### Signature\ndef test_duplicate(arraynums):\n\n### Test\nassert candidate(([1,2,3,4,5]))==False",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef test_duplicate(arraynums: List[int]) -> bool:\n    # Create a set from the input array to remove duplicates\n    # If the length of the set is less than the length of the original array,\n    # it means there are duplicates\n    return len(set(arraynums)) < len(arraynums)",
+      "test_content": "from llm_output import test_duplicate\n\ndef check(candidate):\n    assert candidate(([1,2,3,4,5]))==False\n    assert candidate(([1,2,3,4, 4]))==True\n    assert candidate([1,1,2,2,3,3,4,4,5])==True\n\ncheck(test_duplicate)",
+      "context": "{\"function_name\": \"test_duplicate\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 20,
+      "prompt": "### Prompt\nWrite a function to check if the given number is woodball or not.\n\n### Signature\ndef is_woodall(x):\n\n### Test\nassert candidate(383) == True",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef is_woodall(x: int) -> bool:\n    \"\"\"\n    Check if a given number is a Woodall number.\n    \n    A Woodall number is defined as a number of the form n * 2^n - 1, \n    where n is a positive integer.\n    \n    Args:\n        x (int): The number to check\n    \n    Returns:\n        bool: True if the number is a Woodall number, False otherwise\n    \"\"\"\n    # Check for valid input\n    if x < 1:\n        return False\n    \n    # Try different values of n to see if we can generate the number\n    n = 1\n    while True:\n        woodall_num = n * (2 ** n) - 1\n        \n        # If we found the number, return True\n        if woodall_num == x:\n            return True\n        \n        # If we've exceeded the input number, stop searching\n        if woodall_num > x:\n            return False\n        \n        n += 1",
+      "test_content": "from llm_output import is_woodall\n\ndef check(candidate):\n    assert candidate(383) == True\n    assert candidate(254) == False\n    assert candidate(200) == False\n\ncheck(is_woodall)",
+      "context": "{\"function_name\": \"is_woodall\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 57,
+      "prompt": "### Prompt\nWrite a python function to find the largest number that can be formed with the given list of digits.\n\n### Signature\ndef find_Max_Num(arr) :\n\n### Test\nassert candidate([1,2,3]) == 321\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(find_Max_Num)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 4, in check\n    assert candidate([1,2,3]) == 321\n           ^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output.py\", line 9, in find_Max_Num\n    str_arr.sort(key=lambda x: x*len(max(str_arr, key=len)), reverse=True)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output.py\", line 9, in <lambda>\n    str_arr.sort(key=lambda x: x*len(max(str_arr, key=len)), reverse=True)\n                                     ^^^^^^^^^^^^^^^^^^^^^\nValueError: max() arg is an empty sequence\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef find_Max_Num(arr: List[int]) -> int:\n    # Convert integers to strings for easier sorting\n    str_arr = [str(num) for num in arr]\n    \n    # Custom sorting to create the largest possible number\n    # Sort in a way that creates the largest concatenated number\n    str_arr.sort(key=lambda x: x, reverse=True)\n    \n    # Join the sorted strings and convert back to integer\n    return int(''.join(str_arr))",
+      "test_content": "from llm_output import find_Max_Num\n\ndef check(candidate):\n    assert candidate([1,2,3]) == 321\n    assert candidate([4,5,6,1]) == 6541\n    assert candidate([1,2,3,9]) == 9321\n\ncheck(find_Max_Num)",
+      "context": "{\"function_name\": \"find_Max_Num\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 58,
+      "prompt": "### Prompt\nWrite a python function to check whether the given two integers have opposite sign or not.\n\n### Signature\ndef opposite_Signs(x,y):\n\n### Test\nassert candidate(1,-2) == True\nassert candidate(3,2) == False",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef opposite_Signs(x: int, y: int) -> bool:\n    \"\"\"\n    Check whether two given integers have opposite signs.\n    \n    Args:\n        x (int): First integer\n        y (int): Second integer\n    \n    Returns:\n        bool: True if x and y have opposite signs, False otherwise\n    \"\"\"\n    # XOR the sign bits to determine if signs are opposite\n    # If signs are different, XOR will return True\n    return x * y < 0",
+      "test_content": "from llm_output import opposite_Signs\n\ndef check(candidate):\n    assert candidate(1,-2) == True\n    assert candidate(3,2) == False\n    assert candidate(-10,-10) == False\n    assert candidate(-2,2) == True\n\ncheck(opposite_Signs)",
+      "context": "{\"function_name\": \"opposite_Signs\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 59,
+      "prompt": "### Prompt\nWrite a function to find the nth octagonal number.\n\n### Signature\ndef is_octagonal(n):\n\n### Test\nassert candidate(5) == 65",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef is_octagonal(n: int) -> Union[int, str]:\n    \"\"\"\n    Calculate the nth octagonal number.\n    \n    An octagonal number is a figurate number that extends the concept of triangular and square numbers to the octagon.\n    The formula for the nth octagonal number is: n * (6 * n - 4)\n    \n    Args:\n        n (int): The position of the octagonal number to calculate\n    \n    Returns:\n        int: The nth octagonal number\n    \"\"\"\n    if n <= 0:\n        return \"Invalid input\"\n    \n    return n * (6 * n - 4) // 2",
+      "test_content": "from llm_output import is_octagonal\n\ndef check(candidate):\n    assert candidate(5) == 65\n    assert candidate(10) == 280\n    assert candidate(15) == 645\n\ncheck(is_octagonal)",
+      "context": "{\"function_name\": \"is_octagonal\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 61,
+      "prompt": "### Prompt\nWrite a python function to count the number of substrings with the sum of digits equal to their length.\n\n### Signature\ndef count_Substrings(s):\n\n### Test\nassert candidate('112112') == 6",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef count_Substrings(s: str) -> int:\n    \"\"\"\n    Count the number of substrings where the sum of digits equals the substring's length\n    \n    Args:\n        s (str): Input string of digits\n    \n    Returns:\n        int: Number of valid substrings\n    \"\"\"\n    count = 0\n    n = len(s)\n    \n    # Iterate through all possible substrings\n    for start in range(n):\n        for end in range(start, n):\n            # Extract current substring\n            substring = s[start:end+1]\n            \n            # Calculate sum of digits in substring\n            digit_sum = sum(int(digit) for digit in substring)\n            \n            # Check if sum of digits equals substring length\n            if digit_sum == len(substring):\n                count += 1\n    \n    return count",
+      "test_content": "from llm_output import count_Substrings\n\ndef check(candidate):\n    assert candidate('112112') == 6\n    assert candidate('111') == 6\n    assert candidate('1101112') == 12\n\ncheck(count_Substrings)",
+      "context": "{\"function_name\": \"count_Substrings\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 62,
+      "prompt": "### Prompt\nWrite a python function to find smallest number in a list.\n\n### Signature\ndef smallest_num(xs):\n\n### Test\nassert candidate([10, 20, 1, 45, 99]) == 1",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef smallest_num(xs: List[int]) -> int:\n    if not xs:\n        return None\n    \n    smallest = xs[0]\n    for num in xs:\n        if num < smallest:\n            smallest = num\n    \n    return smallest",
+      "test_content": "from llm_output import smallest_num\n\ndef check(candidate):\n    assert candidate([10, 20, 1, 45, 99]) == 1\n    assert candidate([1, 2, 3]) == 1\n    assert candidate([45, 46, 50, 60]) == 45\n\ncheck(smallest_num)",
+      "context": "{\"function_name\": \"smallest_num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 63,
+      "prompt": "### Prompt\nWrite a function to find the maximum difference between available pairs in the given tuple list.\n\n### Signature\ndef max_difference(test_list):\n\n### Test\nassert candidate([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple\n\ndef max_difference(test_list: List[Tuple[int, int]]) -> int:\n    \"\"\"\n    Find the maximum difference between available pairs in the given tuple list.\n    \n    Args:\n        test_list: A list of tuples containing integer pairs\n    \n    Returns:\n        The maximum difference between any pair in the list\n    \"\"\"\n    # If list is empty, return 0 or raise an exception\n    if not test_list:\n        return 0\n    \n    # Initialize max difference to the smallest possible value\n    max_diff = float('-inf')\n    \n    # Iterate through each tuple in the list\n    for a, b in test_list:\n        # Calculate the absolute difference between elements in the tuple\n        current_diff = abs(a - b)\n        \n        # Update max difference if current difference is larger\n        max_diff = max(max_diff, current_diff)\n    \n    return max_diff",
+      "test_content": "from llm_output import max_difference\n\ndef check(candidate):\n    assert candidate([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7\n    assert candidate([(4, 6), (2, 17), (9, 13), (11, 12)]) == 15\n    assert candidate([(12, 35), (21, 27), (13, 23), (41, 22)]) == 23\n\ncheck(max_difference)",
+      "context": "{\"function_name\": \"max_difference\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 64,
+      "prompt": "### Prompt\nWrite a function to sort a list of tuples using the second value of each tuple.\n\n### Signature\ndef subject_marks(subjectmarks):\n\n### Test\nassert candidate([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])==[('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple\n\ndef subject_marks(subjectmarks: List[Tuple[str, int]]) -> List[Tuple[str, int]]:\n    return sorted(subjectmarks, key=lambda x: x[1])",
+      "test_content": "from llm_output import subject_marks\n\ndef check(candidate):\n    assert candidate([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])==[('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]\n    assert candidate([('Telugu',49),('Hindhi',54),('Social',33)])==([('Social',33),('Telugu',49),('Hindhi',54)])\n    assert candidate([('Physics',96),('Chemistry',97),('Biology',45)])==([('Biology',45),('Physics',96),('Chemistry',97)])\n\ncheck(subject_marks)",
+      "context": "{\"function_name\": \"subject_marks\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 65,
+      "prompt": "### Prompt\nWrite a function to flatten a list and sum all of its elements.\n\n### Signature\ndef recursive_list_sum(data_list):\n\n### Test\nassert candidate(([1, 2, [3,4],[5,6]]))==21",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Union\n\ndef recursive_list_sum(data_list: Union[List, int]) -> int:\n    \"\"\"\n    Recursively flatten a nested list and sum all of its elements.\n    \n    Args:\n        data_list (Union[List, int]): A potentially nested list of integers\n    \n    Returns:\n        int: Sum of all elements in the flattened list\n    \"\"\"\n    # Base case: if input is an integer, return it directly\n    if isinstance(data_list, int):\n        return data_list\n    \n    # Initialize total sum\n    total = 0\n    \n    # Iterate through each element in the list\n    for item in data_list:\n        # If item is a list, recursively sum its elements\n        if isinstance(item, list):\n            total += recursive_list_sum(item)\n        # If item is an integer, add it directly\n        else:\n            total += item\n    \n    return total",
+      "test_content": "from llm_output import recursive_list_sum\n\ndef check(candidate):\n    assert candidate(([1, 2, [3,4],[5,6]]))==21\n    assert candidate(([7, 10, [15,14],[19,41]]))==106\n    assert candidate(([10, 20, [30,40],[50,60]]))==210\n\ncheck(recursive_list_sum)",
+      "context": "{\"function_name\": \"recursive_list_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 66,
+      "prompt": "### Prompt\nWrite a python function to count the number of positive numbers in a list.\n\n### Signature\ndef pos_count(list):\n\n### Test\nassert candidate([1,-2,3,-4]) == 2",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef pos_count(list: List[int]) -> int:\n    return sum(1 for num in list if num > 0)",
+      "test_content": "from llm_output import pos_count\n\ndef check(candidate):\n    assert candidate([1,-2,3,-4]) == 2\n    assert candidate([3,4,5,-1]) == 3\n    assert candidate([1,2,3,4]) == 4\n\ncheck(pos_count)",
+      "context": "{\"function_name\": \"pos_count\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 67,
+      "prompt": "### Prompt\nWrite a function to find the number of ways to partition a set of Bell numbers.\n\n### Signature\ndef bell_number(n):\n\n### Test\nassert candidate(2)==2",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef bell_number(n: int) -> int:\n    \"\"\"\n    Calculate the Bell number for a given set size n.\n    Bell number represents the number of ways to partition a set of n elements.\n    \n    Args:\n        n (int): Size of the set\n    \n    Returns:\n        int: Number of ways to partition the set\n    \"\"\"\n    # Create a 2D array to store Bell triangle values\n    bell_triangle: List[List[int]] = [[0 for _ in range(n+1)] for _ in range(n+1)]\n    \n    # First value is always 1\n    bell_triangle[0][0] = 1\n    \n    # Fill the Bell triangle\n    for i in range(1, n+1):\n        # First value of each row is the last value of previous row\n        bell_triangle[i][0] = bell_triangle[i-1][i-1]\n        \n        # Calculate other values using the Bell triangle property\n        for j in range(1, i+1):\n            bell_triangle[i][j] = bell_triangle[i-1][j-1] + bell_triangle[i][j-1]\n    \n    # Return the Bell number for n\n    return bell_triangle[n][0]",
+      "test_content": "from llm_output import bell_number\n\ndef check(candidate):\n    assert candidate(2)==2\n    assert candidate(10)==115975\n    assert candidate(56)==6775685320645824322581483068371419745979053216268760300\n\ncheck(bell_number)",
+      "context": "{\"function_name\": \"bell_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 68,
+      "prompt": "### Prompt\nWrite a python function to check whether the given array is monotonic or not.\n\n### Signature\ndef is_Monotonic(A):\n\n### Test\nassert candidate([6, 5, 4, 4]) == True",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef is_Monotonic(A: List[int]) -> bool:\n    # Check if array is monotonically increasing\n    increasing = all(A[i] <= A[i+1] for i in range(len(A)-1))\n    \n    # Check if array is monotonically decreasing \n    decreasing = all(A[i] >= A[i+1] for i in range(len(A)-1))\n    \n    # Return True if either increasing or decreasing\n    return increasing or decreasing",
+      "test_content": "from llm_output import is_Monotonic\n\ndef check(candidate):\n    assert candidate([6, 5, 4, 4]) == True\n    assert candidate([1, 2, 2, 3]) == True\n    assert candidate([1, 3, 2]) == False\n\ncheck(is_Monotonic)",
+      "context": "{\"function_name\": \"is_Monotonic\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 69,
+      "prompt": "### Prompt\nWrite a function to check whether a list contains the given sublist or not.\n\n### Signature\ndef is_sublist(l, s):\n\n### Test\nassert candidate([2,4,3,5,7],[3,7])==False",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef is_sublist(l: List[int], s: List[int]) -> bool:\n    # If the sublist is empty, return False\n    if not s:\n        return False\n    \n    # If the sublist is longer than the main list, return False\n    if len(s) > len(l):\n        return False\n    \n    # Iterate through the main list to check for consecutive sublist match\n    for i in range(len(l) - len(s) + 1):\n        # Check if the slice matches the sublist\n        if l[i:i+len(s)] == s:\n            return True\n    \n    # If no match is found, return False\n    return False",
+      "test_content": "from llm_output import is_sublist\n\ndef check(candidate):\n    assert candidate([2,4,3,5,7],[3,7])==False\n    assert candidate([2,4,3,5,7],[4,3])==True\n    assert candidate([2,4,3,5,7],[1,6])==False\n\ncheck(is_sublist)",
+      "context": "{\"function_name\": \"is_sublist\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 70,
+      "prompt": "### Prompt\nWrite a function to find whether all the given tuples have equal length or not.\n\n### Signature\ndef find_equal_tuple(Input):\n\n### Test\nassert candidate([(11, 22, 33), (44, 55, 66)]) == True",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple\n\ndef get_equal(Input: List[Tuple]) -> bool:\n    # If input list is empty or has only one tuple, return True\n    if len(Input) <= 1:\n        return True\n    \n    # Get the length of the first tuple\n    first_tuple_length = len(Input[0])\n    \n    # Check if all tuples have the same length as the first tuple\n    for tuple_item in Input[1:]:\n        if len(tuple_item) != first_tuple_length:\n            return False\n    \n    return True",
+      "test_content": "from llm_output import get_equal\n\ndef check(candidate):\n    assert candidate([(11, 22, 33), (44, 55, 66)]) == True\n    assert candidate([(1, 2, 3), (4, 5, 6, 7)]) == False\n    assert candidate([(1, 2), (3, 4)]) == True\n\ncheck(get_equal)",
+      "context": "{\"function_name\": \"get_equal\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 71,
+      "prompt": "### Prompt\nWrite a function to sort a list of elements.\n\n### Signature\ndef comb_sort(nums):\n\n### Test\nassert candidate([5, 15, 37, 25, 79]) == [5, 15, 25, 37, 79]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef comb_sort(nums: List[int]) -> List[int]:\n    \"\"\"\n    Implement comb sort algorithm to sort a list of numbers\n    \n    Args:\n        nums (List[int]): Input list of numbers to be sorted\n    \n    Returns:\n        List[int]: Sorted list of numbers in ascending order\n    \"\"\"\n    # If list is empty or has only one element, return as is\n    if len(nums) <= 1:\n        return nums\n    \n    # Initialize gap as list length\n    gap = len(nums)\n    \n    # Set shrink factor \n    shrink = 1.3\n    \n    # Flag to track if any swaps occurred \n    swapped = True\n    \n    while gap > 1 or swapped:\n        # Update gap \n        gap = max(1, int(gap / shrink))\n        \n        # Reset swap flag\n        swapped = False\n        \n        # Compare elements with current gap\n        for i in range(len(nums) - gap):\n            if nums[i] > nums[i + gap]:\n                # Swap elements\n                nums[i], nums[i + gap] = nums[i + gap], nums[i]\n                swapped = True\n    \n    return nums",
+      "test_content": "from llm_output import comb_sort\n\ndef check(candidate):\n    assert candidate([5, 15, 37, 25, 79]) == [5, 15, 25, 37, 79]\n    assert candidate([41, 32, 15, 19, 22]) == [15, 19, 22, 32, 41]\n    assert candidate([99, 15, 13, 47]) == [13, 15, 47, 99]\n\ncheck(comb_sort)",
+      "context": "{\"function_name\": \"comb_sort\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 72,
+      "prompt": "### Prompt\nWrite a python function to check whether the given number can be represented as the difference of two squares or not.\n\n### Signature\ndef dif_Square(n):\n\n### Test\nassert candidate(5) == True\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(dif_Square)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 4, in check\n    assert candidate(5) == True\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef dif_Square(n: int) -> bool:\n    \"\"\"\n    Check whether the given number can be represented as the difference of two squares.\n    \n    Args:\n        n (int): The number to check\n    \n    Returns:\n        bool: True if the number can be represented as difference of two squares, False otherwise\n    \"\"\"\n    # Try all possible combinations of squares\n    for x in range(int(n**0.5) + 2):\n        for y in range(x + 1):\n            # Check if the difference of squares equals the input number\n            if x*x - y*y == n:\n                return True\n    \n    return False",
+      "test_content": "from llm_output import dif_Square\n\ndef check(candidate):\n    assert candidate(5) == True\n    assert candidate(10) == False\n    assert candidate(15) == True\n\ncheck(dif_Square)",
+      "context": "{\"function_name\": \"dif_Square\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 74,
+      "prompt": "### Prompt\nWrite a function to check whether it follows the sequence given in the patterns array.\n\n### Signature\ndef is_samepatterns(colors, patterns):\n\n### Test\nassert candidate([\"red\",\"green\",\"green\"], [\"a\", \"b\", \"b\"])==True",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef is_samepatterns(colors: List[str], patterns: List[str]) -> bool:\n    # Check if lengths are different\n    if len(colors) != len(patterns):\n        return False\n    \n    # Create mappings to track color to pattern and pattern to color\n    color_to_pattern = {}\n    pattern_to_color = {}\n    \n    # Iterate through colors and patterns simultaneously \n    for color, pattern in zip(colors, patterns):\n        # If color already mapped to a pattern\n        if color in color_to_pattern:\n            # Check if mapped pattern matches current pattern\n            if color_to_pattern[color] != pattern:\n                return False\n        \n        # If pattern already mapped to a color  \n        if pattern in pattern_to_color:\n            # Check if mapped color matches current color\n            if pattern_to_color[pattern] != color:\n                return False\n        \n        # Create mappings\n        color_to_pattern[color] = pattern\n        pattern_to_color[pattern] = color\n    \n    return True",
+      "test_content": "from llm_output import is_samepatterns\n\ndef check(candidate):\n    assert candidate([\"red\",\"green\",\"green\"], [\"a\", \"b\", \"b\"])==True\n    assert candidate([\"red\",\"green\",\"greenn\"], [\"a\",\"b\",\"b\"])==False\n    assert candidate([\"red\",\"green\",\"greenn\"], [\"a\",\"b\"])==False\n\ncheck(is_samepatterns)",
+      "context": "{\"function_name\": \"is_samepatterns\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 75,
+      "prompt": "### Prompt\nWrite a function to find tuples which have all elements divisible by k from the given list of tuples.\n\n### Signature\ndef find_tuples(test_list, K):\n\n### Test\nassert candidate([(6, 24, 12), (7, 9, 6), (12, 18, 21)], 6) == [(6, 24, 12)]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple\n\ndef find_tuples(test_list: List[Tuple[int, ...]], K: int) -> List[Tuple[int, ...]]:\n    \"\"\"\n    Find tuples where all elements are divisible by K\n    \n    Args:\n        test_list: List of tuples to check\n        K: Divisor to check against\n    \n    Returns:\n        List of tuples where every element is divisible by K\n    \"\"\"\n    return [tup for tup in test_list if all(num % K == 0 for num in tup)]",
+      "test_content": "from llm_output import find_tuples\n\ndef check(candidate):\n    assert candidate([(6, 24, 12), (7, 9, 6), (12, 18, 21)], 6) == [(6, 24, 12)]\n    assert candidate([(5, 25, 30), (4, 2, 3), (7, 8, 9)], 5) == [(5, 25, 30)]\n    assert candidate([(7, 9, 16), (8, 16, 4), (19, 17, 18)], 4) == [(8, 16, 4)]\n\ncheck(find_tuples)",
+      "context": "{\"function_name\": \"find_tuples\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 77,
+      "prompt": "### Prompt\nWrite a python function to find whether a number is divisible by 11.\n\n### Signature\ndef is_Diff(n):\n\n### Test\nassert candidate (12345) == False",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef is_Diff(n: Union[int, str]) -> bool:\n    \"\"\"\n    Check if a number is divisible by 11.\n    \n    Args:\n        n (int or str): The number to check for divisibility by 11\n    \n    Returns:\n        bool: True if the number is divisible by 11, False otherwise\n    \"\"\"\n    # Convert input to integer if it's a string\n    n = int(n)\n    \n    # A number is divisible by 11 if the alternating sum of its digits is divisible by 11\n    digit_sum = 0\n    sign = 1\n    \n    while n > 0:\n        digit = n % 10\n        digit_sum += digit * sign\n        sign *= -1\n        n //= 10\n    \n    return digit_sum % 11 == 0",
+      "test_content": "from llm_output import is_Diff\n\ndef check(candidate):\n    assert candidate (12345) == False\n    assert candidate(1212112) == True\n    assert candidate(1212) == False\n\ncheck(is_Diff)",
+      "context": "{\"function_name\": \"is_Diff\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 79,
+      "prompt": "### Prompt\nWrite a python function to check whether the length of the word is odd or not.\n\n### Signature\ndef word_len(s):\n\n### Test\nassert candidate(\"Hadoop\") == False",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def word_len(s):\n    \"\"\"\n    Check whether the length of the given word is odd or not.\n    \n    Args:\n        s (str): Input word to check length\n    \n    Returns:\n        bool: True if length is odd, False if length is even\n    \"\"\"\n    return len(s) % 2 != 0",
+      "test_content": "from llm_output import word_len\n\ndef check(candidate):\n    assert candidate(\"Hadoop\") == False\n    assert candidate(\"great\") == True\n    assert candidate(\"structure\") == True\n\ncheck(word_len)",
+      "context": "{\"function_name\": \"word_len\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 80,
+      "prompt": "### Prompt\nWrite a function to find the nth tetrahedral number.\n\n### Signature\ndef tetrahedral_number(n):\n\n### Test\nassert candidate(5) == 35",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef tetrahedral_number(n: int) -> int:\n    \"\"\"\n    Calculate the nth tetrahedral number.\n    \n    A tetrahedral number is the sum of the first n triangular numbers.\n    It can be calculated using the formula: n * (n + 1) * (n + 2) / 6\n    \n    Args:\n        n (int): The position of the tetrahedral number to calculate\n    \n    Returns:\n        int: The nth tetrahedral number\n    \"\"\"\n    return n * (n + 1) * (n + 2) // 6",
+      "test_content": "from llm_output import tetrahedral_number\n\ndef check(candidate):\n    assert candidate(5) == 35\n    assert candidate(6) == 56\n    assert candidate(7) == 84\n\ncheck(tetrahedral_number)",
+      "context": "{\"function_name\": \"tetrahedral_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 82,
+      "prompt": "### Prompt\nWrite a function to find the volume of a sphere.\n\n### Signature\ndef volume_sphere(r):\n\n### Test\nassert math.isclose(candidate(10), 4188.790204786391, rel_tol=0.001)",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from math import pi\n\ndef volume_sphere(r):\n    \"\"\"\n    Calculate the volume of a sphere given its radius.\n    \n    Volume of a sphere is calculated using the formula: (4/3) * \u03c0 * r\u00b3\n    \n    Args:\n        r (float): Radius of the sphere\n    \n    Returns:\n        float: Volume of the sphere\n    \"\"\"\n    return (4/3) * pi * (r ** 3)",
+      "test_content": "from llm_output import volume_sphere\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(10), 4188.790204786391, rel_tol=0.001)\n    assert math.isclose(candidate(25), 65449.84694978735, rel_tol=0.001)\n    assert math.isclose(candidate(20), 33510.32163829113, rel_tol=0.001)\n\ncheck(volume_sphere)",
+      "context": "{\"function_name\": \"volume_sphere\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 85,
+      "prompt": "### Prompt\nWrite a function to find the surface area of a sphere.\n\n### Signature\ndef surfacearea_sphere(r):\n\n### Test\nassert math.isclose(candidate(10), 1256.6370614359173, rel_tol=0.001)",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from math import pi\n\ndef surfacearea_sphere(r):\n    \"\"\"\n    Calculate the surface area of a sphere given its radius.\n    \n    Surface area of a sphere is calculated using the formula: 4 * \u03c0 * r^2\n    \n    Args:\n        r (float): Radius of the sphere\n    \n    Returns:\n        float: Surface area of the sphere\n    \"\"\"\n    return 4 * pi * r**2",
+      "test_content": "from llm_output import surfacearea_sphere\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(10), 1256.6370614359173, rel_tol=0.001)\n    assert math.isclose(candidate(15), 2827.4333882308138, rel_tol=0.001)\n    assert math.isclose(candidate(20), 5026.548245743669, rel_tol=0.001)\n\ncheck(surfacearea_sphere)",
+      "context": "{\"function_name\": \"surfacearea_sphere\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 86,
+      "prompt": "### Prompt\nWrite a function to find nth centered hexagonal number.\n\n### Signature\ndef centered_hexagonal_number(n):\n\n### Test\nassert candidate(10) == 271",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef centered_hexagonal_number(n: int) -> int:\n    \"\"\"\n    Calculate the nth centered hexagonal number.\n    \n    A centered hexagonal number is a figurate number that represents a hexagon \n    with a dot in the center and all other dots surrounding the center in a hexagonal lattice.\n    \n    The formula for the nth centered hexagonal number is: 1 + 6 * (n * (n - 1) / 2)\n    \n    Args:\n        n (int): The position of the centered hexagonal number to calculate\n    \n    Returns:\n        int: The nth centered hexagonal number\n    \"\"\"\n    return 1 + 6 * (n * (n - 1) // 2)",
+      "test_content": "from llm_output import centered_hexagonal_number\n\ndef check(candidate):\n    assert candidate(10) == 271\n    assert candidate(2) == 7\n    assert candidate(9) == 217\n\ncheck(centered_hexagonal_number)",
+      "context": "{\"function_name\": \"centered_hexagonal_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 88,
+      "prompt": "### Prompt\nWrite a function to get the frequency of all the elements in a list, returned as a dictionary.\n\n### Signature\ndef freq_count(list1):\n\n### Test\nassert candidate([10,10,10,10,20,20,20,20,40,40,50,50,30])==({10: 4, 20: 4, 40: 2, 50: 2, 30: 1})",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Dict\n\ndef freq_count(list1: List[int]) -> Dict[int, int]:\n    # Create an empty dictionary to store frequencies\n    freq_dict = {}\n    \n    # Iterate through each element in the list\n    for item in list1:\n        # If item already exists in dictionary, increment its count\n        # If not, initialize its count to 1\n        freq_dict[item] = freq_dict.get(item, 0) + 1\n    \n    # Return the frequency dictionary\n    return freq_dict",
+      "test_content": "from llm_output import freq_count\n\ndef check(candidate):\n    assert candidate([10,10,10,10,20,20,20,20,40,40,50,50,30])==({10: 4, 20: 4, 40: 2, 50: 2, 30: 1})\n    assert candidate([1,2,3,4,3,2,4,1,3,1,4])==({1:3, 2:2,3:3,4:3})\n    assert candidate([5,6,7,4,9,10,4,5,6,7,9,5])==({10:1,5:3,6:2,7:2,4:2,9:2})\n\ncheck(freq_count)",
+      "context": "{\"function_name\": \"freq_count\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 89,
+      "prompt": "### Prompt\nWrite a function to find the closest smaller number than n.\n\n### Signature\ndef closest_num(N):\n\n### Test\nassert candidate(11) == 10",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef closest_num(N: int) -> Union[int, None]:\n    \"\"\"\n    Find the closest smaller number than the given number N.\n    \n    Args:\n        N (int): The input number\n    \n    Returns:\n        int: The closest smaller number than N\n    \"\"\"\n    # If N is 0 or negative, return None \n    if N <= 0:\n        return None\n    \n    # Subtract 1 to get the closest smaller number\n    return N - 1",
+      "test_content": "from llm_output import closest_num\n\ndef check(candidate):\n    assert candidate(11) == 10\n    assert candidate(7) == 6\n    assert candidate(12) == 11\n\ncheck(closest_num)",
+      "context": "{\"function_name\": \"closest_num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 90,
+      "prompt": "### Prompt\nWrite a python function to find the length of the longest word.\n\n### Signature\ndef len_log(list1):\n\n### Test\nassert candidate([\"python\",\"PHP\",\"bigdata\"]) == 7",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef len_log(list1: List[str]) -> int:\n    \"\"\"\n    Find the length of the longest word in the given list of words.\n    \n    Args:\n        list1 (List[str]): A list of words\n    \n    Returns:\n        int: Length of the longest word in the list\n    \"\"\"\n    # If the list is empty, return 0\n    if not list1:\n        return 0\n    \n    # Use max() with key parameter to find the length of the longest word\n    return max(len(word) for word in list1)",
+      "test_content": "from llm_output import len_log\n\ndef check(candidate):\n    assert candidate([\"python\",\"PHP\",\"bigdata\"]) == 7\n    assert candidate([\"a\",\"ab\",\"abc\"]) == 3\n    assert candidate([\"small\",\"big\",\"tall\"]) == 5\n\ncheck(len_log)",
+      "context": "{\"function_name\": \"len_log\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 91,
+      "prompt": "### Prompt\nWrite a function to check if a string is present as a substring in a given list of string values.\n\n### Signature\ndef find_substring(str1, sub_str):\n\n### Test\nassert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"ack\")==True",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef find_substring(str1: List[str], sub_str: str) -> bool:\n    \"\"\"\n    Check if a substring is present in any of the strings in the given list.\n    \n    Args:\n        str1 (List[str]): List of strings to search through\n        sub_str (str): Substring to find\n    \n    Returns:\n        bool: True if substring is found in any string, False otherwise\n    \"\"\"\n    for string in str1:\n        if sub_str in string:\n            return True\n    return False",
+      "test_content": "from llm_output import find_substring\n\ndef check(candidate):\n    assert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"ack\")==True\n    assert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"abc\")==False\n    assert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"ange\")==True\n\ncheck(find_substring)",
+      "context": "{\"function_name\": \"find_substring\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 92,
+      "prompt": "### Prompt\nWrite a function to check whether the given number is undulating or not.\n\n### Signature\ndef is_undulating(n):\n\n### Test\nassert candidate(1212121) == True\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(is_undulating)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 4, in check\n    assert candidate(1212121) == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef is_undulating(n: Union[int, str]) -> bool:\n    \"\"\"\n    Check whether the given number is undulating or not.\n    \n    An undulating number is a number where digits alternate between increasing and decreasing.\n    \n    Args:\n        n (int or str): The number to check\n    \n    Returns:\n        bool: True if the number is undulating, False otherwise\n    \"\"\"\n    # Convert number to string for easier digit manipulation\n    num_str = str(n)\n    \n    # If number has less than 3 digits, it cannot be undulating\n    if len(num_str) < 3:\n        return False\n    \n    # Check if first three digits establish the undulating pattern\n    if not ((num_str[0] < num_str[1] and num_str[1] > num_str[2]) or \n            (num_str[0] > num_str[1] and num_str[1] < num_str[2])):\n        return False\n    \n    # Determine the initial pattern (increasing then decreasing or vice versa)\n    is_increasing_first = num_str[0] < num_str[1]\n    \n    # Check the rest of the digits follow the established pattern\n    for i in range(len(num_str) - 1):\n        if is_increasing_first:\n            # Should alternate between increasing and decreasing\n            if i % 2 == 0 and num_str[i] >= num_str[i+1]:\n                return False\n            if i % 2 == 1 and num_str[i] <= num_str[i+1]:\n                return False\n        else:\n            # Should alternate between decreasing and increasing\n            if i % 2 == 0 and num_str[i] <= num_str[i+1]:\n                return False\n            if i % 2 == 1 and num_str[i] >= num_str[i+1]:\n                return False\n    \n    return True",
+      "test_content": "from llm_output import is_undulating\n\ndef check(candidate):\n    assert candidate(1212121) == True\n    assert candidate(1991) == False\n    assert candidate(121) == True\n\ncheck(is_undulating)",
+      "context": "{\"function_name\": \"is_undulating\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 93,
+      "prompt": "### Prompt\nWrite a function to calculate the value of 'a' to the power 'b'.\n\n### Signature\ndef power(a,b):\n\n### Test\nassert candidate(3,4) == 81",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef power(a: Union[int, float], b: Union[int, float]) -> Union[int, float]:\n    \"\"\"\n    Calculate the value of 'a' raised to the power of 'b'\n    \n    Args:\n        a: Base number \n        b: Exponent\n    \n    Returns:\n        Result of a^b\n    \"\"\"\n    return a ** b",
+      "test_content": "from llm_output import power\n\ndef check(candidate):\n    assert candidate(3,4) == 81\n    assert candidate(2,3) == 8\n    assert candidate(5,5) == 3125\n\ncheck(power)",
+      "context": "{\"function_name\": \"power\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 94,
+      "prompt": "### Prompt\nGiven a list of tuples, write a function that returns the first value of the tuple with the smallest second value.\n\n### Signature\ndef index_minimum(test_list):\n\n### Test\nassert candidate([('Rash', 143), ('Manjeet', 200), ('Varsha', 100)]) == 'Varsha'",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple\n\ndef index_minimum(test_list: List[Tuple[str, int]]) -> str:\n    # Find the tuple with the smallest second value\n    min_tuple = min(test_list, key=lambda x: x[1])\n    \n    # Return the first value (name) of that tuple\n    return min_tuple[0]",
+      "test_content": "from llm_output import index_minimum\n\ndef check(candidate):\n    assert candidate([('Rash', 143), ('Manjeet', 200), ('Varsha', 100)]) == 'Varsha'\n    assert candidate([('Yash', 185), ('Dawood', 125), ('Sanya', 175)]) == 'Dawood'\n    assert candidate([('Sai', 345), ('Salman', 145), ('Ayesha', 96)]) == 'Ayesha'\n\ncheck(index_minimum)",
+      "context": "{\"function_name\": \"index_minimum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 95,
+      "prompt": "### Prompt\nWrite a python function to find the length of the smallest list in a list of lists.\n\n### Signature\ndef Find_Min_Length(lst):\n\n### Test\nassert candidate([[1],[1,2]]) == 1",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef Find_Min_Length(lst: List[List[int]]) -> int:\n    # If the input list is empty, return 0\n    if not lst:\n        return 0\n    \n    # Use min() with a key function to find the length of the smallest list\n    return min(len(sublist) for sublist in lst)",
+      "test_content": "from llm_output import Find_Min_Length\n\ndef check(candidate):\n    assert candidate([[1],[1,2]]) == 1\n    assert candidate([[1,2],[1,2,3],[1,2,3,4]]) == 2\n    assert candidate([[3,3,3],[4,4,4,4]]) == 3\n\ncheck(Find_Min_Length)",
+      "context": "{\"function_name\": \"Find_Min_Length\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 96,
+      "prompt": "### Prompt\nWrite a python function to find the number of divisors of a given integer.\n\n### Signature\ndef divisor(n):\n\n### Test\nassert candidate(15) == 4\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output.py\", line 1, in <module>\n    from typing import int\nImportError: cannot import name 'int' from 'typing' (/opt/homebrew/anaconda3/envs/tdd_llm/lib/python3.11/typing.py)\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "# No need to import int from typing as it's a built-in type\n\ndef divisor(n: int) -> int:\n    \"\"\"\n    Find the number of divisors of a given integer.\n    \n    Args:\n        n (int): The input integer to count divisors for\n    \n    Returns:\n        int: Total number of divisors of the input integer\n    \"\"\"\n    # Handle special case for 0 or negative numbers\n    if n <= 0:\n        return 0\n    \n    # Count divisors by checking from 1 to n\n    divisor_count = 0\n    for i in range(1, n + 1):\n        if n % i == 0:\n            divisor_count += 1\n    \n    return divisor_count",
+      "test_content": "from llm_output import divisor\n\ndef check(candidate):\n    assert candidate(15) == 4\n    assert candidate(12) == 6\n    assert candidate(9) == 3\n\ncheck(divisor)",
+      "context": "{\"function_name\": \"divisor\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 97,
+      "prompt": "### Prompt\nWrite a function to find frequency of each element in a flattened list of lists, returned in a dictionary.\n\n### Signature\ndef frequency_lists(list1):\n\n### Test\nassert candidate([[1, 2, 3, 2], [4, 5, 6, 2], [7, 8, 9, 5]])=={1: 1, 2: 3, 3: 1, 4: 1, 5: 2, 6: 1, 7: 1, 8: 1, 9: 1}",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Dict\n\ndef frequency_lists(list1: List[List[int]]) -> Dict[int, int]:\n    # Flatten the list of lists\n    flattened = [item for sublist in list1 for item in sublist]\n    \n    # Create frequency dictionary\n    freq_dict = {}\n    for num in flattened:\n        freq_dict[num] = freq_dict.get(num, 0) + 1\n    \n    return freq_dict",
+      "test_content": "from llm_output import frequency_lists\n\ndef check(candidate):\n    assert candidate([[1, 2, 3, 2], [4, 5, 6, 2], [7, 8, 9, 5]])=={1: 1, 2: 3, 3: 1, 4: 1, 5: 2, 6: 1, 7: 1, 8: 1, 9: 1}\n    assert candidate([[1,2,3,4],[5,6,7,8],[9,10,11,12]])=={1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1,10:1,11:1,12:1}\n    assert candidate([[20,30,40,17],[18,16,14,13],[10,20,30,40]])=={20:2,30:2,40:2,17: 1,18:1, 16: 1,14: 1,13: 1, 10: 1}\n\ncheck(frequency_lists)",
+      "context": "{\"function_name\": \"frequency_lists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 98,
+      "prompt": "### Prompt\nWrite a function to multiply all the numbers in a list and divide with the length of the list.\n\n### Signature\ndef multiply_num(numbers):\n\n### Test\nassert math.isclose(candidate((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Union\nimport math\n\ndef multiply_num(numbers: List[Union[int, float]]) -> float:\n    # If list is empty, return 0 to avoid division by zero\n    if not numbers:\n        return 0\n    \n    # Multiply all numbers in the list\n    product = 1\n    for num in numbers:\n        product *= num\n    \n    # Divide the product by the length of the list\n    return product / len(numbers)",
+      "test_content": "from llm_output import multiply_num\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)\n    assert math.isclose(candidate((-10,-20,-30)), -2000.0, rel_tol=0.001)\n    assert math.isclose(candidate((19,15,18)), 1710.0, rel_tol=0.001)\n\ncheck(multiply_num)",
+      "context": "{\"function_name\": \"multiply_num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 99,
+      "prompt": "### Prompt\nWrite a function to convert the given decimal number to its binary equivalent, represented as a string with no leading zeros.\n\n### Signature\ndef decimal_to_binary(n):\n\n### Test\nassert candidate(8) == '1000'",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef decimal_to_binary(n: int) -> str:\n    # Handle special case of 0\n    if n == 0:\n        return '0'\n    \n    # List to store binary digits\n    binary = []\n    \n    # Convert decimal to binary\n    while n > 0:\n        # Get remainder when divided by 2 (binary digit)\n        binary.append(str(n % 2))\n        # Integer division by 2 \n        n //= 2\n    \n    # Reverse the list and join to create binary string\n    # Reversal is needed because we built the binary from least significant bit\n    return ''.join(binary[::-1])",
+      "test_content": "from llm_output import decimal_to_binary\n\ndef check(candidate):\n    assert candidate(8) == '1000'\n    assert candidate(18) == '10010'\n    assert candidate(7) == '111'\n\ncheck(decimal_to_binary)",
+      "context": "{\"function_name\": \"decimal_to_binary\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 100,
+      "prompt": "### Prompt\nWrite a function to find the next smallest palindrome of a specified integer, returned as an integer.\n\n### Signature\ndef next_smallest_palindrome(num):\n\n### Test\nassert candidate(99)==101",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef next_smallest_palindrome(num: int) -> int:\n    # If the number is already a palindrome, increment by 1\n    if str(num) == str(num)[::-1]:\n        num += 1\n    \n    # Keep incrementing until a palindrome is found\n    while True:\n        # Convert number to string for palindrome check\n        num_str = str(num)\n        \n        # Check if the number is a palindrome\n        if num_str == num_str[::-1]:\n            return num\n        \n        # Increment the number\n        num += 1",
+      "test_content": "from llm_output import next_smallest_palindrome\n\ndef check(candidate):\n    assert candidate(99)==101\n    assert candidate(1221)==1331\n    assert candidate(120)==121\n\ncheck(next_smallest_palindrome)",
+      "context": "{\"function_name\": \"next_smallest_palindrome\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 101,
+      "prompt": "### Prompt\nWrite a function to find the kth element in the given array using 1-based indexing.\n\n### Signature\ndef kth_element(arr, k):\n\n### Test\nassert candidate([12,3,5,7,19], 2) == 3",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef kth_element(arr: List[int], k: int) -> int:\n    \"\"\"\n    Find the kth element in the given array using 1-based indexing.\n    \n    Args:\n        arr (List[int]): Input array of integers\n        k (int): 1-based index of the element to find\n    \n    Returns:\n        int: The kth element in the array\n    \"\"\"\n    # Adjust k to 0-based indexing \n    return arr[k-1]",
+      "test_content": "from llm_output import kth_element\n\ndef check(candidate):\n    assert candidate([12,3,5,7,19], 2) == 3\n    assert candidate([17,24,8,23], 3) == 8\n    assert candidate([16,21,25,36,4], 4) == 36\n\ncheck(kth_element)",
+      "context": "{\"function_name\": \"kth_element\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 102,
+      "prompt": "### Prompt\nWrite a function to convert a snake case string to camel case string.\n\n### Signature\ndef snake_to_camel(word):\n\n### Test\nassert candidate('python_program')=='PythonProgram'",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef snake_to_camel(word: str) -> str:\n    # Split the snake_case string into words\n    words: List[str] = word.split('_')\n    \n    # Capitalize the first letter of each word\n    camel_case_words: List[str] = [word.capitalize() for word in words]\n    \n    # Join the capitalized words together\n    return ''.join(camel_case_words)",
+      "test_content": "from llm_output import snake_to_camel\n\ndef check(candidate):\n    assert candidate('python_program')=='PythonProgram'\n    assert candidate('python_language')==('PythonLanguage')\n    assert candidate('programming_language')==('ProgrammingLanguage')\n\ncheck(snake_to_camel)",
+      "context": "{\"function_name\": \"snake_to_camel\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 103,
+      "prompt": "### Prompt\nWrite a function to find the Eulerian number a(n, m).\n\n### Signature\ndef eulerian_num(n, m):\n\n### Test\nassert candidate(3, 1) == 4",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef eulerian_num(n: int, m: int) -> int:\n    \"\"\"\n    Calculate the Eulerian number a(n, m)\n    \n    Eulerian numbers count the number of permutations of the set {1, ..., n} \n    with exactly m ascents (where an ascent is a position where the next element is larger)\n    \n    Args:\n        n: Total number of elements \n        m: Number of ascents\n    \n    Returns:\n        Number of permutations with exactly m ascents\n    \"\"\"\n    # Create a 2D array to store Eulerian numbers \n    # Initialize with 0s\n    eulerian: List[List[int]] = [[0] * (m + 1) for _ in range(n + 1)]\n    \n    # Base case: 0 permutations if m > n-1\n    if m > n - 1:\n        return 0\n    \n    # Base case: 1 permutation for 0 ascents \n    eulerian[0][0] = 1\n    \n    # Fill the Eulerian number table\n    for i in range(1, n + 1):\n        for j in range(min(m, i) + 1):\n            # Recurrence relation for Eulerian numbers\n            # a(n,m) = (n-m)*a(n-1,m-1) + (m+1)*a(n-1,m)\n            if j == 0:\n                eulerian[i][j] = 1\n            else:\n                eulerian[i][j] = ((i - j) * eulerian[i-1][j-1]) + \\\n                                 ((j + 1) * eulerian[i-1][j])\n    \n    # Return the Eulerian number for given n and m\n    return eulerian[n][m]",
+      "test_content": "from llm_output import eulerian_num\n\ndef check(candidate):\n    assert candidate(3, 1) == 4\n    assert candidate(4, 1) == 11\n    assert candidate(5, 3) == 26\n\ncheck(eulerian_num)",
+      "context": "{\"function_name\": \"eulerian_num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 104,
+      "prompt": "### Prompt\nWrite a function to sort each sublist of strings in a given list of lists.\n\n### Signature\ndef sort_sublists(input_list):\n\n### Test\nassert candidate(([\"green\", \"orange\"], [\"black\", \"white\"], [\"white\", \"black\", \"orange\"]))==[[\"\"\"green\"\"\", \"\"\"orange\"\"\"], [\"\"\"black\"\"\", \"\"\"white\"\"\"], [\"\"\"black\"\"\", \"\"\"orange\"\"\", \"\"\"white\"\"\"]]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef sort_sublists(input_list: List[List[str]]) -> List[List[str]]:\n    \"\"\"\n    Sort each sublist of strings in the given list of lists.\n    \n    Args:\n        input_list (List[List[str]]): A list of lists containing strings\n    \n    Returns:\n        List[List[str]]: A new list with each sublist sorted\n    \"\"\"\n    return [sorted(sublist) for sublist in input_list]",
+      "test_content": "from llm_output import sort_sublists\n\ndef check(candidate):\n    assert candidate(([\"green\", \"orange\"], [\"black\", \"white\"], [\"white\", \"black\", \"orange\"]))==[[\"\"\"green\"\"\", \"\"\"orange\"\"\"], [\"\"\"black\"\"\", \"\"\"white\"\"\"], [\"\"\"black\"\"\", \"\"\"orange\"\"\", \"\"\"white\"\"\"]]\n    assert candidate(([\" red \",\"green\" ],[\"blue \",\" black\"],[\" orange\",\"brown\"]))==[[\"\"\" red \"\"\", \"\"\"green\"\"\"], [\"\"\" black\"\"\", \"\"\"blue \"\"\"], [\"\"\" orange\"\"\", \"\"\"brown\"\"\"]]\n    assert candidate(([\"zilver\",\"gold\"], [\"magnesium\",\"aluminium\"], [\"steel\", \"bronze\"]))==[[\"\"\"gold\"\"\", \"\"\"zilver\"\"\"],[\"\"\"aluminium\"\"\", \"\"\"magnesium\"\"\"], [\"\"\"bronze\"\"\", \"\"\"steel\"\"\"]]\n\ncheck(sort_sublists)",
+      "context": "{\"function_name\": \"sort_sublists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 105,
+      "prompt": "### Prompt\nWrite a python function to count true booleans in the given list.\n\n### Signature\ndef count(lst):\n\n### Test\nassert candidate([True,False,True]) == 2",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef count(lst: List[bool]) -> int:\n    return sum(1 for x in lst if x)",
+      "test_content": "from llm_output import count\n\ndef check(candidate):\n    assert candidate([True,False,True]) == 2\n    assert candidate([False,False]) == 0\n    assert candidate([True,True,True]) == 3\n\ncheck(count)",
+      "context": "{\"function_name\": \"count\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 106,
+      "prompt": "### Prompt\nWrite a function to append the given list to the given tuples.\n\n### Signature\ndef add_lists(test_list, test_tup):\n\n### Test\nassert candidate([5, 6, 7], (9, 10)) == (9, 10, 5, 6, 7)",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple, Union\n\ndef add_lists(test_list: List[Union[int, str]], test_tup: Tuple) -> Tuple:\n    \"\"\"\n    Append the given list to the given tuple.\n    \n    Args:\n        test_list (List): List to be appended to the tuple\n        test_tup (Tuple): Original tuple to which list will be added\n    \n    Returns:\n        Tuple: A new tuple with list elements appended\n    \"\"\"\n    return test_tup + tuple(test_list)",
+      "test_content": "from llm_output import add_lists\n\ndef check(candidate):\n    assert candidate([5, 6, 7], (9, 10)) == (9, 10, 5, 6, 7)\n    assert candidate([6, 7, 8], (10, 11)) == (10, 11, 6, 7, 8)\n    assert candidate([7, 8, 9], (11, 12)) == (11, 12, 7, 8, 9)\n\ncheck(add_lists)",
+      "context": "{\"function_name\": \"add_lists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 108,
+      "prompt": "### Prompt\nWrite a function to merge three lists into a single sorted list.\n\n### Signature\ndef merge_sorted_list(num1,num2,num3):\n\n### Test\nassert candidate([25, 24, 15, 4, 5, 29, 110],[19, 20, 11, 56, 25, 233, 154],[24, 26, 54, 48])==[4, 5, 11, 15, 19, 20, 24, 24, 25, 25, 26, 29, 48, 54, 56, 110, 154, 233]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef merge_sorted_list(num1: List[int], num2: List[int], num3: List[int]) -> List[int]:\n    # Merge the three lists\n    merged = num1 + num2 + num3\n    \n    # Sort the merged list \n    return sorted(merged)",
+      "test_content": "from llm_output import merge_sorted_list\n\ndef check(candidate):\n    assert candidate([25, 24, 15, 4, 5, 29, 110],[19, 20, 11, 56, 25, 233, 154],[24, 26, 54, 48])==[4, 5, 11, 15, 19, 20, 24, 24, 25, 25, 26, 29, 48, 54, 56, 110, 154, 233]\n    assert candidate([1, 3, 5, 6, 8, 9], [2, 5, 7, 11], [1, 4, 7, 8, 12])==[1, 1, 2, 3, 4, 5, 5, 6, 7, 7, 8, 8, 9, 11, 12]\n    assert candidate([18, 14, 10, 9, 8, 7, 9, 3, 2, 4, 1],[25, 35, 22, 85, 14, 65, 75, 25, 58],[12, 74, 9, 50, 61, 41])==[1, 2, 3, 4, 7, 8, 9, 9, 9, 10, 12, 14, 14, 18, 22, 25, 25, 35, 41, 50, 58, 61, 65, 74, 75, 85]\n\ncheck(merge_sorted_list)",
+      "context": "{\"function_name\": \"merge_sorted_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 109,
+      "prompt": "### Prompt\nWrite a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.\n\n### Signature\ndef odd_Equivalent(s,n):\n\n### Test\nassert candidate(\"011001\",6) == 3",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef odd_Equivalent(s: str, n: int) -> int:\n    # Count the number of odd values after rotating the binary string\n    count = 0\n    \n    # Iterate through all possible rotations\n    for i in range(n):\n        # Rotate the string by moving the first character to the end\n        s = s[1:] + s[0]\n        \n        # Convert rotated binary string to decimal and check if it's odd\n        if int(s, 2) % 2 == 1:\n            count += 1\n    \n    return count",
+      "test_content": "from llm_output import odd_Equivalent\n\ndef check(candidate):\n    assert candidate(\"011001\",6) == 3\n    assert candidate(\"11011\",5) == 4\n    assert candidate(\"1010\",4) == 2\n\ncheck(odd_Equivalent)",
+      "context": "{\"function_name\": \"odd_Equivalent\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 111,
+      "prompt": "### Prompt\nWrite a function to find the common elements in given nested lists.\n\n### Signature\ndef common_in_nested_lists(nestedlist):\n\n### Test\nassert set(candidate([[12, 18, 23, 25, 45], [7, 12, 18, 24, 28], [1, 5, 8, 12, 15, 16, 18]]))==set([18, 12])",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef common_in_nested_lists(nestedlist: List[List[int]]) -> List[int]:\n    # If the nested list is empty, return an empty list\n    if not nestedlist:\n        return []\n    \n    # Convert the first list to a set\n    common_elements = set(nestedlist[0])\n    \n    # Iterate through the remaining lists and find intersection\n    for lst in nestedlist[1:]:\n        common_elements = common_elements.intersection(set(lst))\n    \n    # Return the list of common elements\n    return list(common_elements)",
+      "test_content": "from llm_output import common_in_nested_lists\n\ndef check(candidate):\n    assert set(candidate([[12, 18, 23, 25, 45], [7, 12, 18, 24, 28], [1, 5, 8, 12, 15, 16, 18]]))==set([18, 12])\n    assert set(candidate([[12, 5, 23, 25, 45], [7, 11, 5, 23, 28], [1, 5, 8, 18, 23, 16]]))==set([5,23])\n    assert set(candidate([[2, 3,4, 1], [4, 5], [6,4, 8],[4, 5], [6, 8,4]]))==set([4])\n\ncheck(common_in_nested_lists)",
+      "context": "{\"function_name\": \"common_in_nested_lists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 113,
+      "prompt": "### Prompt\nWrite a function to check if a string represents an integer or not.\n\n### Signature\ndef check_integer(text):\n\n### Test\nassert candidate(\"python\")==False",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef check_integer(text: str) -> bool:\n    \"\"\"\n    Check if the given text represents a valid integer.\n    \n    Args:\n        text (str): The string to check\n    \n    Returns:\n        bool: True if the string represents an integer, False otherwise\n    \"\"\"\n    # Handle empty string case\n    if not text:\n        return False\n    \n    # Check if the string starts with an optional sign\n    if text[0] in ['+', '-']:\n        text = text[1:]\n    \n    # Check if the remaining characters are all digits\n    return text.isdigit()",
+      "test_content": "from llm_output import check_integer\n\ndef check(candidate):\n    assert candidate(\"python\")==False\n    assert candidate(\"1\")==True\n    assert candidate(\"12345\")==True\n\ncheck(check_integer)",
+      "context": "{\"function_name\": \"check_integer\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 115,
+      "prompt": "### Prompt\nWrite a function to check whether all dictionaries in a list are empty or not.\n\n### Signature\ndef empty_dit(list1):\n\n### Test\nassert candidate([{},{},{}])==True\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(empty_dit)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 6, in check\n    assert candidate({})==True\n           ^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Dict, Union\n\ndef empty_dit(list1: Union[List[Dict], Dict]) -> bool:\n    \"\"\"\n    Check whether all dictionaries in the given list are empty or the dictionary is empty.\n    \n    Args:\n        list1 (Union[List[Dict], Dict]): A list of dictionaries or a single dictionary to check\n    \n    Returns:\n        bool: True if all dictionaries are empty or the dictionary is empty\n    \"\"\"\n    # If input is a single dictionary, check if it's empty\n    if isinstance(list1, dict):\n        return len(list1) == 0\n    \n    # If input is a list, check if all dictionaries are empty\n    # Check if the list is empty first\n    if not list1:\n        return False\n    \n    # Use all() with a generator expression to check if each dict is empty\n    return all(len(d) == 0 for d in list1)",
+      "test_content": "from llm_output import empty_dit\n\ndef check(candidate):\n    assert candidate([{},{},{}])==True\n    assert candidate([{1,2},{},{}])==False\n    assert candidate({})==True\n\ncheck(empty_dit)",
+      "context": "{\"function_name\": \"empty_dit\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 116,
+      "prompt": "### Prompt\nWrite a function to convert a given tuple of positive integers into a single integer.\n\n### Signature\ndef tuple_to_int(nums):\n\n### Test\nassert candidate((1,2,3))==123",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Tuple\n\ndef tuple_to_int(nums: Tuple[int, ...]) -> int:\n    \"\"\"\n    Convert a tuple of positive integers into a single integer.\n    \n    Args:\n        nums (Tuple[int, ...]): A tuple of positive integers\n    \n    Returns:\n        int: A single integer formed by concatenating the input tuple elements\n    \"\"\"\n    # Convert each integer to string, join them, and convert back to integer\n    return int(''.join(map(str, nums)))",
+      "test_content": "from llm_output import tuple_to_int\n\ndef check(candidate):\n    assert candidate((1,2,3))==123\n    assert candidate((4,5,6))==456\n    assert candidate((5,6,7))==567\n\ncheck(tuple_to_int)",
+      "context": "{\"function_name\": \"tuple_to_int\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 117,
+      "prompt": "### Prompt\nWrite a function to convert all possible convertible elements in a list of lists to floats.\n\n### Signature\ndef list_to_float(test_list):\n\n### Test\nassert candidate( [(\"3\", \"4\"), (\"1\", \"26.45\"), (\"7.32\", \"8\"), (\"4\", \"8\")] ) == [(3.0, 4.0), (1.0, 26.45), (7.32, 8.0), (4.0, 8.0)]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple, Union\n\ndef list_to_float(test_list: List[Tuple[Union[str, float], Union[str, float]]]) -> List[Tuple[float, float]]:\n    # Create a new list to store converted float tuples\n    converted_list = []\n    \n    # Iterate through each tuple in the input list\n    for item in test_list:\n        # Create a tuple with converted float values\n        converted_tuple = tuple(float(x) for x in item)\n        converted_list.append(converted_tuple)\n    \n    return converted_list",
+      "test_content": "from llm_output import list_to_float\n\ndef check(candidate):\n    assert candidate( [(\"3\", \"4\"), (\"1\", \"26.45\"), (\"7.32\", \"8\"), (\"4\", \"8\")] ) == [(3.0, 4.0), (1.0, 26.45), (7.32, 8.0), (4.0, 8.0)]\n    assert candidate( [(\"4\", \"4\"), (\"2\", \"27\"), (\"4.12\", \"9\"), (\"7\", \"11\")] ) == [(4.0, 4.0), (2.0, 27.0), (4.12, 9.0), (7.0, 11.0)]\n    assert candidate( [(\"6\", \"78\"), (\"5\", \"26.45\"), (\"1.33\", \"4\"), (\"82\", \"13\")] ) == [(6.0, 78.0), (5.0, 26.45), (1.33, 4.0), (82.0, 13.0)]\n\ncheck(list_to_float)",
+      "context": "{\"function_name\": \"list_to_float\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 118,
+      "prompt": "### Prompt\nWrite a function to convert a string to a list of strings split on the space character.\n\n### Signature\ndef string_to_list(string):\n\n### Test\nassert candidate(\"python programming\")==[\"\"\"python\"\"\",\"\"\"programming\"\"\"]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def string_to_list(string):\n    return string.split()",
+      "test_content": "from llm_output import string_to_list\n\ndef check(candidate):\n    assert candidate(\"python programming\")==[\"\"\"python\"\"\",\"\"\"programming\"\"\"]\n    assert candidate(\"lists tuples strings\")==[\"\"\"lists\"\"\",\"\"\"tuples\"\"\",\"\"\"strings\"\"\"]\n    assert candidate(\"write a program\")==[\"\"\"write\"\"\",\"\"\"a\"\"\",\"\"\"program\"\"\"]\n\ncheck(string_to_list)",
+      "context": "{\"function_name\": \"string_to_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 119,
+      "prompt": "### Prompt\nWrite a python function to find the element that appears only once in a sorted array.\n\n### Signature\ndef search(arr):\n\n### Test\nassert candidate([1,1,2,2,3]) == 3",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef search(arr: List[int]) -> int:\n    # If array has only one element, return that element\n    if len(arr) == 1:\n        return arr[0]\n    \n    # Check first and last elements separately\n    if arr[0] != arr[1]:\n        return arr[0]\n    if arr[-1] != arr[-2]:\n        return arr[-1]\n    \n    # Binary search for the unique element\n    left, right = 1, len(arr) - 2\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        # Check if mid is the unique element\n        if arr[mid] != arr[mid-1] and arr[mid] != arr[mid+1]:\n            return arr[mid]\n        \n        # Determine which side to search\n        # If mid is even, it should match the next element\n        # If mid is odd, it should match the previous element\n        if mid % 2 == 0:\n            if arr[mid] == arr[mid+1]:\n                left = mid + 2\n            else:\n                right = mid - 2\n        else:\n            if arr[mid] == arr[mid-1]:\n                left = mid + 1\n            else:\n                right = mid - 1\n    \n    # This should never be reached if input is valid\n    return -1",
+      "test_content": "from llm_output import search\n\ndef check(candidate):\n    assert candidate([1,1,2,2,3]) == 3\n    assert candidate([1,1,3,3,4,4,5,5,7,7,8]) == 8\n    assert candidate([1,2,2,3,3,4,4]) == 1\n\ncheck(search)",
+      "context": "{\"function_name\": \"search\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 120,
+      "prompt": "### Prompt\nWrite a function to find the maximum absolute product between numbers in pairs of tuples within a given list.\n\n### Signature\ndef max_product_tuple(list1):\n\n### Test\nassert candidate([(2, 7), (2, 6), (1, 8), (4, 9)] )==36",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple\n\ndef max_product_tuple(list1: List[Tuple[int, int]]) -> int:\n    \"\"\"\n    Find the maximum absolute product between numbers in pairs of tuples within a given list.\n    \n    Args:\n        list1: A list of tuples containing integer pairs\n    \n    Returns:\n        The maximum absolute product of any tuple in the list\n    \"\"\"\n    # Initialize max product to the absolute product of the first tuple\n    max_product = abs(list1[0][0] * list1[0][1])\n    \n    # Iterate through the list and update max_product \n    for a, b in list1:\n        current_product = abs(a * b)\n        max_product = max(max_product, current_product)\n    \n    return max_product",
+      "test_content": "from llm_output import max_product_tuple\n\ndef check(candidate):\n    assert candidate([(2, 7), (2, 6), (1, 8), (4, 9)] )==36\n    assert candidate([(10,20), (15,2), (5,10)] )==200\n    assert candidate([(11,44), (10,15), (20,5), (12, 9)] )==484\n\ncheck(max_product_tuple)",
+      "context": "{\"function_name\": \"max_product_tuple\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 123,
+      "prompt": "### Prompt\nWrite a function to sum all amicable numbers from 1 to a specified number.\n\n### Signature\ndef amicable_numbers_sum(limit):\n\n### Test\nassert candidate(999)==504\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(amicable_numbers_sum)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 4, in check\n    assert candidate(999)==504\n           ^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output.py\", line 25, in amicable_numbers_sum\n    b = get_proper_divisors_sum(a)\n        ^^^^^^^^^^^^^^^^^^^^^^^\nNameError: name 'get_proper_divisors_sum' is not defined\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def amicable_numbers_sum(limit: int) -> int:\n    \"\"\"\n    Sum all amicable numbers from 1 to the given limit.\n    \n    An amicable number is a number that can be paired with another number \n    such that the sum of proper divisors of each number equals the other number.\n    \"\"\"\n    def get_proper_divisors_sum(n: int) -> int:\n        \"\"\"Calculate the sum of proper divisors of a number.\"\"\"\n        divisors_sum = 1  # 1 is always a proper divisor\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                divisors_sum += i\n                # Add the corresponding divisor if not a perfect square\n                if i != n // i:\n                    divisors_sum += n // i\n        return divisors_sum\n    \n    amicable_sum = 0\n    \n    for a in range(2, limit):\n        # Calculate sum of proper divisors for a\n        b = get_proper_divisors_sum(a)\n        \n        # Check if b is within limit and forms an amicable pair\n        if b > a and b < limit and get_proper_divisors_sum(b) == a:\n            amicable_sum += a + b\n    \n    return amicable_sum",
+      "test_content": "from llm_output import amicable_numbers_sum\n\ndef check(candidate):\n    assert candidate(999)==504\n    assert candidate(9999)==31626\n    assert candidate(99)==0\n\ncheck(amicable_numbers_sum)",
+      "context": "{\"function_name\": \"amicable_numbers_sum\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 125,
+      "prompt": "### Prompt\nWrite a function to find the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string.\n\n### Signature\ndef find_length(string):\n\n### Test\nassert candidate(\"11000010001\") == 6\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(find_length)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 5, in check\n    assert candidate(\"10111\") == 1\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef find_length(string: str) -> int:\n    \"\"\"\n    Find the maximum difference between the number of 0s and 1s in any sub-string of the given binary string.\n    \n    Args:\n        string (str): A binary string containing only '0' and '1' characters\n    \n    Returns:\n        int: Maximum difference between number of 0s and 1s in any sub-string\n    \"\"\"\n    max_diff = 0\n    n = len(string)\n    \n    # Kadane's algorithm variant for max difference\n    current_diff = 0\n    \n    for char in string:\n        # Treat 0 as +1 and 1 as -1\n        diff_val = 1 if char == '0' else -1\n        \n        # Update current difference \n        current_diff = max(diff_val, current_diff + diff_val)\n        \n        # Update max difference\n        max_diff = max(max_diff, current_diff)\n    \n    return max_diff",
+      "test_content": "from llm_output import find_length\n\ndef check(candidate):\n    assert candidate(\"11000010001\") == 6\n    assert candidate(\"10111\") == 1\n    assert candidate(\"11011101100101\") == 2\n\ncheck(find_length)",
+      "context": "{\"function_name\": \"find_length\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 126,
+      "prompt": "### Prompt\nWrite a python function to find the sum of common divisors of two given numbers.\n\n### Signature\ndef sum(a,b):\n\n### Test\nassert candidate(10,15) == 6\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(sum)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 4, in check\n    assert candidate(10,15) == 6\n           ^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output.py\", line 16, in sum\n    return __builtins__.sum(common_divisors)\n           ^^^^^^^^^^^^^^^^\nAttributeError: 'dict' object has no attribute 'sum'\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef sum(a: int, b: int) -> int:\n    # Find the common divisors of a and b\n    common_divisors: List[int] = []\n    \n    # Find the minimum of a and b to limit divisor search\n    min_num = min(a, b)\n    \n    # Find common divisors\n    for i in range(1, min_num + 1):\n        if a % i == 0 and b % i == 0:\n            common_divisors.append(i)\n    \n    # Return the sum of common divisors\n    return __builtins__['sum'](common_divisors)",
+      "test_content": "from llm_output import sum\n\ndef check(candidate):\n    assert candidate(10,15) == 6\n    assert candidate(100,150) == 93\n    assert candidate(4,6) == 3\n\ncheck(sum)",
+      "context": "{\"function_name\": \"sum\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 127,
+      "prompt": "### Prompt\nWrite a function to multiply two integers.\n\n### Signature\ndef multiply_int(x, y):\n\n### Test\nassert candidate(10,20)==200",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef multiply_int(x: Union[int, float], y: Union[int, float]) -> int:\n    \"\"\"\n    Multiply two integers and return the result.\n    \n    Args:\n        x (int or float): First number to multiply\n        y (int or float): Second number to multiply\n    \n    Returns:\n        int: Product of x and y\n    \"\"\"\n    return x * y",
+      "test_content": "from llm_output import multiply_int\n\ndef check(candidate):\n    assert candidate(10,20)==200\n    assert candidate(5,10)==50\n    assert candidate(4,8)==32\n\ncheck(multiply_int)",
+      "context": "{\"function_name\": \"multiply_int\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 128,
+      "prompt": "### Prompt\nWrite a function to find words that are longer than n characters from a given list of words.\n\n### Signature\ndef long_words(n, str):\n\n### Test\nassert candidate(3,\"python is a programming language\")==[\"\"\"python\"\"\",\"\"\"programming\"\"\",\"\"\"language\"\"\"]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef long_words(n: int, string: str) -> List[str]:\n    # Split the input string into words\n    words = string.split()\n    \n    # Filter words longer than n characters \n    long_word_list = [word for word in words if len(word) > n]\n    \n    return long_word_list",
+      "test_content": "from llm_output import long_words\n\ndef check(candidate):\n    assert candidate(3,\"python is a programming language\")==[\"\"\"python\"\"\",\"\"\"programming\"\"\",\"\"\"language\"\"\"]\n    assert candidate(2,\"writing a program\")==[\"\"\"writing\"\"\",\"\"\"program\"\"\"]\n    assert candidate(5,\"sorting list\")==[\"\"\"sorting\"\"\"]\n\ncheck(long_words)",
+      "context": "{\"function_name\": \"long_words\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 129,
+      "prompt": "### Prompt\nWrite a function to calculate whether the matrix is a magic square.\n\n### Signature\ndef magic_square_test(my_matrix):\n\n### Test\nassert candidate([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]])==True",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef magic_square_test(my_matrix: List[List[int]]) -> bool:\n    # Get matrix size\n    n = len(my_matrix)\n    \n    # Calculate expected magic sum (sum of first row)\n    magic_sum = sum(my_matrix[0])\n    \n    # Check row sums\n    for row in my_matrix:\n        if sum(row) != magic_sum:\n            return False\n    \n    # Check column sums\n    for col in range(n):\n        column_sum = sum(my_matrix[row][col] for row in range(n))\n        if column_sum != magic_sum:\n            return False\n    \n    # Check main diagonal sum\n    diag1_sum = sum(my_matrix[i][i] for i in range(n))\n    if diag1_sum != magic_sum:\n        return False\n    \n    # Check secondary diagonal sum\n    diag2_sum = sum(my_matrix[i][n-1-i] for i in range(n))\n    if diag2_sum != magic_sum:\n        return False\n    \n    # Check if all numbers are unique\n    flat_matrix = [num for row in my_matrix for num in row]\n    if len(set(flat_matrix)) != n * n:\n        return False\n    \n    return True",
+      "test_content": "from llm_output import magic_square_test\n\ndef check(candidate):\n    assert candidate([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]])==True\n    assert candidate([[2, 7, 6], [9, 5, 1], [4, 3, 8]])==True\n    assert candidate([[2, 7, 6], [9, 5, 1], [4, 3, 7]])==False\n\ncheck(magic_square_test)",
+      "context": "{\"function_name\": \"magic_square_test\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 130,
+      "prompt": "### Prompt\nWrite a function to find the item with maximum frequency in a given list.\n\n### Signature\ndef max_occurrences(nums):\n\n### Test\nassert candidate([2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,2,4,6,9,1,2])==2",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\nfrom collections import Counter\n\ndef max_occurrences(nums: List[int]) -> int:\n    # Use Counter to count frequencies of each number\n    freq_counter = Counter(nums)\n    \n    # Find the item with maximum frequency\n    # If multiple items have same max frequency, return the first one\n    max_freq_item = max(freq_counter, key=freq_counter.get)\n    \n    return max_freq_item",
+      "test_content": "from llm_output import max_occurrences\n\ndef check(candidate):\n    assert candidate([2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,2,4,6,9,1,2])==2\n    assert candidate([2,3,8,4,7,9,8,7,9,15,14,10,12,13,16,18])==8\n    assert candidate([10,20,20,30,40,90,80,50,30,20,50,10])==20\n\ncheck(max_occurrences)",
+      "context": "{\"function_name\": \"max_occurrences\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 131,
+      "prompt": "### Prompt\nWrite a python function to reverse only the vowels of a given string (where y is not a vowel).\n\n### Signature\ndef reverse_vowels(str1):\n\n### Test\nassert candidate(\"Python\") == \"Python\"",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef reverse_vowels(str1: str) -> str:\n    # Define vowels (lowercase and uppercase)\n    vowels = set('aeiouAEIOU')\n    \n    # Convert string to list for easier manipulation\n    chars = list(str1)\n    \n    # Use two-pointer approach to swap vowels\n    left, right = 0, len(chars) - 1\n    \n    while left < right:\n        # Move left pointer to first vowel from left\n        while left < right and chars[left] not in vowels:\n            left += 1\n        \n        # Move right pointer to first vowel from right\n        while left < right and chars[right] not in vowels:\n            right -= 1\n        \n        # Swap vowels\n        if left < right:\n            chars[left], chars[right] = chars[right], chars[left]\n            left += 1\n            right -= 1\n    \n    # Convert back to string and return\n    return ''.join(chars)",
+      "test_content": "from llm_output import reverse_vowels\n\ndef check(candidate):\n    assert candidate(\"Python\") == \"Python\"\n    assert candidate(\"USA\") == \"ASU\"\n    assert candidate(\"ab\") == \"ab\"\n\ncheck(reverse_vowels)",
+      "context": "{\"function_name\": \"reverse_vowels\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 132,
+      "prompt": "### Prompt\nWrite a function to convert a tuple to a string.\n\n### Signature\ndef tup_string(tup1):\n\n### Test\nassert candidate((\"\"\"e\"\"\", \"\"\"x\"\"\", \"\"\"e\"\"\", \"\"\"r\"\"\", \"\"\"c\"\"\", \"\"\"i\"\"\", \"\"\"s\"\"\", \"\"\"e\"\"\", \"\"\"s\"\"\"))==(\"exercises\")",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Tuple\n\ndef tup_string(tup1: Tuple[str, ...]) -> str:\n    \"\"\"\n    Convert a tuple of strings to a single concatenated string.\n    \n    Args:\n        tup1 (Tuple[str, ...]): A tuple containing string elements\n    \n    Returns:\n        str: A string formed by concatenating all elements in the tuple\n    \"\"\"\n    return ''.join(tup1)",
+      "test_content": "from llm_output import tup_string\n\ndef check(candidate):\n    assert candidate((\"\"\"e\"\"\", \"\"\"x\"\"\", \"\"\"e\"\"\", \"\"\"r\"\"\", \"\"\"c\"\"\", \"\"\"i\"\"\", \"\"\"s\"\"\", \"\"\"e\"\"\", \"\"\"s\"\"\"))==(\"exercises\")\n    assert candidate((\"\"\"p\"\"\",\"\"\"y\"\"\",\"\"\"t\"\"\",\"\"\"h\"\"\",\"\"\"o\"\"\",\"\"\"n\"\"\"))==(\"python\")\n    assert candidate((\"\"\"p\"\"\",\"\"\"r\"\"\",\"\"\"o\"\"\",\"\"\"g\"\"\",\"\"\"r\"\"\",\"\"\"a\"\"\",\"\"\"m\"\"\"))==(\"program\")\n\ncheck(tup_string)",
+      "context": "{\"function_name\": \"tup_string\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 133,
+      "prompt": "### Prompt\nWrite a function to calculate the sum of the negative numbers of a given list of numbers.\n\n### Signature\ndef sum_negativenum(nums):\n\n### Test\nassert candidate([2, 4, -6, -9, 11, -12, 14, -5, 17])==-32",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef sum_negativenum(nums: List[int]) -> int:\n    \"\"\"\n    Calculate the sum of negative numbers in the given list.\n    \n    Args:\n        nums (List[int]): A list of integers\n    \n    Returns:\n        int: Sum of all negative numbers in the list\n    \"\"\"\n    return sum(num for num in nums if num < 0)",
+      "test_content": "from llm_output import sum_negativenum\n\ndef check(candidate):\n    assert candidate([2, 4, -6, -9, 11, -12, 14, -5, 17])==-32\n    assert candidate([10,15,-14,13,-18,12,-20])==-52\n    assert candidate([19, -65, 57, 39, 152,-639, 121, 44, 90, -190])==-894\n\ncheck(sum_negativenum)",
+      "context": "{\"function_name\": \"sum_negativenum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 135,
+      "prompt": "### Prompt\nWrite a function to find the nth hexagonal number.\n\n### Signature\ndef hexagonal_num(n):\n\n### Test\nassert candidate(10) == 190",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef hexagonal_num(n: int) -> int:\n    \"\"\"\n    Calculate the nth hexagonal number.\n    \n    A hexagonal number is a figurate number that extends the concept of triangular and square numbers \n    to the hexagonal pattern. The nth hexagonal number is calculated by the formula: n * (2n - 1)\n    \n    Args:\n        n (int): The position of the hexagonal number to calculate\n    \n    Returns:\n        int: The nth hexagonal number\n    \"\"\"\n    return n * (2 * n - 1)",
+      "test_content": "from llm_output import hexagonal_num\n\ndef check(candidate):\n    assert candidate(10) == 190\n    assert candidate(5) == 45\n    assert candidate(7) == 91\n\ncheck(hexagonal_num)",
+      "context": "{\"function_name\": \"hexagonal_num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 139,
+      "prompt": "### Prompt\nWrite a function to find the circumference of a circle.\n\n### Signature\ndef circle_circumference(r):\n\n### Test\nassert math.isclose(candidate(10), 62.830000000000005, rel_tol=0.001)",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from math import pi\n\ndef circle_circumference(r):\n    \"\"\"\n    Calculate the circumference of a circle given its radius.\n    \n    Args:\n        r (float): Radius of the circle\n    \n    Returns:\n        float: Circumference of the circle (2 * pi * radius)\n    \"\"\"\n    return 2 * pi * r",
+      "test_content": "from llm_output import circle_circumference\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(10), 62.830000000000005, rel_tol=0.001)\n    assert math.isclose(candidate(5), 31.415000000000003, rel_tol=0.001)\n    assert math.isclose(candidate(4), 25.132, rel_tol=0.001)\n\ncheck(circle_circumference)",
+      "context": "{\"function_name\": \"circle_circumference\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 140,
+      "prompt": "### Prompt\nWrite a function to flatten the list of lists into a single set of numbers.\n\n### Signature\ndef extract_singly(test_list):\n\n### Test\nassert set(candidate([(3, 4, 5), (4, 5, 7), (1, 4)])) == set([3, 4, 5, 7, 1])",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple, Set\n\ndef extract_singly(test_list: List[Tuple[int, ...]]) -> Set[int]:\n    # Flatten the list of tuples into a single set of unique numbers\n    return set(num for tuple_item in test_list for num in tuple_item)",
+      "test_content": "from llm_output import extract_singly\n\ndef check(candidate):\n    assert set(candidate([(3, 4, 5), (4, 5, 7), (1, 4)])) == set([3, 4, 5, 7, 1])\n    assert set(candidate([(1, 2, 3), (4, 2, 3), (7, 8)])) == set([1, 2, 3, 4, 7, 8])\n    assert set(candidate([(7, 8, 9), (10, 11, 12), (10, 11)])) == set([7, 8, 9, 10, 11, 12])\n\ncheck(extract_singly)",
+      "context": "{\"function_name\": \"extract_singly\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 141,
+      "prompt": "### Prompt\nWrite a function to sort a list of elements.\n\n### Signature\ndef pancake_sort(nums):\n\n### Test\nassert candidate([15, 79, 25, 38, 69]) == [15, 25, 38, 69, 79]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef pancake_sort(nums: List[int]) -> List[int]:\n    def flip(arr: List[int], k: int) -> None:\n        \"\"\"Reverse the first k elements of the list in-place.\"\"\"\n        left = 0\n        right = k\n        while left < right:\n            arr[left], arr[right] = arr[right], arr[left]\n            left += 1\n            right -= 1\n\n    # Perform pancake sort\n    n = len(nums)\n    for curr_size in range(n, 1, -1):\n        # Find index of maximum element in unsorted portion\n        max_idx = nums.index(max(nums[:curr_size]))\n        \n        # If max element is not at the end, flip it to the beginning\n        if max_idx != 0:\n            flip(nums, max_idx)\n        \n        # Flip to put max element at its correct position\n        flip(nums, curr_size - 1)\n    \n    return nums",
+      "test_content": "from llm_output import pancake_sort\n\ndef check(candidate):\n    assert candidate([15, 79, 25, 38, 69]) == [15, 25, 38, 69, 79]\n    assert candidate([98, 12, 54, 36, 85]) == [12, 36, 54, 85, 98]\n    assert candidate([41, 42, 32, 12, 23]) == [12, 23, 32, 41, 42]\n\ncheck(pancake_sort)",
+      "context": "{\"function_name\": \"pancake_sort\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 142,
+      "prompt": "### Prompt\nWrite a function to count number items that are identical in the same position of three given lists.\n\n### Signature\ndef count_samepair(list1,list2,list3):\n\n### Test\nassert candidate([1,2,3,4,5,6,7,8],[2,2,3,1,2,6,7,9],[2,1,3,1,2,6,7,9])==3",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef count_samepair(list1: List[int], list2: List[int], list3: List[int]) -> int:\n    # Count the number of items that are identical in the same position across three lists\n    # Assumes all lists are of equal length\n    return sum(1 for a, b, c in zip(list1, list2, list3) if a == b == c)",
+      "test_content": "from llm_output import count_samepair\n\ndef check(candidate):\n    assert candidate([1,2,3,4,5,6,7,8],[2,2,3,1,2,6,7,9],[2,1,3,1,2,6,7,9])==3\n    assert candidate([1,2,3,4,5,6,7,8],[2,2,3,1,2,6,7,8],[2,1,3,1,2,6,7,8])==4\n    assert candidate([1,2,3,4,2,6,7,8],[2,2,3,1,2,6,7,8],[2,1,3,1,2,6,7,8])==5\n\ncheck(count_samepair)",
+      "context": "{\"function_name\": \"count_samepair\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 143,
+      "prompt": "### Prompt\nWrite a function to find number of lists present in the given tuple.\n\n### Signature\ndef find_lists(Input):\n\n### Test\nassert candidate(([1, 2, 3, 4], [5, 6, 7, 8])) == 2\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(find_lists)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 6, in check\n    assert candidate(([9, 8, 7, 6, 5, 4, 3, 2, 1])) == 1\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Tuple, Any\n\ndef find_lists(Input: Tuple[Any, ...]) -> int:\n    \"\"\"\n    Find the number of lists present in the given tuple.\n    \n    Args:\n        Input (tuple): A tuple that may contain lists\n    \n    Returns:\n        int: Number of lists in the input tuple\n    \"\"\"\n    # Handle case where input might be a single list or tuple\n    if isinstance(Input, list):\n        return 1\n    \n    # Count lists in the tuple\n    return sum(1 for item in Input if isinstance(item, list))",
+      "test_content": "from llm_output import find_lists\n\ndef check(candidate):\n    assert candidate(([1, 2, 3, 4], [5, 6, 7, 8])) == 2\n    assert candidate(([1, 2], [3, 4], [5, 6]))  == 3\n    assert candidate(([9, 8, 7, 6, 5, 4, 3, 2, 1])) == 1\n\ncheck(find_lists)",
+      "context": "{\"function_name\": \"find_lists\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 145,
+      "prompt": "### Prompt\nWrite a python function to find the maximum difference between any two elements in a given array.\n\n### Signature\ndef max_Abs_Diff(arr):\n\n### Test\nassert candidate((2,1,5,3)) == 4",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Tuple\n\ndef max_Abs_Diff(arr: Tuple[int, ...]) -> int:\n    \"\"\"\n    Find the maximum absolute difference between any two elements in the given array.\n    \n    Args:\n        arr (Tuple[int, ...]): Input tuple of integers\n    \n    Returns:\n        int: Maximum absolute difference between any two elements\n    \"\"\"\n    # If array is empty or has only one element, return 0\n    if len(arr) < 2:\n        return 0\n    \n    # Find the minimum and maximum elements in the array\n    min_val = min(arr)\n    max_val = max(arr)\n    \n    # Return the absolute difference between max and min\n    return max_val - min_val",
+      "test_content": "from llm_output import max_Abs_Diff\n\ndef check(candidate):\n    assert candidate((2,1,5,3)) == 4\n    assert candidate((9,3,2,5,1)) == 8\n    assert candidate((3,2,1)) == 2\n\ncheck(max_Abs_Diff)",
+      "context": "{\"function_name\": \"max_Abs_Diff\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 160,
+      "prompt": "### Prompt\nWrite a function that returns integers x and y that satisfy ax + by = n as a tuple, or return None if no solution exists.\n\n### Signature\ndef find_solution(a, b, n):\n\n### Test\nassert candidate(2, 3, 7) == (2, 1)",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Optional, Tuple\n\ndef find_solution(a: int, b: int, n: int) -> Optional[Tuple[int, int]]:\n    \"\"\"\n    Find integers x and y that satisfy the equation ax + by = n\n    \n    Args:\n        a (int): First coefficient \n        b (int): Second coefficient\n        n (int): Target sum\n    \n    Returns:\n        Optional[Tuple[int, int]]: A tuple (x, y) satisfying ax + by = n, or None if no solution exists\n    \"\"\"\n    # Try all possible x values \n    for x in range(n // a + 1):\n        # Check if the remaining value can be divided by b \n        # and results in an integer y\n        if (n - a * x) % b == 0:\n            y = (n - a * x) // b\n            return (x, y)\n    \n    # No solution found\n    return None",
+      "test_content": "from llm_output import find_solution\n\ndef check(candidate):\n    assert candidate(2, 3, 7) == (2, 1)\n    assert candidate(4, 2, 7) == None\n    assert candidate(1, 13, 17) == (4, 1)\n\ncheck(find_solution)",
+      "context": "{\"function_name\": \"find_solution\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 161,
+      "prompt": "### Prompt\nWrite a function to remove all elements from a given list present in another list.\n\n### Signature\ndef remove_elements(list1, list2):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [2, 4, 6, 8]) == [1, 3, 5, 7, 9, 10]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef remove_elements(list1: List[int], list2: List[int]) -> List[int]:\n    \"\"\"\n    Remove all elements from list1 that are present in list2.\n    \n    Args:\n        list1 (List[int]): The original list to remove elements from\n        list2 (List[int]): The list containing elements to be removed\n    \n    Returns:\n        List[int]: A new list with elements from list1 that are not in list2\n    \"\"\"\n    return [x for x in list1 if x not in list2]",
+      "test_content": "from llm_output import remove_elements\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [2, 4, 6, 8]) == [1, 3, 5, 7, 9, 10]\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1, 3, 5, 7]) == [2, 4, 6, 8, 9, 10]\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [5, 7]) == [1, 2, 3, 4, 6, 8, 9, 10]\n\ncheck(remove_elements)",
+      "context": "{\"function_name\": \"remove_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 162,
+      "prompt": "### Prompt\nWrite a function to calculate the sum (n - 2*i) from i=0 to n // 2, for instance n + (n-2) + (n-4)... (until n-x =< 0).\n\n### Signature\ndef sum_series(n):\n\n### Test\nassert candidate(6) == 12",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef sum_series(n: int) -> int:\n    \"\"\"\n    Calculate the sum of series (n - 2*i) from i=0 to n // 2\n    \n    Args:\n        n (int): The input number to calculate the series sum\n    \n    Returns:\n        int: The sum of the series\n    \"\"\"\n    total = 0\n    for i in range(n // 2 + 1):\n        current_term = n - 2 * i\n        if current_term > 0:\n            total += current_term\n    \n    return total",
+      "test_content": "from llm_output import sum_series\n\ndef check(candidate):\n    assert candidate(6) == 12\n    assert candidate(10) == 30\n    assert candidate(9) == 25\n\ncheck(sum_series)",
+      "context": "{\"function_name\": \"sum_series\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 163,
+      "prompt": "### Prompt\nWrite a function to calculate the area of a regular polygon given the length and number of its sides.\n\n### Signature\ndef area_polygon(s, l):\n\n### Test\nassert math.isclose(candidate(4, 20), 400., rel_tol=0.001)",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "import math\n\ndef area_polygon(s, l):\n    \"\"\"\n    Calculate the area of a regular polygon\n    \n    Args:\n    s (int): Number of sides in the polygon\n    l (float): Length of each side\n    \n    Returns:\n    float: Area of the polygon\n    \"\"\"\n    # Formula for area of a regular polygon:\n    # A = (s * l^2) / (4 * tan(\u03c0/s))\n    area = (s * l * l) / (4 * math.tan(math.pi / s))\n    return area",
+      "test_content": "from llm_output import area_polygon\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(4, 20), 400., rel_tol=0.001)\n    assert math.isclose(candidate(10, 15), 1731.197, rel_tol=0.001)\n    assert math.isclose(candidate(9, 7), 302.909, rel_tol=0.001)\n\ncheck(area_polygon)",
+      "context": "{\"function_name\": \"area_polygon\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 164,
+      "prompt": "### Prompt\nWrite a function to determine if the sum of the divisors of two integers are the same.\n\n### Signature\ndef div_sum(n):\n\n### Test\nassert candidate(36, 57) == False\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 8, in <module>\n    check(are_equivalent)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_claude35haiku_td_1755235886629591/llm_output_test.py\", line 6, in check\n    assert candidate(23, 47) == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef are_equivalent(n: int, m: int) -> bool:\n    \"\"\"\n    Determine if the sum of divisors for two integers are the same\n    \n    Args:\n        n (int): First integer \n        m (int): Second integer\n    \n    Returns:\n        bool: True if sum of divisors are equal, False otherwise\n    \"\"\"\n    # Function to calculate sum of divisors for a number\n    def divisor_sum(num: int) -> int:\n        # If number is 0 or 1, return the number itself\n        if num <= 1:\n            return num\n        \n        # Find and sum all divisors\n        divisors_sum = 1  # Start with 1 as a divisor\n        for i in range(2, num):\n            if num % i == 0:\n                divisors_sum += i\n        \n        return divisors_sum\n    \n    # Compare sum of divisors for both numbers\n    return divisor_sum(n) == divisor_sum(m)",
+      "test_content": "from llm_output import are_equivalent\n\ndef check(candidate):\n    assert candidate(36, 57) == False\n    assert candidate(2, 4) == False\n    assert candidate(23, 47) == True\n\ncheck(are_equivalent)",
+      "context": "{\"function_name\": \"are_equivalent\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 165,
+      "prompt": "### Prompt\nWrite a function to count the number of characters in a string that occur at the same position in the string as in the English alphabet (case insensitive).\n\n### Signature\ndef count_char_position(str1):\n\n### Test\nassert candidate(\"xbcefg\") == 2",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef count_char_position(str1: str) -> int:\n    # Convert input string to lowercase for case-insensitive comparison\n    str1_lower = str1.lower()\n    \n    # Create lowercase alphabet string for comparison\n    alphabet = 'abcdefghijklmnopqrstuvwxyz'\n    \n    # Count characters that match their position in the alphabet\n    count = 0\n    for i in range(min(len(str1_lower), len(alphabet))):\n        if str1_lower[i] == alphabet[i]:\n            count += 1\n    \n    return count",
+      "test_content": "from llm_output import count_char_position\n\ndef check(candidate):\n    assert candidate(\"xbcefg\") == 2\n    assert candidate(\"ABcED\") == 3\n    assert candidate(\"AbgdeF\") == 5\n\ncheck(count_char_position)",
+      "context": "{\"function_name\": \"count_char_position\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 166,
+      "prompt": "### Prompt\nWrite a function that counts the number of pairs of integers in a list that xor to an even number.\n\n### Signature\ndef find_even_pair(A):\n\n### Test\nassert candidate([5, 4, 7, 2, 1]) == 4",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef find_even_pair(A: List[int]) -> int:\n    # Count the number of pairs that xor to an even number\n    count = 0\n    n = len(A)\n    \n    # Check all possible pairs \n    for i in range(n):\n        for j in range(i+1, n):\n            # If XOR of the pair is even, increment count\n            if (A[i] ^ A[j]) % 2 == 0:\n                count += 1\n    \n    return count",
+      "test_content": "from llm_output import find_even_pair\n\ndef check(candidate):\n    assert candidate([5, 4, 7, 2, 1]) == 4\n    assert candidate([7, 2, 8, 1, 0, 5, 11]) == 9\n    assert candidate([1, 2, 3]) == 1\n\ncheck(find_even_pair)",
+      "context": "{\"function_name\": \"find_even_pair\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 167,
+      "prompt": "### Prompt\nWrite a python function to find the smallest power of 2 greater than or equal to n.\n\n### Signature\ndef next_power_of_2(n):\n\n### Test\nassert candidate(0) == 1",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef next_power_of_2(n: Union[int, float]) -> int:\n    # Handle special case of 0 or negative numbers\n    if n <= 0:\n        return 1\n    \n    # If n is already a power of 2, return n\n    if (n & (n - 1)) == 0:\n        return n\n    \n    # Find the next power of 2\n    power = 1\n    while power < n:\n        power *= 2\n    \n    return power",
+      "test_content": "from llm_output import next_power_of_2\n\ndef check(candidate):\n    assert candidate(0) == 1\n    assert candidate(5) == 8\n    assert candidate(17) == 32\n\ncheck(next_power_of_2)",
+      "context": "{\"function_name\": \"next_power_of_2\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 168,
+      "prompt": "### Prompt\nWrite a function to count the number of occurrences of a number in a given list.\n\n### Signature\ndef frequency(a,x):\n\n### Test\nassert candidate([1,2,3], 4) == 0",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef frequency(a: List[int], x: int) -> int:\n    \"\"\"\n    Count the number of occurrences of a number x in the given list a.\n    \n    Args:\n        a (List[int]): Input list of integers\n        x (int): Number to count occurrences of\n    \n    Returns:\n        int: Number of times x appears in the list\n    \"\"\"\n    return a.count(x)",
+      "test_content": "from llm_output import frequency\n\ndef check(candidate):\n    assert candidate([1,2,3], 4) == 0\n    assert candidate([1,2,2,3,3,3,4], 3) == 3\n    assert candidate([0,1,2,3,1,2], 1) == 2\n\ncheck(frequency)",
+      "context": "{\"function_name\": \"frequency\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 170,
+      "prompt": "### Prompt\nWrite a function to find the sum of numbers in a list within a range specified by two indices.\n\n### Signature\ndef sum_range_list(list1, m, n):\n\n### Test\nassert candidate([2,1,5,6,8,3,4,9,10,11,8,12], 8, 10) == 29",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef sum_range_list(list1: List[int], m: int, n: int) -> int:\n    \"\"\"\n    Find the sum of numbers in a list within a range specified by two indices.\n    \n    Args:\n        list1: Input list of integers\n        m: Starting index (inclusive)\n        n: Ending index (inclusive)\n    \n    Returns:\n        Sum of numbers between indices m and n (inclusive)\n    \"\"\"\n    return sum(list1[m:n+1])",
+      "test_content": "from llm_output import sum_range_list\n\ndef check(candidate):\n    assert candidate([2,1,5,6,8,3,4,9,10,11,8,12], 8, 10) == 29\n    assert candidate([2,1,5,6,8,3,4,9,10,11,8,12], 5, 7) == 16\n    assert candidate([2,1,5,6,8,3,4,9,10,11,8,12], 7, 10) == 38\n\ncheck(sum_range_list)",
+      "context": "{\"function_name\": \"sum_range_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 171,
+      "prompt": "### Prompt\nWrite a function to find the perimeter of a regular pentagon from the length of its sides.\n\n### Signature\ndef perimeter_pentagon(a):\n\n### Test\nassert candidate(5) == 25",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef perimeter_pentagon(a: Union[int, float]) -> Union[int, float]:\n    \"\"\"\n    Calculate the perimeter of a regular pentagon given the length of one side.\n    \n    Args:\n        a (int or float): Length of one side of the pentagon\n    \n    Returns:\n        int or float: Total perimeter of the pentagon\n    \"\"\"\n    return 5 * a",
+      "test_content": "from llm_output import perimeter_pentagon\n\ndef check(candidate):\n    assert candidate(5) == 25\n    assert candidate(10) == 50\n    assert candidate(15) == 75\n\ncheck(perimeter_pentagon)",
+      "context": "{\"function_name\": \"perimeter_pentagon\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 172,
+      "prompt": "### Prompt\nWrite a function to count the number of occurence of the string 'std' in a given string.\n\n### Signature\ndef count_occurance(s):\n\n### Test\nassert candidate(\"letstdlenstdporstd\") == 3\nassert candidate(\"truststdsolensporsd\") == 1",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def count_occurance(s):\n    \"\"\"\n    Count the number of occurrences of the substring 'std' in the given string.\n    \n    Args:\n        s (str): Input string to search for 'std' occurrences\n    \n    Returns:\n        int: Number of times 'std' appears in the string\n    \"\"\"\n    return s.count('std')",
+      "test_content": "from llm_output import count_occurance\n\ndef check(candidate):\n    assert candidate(\"letstdlenstdporstd\") == 3\n    assert candidate(\"truststdsolensporsd\") == 1\n    assert candidate(\"makestdsostdworthit\") == 2\n    assert candidate(\"stds\") == 1\n    assert candidate(\"\") == 0\n\ncheck(count_occurance)",
+      "context": "{\"function_name\": \"count_occurance\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 222,
+      "prompt": "### Prompt\nWrite a function to check if all the elements in tuple have same data type or not.\n\n### Signature\ndef check_type(test_tuple):\n\n### Test\nassert candidate((5, 6, 7, 3, 5, 6) ) == True",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Tuple, Any\n\ndef check_type(test_tuple: Tuple[Any, ...]) -> bool:\n    # If tuple is empty or has only one element, return True\n    if len(test_tuple) <= 1:\n        return True\n    \n    # Get the type of the first element\n    first_type = type(test_tuple[0])\n    \n    # Check if all elements have the same type as the first element\n    return all(isinstance(item, first_type) for item in test_tuple)",
+      "test_content": "from llm_output import check_type\n\ndef check(candidate):\n    assert candidate((5, 6, 7, 3, 5, 6) ) == True\n    assert candidate((1, 2, \"4\") ) == False\n    assert candidate((3, 2, 1, 4, 5) ) == True\n\ncheck(check_type)",
+      "context": "{\"function_name\": \"check_type\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 224,
+      "prompt": "### Prompt\nWrite a python function to count the number of set bits (binary digits with value 1) in a given number.\n\n### Signature\ndef count_Set_Bits(n):\n\n### Test\nassert candidate(2) == 1",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef count_Set_Bits(n: Union[int, float]) -> int:\n    \"\"\"\n    Count the number of set bits (1's) in the binary representation of a given number.\n    \n    Args:\n        n (int or float): The number to count set bits for\n    \n    Returns:\n        int: Number of set bits in the binary representation of the number\n    \"\"\"\n    # Convert number to binary and count 1's \n    return bin(int(n)).count('1')",
+      "test_content": "from llm_output import count_Set_Bits\n\ndef check(candidate):\n    assert candidate(2) == 1\n    assert candidate(4) == 1\n    assert candidate(6) == 2\n\ncheck(count_Set_Bits)",
+      "context": "{\"function_name\": \"count_Set_Bits\"}",
+      "attempt_num": 1
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "openai/gpt-4o-mini-2024-07-18": [
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "from typing import Union\n\ndef is_not_prime(n: Union[int, float]) -> bool:\n    if isinstance(n, float) or n < 2:\n        return True\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return True\n    return False",
+      "test_content": "from llm_output import is_not_prime\n\ndef check(candidate):\n    assert candidate(2) == False\n    assert candidate(10) == True\n    assert candidate(35) == True\n    assert candidate(37) == False\n\ncheck(is_not_prime)",
+      "context": "{\"function_name\": \"is_not_prime\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "from typing import List\nimport heapq\n\ndef heap_queue_largest(nums: List[int], n: int) -> List[int]:\n    return sorted(heapq.nlargest(n, nums), reverse=True)",
+      "test_content": "from llm_output import heap_queue_largest\n\ndef check(candidate):\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]\n\ncheck(heap_queue_largest)",
+      "context": "{\"function_name\": \"heap_queue_largest\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "from typing import List\n\ndef find_char_long(text: str) -> List[str]:\n    words = text.split()\n    long_words = [word for word in words if len(word) >= 4]\n    return long_words",
+      "test_content": "from llm_output import find_char_long\n\ndef check(candidate):\n    assert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])\n    assert set(candidate('Jing Eco and Tech')) == set(['Jing', 'Tech'])\n    assert set(candidate('Jhingai wulu road Zone 3')) == set(['Jhingai', 'wulu', 'road', 'Zone'])\n\ncheck(find_char_long)",
+      "context": "{\"function_name\": \"find_char_long\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "from typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    return [x ** 2 for x in nums]",
+      "test_content": "from llm_output import square_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n    assert candidate([10,20,30])==([100,400,900])\n    assert candidate([12,15])==([144,225])\n\ncheck(square_nums)",
+      "context": "{\"function_name\": \"square_nums\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "from typing import List\n\ndef find_Rotations(s: str) -> int:\n    n = len(s)\n    if n == 0:\n        return 0\n    \n    # Create a concatenated string\n    doubled_s = s + s\n    \n    # Check for the first occurrence of the original string in the doubled string\n    for i in range(1, n):\n        if doubled_s[i:i+n] == s:\n            return i\n    \n    return n  # If no rotation found, return n (full length)",
+      "test_content": "from llm_output import find_Rotations\n\ndef check(candidate):\n    assert candidate(\"aaaa\") == 1\n    assert candidate(\"ab\") == 2\n    assert candidate(\"abc\") == 3\n\ncheck(find_Rotations)",
+      "context": "{\"function_name\": \"find_Rotations\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "def remove_Occ(s: str, ch: str) -> str:\n    first_index = s.find(ch)\n    last_index = s.rfind(ch)\n    \n    if first_index == -1 or last_index == -1 or first_index == last_index:\n        return s.replace(ch, '', 1)  # Remove only one occurrence if they are the same\n    \n    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]",
+      "test_content": "from llm_output import remove_Occ\n\ndef check(candidate):\n    assert candidate(\"hello\",\"l\") == \"heo\"\n    assert candidate(\"abcda\",\"a\") == \"bcd\"\n    assert candidate(\"PHP\",\"P\") == \"H\"\n\ncheck(remove_Occ)",
+      "context": "{\"function_name\": \"remove_Occ\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "from typing import List\n\ndef sort_matrix(M: List[List[int]]) -> List[List[int]]:\n    return sorted(M, key=sum)",
+      "test_content": "from llm_output import sort_matrix\n\ndef check(candidate):\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n    assert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\n    assert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]\n\ncheck(sort_matrix)",
+      "context": "{\"function_name\": \"sort_matrix\"}",
+      "attempt_num": 1
+    }
+  ]
+}

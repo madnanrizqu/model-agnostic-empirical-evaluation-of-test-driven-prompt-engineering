@@ -1,0 +1,670 @@
+{
+  "qwen/qwen-2.5-coder-32b-instruct": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):\n\n### Test\nassert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Tuple, Set\n\ndef similar_elements(test_tup1: Tuple[int, ...], test_tup2: Tuple[int, ...]) -> Set[int]:\n    return set(test_tup1).intersection(set(test_tup2))",
+      "test_content": "from llm_output import similar_elements\n\ndef check(candidate):\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n    assert set(candidate((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))\n    assert set(candidate((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))\n\ncheck(similar_elements)",
+      "context": "{\"function_name\": \"similar_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):\n\n### Test\nassert candidate(2) == False\nassert candidate(10) == True",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef is_not_prime(n):\n    if n <= 1:\n        return True\n    if n <= 3:\n        return False\n    if n % 2 == 0 or n % 3 == 0:\n        return True\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return True\n        i += 6\n    return False",
+      "test_content": "from llm_output import is_not_prime\n\ndef check(candidate):\n    assert candidate(2) == False\n    assert candidate(10) == True\n    assert candidate(35) == True\n    assert candidate(37) == False\n\ncheck(is_not_prime)",
+      "context": "{\"function_name\": \"is_not_prime\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):\n\n### Test\nassert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\nimport heapq\n\ndef heap_queue_largest(nums: List[int], n: int) -> List[int]:\n    return heapq.nlargest(n, nums)",
+      "test_content": "from llm_output import heap_queue_largest\n\ndef check(candidate):\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]\n\ncheck(heap_queue_largest)",
+      "context": "{\"function_name\": \"heap_queue_largest\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):\n\n### Test\nassert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef find_char_long(text: str) -> List[str]:\n    words = text.split()\n    return [word for word in words if len(word) >= 4]",
+      "test_content": "from llm_output import find_char_long\n\ndef check(candidate):\n    assert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])\n    assert set(candidate('Jing Eco and Tech')) == set(['Jing', 'Tech'])\n    assert set(candidate('Jhingai wulu road Zone 3')) == set(['Jhingai', 'wulu', 'road', 'Zone'])\n\ncheck(find_char_long)",
+      "context": "{\"function_name\": \"find_char_long\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    return [num ** 2 for num in nums]",
+      "test_content": "from llm_output import square_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n    assert candidate([10,20,30])==([100,400,900])\n    assert candidate([12,15])==([144,225])\n\ncheck(square_nums)",
+      "context": "{\"function_name\": \"square_nums\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):\n\n### Test\nassert candidate(\"hello\",\"l\") == \"heo\"",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef remove_Occ(s: str, ch: str) -> str:\n    first_occurrence = s.find(ch)\n    if first_occurrence == -1:\n        return s\n    \n    last_occurrence = s.rfind(ch)\n    if last_occurrence == -1 or first_occurrence == last_occurrence:\n        return s[:first_occurrence] + s[first_occurrence+1:]\n    \n    return s[:first_occurrence] + s[first_occurrence+1:last_occurrence] + s[last_occurrence+1:]",
+      "test_content": "from llm_output import remove_Occ\n\ndef check(candidate):\n    assert candidate(\"hello\",\"l\") == \"heo\"\n    assert candidate(\"abcda\",\"a\") == \"bcd\"\n    assert candidate(\"PHP\",\"P\") == \"H\"\n\ncheck(remove_Occ)",
+      "context": "{\"function_name\": \"remove_Occ\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):\n\n### Test\nassert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef sort_matrix(M: List[List[int]]) -> List[List[int]]:\n    return sorted(M, key=sum)",
+      "test_content": "from llm_output import sort_matrix\n\ndef check(candidate):\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n    assert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\n    assert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]\n\ncheck(sort_matrix)",
+      "context": "{\"function_name\": \"sort_matrix\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 16,
+      "prompt": "### Prompt\nWrite a function to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise.\n\n### Signature\ndef text_lowercase_underscore(text):\n\n### Test\nassert candidate(\"aab_cbbbc\")==(True)",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef text_lowercase_underscore(text):\n    import re\n    pattern = re.compile(r'^[a-z]+(_[a-z]+)*$')\n    return bool(pattern.match(text))",
+      "test_content": "from llm_output import text_lowercase_underscore\n\ndef check(candidate):\n    assert candidate(\"aab_cbbbc\")==(True)\n    assert candidate(\"aab_Abbbc\")==(False)\n    assert candidate(\"Aaab_abbbc\")==(False)\n\ncheck(text_lowercase_underscore)",
+      "context": "{\"function_name\": \"text_lowercase_underscore\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 19,
+      "prompt": "### Prompt\nWrite a function to find whether a given array of integers contains any duplicate element.\n\n### Signature\ndef test_duplicate(arraynums):\n\n### Test\nassert candidate(([1,2,3,4,5]))==False",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef test_duplicate(arraynums: List[int]) -> bool:\n    seen = set()\n    for num in arraynums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False",
+      "test_content": "from llm_output import test_duplicate\n\ndef check(candidate):\n    assert candidate(([1,2,3,4,5]))==False\n    assert candidate(([1,2,3,4, 4]))==True\n    assert candidate([1,1,2,2,3,3,4,4,5])==True\n\ncheck(test_duplicate)",
+      "context": "{\"function_name\": \"test_duplicate\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 20,
+      "prompt": "### Prompt\nWrite a function to check if the given number is woodball or not.\n\n### Signature\ndef is_woodall(x):\n\n### Test\nassert candidate(383) == True",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Union\n\ndef is_woodall(x: int) -> bool:\n    n = 0\n    while True:\n        woodall_number = n * (2 ** n) - 1\n        if woodall_number == x:\n            return True\n        elif woodall_number > x:\n            return False\n        n += 1",
+      "test_content": "from llm_output import is_woodall\n\ndef check(candidate):\n    assert candidate(383) == True\n    assert candidate(254) == False\n    assert candidate(200) == False\n\ncheck(is_woodall)",
+      "context": "{\"function_name\": \"is_woodall\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 57,
+      "prompt": "### Prompt\nWrite a python function to find the largest number that can be formed with the given list of digits.\n\n### Signature\ndef find_Max_Num(arr) :\n\n### Test\nassert candidate([1,2,3]) == 321",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef find_Max_Num(arr: List[int]) -> int:\n    # Convert each integer in the list to a string\n    str_arr = [str(num) for num in arr]\n    \n    # Sort the string array in descending order based on custom comparison\n    str_arr.sort(key=lambda x: x*10, reverse=True)\n    \n    # Join the sorted strings to form the largest number\n    max_num_str = ''.join(str_arr)\n    \n    # Convert the result back to an integer\n    max_num = int(max_num_str)\n    \n    return max_num",
+      "test_content": "from llm_output import find_Max_Num\n\ndef check(candidate):\n    assert candidate([1,2,3]) == 321\n    assert candidate([4,5,6,1]) == 6541\n    assert candidate([1,2,3,9]) == 9321\n\ncheck(find_Max_Num)",
+      "context": "{\"function_name\": \"find_Max_Num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 58,
+      "prompt": "### Prompt\nWrite a python function to check whether the given two integers have opposite sign or not.\n\n### Signature\ndef opposite_Signs(x,y):\n\n### Test\nassert candidate(1,-2) == True\nassert candidate(3,2) == False",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Tuple\n\ndef opposite_Signs(x: int, y: int) -> bool:\n    return (x ^ y) < 0",
+      "test_content": "from llm_output import opposite_Signs\n\ndef check(candidate):\n    assert candidate(1,-2) == True\n    assert candidate(3,2) == False\n    assert candidate(-10,-10) == False\n    assert candidate(-2,2) == True\n\ncheck(opposite_Signs)",
+      "context": "{\"function_name\": \"opposite_Signs\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 59,
+      "prompt": "### Prompt\nWrite a function to find the nth octagonal number.\n\n### Signature\ndef is_octagonal(n):\n\n### Test\nassert candidate(5) == 65",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Union\n\ndef is_octagonal(n: int) -> Union[int, str]:\n    if n <= 0:\n        return \"Invalid input\"\n    # Formula to calculate the nth octagonal number: O_n = n * (3 * n - 2)\n    octagonal_number = n * (3 * n - 2)\n    return octagonal_number",
+      "test_content": "from llm_output import is_octagonal\n\ndef check(candidate):\n    assert candidate(5) == 65\n    assert candidate(10) == 280\n    assert candidate(15) == 645\n\ncheck(is_octagonal)",
+      "context": "{\"function_name\": \"is_octagonal\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 62,
+      "prompt": "### Prompt\nWrite a python function to find smallest number in a list.\n\n### Signature\ndef smallest_num(xs):\n\n### Test\nassert candidate([10, 20, 1, 45, 99]) == 1\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(smallest_num)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate([10, 20, 1, 45, 99]) == 1\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef smallest_num(xs: List[int]) -> int:\n    if not xs:\n        return 0  # Assuming 0 as a default value for an empty list, though the prompt doesn't specify this case\n    smallest = xs[0]\n    for num in xs:\n        if num < smallest:\n            smallest = num\n    return smallest",
+      "test_content": "from llm_output import smallest_num\n\ndef check(candidate):\n    assert candidate([10, 20, 1, 45, 99]) == 1\n    assert candidate([1, 2, 3]) == 1\n    assert candidate([45, 46, 50, 60]) == 45\n\ncheck(smallest_num)",
+      "context": "{\"function_name\": \"smallest_num\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 64,
+      "prompt": "### Prompt\nWrite a function to sort a list of tuples using the second value of each tuple.\n\n### Signature\ndef subject_marks(subjectmarks):\n\n### Test\nassert candidate([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])==[('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Tuple\n\ndef subject_marks(subjectmarks: List[Tuple[str, int]]) -> List[Tuple[str, int]]:\n    return sorted(subjectmarks, key=lambda x: x[1])",
+      "test_content": "from llm_output import subject_marks\n\ndef check(candidate):\n    assert candidate([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])==[('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]\n    assert candidate([('Telugu',49),('Hindhi',54),('Social',33)])==([('Social',33),('Telugu',49),('Hindhi',54)])\n    assert candidate([('Physics',96),('Chemistry',97),('Biology',45)])==([('Biology',45),('Physics',96),('Chemistry',97)])\n\ncheck(subject_marks)",
+      "context": "{\"function_name\": \"subject_marks\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 65,
+      "prompt": "### Prompt\nWrite a function to flatten a list and sum all of its elements.\n\n### Signature\ndef recursive_list_sum(data_list):\n\n### Test\nassert candidate(([1, 2, [3,4],[5,6]]))==21",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Union\n\ndef recursive_list_sum(data_list: List[Union[int, List]]) -> int:\n    total = 0\n    for element in data_list:\n        if isinstance(element, list):\n            total += recursive_list_sum(element)\n        else:\n            total += element\n    return total",
+      "test_content": "from llm_output import recursive_list_sum\n\ndef check(candidate):\n    assert candidate(([1, 2, [3,4],[5,6]]))==21\n    assert candidate(([7, 10, [15,14],[19,41]]))==106\n    assert candidate(([10, 20, [30,40],[50,60]]))==210\n\ncheck(recursive_list_sum)",
+      "context": "{\"function_name\": \"recursive_list_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 66,
+      "prompt": "### Prompt\nWrite a python function to count the number of positive numbers in a list.\n\n### Signature\ndef pos_count(list):\n\n### Test\nassert candidate([1,-2,3,-4]) == 2\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(pos_count)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate([1,-2,3,-4]) == 2\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef pos_count(lst: List[int]) -> int:\n    count = 0\n    for number in lst:\n        if number > 0:\n            count += 1\n    return count",
+      "test_content": "from llm_output import pos_count\n\ndef check(candidate):\n    assert candidate([1,-2,3,-4]) == 2\n    assert candidate([3,4,5,-1]) == 3\n    assert candidate([1,2,3,4]) == 4\n\ncheck(pos_count)",
+      "context": "{\"function_name\": \"pos_count\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 67,
+      "prompt": "### Prompt\nWrite a function to find the number of ways to partition a set of Bell numbers.\n\n### Signature\ndef bell_number(n):\n\n### Test\nassert candidate(2)==2",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef bell_number(n: int) -> int:\n    # Create a table to store results of subproblems\n    bell: List[List[int]] = [[0 for _ in range(n+1)] for _ in range(n+1)]\n    \n    # Base case: Bell(0) is 1\n    bell[0][0] = 1\n    \n    # Fill the Bell triangle\n    for i in range(1, n+1):\n        # Explicitly put the value of Bell(i, 0)\n        bell[i][0] = bell[i-1][i-1]\n        \n        # Fill for remaining values of j\n        for j in range(1, i+1):\n            bell[i][j] = bell[i-1][j-1] + bell[i][j-1]\n    \n    # Bell(n) is the first value of row n\n    return bell[n][0]",
+      "test_content": "from llm_output import bell_number\n\ndef check(candidate):\n    assert candidate(2)==2\n    assert candidate(10)==115975\n    assert candidate(56)==6775685320645824322581483068371419745979053216268760300\n\ncheck(bell_number)",
+      "context": "{\"function_name\": \"bell_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 68,
+      "prompt": "### Prompt\nWrite a python function to check whether the given array is monotonic or not.\n\n### Signature\ndef is_Monotonic(A):\n\n### Test\nassert candidate([6, 5, 4, 4]) == True",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef is_Monotonic(A: List[int]) -> bool:\n    increasing = decreasing = True\n    \n    for i in range(1, len(A)):\n        if A[i] > A[i - 1]:\n            decreasing = False\n        elif A[i] < A[i - 1]:\n            increasing = False\n    \n    return increasing or decreasing",
+      "test_content": "from llm_output import is_Monotonic\n\ndef check(candidate):\n    assert candidate([6, 5, 4, 4]) == True\n    assert candidate([1, 2, 2, 3]) == True\n    assert candidate([1, 3, 2]) == False\n\ncheck(is_Monotonic)",
+      "context": "{\"function_name\": \"is_Monotonic\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 69,
+      "prompt": "### Prompt\nWrite a function to check whether a list contains the given sublist or not.\n\n### Signature\ndef is_sublist(l, s):\n\n### Test\nassert candidate([2,4,3,5,7],[3,7])==False",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef is_sublist(l: List[int], s: List[int]) -> bool:\n    if not s:\n        return True\n    if len(s) > len(l):\n        return False\n    \n    for i in range(len(l) - len(s) + 1):\n        if l[i:i + len(s)] == s:\n            return True\n    return False",
+      "test_content": "from llm_output import is_sublist\n\ndef check(candidate):\n    assert candidate([2,4,3,5,7],[3,7])==False\n    assert candidate([2,4,3,5,7],[4,3])==True\n    assert candidate([2,4,3,5,7],[1,6])==False\n\ncheck(is_sublist)",
+      "context": "{\"function_name\": \"is_sublist\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 71,
+      "prompt": "### Prompt\nWrite a function to sort a list of elements.\n\n### Signature\ndef comb_sort(nums):\n\n### Test\nassert candidate([5, 15, 37, 25, 79]) == [5, 15, 25, 37, 79]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef comb_sort(nums: List[int]) -> List[int]:\n    def get_next_gap(gap: int) -> int:\n        gap = (gap * 10) // 13\n        if gap < 1:\n            return 1\n        return gap\n\n    n = len(nums)\n    gap = n\n    swapped = True\n\n    while gap != 1 or swapped:\n        gap = get_next_gap(gap)\n        swapped = False\n\n        for i in range(n - gap):\n            if nums[i] > nums[i + gap]:\n                nums[i], nums[i + gap] = nums[i + gap], nums[i]\n                swapped = True\n\n    return nums",
+      "test_content": "from llm_output import comb_sort\n\ndef check(candidate):\n    assert candidate([5, 15, 37, 25, 79]) == [5, 15, 25, 37, 79]\n    assert candidate([41, 32, 15, 19, 22]) == [15, 19, 22, 32, 41]\n    assert candidate([99, 15, 13, 47]) == [13, 15, 47, 99]\n\ncheck(comb_sort)",
+      "context": "{\"function_name\": \"comb_sort\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 72,
+      "prompt": "### Prompt\nWrite a python function to check whether the given number can be represented as the difference of two squares or not.\n\n### Signature\ndef dif_Square(n):\n\n### Test\nassert candidate(5) == True",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Union\n\ndef dif_Square(n: int) -> bool:\n    # A number can be expressed as the difference of two squares if and only if it is not of the form 4k+2\n    return n % 4 != 2",
+      "test_content": "from llm_output import dif_Square\n\ndef check(candidate):\n    assert candidate(5) == True\n    assert candidate(10) == False\n    assert candidate(15) == True\n\ncheck(dif_Square)",
+      "context": "{\"function_name\": \"dif_Square\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 74,
+      "prompt": "### Prompt\nWrite a function to check whether it follows the sequence given in the patterns array.\n\n### Signature\ndef is_samepatterns(colors, patterns):\n\n### Test\nassert candidate([\"red\",\"green\",\"green\"], [\"a\", \"b\", \"b\"])==True",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef is_samepatterns(colors: List[str], patterns: List[str]) -> bool:\n    if len(colors) != len(patterns):\n        return False\n    \n    color_to_pattern = {}\n    pattern_to_color = {}\n    \n    for color, pattern in zip(colors, patterns):\n        if color in color_to_pattern:\n            if color_to_pattern[color] != pattern:\n                return False\n        else:\n            color_to_pattern[color] = pattern\n        \n        if pattern in pattern_to_color:\n            if pattern_to_color[pattern] != color:\n                return False\n        else:\n            pattern_to_color[pattern] = color\n    \n    return True",
+      "test_content": "from llm_output import is_samepatterns\n\ndef check(candidate):\n    assert candidate([\"red\",\"green\",\"green\"], [\"a\", \"b\", \"b\"])==True\n    assert candidate([\"red\",\"green\",\"greenn\"], [\"a\",\"b\",\"b\"])==False\n    assert candidate([\"red\",\"green\",\"greenn\"], [\"a\",\"b\"])==False\n\ncheck(is_samepatterns)",
+      "context": "{\"function_name\": \"is_samepatterns\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 75,
+      "prompt": "### Prompt\nWrite a function to find tuples which have all elements divisible by k from the given list of tuples.\n\n### Signature\ndef find_tuples(test_list, K):\n\n### Test\nassert candidate([(6, 24, 12), (7, 9, 6), (12, 18, 21)], 6) == [(6, 24, 12)]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Tuple\n\ndef find_tuples(test_list: List[Tuple[int, ...]], K: int) -> List[Tuple[int, ...]]:\n    result = [tup for tup in test_list if all(element % K == 0 for element in tup)]\n    return result",
+      "test_content": "from llm_output import find_tuples\n\ndef check(candidate):\n    assert candidate([(6, 24, 12), (7, 9, 6), (12, 18, 21)], 6) == [(6, 24, 12)]\n    assert candidate([(5, 25, 30), (4, 2, 3), (7, 8, 9)], 5) == [(5, 25, 30)]\n    assert candidate([(7, 9, 16), (8, 16, 4), (19, 17, 18)], 4) == [(8, 16, 4)]\n\ncheck(find_tuples)",
+      "context": "{\"function_name\": \"find_tuples\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 77,
+      "prompt": "### Prompt\nWrite a python function to find whether a number is divisible by 11.\n\n### Signature\ndef is_Diff(n):\n\n### Test\nassert candidate (12345) == False",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Union\n\ndef is_Diff(n: Union[int, str]) -> bool:\n    # Convert the number to a string if it's not already\n    n_str = str(n)\n    \n    # Calculate the alternating sum of the digits\n    alt_sum = 0\n    for i, digit in enumerate(n_str):\n        if i % 2 == 0:\n            alt_sum += int(digit)\n        else:\n            alt_sum -= int(digit)\n    \n    # Check if the alternating sum is divisible by 11\n    return alt_sum % 11 == 0",
+      "test_content": "from llm_output import is_Diff\n\ndef check(candidate):\n    assert candidate (12345) == False\n    assert candidate(1212112) == True\n    assert candidate(1212) == False\n\ncheck(is_Diff)",
+      "context": "{\"function_name\": \"is_Diff\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 79,
+      "prompt": "### Prompt\nWrite a python function to check whether the length of the word is odd or not.\n\n### Signature\ndef word_len(s):\n\n### Test\nassert candidate(\"Hadoop\") == False",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef word_len(s):\n    return len(s) % 2 != 0",
+      "test_content": "from llm_output import word_len\n\ndef check(candidate):\n    assert candidate(\"Hadoop\") == False\n    assert candidate(\"great\") == True\n    assert candidate(\"structure\") == True\n\ncheck(word_len)",
+      "context": "{\"function_name\": \"word_len\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 80,
+      "prompt": "### Prompt\nWrite a function to find the nth tetrahedral number.\n\n### Signature\ndef tetrahedral_number(n):\n\n### Test\nassert candidate(5) == 35",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Union\n\ndef tetrahedral_number(n: int) -> Union[int, str]:\n    if n < 0:\n        return \"Invalid input\"\n    return (n * (n + 1) * (n + 2)) // 6",
+      "test_content": "from llm_output import tetrahedral_number\n\ndef check(candidate):\n    assert candidate(5) == 35\n    assert candidate(6) == 56\n    assert candidate(7) == 84\n\ncheck(tetrahedral_number)",
+      "context": "{\"function_name\": \"tetrahedral_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 82,
+      "prompt": "### Prompt\nWrite a function to find the volume of a sphere.\n\n### Signature\ndef volume_sphere(r):\n\n### Test\nassert math.isclose(candidate(10), 4188.790204786391, rel_tol=0.001)\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from math import pi\n\ndef volume_sphere(r):\n    return (4/3) * pi * r**3",
+      "test_content": "from llm_output import volume_sphere\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(10), 4188.790204786391, rel_tol=0.001)\n    assert math.isclose(candidate(25), 65449.84694978735, rel_tol=0.001)\n    assert math.isclose(candidate(20), 33510.32163829113, rel_tol=0.001)\n\ncheck(volume_sphere)",
+      "context": "{\"function_name\": \"volume_sphere\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 84,
+      "prompt": "### Prompt\nWrite a function to find the nth number in the newman conway sequence.\n\n### Signature\ndef sequence(n):\n\n### Test\nassert candidate(10) == 6",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef sequence(n: int) -> int:\n    if n == 1:\n        return 1\n    if n == 2:\n        return 1\n    \n    seq: List[int] = [0] * (n + 1)\n    seq[1], seq[2] = 1, 1\n    \n    for i in range(3, n + 1):\n        seq[i] = seq[seq[i - 1]] + seq[i - seq[i - 1]]\n    \n    return seq[n]",
+      "test_content": "from llm_output import sequence\n\ndef check(candidate):\n    assert candidate(10) == 6\n    assert candidate(2) == 1\n    assert candidate(3) == 2\n\ncheck(sequence)",
+      "context": "{\"function_name\": \"sequence\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 85,
+      "prompt": "### Prompt\nWrite a function to find the surface area of a sphere.\n\n### Signature\ndef surfacearea_sphere(r):\n\n### Test\nassert math.isclose(candidate(10), 1256.6370614359173, rel_tol=0.001)",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from math import pi\n\ndef surfacearea_sphere(r):\n    return 4 * pi * r ** 2",
+      "test_content": "from llm_output import surfacearea_sphere\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(10), 1256.6370614359173, rel_tol=0.001)\n    assert math.isclose(candidate(15), 2827.4333882308138, rel_tol=0.001)\n    assert math.isclose(candidate(20), 5026.548245743669, rel_tol=0.001)\n\ncheck(surfacearea_sphere)",
+      "context": "{\"function_name\": \"surfacearea_sphere\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 86,
+      "prompt": "### Prompt\nWrite a function to find nth centered hexagonal number.\n\n### Signature\ndef centered_hexagonal_number(n):\n\n### Test\nassert candidate(10) == 271",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Union\n\ndef centered_hexagonal_number(n: int) -> int:\n    return 3 * n * (n - 1) + 1",
+      "test_content": "from llm_output import centered_hexagonal_number\n\ndef check(candidate):\n    assert candidate(10) == 271\n    assert candidate(2) == 7\n    assert candidate(9) == 217\n\ncheck(centered_hexagonal_number)",
+      "context": "{\"function_name\": \"centered_hexagonal_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 88,
+      "prompt": "### Prompt\nWrite a function to get the frequency of all the elements in a list, returned as a dictionary.\n\n### Signature\ndef freq_count(list1):\n\n### Test\nassert candidate([10,10,10,10,20,20,20,20,40,40,50,50,30])==({10: 4, 20: 4, 40: 2, 50: 2, 30: 1})",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Dict\n\ndef freq_count(list1: List[int]) -> Dict[int, int]:\n    frequency_dict = {}\n    for item in list1:\n        if item in frequency_dict:\n            frequency_dict[item] += 1\n        else:\n            frequency_dict[item] = 1\n    return frequency_dict",
+      "test_content": "from llm_output import freq_count\n\ndef check(candidate):\n    assert candidate([10,10,10,10,20,20,20,20,40,40,50,50,30])==({10: 4, 20: 4, 40: 2, 50: 2, 30: 1})\n    assert candidate([1,2,3,4,3,2,4,1,3,1,4])==({1:3, 2:2,3:3,4:3})\n    assert candidate([5,6,7,4,9,10,4,5,6,7,9,5])==({10:1,5:3,6:2,7:2,4:2,9:2})\n\ncheck(freq_count)",
+      "context": "{\"function_name\": \"freq_count\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 89,
+      "prompt": "### Prompt\nWrite a function to find the closest smaller number than n.\n\n### Signature\ndef closest_num(N):\n\n### Test\nassert candidate(11) == 10",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Union\n\ndef closest_num(N: int) -> Union[int, str]:\n    if N <= 0:\n        return \"No smaller number exists\"\n    return N - 1",
+      "test_content": "from llm_output import closest_num\n\ndef check(candidate):\n    assert candidate(11) == 10\n    assert candidate(7) == 6\n    assert candidate(12) == 11\n\ncheck(closest_num)",
+      "context": "{\"function_name\": \"closest_num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 90,
+      "prompt": "### Prompt\nWrite a python function to find the length of the longest word.\n\n### Signature\ndef len_log(list1):\n\n### Test\nassert candidate([\"python\",\"PHP\",\"bigdata\"]) == 7\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(len_log)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate([\"python\",\"PHP\",\"bigdata\"]) == 7\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef len_log(list1: List[str]) -> int:\n    if not list1:\n        return 0\n    max_length = max(len(word) for word in list1)\n    return max_length",
+      "test_content": "from llm_output import len_log\n\ndef check(candidate):\n    assert candidate([\"python\",\"PHP\",\"bigdata\"]) == 7\n    assert candidate([\"a\",\"ab\",\"abc\"]) == 3\n    assert candidate([\"small\",\"big\",\"tall\"]) == 5\n\ncheck(len_log)",
+      "context": "{\"function_name\": \"len_log\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 91,
+      "prompt": "### Prompt\nWrite a function to check if a string is present as a substring in a given list of string values.\n\n### Signature\ndef find_substring(str1, sub_str):\n\n### Test\nassert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"ack\")==True",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef find_substring(str1: List[str], sub_str: str) -> bool:\n    for string in str1:\n        if sub_str in string:\n            return True\n    return False",
+      "test_content": "from llm_output import find_substring\n\ndef check(candidate):\n    assert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"ack\")==True\n    assert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"abc\")==False\n    assert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"ange\")==True\n\ncheck(find_substring)",
+      "context": "{\"function_name\": \"find_substring\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 92,
+      "prompt": "### Prompt\nWrite a function to check whether the given number is undulating or not.\n\n### Signature\ndef is_undulating(n):\n\n### Test\nassert candidate(1212121) == True",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef is_undulating(n):\n    n_str = str(n)\n    length = len(n_str)\n    \n    if length < 3:\n        return False\n    \n    for i in range(2, length):\n        if n_str[i] != n_str[i - 2]:\n            return False\n    \n    return True",
+      "test_content": "from llm_output import is_undulating\n\ndef check(candidate):\n    assert candidate(1212121) == True\n    assert candidate(1991) == False\n    assert candidate(121) == True\n\ncheck(is_undulating)",
+      "context": "{\"function_name\": \"is_undulating\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 93,
+      "prompt": "### Prompt\nWrite a function to calculate the value of 'a' to the power 'b'.\n\n### Signature\ndef power(a,b):\n\n### Test\nassert candidate(3,4) == 81",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Union\n\ndef power(a: Union[int, float], b: Union[int, float]) -> Union[int, float]:\n    result = 1\n    for _ in range(int(b)):\n        result *= a\n    return result",
+      "test_content": "from llm_output import power\n\ndef check(candidate):\n    assert candidate(3,4) == 81\n    assert candidate(2,3) == 8\n    assert candidate(5,5) == 3125\n\ncheck(power)",
+      "context": "{\"function_name\": \"power\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 94,
+      "prompt": "### Prompt\nGiven a list of tuples, write a function that returns the first value of the tuple with the smallest second value.\n\n### Signature\ndef index_minimum(test_list):\n\n### Test\nassert candidate([('Rash', 143), ('Manjeet', 200), ('Varsha', 100)]) == 'Varsha'",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Tuple\n\ndef index_minimum(test_list: List[Tuple[str, int]]) -> str:\n    if not test_list:\n        return \"\"\n    min_tuple = min(test_list, key=lambda x: x[1])\n    return min_tuple[0]",
+      "test_content": "from llm_output import index_minimum\n\ndef check(candidate):\n    assert candidate([('Rash', 143), ('Manjeet', 200), ('Varsha', 100)]) == 'Varsha'\n    assert candidate([('Yash', 185), ('Dawood', 125), ('Sanya', 175)]) == 'Dawood'\n    assert candidate([('Sai', 345), ('Salman', 145), ('Ayesha', 96)]) == 'Ayesha'\n\ncheck(index_minimum)",
+      "context": "{\"function_name\": \"index_minimum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 96,
+      "prompt": "### Prompt\nWrite a python function to find the number of divisors of a given integer.\n\n### Signature\ndef divisor(n):\n\n### Test\nassert candidate(15) == 4\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 106, in <module>\n    check(solve_problem)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert solve_problem(\"2\\n11 3\\n4 3 4\\n6 3\\n3 2 1\") == \"2\\n1\\n\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef divisor(n):\n    count = 0\n    for i in range(1, n + 1):\n        if n % i == 0:\n            count += 1\n    return count",
+      "test_content": "from llm_output import divisor\n\ndef check(candidate):\n    assert candidate(15) == 4\n    assert candidate(12) == 6\n    assert candidate(9) == 3\n\ncheck(divisor)",
+      "context": "{\"function_name\": \"divisor\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 97,
+      "prompt": "### Prompt\nWrite a function to find frequency of each element in a flattened list of lists, returned in a dictionary.\n\n### Signature\ndef frequency_lists(list1):\n\n### Test\nassert candidate([[1, 2, 3, 2], [4, 5, 6, 2], [7, 8, 9, 5]])=={1: 1, 2: 3, 3: 1, 4: 1, 5: 2, 6: 1, 7: 1, 8: 1, 9: 1}",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Dict\n\ndef frequency_lists(list1: List[List[int]]) -> Dict[int, int]:\n    frequency_dict = {}\n    for sublist in list1:\n        for item in sublist:\n            if item in frequency_dict:\n                frequency_dict[item] += 1\n            else:\n                frequency_dict[item] = 1\n    return frequency_dict",
+      "test_content": "from llm_output import frequency_lists\n\ndef check(candidate):\n    assert candidate([[1, 2, 3, 2], [4, 5, 6, 2], [7, 8, 9, 5]])=={1: 1, 2: 3, 3: 1, 4: 1, 5: 2, 6: 1, 7: 1, 8: 1, 9: 1}\n    assert candidate([[1,2,3,4],[5,6,7,8],[9,10,11,12]])=={1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1,10:1,11:1,12:1}\n    assert candidate([[20,30,40,17],[18,16,14,13],[10,20,30,40]])=={20:2,30:2,40:2,17: 1,18:1, 16: 1,14: 1,13: 1, 10: 1}\n\ncheck(frequency_lists)",
+      "context": "{\"function_name\": \"frequency_lists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 99,
+      "prompt": "### Prompt\nWrite a function to convert the given decimal number to its binary equivalent, represented as a string with no leading zeros.\n\n### Signature\ndef decimal_to_binary(n):\n\n### Test\nassert candidate(8) == '1000'",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Union\n\ndef decimal_to_binary(n: int) -> str:\n    if n == 0:\n        return '0'\n    binary = ''\n    while n > 0:\n        binary = str(n % 2) + binary\n        n = n // 2\n    return binary",
+      "test_content": "from llm_output import decimal_to_binary\n\ndef check(candidate):\n    assert candidate(8) == '1000'\n    assert candidate(18) == '10010'\n    assert candidate(7) == '111'\n\ncheck(decimal_to_binary)",
+      "context": "{\"function_name\": \"decimal_to_binary\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 100,
+      "prompt": "### Prompt\nWrite a function to find the next smallest palindrome of a specified integer, returned as an integer.\n\n### Signature\ndef next_smallest_palindrome(num):\n\n### Test\nassert candidate(99)==101",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef next_smallest_palindrome(num):\n    def is_palindrome(n):\n        s = str(n)\n        return s == s[::-1]\n    \n    num += 1\n    while not is_palindrome(num):\n        num += 1\n    return num",
+      "test_content": "from llm_output import next_smallest_palindrome\n\ndef check(candidate):\n    assert candidate(99)==101\n    assert candidate(1221)==1331\n    assert candidate(120)==121\n\ncheck(next_smallest_palindrome)",
+      "context": "{\"function_name\": \"next_smallest_palindrome\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 101,
+      "prompt": "### Prompt\nWrite a function to find the kth element in the given array using 1-based indexing.\n\n### Signature\ndef kth_element(arr, k):\n\n### Test\nassert candidate([12,3,5,7,19], 2) == 3\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(kth_element)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate([12,3,5,7,19], 2) == 3\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef kth_element(arr: List[int], k: int) -> int:\n    return arr[k - 1]",
+      "test_content": "from llm_output import kth_element\n\ndef check(candidate):\n    assert candidate([12,3,5,7,19], 2) == 3\n    assert candidate([17,24,8,23], 3) == 8\n    assert candidate([16,21,25,36,4], 4) == 36\n\ncheck(kth_element)",
+      "context": "{\"function_name\": \"kth_element\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 102,
+      "prompt": "### Prompt\nWrite a function to convert a snake case string to camel case string.\n\n### Signature\ndef snake_to_camel(word):\n\n### Test\nassert candidate('python_program')=='PythonProgram'",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef snake_to_camel(word: str) -> str:\n    components: List[str] = word.split('_')\n    return ''.join(x.capitalize() for x in components)",
+      "test_content": "from llm_output import snake_to_camel\n\ndef check(candidate):\n    assert candidate('python_program')=='PythonProgram'\n    assert candidate('python_language')==('PythonLanguage')\n    assert candidate('programming_language')==('ProgrammingLanguage')\n\ncheck(snake_to_camel)",
+      "context": "{\"function_name\": \"snake_to_camel\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 103,
+      "prompt": "### Prompt\nWrite a function to find the Eulerian number a(n, m).\n\n### Signature\ndef eulerian_num(n, m):\n\n### Test\nassert candidate(3, 1) == 4\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(eulerian_num)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(3, 1) == 4\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef eulerian_num(n: int, m: int) -> int:\n    # Base cases\n    if m >= n or n == 0:\n        return 0\n    if m == 0:\n        return 1\n    \n    # Recursive relation\n    return ((n - m) * eulerian_num(n - 1, m - 1) + (m + 1) * eulerian_num(n - 1, m))",
+      "test_content": "from llm_output import eulerian_num\n\ndef check(candidate):\n    assert candidate(3, 1) == 4\n    assert candidate(4, 1) == 11\n    assert candidate(5, 3) == 26\n\ncheck(eulerian_num)",
+      "context": "{\"function_name\": \"eulerian_num\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 104,
+      "prompt": "### Prompt\nWrite a function to sort each sublist of strings in a given list of lists.\n\n### Signature\ndef sort_sublists(input_list):\n\n### Test\nassert candidate(([\"green\", \"orange\"], [\"black\", \"white\"], [\"white\", \"black\", \"orange\"]))==[[\"\"\"green\"\"\", \"\"\"orange\"\"\"], [\"\"\"black\"\"\", \"\"\"white\"\"\"], [\"\"\"black\"\"\", \"\"\"orange\"\"\", \"\"\"white\"\"\"]]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef sort_sublists(input_list: List[List[str]]) -> List[List[str]]:\n    return [sorted(sublist) for sublist in input_list]",
+      "test_content": "from llm_output import sort_sublists\n\ndef check(candidate):\n    assert candidate(([\"green\", \"orange\"], [\"black\", \"white\"], [\"white\", \"black\", \"orange\"]))==[[\"\"\"green\"\"\", \"\"\"orange\"\"\"], [\"\"\"black\"\"\", \"\"\"white\"\"\"], [\"\"\"black\"\"\", \"\"\"orange\"\"\", \"\"\"white\"\"\"]]\n    assert candidate(([\" red \",\"green\" ],[\"blue \",\" black\"],[\" orange\",\"brown\"]))==[[\"\"\" red \"\"\", \"\"\"green\"\"\"], [\"\"\" black\"\"\", \"\"\"blue \"\"\"], [\"\"\" orange\"\"\", \"\"\"brown\"\"\"]]\n    assert candidate(([\"zilver\",\"gold\"], [\"magnesium\",\"aluminium\"], [\"steel\", \"bronze\"]))==[[\"\"\"gold\"\"\", \"\"\"zilver\"\"\"],[\"\"\"aluminium\"\"\", \"\"\"magnesium\"\"\"], [\"\"\"bronze\"\"\", \"\"\"steel\"\"\"]]\n\ncheck(sort_sublists)",
+      "context": "{\"function_name\": \"sort_sublists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 105,
+      "prompt": "### Prompt\nWrite a python function to count true booleans in the given list.\n\n### Signature\ndef count(lst):\n\n### Test\nassert candidate([True,False,True]) == 2",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef count(lst: List[bool]) -> int:\n    return sum(lst)",
+      "test_content": "from llm_output import count\n\ndef check(candidate):\n    assert candidate([True,False,True]) == 2\n    assert candidate([False,False]) == 0\n    assert candidate([True,True,True]) == 3\n\ncheck(count)",
+      "context": "{\"function_name\": \"count\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 106,
+      "prompt": "### Prompt\nWrite a function to append the given list to the given tuples.\n\n### Signature\ndef add_lists(test_list, test_tup):\n\n### Test\nassert candidate([5, 6, 7], (9, 10)) == (9, 10, 5, 6, 7)",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Tuple, Any\n\ndef add_lists(test_list: List[Any], test_tup: Tuple[Any, ...]) -> Tuple[Any, ...]:\n    return test_tup + tuple(test_list)",
+      "test_content": "from llm_output import add_lists\n\ndef check(candidate):\n    assert candidate([5, 6, 7], (9, 10)) == (9, 10, 5, 6, 7)\n    assert candidate([6, 7, 8], (10, 11)) == (10, 11, 6, 7, 8)\n    assert candidate([7, 8, 9], (11, 12)) == (11, 12, 7, 8, 9)\n\ncheck(add_lists)",
+      "context": "{\"function_name\": \"add_lists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 108,
+      "prompt": "### Prompt\nWrite a function to merge three lists into a single sorted list.\n\n### Signature\ndef merge_sorted_list(num1,num2,num3):\n\n### Test\nassert candidate([25, 24, 15, 4, 5, 29, 110],[19, 20, 11, 56, 25, 233, 154],[24, 26, 54, 48])==[4, 5, 11, 15, 19, 20, 24, 24, 25, 25, 26, 29, 48, 54, 56, 110, 154, 233]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef merge_sorted_list(num1: List[int], num2: List[int], num3: List[int]) -> List[int]:\n    merged_list = num1 + num2 + num3\n    merged_list.sort()\n    return merged_list",
+      "test_content": "from llm_output import merge_sorted_list\n\ndef check(candidate):\n    assert candidate([25, 24, 15, 4, 5, 29, 110],[19, 20, 11, 56, 25, 233, 154],[24, 26, 54, 48])==[4, 5, 11, 15, 19, 20, 24, 24, 25, 25, 26, 29, 48, 54, 56, 110, 154, 233]\n    assert candidate([1, 3, 5, 6, 8, 9], [2, 5, 7, 11], [1, 4, 7, 8, 12])==[1, 1, 2, 3, 4, 5, 5, 6, 7, 7, 8, 8, 9, 11, 12]\n    assert candidate([18, 14, 10, 9, 8, 7, 9, 3, 2, 4, 1],[25, 35, 22, 85, 14, 65, 75, 25, 58],[12, 74, 9, 50, 61, 41])==[1, 2, 3, 4, 7, 8, 9, 9, 9, 10, 12, 14, 14, 18, 22, 25, 25, 35, 41, 50, 58, 61, 65, 74, 75, 85]\n\ncheck(merge_sorted_list)",
+      "context": "{\"function_name\": \"merge_sorted_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 109,
+      "prompt": "### Prompt\nWrite a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.\n\n### Signature\ndef odd_Equivalent(s,n):\n\n### Test\nassert candidate(\"011001\",6) == 3\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(odd_Equivalent)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"011001\",6) == 3\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef odd_Equivalent(s: str, n: int) -> str:\n    def is_odd_value(binary_str: str) -> bool:\n        return int(binary_str, 2) % 2 == 1\n\n    count = 0\n    length = len(s)\n    for i in range(length):  # Corrected the range to length of the string\n        rotated_str = s[i:] + s[:i]\n        if is_odd_value(rotated_str):\n            count += 1\n\n    return str(count)",
+      "test_content": "from llm_output import odd_Equivalent\n\ndef check(candidate):\n    assert candidate(\"011001\",6) == 3\n    assert candidate(\"11011\",5) == 4\n    assert candidate(\"1010\",4) == 2\n\ncheck(odd_Equivalent)",
+      "context": "{\"function_name\": \"odd_Equivalent\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 111,
+      "prompt": "### Prompt\nWrite a function to find the common elements in given nested lists.\n\n### Signature\ndef common_in_nested_lists(nestedlist):\n\n### Test\nassert set(candidate([[12, 18, 23, 25, 45], [7, 12, 18, 24, 28], [1, 5, 8, 12, 15, 16, 18]]))==set([18, 12])",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef common_in_nested_lists(nestedlist: List[List[int]]) -> str:\n    if not nestedlist:\n        return str([])\n    \n    common_elements = set(nestedlist[0])\n    for sublist in nestedlist[1:]:\n        common_elements.intersection_update(sublist)\n    \n    return str(sorted(common_elements))",
+      "test_content": "from llm_output import common_in_nested_lists\n\ndef check(candidate):\n    assert set(candidate([[12, 18, 23, 25, 45], [7, 12, 18, 24, 28], [1, 5, 8, 12, 15, 16, 18]]))==set([18, 12])\n    assert set(candidate([[12, 5, 23, 25, 45], [7, 11, 5, 23, 28], [1, 5, 8, 18, 23, 16]]))==set([5,23])\n    assert set(candidate([[2, 3,4, 1], [4, 5], [6,4, 8],[4, 5], [6, 8,4]]))==set([4])\n\ncheck(common_in_nested_lists)",
+      "context": "{\"function_name\": \"common_in_nested_lists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 113,
+      "prompt": "### Prompt\nWrite a function to check if a string represents an integer or not.\n\n### Signature\ndef check_integer(text):\n\n### Test\nassert candidate(\"python\")==False",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Any\n\ndef check_integer(text: str) -> bool:\n    try:\n        int(text)\n        return True\n    except ValueError:\n        return False",
+      "test_content": "from llm_output import check_integer\n\ndef check(candidate):\n    assert candidate(\"python\")==False\n    assert candidate(\"1\")==True\n    assert candidate(\"12345\")==True\n\ncheck(check_integer)",
+      "context": "{\"function_name\": \"check_integer\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 115,
+      "prompt": "### Prompt\nWrite a function to check whether all dictionaries in a list are empty or not.\n\n### Signature\ndef empty_dit(list1):\n\n### Test\nassert candidate([{},{},{}])==True",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Dict\n\ndef empty_dit(list1: List[Dict]) -> str:\n    for d in list1:\n        if d:\n            return \"False\"\n    return \"True\"",
+      "test_content": "from llm_output import empty_dit\n\ndef check(candidate):\n    assert candidate([{},{},{}])==True\n    assert candidate([{1,2},{},{}])==False\n    assert candidate({})==True\n\ncheck(empty_dit)",
+      "context": "{\"function_name\": \"empty_dit\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 116,
+      "prompt": "### Prompt\nWrite a function to convert a given tuple of positive integers into a single integer.\n\n### Signature\ndef tuple_to_int(nums):\n\n### Test\nassert candidate((1,2,3))==123",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Tuple\n\ndef tuple_to_int(nums: Tuple[int]) -> int:\n    return int(''.join(map(str, nums)))",
+      "test_content": "from llm_output import tuple_to_int\n\ndef check(candidate):\n    assert candidate((1,2,3))==123\n    assert candidate((4,5,6))==456\n    assert candidate((5,6,7))==567\n\ncheck(tuple_to_int)",
+      "context": "{\"function_name\": \"tuple_to_int\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 117,
+      "prompt": "### Prompt\nWrite a function to convert all possible convertible elements in a list of lists to floats.\n\n### Signature\ndef list_to_float(test_list):\n\n### Test\nassert candidate( [(\"3\", \"4\"), (\"1\", \"26.45\"), (\"7.32\", \"8\"), (\"4\", \"8\")] ) == [(3.0, 4.0), (1.0, 26.45), (7.32, 8.0), (4.0, 8.0)]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Tuple, Union\n\ndef list_to_float(test_list: List[Tuple[Union[str, float], Union[str, float]]]) -> List[Tuple[float, float]]:\n    return [(float(a), float(b)) for a, b in test_list]",
+      "test_content": "from llm_output import list_to_float\n\ndef check(candidate):\n    assert candidate( [(\"3\", \"4\"), (\"1\", \"26.45\"), (\"7.32\", \"8\"), (\"4\", \"8\")] ) == [(3.0, 4.0), (1.0, 26.45), (7.32, 8.0), (4.0, 8.0)]\n    assert candidate( [(\"4\", \"4\"), (\"2\", \"27\"), (\"4.12\", \"9\"), (\"7\", \"11\")] ) == [(4.0, 4.0), (2.0, 27.0), (4.12, 9.0), (7.0, 11.0)]\n    assert candidate( [(\"6\", \"78\"), (\"5\", \"26.45\"), (\"1.33\", \"4\"), (\"82\", \"13\")] ) == [(6.0, 78.0), (5.0, 26.45), (1.33, 4.0), (82.0, 13.0)]\n\ncheck(list_to_float)",
+      "context": "{\"function_name\": \"list_to_float\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 118,
+      "prompt": "### Prompt\nWrite a function to convert a string to a list of strings split on the space character.\n\n### Signature\ndef string_to_list(string):\n\n### Test\nassert candidate(\"python programming\")==[\"\"\"python\"\"\",\"\"\"programming\"\"\"]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef string_to_list(string) -> List[str]:\n    return string.split(' ')",
+      "test_content": "from llm_output import string_to_list\n\ndef check(candidate):\n    assert candidate(\"python programming\")==[\"\"\"python\"\"\",\"\"\"programming\"\"\"]\n    assert candidate(\"lists tuples strings\")==[\"\"\"lists\"\"\",\"\"\"tuples\"\"\",\"\"\"strings\"\"\"]\n    assert candidate(\"write a program\")==[\"\"\"write\"\"\",\"\"\"a\"\"\",\"\"\"program\"\"\"]\n\ncheck(string_to_list)",
+      "context": "{\"function_name\": \"string_to_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 120,
+      "prompt": "### Prompt\nWrite a function to find the maximum absolute product between numbers in pairs of tuples within a given list.\n\n### Signature\ndef max_product_tuple(list1):\n\n### Test\nassert candidate([(2, 7), (2, 6), (1, 8), (4, 9)] )==36",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Tuple\n\ndef max_product_tuple(list1: List[Tuple[int, int]]) -> int:\n    max_product = 0\n    for a, b in list1:\n        product = abs(a * b)\n        if product > max_product:\n            max_product = product\n    return max_product",
+      "test_content": "from llm_output import max_product_tuple\n\ndef check(candidate):\n    assert candidate([(2, 7), (2, 6), (1, 8), (4, 9)] )==36\n    assert candidate([(10,20), (15,2), (5,10)] )==200\n    assert candidate([(11,44), (10,15), (20,5), (12, 9)] )==484\n\ncheck(max_product_tuple)",
+      "context": "{\"function_name\": \"max_product_tuple\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 127,
+      "prompt": "### Prompt\nWrite a function to multiply two integers.\n\n### Signature\ndef multiply_int(x, y):\n\n### Test\nassert candidate(10,20)==200\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Tuple\n\ndef multiply_int(x, y):\n    return x * y",
+      "test_content": "from llm_output import multiply_int\n\ndef check(candidate):\n    assert candidate(10,20)==200\n    assert candidate(5,10)==50\n    assert candidate(4,8)==32\n\ncheck(multiply_int)",
+      "context": "{\"function_name\": \"multiply_int\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 128,
+      "prompt": "### Prompt\nWrite a function to find words that are longer than n characters from a given list of words.\n\n### Signature\ndef long_words(n, str):\n\n### Test\nassert candidate(3,\"python is a programming language\")==[\"\"\"python\"\"\",\"\"\"programming\"\"\",\"\"\"language\"\"\"]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef long_words(n, str) -> List[str]:\n    words = str.split()\n    return [word for word in words if len(word) > n]",
+      "test_content": "from llm_output import long_words\n\ndef check(candidate):\n    assert candidate(3,\"python is a programming language\")==[\"\"\"python\"\"\",\"\"\"programming\"\"\",\"\"\"language\"\"\"]\n    assert candidate(2,\"writing a program\")==[\"\"\"writing\"\"\",\"\"\"program\"\"\"]\n    assert candidate(5,\"sorting list\")==[\"\"\"sorting\"\"\"]\n\ncheck(long_words)",
+      "context": "{\"function_name\": \"long_words\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 129,
+      "prompt": "### Prompt\nWrite a function to calculate whether the matrix is a magic square.\n\n### Signature\ndef magic_square_test(my_matrix):\n\n### Test\nassert candidate([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]])==True\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(magic_square_test)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]])==True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef magic_square_test(my_matrix: List[List[int]]) -> bool:\n    n = len(my_matrix)\n    if n == 0 or any(len(row) != n for row in my_matrix):\n        return False\n    \n    magic_sum = sum(my_matrix[0])\n    \n    for row in my_matrix:\n        if sum(row) != magic_sum:\n            return False\n    \n    for col in range(n):\n        if sum(my_matrix[row][col] for row in range(n)) != magic_sum:\n            return False\n    \n    if sum(my_matrix[i][i] for i in range(n)) != magic_sum:\n        return False\n    \n    if sum(my_matrix[i][n - 1 - i] for i in range(n)) != magic_sum:\n        return False\n    \n    return True",
+      "test_content": "from llm_output import magic_square_test\n\ndef check(candidate):\n    assert candidate([[7, 12, 1, 14], [2, 13, 8, 11], [16, 3, 10, 5], [9, 6, 15, 4]])==True\n    assert candidate([[2, 7, 6], [9, 5, 1], [4, 3, 8]])==True\n    assert candidate([[2, 7, 6], [9, 5, 1], [4, 3, 7]])==False\n\ncheck(magic_square_test)",
+      "context": "{\"function_name\": \"magic_square_test\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 130,
+      "prompt": "### Prompt\nWrite a function to find the item with maximum frequency in a given list.\n\n### Signature\ndef max_occurrences(nums):\n\n### Test\nassert candidate([2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,2,4,6,9,1,2])==2",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef max_occurrences(nums: List[int]) -> int:\n    frequency = {}\n    for num in nums:\n        if num in frequency:\n            frequency[num] += 1\n        else:\n            frequency[num] = 1\n    max_count = 0\n    max_item = None\n    for num, count in frequency.items():\n        if count > max_count:\n            max_count = count\n            max_item = num\n    return max_item",
+      "test_content": "from llm_output import max_occurrences\n\ndef check(candidate):\n    assert candidate([2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,2,4,6,9,1,2])==2\n    assert candidate([2,3,8,4,7,9,8,7,9,15,14,10,12,13,16,18])==8\n    assert candidate([10,20,20,30,40,90,80,50,30,20,50,10])==20\n\ncheck(max_occurrences)",
+      "context": "{\"function_name\": \"max_occurrences\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 131,
+      "prompt": "### Prompt\nWrite a python function to reverse only the vowels of a given string (where y is not a vowel).\n\n### Signature\ndef reverse_vowels(str1):\n\n### Test\nassert candidate(\"Python\") == \"Python\"",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef reverse_vowels(str1: str) -> str:\n    vowels = \"aeiouAEIOU\"\n    str_list: List[str] = list(str1)\n    i, j = 0, len(str_list) - 1\n    \n    while i < j:\n        if str_list[i] not in vowels:\n            i += 1\n        elif str_list[j] not in vowels:\n            j -= 1\n        else:\n            str_list[i], str_list[j] = str_list[j], str_list[i]\n            i += 1\n            j -= 1\n    \n    return ''.join(str_list)",
+      "test_content": "from llm_output import reverse_vowels\n\ndef check(candidate):\n    assert candidate(\"Python\") == \"Python\"\n    assert candidate(\"USA\") == \"ASU\"\n    assert candidate(\"ab\") == \"ab\"\n\ncheck(reverse_vowels)",
+      "context": "{\"function_name\": \"reverse_vowels\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 132,
+      "prompt": "### Prompt\nWrite a function to convert a tuple to a string.\n\n### Signature\ndef tup_string(tup1):\n\n### Test\nassert candidate((\"\"\"e\"\"\", \"\"\"x\"\"\", \"\"\"e\"\"\", \"\"\"r\"\"\", \"\"\"c\"\"\", \"\"\"i\"\"\", \"\"\"s\"\"\", \"\"\"e\"\"\", \"\"\"s\"\"\"))==(\"exercises\")",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Tuple\n\ndef tup_string(tup1: Tuple[str]) -> str:\n    return ''.join(tup1)",
+      "test_content": "from llm_output import tup_string\n\ndef check(candidate):\n    assert candidate((\"\"\"e\"\"\", \"\"\"x\"\"\", \"\"\"e\"\"\", \"\"\"r\"\"\", \"\"\"c\"\"\", \"\"\"i\"\"\", \"\"\"s\"\"\", \"\"\"e\"\"\", \"\"\"s\"\"\"))==(\"exercises\")\n    assert candidate((\"\"\"p\"\"\",\"\"\"y\"\"\",\"\"\"t\"\"\",\"\"\"h\"\"\",\"\"\"o\"\"\",\"\"\"n\"\"\"))==(\"python\")\n    assert candidate((\"\"\"p\"\"\",\"\"\"r\"\"\",\"\"\"o\"\"\",\"\"\"g\"\"\",\"\"\"r\"\"\",\"\"\"a\"\"\",\"\"\"m\"\"\"))==(\"program\")\n\ncheck(tup_string)",
+      "context": "{\"function_name\": \"tup_string\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 133,
+      "prompt": "### Prompt\nWrite a function to calculate the sum of the negative numbers of a given list of numbers.\n\n### Signature\ndef sum_negativenum(nums):\n\n### Test\nassert candidate([2, 4, -6, -9, 11, -12, 14, -5, 17])==-32",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef sum_negativenum(nums: List[int]) -> int:\n    return sum(num for num in nums if num < 0)",
+      "test_content": "from llm_output import sum_negativenum\n\ndef check(candidate):\n    assert candidate([2, 4, -6, -9, 11, -12, 14, -5, 17])==-32\n    assert candidate([10,15,-14,13,-18,12,-20])==-52\n    assert candidate([19, -65, 57, 39, 152,-639, 121, 44, 90, -190])==-894\n\ncheck(sum_negativenum)",
+      "context": "{\"function_name\": \"sum_negativenum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 137,
+      "prompt": "### Prompt\nWrite a function to find the ratio of zeroes to non-zeroes in an array of integers.\n\n### Signature\ndef zero_count(nums):\n\n### Test\nassert math.isclose(candidate([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8]), 0.181818, rel_tol=0.001)",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\nimport math\n\ndef zero_count(nums: List[int]) -> float:\n    zero_count = 0\n    non_zero_count = 0\n    \n    for num in nums:\n        if num == 0:\n            zero_count += 1\n        else:\n            non_zero_count += 1\n    \n    if non_zero_count == 0:\n        return 0.0  # To handle the case where there are no non-zero elements to avoid division by zero\n    \n    return zero_count / non_zero_count",
+      "test_content": "from llm_output import zero_count\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8]), 0.181818, rel_tol=0.001)\n    assert math.isclose(candidate([2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8]), 0.00, rel_tol=0.001)\n    assert math.isclose(candidate([2, 4, -6, -9, 11, -12, 14, -5, 17]), 0.00, rel_tol=0.001)\n\ncheck(zero_count)",
+      "context": "{\"function_name\": \"zero_count\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 139,
+      "prompt": "### Prompt\nWrite a function to find the circumference of a circle.\n\n### Signature\ndef circle_circumference(r):\n\n### Test\nassert math.isclose(candidate(10), 62.830000000000005, rel_tol=0.001)",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from math import pi\n\ndef circle_circumference(r):\n    return 2 * pi * r",
+      "test_content": "from llm_output import circle_circumference\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(10), 62.830000000000005, rel_tol=0.001)\n    assert math.isclose(candidate(5), 31.415000000000003, rel_tol=0.001)\n    assert math.isclose(candidate(4), 25.132, rel_tol=0.001)\n\ncheck(circle_circumference)",
+      "context": "{\"function_name\": \"circle_circumference\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 140,
+      "prompt": "### Prompt\nWrite a function to flatten the list of lists into a single set of numbers.\n\n### Signature\ndef extract_singly(test_list):\n\n### Test\nassert set(candidate([(3, 4, 5), (4, 5, 7), (1, 4)])) == set([3, 4, 5, 7, 1])",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List, Tuple, Set\n\ndef extract_singly(test_list: List[Tuple[int, ...]]) -> Set[int]:\n    result_set = set()\n    for sublist in test_list:\n        result_set.update(sublist)\n    return result_set",
+      "test_content": "from llm_output import extract_singly\n\ndef check(candidate):\n    assert set(candidate([(3, 4, 5), (4, 5, 7), (1, 4)])) == set([3, 4, 5, 7, 1])\n    assert set(candidate([(1, 2, 3), (4, 2, 3), (7, 8)])) == set([1, 2, 3, 4, 7, 8])\n    assert set(candidate([(7, 8, 9), (10, 11, 12), (10, 11)])) == set([7, 8, 9, 10, 11, 12])\n\ncheck(extract_singly)",
+      "context": "{\"function_name\": \"extract_singly\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 141,
+      "prompt": "### Prompt\nWrite a function to sort a list of elements.\n\n### Signature\ndef pancake_sort(nums):\n\n### Test\nassert candidate([15, 79, 25, 38, 69]) == [15, 25, 38, 69, 79]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef pancake_sort(nums: List[int]) -> List[int]:\n    def flip(sublist, k):\n        sublist[:k] = sublist[:k][::-1]\n\n    n = len(nums)\n    for size in range(n, 1, -1):\n        max_index = max(range(size), key=nums.__getitem__)\n        if max_index != size - 1:\n            if max_index != 0:\n                flip(nums, max_index + 1)\n            flip(nums, size)\n    \n    return nums",
+      "test_content": "from llm_output import pancake_sort\n\ndef check(candidate):\n    assert candidate([15, 79, 25, 38, 69]) == [15, 25, 38, 69, 79]\n    assert candidate([98, 12, 54, 36, 85]) == [12, 36, 54, 85, 98]\n    assert candidate([41, 42, 32, 12, 23]) == [12, 23, 32, 41, 42]\n\ncheck(pancake_sort)",
+      "context": "{\"function_name\": \"pancake_sort\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 160,
+      "prompt": "### Prompt\nWrite a function that returns integers x and y that satisfy ax + by = n as a tuple, or return None if no solution exists.\n\n### Signature\ndef find_solution(a, b, n):\n\n### Test\nassert candidate(2, 3, 7) == (2, 1)",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import Tuple, Optional\n\ndef find_solution(a: int, b: int, n: int) -> Optional[Tuple[int, int]]:\n    for x in range(n // a + 1):\n        for y in range(n // b + 1):\n            if a * x + b * y == n:\n                return (x, y)\n    return None",
+      "test_content": "from llm_output import find_solution\n\ndef check(candidate):\n    assert candidate(2, 3, 7) == (2, 1)\n    assert candidate(4, 2, 7) == None\n    assert candidate(1, 13, 17) == (4, 1)\n\ncheck(find_solution)",
+      "context": "{\"function_name\": \"find_solution\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 161,
+      "prompt": "### Prompt\nWrite a function to remove all elements from a given list present in another list.\n\n### Signature\ndef remove_elements(list1, list2):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [2, 4, 6, 8]) == [1, 3, 5, 7, 9, 10]",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef remove_elements(list1: List[int], list2: List[int]) -> List[int]:\n    return [element for element in list1 if element not in list2]",
+      "test_content": "from llm_output import remove_elements\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [2, 4, 6, 8]) == [1, 3, 5, 7, 9, 10]\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1, 3, 5, 7]) == [2, 4, 6, 8, 9, 10]\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [5, 7]) == [1, 2, 3, 4, 6, 8, 9, 10]\n\ncheck(remove_elements)",
+      "context": "{\"function_name\": \"remove_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 163,
+      "prompt": "### Prompt\nWrite a function to calculate the area of a regular polygon given the length and number of its sides.\n\n### Signature\ndef area_polygon(s, l):\n\n### Test\nassert math.isclose(candidate(4, 20), 400., rel_tol=0.001)\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from math import tan, pi\n\ndef area_polygon(s, l):\n    area = (s * l**2) / (4 * tan(pi / s))\n    return area",
+      "test_content": "from llm_output import area_polygon\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(4, 20), 400., rel_tol=0.001)\n    assert math.isclose(candidate(10, 15), 1731.197, rel_tol=0.001)\n    assert math.isclose(candidate(9, 7), 302.909, rel_tol=0.001)\n\ncheck(area_polygon)",
+      "context": "{\"function_name\": \"area_polygon\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 167,
+      "prompt": "### Prompt\nWrite a python function to find the smallest power of 2 greater than or equal to n.\n\n### Signature\ndef next_power_of_2(n):\n\n### Test\nassert candidate(0) == 1",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import *\nfrom collections import *\n\ndef next_power_of_2(n):\n    if n == 0:\n        return 1\n    power = 1\n    while power < n:\n        power *= 2\n    return power",
+      "test_content": "from llm_output import next_power_of_2\n\ndef check(candidate):\n    assert candidate(0) == 1\n    assert candidate(5) == 8\n    assert candidate(17) == 32\n\ncheck(next_power_of_2)",
+      "context": "{\"function_name\": \"next_power_of_2\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 168,
+      "prompt": "### Prompt\nWrite a function to count the number of occurrences of a number in a given list.\n\n### Signature\ndef frequency(a,x):\n\n### Test\nassert candidate([1,2,3], 4) == 0\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(frequency)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate([1,2,3], 4) == 0\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef frequency(a: List[int], x: int) -> int:\n    count = 0\n    for number in a:\n        if number == x:\n            count += 1\n    return count",
+      "test_content": "from llm_output import frequency\n\ndef check(candidate):\n    assert candidate([1,2,3], 4) == 0\n    assert candidate([1,2,2,3,3,3,4], 3) == 3\n    assert candidate([0,1,2,3,1,2], 1) == 2\n\ncheck(frequency)",
+      "context": "{\"function_name\": \"frequency\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 224,
+      "prompt": "### Prompt\nWrite a python function to count the number of set bits (binary digits with value 1) in a given number.\n\n### Signature\ndef count_Set_Bits(n):\n\n### Test\nassert candidate(2) == 1",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import *\n\ndef count_Set_Bits(n):\n    count = 0\n    while n:\n        count += n & 1\n        n >>= 1\n    return count",
+      "test_content": "from llm_output import count_Set_Bits\n\ndef check(candidate):\n    assert candidate(2) == 1\n    assert candidate(4) == 1\n    assert candidate(6) == 2\n\ncheck(count_Set_Bits)",
+      "context": "{\"function_name\": \"count_Set_Bits\"}",
+      "attempt_num": 1
+    }
+  ]
+}

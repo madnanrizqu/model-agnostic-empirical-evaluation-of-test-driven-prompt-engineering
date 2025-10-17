@@ -1,0 +1,115 @@
+Log file created at: /Users/madnanrizqu/Code/thesis/rq2/logs/run_all_20250818_054159.log
+
+--- CONFIGURATION SETTINGS ---
+LLM_TO_USE: OPEN_LLM
+RATIO_OF_ROWS_TO_RUN: 0.5
+REATTEMPT_MAX_NUM: 5
+RESULT_DIR_NAME: results_OPEN_LLM_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT
+TEST_DRIVEN_RATIO: 0.5
+----------------------------
+
+Starting rq2/run_all.py in GENERATE-AND-TEST mode
+Found 4 subdirectories to process: ['mbpp_sanitized_qwen25coder7b', 'mbpp_sanitized_qwen25coder7b_td', 'human_eval_qwen25coder7b', 'human_eval_qwen25coder7b_td']
+Using 4 parallel workers
+Starting parallel processing of 4 subdirectories
+Processing: mbpp_sanitized_qwen25coder7b
+Running get_solution.py for mbpp_sanitized_qwen25coder7b
+Starting: get_solution.py
+Processing: mbpp_sanitized_qwen25coder7b_td
+Running get_solution.py for mbpp_sanitized_qwen25coder7b_td
+Processing: human_eval_qwen25coder7b
+Running get_solution.py for human_eval_qwen25coder7b
+Starting: get_solution.py
+Processing: human_eval_qwen25coder7b_td
+Running get_solution.py for human_eval_qwen25coder7b_td
+Starting: get_solution.py
+Starting: get_solution.py
+Error running get_solution.py: Command '['/Users/madnanrizqu/.pyenv/versions/3.11.13/bin/python', '/Users/madnanrizqu/Code/thesis/rq2/human_eval_qwen25coder7b/get_solution.py']' returned non-zero exit status 1.
+
+--- STDERR from failure ---
+Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/thesis/rq2/human_eval_qwen25coder7b/get_solution.py", line 9, in <module>
+    from rq2.get_solution_setup import GetSolutionSetup
+  File "/Users/madnanrizqu/Code/thesis/rq2/get_solution_setup.py", line 7, in <module>
+    from experiment_runner.setup import BaseGetSolutionSetup
+  File "/Users/madnanrizqu/Code/thesis/experiment_runner/setup.py", line 3, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+
+Error running get_solution.py: Command '['/Users/madnanrizqu/.pyenv/versions/3.11.13/bin/python', '/Users/madnanrizqu/Code/thesis/rq2/mbpp_sanitized_qwen25coder7b_td/get_solution.py']' returned non-zero exit status 1.
+
+--- STDERR from failure ---
+Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/thesis/rq2/mbpp_sanitized_qwen25coder7b_td/get_solution.py", line 9, in <module>
+    from rq2.get_solution_setup import GetSolutionSetup
+  File "/Users/madnanrizqu/Code/thesis/rq2/get_solution_setup.py", line 7, in <module>
+    from experiment_runner.setup import BaseGetSolutionSetup
+  File "/Users/madnanrizqu/Code/thesis/experiment_runner/setup.py", line 3, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+
+Error running get_solution.py: Command '['/Users/madnanrizqu/.pyenv/versions/3.11.13/bin/python', '/Users/madnanrizqu/Code/thesis/rq2/mbpp_sanitized_qwen25coder7b/get_solution.py']' returned non-zero exit status 1.
+
+--- STDERR from failure ---
+Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/thesis/rq2/mbpp_sanitized_qwen25coder7b/get_solution.py", line 9, in <module>
+    from rq2.get_solution_setup import GetSolutionSetup
+  File "/Users/madnanrizqu/Code/thesis/rq2/get_solution_setup.py", line 7, in <module>
+    from experiment_runner.setup import BaseGetSolutionSetup
+  File "/Users/madnanrizqu/Code/thesis/experiment_runner/setup.py", line 3, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+
+Failed get_solution.py after 0.04 seconds
+Failed get_solution.py after 0.04 seconds
+Failed get_solution.py after 0.04 seconds
+Failed to run get_solution.py for human_eval_qwen25coder7b
+Failed to run get_solution.py for mbpp_sanitized_qwen25coder7b_td
+Failed to run get_solution.py for mbpp_sanitized_qwen25coder7b
+Completed human_eval_qwen25coder7b. Progress: 1/4 subdirectories completed (25.0%)
+Completed mbpp_sanitized_qwen25coder7b_td. Progress: 2/4 subdirectories completed (50.0%)
+Completed mbpp_sanitized_qwen25coder7b. Progress: 3/4 subdirectories completed (75.0%)
+Error running get_solution.py: Command '['/Users/madnanrizqu/.pyenv/versions/3.11.13/bin/python', '/Users/madnanrizqu/Code/thesis/rq2/human_eval_qwen25coder7b_td/get_solution.py']' returned non-zero exit status 1.
+
+--- STDERR from failure ---
+Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/thesis/rq2/human_eval_qwen25coder7b_td/get_solution.py", line 9, in <module>
+    from rq2.get_solution_setup import GetSolutionSetup
+  File "/Users/madnanrizqu/Code/thesis/rq2/get_solution_setup.py", line 7, in <module>
+    from experiment_runner.setup import BaseGetSolutionSetup
+  File "/Users/madnanrizqu/Code/thesis/experiment_runner/setup.py", line 3, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+
+Failed get_solution.py after 0.04 seconds
+Failed to run get_solution.py for human_eval_qwen25coder7b_td
+Completed human_eval_qwen25coder7b_td. Progress: 4/4 subdirectories completed (100.0%)
+Completed all 4 subdirectories
+
+--- PERFORMANCE BENCHMARK ---
+Total execution time: 0.08 seconds
+
+Subdirectory processing times:
+  human_eval_qwen25coder7b: 0.04 seconds
+  mbpp_sanitized_qwen25coder7b_td: 0.04 seconds
+  mbpp_sanitized_qwen25coder7b: 0.04 seconds
+  human_eval_qwen25coder7b_td: 0.04 seconds
+
+get_solution.py execution times:
+  human_eval_qwen25coder7b: 0.04 seconds
+  mbpp_sanitized_qwen25coder7b_td: 0.04 seconds
+  mbpp_sanitized_qwen25coder7b: 0.04 seconds
+  human_eval_qwen25coder7b_td: 0.04 seconds
+
+--- CONFIGURATION SETTINGS ---
+LLM_TO_USE: OPEN_LLM
+RATIO_OF_ROWS_TO_RUN: 0.5
+REATTEMPT_MAX_NUM: 5
+RESULT_DIR_NAME: results_OPEN_LLM_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT
+TEST_DRIVEN_RATIO: 0.5
+----------------------------
+
+Forcing garbage collection to free memory...
+Garbage collection completed.
+
+All processes completed. Log saved to: /Users/madnanrizqu/Code/thesis/rq2/logs/run_all_20250818_054159.log

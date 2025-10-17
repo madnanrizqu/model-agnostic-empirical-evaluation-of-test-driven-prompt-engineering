@@ -1,0 +1,54 @@
+{
+  "qwen/qwen-2.5-coder-32b-instruct": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 1, in <module>\n    from llm_output import differ_At_One_Bit_Pos\nImportError: cannot import name 'differ_At_One_Bit_Pos' from 'llm_output' (/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py)\n",
+      "solution": "from typing import Tuple\n\ndef is_Power_Of_Two (x: int) -> bool:\n    return (x & (x - 1)) == 0 and x != 0\n\ndef check_one_bit_difference(num1: int, num2: int) -> str:\n    xor_result = num1 ^ num2\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 1, in <module>\n    from llm_output import differ_At_One_Bit_Pos\nImportError: cannot import name 'differ_At_One_Bit_Pos' from 'llm_output' (/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py)\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 8, in differ_At_One_Bit_Pos\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"\n                     ^^^^^^^^^^^^^^^\nNameError: name 'is_Power_Of_Two' is not defined\n",
+      "solution": "from typing import Tuple\n\ndef differ_At_One_Bit_Pos(x: int) -> bool:\n    return (x & (x - 1)) == 0 and x != 0\n\ndef differ_At_One_Bit_Pos(num1: int, num2: int) -> str:\n    xor_result = num1 ^ num2\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 8, in differ_At_One_Bit_Pos\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"\n                     ^^^^^^^^^^^^^^^\nNameError: name 'is_Power_Of_Two' is not defined\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 8, in differ_At_One_Bit_Pos\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"\n                     ^^^^^^^^^^^^^^^\nNameError: name 'is_Power_Of_Two' is not defined\n",
+      "solution": "from typing import Tuple\n\ndef differ_At_One_Bit_Pos(x: int) -> bool:\n    return (x & (x - 1)) == 0 and x != 0\n\ndef differ_At_One_Bit_Pos(num1: int, num2: int) -> str:\n    xor_result = num1 ^ num2\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 8, in differ_At_One_Bit_Pos\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"\n                     ^^^^^^^^^^^^^^^\nNameError: name 'is_Power_Of_Two' is not defined\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 8, in differ_At_One_Bit_Pos\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"\n                     ^^^^^^^^^^^^^^^\nNameError: name 'is_Power_Of_Two' is not defined\n",
+      "solution": "from typing import Tuple\n\ndef differ_At_One_Bit_Pos(x: int) -> bool:\n    return (x & (x - 1)) == 0 and x != 0\n\ndef differ_At_One_Bit_Pos(num1: int, num2: int) -> str:\n    xor_result = num1 ^ num2\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 4
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 8, in differ_At_One_Bit_Pos\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"\n                     ^^^^^^^^^^^^^^^\nNameError: name 'is_Power_Of_Two' is not defined\n",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 8, in differ_At_One_Bit_Pos\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"\n                     ^^^^^^^^^^^^^^^\nNameError: name 'is_Power_Of_Two' is not defined\n",
+      "solution": "from typing import Tuple\n\ndef differ_At_One_Bit_Pos(x: int) -> bool:\n    return (x & (x - 1)) == 0 and x != 0\n\ndef differ_At_One_Bit_Pos(num1: int, num2: int) -> str:\n    xor_result = num1 ^ num2\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 5
+    }
+  ]
+}

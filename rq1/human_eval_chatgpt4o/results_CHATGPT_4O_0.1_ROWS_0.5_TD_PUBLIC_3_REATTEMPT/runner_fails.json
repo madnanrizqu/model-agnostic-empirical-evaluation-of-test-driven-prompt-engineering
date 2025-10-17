@@ -1,0 +1,64 @@
+{
+  "openai/gpt-4o-2024-11-20": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 1, in <module>\n    def parse_nested_parens(paren_string: str) -> List[int]:\n                                                  ^^^^\nNameError: name 'List' is not defined. Did you mean: 'list'?\n",
+      "solution": "def parse_nested_parens(paren_string: str) -> List[int]:\n    def max_depth(s: str) -> int:\n        depth = 0\n        max_depth = 0\n        for char in s:\n            if char == '(':\n                depth += 1\n                max_depth = max(max_depth, depth)\n            elif char == ')':\n                depth -= 1\n        return max_depth\n\n    groups = paren_string.split()\n    return [max_depth(group) for group in groups]\n#",
+      "test_content": "from llm_output import parse_nested_parens\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]\n    assert candidate('() (()) ((())) (((())))') == [1, 2, 3, 4]\n    assert candidate('(()(())((())))') == [4]\n\ncheck(parse_nested_parens)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 1, in <module>\n    def filter_by_substring(strings: List[str], substring: str) -> List[str]:\n                                     ^^^^\nNameError: name 'List' is not defined. Did you mean: 'list'?\n",
+      "solution": "def filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]\n#",
+      "test_content": "from llm_output import filter_by_substring\n\ndef check(candidate):\n    assert candidate([], 'john') == []\n    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']\n    assert candidate(['xxx', 'asd', 'aaaxxy', 'john doe', 'xxxAAA', 'xxx'], 'xx') == ['xxx', 'aaaxxy', 'xxxAAA', 'xxx']\n    assert candidate(['grunt', 'trumpet', 'prune', 'gruesome'], 'run') == ['grunt', 'prune']\n\ncheck(filter_by_substring)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 1, in <module>\n    def filter_by_substring(strings: List[str], substring: str) -> List[str]:\n                                     ^^^^\nNameError: name 'List' is not defined. Did you mean: 'list'?\n",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]\n#",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 1, in <module>\n    def sum_product(numbers: List[int]) -> Tuple[int, int]:\n                             ^^^^\nNameError: name 'List' is not defined. Did you mean: 'list'?\n",
+      "solution": "def sum_product(numbers: List[int]) -> Tuple[int, int]:\n    if not numbers:\n        return (0, 1)\n    \n    total_sum = sum(numbers)\n    total_product = 1\n    for num in numbers:\n        total_product *= num\n    \n    return (total_sum, total_product)\n#",
+      "test_content": "from llm_output import sum_product\n\ndef check(candidate):\n    assert candidate([]) == (0, 1)\n    assert candidate([1, 1, 1]) == (3, 1)\n    assert candidate([100, 0]) == (100, 0)\n    assert candidate([3, 5, 7]) == (3 + 5 + 7, 3 * 5 * 7)\n    assert candidate([10]) == (10, 10)\n\ncheck(sum_product)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 1, in <module>\n    def rolling_max(numbers: List[int]) -> List[int]:\n                             ^^^^\nNameError: name 'List' is not defined. Did you mean: 'list'?\n",
+      "solution": "def rolling_max(numbers: List[int]) -> List[int]:\n    result = []\n    current_max = float('-inf')  # Initialize with negative infinity\n    for num in numbers:\n        current_max = max(current_max, num)  # Update the rolling maximum\n        result.append(current_max)  # Append the current maximum to the result list\n    return result\n#",
+      "test_content": "from llm_output import rolling_max\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]\n    assert candidate([4, 3, 2, 1]) == [4, 4, 4, 4]\n    assert candidate([3, 2, 3, 100, 3]) == [3, 3, 3, 100, 100]\n\ncheck(rolling_max)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 1, in <module>\n    def longest(strings: List[str]) -> Optional[str]:\n                         ^^^^\nNameError: name 'List' is not defined. Did you mean: 'list'?\n",
+      "solution": "def longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    return max(strings, key=len, default=None)\n#",
+      "test_content": "from llm_output import longest\n\ndef check(candidate):\n    assert candidate([]) == None\n    assert candidate(['x', 'y', 'z']) == 'x'\n    assert candidate(['x', 'yyy', 'zzzz', 'www', 'kkkk', 'abc']) == 'zzzz'\n\ncheck(longest)",
+      "context": null,
+      "attempt_num": 1
+    }
+  ]
+}

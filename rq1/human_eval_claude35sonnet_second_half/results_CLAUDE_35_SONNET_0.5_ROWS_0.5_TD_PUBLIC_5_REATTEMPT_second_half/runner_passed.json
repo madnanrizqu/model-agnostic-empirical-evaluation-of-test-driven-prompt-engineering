@@ -1,0 +1,724 @@
+{
+  "anthropic/claude-3.5-sonnet": [
+    {
+      "task_id": 82,
+      "prompt": "### Prompt\n    Write a function that takes a string and returns True if the string\n    length is a prime number or False otherwise\n    Examples\n    prime_length('Hello') == True\n    prime_length('abcdcba') == True\n    prime_length('kittens') == True\n    prime_length('orange') == False\n\n### Signature\ndef prime_length(string):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def prime_length(string):\n    length = len(string)\n    \n    # Handle special cases\n    if length < 2:\n        return False\n    \n    # Check if length is prime\n    for i in range(2, int(length ** 0.5) + 1):\n        if length % i == 0:\n            return False\n    \n    return True",
+      "test_content": "from llm_output import prime_length\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('Hello') == True\n    assert candidate('abcdcba') == True\n    assert candidate('kittens') == True\n    assert candidate('orange') == False\n    assert candidate('wow') == True\n    assert candidate('world') == True\n    assert candidate('MadaM') == True\n    assert candidate('Wow') == True\n    assert candidate('') == False\n    assert candidate('HI') == True\n    assert candidate('go') == True\n    assert candidate('gogo') == False\n    assert candidate('aaaaaaaaaaaaaaa') == False\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('Madam') == True\n    assert candidate('M') == False\n    assert candidate('0') == False\n\n\ncheck(prime_length)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 83,
+      "prompt": "### Prompt\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n\n### Signature\ndef starts_one_ends(n):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 17, in <module>\n    check(starts_one_ends)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 8, in check\n    assert candidate(2) == 18\n           ^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def starts_one_ends(n):\n    \"\"\"\n    Returns count of n-digit positive integers that start or end with 1\n    \"\"\"\n    if n == 1:\n        return 1  # Only the number 1 itself\n    \n    # For n digits:\n    # Numbers starting with 1: 1xxxx where x can be 0-9\n    # So 1 followed by (n-1) digits that can be 0-9\n    start_with_one = 10 ** (n-1)\n    \n    # Numbers ending with 1: xxxx1 where x can be 1-9 for first digit and 0-9 for rest\n    # First digit can't be 0 as we need n-digit numbers\n    end_with_one = 9 * 10 ** (n-2)\n    \n    # Numbers both starting and ending with 1: 1xxx1\n    # Middle (n-2) digits can be 0-9\n    both_one = 10 ** (n-2)\n    \n    # Total = start_with_one + end_with_one - both_one\n    return start_with_one + end_with_one - both_one",
+      "test_content": "from llm_output import starts_one_ends\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(1) == 1\n    assert candidate(2) == 18\n    assert candidate(3) == 180\n    assert candidate(4) == 1800\n    assert candidate(5) == 18000\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(starts_one_ends)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 84,
+      "prompt": "### Prompt\n    Given a positive integer N, return the total sum of its digits in binary.\n\n### Signature\ndef solve(N):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def solve(N):\n    # Convert N to string to iterate through digits\n    digit_sum = sum(int(digit) for digit in str(N))\n    # Convert sum to binary string and remove '0b' prefix\n    return bin(digit_sum)[2:]",
+      "test_content": "from llm_output import solve\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(1000) == \"1\", \"Error\"\n    assert candidate(150) == \"110\", \"Error\"\n    assert candidate(147) == \"1100\", \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(333) == \"1001\", \"Error\"\n    assert candidate(963) == \"10010\", \"Error\"\n\n\ncheck(solve)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 85,
+      "prompt": "### Prompt\n    Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n### Signature\ndef add(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def add(lst):\n    return sum(num for i, num in enumerate(lst) if i % 2 == 1 and num % 2 == 0)",
+      "test_content": "from llm_output import add\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([4, 88]) == 88\n    assert candidate([4, 5, 6, 7, 2, 122]) == 122\n    assert candidate([4, 0, 6, 7]) == 0\n    assert candidate([4, 4, 6, 8]) == 12\n\n    # Check some edge cases that are easy to work out by hand.\n    \n\ncheck(add)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 86,
+      "prompt": "### Prompt\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n### Signature\ndef anti_shuffle(s):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def anti_shuffle(s):\n    # Split the string into words while preserving spaces\n    words = s.split(' ')\n    \n    # Process each word\n    ordered_words = []\n    for word in words:\n        if word:  # If word is not empty\n            # Sort the characters in the word\n            sorted_chars = sorted(word)\n            # Join the sorted characters back into a word\n            ordered_word = ''.join(sorted_chars)\n            ordered_words.append(ordered_word)\n        else:  # If word is empty (represents multiple spaces)\n            ordered_words.append('')\n    \n    # Join the words back together with spaces\n    return ' '.join(ordered_words)",
+      "test_content": "from llm_output import anti_shuffle\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('Hi') == 'Hi'\n    assert candidate('hello') == 'ehllo'\n    assert candidate('number') == 'bemnru'\n    assert candidate('abcd') == 'abcd'\n    assert candidate('Hello World!!!') == 'Hello !!!Wdlor'\n    assert candidate('') == ''\n    assert candidate('Hi. My name is Mister Robot. How are you?') == '.Hi My aemn is Meirst .Rboot How aer ?ouy'\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(anti_shuffle)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 87,
+      "prompt": "### Prompt\n    You are given a 2 dimensional data, as a nested lists,\n    which is similar to matrix, however, unlike matrices,\n    each row may contain a different number of columns.\n    Given lst, and integer x, find integers x in the list,\n    and return list of tuples, [(x1, y1), (x2, y2) ...] such that\n    each tuple is a coordinate - (row, columns), starting with 0.\n    Sort coordinates initially by rows in ascending order.\n    Also, sort coordinates of the row by columns in descending order.\n\n### Signature\ndef get_row(lst, x):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def get_row(lst, x):\n    # Initialize result list to store coordinates\n    coordinates = []\n    \n    # Iterate through each row\n    for row_idx in range(len(lst)):\n        # Iterate through each column in current row\n        for col_idx in range(len(lst[row_idx])):\n            # If value matches x, add coordinate tuple\n            if lst[row_idx][col_idx] == x:\n                coordinates.append((row_idx, col_idx))\n    \n    # Sort coordinates by row ascending, then by column descending\n    coordinates.sort(key=lambda coord: (coord[0], -coord[1]))\n    \n    return coordinates",
+      "test_content": "from llm_output import get_row\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([\n        [1,2,3,4,5,6],\n        [1,2,3,4,1,6],\n        [1,2,3,4,5,1]\n    ], 1) == [(0, 0), (1, 4), (1, 0), (2, 5), (2, 0)]\n    assert candidate([\n        [1,2,3,4,5,6],\n        [1,2,3,4,5,6],\n        [1,2,3,4,5,6],\n        [1,2,3,4,5,6],\n        [1,2,3,4,5,6],\n        [1,2,3,4,5,6]\n    ], 2) == [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1)]\n    assert candidate([\n        [1,2,3,4,5,6],\n        [1,2,3,4,5,6],\n        [1,1,3,4,5,6],\n        [1,2,1,4,5,6],\n        [1,2,3,1,5,6],\n        [1,2,3,4,1,6],\n        [1,2,3,4,5,1]\n    ], 1) == [(0, 0), (1, 0), (2, 1), (2, 0), (3, 2), (3, 0), (4, 3), (4, 0), (5, 4), (5, 0), (6, 5), (6, 0)]\n    assert candidate([], 1) == []\n    assert candidate([[1]], 2) == []\n    assert candidate([[], [1], [1, 2, 3]], 3) == [(2, 2)]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(get_row)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 88,
+      "prompt": "### Prompt\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n### Signature\ndef sort_array(array):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def sort_array(array):\n    # Handle empty array case\n    if not array:\n        return []\n    \n    # Calculate sum of first and last elements\n    sum_first_last = array[0] + array[-1]\n    \n    # Create a copy of the array\n    result = array.copy()\n    \n    # Sort in ascending order if sum is odd, descending if sum is even\n    if sum_first_last % 2 == 1:\n        result.sort()  # ascending order\n    else:\n        result.sort(reverse=True)  # descending order\n    \n    return result",
+      "test_content": "from llm_output import sort_array\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([]) == [], \"Error\"\n    assert candidate([5]) == [5], \"Error\"\n    assert candidate([2, 4, 3, 0, 1, 5]) == [0, 1, 2, 3, 4, 5], \"Error\"\n    assert candidate([2, 4, 3, 0, 1, 5, 6]) == [6, 5, 4, 3, 2, 1, 0], \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([2, 1]) == [1, 2], \"Error\"\n    assert candidate([15, 42, 87, 32 ,11, 0]) == [0, 11, 15, 32, 42, 87], \"Error\"\n    assert candidate([21, 14, 23, 11]) == [23, 21, 14, 11], \"Error\"\n\n\ncheck(sort_array)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 89,
+      "prompt": "### Prompt\n    Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated.\n    The alphabet should be rotated in a manner such that the letters\n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n\n### Signature\ndef encrypt(s):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def encrypt(s):\n    # Create a mapping of original letters to shifted letters\n    original = 'abcdefghijklmnopqrstuvwxyz'\n    shift = 4  # 2 * 2 places\n    shifted = original[shift:] + original[:shift]\n    \n    # Create translation table\n    trans_table = str.maketrans(original, shifted)\n    \n    # Return encrypted string\n    return s.translate(trans_table)",
+      "test_content": "from llm_output import encrypt\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('hi') == 'lm', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('asdfghjkl') == 'ewhjklnop', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('gf') == 'kj', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('et') == 'ix', \"This prints if this assert fails 1 (good for debugging!)\"\n\n    assert candidate('faewfawefaewg')=='jeiajeaijeiak', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('hellomyfriend')=='lippsqcjvmirh', \"This prints if this assert fails 2 (good for debugging!)\"\n    assert candidate('dxzdlmnilfuhmilufhlihufnmlimnufhlimnufhfucufh')=='hbdhpqrmpjylqmpyjlpmlyjrqpmqryjlpmqryjljygyjl', \"This prints if this assert fails 3 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('a')=='e', \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(encrypt)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 90,
+      "prompt": "### Prompt\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n\n### Signature\ndef next_smallest(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def next_smallest(lst):\n    if len(lst) < 2:\n        return None\n    \n    # Remove duplicates and sort the list\n    unique_sorted = sorted(set(lst))\n    \n    # If after removing duplicates we have less than 2 elements, return None\n    if len(unique_sorted) < 2:\n        return None\n    \n    # Return the second element (index 1) which is the 2nd smallest\n    return unique_sorted[1]",
+      "test_content": "from llm_output import next_smallest\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1, 2, 3, 4, 5]) == 2\n    assert candidate([5, 1, 4, 3, 2]) == 2\n    assert candidate([]) == None\n    assert candidate([1, 1]) == None\n    assert candidate([1,1,1,1,0]) == 1\n    assert candidate([1, 0**0]) == None\n    assert candidate([-35, 34, 12, -45]) == -35\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(next_smallest)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 91,
+      "prompt": "### Prompt\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n\n### Signature\ndef is_bored(S):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "import re\n\ndef is_bored(S):\n    # Split the string into sentences using multiple delimiters\n    sentences = re.split('[.!?]', S)\n    \n    # Count sentences that start with 'I ' (I followed by a space)\n    boredom_count = sum(1 for sentence in sentences \n                       if sentence.strip() and sentence.strip().startswith('I '))\n    \n    return boredom_count",
+      "test_content": "from llm_output import is_bored\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"Hello world\") == 0, \"Test 1\"\n    assert candidate(\"Is the sky blue?\") == 0, \"Test 2\"\n    assert candidate(\"I love It !\") == 1, \"Test 3\"\n    assert candidate(\"bIt\") == 0, \"Test 4\"\n    assert candidate(\"I feel good today. I will be productive. will kill It\") == 2, \"Test 5\"\n    assert candidate(\"You and I are going for a walk\") == 0, \"Test 6\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(is_bored)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 92,
+      "prompt": "### Prompt\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n\n### Signature\ndef any_int(x, y, z):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def any_int(x, y, z):\n    # Check if all numbers are integers\n    if not (isinstance(x, int) and isinstance(y, int) and isinstance(z, int)):\n        return False\n    \n    # Check if any number equals the sum of other two\n    return x == y + z or y == x + z or z == x + y",
+      "test_content": "from llm_output import any_int\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(2, 3, 1)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(2.5, 2, 3)==False, \"This prints if this assert fails 2 (good for debugging!)\"\n    assert candidate(1.5, 5, 3.5)==False, \"This prints if this assert fails 3 (good for debugging!)\"\n    assert candidate(2, 6, 2)==False, \"This prints if this assert fails 4 (good for debugging!)\"\n    assert candidate(4, 2, 2)==True, \"This prints if this assert fails 5 (good for debugging!)\"\n    assert candidate(2.2, 2.2, 2.2)==False, \"This prints if this assert fails 6 (good for debugging!)\"\n    assert candidate(-4, 6, 2)==True, \"This prints if this assert fails 7 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(2,1,1)==True, \"This prints if this assert fails 8 (also good for debugging!)\"\n    assert candidate(3,4,7)==True, \"This prints if this assert fails 9 (also good for debugging!)\"\n    assert candidate(3.0,4,7)==False, \"This prints if this assert fails 10 (also good for debugging!)\"\n\n\ncheck(any_int)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 93,
+      "prompt": "### Prompt\n    Write a function that takes a message, and encodes in such a\n    way that it swaps case of all letters, replaces all vowels in\n    the message with the letter that appears 2 places ahead of that\n    vowel in the english alphabet.\n    Assume only letters.\n\n### Signature\ndef encode(message):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 15, in <module>\n    check(encode)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 6, in check\n    assert candidate('TEST') == 'tgst', \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 1 (good for debugging!)\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def encode(message):\n    vowels = 'aeiouAEIOU'\n    result = ''\n    for char in message:\n        # First swap the case\n        swapped = char.swapcase()\n        # Then check if it's a vowel and replace if needed\n        if swapped.lower() in 'aeiou':\n            # Get position in alphabet (0-based)\n            pos = ord(swapped.lower()) - ord('a')\n            # Get letter 2 positions ahead\n            new_pos = (pos + 2) % 26\n            new_char = chr(ord('a') + new_pos)\n            # Maintain the case\n            result += new_char if swapped.islower() else new_char.upper()\n        else:\n            result += swapped\n    return result",
+      "test_content": "from llm_output import encode\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('TEST') == 'tgst', \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('Mudasir') == 'mWDCSKR', \"This prints if this assert fails 2 (good for debugging!)\"\n    assert candidate('YES') == 'ygs', \"This prints if this assert fails 3 (good for debugging!)\"\n    \n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('This is a message') == 'tHKS KS C MGSSCGG', \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(\"I DoNt KnOw WhAt tO WrItE\") == 'k dQnT kNqW wHcT Tq wRkTg', \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(encode)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 94,
+      "prompt": "### Prompt\n    You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n### Signature\ndef skjkasdkd(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef skjkasdkd(lst):\n    # Find the largest prime number in the list\n    largest_prime = -1\n    for num in lst:\n        if is_prime(num) and num > largest_prime:\n            largest_prime = num\n    \n    # If no prime number found, return 0\n    if largest_prime == -1:\n        return 0\n    \n    # Calculate sum of digits\n    return sum(int(digit) for digit in str(largest_prime))",
+      "test_content": "from llm_output import skjkasdkd\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3]) == 10, \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1]) == 25, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3]) == 13, \"This prints if this assert fails 3 (also good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([0,724,32,71,99,32,6,0,5,91,83,0,5,6]) == 11, \"This prints if this assert fails 4 (also good for debugging!)\"\n    \n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([0,81,12,3,1,21]) == 3, \"This prints if this assert fails 5 (also good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([0,8,1,2,1,7]) == 7, \"This prints if this assert fails 6 (also good for debugging!)\"\n\n    assert candidate([8191]) == 19, \"This prints if this assert fails 7 (also good for debugging!)\"\n    assert candidate([8191, 123456, 127, 7]) == 19, \"This prints if this assert fails 8 (also good for debugging!)\"\n    assert candidate([127, 97, 8192]) == 10, \"This prints if this assert fails 9 (also good for debugging!)\"\n\ncheck(skjkasdkd)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 95,
+      "prompt": "### Prompt\n    Given a dictionary, return True if all keys are strings in lower\n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n\n### Signature\ndef check_dict_case(dict):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def check_dict_case(dict):\n    # Return False if dictionary is empty\n    if not dict:\n        return False\n    \n    # Get all keys from dictionary\n    keys = list(dict.keys())\n    \n    # Check if all keys are strings\n    if not all(isinstance(key, str) for key in keys):\n        return False\n    \n    # Check if all keys are lowercase\n    all_lower = all(key.islower() for key in keys)\n    \n    # Check if all keys are uppercase\n    all_upper = all(key.isupper() for key in keys)\n    \n    # Return True if all keys are either lowercase or uppercase\n    return all_lower or all_upper",
+      "test_content": "from llm_output import check_dict_case\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate({\"p\":\"pineapple\", \"b\":\"banana\"}) == True, \"First test error: \" + str(candidate({\"p\":\"pineapple\", \"b\":\"banana\"}))\n    assert candidate({\"p\":\"pineapple\", \"A\":\"banana\", \"B\":\"banana\"}) == False, \"Second test error: \" + str(candidate({\"p\":\"pineapple\", \"A\":\"banana\", \"B\":\"banana\"}))\n    assert candidate({\"p\":\"pineapple\", 5:\"banana\", \"a\":\"apple\"}) == False, \"Third test error: \" + str(candidate({\"p\":\"pineapple\", 5:\"banana\", \"a\":\"apple\"}))\n    assert candidate({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) == False, \"Fourth test error: \" + str(candidate({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}))\n    assert candidate({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) == True, \"Fifth test error: \" + str(candidate({\"STATE\":\"NC\", \"ZIP\":\"12345\" }))      \n    assert candidate({\"fruit\":\"Orange\", \"taste\":\"Sweet\" }) == True, \"Fourth test error: \" + str(candidate({\"fruit\":\"Orange\", \"taste\":\"Sweet\" }))      \n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate({}) == False, \"1st edge test error: \" + str(candidate({}))\n\n\ncheck(check_dict_case)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 96,
+      "prompt": "### Prompt\n    Implement a function that takes an non-negative integer and returns an array of the first n\n    integers that are prime numbers and less than n.\n    for example:\n    count_up_to(5) => [2,3]\n    count_up_to(11) => [2,3,5,7]\n    count_up_to(0) => []\n    count_up_to(20) => [2,3,5,7,11,13,17,19]\n    count_up_to(1) => []\n    count_up_to(18) => [2,3,5,7,11,13,17]\n\n### Signature\ndef count_up_to(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def count_up_to(n):\n    if n <= 1:\n        return []\n    \n    # Initialize array to track prime numbers\n    is_prime = [True] * n\n    is_prime[0] = is_prime[1] = False\n    \n    # Sieve of Eratosthenes algorithm\n    for i in range(2, int(n ** 0.5) + 1):\n        if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False\n    \n    # Collect all prime numbers less than n\n    return [i for i in range(n) if is_prime[i]]",
+      "test_content": "from llm_output import count_up_to\n\ndef check(candidate):\n\n    assert candidate(5) == [2,3]\n    assert candidate(6) == [2,3,5]\n    assert candidate(7) == [2,3,5]\n    assert candidate(10) == [2,3,5,7]\n    assert candidate(0) == []\n    assert candidate(22) == [2,3,5,7,11,13,17,19]\n    assert candidate(1) == []\n    assert candidate(18) == [2,3,5,7,11,13,17]\n    assert candidate(47) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43]\n    assert candidate(101) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]\n\n\ncheck(count_up_to)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 97,
+      "prompt": "### Prompt\n    Complete the function that takes two integers and returns\n    the product of their unit digits.\n    Assume the input is always valid.\n    Examples:\n    multiply(148, 412) should return 16.\n    multiply(19, 28) should return 72.\n    multiply(2020, 1851) should return 0.\n    multiply(14,-15) should return 20.\n\n### Signature\ndef multiply(a, b):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def multiply(a, b):\n    # Get the absolute values to handle negative numbers\n    a_unit = abs(a) % 10\n    b_unit = abs(b) % 10\n    \n    # Return the product of unit digits\n    return a_unit * b_unit",
+      "test_content": "from llm_output import multiply\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(148, 412) == 16, \"First test error: \" + str(candidate(148, 412))                    \n    assert candidate(19, 28) == 72, \"Second test error: \" + str(candidate(19, 28))           \n    assert candidate(2020, 1851) == 0, \"Third test error: \" + str(candidate(2020, 1851))\n    assert candidate(14,-15) == 20, \"Fourth test error: \" + str(candidate(14,-15))      \n    assert candidate(76, 67) == 42, \"Fifth test error: \" + str(candidate(76, 67))      \n    assert candidate(17, 27) == 49, \"Sixth test error: \" + str(candidate(17, 27))      \n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(0, 1) == 0, \"1st edge test error: \" + str(candidate(0, 1))\n    assert candidate(0, 0) == 0, \"2nd edge test error: \" + str(candidate(0, 0))\n\n\ncheck(multiply)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 98,
+      "prompt": "### Prompt\n    Given a string s, count the number of uppercase vowels in even indices.\n\n### Signature\ndef count_upper(s):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def count_upper(s):\n    vowels = set('AEIOU')\n    count = 0\n    for i in range(0, len(s), 2):\n        if s[i] in vowels:\n            count += 1\n    return count",
+      "test_content": "from llm_output import count_upper\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('aBCdEf')  == 1\n    assert candidate('abcdefg') == 0\n    assert candidate('dBBE') == 0\n    assert candidate('B')  == 0\n    assert candidate('U')  == 1\n    assert candidate('') == 0\n    assert candidate('EEEE') == 2\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(count_upper)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 99,
+      "prompt": "### Prompt\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n\n### Signature\ndef closest_integer(value):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 15, in <module>\n    check(closest_integer)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 8, in check\n    assert candidate(\"-15.5\") == -16, \"Test 3\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Test 3\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def closest_integer(value):\n    \"\"\"\n    Takes a string value representing a number and returns the closest integer.\n    For .5 cases, rounds up to the next integer for positive numbers,\n    and rounds down (away from zero) for negative numbers.\n    \"\"\"\n    num = float(value)\n    decimal_part = abs(num - int(num))\n    \n    if decimal_part == 0.5:\n        if num > 0:\n            return int(num) + 1\n        else:\n            return int(num) - 1\n    elif decimal_part > 0.5:\n        if num > 0:\n            return int(num) + 1\n        else:\n            return int(num) - 1\n    else:\n        return int(num)",
+      "test_content": "from llm_output import closest_integer\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"10\") == 10, \"Test 1\"\n    assert candidate(\"14.5\") == 15, \"Test 2\"\n    assert candidate(\"-15.5\") == -16, \"Test 3\"\n    assert candidate(\"15.3\") == 15, \"Test 3\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(\"0\") == 0, \"Test 0\"\n\n\ncheck(closest_integer)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 100,
+      "prompt": "### Prompt\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n\n### Signature\ndef make_a_pile(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def make_a_pile(n):\n    result = [n]\n    current = n\n    \n    for _ in range(n-1):\n        if current % 2 == 0:  # if current is even\n            current += 2      # next even number\n        else:                 # if current is odd\n            current += 2      # next odd number\n        result.append(current)\n    \n    return result",
+      "test_content": "from llm_output import make_a_pile\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(3) == [3, 5, 7], \"Test 3\"\n    assert candidate(4) == [4,6,8,10], \"Test 4\"\n    assert candidate(5) == [5, 7, 9, 11, 13]\n    assert candidate(6) == [6, 8, 10, 12, 14, 16]\n    assert candidate(8) == [8, 10, 12, 14, 16, 18, 20, 22]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(make_a_pile)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 101,
+      "prompt": "### Prompt\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n\n### Signature\ndef words_string(s):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def words_string(s):\n    # Replace commas with spaces to handle both separators\n    s = s.replace(',', ' ')\n    # Split by spaces and filter out empty strings\n    return [word for word in s.split() if word]",
+      "test_content": "from llm_output import words_string\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\n    assert candidate(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n    assert candidate(\"Hi, my name\") == [\"Hi\", \"my\", \"name\"]\n    assert candidate(\"One,, two, three, four, five, six,\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(\"\") == []\n    assert candidate(\"ahmed     , gamal\") == [\"ahmed\", \"gamal\"]\n\n\ncheck(words_string)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 102,
+      "prompt": "### Prompt\n    This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If\n    there's no such number, then the function should return -1.\n\n### Signature\ndef choose_num(x, y):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def choose_num(x, y):\n    # Convert x to the next even number if it's odd\n    if x % 2 != 0:\n        x = x + 1\n    \n    # Convert y to the previous even number if it's odd\n    if y % 2 != 0:\n        y = y - 1\n    \n    # If x is greater than y after adjustments, or if x is greater than y initially\n    if x > y:\n        return -1\n    \n    # Return the largest even number in range\n    return y if y % 2 == 0 else y - 1",
+      "test_content": "from llm_output import choose_num\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(12, 15) == 14\n    assert candidate(13, 12) == -1\n    assert candidate(33, 12354) == 12354\n    assert candidate(5234, 5233) == -1\n    assert candidate(6, 29) == 28\n    assert candidate(27, 10) == -1\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(7, 7) == -1\n    assert candidate(546, 546) == 546\n\n\ncheck(choose_num)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 103,
+      "prompt": "### Prompt\n    You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m).\n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n\n### Signature\ndef rounded_avg(n, m):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def rounded_avg(n, m):\n    if n > m:\n        return -1\n    \n    # Calculate average\n    total = sum(range(n, m + 1))\n    count = m - n + 1\n    avg = total / count\n    \n    # Round to nearest integer\n    rounded = round(avg)\n    \n    # Convert to binary string\n    return bin(rounded)",
+      "test_content": "from llm_output import rounded_avg\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(1, 5) == \"0b11\"\n    assert candidate(7, 13) == \"0b1010\"\n    assert candidate(964,977) == \"0b1111001010\"\n    assert candidate(996,997) == \"0b1111100100\"\n    assert candidate(560,851) == \"0b1011000010\"\n    assert candidate(185,546) == \"0b101101110\"\n    assert candidate(362,496) == \"0b110101101\"\n    assert candidate(350,902) == \"0b1001110010\"\n    assert candidate(197,233) == \"0b11010111\"\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(7, 5) == -1\n    assert candidate(5, 1) == -1\n    assert candidate(5, 5) == \"0b101\"\n\n\ncheck(rounded_avg)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 104,
+      "prompt": "### Prompt\n    Given a list of positive integers x. return a sorted list of all\n    elements that hasn't any even digit.\n\n### Signature\ndef unique_digits(x):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def unique_digits(x):\n    def has_no_even_digit(num):\n        return all(int(digit) % 2 == 1 for digit in str(num))\n    \n    return sorted([num for num in x if has_no_even_digit(num)])",
+      "test_content": "from llm_output import unique_digits\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([15, 33, 1422, 1]) == [1, 15, 33]\n    assert candidate([152, 323, 1422, 10]) == []\n    assert candidate([12345, 2033, 111, 151]) == [111, 151]\n    assert candidate([135, 103, 31]) == [31, 135]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(unique_digits)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 105,
+      "prompt": "### Prompt\n    Given an array of integers, sort the integers that are between 1 and 9 inclusive,\n    reverse the resulting array, and then replace each digit by its corresponding name from\n    \"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\".\n\n### Signature\ndef by_length(arr):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def by_length(arr):\n    # Dictionary to map numbers to their word representation\n    num_to_word = {\n        1: \"One\",\n        2: \"Two\",\n        3: \"Three\",\n        4: \"Four\",\n        5: \"Five\",\n        6: \"Six\",\n        7: \"Seven\",\n        8: \"Eight\",\n        9: \"Nine\"\n    }\n    \n    # Filter numbers between 1 and 9, sort them, and reverse\n    filtered_nums = sorted([x for x in arr if 1 <= x <= 9], reverse=True)\n    \n    # Convert numbers to words\n    return [num_to_word[num] for num in filtered_nums]",
+      "test_content": "from llm_output import by_length\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([2, 1, 1, 4, 5, 8, 2, 3]) == [\"Eight\", \"Five\", \"Four\", \"Three\", \"Two\", \"Two\", \"One\", \"One\"], \"Error\"\n    assert candidate([]) == [], \"Error\"\n    assert candidate([1, -1 , 55]) == ['One'], \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([1, -1, 3, 2]) == [\"Three\", \"Two\", \"One\"]\n    assert candidate([9, 4, 8]) == [\"Nine\", \"Eight\", \"Four\"]\n\n\ncheck(by_length)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 106,
+      "prompt": "### Prompt\n     Implement the function f that takes n as a parameter,\n    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even\n    or the sum of numbers from 1 to i otherwise.\n    i starts from 1.\n    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).\n    Example:\n    f(5) == [1, 2, 6, 24, 15]\n\n### Signature\ndef f(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def f(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 2 == 0:  # even number\n            # Calculate factorial\n            factorial = 1\n            for j in range(1, i + 1):\n                factorial *= j\n            result.append(factorial)\n        else:  # odd number\n            # Calculate sum from 1 to i\n            sum_numbers = sum(range(1, i + 1))\n            result.append(sum_numbers)\n    return result",
+      "test_content": "from llm_output import f\n\ndef check(candidate):\n\n    assert candidate(5) == [1, 2, 6, 24, 15]\n    assert candidate(7) == [1, 2, 6, 24, 15, 720, 28]\n    assert candidate(1) == [1]\n    assert candidate(3) == [1, 2, 6]\n\ncheck(f)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 107,
+      "prompt": "### Prompt\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n### Signature\ndef even_odd_palindrome(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def even_odd_palindrome(n):\n    def is_palindrome(num):\n        return str(num) == str(num)[::-1]\n    \n    even_count = 0\n    odd_count = 0\n    \n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n    \n    return (even_count, odd_count)",
+      "test_content": "from llm_output import even_odd_palindrome\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(123) == (8, 13)\n    assert candidate(12) == (4, 6)\n    assert candidate(3) == (1, 2)\n    assert candidate(63) == (6, 8)\n    assert candidate(25) == (5, 6)\n    assert candidate(19) == (4, 6)\n    assert candidate(9) == (4, 5), \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1) == (0, 1), \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(even_odd_palindrome)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 108,
+      "prompt": "### Prompt\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n\n### Signature\ndef count_nums(arr):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def count_nums(arr):\n    def sum_digits(num):\n        # Convert number to string, keeping the sign for first digit if negative\n        str_num = str(abs(num))\n        digits = [int(d) for d in str_num]\n        \n        # If original number was negative, make first digit negative\n        if num < 0:\n            digits[0] = -digits[0]\n            \n        return sum(digits)\n    \n    # Count numbers where sum of digits is greater than 0\n    return sum(1 for num in arr if sum_digits(num) > 0)",
+      "test_content": "from llm_output import count_nums\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([]) == 0\n    assert candidate([-1, -2, 0]) == 0\n    assert candidate([1, 1, 2, -2, 3, 4, 5]) == 6\n    assert candidate([1, 6, 9, -6, 0, 1, 5]) == 5\n    assert candidate([1, 100, 98, -7, 1, -1]) == 4\n    assert candidate([12, 23, 34, -45, -56, 0]) == 5\n    assert candidate([-0, 1**0]) == 1\n    assert candidate([1]) == 1\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(count_nums)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 109,
+      "prompt": "### Prompt\n    We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing\n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n\n### Signature\ndef move_one_ball(arr):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def move_one_ball(arr):\n    if not arr:\n        return True\n        \n    # Create a copy of original array\n    sorted_arr = sorted(arr)\n    n = len(arr)\n    \n    # Try all possible rotations\n    for i in range(n):\n        # Rotate the original array by i positions\n        rotated = arr[i:] + arr[:i]\n        \n        # Check if this rotation gives us sorted array\n        if rotated == sorted_arr:\n            return True\n            \n    return False",
+      "test_content": "from llm_output import move_one_ball\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([3, 4, 5, 1, 2])==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([3, 5, 10, 1, 2])==True\n    assert candidate([4, 3, 1, 2])==False\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([3, 5, 4, 1, 2])==False, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([])==True\n\ncheck(move_one_ball)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 110,
+      "prompt": "### Prompt\n    In this problem, you will implement a function that takes two lists of numbers,\n    and determines whether it is possible to perform an exchange of elements\n    between them to make lst1 a list of only even numbers.\n    There is no limit on the number of exchanged elements between lst1 and lst2.\n    If it is possible to exchange elements between the lst1 and lst2 to make\n    all the elements of lst1 to be even, return \"YES\".\n    Otherwise, return \"NO\".\n    For example:\n    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => \"YES\"\n    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => \"NO\"\n    It is assumed that the input lists will be non-empty.\n\n### Signature\ndef exchange(lst1, lst2):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def exchange(lst1, lst2):\n    # Count odd numbers in lst1\n    odd_count_lst1 = sum(1 for x in lst1 if x % 2 != 0)\n    \n    # Count even numbers in lst2\n    even_count_lst2 = sum(1 for x in lst2 if x % 2 == 0)\n    \n    # If we have enough even numbers in lst2 to replace all odd numbers in lst1\n    if even_count_lst2 >= odd_count_lst1:\n        return \"YES\"\n    return \"NO\"",
+      "test_content": "from llm_output import exchange\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1, 2, 3, 4], [1, 2, 3, 4]) == \"YES\"\n    assert candidate([1, 2, 3, 4], [1, 5, 3, 4]) == \"NO\"\n    assert candidate([1, 2, 3, 4], [2, 1, 4, 3]) == \"YES\" \n    assert candidate([5, 7, 3], [2, 6, 4]) == \"YES\"\n    assert candidate([5, 7, 3], [2, 6, 3]) == \"NO\" \n    assert candidate([3, 2, 6, 1, 8, 9], [3, 5, 5, 1, 1, 1]) == \"NO\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([100, 200], [200, 200]) == \"YES\"\n\n\ncheck(exchange)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 111,
+      "prompt": "### Prompt\n    Given a string representing a space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n\n### Signature\ndef histogram(test):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from collections import Counter\n\ndef histogram(test):\n    if not test:\n        return {}\n    \n    # Split the string into letters and count occurrences\n    letters = test.split()\n    letter_counts = Counter(letters)\n    \n    if not letter_counts:\n        return {}\n    \n    # Find the maximum count\n    max_count = max(letter_counts.values())\n    \n    # Create dictionary with letters having maximum count\n    result = {letter: count for letter, count in letter_counts.items() if count == max_count}\n    \n    return result",
+      "test_content": "from llm_output import histogram\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('a b b a') == {'a':2,'b': 2}, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('a b c a b') == {'a': 2, 'b': 2}, \"This prints if this assert fails 2 (good for debugging!)\"\n    assert candidate('a b c d g') == {'a': 1, 'b': 1, 'c': 1, 'd': 1, 'g': 1}, \"This prints if this assert fails 3 (good for debugging!)\"\n    assert candidate('r t g') == {'r': 1,'t': 1,'g': 1}, \"This prints if this assert fails 4 (good for debugging!)\"\n    assert candidate('b b b b a') == {'b': 4}, \"This prints if this assert fails 5 (good for debugging!)\"\n    assert candidate('r t g') == {'r': 1,'t': 1,'g': 1}, \"This prints if this assert fails 6 (good for debugging!)\"\n    \n    \n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('') == {}, \"This prints if this assert fails 7 (also good for debugging!)\"\n    assert candidate('a') == {'a': 1}, \"This prints if this assert fails 8 (also good for debugging!)\"\n\n\ncheck(histogram)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 112,
+      "prompt": "### Prompt\n    Task\n    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c\n    then check if the result string is palindrome.\n    A string is called palindrome if it reads the same backward as forward.\n    You should return a tuple containing the result string and True/False for the check.\n    Example\n    For s = \"abcde\", c = \"ae\", the result should be ('bcd',False)\n    For s = \"abcdef\", c = \"b\"  the result should be ('acdef',False)\n    For s = \"abcdedcba\", c = \"ab\", the result should be ('cdedc',True)\n\n### Signature\ndef reverse_delete(s,c):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def reverse_delete(s,c):\n    # Create a set of characters to remove for O(1) lookup\n    chars_to_remove = set(c)\n    \n    # Filter out characters that are in c\n    result = ''.join(char for char in s if char not in chars_to_remove)\n    \n    # Check if the resulting string is palindrome\n    is_palindrome = result == result[::-1]\n    \n    return (result, is_palindrome)",
+      "test_content": "from llm_output import reverse_delete\n\ndef check(candidate):\n\n    assert candidate(\"abcde\",\"ae\") == ('bcd',False)\n    assert candidate(\"abcdef\", \"b\") == ('acdef',False)\n    assert candidate(\"abcdedcba\",\"ab\") == ('cdedc',True)\n    assert candidate(\"dwik\",\"w\") == ('dik',False)\n    assert candidate(\"a\",\"a\") == ('',True)\n    assert candidate(\"abcdedcba\",\"\") == ('abcdedcba',True)\n    assert candidate(\"abcdedcba\",\"v\") == ('abcdedcba',True)\n    assert candidate(\"vabba\",\"v\") == ('abba',True)\n    assert candidate(\"mamma\", \"mia\") == (\"\", True)\n\ncheck(reverse_delete)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 113,
+      "prompt": "### Prompt\n    Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n### Signature\ndef odd_count(lst):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 18, in <module>\n    check(odd_count)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 6, in check\n    assert candidate(['1234567']) == [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"], \"Test 1\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Test 1\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def odd_count(lst):\n    result = []\n    for i, s in enumerate(lst):\n        odd_count = sum(1 for digit in s if int(digit) % 2 == 1)\n        result.append(f\"the number of odd elements {odd_count}n the str{odd_count}ng {odd_count} of the {odd_count}nput.\")\n    return result",
+      "test_content": "from llm_output import odd_count\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(['1234567']) == [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"], \"Test 1\"\n    assert candidate(['3',\"11111111\"]) == [\"the number of odd elements 1n the str1ng 1 of the 1nput.\", \"the number of odd elements 8n the str8ng 8 of the 8nput.\"], \"Test 2\"\n    assert candidate(['271', '137', '314']) == [\n        'the number of odd elements 2n the str2ng 2 of the 2nput.',\n        'the number of odd elements 3n the str3ng 3 of the 3nput.',\n        'the number of odd elements 2n the str2ng 2 of the 2nput.'\n    ]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(odd_count)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 114,
+      "prompt": "### Prompt\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n\n### Signature\ndef minSubArraySum(nums):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def minSubArraySum(nums):\n    n = len(nums)\n    min_sum = float('inf')\n    \n    # Check all possible subarrays\n    for i in range(n):\n        current_sum = 0\n        for j in range(i, n):\n            current_sum += nums[j]\n            min_sum = min(min_sum, current_sum)\n            \n    return min_sum",
+      "test_content": "from llm_output import minSubArraySum\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([2, 3, 4, 1, 2, 4]) == 1, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([-1, -2, -3]) == -6\n    assert candidate([-1, -2, -3, 2, -10]) == -14\n    assert candidate([-9999999999999999]) == -9999999999999999\n    assert candidate([0, 10, 20, 1000000]) == 0\n    assert candidate([-1, -2, -3, 10, -5]) == -6\n    assert candidate([100, -1, -2, -3, 10, -5]) == -6\n    assert candidate([10, 11, 13, 8, 3, 4]) == 3\n    assert candidate([100, -33, 32, -1, 0, -2]) == -33\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([-10]) == -10, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([7]) == 7\n    assert candidate([1, -1]) == -1\n\ncheck(minSubArraySum)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 115,
+      "prompt": "### Prompt\n    You are given a rectangular grid of wells. Each row represents a single well,\n    and each 1 in a row represents a single unit of water.\n    Each well has a corresponding bucket that can be used to extract water from it,\n    and all buckets have the same capacity.\n    Your task is to use the buckets to empty the wells.\n    Output the number of times you need to lower the buckets.\n\n### Signature\ndef max_fill(grid, capacity):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 18, in <module>\n    check(max_fill)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 9, in check\n    assert candidate([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2) == 5, \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Error\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from math import ceil\n\ndef max_fill(grid, capacity):\n    if not grid or not grid[0]:\n        return 0\n        \n    rows = len(grid)\n    cols = len(grid[0])\n    operations = 0\n    \n    # Process each well (row)\n    for row in range(rows):\n        water_in_well = sum(grid[row])  # Count total water units in this well\n        if water_in_well > 0:\n            # Calculate operations needed for this well\n            operations += ceil(water_in_well / capacity)\n            \n    return operations",
+      "test_content": "from llm_output import max_fill\n\ndef check(candidate):\n\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1) == 6, \"Error\"\n    assert candidate([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2) == 5, \"Error\"\n    assert candidate([[0,0,0], [0,0,0]], 5) == 0, \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([[1,1,1,1], [1,1,1,1]], 2) == 4, \"Error\"\n    assert candidate([[1,1,1,1], [1,1,1,1]], 9) == 2, \"Error\"\n\n\ncheck(max_fill)",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 116,
+      "prompt": "### Prompt\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n### Signature\ndef sort_array(arr):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def sort_array(arr):\n    return sorted(arr, key=lambda x: (bin(x).count('1'), x))",
+      "test_content": "from llm_output import sort_array\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([1,5,2,3,4]) == [1, 2, 4, 3, 5]\n    assert candidate([-2,-3,-4,-5,-6]) == [-4, -2, -6, -5, -3]\n    assert candidate([1,0,2,3,4]) == [0, 1, 2, 4, 3]\n    assert candidate([]) == []\n    assert candidate([2,5,77,4,5,3,5,7,2,3,4]) == [2, 2, 4, 4, 3, 3, 5, 5, 5, 7, 77]\n    assert candidate([3,6,44,12,32,5]) == [32, 3, 5, 6, 12, 44]\n    assert candidate([2,4,8,16,32]) == [2, 4, 8, 16, 32]\n    assert candidate([2,4,8,16,32]) == [2, 4, 8, 16, 32]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(sort_array)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 117,
+      "prompt": "### Prompt\n    Given a string s and a natural number n, you have been tasked to implement\n    a function that returns a list of all words from string s that contain exactly\n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n\n### Signature\ndef select_words(s, n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def select_words(s, n):\n    if not s:\n        return []\n    \n    # Define consonants\n    consonants = set('bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ')\n    \n    # Split string into words\n    words = s.split()\n    \n    # Function to count consonants in a word\n    def count_consonants(word):\n        return sum(1 for char in word if char in consonants)\n    \n    # Filter words that have exactly n consonants\n    result = [word for word in words if count_consonants(word) == n]\n    \n    return result",
+      "test_content": "from llm_output import select_words\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"Mary had a little lamb\", 4) == [\"little\"], \"First test error: \" + str(candidate(\"Mary had a little lamb\", 4))      \n    assert candidate(\"Mary had a little lamb\", 3) == [\"Mary\", \"lamb\"], \"Second test error: \" + str(candidate(\"Mary had a little lamb\", 3))  \n    assert candidate(\"simple white space\", 2) == [], \"Third test error: \" + str(candidate(\"simple white space\", 2))      \n    assert candidate(\"Hello world\", 4) == [\"world\"], \"Fourth test error: \" + str(candidate(\"Hello world\", 4))  \n    assert candidate(\"Uncle sam\", 3) == [\"Uncle\"], \"Fifth test error: \" + str(candidate(\"Uncle sam\", 3))\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(\"\", 4) == [], \"1st edge test error: \" + str(candidate(\"\", 4))\n    assert candidate(\"a b c d e f\", 1) == [\"b\", \"c\", \"d\", \"f\"], \"2nd edge test error: \" + str(candidate(\"a b c d e f\", 1))\n\n\ncheck(select_words)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 118,
+      "prompt": "### Prompt\n    You are given a word. Your task is to find the closest vowel that stands between\n    two consonants from the right side of the word (case sensitive).\n\n### Signature\ndef get_closest_vowel(word):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def get_closest_vowel(word):\n    vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}\n    consonants = set('bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ')\n    \n    # Iterate through the word from right to left\n    for i in range(len(word)-2, 0, -1):\n        # Check if current character is a vowel\n        if word[i] in vowels:\n            # Check if it's between consonants\n            if word[i-1] in consonants and word[i+1] in consonants:\n                return word[i]\n    \n    return ''",
+      "test_content": "from llm_output import get_closest_vowel\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"yogurt\") == \"u\"\n    assert candidate(\"full\") == \"u\"\n    assert candidate(\"easy\") == \"\"\n    assert candidate(\"eAsy\") == \"\"\n    assert candidate(\"ali\") == \"\"\n    assert candidate(\"bad\") == \"a\"\n    assert candidate(\"most\") == \"o\"\n    assert candidate(\"ab\") == \"\"\n    assert candidate(\"ba\") == \"\"\n    assert candidate(\"quick\") == \"\"\n    assert candidate(\"anime\") == \"i\"\n    assert candidate(\"Asia\") == \"\"\n    assert candidate(\"Above\") == \"o\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(get_closest_vowel)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 119,
+      "prompt": "### Prompt\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n### Signature\ndef match_parens(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def match_parens(lst):\n    # Helper function to check if a string has balanced parentheses\n    def is_balanced(s):\n        count = 0\n        for char in s:\n            if char == '(':\n                count += 1\n            else:\n                count -= 1\n            if count < 0:\n                return False\n        return count == 0\n\n    # Try both possible concatenations\n    s1 = lst[0] + lst[1]\n    s2 = lst[1] + lst[0]\n    \n    # If either concatenation results in balanced parentheses, return 'Yes'\n    if is_balanced(s1) or is_balanced(s2):\n        return 'Yes'\n    return 'No'",
+      "test_content": "from llm_output import match_parens\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(['()(', ')']) == 'Yes'\n    assert candidate([')', ')']) == 'No'\n    assert candidate(['(()(())', '())())']) == 'No'\n    assert candidate([')())', '(()()(']) == 'Yes'\n    assert candidate(['(())))', '(()())((']) == 'Yes'\n    assert candidate(['()', '())']) == 'No'\n    assert candidate(['(()(', '()))()']) == 'Yes'\n    assert candidate(['((((', '((())']) == 'No'\n    assert candidate([')(()', '(()(']) == 'No'\n    assert candidate([')(', ')(']) == 'No'\n    \n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(['(', ')']) == 'Yes'\n    assert candidate([')', '(']) == 'Yes' \n\n\ncheck(match_parens)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 120,
+      "prompt": "### Prompt\n    Given an array arr of integers and a positive integer k, return a sorted list\n    of length k with the maximum k numbers in arr.\n\n### Signature\ndef maximum(arr, k):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 21, in <module>\n    check(maximum)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 18, in check\n    assert candidate([1, 2, 3, -23, 243, -400, 0], 0) == []\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def maximum(arr, k):\n    if k == 0:\n        return []\n    # Sort array in ascending order\n    sorted_arr = sorted(arr)\n    # Return last k elements\n    return sorted_arr[-k:]",
+      "test_content": "from llm_output import maximum\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([-3, -4, 5], 3) == [-4, -3, 5]\n    assert candidate([4, -4, 4], 2) == [4, 4]\n    assert candidate([-3, 2, 1, 2, -1, -2, 1], 1) == [2]\n    assert candidate([123, -123, 20, 0 , 1, 2, -3], 3) == [2, 20, 123]\n    assert candidate([-123, 20, 0 , 1, 2, -3], 4) == [0, 1, 2, 20]\n    assert candidate([5, 15, 0, 3, -13, -8, 0], 7) == [-13, -8, 0, 0, 3, 5, 15]\n    assert candidate([-1, 0, 2, 5, 3, -10], 2) == [3, 5]\n    assert candidate([1, 0, 5, -7], 1) == [5]\n    assert candidate([4, -4], 2) == [-4, 4]\n    assert candidate([-10, 10], 2) == [-10, 10]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1, 2, 3, -23, 243, -400, 0], 0) == []\n\n\ncheck(maximum)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 121,
+      "prompt": "### Prompt\n    Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n\n### Signature\ndef solution(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def solution(lst):\n    return sum(num for i, num in enumerate(lst) if i % 2 == 0 and num % 2 == 1)",
+      "test_content": "from llm_output import solution\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([5, 8, 7, 1])    == 12\n    assert candidate([3, 3, 3, 3, 3]) == 9\n    assert candidate([30, 13, 24, 321]) == 0\n    assert candidate([5, 9]) == 5\n    assert candidate([2, 4, 8]) == 0\n    assert candidate([30, 13, 23, 32]) == 23\n    assert candidate([3, 13, 2, 9]) == 3\n\n    # Check some edge cases that are easy to work out by hand.\n\n\ncheck(solution)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 122,
+      "prompt": "### Prompt\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n### Signature\ndef add_elements(arr, k):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def add_elements(arr, k):\n    # Ensure k doesn't exceed array length\n    k = min(k, len(arr))\n    \n    # Initialize sum\n    total = 0\n    \n    # Process first k elements\n    for i in range(k):\n        # Convert number to string to check digits\n        num_str = str(abs(arr[i]))\n        # Add to total if number has at most 2 digits\n        if len(num_str) <= 2:\n            total += arr[i]\n    \n    return total",
+      "test_content": "from llm_output import add_elements\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1,-2,-3,41,57,76,87,88,99], 3) == -4\n    assert candidate([111,121,3,4000,5,6], 2) == 0\n    assert candidate([11,21,3,90,5,6,7,8,9], 4) == 125\n    assert candidate([111,21,3,4000,5,6,7,8,9], 4) == 24, \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1], 1) == 1, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(add_elements)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 123,
+      "prompt": "### Prompt\n    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.\n\n### Signature\ndef get_odd_collatz(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def get_odd_collatz(n):\n    if n <= 0:\n        return []\n    \n    result = []\n    current = n\n    \n    while current != 1:\n        if current % 2 != 0:  # if number is odd\n            result.append(current)\n        \n        if current % 2 == 0:  # if even\n            current = current // 2\n        else:\n            current = 3 * current + 1\n    \n    result.append(1)  # append the final 1\n    return sorted(result)",
+      "test_content": "from llm_output import get_odd_collatz\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(14) == [1, 5, 7, 11, 13, 17]\n    assert candidate(5) == [1, 5]\n    assert candidate(12) == [1, 3, 5], \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1) == [1], \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(get_odd_collatz)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 124,
+      "prompt": "### Prompt\n    You have to write a function which validates a given date string and\n    returns True if the date is valid otherwise False.\n    The date is valid if all of the following rules are satisfied:\n    1. The date string is not empty.\n    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.\n    3. The months should not be less than 1 or higher than 12.\n    4. The date should be in the format: mm-dd-yyyy\n\n### Signature\ndef valid_date(date):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "import re\nfrom datetime import datetime\n\ndef valid_date(date):\n    if not date:\n        return False\n    \n    # Check if the format matches mm-dd-yyyy\n    pattern = r'^\\d{2}-\\d{2}-\\d{4}$'\n    if not re.match(pattern, date):\n        return False\n    \n    try:\n        month, day, year = map(int, date.split('-'))\n        \n        # Check month range\n        if month < 1 or month > 12:\n            return False\n            \n        # Check days based on month\n        if month in [4, 6, 9, 11]:\n            if day < 1 or day > 30:\n                return False\n        elif month == 2:\n            if day < 1 or day > 29:\n                return False\n        else:  # months with 31 days\n            if day < 1 or day > 31:\n                return False\n                \n        # Final validation using datetime\n        datetime(year, month, day)\n        return True\n        \n    except ValueError:\n        return False",
+      "test_content": "from llm_output import valid_date\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('03-11-2000') == True\n\n    assert candidate('15-01-2012') == False\n\n    assert candidate('04-0-2040') == False\n\n    assert candidate('06-04-2020') == True\n\n    assert candidate('01-01-2007') == True\n\n    assert candidate('03-32-2011') == False\n\n    assert candidate('') == False\n\n    assert candidate('04-31-3000') == False\n\n    assert candidate('06-06-2005') == True\n\n    assert candidate('21-31-2000') == False\n\n    assert candidate('04-12-2003') == True\n\n    assert candidate('04122003') == False\n\n    assert candidate('20030412') == False\n\n    assert candidate('2003-04') == False\n\n    assert candidate('2003-04-12') == False\n\n    assert candidate('04-2003') == False\n\ncheck(valid_date)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 125,
+      "prompt": "### Prompt\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3\n\n### Signature\ndef split_words(txt):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def split_words(txt):\n    # Check for whitespace\n    if ' ' in txt:\n        return txt.split()\n    \n    # Check for commas\n    if ',' in txt:\n        return txt.split(',')\n    \n    # Count lowercase letters with odd position in alphabet\n    count = 0\n    for char in txt:\n        if char.isalpha() and char.islower():\n            # Calculate position in alphabet (0-25)\n            position = ord(char) - ord('a')\n            if position % 2 == 1:  # Check if position is odd\n                count += 1\n    \n    return count",
+      "test_content": "from llm_output import split_words\n\ndef check(candidate):\n\n    assert candidate(\"Hello world!\") == [\"Hello\",\"world!\"]\n    assert candidate(\"Hello,world!\") == [\"Hello\",\"world!\"]\n    assert candidate(\"Hello world,!\") == [\"Hello\",\"world,!\"]\n    assert candidate(\"Hello,Hello,world !\") == [\"Hello,Hello,world\",\"!\"]\n    assert candidate(\"abcdef\") == 3\n    assert candidate(\"aaabb\") == 2\n    assert candidate(\"aaaBb\") == 1\n    assert candidate(\"\") == 0\n\ncheck(split_words)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 126,
+      "prompt": "### Prompt\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n### Signature\ndef is_sorted(lst):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 23, in <module>\n    check(is_sorted)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 19, in check\n    assert candidate([1, 2, 2, 3, 3, 4]) == True, \"This prints if this assert fails 7 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 7 (good for debugging!)\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def is_sorted(lst):\n    if not lst:\n        return True\n    \n    # Count occurrences of each number\n    count_dict = {}\n    for num in lst:\n        count_dict[num] = count_dict.get(num, 0) + 1\n        # If any number appears more than twice, return False\n        if count_dict[num] > 2:\n            return False\n    \n    # Check if sorted by comparing adjacent elements\n    for i in range(len(lst)-1):\n        if lst[i] > lst[i+1]:\n            return False\n            \n    return True",
+      "test_content": "from llm_output import is_sorted\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([5]) == True\n    assert candidate([1, 2, 3, 4, 5]) == True\n    assert candidate([1, 3, 2, 4, 5]) == False\n    assert candidate([1, 2, 3, 4, 5, 6]) == True\n    assert candidate([1, 2, 3, 4, 5, 6, 7]) == True\n    assert candidate([1, 3, 2, 4, 5, 6, 7]) == False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([]) == True, \"This prints if this assert fails 2 (good for debugging!)\"\n    assert candidate([1]) == True, \"This prints if this assert fails 3 (good for debugging!)\"\n    assert candidate([3, 2, 1]) == False, \"This prints if this assert fails 4 (good for debugging!)\"\n    \n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1, 2, 2, 2, 3, 4]) == False, \"This prints if this assert fails 5 (good for debugging!)\"\n    assert candidate([1, 2, 3, 3, 3, 4]) == False, \"This prints if this assert fails 6 (good for debugging!)\"\n    assert candidate([1, 2, 2, 3, 3, 4]) == True, \"This prints if this assert fails 7 (good for debugging!)\"\n    assert candidate([1, 2, 3, 4]) == True, \"This prints if this assert fails 8 (good for debugging!)\"\n\n\ncheck(is_sorted)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 127,
+      "prompt": "### Prompt\n    You are given two intervals,\n    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).\n    The given intervals are closed which means that the interval (start, end)\n    includes both start and end.\n    For each given interval, it is assumed that its start is less or equal its end.\n    Your task is to determine whether the length of intersection of these two\n    intervals is a prime number.\n    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)\n    which its length is 1, which not a prime number.\n    If the length of the intersection is a prime number, return \"YES\",\n    otherwise, return \"NO\".\n    If the two intervals don't intersect, return \"NO\".\n\n### Signature\ndef intersection(interval1, interval2):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 18, in <module>\n    check(intersection)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 7, in check\n    assert candidate((-1, 1), (0, 4)) == \"NO\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def intersection(interval1, interval2):\n    \"\"\"\n    Determine if the length of intersection of two intervals is prime.\n    Returns \"YES\" if length is prime, \"NO\" otherwise or if no intersection.\n    \"\"\"\n    # Find the intersection points\n    start = max(interval1[0], interval2[0])\n    end = min(interval1[1], interval2[1])\n    \n    # If no intersection or length is 1 or less\n    if start > end:\n        return \"NO\"\n    \n    # Calculate length of intersection\n    length = end - start\n    \n    # Numbers less than 2 are not prime\n    if length < 2:\n        return \"NO\"\n    \n    # Check if length is prime\n    for i in range(2, int(length ** 0.5) + 1):\n        if length % i == 0:\n            return \"NO\"\n            \n    return \"YES\"",
+      "test_content": "from llm_output import intersection\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate((1, 2), (2, 3)) == \"NO\"\n    assert candidate((-1, 1), (0, 4)) == \"NO\"\n    assert candidate((-3, -1), (-5, 5)) == \"YES\"\n    assert candidate((-2, 2), (-4, 0)) == \"YES\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate((-11, 2), (-1, -1)) == \"NO\"\n    assert candidate((1, 2), (3, 5)) == \"NO\"\n    assert candidate((1, 2), (1, 2)) == \"NO\"\n    assert candidate((-2, -2), (-3, -2)) == \"NO\"\n\n\ncheck(intersection)",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 128,
+      "prompt": "### Prompt\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n### Signature\ndef prod_signs(arr):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def prod_signs(arr):\n    if not arr:\n        return None\n    \n    magnitude_sum = 0\n    sign_product = 1\n    \n    for num in arr:\n        # Calculate sum of magnitudes\n        magnitude_sum += abs(num)\n        \n        # Calculate product of signs\n        if num > 0:\n            sign_product *= 1\n        elif num < 0:\n            sign_product *= -1\n        else:  # num == 0\n            sign_product *= 0\n    \n    return magnitude_sum * sign_product",
+      "test_content": "from llm_output import prod_signs\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([1, 2, 2, -4]) == -9\n    assert candidate([0, 1]) == 0\n    assert candidate([1, 1, 1, 2, 3, -1, 1]) == -10\n    assert candidate([]) == None\n    assert candidate([2, 4,1, 2, -1, -1, 9]) == 20\n    assert candidate([-1, 1, -1, 1]) == 4\n    assert candidate([-1, 1, 1, 1]) == -4\n    assert candidate([-1, 1, 1, 0]) == 0\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(prod_signs)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 130,
+      "prompt": "### Prompt\n    Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in\n    the last couple centuries. However, what people don't know is Tribonacci sequence.\n    Tribonacci sequence is defined by the recurrence:\n    tri(1) = 3\n    tri(n) = 1 + n / 2, if n is even.\n    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.\n    For example:\n    tri(2) = 1 + (2 / 2) = 2\n    tri(4) = 3\n    tri(3) = tri(2) + tri(1) + tri(4)\n           = 2 + 3 + 3 = 8\n    You are given a non-negative integer number n, you have to a return a list of the\n    first n + 1 numbers of the Tribonacci sequence.\n    Examples:\n    tri(3) = [1, 3, 2, 8]\n\n### Signature\ndef tri(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def tri(n):\n    if n < 0:\n        return []\n    \n    # Initialize the sequence with first element as 1\n    sequence = [1]\n    \n    # If n is 0, return just [1]\n    if n == 0:\n        return sequence\n    \n    # Helper function to calculate tribonacci value for a single position\n    def calculate_tri(pos):\n        if pos == 1:\n            return 3\n        if pos % 2 == 0:  # even numbers\n            return 1 + pos / 2\n        else:  # odd numbers\n            # For odd numbers, we need values of n-1, n-2, and n+1\n            return calculate_tri(pos - 1) + calculate_tri(pos - 2) + calculate_tri(pos + 1)\n    \n    # Calculate values from position 1 to n\n    for i in range(1, n + 1):\n        sequence.append(calculate_tri(i))\n    \n    return sequence",
+      "test_content": "from llm_output import tri\n\ndef check(candidate):\n\n    # Check some simple cases\n    \n    assert candidate(3) == [1, 3, 2.0, 8.0]\n    assert candidate(4) == [1, 3, 2.0, 8.0, 3.0]\n    assert candidate(5) == [1, 3, 2.0, 8.0, 3.0, 15.0]\n    assert candidate(6) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0]\n    assert candidate(7) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0]\n    assert candidate(8) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0, 5.0]\n    assert candidate(9) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0, 5.0, 35.0]\n    assert candidate(20) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0, 5.0, 35.0, 6.0, 48.0, 7.0, 63.0, 8.0, 80.0, 9.0, 99.0, 10.0, 120.0, 11.0]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(0) == [1]\n    assert candidate(1) == [1, 3]\n\ncheck(tri)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 131,
+      "prompt": "### Prompt\n    Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n\n### Signature\ndef digits(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def digits(n):\n    product = 1\n    has_odd = False\n    \n    while n > 0:\n        digit = n % 10\n        if digit % 2 == 1:  # if digit is odd\n            product *= digit\n            has_odd = True\n        n //= 10\n    \n    return product if has_odd else 0",
+      "test_content": "from llm_output import digits\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(5) == 5\n    assert candidate(54) == 5\n    assert candidate(120) ==1\n    assert candidate(5014) == 5\n    assert candidate(98765) == 315\n    assert candidate(5576543) == 2625\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(2468) == 0\n\n\ncheck(digits)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 132,
+      "prompt": "### Prompt\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets\n    where at least one bracket in the subsequence is nested.\n\n### Signature\ndef is_nested(string):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def is_nested(string):\n    n = len(string)\n    # For each possible pair of opening and closing brackets\n    for i in range(n-1):\n        if string[i] == '[':\n            # Find matching closing bracket\n            count = 1\n            for j in range(i+1, n):\n                if string[j] == '[':\n                    count += 1\n                elif string[j] == ']':\n                    count -= 1\n                    if count == 0:\n                        # Found matching pair, now check if there's a complete pair within\n                        inner = string[i+1:j]\n                        stack = []\n                        valid_inner = False\n                        for char in inner:\n                            if char == '[':\n                                stack.append(char)\n                            elif char == ']' and stack:\n                                stack.pop()\n                                valid_inner = True\n                        if valid_inner and not stack:\n                            return True\n                        break\n    return False",
+      "test_content": "from llm_output import is_nested\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('[[]]') == True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate('[]]]]]]][[[[[]') == False\n    assert candidate('[][]') == False\n    assert candidate(('[]')) == False\n    assert candidate('[[[[]]]]') == True\n    assert candidate('[]]]]]]]]]]') == False\n    assert candidate('[][][[]]') == True\n    assert candidate('[[]') == False\n    assert candidate('[]]') == False\n    assert candidate('[[]][[') == True\n    assert candidate('[[][]]') == True\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('') == False, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate('[[[[[[[[') == False\n    assert candidate(']]]]]]]]') == False\n\n\ncheck(is_nested)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 133,
+      "prompt": "### Prompt\n    You are given a list of numbers.\n    You need to return the sum of squared numbers in the given list,\n    round each element in the list to the upper int(Ceiling) first.\n    Examples:\n    For lst = [1,2,3] the output should be 14\n    For lst = [1,4,9] the output should be 98\n    For lst = [1,3,5,7] the output should be 84\n    For lst = [1.4,4.2,0] the output should be 29\n    For lst = [-2.4,1,1] the output should be 6\n\n### Signature\ndef sum_squares(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "import math\n\ndef sum_squares(lst):\n    # Round each number up to the nearest integer using ceiling\n    rounded_list = [math.ceil(num) for num in lst]\n    # Square each rounded number and sum them\n    return sum(num * num for num in rounded_list)",
+      "test_content": "from llm_output import sum_squares\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1,2,3])==14, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([1.0,2,3])==14, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([1,3,5,7])==84, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([1.4,4.2,0])==29, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([-2.4,1,1])==6, \"This prints if this assert fails 1 (good for debugging!)\"\n\n    assert candidate([100,1,15,2])==10230, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([10000,10000])==200000000, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([-1.4,4.6,6.3])==75, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([-1.4,17.9,18.9,19.9])==1086, \"This prints if this assert fails 1 (good for debugging!)\"\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([0])==0, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([-1])==1, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([-1,1,0])==2, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(sum_squares)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 134,
+      "prompt": "### Prompt\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n### Signature\ndef check_if_last_char_is_a_letter(txt):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def check_if_last_char_is_a_letter(txt):\n    # If string is empty, return False\n    if not txt:\n        return False\n    \n    # Get the last character\n    last_char = txt[-1]\n    \n    # Check if last character is alphabetical\n    if not last_char.isalpha():\n        return False\n    \n    # Check if string has at least two characters and if second to last is a space\n    if len(txt) >= 2 and txt[-2].isspace():\n        return True\n    \n    # If string has only one character and it's alphabetical\n    if len(txt) == 1 and last_char.isalpha():\n        return True\n        \n    return False",
+      "test_content": "from llm_output import check_if_last_char_is_a_letter\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"apple\") == False\n    assert candidate(\"apple pi e\") == True\n    assert candidate(\"eeeee\") == False\n    assert candidate(\"A\") == True\n    assert candidate(\"Pumpkin pie \") == False\n    assert candidate(\"Pumpkin pie 1\") == False\n    assert candidate(\"\") == False\n    assert candidate(\"eeeee e \") == False\n    assert candidate(\"apple pie\") == False\n    assert candidate(\"apple pi e \") == False\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(check_if_last_char_is_a_letter)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 135,
+      "prompt": "### Prompt\n    Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n### Signature\ndef can_arrange(arr):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def can_arrange(arr):\n    if len(arr) <= 1:\n        return -1\n    \n    for i in range(len(arr)-1, 0, -1):\n        if arr[i] < arr[i-1]:\n            return i\n            \n    return -1",
+      "test_content": "from llm_output import can_arrange\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1,2,4,3,5])==3\n    assert candidate([1,2,4,5])==-1\n    assert candidate([1,4,2,5,6,7,8,9,10])==2\n    assert candidate([4,8,5,7,3])==4\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([])==-1\n\n\ncheck(can_arrange)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 136,
+      "prompt": "### Prompt\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n### Signature\ndef largest_smallest_integers(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def largest_smallest_integers(lst):\n    neg_nums = [x for x in lst if isinstance(x, int) and x < 0]\n    pos_nums = [x for x in lst if isinstance(x, int) and x > 0]\n    \n    largest_neg = max(neg_nums) if neg_nums else None\n    smallest_pos = min(pos_nums) if pos_nums else None\n    \n    return (largest_neg, smallest_pos)",
+      "test_content": "from llm_output import largest_smallest_integers\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([2, 4, 1, 3, 5, 7]) == (None, 1)\n    assert candidate([2, 4, 1, 3, 5, 7, 0]) == (None, 1)\n    assert candidate([1, 3, 2, 4, 5, 6, -2]) == (-2, 1)\n    assert candidate([4, 5, 3, 6, 2, 7, -7]) == (-7, 2)\n    assert candidate([7, 3, 8, 4, 9, 2, 5, -9]) == (-9, 2)\n    assert candidate([]) == (None, None)\n    assert candidate([0]) == (None, None)\n    assert candidate([-1, -3, -5, -6]) == (-1, None)\n    assert candidate([-1, -3, -5, -6, 0]) == (-1, None)\n    assert candidate([-6, -4, -4, -3, 1]) == (-3, 1)\n    assert candidate([-6, -4, -4, -3, -100, 1]) == (-3, 1)\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\ncheck(largest_smallest_integers)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 137,
+      "prompt": "### Prompt\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n### Signature\ndef compare_one(a, b):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def compare_one(a, b):\n    # Convert inputs to comparable format\n    def convert_to_float(val):\n        if isinstance(val, (int, float)):\n            return float(val)\n        if isinstance(val, str):\n            # Handle both . and , as decimal separators\n            try:\n                return float(val.replace(',', '.'))\n            except ValueError:\n                return None\n        return None\n\n    # Convert both values to float for comparison\n    a_float = convert_to_float(a)\n    b_float = convert_to_float(b)\n    \n    if a_float is None or b_float is None:\n        return None\n    \n    if a_float == b_float:\n        return None\n    \n    # Return the larger value in its original type\n    if a_float > b_float:\n        return a\n    return b",
+      "test_content": "from llm_output import compare_one\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(1, 2) == 2\n    assert candidate(1, 2.5) == 2.5\n    assert candidate(2, 3) == 3\n    assert candidate(5, 6) == 6\n    assert candidate(1, \"2,3\") == \"2,3\"\n    assert candidate(\"5,1\", \"6\") == \"6\"\n    assert candidate(\"1\", \"2\") == \"2\"\n    assert candidate(\"1\", 1) == None\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(compare_one)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 138,
+      "prompt": "### Prompt\n    Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n\n### Signature\ndef is_equal_to_sum_even(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def is_equal_to_sum_even(n):\n    # If n is less than 8 (minimum sum of 4 even numbers: 2+2+2+2), return False\n    if n < 8:\n        return False\n    \n    # If n is odd, it can't be sum of even numbers\n    if n % 2 != 0:\n        return False\n    \n    # If n is less than 4 times the smallest even number (2), return False\n    if n < 8:\n        return False\n        \n    return True",
+      "test_content": "from llm_output import is_equal_to_sum_even\n\ndef check(candidate):\n    assert candidate(4) == False\n    assert candidate(6) == False\n    assert candidate(8) == True\n    assert candidate(10) == True\n    assert candidate(11) == False\n    assert candidate(12) == True\n    assert candidate(13) == False\n    assert candidate(16) == True\n\ncheck(is_equal_to_sum_even)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 139,
+      "prompt": "### Prompt\n    The Brazilian factorial is defined as:\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\n    where n > 0\n\n### Signature\ndef special_factorial(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def special_factorial(n):\n    if n <= 0:\n        return None\n    \n    result = 1\n    for i in range(1, n + 1):\n        factorial = 1\n        for j in range(1, i + 1):\n            factorial *= j\n        result *= factorial\n    \n    return result",
+      "test_content": "from llm_output import special_factorial\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(4) == 288, \"Test 4\"\n    assert candidate(5) == 34560, \"Test 5\"\n    assert candidate(7) == 125411328000, \"Test 7\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1) == 1, \"Test 1\"\n\n\ncheck(special_factorial)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 140,
+      "prompt": "### Prompt\n    Given a string text, replace all spaces in it with underscores,\n    and if a string has more than 2 consecutive spaces,\n    then replace all consecutive spaces with -\n\n### Signature\ndef fix_spaces(text):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def fix_spaces(text):\n    # First, replace 3 or more consecutive spaces with a hyphen\n    while '   ' in text:\n        text = text.replace('   ', '-')\n    \n    # Then replace any remaining single spaces with underscores\n    text = text.replace(' ', '_')\n    \n    return text",
+      "test_content": "from llm_output import fix_spaces\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"Example\") == \"Example\", \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(\"Mudasir Hanif \") == \"Mudasir_Hanif_\", \"This prints if this assert fails 2 (good for debugging!)\"\n    assert candidate(\"Yellow Yellow  Dirty  Fellow\") == \"Yellow_Yellow__Dirty__Fellow\", \"This prints if this assert fails 3 (good for debugging!)\"\n    \n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(\"Exa   mple\") == \"Exa-mple\", \"This prints if this assert fails 4 (good for debugging!)\"\n    assert candidate(\"   Exa 1 2 2 mple\") == \"-Exa_1_2_2_mple\", \"This prints if this assert fails 4 (good for debugging!)\"\n\n\ncheck(fix_spaces)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 141,
+      "prompt": "### Prompt\n    Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions\n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from\n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n\n### Signature\ndef file_name_check(file_name):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def file_name_check(file_name):\n    # Check if there's exactly one dot\n    if file_name.count('.') != 1:\n        return 'No'\n    \n    # Split into name and extension\n    name, ext = file_name.split('.')\n    \n    # Check if name is empty\n    if not name:\n        return 'No'\n    \n    # Check if extension is valid\n    if ext not in ['txt', 'exe', 'dll']:\n        return 'No'\n    \n    # Check if name starts with a letter\n    if not name[0].isalpha():\n        return 'No'\n    \n    # Count digits in name\n    digit_count = sum(1 for char in name if char.isdigit())\n    if digit_count > 3:\n        return 'No'\n    \n    return 'Yes'",
+      "test_content": "from llm_output import file_name_check\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"example.txt\") == 'Yes'\n    assert candidate(\"1example.dll\") == 'No'\n    assert candidate('s1sdf3.asd') == 'No'\n    assert candidate('K.dll') == 'Yes'\n    assert candidate('MY16FILE3.exe') == 'Yes'\n    assert candidate('His12FILE94.exe') == 'No'\n    assert candidate('_Y.txt') == 'No'\n    assert candidate('?aREYA.exe') == 'No'\n    assert candidate('/this_is_valid.dll') == 'No'\n    assert candidate('this_is_valid.wow') == 'No'\n    assert candidate('this_is_valid.txt') == 'Yes'\n    assert candidate('this_is_valid.txtexe') == 'No'\n    assert candidate('#this2_i4s_5valid.ten') == 'No'\n    assert candidate('@this1_is6_valid.exe') == 'No'\n    assert candidate('this_is_12valid.6exe4.txt') == 'No'\n    assert candidate('all.exe.txt') == 'No'\n    assert candidate('I563_No.exe') == 'Yes'\n    assert candidate('Is3youfault.txt') == 'Yes'\n    assert candidate('no_one#knows.dll') == 'Yes'\n    assert candidate('1I563_Yes3.exe') == 'No'\n    assert candidate('I563_Yes3.txtt') == 'No'\n    assert candidate('final..txt') == 'No'\n    assert candidate('final132') == 'No'\n    assert candidate('_f4indsartal132.') == 'No'\n    \n        \n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('.txt') == 'No'\n    assert candidate('s.') == 'No'\n\n\ncheck(file_name_check)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 142,
+      "prompt": "### Prompt\n    \"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a\n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not\n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries.\n\n### Signature\ndef sum_squares(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def sum_squares(lst):\n    result = 0\n    for i in range(len(lst)):\n        if i % 3 == 0:\n            result += lst[i] ** 2\n        elif i % 4 == 0:\n            result += lst[i] ** 3\n        else:\n            result += lst[i]\n    return result",
+      "test_content": "from llm_output import sum_squares\n\ndef check(candidate):\n\n    # Check some simple cases\n    \n    assert candidate([1,2,3]) == 6\n    assert candidate([1,4,9]) == 14\n    assert candidate([]) == 0\n    assert candidate([1,1,1,1,1,1,1,1,1]) == 9\n    assert candidate([-1,-1,-1,-1,-1,-1,-1,-1,-1]) == -3\n    assert candidate([0]) == 0\n    assert candidate([-1,-5,2,-1,-5]) == -126\n    assert candidate([-56,-99,1,0,-2]) == 3030\n    assert candidate([-1,0,0,0,0,0,0,0,-1]) == 0\n    assert candidate([-16, -9, -2, 36, 36, 26, -20, 25, -40, 20, -4, 12, -26, 35, 37]) == -14196\n    assert candidate([-1, -3, 17, -1, -15, 13, -1, 14, -14, -12, -5, 14, -14, 6, 13, 11, 16, 16, 4, 10]) == -1448\n    \n    \n    # Don't remove this line:\n\ncheck(sum_squares)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 143,
+      "prompt": "### Prompt\n    You are given a string representing a sentence,\n    the sentence contains some words separated by a space,\n    and you have to return a string that contains the words from the original sentence,\n    whose lengths are prime numbers,\n    the order of the words in the new string should be the same as the original one.\n\n### Signature\ndef words_in_sentence(sentence):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef words_in_sentence(sentence):\n    words = sentence.split()\n    prime_length_words = [word for word in words if is_prime(len(word))]\n    return ' '.join(prime_length_words)",
+      "test_content": "from llm_output import words_in_sentence\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"This is a test\") == \"is\"\n    assert candidate(\"lets go for swimming\") == \"go for\"\n    assert candidate(\"there is no place available here\") == \"there is no place\"\n    assert candidate(\"Hi I am Hussein\") == \"Hi am Hussein\"\n    assert candidate(\"go for it\") == \"go for it\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(\"here\") == \"\"\n    assert candidate(\"here is\") == \"is\"\n\n\ncheck(words_in_sentence)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 144,
+      "prompt": "### Prompt\n    Your task is to implement a function that will simplify the expression\n    x * n. The function returns True if x * n evaluates to a whole number and False\n    otherwise. Both x and n, are string representation of a fraction, and have the following format,\n    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.\n\n### Signature\ndef simplify(x, n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from fractions import Fraction\n\ndef simplify(x, n):\n    try:\n        # Convert string fractions to Fraction objects\n        x_frac = Fraction(*map(int, x.split('/')))\n        n_frac = Fraction(*map(int, n.split('/')))\n        \n        # Multiply the fractions\n        result = x_frac * n_frac\n        \n        # Check if the result is a whole number\n        # A fraction is a whole number if its denominator is 1\n        return result.denominator == 1\n    except:\n        return False",
+      "test_content": "from llm_output import simplify\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"1/5\", \"5/1\") == True, 'test1'\n    assert candidate(\"1/6\", \"2/1\") == False, 'test2'\n    assert candidate(\"5/1\", \"3/1\") == True, 'test3'\n    assert candidate(\"7/10\", \"10/2\") == False, 'test4'\n    assert candidate(\"2/10\", \"50/10\") == True, 'test5'\n    assert candidate(\"7/2\", \"4/2\") == True, 'test6'\n    assert candidate(\"11/6\", \"6/1\") == True, 'test7'\n    assert candidate(\"2/3\", \"5/2\") == False, 'test8'\n    assert candidate(\"5/2\", \"3/5\") == False, 'test9'\n    assert candidate(\"2/4\", \"8/4\") == True, 'test10'\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(\"2/4\", \"4/2\") == True, 'test11'\n    assert candidate(\"1/5\", \"5/1\") == True, 'test12'\n    assert candidate(\"1/5\", \"1/5\") == False, 'test13'\n\n\ncheck(simplify)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 146,
+      "prompt": "### Prompt\n    Write a function that takes an array of numbers as input and returns\n    the number of elements in the array that are greater than 10 and both\n    first and last digits of a number are odd (1, 3, 5, 7, 9).\n    For example:\n    specialFilter([15, -73, 14, -15]) => 1\n    specialFilter([33, -2, -3, 45, 21, 109]) => 2\n\n### Signature\ndef specialFilter(nums):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 18, in <module>\n    check(specialFilter)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 7, in check\n    assert candidate([15, -73, 14, -15]) == 1\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def specialFilter(nums):\n    def is_first_last_odd(num):\n        # Handle negative numbers by taking absolute value\n        num = str(abs(num))\n        # Get first and last digits\n        first = int(num[0])\n        last = int(num[-1])\n        # Check if both are odd numbers from the set {1,3,5,7,9}\n        return first % 2 == 1 and last % 2 == 1\n\n    # Count numbers that are:\n    # 1. Greater than 10 (not absolute value)\n    # 2. Have odd first and last digits\n    return sum(1 for num in nums if num > 10 and is_first_last_odd(num))",
+      "test_content": "from llm_output import specialFilter\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([5, -2, 1, -5]) == 0  \n    assert candidate([15, -73, 14, -15]) == 1\n    assert candidate([33, -2, -3, 45, 21, 109]) == 2\n    assert candidate([43, -12, 93, 125, 121, 109]) == 4\n    assert candidate([71, -2, -33, 75, 21, 19]) == 3\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1]) == 0              \n    assert candidate([]) == 0                   \n\n\ncheck(specialFilter)",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 147,
+      "prompt": "### Prompt\n    You are given a positive integer n. You have to create an integer array a of length n.\n        For each i (1 \u2264 i \u2264 n), the value of a[i] = i * i - i + 1.\n        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k,\n    and a[i] + a[j] + a[k] is a multiple of 3.\n\n### Signature\ndef get_max_triples(n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def get_max_triples(n):\n    # Create array a according to the formula\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    \n    # Counter for valid triples\n    count = 0\n    \n    # Check all possible triples where i < j < k\n    for i in range(n):\n        for j in range(i + 1, n):\n            for k in range(j + 1, n):\n                # Check if sum is divisible by 3\n                if (a[i] + a[j] + a[k]) % 3 == 0:\n                    count += 1\n    \n    return count",
+      "test_content": "from llm_output import get_max_triples\n\ndef check(candidate):\n\n    assert candidate(5) == 1\n    assert candidate(6) == 4\n    assert candidate(10) == 36\n    assert candidate(100) == 53361\n\ncheck(get_max_triples)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 148,
+      "prompt": "### Prompt\n    There are eight planets in our solar system: the closerst to the Sun\n    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn,\n    Uranus, Neptune.\n    Write a function that takes two planet names as strings planet1 and planet2.\n    The function should return a tuple containing all planets whose orbits are\n    located between the orbit of planet1 and the orbit of planet2, sorted by\n    the proximity to the sun.\n    The function should return an empty tuple if planet1 or planet2\n    are not correct planet names.\n    Examples\n    bf(\"Jupiter\", \"Neptune\") ==> (\"Saturn\", \"Uranus\")\n    bf(\"Earth\", \"Mercury\") ==> (\"Venus\")\n    bf(\"Mercury\", \"Uranus\") ==> (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\")\n\n### Signature\ndef bf(planet1, planet2):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def bf(planet1, planet2):\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n    \n    # Check if both planets exist in the solar system\n    if planet1 not in planets or planet2 not in planets:\n        return tuple()\n    \n    # Get indices of the planets\n    idx1 = planets.index(planet1)\n    idx2 = planets.index(planet2)\n    \n    # Sort indices to get correct order\n    start_idx = min(idx1, idx2)\n    end_idx = max(idx1, idx2)\n    \n    # Return tuple of planets between start_idx and end_idx\n    return tuple(planets[start_idx + 1:end_idx])",
+      "test_content": "from llm_output import bf\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"Jupiter\", \"Neptune\") == (\"Saturn\", \"Uranus\"), \"First test error: \" + str(len(candidate(\"Jupiter\", \"Neptune\")))      \n    assert candidate(\"Earth\", \"Mercury\") == (\"Venus\",), \"Second test error: \" + str(candidate(\"Earth\", \"Mercury\"))  \n    assert candidate(\"Mercury\", \"Uranus\") == (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\"), \"Third test error: \" + str(candidate(\"Mercury\", \"Uranus\"))      \n    assert candidate(\"Neptune\", \"Venus\") == (\"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\"), \"Fourth test error: \" + str(candidate(\"Neptune\", \"Venus\"))  \n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(\"Earth\", \"Earth\") == ()\n    assert candidate(\"Mars\", \"Earth\") == ()\n    assert candidate(\"Jupiter\", \"Makemake\") == ()\n\n\ncheck(bf)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 149,
+      "prompt": "### Prompt\n    Write a function that accepts a list of strings as a parameter,\n    deletes the strings that have odd lengths from it,\n    and returns the resulted list with a sorted order,\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n    The order of the list should be ascending by length of each word, and you\n    should return the list sorted by that rule.\n    If two words have the same length, sort the list alphabetically.\n    The function should return a list of strings in sorted order.\n    You may assume that all words will have the same length.\n    For example:\n    assert list_sort([\"aa\", \"a\", \"aaa\"]) => [\"aa\"]\n    assert list_sort([\"ab\", \"a\", \"aaa\", \"cd\"]) => [\"ab\", \"cd\"]\n\n### Signature\ndef sorted_list_sum(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def sorted_list_sum(lst):\n    # Filter out strings with odd lengths\n    even_length_strings = [s for s in lst if len(s) % 2 == 0]\n    \n    # Sort by length first, then alphabetically\n    return sorted(even_length_strings, key=lambda x: (len(x), x))",
+      "test_content": "from llm_output import sorted_list_sum\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([\"aa\", \"a\", \"aaa\"]) == [\"aa\"]\n    assert candidate([\"school\", \"AI\", \"asdf\", \"b\"]) == [\"AI\", \"asdf\", \"school\"]\n    assert candidate([\"d\", \"b\", \"c\", \"a\"]) == []\n    assert candidate([\"d\", \"dcba\", \"abcd\", \"a\"]) == [\"abcd\", \"dcba\"]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([\"AI\", \"ai\", \"au\"]) == [\"AI\", \"ai\", \"au\"]\n    assert candidate([\"a\", \"b\", \"b\", \"c\", \"c\", \"a\"]) == []\n    assert candidate(['aaaa', 'bbbb', 'dd', 'cc']) == [\"cc\", \"dd\", \"aaaa\", \"bbbb\"]\n\n\ncheck(sorted_list_sum)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 150,
+      "prompt": "### Prompt\n    A simple program which should return the value of x if n is\n    a prime number and should return the value of y otherwise.\n\n### Signature\ndef x_or_y(n, x, y):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def x_or_y(n, x, y):\n    if n < 2:\n        return y\n    \n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return y\n    \n    return x",
+      "test_content": "from llm_output import x_or_y\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(7, 34, 12) == 34\n    assert candidate(15, 8, 5) == 5\n    assert candidate(3, 33, 5212) == 33\n    assert candidate(1259, 3, 52) == 3\n    assert candidate(7919, -1, 12) == -1\n    assert candidate(3609, 1245, 583) == 583\n    assert candidate(91, 56, 129) == 129\n    assert candidate(6, 34, 1234) == 1234\n    \n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1, 2, 0) == 0\n    assert candidate(2, 2, 0) == 2\n\n\ncheck(x_or_y)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 151,
+      "prompt": "### Prompt\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n\n### Signature\ndef double_the_difference(lst):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def double_the_difference(lst):\n    return sum(x * x for x in lst if isinstance(x, (int, float)) and x > 0 and x % 1 == 0 and x % 2 == 1)",
+      "test_content": "from llm_output import double_the_difference\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([]) == 0 , \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([5, 4]) == 25 , \"This prints if this assert fails 2 (good for debugging!)\"\n    assert candidate([0.1, 0.2, 0.3]) == 0 , \"This prints if this assert fails 3 (good for debugging!)\"\n    assert candidate([-10, -20, -30]) == 0 , \"This prints if this assert fails 4 (good for debugging!)\"\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([-1, -2, 8]) == 0, \"This prints if this assert fails 5 (also good for debugging!)\"\n    assert candidate([0.2, 3, 5]) == 34, \"This prints if this assert fails 6 (also good for debugging!)\"\n    lst = list(range(-99, 100, 2))\n    odd_sum = sum([i**2 for i in lst if i%2!=0 and i > 0])\n    assert candidate(lst) == odd_sum , \"This prints if this assert fails 7 (good for debugging!)\"\n\n\ncheck(double_the_difference)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 152,
+      "prompt": "### Prompt\n    I think we all remember that feeling when the result of some long-awaited\n    event is finally known. The feelings and thoughts you have at that moment are\n    definitely worth noting down and comparing.\n    Your task is to determine if a person correctly guessed the results of a number of matches.\n    You are given two arrays of scores and guesses of equal length, where each index shows a match.\n    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,\n    the value is 0, and if not, the value is the absolute difference between the guess and the score.\n\n### Signature\ndef compare(game,guess):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def compare(game,guess):\n    \"\"\"\n    Compare actual game scores with guessed scores and return array of differences.\n    \n    Args:\n        game: List of actual game scores\n        guess: List of guessed scores\n    \n    Returns:\n        List of absolute differences between actual and guessed scores\n    \"\"\"\n    return [abs(g - s) for g, s in zip(guess, game)]",
+      "test_content": "from llm_output import compare\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1,2,3,4,5,1],[1,2,3,4,2,-2])==[0,0,0,0,3,3], \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([0,0,0,0,0,0],[0,0,0,0,0,0])==[0,0,0,0,0,0], \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([1,2,3],[-1,-2,-3])==[2,4,6], \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([1,2,3,5],[-1,2,3,4])==[2,0,0,1], \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(compare)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 153,
+      "prompt": "### Prompt\n    You will be given the name of a class (a string) and a list of extensions.\n    The extensions are to be used to load additional classes to the class. The\n    strength of the extension is as follows: Let CAP be the number of the uppercase\n    letters in the extension's name, and let SM be the number of lowercase letters\n    in the extension's name, the strength is given by the fraction CAP - SM.\n    You should find the strongest extension and return a string in this\n    format: ClassName.StrongestExtensionName.\n    If there are two or more extensions with the same strength, you should\n    choose the one that comes first in the list.\n    For example, if you are given \"Slices\" as the class and a list of the\n    extensions: ['SErviNGSliCes', 'Cheese', 'StuFfed'] then you should\n    return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension\n    (its strength is -1).\n    Example:\n    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'\n\n### Signature\ndef Strongest_Extension(class_name, extensions):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def Strongest_Extension(class_name, extensions):\n    def calculate_strength(extension):\n        uppercase_count = sum(1 for c in extension if c.isupper())\n        lowercase_count = sum(1 for c in extension if c.islower())\n        return uppercase_count - lowercase_count\n\n    if not extensions:\n        return class_name\n\n    strongest = extensions[0]\n    max_strength = calculate_strength(strongest)\n\n    for ext in extensions[1:]:\n        current_strength = calculate_strength(ext)\n        if current_strength > max_strength:\n            max_strength = current_strength\n            strongest = ext\n\n    return f\"{class_name}.{strongest}\"",
+      "test_content": "from llm_output import Strongest_Extension\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('Watashi', ['tEN', 'niNE', 'eIGHt8OKe']) == 'Watashi.eIGHt8OKe'\n    assert candidate('Boku123', ['nani', 'NazeDa', 'YEs.WeCaNe', '32145tggg']) == 'Boku123.YEs.WeCaNe'\n    assert candidate('__YESIMHERE', ['t', 'eMptY', 'nothing', 'zeR00', 'NuLl__', '123NoooneB321']) == '__YESIMHERE.NuLl__'\n    assert candidate('K', ['Ta', 'TAR', 't234An', 'cosSo']) == 'K.TAR'\n    assert candidate('__HAHA', ['Tab', '123', '781345', '-_-']) == '__HAHA.123'\n    assert candidate('YameRore', ['HhAas', 'okIWILL123', 'WorkOut', 'Fails', '-_-']) == 'YameRore.okIWILL123'\n    assert candidate('finNNalLLly', ['Die', 'NowW', 'Wow', 'WoW']) == 'finNNalLLly.WoW'\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate('_', ['Bb', '91245']) == '_.Bb'\n    assert candidate('Sp', ['671235', 'Bb']) == 'Sp.671235'\n    \n\ncheck(Strongest_Extension)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 154,
+      "prompt": "### Prompt\n    You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n### Signature\ndef cycpattern_check(a , b):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def cycpattern_check(a, b):\n    if len(b) > len(a):\n        return False\n    \n    # Generate all possible rotations of b\n    n = len(b)\n    rotations = [b[i:] + b[:i] for i in range(n)]\n    \n    # Check if any rotation is a substring of a\n    for rotation in rotations:\n        if rotation in a:\n            return True\n    \n    return False",
+      "test_content": "from llm_output import cycpattern_check\n\ndef check(candidate):\n\n    # Check some simple cases\n    #assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    #assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert  candidate(\"xyzw\",\"xyw\") == False , \"test #0\"\n    assert  candidate(\"yello\",\"ell\") == True , \"test #1\"\n    assert  candidate(\"whattup\",\"ptut\") == False , \"test #2\"\n    assert  candidate(\"efef\",\"fee\") == True , \"test #3\"\n    assert  candidate(\"abab\",\"aabb\") == False , \"test #4\"\n    assert  candidate(\"winemtt\",\"tinem\") == True , \"test #5\"\n\n\ncheck(cycpattern_check)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 155,
+      "prompt": "### Prompt\n    Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n### Signature\ndef even_odd_count(num):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def even_odd_count(num):\n    even_count = 0\n    odd_count = 0\n    \n    # Convert negative numbers to positive\n    num = abs(num)\n    \n    # Convert number to string to process each digit\n    num_str = str(num)\n    \n    for digit in num_str:\n        # Convert character back to integer\n        digit_int = int(digit)\n        if digit_int % 2 == 0:\n            even_count += 1\n        else:\n            odd_count += 1\n            \n    return (even_count, odd_count)",
+      "test_content": "from llm_output import even_odd_count\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(7) == (0, 1)\n    assert candidate(-78) == (1, 1)\n    assert candidate(3452) == (2, 2)\n    assert candidate(346211) == (3, 3)\n    assert candidate(-345821) == (3, 3)\n    assert candidate(-2) == (1, 0)\n    assert candidate(-45347) == (2, 3)\n    assert candidate(0) == (1, 0)\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(even_odd_count)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 156,
+      "prompt": "### Prompt\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n### Signature\ndef int_to_mini_roman(number):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def int_to_mini_roman(number):\n    roman_values = [\n        (1000, 'm'),\n        (900, 'cm'),\n        (500, 'd'),\n        (400, 'cd'),\n        (100, 'c'),\n        (90, 'xc'),\n        (50, 'l'),\n        (40, 'xl'),\n        (10, 'x'),\n        (9, 'ix'),\n        (5, 'v'),\n        (4, 'iv'),\n        (1, 'i')\n    ]\n    \n    result = ''\n    for value, symbol in roman_values:\n        while number >= value:\n            result += symbol\n            number -= value\n    return result",
+      "test_content": "from llm_output import int_to_mini_roman\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(19) == 'xix'\n    assert candidate(152) == 'clii'\n    assert candidate(251) == 'ccli'\n    assert candidate(426) == 'cdxxvi'\n    assert candidate(500) == 'd'\n    assert candidate(1) == 'i'\n    assert candidate(4) == 'iv'\n    assert candidate(43) == 'xliii'\n    assert candidate(90) == 'xc'\n    assert candidate(94) == 'xciv'\n    assert candidate(532) == 'dxxxii'\n    assert candidate(900) == 'cm'\n    assert candidate(994) == 'cmxciv'\n    assert candidate(1000) == 'm'\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(int_to_mini_roman)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 157,
+      "prompt": "### Prompt\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    A right-angled triangle is a triangle in which one angle is right angle or\n    90 degree.\n    Example:\n    right_angle_triangle(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n\n### Signature\ndef right_angle_triangle(a, b, c):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def right_angle_triangle(a, b, c):\n    # Sort the sides to ensure the longest side is 'c'\n    sides = sorted([a, b, c])\n    a, b, c = sides[0], sides[1], sides[2]\n    \n    # Check if it's a valid triangle\n    if a <= 0 or b <= 0 or c <= 0 or (a + b <= c):\n        return False\n    \n    # Check if it satisfies the Pythagorean theorem\n    # a\u00b2 + b\u00b2 = c\u00b2\n    return abs(a*a + b*b - c*c) < 1e-10",
+      "test_content": "from llm_output import right_angle_triangle\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(3, 4, 5) == True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(1, 2, 3) == False\n    assert candidate(10, 6, 8) == True\n    assert candidate(2, 2, 2) == False\n    assert candidate(7, 24, 25) == True\n    assert candidate(10, 5, 7) == False\n    assert candidate(5, 12, 13) == True\n    assert candidate(15, 8, 17) == True\n    assert candidate(48, 55, 73) == True\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1, 1, 1) == False, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(2, 2, 10) == False\n\n\ncheck(right_angle_triangle)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 158,
+      "prompt": "### Prompt\n    Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n### Signature\ndef find_max(words):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def find_max(words):\n    def count_unique_chars(word):\n        return len(set(word))\n    \n    max_unique = 0\n    result = \"\"\n    \n    for word in words:\n        unique_count = count_unique_chars(word)\n        if unique_count > max_unique:\n            max_unique = unique_count\n            result = word\n        elif unique_count == max_unique:\n            result = min(result, word)\n    \n    return result",
+      "test_content": "from llm_output import find_max\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert (candidate([\"name\", \"of\", \"string\"]) == \"string\"), \"t1\"\n    assert (candidate([\"name\", \"enam\", \"game\"]) == \"enam\"), 't2'\n    assert (candidate([\"aaaaaaa\", \"bb\", \"cc\"]) == \"aaaaaaa\"), 't3'\n    assert (candidate([\"abc\", \"cba\"]) == \"abc\"), 't4'\n    assert (candidate([\"play\", \"this\", \"game\", \"of\",\"footbott\"]) == \"footbott\"), 't5'\n    assert (candidate([\"we\", \"are\", \"gonna\", \"rock\"]) == \"gonna\"), 't6'\n    assert (candidate([\"we\", \"are\", \"a\", \"mad\", \"nation\"]) == \"nation\"), 't7'\n    assert (candidate([\"this\", \"is\", \"a\", \"prrk\"]) == \"this\"), 't8'\n\n    # Check some edge cases that are easy to work out by hand.\n    assert (candidate([\"b\"]) == \"b\"), 't9'\n    assert (candidate([\"play\", \"play\", \"play\"]) == \"play\"), 't10'\n\n\ncheck(find_max)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 159,
+      "prompt": "### Prompt\n    You're a hungry rabbit, and you already have eaten a certain number of carrots,\n    but now you need to eat more carrots to complete the day's meals.\n    you should return an array of [ total number of eaten carrots after your meals,\n                                    the number of carrots left after your meals ]\n    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.\n\n### Signature\ndef eat(number, need, remaining):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def eat(number, need, remaining):\n    \"\"\"\n    Calculate total eaten carrots and remaining carrots after meals\n    \n    Args:\n        number (int): Number of carrots already eaten\n        need (int): Number of additional carrots needed\n        remaining (int): Number of carrots available\n    \n    Returns:\n        list: [total carrots eaten, carrots remaining]\n    \"\"\"\n    # Calculate how many carrots can actually be eaten\n    can_eat = min(need, remaining)\n    \n    # Calculate total eaten (already eaten + what can be eaten now)\n    total_eaten = number + can_eat\n    \n    # Calculate remaining carrots\n    carrots_left = remaining - can_eat\n    \n    return [total_eaten, carrots_left]",
+      "test_content": "from llm_output import eat\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(5, 6, 10) == [11, 4], \"Error\"\n    assert candidate(4, 8, 9) == [12, 1], \"Error\"\n    assert candidate(1, 10, 10) == [11, 0], \"Error\"\n    assert candidate(2, 11, 5) == [7, 0], \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(4, 5, 7) == [9, 2], \"Error\"\n    assert candidate(4, 5, 1) == [5, 0], \"Error\"\n\n\ncheck(eat)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 160,
+      "prompt": "### Prompt\n    Given two lists operator, and operand. The first list has basic algebra operations, and\n    the second list is a list of integers. Use the two given lists to build the algebric\n    expression and return the evaluation of this expression.\n\n### Signature\ndef do_algebra(operator, operand):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def do_algebra(operator, operand):\n    expression = str(operand[0])\n    for i in range(len(operator)):\n        expression += operator[i] + str(operand[i + 1])\n    return eval(expression)",
+      "test_content": "from llm_output import do_algebra\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(['**', '*', '+'], [2, 3, 4, 5]) == 37\n    assert candidate(['+', '*', '-'], [2, 3, 4, 5]) == 9\n    assert candidate(['//', '*'], [7, 3, 4]) == 8, \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(do_algebra)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 161,
+      "prompt": "### Prompt\n    You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa,\n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n\n### Signature\ndef solve(s):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def solve(s):\n    # Check if string contains any letters\n    has_letters = any(c.isalpha() for c in s)\n    \n    if not has_letters:\n        # If no letters, reverse the entire string\n        return s[::-1]\n    \n    # If letters exist, swap case for letters and keep others as is\n    return ''.join(c.swapcase() if c.isalpha() else c for c in s)",
+      "test_content": "from llm_output import solve\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"AsDf\") == \"aSdF\"\n    assert candidate(\"1234\") == \"4321\"\n    assert candidate(\"ab\") == \"AB\"\n    assert candidate(\"#a@C\") == \"#A@c\"\n    assert candidate(\"#AsdfW^45\") == \"#aSDFw^45\"\n    assert candidate(\"#6@2\") == \"2@6#\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(\"#$a^D\") == \"#$A^d\"\n    assert candidate(\"#ccc\") == \"#CCC\"\n\n    # Don't remove this line:\n\ncheck(solve)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 162,
+      "prompt": "### Prompt\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n### Signature\ndef string_to_md5(text):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "import hashlib\n\ndef string_to_md5(text):\n    if not text:\n        return None\n    return hashlib.md5(text.encode()).hexdigest()",
+      "test_content": "from llm_output import string_to_md5\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\n    assert candidate('') == None\n    assert candidate('A B C') == '0ef78513b0cb8cef12743f5aeb35f888'\n    assert candidate('password') == '5f4dcc3b5aa765d61d8327deb882cf99'\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(string_to_md5)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 163,
+      "prompt": "### Prompt\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n### Signature\ndef generate_integers(a, b):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 15, in <module>\n    check(generate_integers)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_second_half_1760717009909529/llm_output_test.py\", line 9, in check\n    assert candidate(17,89) == [], \"Test 4\"\n           ^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Test 4\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def generate_integers(a, b):\n    \"\"\"\n    Returns even digits between a and b in ascending order\n    \"\"\"\n    # Ensure a is smaller than b by swapping if needed\n    if a > b:\n        a, b = b, a\n        \n    # For single digit numbers between a and b\n    # Only include if the number itself is even\n    result = []\n    for num in range(a, b + 1):\n        if len(str(num)) == 1 and num % 2 == 0:\n            result.append(num)\n            \n    return sorted(result)",
+      "test_content": "from llm_output import generate_integers\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(2, 10) == [2, 4, 6, 8], \"Test 1\"\n    assert candidate(10, 2) == [2, 4, 6, 8], \"Test 2\"\n    assert candidate(132, 2) == [2, 4, 6, 8], \"Test 3\"\n    assert candidate(17,89) == [], \"Test 4\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(generate_integers)",
+      "context": null,
+      "attempt_num": 4
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "anthropic/claude-3.5-haiku": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(similar_elements)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import List, Any\n\ndef similar_elements(test_tup1: List[Any], test_tup2: List[Any]) -> str:\n    # Convert lists to sets for efficient intersection\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    \n    # Find common elements\n    common_elements = list(set1.intersection(set2))\n    \n    # Convert result to string representation\n    return str(common_elements)",
+      "test_content": "from llm_output import similar_elements\n\ndef check(candidate):\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n    assert set(candidate((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))\n    assert set(candidate((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))\n\ncheck(similar_elements)",
+      "context": "{\"function_name\": \"similar_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(find_Rotations)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"aaaa\") == 1\n           ^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import Union\n\ndef is_not_prime(n: Union[int, float]) -> bool:\n    \"\"\"\n    Identify if a given number is not a prime number.\n    \n    Args:\n        n (int or float): The number to check for primality\n    \n    Returns:\n        bool: True if the number is not prime, False if it is prime\n    \"\"\"\n    # Handle edge cases\n    if not isinstance(n, int) or n <= 1:\n        return True\n    \n    # Check for divisibility from 2 to square root of n\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return True\n    \n    return False",
+      "test_content": "from llm_output import is_not_prime\n\ndef check(candidate):\n    assert candidate(2) == False\n    assert candidate(10) == True\n    assert candidate(35) == True\n    assert candidate(37) == False\n\ncheck(is_not_prime)",
+      "context": "{\"function_name\": \"is_not_prime\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(find_Rotations)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 5, in check\n    assert candidate(\"ab\") == 2\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import Union\n\ndef find_Rotations(str: str) -> Union[int, str]:\n    # If string is empty or has only one character, no rotations possible\n    if not str or len(str) <= 1:\n        return 0\n    \n    # Concatenate the string with itself \n    double_str = str + str\n    \n    # Try all possible rotations\n    for rotations in range(1, len(str)):\n        # Check if rotated substring exists in double string\n        rotated_str = str[rotations:] + str[:rotations]\n        if rotated_str in double_str[len(str):]:\n            return rotations\n    \n    # If no rotation makes the string same\n    return 0",
+      "test_content": "from llm_output import find_Rotations\n\ndef check(candidate):\n    assert candidate(\"aaaa\") == 1\n    assert candidate(\"ab\") == 2\n    assert candidate(\"abc\") == 3\n\ncheck(find_Rotations)",
+      "context": "{\"function_name\": \"find_Rotations\"}",
+      "attempt_num": 1
+    }
+  ]
+}

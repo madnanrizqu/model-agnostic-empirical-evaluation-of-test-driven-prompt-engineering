@@ -1,0 +1,203 @@
+{
+  "metadata": {
+    "analysis_date": "2025-09-10",
+    "data_source": "code_contests_difficulty_summary.json",
+    "models_analyzed": [
+      "Qwen/Qwen2.5-Coder-32B-Instruct",
+      "anthropic/claude-3.5-sonnet",
+      "openai/gpt-4o-2024-11-20"
+    ],
+    "difficulties": [
+      "EASY",
+      "MEDIUM",
+      "HARD"
+    ],
+    "problems_per_difficulty": {
+      "EASY": 13,
+      "MEDIUM": 68,
+      "HARD": 20
+    }
+  },
+  "first_attempt": {
+    "performance_and_effectiveness": {
+      "td_performance_by_difficulty": [
+        55.22,
+        29.69,
+        24.07
+      ],
+      "normal_performance_by_difficulty": [
+        0.0,
+        2.89,
+        11.11
+      ],
+      "td_benefit": {
+        "easy": 55.22,
+        "medium": 26.79,
+        "hard": 12.96
+      },
+      "performance_transitions_td": {
+        "easy_to_medium": -25.54,
+        "medium_to_hard": -5.61
+      },
+      "performance_transitions_normal": {
+        "easy_to_medium": 2.89,
+        "medium_to_hard": 8.22
+      },
+      "pattern_type_td": "monotonic_decrease",
+      "pattern_type_normal": "monotonic_increase"
+    },
+    "td_benefit_statistics_by_difficulty": {
+      "EASY": {
+        "td_improvements": [
+          65.67,
+          40.3,
+          59.7
+        ],
+        "n_models": 3,
+        "mean": 55.22,
+        "median": 59.7,
+        "std_dev": 13.26,
+        "min": 40.3,
+        "max": 65.67,
+        "percentile_25": 50.0,
+        "percentile_75": 62.69,
+        "iqr": 12.69,
+        "confidence_interval": [
+          22.27,
+          88.17
+        ]
+      },
+      "MEDIUM": {
+        "td_improvements": [
+          33.96,
+          20.38,
+          26.04
+        ],
+        "n_models": 3,
+        "mean": 26.79,
+        "median": 26.04,
+        "std_dev": 6.82,
+        "min": 20.38,
+        "max": 33.96,
+        "percentile_25": 23.21,
+        "percentile_75": 30.0,
+        "iqr": 6.79,
+        "confidence_interval": [
+          9.85,
+          43.74
+        ]
+      },
+      "HARD": {
+        "td_improvements": [
+          12.5,
+          13.89,
+          12.5
+        ],
+        "n_models": 3,
+        "mean": 12.96,
+        "median": 12.5,
+        "std_dev": 0.8,
+        "min": 12.5,
+        "max": 13.89,
+        "percentile_25": 12.5,
+        "percentile_75": 13.2,
+        "iqr": 0.7,
+        "confidence_interval": [
+          10.97,
+          14.96
+        ]
+      }
+    }
+  },
+  "remediation": {
+    "performance_and_effectiveness": {
+      "td_performance_by_difficulty": [
+        64.18,
+        38.11,
+        28.24
+      ],
+      "normal_performance_by_difficulty": [
+        45.77,
+        22.64,
+        25.0
+      ],
+      "td_benefit": {
+        "easy": 18.41,
+        "medium": 15.47,
+        "hard": 3.24
+      },
+      "performance_transitions_td": {
+        "easy_to_medium": -26.07,
+        "medium_to_hard": -9.87
+      },
+      "performance_transitions_normal": {
+        "easy_to_medium": -23.13,
+        "medium_to_hard": 2.36
+      },
+      "pattern_type_td": "monotonic_decrease",
+      "pattern_type_normal": "u_shaped"
+    },
+    "td_benefit_statistics_by_difficulty": {
+      "EASY": {
+        "td_improvements": [
+          0.0,
+          -2.99,
+          58.21
+        ],
+        "n_models": 3,
+        "mean": 18.41,
+        "median": 0.0,
+        "std_dev": 34.5,
+        "min": -2.99,
+        "max": 58.21,
+        "percentile_25": -1.5,
+        "percentile_75": 29.1,
+        "iqr": 30.6,
+        "confidence_interval": [
+          -67.3,
+          104.12
+        ]
+      },
+      "MEDIUM": {
+        "td_improvements": [
+          6.42,
+          11.32,
+          28.68
+        ],
+        "n_models": 3,
+        "mean": 15.47,
+        "median": 11.32,
+        "std_dev": 11.7,
+        "min": 6.42,
+        "max": 28.68,
+        "percentile_25": 8.87,
+        "percentile_75": 20.0,
+        "iqr": 11.13,
+        "confidence_interval": [
+          -13.58,
+          44.53
+        ]
+      },
+      "HARD": {
+        "td_improvements": [
+          -5.56,
+          1.39,
+          13.89
+        ],
+        "n_models": 3,
+        "mean": 3.24,
+        "median": 1.39,
+        "std_dev": 9.86,
+        "min": -5.56,
+        "max": 13.89,
+        "percentile_25": -2.09,
+        "percentile_75": 7.64,
+        "iqr": 9.73,
+        "confidence_interval": [
+          -21.24,
+          27.72
+        ]
+      }
+    }
+  }
+}

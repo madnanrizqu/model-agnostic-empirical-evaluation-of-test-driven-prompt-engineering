@@ -1,0 +1,94 @@
+{
+  "openai/gpt-4o-2024-11-20": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(similar_elements)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List, Tuple\n\ndef similar_elements(test_tup1: Tuple[int, ...], test_tup2: Tuple[int, ...]) -> List[int]:\n    # Find the intersection of the two tuples\n    shared_elements = set(test_tup1).intersection(test_tup2)\n    # Convert the result to a sorted list\n    result = sorted(shared_elements)\n    # Return the result as a list\n    return result",
+      "test_content": "from llm_output import similar_elements\n\ndef check(candidate):\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n    assert set(candidate((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))\n    assert set(candidate((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))\n\ncheck(similar_elements)",
+      "context": "{\"function_name\": \"similar_elements\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from math import isqrt\n\ndef is_not_prime(n: int) -> bool:\n    if n <= 1:\n        return True  # Numbers less than or equal to 1 are not prime\n    if n == 2:\n        return False  # 2 is a prime number\n    if n % 2 == 0:\n        return True  # Even numbers greater than 2 are not prime\n    \n    # Check divisors from 3 to sqrt(n)\n    for i in range(3, isqrt(n) + 1, 2):\n        if n % i == 0:\n            return True  # Found a divisor, so it's not prime\n    \n    return False  # No divisors found, so it's prime",
+      "test_content": "from llm_output import is_not_prime\n\ndef check(candidate):\n    assert candidate(2) == False\n    assert candidate(10) == True\n    assert candidate(35) == True\n    assert candidate(37) == False\n\ncheck(is_not_prime)",
+      "context": "{\"function_name\": \"is_not_prime\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(heap_queue_largest)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from heapq import nlargest\nfrom typing import List\n\ndef heap_queue_largest(nums: List[int], n: int) -> List[int]:\n    # Use heapq.nlargest to find the n largest integers\n    largest_nums = nlargest(n, nums)\n    # Return the result in descending order\n    return largest_nums\n#",
+      "test_content": "from llm_output import heap_queue_largest\n\ndef check(candidate):\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]\n\ncheck(heap_queue_largest)",
+      "context": "{\"function_name\": \"heap_queue_largest\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def differ_At_One_Bit_Pos(x: int, y: int) -> bool:\n    \"\"\"\n    Check whether the two numbers differ at one bit position only or not.\n    :param x: First integer\n    :param y: Second integer\n    :return: True if they differ at one bit position, otherwise False\n    \"\"\"\n    # XOR the two numbers, if the result is a power of two, they differ at one bit position\n    xor_result = x ^ y\n    return xor_result & (xor_result - 1) == 0 and xor_result != 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(find_char_long)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "import re\n\ndef find_char_long(text: str) -> list:\n    \"\"\"\n    Finds all words in the input string that are at least 4 characters long.\n\n    Args:\n    text (str): The input string.\n\n    Returns:\n    list: A list of words that are at least 4 characters long.\n    \"\"\"\n    # Use regex to find all words with at least 4 characters\n    words = re.findall(r'\\b\\w{4,}\\b', text)\n    # Return the list of words\n    return words",
+      "test_content": "from llm_output import find_char_long\n\ndef check(candidate):\n    assert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])\n    assert set(candidate('Jing Eco and Tech')) == set(['Jing', 'Tech'])\n    assert set(candidate('Jhingai wulu road Zone 3')) == set(['Jhingai', 'wulu', 'road', 'Zone'])\n\ncheck(find_char_long)",
+      "context": "{\"function_name\": \"find_char_long\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(square_nums)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    return [num ** 2 for num in nums]",
+      "test_content": "from llm_output import square_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n    assert candidate([10,20,30])==([100,400,900])\n    assert candidate([12,15])==([144,225])\n\ncheck(square_nums)",
+      "context": "{\"function_name\": \"square_nums\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def find_Rotations(str: str) -> int:\n    \"\"\"\n    Finds the minimum number of rotations (greater than 0) required to get the same string.\n    \n    :param str: The input string\n    :return: The minimum number of rotations required\n    \"\"\"\n    n = len(str)\n    # Concatenate the string to itself\n    temp = str + str\n    \n    # Iterate through the string to find the first rotation that matches the original\n    for i in range(1, n + 1):\n        if temp[i:i + n] == str:\n            return i\n    \n    return n  # In case no rotation matches, which shouldn't happen for valid inputs",
+      "test_content": "from llm_output import find_Rotations\n\ndef check(candidate):\n    assert candidate(\"aaaa\") == 1\n    assert candidate(\"ab\") == 2\n    assert candidate(\"abc\") == 3\n\ncheck(find_Rotations)",
+      "context": "{\"function_name\": \"find_Rotations\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def remove_Occ(s: str, ch: str) -> str:\n    # Find the first occurrence of the character\n    first_occ = s.find(ch)\n    # Find the last occurrence of the character\n    last_occ = s.rfind(ch)\n    \n    # If the character is not found, return the original string\n    if first_occ == -1:\n        return s\n    \n    # Remove the first occurrence\n    s = s[:first_occ] + s[first_occ + 1:]\n    \n    # Adjust the last occurrence index after removing the first occurrence\n    last_occ -= 1\n    \n    # Remove the last occurrence\n    s = s[:last_occ] + s[last_occ + 1:]\n    \n    return s",
+      "test_content": "from llm_output import remove_Occ\n\ndef check(candidate):\n    assert candidate(\"hello\",\"l\") == \"heo\"\n    assert candidate(\"abcda\",\"a\") == \"bcd\"\n    assert candidate(\"PHP\",\"P\") == \"H\"\n\ncheck(remove_Occ)",
+      "context": "{\"function_name\": \"remove_Occ\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(sort_matrix)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef sort_matrix(M: List[List[int]]) -> List[List[int]]:\n    # Sort the matrix based on the sum of its rows\n    sorted_matrix = sorted(M, key=lambda row: sum(row))\n    # Return the sorted matrix\n    return sorted_matrix",
+      "test_content": "from llm_output import sort_matrix\n\ndef check(candidate):\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n    assert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\n    assert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]\n\ncheck(sort_matrix)",
+      "context": "{\"function_name\": \"sort_matrix\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 14,
+      "prompt": "### Prompt\nWrite a python function to find the volume of a triangular prism.\n\n### Signature\ndef find_Volume(l,b,h) :",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def find_Volume(l: float, b: float, h: float) -> float:\n    \"\"\"\n    Calculate the volume of a triangular prism.\n\n    Parameters:\n    l (float): The length of the prism.\n    b (float): The base of the triangular cross-section.\n    h (float): The height of the triangular cross-section.\n\n    Returns:\n    float: The volume of the triangular prism.\n    \"\"\"\n    # The area of the triangular base is (1/2) * base * height\n    triangular_base_area = 0.5 * b * h\n    \n    # The volume of the prism is the area of the base multiplied by the length\n    volume = triangular_base_area * l\n    \n    return volume",
+      "test_content": "from llm_output import find_Volume\n\ndef check(candidate):\n    assert candidate(10,8,6) == 240\n    assert candidate(3,2,2) == 6\n    assert candidate(1,2,1) == 1\n\ncheck(find_Volume)",
+      "context": "{\"function_name\": \"find_Volume\"}",
+      "attempt_num": 1
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 0,
+    "solution": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    n = len(numbers)\n    for i in range(n):\n        for j in range(i + 1, n):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True",
+    "timestamp": "2025-08-13T11:10:14.287540",
+    "response_time": "8.08"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 1,
+    "solution": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    # Remove spaces from input string\n    paren_string = paren_string.replace(\" \", \"\")\n    \n    result = []\n    current_group = []\n    depth = 0\n    \n    for char in paren_string:\n        if char == '(':\n            depth += 1\n            current_group.append(char)\n        elif char == ')':\n            depth -= 1\n            current_group.append(char)\n            \n            # When depth becomes 0, we've completed a balanced group\n            if depth == 0:\n                result.append(''.join(current_group))\n                current_group = []\n                \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [ '(()())', '((()))', '()', '((())()())' ]\nassert candidate('() (()) ((())) (((())))') == [ '()', '(())', '((()))', '(((())))' ]",
+    "timestamp": "2025-08-13T11:10:18.608391",
+    "response_time": "4.32"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 2,
+    "solution": "def truncate_number(number: float) -> float:\n    return number - int(number)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n\n### Test\nassert candidate(3.5) == 0.5",
+    "timestamp": "2025-08-13T11:10:21.053320",
+    "response_time": "2.44"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 3,
+    "solution": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:\n\n### Test\nassert candidate([]) == False\nassert candidate([1, 2, -3, 1, 2, -3]) == False\nassert candidate([1, 2, -4, 5, 6]) == True",
+    "timestamp": "2025-08-13T11:10:24.528415",
+    "response_time": "3.47"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 4,
+    "solution": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    if not numbers:\n        return 0.0\n    \n    # Calculate mean\n    mean = sum(numbers) / len(numbers)\n    \n    # Calculate absolute deviations from mean\n    absolute_deviations = [abs(x - mean) for x in numbers]\n    \n    # Calculate mean of absolute deviations\n    mad = sum(absolute_deviations) / len(numbers)\n    \n    return mad",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n\n### Test\nassert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6",
+    "timestamp": "2025-08-13T11:10:27.937674",
+    "response_time": "3.41"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 5,
+    "solution": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    if not numbers:\n        return []\n    \n    result = []\n    for i, num in enumerate(numbers):\n        result.append(num)\n        if i < len(numbers) - 1:\n            result.append(delimeter)\n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n\n### Signature\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n\n### Test\nassert candidate([], 7) == []",
+    "timestamp": "2025-08-13T11:10:30.492761",
+    "response_time": "2.55"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 6,
+    "solution": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    groups = paren_string.split()\n    result = []\n    \n    for group in groups:\n        depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                depth += 1\n                max_depth = max(max_depth, depth)\n            elif char == ')':\n                depth -= 1\n        result.append(max_depth)\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]",
+    "timestamp": "2025-08-13T11:10:38.975987",
+    "response_time": "8.48"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 7,
+    "solution": "from typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []\nassert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']",
+    "timestamp": "2025-08-13T11:10:41.763169",
+    "response_time": "2.79"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 8,
+    "solution": "from typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    if not numbers:\n        return (0, 1)\n    \n    total_sum = sum(numbers)\n    product = 1\n    for num in numbers:\n        product *= num\n    \n    return (total_sum, product)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n\n### Test\nassert candidate([]) == (0, 1)\nassert candidate([1, 1, 1]) == (3, 1)",
+    "timestamp": "2025-08-13T11:10:45.498137",
+    "response_time": "3.73"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 9,
+    "solution": "from typing import List\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    if not numbers:\n        return []\n    \n    result = []\n    current_max = numbers[0]\n    \n    for num in numbers:\n        current_max = max(current_max, num)\n        result.append(current_max)\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:\n\n### Test\nassert candidate([]) == []\nassert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]",
+    "timestamp": "2025-08-13T11:10:54.978130",
+    "response_time": "9.48"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 10,
+    "solution": "def make_palindrome(string: str) -> str:\n    if not string:\n        return ''\n    \n    # Find the longest palindromic suffix\n    for i in range(len(string)):\n        substr = string[i:]\n        if substr == substr[::-1]:\n            # If palindromic suffix found, append reverse of prefix to make complete palindrome\n            return string + string[:i][::-1]\n    \n    # If no palindromic suffix found (shouldn't happen as single char is palindrome)\n    return string + string[:-1][::-1]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('x') == 'x'",
+    "timestamp": "2025-08-13T11:11:00.497623",
+    "response_time": "5.52"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 11,
+    "solution": "def string_xor(a: str, b: str) -> str:\n    result = ''\n    for bit_a, bit_b in zip(a, b):\n        result += '1' if bit_a != bit_b else '0'\n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n\n### Signature\ndef string_xor(a: str, b: str) -> str:\n\n### Test\nassert candidate('111000', '101010') == '010010'",
+    "timestamp": "2025-08-13T11:11:09.258118",
+    "response_time": "8.76"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 12,
+    "solution": "from typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    return max(strings, key=len)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:\n\n### Test\nassert candidate([]) == None",
+    "timestamp": "2025-08-13T11:11:12.272382",
+    "response_time": "3.01"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 13,
+    "solution": "def greatest_common_divisor(a: int, b: int) -> int:\n    while b:\n        a, b = b, a % b\n    return abs(a)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n\n### Signature\ndef greatest_common_divisor(a: int, b: int) -> int:\n\n### Test\nassert candidate(3, 7) == 1\nassert candidate(10, 15) == 5",
+    "timestamp": "2025-08-13T11:11:19.781876",
+    "response_time": "7.51"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 14,
+    "solution": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    return [string[:i+1] for i in range(len(string))]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:\n\n### Test\nassert candidate('') == []",
+    "timestamp": "2025-08-13T11:11:25.897237",
+    "response_time": "6.11"
+  },
+  {
+    "dataset_name": "human_eval_claude35sonnet_td",
+    "dataset_row_id": 15,
+    "solution": "def string_sequence(n: int) -> str:\n    return ' '.join(str(i) for i in range(n + 1))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\n     Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n\n### Signature\ndef string_sequence(n: int) -> str:\n\n### Test\nassert candidate(0) == '0'",
+    "timestamp": "2025-08-13T11:11:28.939961",
+    "response_time": "3.03"
+  }
+]

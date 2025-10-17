@@ -1,0 +1,104 @@
+{
+  "Qwen/Qwen2.5-Coder-7B-Instruct": [
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    return list(string)\n\ndef remove_chars(str1, str2):\n    str1_list = str_to_list(str1)\n    str2_set = set(str_to_list(str2))\n    result = [char for char in str1_list if char not in str2_set]\n    return ''.join(result)\n\n# Example usage:\n# result = remove_chars(\"hello\", \"eo\")\n# print(result)  # Output: \"hll\"",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    return list(string)\n\ndef remove_chars(str1, str2):\n    str1_list = str_to_list(str1)\n    str2_set = set(str_to_list(str2))\n    result = [char for char in str1_list if char not in str2_set]\n    return ''.join(result)\n\n# Example usage:\n# result = remove_chars(\"hello\", \"eo\")\n# print(result)  # Output: \"hll\"",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "import math\n\ndef check(num):\n    reversed_num = 0\n    while num > 0:\n        reversed_num = reversed_num * 10 + num % 10\n        num //= 10\n    return reversed_num\n\ndef is_one_less_than_twice_reversed(num):\n    return num == 2 * rev(num) - 1\n\n# Example usage:\n# result = is_one_less_than_twice_reversed(18)\n# print(result)  # Output: True",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 91,
+      "prompt": "### Prompt\nWrite a function to check if a string is present as a substring in a given list of string values.\n\n### Signature\ndef find_substring(str1, sub_str):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "solution": "import typing\n\ndef find_substring(str1: str, sub_str: str) -> bool:\n    return sub_str in str1",
+      "test_content": "from llm_output import find_substring\n\ndef check(candidate):\n    assert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"ack\")==True\n    assert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"abc\")==False\n    assert candidate([\"red\", \"black\", \"white\", \"green\", \"orange\"],\"ange\")==True\n\ncheck(find_substring)",
+      "context": "{\"function_name\": \"find_substring\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 124,
+      "prompt": "### Prompt\nWrite a function to get the angle of a complex number.\n\n### Signature\ndef angle_complex(a,b):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 9, in <module>\n    check(angle_complex)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 5, in check\n    assert math.isclose(candidate(0,1j), 1.5707963267948966, rel_tol=0.001)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: must be real number, not str\n",
+      "solution": "import cmath\n\ndef angle_complex(a, b):\n    complex_num = complex(a, b)\n    angle = cmath.phase(complex_num)\n    return str(angle)",
+      "test_content": "from llm_output import angle_complex\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(0,1j), 1.5707963267948966, rel_tol=0.001)\n    assert math.isclose(candidate(2,1j), 0.4636476090008061, rel_tol=0.001)\n    assert math.isclose(candidate(0,2j), 1.5707963267948966, rel_tol=0.001)\n\ncheck(angle_complex)",
+      "context": "{\"function_name\": \"angle_complex\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 137,
+      "prompt": "### Prompt\nWrite a function to find the ratio of zeroes to non-zeroes in an array of integers.\n\n### Signature\ndef zero_count(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 9, in <module>\n    check(zero_count)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 5, in check\n    assert math.isclose(candidate([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8]), 0.181818, rel_tol=0.001)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: must be real number, not str\n",
+      "solution": "from typing import List\n\ndef zero_count(nums: List[int]) -> str:\n    total_numbers = len(nums)\n    zero_count = nums.count(0)\n    non_zero_count = total_numbers - zero_count\n    ratio = zero_count / non_zero_count if non_zero_count != 0 else 0\n    return f\"{ratio:.2f}\"",
+      "test_content": "from llm_output import zero_count\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8]), 0.181818, rel_tol=0.001)\n    assert math.isclose(candidate([2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8]), 0.00, rel_tol=0.001)\n    assert math.isclose(candidate([2, 4, -6, -9, 11, -12, 14, -5, 17]), 0.00, rel_tol=0.001)\n\ncheck(zero_count)",
+      "context": "{\"function_name\": \"zero_count\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 160,
+      "prompt": "### Prompt\nWrite a function that returns integers x and y that satisfy ax + by = n as a tuple, or return None if no solution exists.\n\n### Signature\ndef find_solution(a, b, n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(find_solution)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(2, 3, 7) == (2, 1)\n           ^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 7, in find_solution\n    x, y = extended_gcd(a, b)\n    ^^^^\nValueError: too many values to unpack (expected 2)\n",
+      "solution": "from typing import Tuple, Optional\n\ndef find_solution(a: int, b: int, n: int) -> Optional[Tuple[int, int]]:\n    if n % gcd(a, b) != 0:\n        return None\n    \n    x, y = extended_gcd(a, b)\n    x = x * (n // gcd(a, b))\n    y = y * (n // gcd(a, b))\n    \n    return x % b, y % a\n\ndef gcd(a: int, b: int) -> int:\n    while b:\n        a, b = b, a % b\n    return a\n\ndef extended_gcd(a: int, b: int) -> Tuple[int, int]:\n    if a == 0:\n        return b, 0, 1\n    gcd, x1, y1 = extended_gcd(b % a, a)\n    x = y1 - (b // a) * x1\n    y = x1\n    return gcd, x, y",
+      "test_content": "from llm_output import find_solution\n\ndef check(candidate):\n    assert candidate(2, 3, 7) == (2, 1)\n    assert candidate(4, 2, 7) == None\n    assert candidate(1, 13, 17) == (4, 1)\n\ncheck(find_solution)",
+      "context": "{\"function_name\": \"find_solution\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 164,
+      "prompt": "### Prompt\nWrite a function to determine if the sum of the divisors of two integers are the same.\n\n### Signature\ndef div_sum(n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(are_equivalent)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(36, 57) == False\n           ^^^^^^^^^^^^^^^^^\nTypeError: are_equivalent() takes 1 positional argument but 2 were given\n",
+      "solution": "import math\n\ndef are_equivalent(n):\n    def sum_of_divisors(num):\n        total = 1\n        sqrt_num = int(math.sqrt(num))\n        for i in range(2, sqrt_num + 1):\n            if num % i == 0:\n                total += i\n                if i != num // i:\n                    total += num // i\n        return total\n\n    return sum_of_divisors(n)",
+      "test_content": "from llm_output import are_equivalent\n\ndef check(candidate):\n    assert candidate(36, 57) == False\n    assert candidate(2, 4) == False\n    assert candidate(23, 47) == True\n\ncheck(are_equivalent)",
+      "context": "{\"function_name\": \"are_equivalent\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 167,
+      "prompt": "### Prompt\nWrite a python function to find the smallest power of 2 greater than or equal to n.\n\n### Signature\ndef next_power_of_2(n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(next_power_of_2)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(0) == 1\n           ^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 4, in next_power_of_2\n    return 2 ** math.ceil(math.log2(n))\n                          ^^^^^^^^^^^^\nValueError: math domain error\n",
+      "solution": "import math\n\ndef next_power_of_2(n):\n    return 2 ** math.ceil(math.log2(n))",
+      "test_content": "from llm_output import next_power_of_2\n\ndef check(candidate):\n    assert candidate(0) == 1\n    assert candidate(5) == 8\n    assert candidate(17) == 32\n\ncheck(next_power_of_2)",
+      "context": "{\"function_name\": \"next_power_of_2\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 223,
+      "prompt": "### Prompt\nWrite a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)\n\n### Signature\ndef is_majority(arr, n, x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "solution": "from typing import List\n\ndef binary_search(arr: List[int], n: int, x: int) -> str:\n    first_occurrence = find_first_occurrence(arr, x, n)\n    if first_occurrence == -1:\n        return \"No\"\n    if first_occurrence + n // 2 < n and arr[first_occurrence + n // 2] == x:\n        return \"Yes\"\n    return \"No\"\n\ndef find_first_occurrence(arr: List[int], x: int, n: int) -> int:\n    low, high = 0, n - 1\n    result = -1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == x:\n            result = mid\n            high = mid - 1\n        elif arr[mid] < x:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return result",
+      "test_content": "from llm_output import binary_search\n\ndef check(candidate):\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n    assert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False\n    assert is_majority([1, 1, 1, 2, 2], 5, 1) == True\n    assert is_majority([1, 1, 2, 2], 5, 1) == False\n\ncheck(binary_search)",
+      "context": "{\"function_name\": \"binary_search\"}",
+      "attempt_num": 1
+    }
+  ]
+}

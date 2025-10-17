@@ -1,0 +1,81 @@
+Log file created at: /Users/madnanrizqu/Code/thesis/rq2/logs/run_all_20250818_054215.log
+
+--- CONFIGURATION SETTINGS ---
+LLM_TO_USE: OPEN_LLM
+RATIO_OF_ROWS_TO_RUN: 0.5
+REATTEMPT_MAX_NUM: 5
+RESULT_DIR_NAME: results_OPEN_LLM_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT
+TEST_DRIVEN_RATIO: 0.5
+----------------------------
+
+Starting rq2/run_all.py in GENERATE-AND-TEST mode
+Found 4 subdirectories to process: ['mbpp_sanitized_qwen25coder7b', 'mbpp_sanitized_qwen25coder7b_td', 'human_eval_qwen25coder7b', 'human_eval_qwen25coder7b_td']
+Using 4 parallel workers
+Starting parallel processing of 4 subdirectories
+Processing: human_eval_qwen25coder7b
+Running get_solution.py for human_eval_qwen25coder7b
+Starting: get_solution.py
+Processing: human_eval_qwen25coder7b_td
+Running get_solution.py for human_eval_qwen25coder7b_td
+Processing: mbpp_sanitized_qwen25coder7b_td
+Running get_solution.py for mbpp_sanitized_qwen25coder7b_td
+Starting: get_solution.py
+Processing: mbpp_sanitized_qwen25coder7b
+Running get_solution.py for mbpp_sanitized_qwen25coder7b
+Starting: get_solution.py
+Starting: get_solution.py
+Completed: get_solution.py (145.9s)
+Running test_solution.py for human_eval_qwen25coder7b_td
+Starting: test_solution.py
+Completed: get_solution.py (151.3s)
+Running test_solution.py for human_eval_qwen25coder7b
+Starting: test_solution.py
+Completed: test_solution.py (110.3s)
+Completed human_eval_qwen25coder7b_td. Progress: 1/4 subdirectories completed (25.0%)
+Completed: get_solution.py (306.4s)
+Running test_solution.py for mbpp_sanitized_qwen25coder7b_td
+Starting: test_solution.py
+Completed: test_solution.py (237.6s)
+Completed human_eval_qwen25coder7b. Progress: 2/4 subdirectories completed (50.0%)
+Completed: get_solution.py (476.3s)
+Running test_solution.py for mbpp_sanitized_qwen25coder7b
+Starting: test_solution.py
+Completed: test_solution.py (285.1s)
+Completed mbpp_sanitized_qwen25coder7b_td. Progress: 3/4 subdirectories completed (75.0%)
+Completed: test_solution.py (616.6s)
+Completed mbpp_sanitized_qwen25coder7b. Progress: 4/4 subdirectories completed (100.0%)
+Completed all 4 subdirectories
+
+--- PERFORMANCE BENCHMARK ---
+Total execution time: 1092.90 seconds
+
+Subdirectory processing times:
+  human_eval_qwen25coder7b_td: 256.20 seconds
+  human_eval_qwen25coder7b: 388.93 seconds
+  mbpp_sanitized_qwen25coder7b_td: 591.49 seconds
+  mbpp_sanitized_qwen25coder7b: 1092.89 seconds
+
+get_solution.py execution times:
+  human_eval_qwen25coder7b_td: 145.88 seconds
+  human_eval_qwen25coder7b: 151.32 seconds
+  mbpp_sanitized_qwen25coder7b_td: 306.42 seconds
+  mbpp_sanitized_qwen25coder7b: 476.28 seconds
+
+test_solution.py execution times:
+  human_eval_qwen25coder7b_td: 110.32 seconds
+  human_eval_qwen25coder7b: 237.60 seconds
+  mbpp_sanitized_qwen25coder7b_td: 285.07 seconds
+  mbpp_sanitized_qwen25coder7b: 616.60 seconds
+
+--- CONFIGURATION SETTINGS ---
+LLM_TO_USE: OPEN_LLM
+RATIO_OF_ROWS_TO_RUN: 0.5
+REATTEMPT_MAX_NUM: 5
+RESULT_DIR_NAME: results_OPEN_LLM_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT
+TEST_DRIVEN_RATIO: 0.5
+----------------------------
+
+Forcing garbage collection to free memory...
+Garbage collection completed.
+
+All processes completed. Log saved to: /Users/madnanrizqu/Code/thesis/rq2/logs/run_all_20250818_054215.log

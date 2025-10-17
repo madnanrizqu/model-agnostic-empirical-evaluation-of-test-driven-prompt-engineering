@@ -1,0 +1,24 @@
+{
+  "Qwen/Qwen2.5-Coder-7B-Instruct": [
+    {
+      "task_id": 32,
+      "prompt": "### Prompt\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n\n### Signature\ndef poly(xs: list, x: float):\n\n### Prompt\n     xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n\n### Signature\ndef find_zero(xs: list):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder7b_1760708724088899/llm_output_test.py\", line 20, in <module>\n    check(poly)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder7b_1760708724088899/llm_output_test.py\", line 16, in check\n    solution = candidate(copy.deepcopy(coeffs))\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: poly() missing 1 required positional argument: 'x'\n",
+      "solution": "import math\n\ndef poly(xs: list, x: float) -> float:\n    return sum(coef * x**i for i, coef in enumerate(xs))\n\ndef find_zero(xs: list) -> float:\n    if len(xs) % 2 != 0:\n        raise ValueError(\"List must have an even number of coefficients.\")\n    \n    a = xs[-1]\n    b = xs[-2]\n    c = xs[-3]\n    \n    # Using the quadratic formula to find the root\n    discriminant = b**2 - 4*a*c\n    if discriminant < 0:\n        raise ValueError(\"No real roots exist.\")\n    \n    root1 = (-b + math.sqrt(discriminant)) / (2*a)\n    root2 = (-b - math.sqrt(discriminant)) / (2*a)\n    \n    # Return the larger root\n    return max(root1, root2)",
+      "test_content": "from llm_output import poly\n\ndef check(candidate):\n    import math\n    import random\n    rng = random.Random(42)\n    import copy\n    for _ in range(100):\n        ncoeff = 2 * rng.randint(1, 4)\n        coeffs = []\n        for _ in range(ncoeff):\n            coeff = rng.randint(-10, 10)\n            if coeff == 0:\n                coeff = 1\n            coeffs.append(coeff)\n        solution = candidate(copy.deepcopy(coeffs))\n        assert math.fabs(poly(coeffs, solution)) < 1e-4\n\n\ncheck(poly)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 72,
+      "prompt": "### Prompt\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n\n### Signature\ndef will_it_fly(q,w):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder7b_1760708724088899/llm_output_test.py\", line 1, in <module>\n    from llm_output import will_it_fly\nImportError: cannot import name 'will_it_fly' from 'llm_output' (/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder7b_1760708724088899/llm_output.py)\n",
+      "solution": "import sys\n\ndef def_it_fly(q, w):\n    # Check if the list is a palindrome\n    if q != q[::-1]:\n        return False\n    \n    # Calculate the sum of the elements in the list\n    total_weight = sum(q)\n    \n    # Check if the sum is less than or equal to the maximum possible weight\n    if total_weight <= w:\n        return True\n    else:\n        return False",
+      "test_content": "from llm_output import will_it_fly\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([3, 2, 3], 9) is True\n    assert candidate([1, 2], 5) is False\n    assert candidate([3], 5) is True\n    assert candidate([3, 2, 3], 1) is False\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1, 2, 3], 6) is False\n    assert candidate([5], 5) is True\n\n\ncheck(will_it_fly)",
+      "context": null,
+      "attempt_num": 1
+    }
+  ]
+}

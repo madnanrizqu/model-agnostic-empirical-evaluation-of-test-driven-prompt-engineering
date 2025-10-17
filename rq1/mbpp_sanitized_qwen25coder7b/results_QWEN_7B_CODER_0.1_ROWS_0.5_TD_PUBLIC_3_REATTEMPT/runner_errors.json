@@ -1,0 +1,34 @@
+{
+  "Qwen/Qwen2.5-Coder-7B-Instruct": [
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    return list(string)\n\ndef remove_chars(str1, str2):\n    str1_list = str_to_list(str1)\n    str2_set = set(str_to_list(str2))\n    result = [char for char in str1_list if char not in str2_set]\n    return ''.join(result)\n\n# Example usage:\n# result = remove_chars(\"hello\", \"eo\")\n# print(result)  # Output: \"hll\"",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    return list(string)\n\ndef remove_chars(str1, str2):\n    str1_list = str_to_list(str1)\n    str2_set = set(str_to_list(str2))\n    result = [char for char in str1_list if char not in str2_set]\n    return ''.join(result)\n\n# Example usage:\n# result = remove_chars(\"hello\", \"eo\")\n# print(result)  # Output: \"hll\"",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "import math\n\ndef check(num):\n    reversed_num = 0\n    while num > 0:\n        reversed_num = reversed_num * 10 + num % 10\n        num //= 10\n    return reversed_num\n\ndef is_one_less_than_twice_reversed(num):\n    return num == 2 * rev(num) - 1\n\n# Example usage:\n# result = is_one_less_than_twice_reversed(18)\n# print(result)  # Output: True",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 1
+    }
+  ]
+}

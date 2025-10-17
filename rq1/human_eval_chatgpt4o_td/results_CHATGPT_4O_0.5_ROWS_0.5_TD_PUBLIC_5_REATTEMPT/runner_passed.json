@@ -1,0 +1,697 @@
+{
+  "openai/gpt-4o-2024-11-20": [
+    {
+      "task_id": 0,
+      "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    numbers.sort()  # Sort the list to compare adjacent elements\n    for i in range(len(numbers) - 1):\n        if abs(numbers[i] - numbers[i + 1]) < threshold:\n            return True\n    return False",
+      "test_content": "from llm_output import has_close_elements\n\ndef check(candidate):\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False\n\n\ncheck(has_close_elements)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 1,
+      "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [ '(()())', '((()))', '()', '((())()())' ]\nassert candidate('() (()) ((())) (((())))') == [ '()', '(())', '((()))', '(((())))' ]",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    paren_string = paren_string.replace(\" \", \"\")  # Remove spaces\n    result = []\n    stack = []\n    current_group = \"\"\n    \n    for char in paren_string:\n        current_group += char\n        if char == '(':\n            stack.append(char)\n        elif char == ')':\n            stack.pop()\n            if not stack:  # If stack is empty, we have a complete group\n                result.append(current_group)\n                current_group = \"\"\n    \n    return result",
+      "test_content": "from llm_output import separate_paren_groups\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [\n        '(()())', '((()))', '()', '((())()())'\n    ]\n    assert candidate('() (()) ((())) (((())))') == [\n        '()', '(())', '((()))', '(((())))'\n    ]\n    assert candidate('(()(())((())))') == [\n        '(()(())((())))'\n    ]\n    assert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\n\ncheck(separate_paren_groups)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n\n### Test\nassert candidate(3.5) == 0.5",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def truncate_number(number: float) -> float:\n    # Calculate the integer part\n    integer_part = int(number)\n    # Subtract the integer part from the original number to get the decimal part\n    decimal_part = number - integer_part\n    return decimal_part",
+      "test_content": "from llm_output import truncate_number\n\ndef check(candidate):\n    assert candidate(3.5) == 0.5\n    assert abs(candidate(1.33) - 0.33) < 1e-6\n    assert abs(candidate(123.456) - 0.456) < 1e-6\n\ncheck(truncate_number)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:\n\n### Test\nassert candidate([]) == False\nassert candidate([1, 2, -3, 1, 2, -3]) == False\nassert candidate([1, 2, -4, 5, 6]) == True",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n#",
+      "test_content": "from llm_output import below_zero\n\ndef check(candidate):\n    assert candidate([]) == False\n    assert candidate([1, 2, -3, 1, 2, -3]) == False\n    assert candidate([1, 2, -4, 5, 6]) == True\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True\n    assert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True\n\ncheck(below_zero)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n\n### Test\nassert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    if not numbers:\n        return 0.0  # Handle empty list case\n    \n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(x - mean) for x in numbers) / len(numbers)\n    return mad\n#",
+      "test_content": "from llm_output import mean_absolute_deviation\n\ndef check(candidate):\n    assert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0]) - 1.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0, 5.0]) - 6.0/5.0) < 1e-6\n\n\ncheck(mean_absolute_deviation)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 5,
+      "prompt": "### Prompt\n     Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n\n### Signature\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n\n### Test\nassert candidate([], 7) == []",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    if not numbers:\n        return []\n    \n    result = []\n    for i in range(len(numbers)):\n        result.append(numbers[i])\n        if i < len(numbers) - 1:\n            result.append(delimeter)\n    \n    return result",
+      "test_content": "from llm_output import intersperse\n\ndef check(candidate):\n    assert candidate([], 7) == []\n    assert candidate([5, 6, 3, 2], 8) == [5, 8, 6, 8, 3, 8, 2]\n    assert candidate([2, 2, 2], 2) == [2, 2, 2, 2, 2]\n\ncheck(intersperse)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    def max_depth(s: str) -> int:\n        depth = 0\n        max_depth = 0\n        for char in s:\n            if char == '(':\n                depth += 1\n                max_depth = max(max_depth, depth)\n            elif char == ')':\n                depth -= 1\n        return max_depth\n\n    groups = paren_string.split()\n    return [max_depth(group) for group in groups]",
+      "test_content": "from llm_output import parse_nested_parens\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]\n    assert candidate('() (()) ((())) (((())))') == [1, 2, 3, 4]\n    assert candidate('(()(())((())))') == [4]\n\ncheck(parse_nested_parens)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []\nassert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]\n#",
+      "test_content": "from llm_output import filter_by_substring\n\ndef check(candidate):\n    assert candidate([], 'john') == []\n    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']\n    assert candidate(['xxx', 'asd', 'aaaxxy', 'john doe', 'xxxAAA', 'xxx'], 'xx') == ['xxx', 'aaaxxy', 'xxxAAA', 'xxx']\n    assert candidate(['grunt', 'trumpet', 'prune', 'gruesome'], 'run') == ['grunt', 'prune']\n\ncheck(filter_by_substring)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n\n### Test\nassert candidate([]) == (0, 1)\nassert candidate([1, 1, 1]) == (3, 1)",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    if not numbers:\n        return (0, 1)\n    total_sum = sum(numbers)\n    total_product = 1\n    for num in numbers:\n        total_product *= num\n    return (total_sum, total_product)\n#",
+      "test_content": "from llm_output import sum_product\n\ndef check(candidate):\n    assert candidate([]) == (0, 1)\n    assert candidate([1, 1, 1]) == (3, 1)\n    assert candidate([100, 0]) == (100, 0)\n    assert candidate([3, 5, 7]) == (3 + 5 + 7, 3 * 5 * 7)\n    assert candidate([10]) == (10, 10)\n\ncheck(sum_product)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:\n\n### Test\nassert candidate([]) == []\nassert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    result = []\n    current_max = float('-inf')\n    for num in numbers:\n        current_max = max(current_max, num)\n        result.append(current_max)\n    return result\n#",
+      "test_content": "from llm_output import rolling_max\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]\n    assert candidate([4, 3, 2, 1]) == [4, 4, 4, 4]\n    assert candidate([3, 2, 3, 100, 3]) == [3, 3, 3, 100, 100]\n\ncheck(rolling_max)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\n     Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n\n### Signature\ndef string_xor(a: str, b: str) -> str:\n\n### Test\nassert candidate('111000', '101010') == '010010'",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def string_xor(a: str, b: str) -> str:\n    # Perform XOR operation on each pair of bits from a and b\n    return ''.join('1' if x != y else '0' for x, y in zip(a, b))",
+      "test_content": "from llm_output import string_xor\n\ndef check(candidate):\n    assert candidate('111000', '101010') == '010010'\n    assert candidate('1', '1') == '0'\n    assert candidate('0101', '0000') == '0101'\n\ncheck(string_xor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:\n\n### Test\nassert candidate([]) == None\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_td_1760730464017335/llm_output.py\", line 1, in <module>\n    def longest(strings: List[str]) -> Optional[str]:\n                         ^^^^\nNameError: name 'List' is not defined. Did you mean: 'list'?\n",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:  # Check if the list is empty\n        return None\n    # Return the longest string, with the first one in case of ties\n    return max(strings, key=len)",
+      "test_content": "from llm_output import longest\n\ndef check(candidate):\n    assert candidate([]) == None\n    assert candidate(['x', 'y', 'z']) == 'x'\n    assert candidate(['x', 'yyy', 'zzzz', 'www', 'kkkk', 'abc']) == 'zzzz'\n\ncheck(longest)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 13,
+      "prompt": "### Prompt\n     Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n\n### Signature\ndef greatest_common_divisor(a: int, b: int) -> int:\n\n### Test\nassert candidate(3, 7) == 1\nassert candidate(10, 15) == 5",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def greatest_common_divisor(a: int, b: int) -> int:\n    while b:\n        a, b = b, a % b\n    return a",
+      "test_content": "from llm_output import greatest_common_divisor\n\ndef check(candidate):\n    assert candidate(3, 7) == 1\n    assert candidate(10, 15) == 5\n    assert candidate(49, 14) == 7\n    assert candidate(144, 60) == 12\n\ncheck(greatest_common_divisor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 14,
+      "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:\n\n### Test\nassert candidate('') == []",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    return [string[:i] for i in range(1, len(string) + 1)]",
+      "test_content": "from llm_output import all_prefixes\n\ndef check(candidate):\n    assert candidate('') == []\n    assert candidate('asdfgh') == ['a', 'as', 'asd', 'asdf', 'asdfg', 'asdfgh']\n    assert candidate('WWW') == ['W', 'WW', 'WWW']\n\ncheck(all_prefixes)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 15,
+      "prompt": "### Prompt\n     Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n\n### Signature\ndef string_sequence(n: int) -> str:\n\n### Test\nassert candidate(0) == '0'",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def string_sequence(n: int) -> str:\n    return ' '.join(map(str, range(n + 1)))",
+      "test_content": "from llm_output import string_sequence\n\ndef check(candidate):\n    assert candidate(0) == '0'\n    assert candidate(3) == '0 1 2 3'\n    assert candidate(10) == '0 1 2 3 4 5 6 7 8 9 10'\n\ncheck(string_sequence)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 16,
+      "prompt": "### Prompt\n     Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n\n### Signature\ndef count_distinct_characters(string: str) -> int:\n\n### Test\nassert candidate('') == 0\nassert candidate('abcde') == 5",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def count_distinct_characters(string: str) -> int:\n    # Convert the string to lowercase and use a set to find distinct characters\n    return len(set(string.lower()))",
+      "test_content": "from llm_output import count_distinct_characters\n\ndef check(candidate):\n    assert candidate('') == 0\n    assert candidate('abcde') == 5\n    assert candidate('abcde' + 'cade' + 'CADE') == 5\n    assert candidate('aaaaAAAAaaaa') == 1\n    assert candidate('Jerry jERRY JeRRRY') == 5\n\ncheck(count_distinct_characters)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\n     Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n\n### Signature\ndef how_many_times(string: str, substring: str) -> int:\n\n### Test\nassert candidate('', 'x') == 0\nassert candidate('xyxyxyx', 'x') == 4",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def how_many_times(string: str, substring: str) -> int:\n    if not substring:\n        return 0\n    \n    count = 0\n    start = 0\n    \n    while True:\n        start = string.find(substring, start)\n        if start == -1:\n            break\n        count += 1\n        start += 1  # Move one character forward to allow overlapping matches\n    \n    return count",
+      "test_content": "from llm_output import how_many_times\n\ndef check(candidate):\n    assert candidate('', 'x') == 0\n    assert candidate('xyxyxyx', 'x') == 4\n    assert candidate('cacacacac', 'cac') == 4\n    assert candidate('john doe', 'john') == 1\n\ncheck(how_many_times)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 19,
+      "prompt": "### Prompt\n     Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n\n### Signature\ndef sort_numbers(numbers: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('three') == 'three'",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def sort_numbers(numbers: str) -> str:\n    # Mapping of number words to their numeric values\n    number_map = {\n        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,\n        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9\n    }\n    \n    # Split the input string into words\n    words = numbers.split()\n    \n    # Sort the words based on their numeric values using the mapping\n    sorted_words = sorted(words, key=lambda word: number_map[word])\n    \n    # Join the sorted words back into a space-delimited string\n    return ' '.join(sorted_words)",
+      "test_content": "from llm_output import sort_numbers\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('three') == 'three'\n    assert candidate('three five nine') == 'three five nine'\n    assert candidate('five zero four seven nine eight') == 'zero four five seven eight nine'\n    assert candidate('six five four three two one zero') == 'zero one two three four five six'\n\ncheck(sort_numbers)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 20,
+      "prompt": "### Prompt\n     From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n\n### Signature\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2]) == (3.9, 4.0)\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0]) == (5.0, 5.9)",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    # Sort the numbers to ensure they are in ascending order\n    numbers.sort()\n    \n    # Initialize variables to track the closest pair and the smallest difference\n    closest_pair = (numbers[0], numbers[1])\n    smallest_diff = abs(numbers[1] - numbers[0])\n    \n    # Iterate through the sorted list to find the closest pair\n    for i in range(len(numbers) - 1):\n        diff = abs(numbers[i + 1] - numbers[i])\n        if diff < smallest_diff:\n            smallest_diff = diff\n            closest_pair = (numbers[i], numbers[i + 1])\n    \n    return closest_pair",
+      "test_content": "from llm_output import find_closest_elements\n\ndef check(candidate):\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2]) == (3.9, 4.0)\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0]) == (5.0, 5.9)\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.2]) == (2.0, 2.2)\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1]) == (2.2, 3.1)\n\n\ncheck(find_closest_elements)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 21,
+      "prompt": "### Prompt\n     Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n\n### Signature\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n\n### Test\nassert candidate([2.0, 49.9]) == [0.0, 1.0]\nassert candidate([100.0, 49.9]) == [1.0, 0.0]",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    min_val = min(numbers)\n    max_val = max(numbers)\n    if max_val == min_val:\n        return [0.0] * len(numbers)  # Handle edge case where all numbers are the same\n    return [(x - min_val) / (max_val - min_val) for x in numbers]",
+      "test_content": "from llm_output import rescale_to_unit\n\ndef check(candidate):\n    assert candidate([2.0, 49.9]) == [0.0, 1.0]\n    assert candidate([100.0, 49.9]) == [1.0, 0.0]\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0]) == [0.0, 0.25, 0.5, 0.75, 1.0]\n    assert candidate([2.0, 1.0, 5.0, 3.0, 4.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\n    assert candidate([12.0, 11.0, 15.0, 13.0, 14.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\n\ncheck(rescale_to_unit)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 22,
+      "prompt": "### Prompt\n     Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n\n### Signature\ndef filter_integers(values: List[Any]) -> List[int]:\n\n### Test\nassert candidate([]) == []",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List, Any\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    return [value for value in values if isinstance(value, int)]",
+      "test_content": "from llm_output import filter_integers\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([4, {}, [], 23.2, 9, 'adasd']) == [4, 9]\n    assert candidate([3, 'c', 3, 3, 'a', 'b']) == [3, 3, 3]\n\ncheck(filter_integers)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 23,
+      "prompt": "### Prompt\n     Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n\n### Signature\ndef strlen(string: str) -> int:\n\n### Test\nassert candidate('') == 0",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def strlen(string: str) -> int:\n    return len(string)",
+      "test_content": "from llm_output import strlen\n\ndef check(candidate):\n    assert candidate('') == 0\n    assert candidate('x') == 1\n    assert candidate('asdasnakj') == 9\n\ncheck(strlen)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 24,
+      "prompt": "### Prompt\n     For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n\n### Signature\ndef largest_divisor(n: int) -> int:\n\n### Test\nassert candidate(3) == 1\nassert candidate(7) == 1",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def largest_divisor(n: int) -> int:\n    for i in range(n - 1, 0, -1):\n        if n % i == 0:\n            return i",
+      "test_content": "from llm_output import largest_divisor\n\ndef check(candidate):\n    assert candidate(3) == 1\n    assert candidate(7) == 1\n    assert candidate(10) == 5\n    assert candidate(100) == 50\n    assert candidate(49) == 7\n\ncheck(largest_divisor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 25,
+      "prompt": "### Prompt\n     Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n\n### Signature\ndef factorize(n: int) -> List[int]:\n\n### Test\nassert candidate(2) == [2]\nassert candidate(4) == [2, 2]\nassert candidate(8) == [2, 2, 2]\nassert candidate(3 * 19) == [3, 19]",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    factors = []\n    divisor = 2\n    while n > 1:\n        while n % divisor == 0:\n            factors.append(divisor)\n            n //= divisor\n        divisor += 1\n    return factors\n#",
+      "test_content": "from llm_output import factorize\n\ndef check(candidate):\n    assert candidate(2) == [2]\n    assert candidate(4) == [2, 2]\n    assert candidate(8) == [2, 2, 2]\n    assert candidate(3 * 19) == [3, 19]\n    assert candidate(3 * 19 * 3 * 19) == [3, 3, 19, 19]\n    assert candidate(3 * 19 * 3 * 19 * 3 * 19) == [3, 3, 3, 19, 19, 19]\n    assert candidate(3 * 19 * 19 * 19) == [3, 19, 19, 19]\n    assert candidate(3 * 2 * 3) == [2, 3, 3]\n\ncheck(factorize)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 26,
+      "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n\n### Test\nassert candidate([]) == []",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    # Create a dictionary to count occurrences of each number\n    count = {}\n    for num in numbers:\n        count[num] = count.get(num, 0) + 1\n    \n    # Filter out numbers that occur more than once\n    result = [num for num in numbers if count[num] == 1]\n    \n    return result",
+      "test_content": "from llm_output import remove_duplicates\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]\n    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]\n\ncheck(remove_duplicates)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 27,
+      "prompt": "### Prompt\n     For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n\n### Signature\ndef flip_case(string: str) -> str:\n\n### Test\nassert candidate('') == ''",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def flip_case(string: str) -> str:\n    return ''.join(char.lower() if char.isupper() else char.upper() for char in string)",
+      "test_content": "from llm_output import flip_case\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('Hello!') == 'hELLO!'\n    assert candidate('These violent delights have violent ends') == 'tHESE VIOLENT DELIGHTS HAVE VIOLENT ENDS'\n\ncheck(flip_case)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 28,
+      "prompt": "### Prompt\n     Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n\n### Signature\ndef concatenate(strings: List[str]) -> str:\n\n### Test\nassert candidate([]) == ''",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    return ''.join(strings)",
+      "test_content": "from llm_output import concatenate\n\ndef check(candidate):\n    assert candidate([]) == ''\n    assert candidate(['x', 'y', 'z']) == 'xyz'\n    assert candidate(['x', 'y', 'z', 'w', 'k']) == 'xyzwk'\n\ncheck(concatenate)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 29,
+      "prompt": "### Prompt\n     Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n\n### Signature\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    return [s for s in strings if s.startswith(prefix)]",
+      "test_content": "from llm_output import filter_by_prefix\n\ndef check(candidate):\n    assert candidate([], 'john') == []\n    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']\n\ncheck(filter_by_prefix)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 30,
+      "prompt": "### Prompt\n    Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n\n### Signature\ndef get_positive(l: list):\n\n### Test\nassert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]\nassert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def get_positive(l: list):\n    return [x for x in l if x > 0]\n#",
+      "test_content": "from llm_output import get_positive\n\ndef check(candidate):\n    assert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]\n    assert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]\n    assert candidate([-1, -2]) == []\n    assert candidate([]) == []\n\n\ncheck(get_positive)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 31,
+      "prompt": "### Prompt\n    Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n\n### Signature\ndef is_prime(n):\n\n### Test\nassert candidate(6) == False\nassert candidate(101) == True\nassert candidate(11) == True\nassert candidate(13441) == True\nassert candidate(61) == True\nassert candidate(4) == False",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True",
+      "test_content": "from llm_output import is_prime\n\ndef check(candidate):\n    assert candidate(6) == False\n    assert candidate(101) == True\n    assert candidate(11) == True\n    assert candidate(13441) == True\n    assert candidate(61) == True\n    assert candidate(4) == False\n    assert candidate(1) == False\n    assert candidate(5) == True\n    assert candidate(11) == True\n    assert candidate(17) == True\n    assert candidate(5 * 17) == False\n    assert candidate(11 * 7) == False\n    assert candidate(13441 * 19) == False\n\n\ncheck(is_prime)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 33,
+      "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n\n### Signature\ndef sort_third(l: list):\n\n### Test\nassert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))\nassert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple(sort_third([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))\nassert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple(sort_third([5, 8, -12, 4, 23, 2, 3, 11, 12, -10]))",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def sort_third(l: list):\n    # Extract elements at indices divisible by 3\n    divisible_by_three = [l[i] for i in range(len(l)) if i % 3 == 0]\n    # Sort these elements\n    divisible_by_three.sort()\n    \n    # Replace elements at indices divisible by 3 with sorted values\n    result = l[:]\n    index = 0\n    for i in range(len(l)):\n        if i % 3 == 0:\n            result[i] = divisible_by_three[index]\n            index += 1\n    \n    return result",
+      "test_content": "from llm_output import sort_third\n\ndef check(candidate):\n    assert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))\n    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple(sort_third([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))\n    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple(sort_third([5, 8, -12, 4, 23, 2, 3, 11, 12, -10]))\n    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2])) == tuple([2, 6, 3, 4, 8, 9, 5])\n    assert tuple(candidate([5, 8, 3, 4, 6, 9, 2])) == tuple([2, 8, 3, 4, 6, 9, 5])\n    assert tuple(candidate([5, 6, 9, 4, 8, 3, 2])) == tuple([2, 6, 9, 4, 8, 3, 5])\n    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2, 1])) == tuple([2, 6, 3, 4, 8, 9, 5, 1])\n\n\ncheck(sort_third)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 34,
+      "prompt": "### Prompt\n    Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n\n### Signature\ndef unique(l: list):\n\n### Test\nassert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123] ",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def unique(l: list):\n    # Use set to get unique elements, then sort the result\n    return sorted(set(l))",
+      "test_content": "from llm_output import unique\n\ndef check(candidate):\n    assert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123]\n\n\ncheck(unique)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 35,
+      "prompt": "### Prompt\n    Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n\n### Signature\ndef max_element(l: list):\n\n### Test\nassert candidate([1, 2, 3]) == 3",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def max_element(l: list):\n    return max(l)\n#",
+      "test_content": "from llm_output import max_element\n\ndef check(candidate):\n    assert candidate([1, 2, 3]) == 3\n    assert candidate([5, 3, -5, 2, -3, 3, 9, 0, 124, 1, -10]) == 124\n\ncheck(max_element)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 36,
+      "prompt": "### Prompt\n    Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n\n### Signature\ndef fizz_buzz(n: int):\n\n### Test\nassert candidate(50) == 0\nassert candidate(78) == 2\nassert candidate(79) == 3\nassert candidate(100) == 3",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def fizz_buzz(n: int):\n    count = 0\n    for i in range(n):\n        if i % 11 == 0 or i % 13 == 0:\n            count += str(i).count('7')\n    return count",
+      "test_content": "from llm_output import fizz_buzz\n\ndef check(candidate):\n    assert candidate(50) == 0\n    assert candidate(78) == 2\n    assert candidate(79) == 3\n    assert candidate(100) == 3\n    assert candidate(200) == 6\n    assert candidate(4000) == 192\n    assert candidate(10000) == 639\n    assert candidate(100000) == 8026\n\n\ncheck(fizz_buzz)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 37,
+      "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n\n### Signature\ndef sort_even(l: list):\n\n### Test\nassert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def sort_even(l: list):\n    # Extract the values at even indices\n    even_indices_values = [l[i] for i in range(0, len(l), 2)]\n    # Sort the values at even indices\n    even_indices_values.sort()\n    \n    # Create the result list\n    result = l[:]\n    even_index = 0\n    \n    # Replace the values at even indices in the result list with the sorted values\n    for i in range(len(l)):\n        if i % 2 == 0:\n            result[i] = even_indices_values[even_index]\n            even_index += 1\n    \n    return result\n#",
+      "test_content": "from llm_output import sort_even\n\ndef check(candidate):\n    assert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])\n    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple([-10, 3, -5, 2, -3, 3, 5, 0, 9, 1, 123])\n    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple([-12, 8, 3, 4, 5, 2, 12, 11, 23, -10])\n\n\ncheck(sort_even)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 39,
+      "prompt": "### Prompt\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n\n### Signature\ndef prime_fib(n: int):\n\n### Test\nassert candidate(1) == 2\nassert candidate(2) == 3\nassert candidate(3) == 5\nassert candidate(4) == 13\nassert candidate(5) == 89",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from math import isqrt\n\ndef is_prime(num: int) -> bool:\n    if num < 2:\n        return False\n    for i in range(2, isqrt(num) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef prime_fib(n: int):\n    fib_sequence = [0, 1]\n    prime_fibs = []\n    \n    while len(prime_fibs) < n:\n        next_fib = fib_sequence[-1] + fib_sequence[-2]\n        fib_sequence.append(next_fib)\n        if is_prime(next_fib):\n            prime_fibs.append(next_fib)\n    \n    return prime_fibs[n - 1]\n#",
+      "test_content": "from llm_output import prime_fib\n\ndef check(candidate):\n    assert candidate(1) == 2\n    assert candidate(2) == 3\n    assert candidate(3) == 5\n    assert candidate(4) == 13\n    assert candidate(5) == 89\n    assert candidate(6) == 233\n    assert candidate(7) == 1597\n    assert candidate(8) == 28657\n    assert candidate(9) == 514229\n    assert candidate(10) == 433494437\n\n\ncheck(prime_fib)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 40,
+      "prompt": "### Prompt\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n### Signature\ndef triples_sum_to_zero(l: list):\n\n### Test\nassert candidate([1, 3, 5, 0]) == False\nassert candidate([1, 3, 5, -1]) == False\nassert candidate([1, 3, -2, 1]) == True\nassert candidate([1, 2, 3, 7]) == False",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def triples_sum_to_zero(l: list):\n    n = len(l)\n    # Sort the list to use two-pointer technique\n    l.sort()\n    \n    for i in range(n - 2):\n        # Use two pointers to find the other two numbers\n        left, right = i + 1, n - 1\n        while left < right:\n            current_sum = l[i] + l[left] + l[right]\n            if current_sum == 0:\n                return True\n            elif current_sum < 0:\n                left += 1\n            else:\n                right -= 1\n    \n    return False",
+      "test_content": "from llm_output import triples_sum_to_zero\n\ndef check(candidate):\n    assert candidate([1, 3, 5, 0]) == False\n    assert candidate([1, 3, 5, -1]) == False\n    assert candidate([1, 3, -2, 1]) == True\n    assert candidate([1, 2, 3, 7]) == False\n    assert candidate([1, 2, 5, 7]) == False\n    assert candidate([2, 4, -5, 3, 9, 7]) == True\n    assert candidate([1]) == False\n    assert candidate([1, 3, 5, -100]) == False\n    assert candidate([100, 3, 5, -100]) == False\n\n\ncheck(triples_sum_to_zero)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 41,
+      "prompt": "### Prompt\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n### Signature\ndef car_race_collision(n: int):\n\n### Test\nassert candidate(2) == 4\nassert candidate(3) == 9",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def car_race_collision(n: int):\n    # Each car moving left to right will collide with every car moving right to left\n    # Total collisions = n (left to right cars) * n (right to left cars)\n    return n * n",
+      "test_content": "from llm_output import car_race_collision\n\ndef check(candidate):\n    assert candidate(2) == 4\n    assert candidate(3) == 9\n    assert candidate(4) == 16\n    assert candidate(8) == 64\n    assert candidate(10) == 100\n\n\ncheck(car_race_collision)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 42,
+      "prompt": "### Prompt\n    Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n\n### Signature\ndef incr_list(l: list):\n\n### Test\nassert candidate([]) == []",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def incr_list(l: list):\n    return [x + 1 for x in l]",
+      "test_content": "from llm_output import incr_list\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([3, 2, 1]) == [4, 3, 2]\n    assert candidate([5, 2, 5, 2, 3, 3, 9, 0, 123]) == [6, 3, 6, 3, 4, 4, 10, 1, 124]\n\n\ncheck(incr_list)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 43,
+      "prompt": "### Prompt\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    >>> pairs_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> pairs_sum_to_zero([1, 3, -2, 1])\n    False\n    >>> pairs_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])\n    True\n    >>> pairs_sum_to_zero([1])\n    False\n\n### Signature\ndef pairs_sum_to_zero(l):\n\n### Test\nassert candidate([1, 3, 5, 0]) == False\nassert candidate([1, 3, -2, 1]) == False\nassert candidate([1, 2, 3, 7]) == False\nassert candidate([2, 4, -5, 3, 5, 7]) == True",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def pairs_sum_to_zero(l):\n    seen = set()\n    for num in l:\n        if -num in seen:\n            return True\n        seen.add(num)\n    return False\n#",
+      "test_content": "from llm_output import pairs_sum_to_zero\n\ndef check(candidate):\n    assert candidate([1, 3, 5, 0]) == False\n    assert candidate([1, 3, -2, 1]) == False\n    assert candidate([1, 2, 3, 7]) == False\n    assert candidate([2, 4, -5, 3, 5, 7]) == True\n    assert candidate([1]) == False\n\n    assert candidate([-3, 9, -1, 3, 2, 30]) == True\n    assert candidate([-3, 9, -1, 3, 2, 31]) == True\n    assert candidate([-3, 9, -1, 4, 2, 30]) == False\n    assert candidate([-3, 9, -1, 4, 2, 31]) == False\n\n\ncheck(pairs_sum_to_zero)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 44,
+      "prompt": "### Prompt\n    Change numerical base of input number x to base.\n    return string representation after the conversion.\n    base numbers are less than 10.\n    >>> change_base(8, 3)\n    '22'\n    >>> change_base(8, 2)\n    '1000'\n    >>> change_base(7, 2)\n    '111'\n\n### Signature\ndef change_base(x: int, base: int):\n\n### Test\nassert candidate(8, 3) == \"22\"\nassert candidate(9, 3) == \"100\"\nassert candidate(234, 2) == \"11101010\"",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def change_base(x: int, base: int) -> str:\n    if x == 0:\n        return \"0\"\n    \n    result = []\n    while x > 0:\n        result.append(str(x % base))\n        x //= base\n    \n    return ''.join(reversed(result))",
+      "test_content": "from llm_output import change_base\n\ndef check(candidate):\n    assert candidate(8, 3) == \"22\"\n    assert candidate(9, 3) == \"100\"\n    assert candidate(234, 2) == \"11101010\"\n    assert candidate(16, 2) == \"10000\"\n    assert candidate(8, 2) == \"1000\"\n    assert candidate(7, 2) == \"111\"\n    for x in range(2, 8):\n        assert candidate(x, x + 1) == str(x)\n\n\ncheck(change_base)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 45,
+      "prompt": "### Prompt\n    Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n\n### Signature\ndef triangle_area(a, h):\n\n### Test\nassert candidate(5, 3) == 7.5",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def triangle_area(a, h):\n    # Calculate the area of the triangle using the formula: (1/2) * base * height\n    return 0.5 * a * h",
+      "test_content": "from llm_output import triangle_area\n\ndef check(candidate):\n    assert candidate(5, 3) == 7.5\n    assert candidate(2, 2) == 2.0\n    assert candidate(10, 8) == 40.0\n\n\ncheck(triangle_area)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 46,
+      "prompt": "### Prompt\n    The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n\n### Signature\ndef fib4(n: int):\n\n### Test\nassert candidate(5) == 4\nassert candidate(8) == 28",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def fib4(n: int):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 2\n    elif n == 3:\n        return 0\n\n    # Initialize the first four values of the sequence\n    fib_values = [0, 0, 2, 0]\n\n    # Compute the sequence iteratively\n    for i in range(4, n + 1):\n        next_value = fib_values[-1] + fib_values[-2] + fib_values[-3] + fib_values[-4]\n        fib_values.append(next_value)\n        fib_values.pop(0)  # Keep only the last four values to save memory\n\n    return fib_values[-1]",
+      "test_content": "from llm_output import fib4\n\ndef check(candidate):\n    assert candidate(5) == 4\n    assert candidate(8) == 28\n    assert candidate(10) == 104\n    assert candidate(12) == 386\n\n\ncheck(fib4)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 47,
+      "prompt": "### Prompt\n    Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n\n### Signature\ndef median(l: list):\n\n### Test\nassert candidate([3, 1, 2, 4, 5]) == 3\nassert candidate([-10, 4, 6, 1000, 10, 20]) == 8.0",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def median(l: list):\n    # Sort the list\n    l.sort()\n    n = len(l)\n    \n    # If the number of elements is odd, return the middle element\n    if n % 2 == 1:\n        return l[n // 2]\n    # If the number of elements is even, return the average of the two middle elements\n    else:\n        return (l[n // 2 - 1] + l[n // 2]) / 2",
+      "test_content": "from llm_output import median\n\ndef check(candidate):\n    assert candidate([3, 1, 2, 4, 5]) == 3\n    assert candidate([-10, 4, 6, 1000, 10, 20]) == 8.0\n    assert candidate([5]) == 5\n    assert candidate([6, 5]) == 5.5\n    assert candidate([8, 1, 3, 9, 9, 2, 7]) == 7 \n\n\ncheck(median)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 48,
+      "prompt": "### Prompt\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n\n### Signature\ndef is_palindrome(text: str):\n\n### Test\nassert candidate('') == True\nassert candidate('aba') == True\nassert candidate('aaaaa') == True",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def is_palindrome(text: str):\n    return text == text[::-1]",
+      "test_content": "from llm_output import is_palindrome\n\ndef check(candidate):\n    assert candidate('') == True\n    assert candidate('aba') == True\n    assert candidate('aaaaa') == True\n    assert candidate('zbcd') == False\n    assert candidate('xywyx') == True\n    assert candidate('xywyz') == False\n    assert candidate('xywzx') == False\n\n\ncheck(is_palindrome)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 49,
+      "prompt": "### Prompt\n    Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n\n### Signature\ndef modp(n: int, p: int):\n\n### Test\nassert candidate(3, 5) == 3\nassert candidate(1101, 101) == 2\nassert candidate(0, 101) == 1",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def modp(n: int, p: int):\n    # Calculate 2^n % p using modular exponentiation\n    return pow(2, n, p)",
+      "test_content": "from llm_output import modp\n\ndef check(candidate):\n    assert candidate(3, 5) == 3\n    assert candidate(1101, 101) == 2\n    assert candidate(0, 101) == 1\n    assert candidate(3, 11) == 8\n    assert candidate(100, 101) == 1\n    assert candidate(30, 5) == 4\n    assert candidate(31, 5) == 3\n\n\ncheck(modp)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 51,
+      "prompt": "### Prompt\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n\n### Signature\ndef remove_vowels(text):\n\n### Test\nassert candidate('') == ''\nassert candidate(\"abcdef\\nghijklm\") == 'bcdf\\nghjklm'\nassert candidate('fedcba') == 'fdcb'",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def remove_vowels(text):\n    vowels = \"aeiouAEIOU\"\n    return ''.join(char for char in text if char not in vowels)\n#",
+      "test_content": "from llm_output import remove_vowels\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate(\"abcdef\\nghijklm\") == 'bcdf\\nghjklm'\n    assert candidate('fedcba') == 'fdcb'\n    assert candidate('eeeee') == ''\n    assert candidate('acBAA') == 'cB'\n    assert candidate('EcBOO') == 'cB'\n    assert candidate('ybcd') == 'ybcd'\n\n\ncheck(remove_vowels)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 52,
+      "prompt": "### Prompt\n    Return True if all numbers in the list l are below threshold t.\n    >>> below_threshold([1, 2, 4, 10], 100)\n    True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n\n### Signature\ndef below_threshold(l: list, t: int):\n\n### Test\nassert candidate([1, 2, 4, 10], 100)\nassert not candidate([1, 20, 4, 10], 5)\nassert candidate([1, 20, 4, 10], 21)",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def below_threshold(l: list, t: int):\n    return all(x < t for x in l)\n#",
+      "test_content": "from llm_output import below_threshold\n\ndef check(candidate):\n    assert candidate([1, 2, 4, 10], 100)\n    assert not candidate([1, 20, 4, 10], 5)\n    assert candidate([1, 20, 4, 10], 21)\n    assert candidate([1, 20, 4, 10], 22)\n    assert candidate([1, 8, 4, 10], 11)\n    assert not candidate([1, 8, 4, 10], 10)\n\n\ncheck(below_threshold)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 53,
+      "prompt": "### Prompt\n    Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n\n### Signature\ndef add(x: int, y: int):\n\n### Test\nassert candidate(0, 1) == 1\nassert candidate(1, 0) == 1\nassert candidate(2, 3) == 5",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def add(x: int, y: int):\n    return x + y",
+      "test_content": "from llm_output import add\n\ndef check(candidate):\n    import random\n\n    assert candidate(0, 1) == 1\n    assert candidate(1, 0) == 1\n    assert candidate(2, 3) == 5\n    assert candidate(5, 7) == 12\n    assert candidate(7, 5) == 12\n\n    for i in range(100):\n        x, y = random.randint(0, 1000), random.randint(0, 1000)\n        assert candidate(x, y) == x + y\n\n\ncheck(add)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 54,
+      "prompt": "### Prompt\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n\n### Signature\ndef same_chars(s0: str, s1: str):\n\n### Test\nassert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\nassert candidate('abcd', 'dddddddabc') == True\nassert candidate('dddddddabc', 'abcd') == True",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def same_chars(s0: str, s1: str):\n    # Convert both strings to sets of unique characters\n    set_s0 = set(s0)\n    set_s1 = set(s1)\n    \n    # Check if the sets are equal\n    return set_s0 == set_s1",
+      "test_content": "from llm_output import same_chars\n\ndef check(candidate):\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\n    assert candidate('abcd', 'dddddddabc') == True\n    assert candidate('dddddddabc', 'abcd') == True\n    assert candidate('eabcd', 'dddddddabc') == False\n    assert candidate('abcd', 'dddddddabcf') == False\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddddabc') == False\n    assert candidate('aabb', 'aaccc') == False\n\n\ncheck(same_chars)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 55,
+      "prompt": "### Prompt\n    Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n\n### Signature\ndef fib(n: int):\n\n### Test\nassert candidate(10) == 55\nassert candidate(1) == 1",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def fib(n: int):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b",
+      "test_content": "from llm_output import fib\n\ndef check(candidate):\n    assert candidate(10) == 55\n    assert candidate(1) == 1\n    assert candidate(8) == 21\n    assert candidate(11) == 89\n    assert candidate(12) == 144\n\n\ncheck(fib)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\n     brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n### Signature\ndef correct_bracketing(brackets: str):\n\n### Test\nassert candidate(\"<>\")\nassert candidate(\"<<><>>\")\nassert candidate(\"<><><<><>><>\")\nassert candidate(\"<><><<<><><>><>><<><><<>>>\")\nassert not candidate(\"<<<><>>>>\")\nassert not candidate(\"><<>\")",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def correct_bracketing(brackets: str):\n    balance = 0\n    for char in brackets:\n        if char == '<':\n            balance += 1\n        elif char == '>':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0",
+      "test_content": "from llm_output import correct_bracketing\n\ndef check(candidate):\n    assert candidate(\"<>\")\n    assert candidate(\"<<><>>\")\n    assert candidate(\"<><><<><>><>\")\n    assert candidate(\"<><><<<><><>><>><<><><<>>>\")\n    assert not candidate(\"<<<><>>>>\")\n    assert not candidate(\"><<>\")\n    assert not candidate(\"<\")\n    assert not candidate(\"<<<<\")\n    assert not candidate(\">\")\n    assert not candidate(\"<<>\")\n    assert not candidate(\"<><><<><>><>><<>\")\n    assert not candidate(\"<><><<><>><>>><>\")\n\n\ncheck(correct_bracketing)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 57,
+      "prompt": "### Prompt\n    Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n\n### Signature\ndef monotonic(l: list):\n\n### Test\nassert candidate([1, 2, 4, 10]) == True\nassert candidate([1, 2, 4, 20]) == True\nassert candidate([1, 20, 4, 10]) == False\nassert candidate([4, 1, 0, -10]) == True",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def monotonic(l: list):\n    if len(l) <= 1:\n        return True\n    \n    increasing = all(l[i] <= l[i + 1] for i in range(len(l) - 1))\n    decreasing = all(l[i] >= l[i + 1] for i in range(len(l) - 1))\n    \n    return increasing or decreasing",
+      "test_content": "from llm_output import monotonic\n\ndef check(candidate):\n    assert candidate([1, 2, 4, 10]) == True\n    assert candidate([1, 2, 4, 20]) == True\n    assert candidate([1, 20, 4, 10]) == False\n    assert candidate([4, 1, 0, -10]) == True\n    assert candidate([4, 1, 1, 0]) == True\n    assert candidate([1, 2, 3, 2, 5, 60]) == False\n    assert candidate([1, 2, 3, 4, 5, 60]) == True\n    assert candidate([9, 9, 9, 9]) == True\n\n\ncheck(monotonic)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 58,
+      "prompt": "### Prompt\n    Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n### Signature\ndef common(l1: list, l2: list):\n\n### Test\nassert candidate([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]\nassert candidate([5, 3, 2, 8], [3, 2]) == [2, 3]",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def common(l1: list, l2: list):\n    # Find the intersection of the two lists and remove duplicates\n    common_elements = set(l1).intersection(set(l2))\n    # Return the sorted list of unique common elements\n    return sorted(common_elements)",
+      "test_content": "from llm_output import common\n\ndef check(candidate):\n    assert candidate([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]\n    assert candidate([5, 3, 2, 8], [3, 2]) == [2, 3]\n    assert candidate([4, 3, 2, 8], [3, 2, 4]) == [2, 3, 4]\n    assert candidate([4, 3, 2, 8], []) == []\n\n\ncheck(common)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 59,
+      "prompt": "### Prompt\n    Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n\n### Signature\ndef largest_prime_factor(n: int):\n\n### Test\nassert candidate(15) == 5\nassert candidate(27) == 3",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def largest_prime_factor(n: int):\n    def is_prime(num):\n        if num <= 1:\n            return False\n        for i in range(2, int(num**0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    factor = 2\n    largest = 0\n    while n > 1:\n        if n % factor == 0:\n            if is_prime(factor):\n                largest = factor\n            n //= factor\n        else:\n            factor += 1\n    return largest",
+      "test_content": "from llm_output import largest_prime_factor\n\ndef check(candidate):\n    assert candidate(15) == 5\n    assert candidate(27) == 3\n    assert candidate(63) == 7\n    assert candidate(330) == 11\n    assert candidate(13195) == 29\n\n\ncheck(largest_prime_factor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 60,
+      "prompt": "### Prompt\n    sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n\n### Signature\ndef sum_to_n(n: int):\n\n### Test\nassert candidate(1) == 1\nassert candidate(6) == 21",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def sum_to_n(n: int):\n    return n * (n + 1) // 2",
+      "test_content": "from llm_output import sum_to_n\n\ndef check(candidate):\n    assert candidate(1) == 1\n    assert candidate(6) == 21\n    assert candidate(11) == 66\n    assert candidate(30) == 465\n    assert candidate(100) == 5050\n\n\ncheck(sum_to_n)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 61,
+      "prompt": "### Prompt\n     brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n### Signature\ndef correct_bracketing(brackets: str):\n\n### Test\nassert candidate(\"()\")\nassert candidate(\"(()())\")\nassert candidate(\"()()(()())()\")\nassert candidate(\"()()((()()())())(()()(()))\")\nassert not candidate(\"((()())))\")\nassert not candidate(\")(()\")",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def correct_bracketing(brackets: str):\n    balance = 0\n    for char in brackets:\n        if char == '(':\n            balance += 1\n        elif char == ')':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0",
+      "test_content": "from llm_output import correct_bracketing\n\ndef check(candidate):\n    assert candidate(\"()\")\n    assert candidate(\"(()())\")\n    assert candidate(\"()()(()())()\")\n    assert candidate(\"()()((()()())())(()()(()))\")\n    assert not candidate(\"((()())))\")\n    assert not candidate(\")(()\")\n    assert not candidate(\"(\")\n    assert not candidate(\"((((\")\n    assert not candidate(\")\")\n    assert not candidate(\"(()\")\n    assert not candidate(\"()()(()())())(()\")\n    assert not candidate(\"()()(()())()))()\")\n\n\ncheck(correct_bracketing)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 62,
+      "prompt": "### Prompt\n     xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n     Return derivative of this polynomial in the same form.\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n\n### Signature\ndef derivative(xs: list):\n\n### Test\nassert candidate([3, 1, 2, 4, 5]) == [1, 4, 12, 20]\nassert candidate([1, 2, 3]) == [2, 6]",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def derivative(xs: list):\n    return [i * xs[i] for i in range(1, len(xs))]\n#",
+      "test_content": "from llm_output import derivative\n\ndef check(candidate):\n    assert candidate([3, 1, 2, 4, 5]) == [1, 4, 12, 20]\n    assert candidate([1, 2, 3]) == [2, 6]\n    assert candidate([3, 2, 1]) == [2, 2]\n    assert candidate([3, 2, 1, 0, 4]) == [2, 2, 0, 16]\n    assert candidate([1]) == []\n\n\ncheck(derivative)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 63,
+      "prompt": "### Prompt\n    The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).\n    Please write a function to efficiently compute the n-th element of the fibfib number sequence.\n    >>> fibfib(1)\n    0\n    >>> fibfib(5)\n    4\n    >>> fibfib(8)\n    24\n\n### Signature\ndef fibfib(n: int):\n\n### Test\nassert candidate(2) == 1\nassert candidate(1) == 0\nassert candidate(5) == 4",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def fibfib(n: int):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n\n    # Initialize the first three values of the sequence\n    a, b, c = 0, 0, 1\n\n    # Compute the sequence iteratively\n    for _ in range(3, n + 1):\n        a, b, c = b, c, a + b + c\n\n    return c",
+      "test_content": "from llm_output import fibfib\n\ndef check(candidate):\n    assert candidate(2) == 1\n    assert candidate(1) == 0\n    assert candidate(5) == 4\n    assert candidate(8) == 24\n    assert candidate(10) == 81\n    assert candidate(12) == 274\n    assert candidate(14) == 927\n\n\ncheck(fibfib)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 64,
+      "prompt": "### Prompt\n    Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n### Signature\ndef vowels_count(s):\n\n### Test\nassert candidate(\"abcde\") == 2, \"Test 1\"\nassert candidate(\"Alone\") == 3, \"Test 2\"\nassert candidate(\"key\") == 2, \"Test 3\"\nassert candidate(\"bye\") == 1, \"Test 4\"",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def vowels_count(s):\n    vowels = {'a', 'e', 'i', 'o', 'u'}\n    s = s.lower()  # Convert the string to lowercase for case-insensitive comparison\n    count = sum(1 for char in s if char in vowels)  # Count regular vowels\n    if s.endswith('y'):  # Check if 'y' is at the end of the word\n        count += 1\n    return count\n#",
+      "test_content": "from llm_output import vowels_count\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"abcde\") == 2, \"Test 1\"\n    assert candidate(\"Alone\") == 3, \"Test 2\"\n    assert candidate(\"key\") == 2, \"Test 3\"\n    assert candidate(\"bye\") == 1, \"Test 4\"\n    assert candidate(\"keY\") == 2, \"Test 5\"\n    assert candidate(\"bYe\") == 1, \"Test 6\"\n    assert candidate(\"ACEDY\") == 3, \"Test 7\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(vowels_count)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 65,
+      "prompt": "### Prompt\n    Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n\n### Signature\ndef circular_shift(x, shift):\n\n### Test\nassert candidate(100, 2) == \"001\"\nassert candidate(12, 2) == \"12\"",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def circular_shift(x, shift):\n    # Convert the integer to a string\n    x_str = str(x)\n    n = len(x_str)\n    \n    # If shift is greater than the number of digits, return reversed digits\n    if shift > n:\n        return x_str[::-1]\n    \n    # Perform the circular shift\n    shift = shift % n  # To handle cases where shift is equal to the number of digits\n    return x_str[-shift:] + x_str[:-shift]",
+      "test_content": "from llm_output import circular_shift\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(100, 2) == \"001\"\n    assert candidate(12, 2) == \"12\"\n    assert candidate(97, 8) == \"79\"\n    assert candidate(12, 1) == \"21\", \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(11, 101) == \"11\", \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(circular_shift)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 66,
+      "prompt": "### Prompt\n    Task\n    Write a function that takes a string as input and returns the sum of the upper characters only'\n    ASCII codes.\n\n### Signature\ndef digitSum(s):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(\"\") == 0, \"Error\"\nassert candidate(\"abAB\") == 131, \"Error\"\nassert candidate(\"abcCd\") == 67, \"Error\"\nassert candidate(\"helloE\") == 69, \"Error\"",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def digitSum(s):\n    return sum(ord(char) for char in s if char.isupper())\n#",
+      "test_content": "from llm_output import digitSum\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(\"\") == 0, \"Error\"\n    assert candidate(\"abAB\") == 131, \"Error\"\n    assert candidate(\"abcCd\") == 67, \"Error\"\n    assert candidate(\"helloE\") == 69, \"Error\"\n    assert candidate(\"woArBld\") == 131, \"Error\"\n    assert candidate(\"aAaaaXa\") == 153, \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(\" How are yOu?\") == 151, \"Error\"\n    assert candidate(\"You arE Very Smart\") == 327, \"Error\"\n\n\ncheck(digitSum)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 67,
+      "prompt": "### Prompt\n    In this task, you will be given a string that represents a number of apples and oranges\n    that are distributed in a basket of fruit this basket contains\n    apples, oranges, and mango fruits. Given the string that represents the total number of\n    the oranges and apples and an integer that represent the total number of the fruits\n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n\n### Signature\ndef fruit_distribution(s,n):\n\n### Test\nassert candidate(\"5 apples and 6 oranges\",19) == 8\nassert candidate(\"5 apples and 6 oranges\",21) == 10\nassert candidate(\"0 apples and 1 oranges\",3) == 2",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def fruit_distribution(s, n):\n    # Extract numbers from the string\n    parts = s.split()\n    apples = int(parts[0])  # First number is the count of apples\n    oranges = int(parts[3])  # Fourth part is the count of oranges\n    \n    # Calculate the number of mangoes\n    mangoes = n - apples - oranges\n    return mangoes",
+      "test_content": "from llm_output import fruit_distribution\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"5 apples and 6 oranges\",19) == 8\n    assert candidate(\"5 apples and 6 oranges\",21) == 10\n    assert candidate(\"0 apples and 1 oranges\",3) == 2\n    assert candidate(\"1 apples and 0 oranges\",3) == 2\n    assert candidate(\"2 apples and 3 oranges\",100) == 95\n    assert candidate(\"2 apples and 3 oranges\",5) == 0\n    assert candidate(\"1 apples and 100 oranges\",120) == 19\n\ncheck(fruit_distribution)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 68,
+      "prompt": "### Prompt\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n### Signature\ndef pluck(arr):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([4,2,3]) == [2, 1], \"Error\"\nassert candidate([1,2,3]) == [2, 1], \"Error\"\nassert candidate([]) == [], \"Error\"\nassert candidate([5, 0, 3, 0, 4, 2]) == [0, 1], \"Error\"  # Check some edge cases that are easy to work out by hand.",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def pluck(arr):\n    if not arr:\n        return []\n    \n    smallest_even = float('inf')\n    index = -1\n    \n    for i, num in enumerate(arr):\n        if num % 2 == 0 and num < smallest_even:\n            smallest_even = num\n            index = i\n    \n    return [smallest_even, index] if index != -1 else []",
+      "test_content": "from llm_output import pluck\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n    assert candidate([1,2,3]) == [2, 1], \"Error\"\n    assert candidate([]) == [], \"Error\"\n    assert candidate([5, 0, 3, 0, 4, 2]) == [0, 1], \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([1, 2, 3, 0, 5, 3]) == [0, 3], \"Error\"\n    assert candidate([5, 4, 8, 4 ,8]) == [4, 1], \"Error\"\n    assert candidate([7, 6, 7, 1]) == [6, 1], \"Error\"\n    assert candidate([7, 9, 7, 1]) == [], \"Error\"\n\n\ncheck(pluck)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 69,
+      "prompt": "### Prompt\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than\n    zero, and has a frequency greater than or equal to the value of the integer itself.\n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n\n### Signature\ndef search(lst):\n\n### Test\nassert candidate([5, 5, 5, 5, 1]) == 1\nassert candidate([4, 1, 4, 1, 4, 4]) == 4\nassert candidate([3, 3]) == -1\nassert candidate([8, 8, 8, 8, 8, 8, 8, 8]) == 8\nassert candidate([2, 3, 3, 2, 2]) == 2  # automatically generated tests\nassert candidate([2, 7, 8, 8, 4, 8, 7, 3, 9, 6, 5, 10, 4, 3, 6, 7, 1, 7, 4, 10, 8, 1]) == 1\nassert candidate([3, 2, 8, 2]) == 2\nassert candidate([6, 7, 1, 8, 8, 10, 5, 8, 5, 3, 10]) == 1\nassert candidate([8, 8, 3, 6, 5, 6, 4]) == -1\nassert candidate([6, 9, 6, 7, 1, 4, 7, 1, 8, 8, 9, 8, 10, 10, 8, 4, 10, 4, 10, 1, 2, 9, 5, 7, 9]) == 1\nassert candidate([1, 9, 10, 1, 3]) == 1\nassert candidate([6, 9, 7, 5, 8, 7, 5, 3, 7, 5, 10, 10, 3, 6, 10, 2, 8, 6, 5, 4, 9, 5, 3, 10]) == 5",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "from collections import Counter\n\ndef search(lst):\n    # Count the frequency of each number in the list\n    freq = Counter(lst)\n    \n    # Initialize the result as -1\n    result = -1\n    \n    # Iterate through the unique numbers in the list\n    for num in freq:\n        # Check if the frequency of the number is greater than or equal to the number itself\n        if freq[num] >= num:\n            # Update the result to the maximum valid number\n            result = max(result, num)\n    \n    return result",
+      "test_content": "from llm_output import search\n\ndef check(candidate):\n\n    # manually generated tests\n    assert candidate([5, 5, 5, 5, 1]) == 1\n    assert candidate([4, 1, 4, 1, 4, 4]) == 4\n    assert candidate([3, 3]) == -1\n    assert candidate([8, 8, 8, 8, 8, 8, 8, 8]) == 8\n    assert candidate([2, 3, 3, 2, 2]) == 2\n\n    # automatically generated tests\n    assert candidate([2, 7, 8, 8, 4, 8, 7, 3, 9, 6, 5, 10, 4, 3, 6, 7, 1, 7, 4, 10, 8, 1]) == 1\n    assert candidate([3, 2, 8, 2]) == 2\n    assert candidate([6, 7, 1, 8, 8, 10, 5, 8, 5, 3, 10]) == 1\n    assert candidate([8, 8, 3, 6, 5, 6, 4]) == -1\n    assert candidate([6, 9, 6, 7, 1, 4, 7, 1, 8, 8, 9, 8, 10, 10, 8, 4, 10, 4, 10, 1, 2, 9, 5, 7, 9]) == 1\n    assert candidate([1, 9, 10, 1, 3]) == 1\n    assert candidate([6, 9, 7, 5, 8, 7, 5, 3, 7, 5, 10, 10, 3, 6, 10, 2, 8, 6, 5, 4, 9, 5, 3, 10]) == 5\n    assert candidate([1]) == 1\n    assert candidate([8, 8, 10, 6, 4, 3, 5, 8, 2, 4, 2, 8, 4, 6, 10, 4, 2, 1, 10, 2, 1, 1, 5]) == 4\n    assert candidate([2, 10, 4, 8, 2, 10, 5, 1, 2, 9, 5, 5, 6, 3, 8, 6, 4, 10]) == 2\n    assert candidate([1, 6, 10, 1, 6, 9, 10, 8, 6, 8, 7, 3]) == 1\n    assert candidate([9, 2, 4, 1, 5, 1, 5, 2, 5, 7, 7, 7, 3, 10, 1, 5, 4, 2, 8, 4, 1, 9, 10, 7, 10, 2, 8, 10, 9, 4]) == 4\n    assert candidate([2, 6, 4, 2, 8, 7, 5, 6, 4, 10, 4, 6, 3, 7, 8, 8, 3, 1, 4, 2, 2, 10, 7]) == 4\n    assert candidate([9, 8, 6, 10, 2, 6, 10, 2, 7, 8, 10, 3, 8, 2, 6, 2, 3, 1]) == 2\n    assert candidate([5, 5, 3, 9, 5, 6, 3, 2, 8, 5, 6, 10, 10, 6, 8, 4, 10, 7, 7, 10, 8]) == -1\n    assert candidate([10]) == -1\n    assert candidate([9, 7, 7, 2, 4, 7, 2, 10, 9, 7, 5, 7, 2]) == 2\n    assert candidate([5, 4, 10, 2, 1, 1, 10, 3, 6, 1, 8]) == 1\n    assert candidate([7, 9, 9, 9, 3, 4, 1, 5, 9, 1, 2, 1, 1, 10, 7, 5, 6, 7, 6, 7, 7, 6]) == 1\n    assert candidate([3, 10, 10, 9, 2]) == -1\n\n\ncheck(search)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 70,
+      "prompt": "### Prompt\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n### Signature\ndef strange_sort_list(lst):\n\n### Test\nassert candidate([1, 2, 3, 4]) == [1, 4, 2, 3]\nassert candidate([5, 6, 7, 8, 9]) == [5, 9, 6, 8, 7]\nassert candidate([1, 2, 3, 4, 5]) == [1, 5, 2, 4, 3]\nassert candidate([5, 6, 7, 8, 9, 1]) == [1, 9, 5, 8, 6, 7]\nassert candidate([5, 5, 5, 5]) == [5, 5, 5, 5]",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def strange_sort_list(lst):\n    result = []\n    lst.sort()  # Sort the list in ascending order\n    while lst:\n        result.append(lst.pop(0))  # Append the smallest element\n        if lst:\n            result.append(lst.pop(-1))  # Append the largest element\n    return result\n#",
+      "test_content": "from llm_output import strange_sort_list\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1, 2, 3, 4]) == [1, 4, 2, 3]\n    assert candidate([5, 6, 7, 8, 9]) == [5, 9, 6, 8, 7]\n    assert candidate([1, 2, 3, 4, 5]) == [1, 5, 2, 4, 3]\n    assert candidate([5, 6, 7, 8, 9, 1]) == [1, 9, 5, 8, 6, 7]\n    assert candidate([5, 5, 5, 5]) == [5, 5, 5, 5]\n    assert candidate([]) == []\n    assert candidate([1,2,3,4,5,6,7,8]) == [1, 8, 2, 7, 3, 6, 4, 5]\n    assert candidate([0,2,2,2,5,5,-5,-5]) == [-5, 5, -5, 5, 0, 2, 2, 2]\n    assert candidate([111111]) == [111111]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(strange_sort_list)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 71,
+      "prompt": "### Prompt\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle.\n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater\n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n\n### Signature\ndef triangle_area(a, b, c):\n\n### Test\nassert candidate(3, 4, 5) == 6.00, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(1, 2, 10) == -1\nassert candidate(4, 8, 5) == 8.18\nassert candidate(2, 2, 2) == 1.73",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "import math\n\ndef triangle_area(a, b, c):\n    # Check if the sides form a valid triangle\n    if a + b > c and a + c > b and b + c > a:\n        # Calculate the semi-perimeter\n        s = (a + b + c) / 2\n        # Calculate the area using Heron's formula\n        area = math.sqrt(s * (s - a) * (s - b) * (s - c))\n        # Return the area rounded to 2 decimal points\n        return round(area, 2)\n    else:\n        # Return -1 if the sides do not form a valid triangle\n        return -1",
+      "test_content": "from llm_output import triangle_area\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(3, 4, 5) == 6.00, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(1, 2, 10) == -1\n    assert candidate(4, 8, 5) == 8.18\n    assert candidate(2, 2, 2) == 1.73\n    assert candidate(1, 2, 3) == -1\n    assert candidate(10, 5, 7) == 16.25\n    assert candidate(2, 6, 3) == -1\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1, 1, 1) == 0.43, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(2, 2, 10) == -1\n\n\ncheck(triangle_area)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 72,
+      "prompt": "### Prompt\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n\n### Signature\ndef will_it_fly(q,w):\n\n### Test\nassert candidate([3, 2, 3], 9) is True\nassert candidate([1, 2], 5) is False\nassert candidate([3], 5) is True",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def will_it_fly(q, w):\n    # Check if the list is palindromic\n    is_palindromic = q == q[::-1]\n    # Check if the sum of elements is less than or equal to the maximum weight\n    is_within_weight = sum(q) <= w\n    # Return True if both conditions are met, otherwise False\n    return is_palindromic and is_within_weight",
+      "test_content": "from llm_output import will_it_fly\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([3, 2, 3], 9) is True\n    assert candidate([1, 2], 5) is False\n    assert candidate([3], 5) is True\n    assert candidate([3, 2, 3], 1) is False\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1, 2, 3], 6) is False\n    assert candidate([5], 5) is True\n\n\ncheck(will_it_fly)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 73,
+      "prompt": "### Prompt\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n\n### Signature\ndef smallest_change(arr):\n\n### Test\nassert candidate([1,2,3,5,4,7,9,6]) == 4\nassert candidate([1, 2, 3, 4, 3, 2, 2]) == 1\nassert candidate([1, 4, 2]) == 1\nassert candidate([1, 4, 4, 2]) == 1  # Check some edge cases that are easy to work out by hand.",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def smallest_change(arr):\n    n = len(arr)\n    changes = 0\n    for i in range(n // 2):\n        if arr[i] != arr[n - i - 1]:\n            changes += 1\n    return changes",
+      "test_content": "from llm_output import smallest_change\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1,2,3,5,4,7,9,6]) == 4\n    assert candidate([1, 2, 3, 4, 3, 2, 2]) == 1\n    assert candidate([1, 4, 2]) == 1\n    assert candidate([1, 4, 4, 2]) == 1\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1, 2, 3, 2, 1]) == 0\n    assert candidate([3, 1, 1, 3]) == 0\n    assert candidate([1]) == 0\n    assert candidate([0, 1]) == 1\n\n\ncheck(smallest_change)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 74,
+      "prompt": "### Prompt\n    Write a function that accepts two lists of strings and returns the list that has\n    total number of chars in the all strings of the list less than the other list.\n\n### Signature\ndef total_match(lst1, lst2):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([], []) == []\nassert candidate(['hi', 'admin'], ['hi', 'hi']) == ['hi', 'hi']\nassert candidate(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) == ['hi', 'admin']\nassert candidate(['4'], ['1', '2', '3', '4', '5']) == ['4']\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_td_1760730464017335/llm_output_test.py\", line 22, in <module>\n    check(total_match)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_td_1760730464017335/llm_output_test.py\", line 13, in check\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def total_match(lst1, lst2):\n    # Calculate the total number of characters in each list\n    total_chars_lst1 = sum(len(s) for s in lst1)\n    total_chars_lst2 = sum(len(s) for s in lst2)\n    \n    # Compare the total characters and return the list with fewer characters\n    if total_chars_lst1 < total_chars_lst2:\n        return lst1\n    elif total_chars_lst2 < total_chars_lst1:\n        return lst2\n    else:\n        # If both lists have the same total characters, return the first list\n        return lst1",
+      "test_content": "from llm_output import total_match\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([], []) == []\n    assert candidate(['hi', 'admin'], ['hi', 'hi']) == ['hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) == ['hi', 'admin']\n    assert candidate(['4'], ['1', '2', '3', '4', '5']) == ['4']\n    assert candidate(['hi', 'admin'], ['hI', 'Hi']) == ['hI', 'Hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hi']) == ['hI', 'hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([], ['this']) == []\n    assert candidate(['this'], []) == []\n\n\ncheck(total_match)",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 75,
+      "prompt": "### Prompt\n    Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100.\n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n\n### Signature\ndef is_multiply_prime(a):\n\n### Test\nassert candidate(5) == False\nassert candidate(30) == True\nassert candidate(8) == True\nassert candidate(10) == False\nassert candidate(125) == True",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def is_multiply_prime(a):\n    def is_prime(n):\n        if n < 2:\n            return False\n        for i in range(2, int(n**0.5) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    if a < 2:\n        return False\n\n    primes = [i for i in range(2, 100) if is_prime(i)]\n\n    for i in range(len(primes)):\n        for j in range(i, len(primes)):\n            for k in range(j, len(primes)):\n                if primes[i] * primes[j] * primes[k] == a:\n                    return True\n    return False",
+      "test_content": "from llm_output import is_multiply_prime\n\ndef check(candidate):\n\n    assert candidate(5) == False\n    assert candidate(30) == True\n    assert candidate(8) == True\n    assert candidate(10) == False\n    assert candidate(125) == True\n    assert candidate(3 * 5 * 7) == True\n    assert candidate(3 * 6 * 7) == False\n    assert candidate(9 * 9 * 9) == False\n    assert candidate(11 * 9 * 9) == False\n    assert candidate(11 * 13 * 7) == True\n\n\ncheck(is_multiply_prime)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 76,
+      "prompt": "### Prompt\n    Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n\n### Signature\ndef is_simple_power(x, n):\n\n### Test\nassert candidate(16, 2)== True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(143214, 16)== False, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(4, 2)==True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(9, 3)==True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(16, 4)==True, \"This prints if this assert fails 1 (good for debugging!)\"",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def is_simple_power(x, n):\n    if x < 1 or n < 1:\n        return False\n    if x == 1:\n        return True  # 1 is a power of any number (n**0 = 1)\n    current = n\n    while current <= x:\n        if current == x:\n            return True\n        current *= n\n    return False",
+      "test_content": "from llm_output import is_simple_power\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(16, 2)== True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(143214, 16)== False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(4, 2)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(9, 3)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(16, 4)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(24, 2)==False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(128, 4)==False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(12, 6)==False, \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1, 1)==True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(1, 12)==True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(is_simple_power)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 77,
+      "prompt": "### Prompt\n    Write a function that takes an integer a and returns True\n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n\n### Signature\ndef iscube(a):\n\n### Test\nassert candidate(1) == True, \"First test error: \" + str(candidate(1))\nassert candidate(2) == False, \"Second test error: \" + str(candidate(2))\nassert candidate(-1) == True, \"Third test error: \" + str(candidate(-1))\nassert candidate(64) == True, \"Fourth test error: \" + str(candidate(64))",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def iscube(a):\n    # Calculate the cube root of the absolute value of a\n    cube_root = round(abs(a) ** (1/3))\n    # Check if the cube of the cube root equals the absolute value of a\n    return cube_root ** 3 == abs(a)\n#",
+      "test_content": "from llm_output import iscube\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(1) == True, \"First test error: \" + str(candidate(1))\n    assert candidate(2) == False, \"Second test error: \" + str(candidate(2))\n    assert candidate(-1) == True, \"Third test error: \" + str(candidate(-1))\n    assert candidate(64) == True, \"Fourth test error: \" + str(candidate(64))\n    assert candidate(180) == False, \"Fifth test error: \" + str(candidate(180))\n    assert candidate(1000) == True, \"Sixth test error: \" + str(candidate(1000))\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(0) == True, \"1st edge test error: \" + str(candidate(0))\n    assert candidate(1729) == False, \"2nd edge test error: \" + str(candidate(1728))\n\n\ncheck(iscube)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 78,
+      "prompt": "### Prompt\n    You have been tasked to write a function that receives\n    a hexadecimal number as a string and counts the number of hexadecimal\n    digits that are primes (prime number, or a prime, is a natural number\n    greater than 1 that is not a product of two smaller natural numbers).\n    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.\n    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...\n    So you have to determine a number of the following digits: 2, 3, 5, 7,\n    B (=decimal 11), D (=decimal 13).\n    Note: you may assume the input is always correct or empty string,\n    and symbols A,B,C,D,E,F are always uppercase.\n    Examples:\n    For num = \"AB\" the output should be 1.\n    For num = \"1077E\" the output should be 2.\n    For num = \"ABED1A33\" the output should be 4.\n    For num = \"123456789ABCDEF0\" the output should be 6.\n    For num = \"2020\" the output should be 2.\n\n### Signature\ndef hex_key(num):\n\n### Test\nassert candidate(\"AB\") == 1, \"First test error: \" + str(candidate(\"AB\"))\nassert candidate(\"1077E\") == 2, \"Second test error: \" + str(candidate(\"1077E\"))\nassert candidate(\"ABED1A33\") == 4, \"Third test error: \" + str(candidate(\"ABED1A33\"))",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def hex_key(num):\n    # Define the set of hexadecimal digits that are prime\n    prime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}\n    \n    # Count the number of prime hexadecimal digits in the input string\n    return sum(1 for char in num if char in prime_hex_digits)",
+      "test_content": "from llm_output import hex_key\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"AB\") == 1, \"First test error: \" + str(candidate(\"AB\"))      \n    assert candidate(\"1077E\") == 2, \"Second test error: \" + str(candidate(\"1077E\"))  \n    assert candidate(\"ABED1A33\") == 4, \"Third test error: \" + str(candidate(\"ABED1A33\"))      \n    assert candidate(\"2020\") == 2, \"Fourth test error: \" + str(candidate(\"2020\"))  \n    assert candidate(\"123456789ABCDEF0\") == 6, \"Fifth test error: \" + str(candidate(\"123456789ABCDEF0\"))      \n    assert candidate(\"112233445566778899AABBCCDDEEFF00\") == 12, \"Sixth test error: \" + str(candidate(\"112233445566778899AABBCCDDEEFF00\"))  \n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([]) == 0\n\n\ncheck(hex_key)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 79,
+      "prompt": "### Prompt\n    You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n### Signature\ndef decimal_to_binary(decimal):\n\n### Test\nassert candidate(0) == \"db0db\"\nassert candidate(32) == \"db100000db\"",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def decimal_to_binary(decimal):\n    # Convert the decimal number to binary using bin() and remove the '0b' prefix\n    binary_representation = bin(decimal)[2:]\n    # Add 'db' prefix and suffix\n    return f\"db{binary_representation}db\"",
+      "test_content": "from llm_output import decimal_to_binary\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(0) == \"db0db\"\n    assert candidate(32) == \"db100000db\"\n    assert candidate(103) == \"db1100111db\"\n    assert candidate(15) == \"db1111db\", \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(decimal_to_binary)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 80,
+      "prompt": "### Prompt\n    You are given a string s.\n    Your task is to check if the string is happy or not.\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct\n    For example:\n    is_happy(a) => False\n    is_happy(aa) => False\n    is_happy(abcd) => True\n    is_happy(aabb) => False\n    is_happy(adb) => True\n    is_happy(xyy) => False\n\n### Signature\ndef is_happy(s):\n\n### Test\nassert candidate(\"a\") == False , \"a\"\nassert candidate(\"aa\") == False , \"aa\"\nassert candidate(\"abcd\") == True , \"abcd\"\nassert candidate(\"aabb\") == False , \"aabb\"",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def is_happy(s):\n    # A string is happy if its length is at least 3 and every 3 consecutive letters are distinct\n    if len(s) < 3:\n        return False\n    \n    for i in range(len(s) - 2):\n        # Check if the current 3 consecutive characters are distinct\n        if len(set(s[i:i+3])) != 3:\n            return False\n    \n    return True",
+      "test_content": "from llm_output import is_happy\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"a\") == False , \"a\"\n    assert candidate(\"aa\") == False , \"aa\"\n    assert candidate(\"abcd\") == True , \"abcd\"\n    assert candidate(\"aabb\") == False , \"aabb\"\n    assert candidate(\"adb\") == True , \"adb\"\n    assert candidate(\"xyy\") == False , \"xyy\"\n    assert candidate(\"iopaxpoi\") == True , \"iopaxpoi\"\n    assert candidate(\"iopaxioi\") == False , \"iopaxioi\"\n\ncheck(is_happy)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 81,
+      "prompt": "### Prompt\n    It is the last week of the semester and the teacher has to give the grades\n    to students. The teacher has been making her own algorithm for grading.\n    The only problem is, she has lost the code she used for grading.\n    She has given you a list of GPAs for some students and you have to write\n    a function that can output a list of letter grades using the following table:\n             GPA       |    Letter grade\n              4.0                A+\n            > 3.7                A\n            > 3.3                A-\n            > 3.0                B+\n            > 2.7                B\n            > 2.3                B-\n            > 2.0                C+\n            > 1.7                C\n            > 1.3                C-\n            > 1.0                D+\n            > 0.7                D\n            > 0.0                D-\n              0.0                E\n\n### Signature\ndef numerical_letter_grade(grades):\n\n### Test\nassert candidate([4.0, 3, 1.7, 2, 3.5]) == ['A+', 'B', 'C-', 'C', 'A-']\nassert candidate([1.2]) == ['D+']\nassert candidate([0.5]) == ['D-']",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "solution": "def numerical_letter_grade(grades):\n    letter_grades = []\n    for gpa in grades:\n        if gpa == 4.0:\n            letter_grades.append('A+')\n        elif gpa > 3.7:\n            letter_grades.append('A')\n        elif gpa > 3.3:\n            letter_grades.append('A-')\n        elif gpa > 3.0:\n            letter_grades.append('B+')\n        elif gpa > 2.7:\n            letter_grades.append('B')\n        elif gpa > 2.3:\n            letter_grades.append('B-')\n        elif gpa > 2.0:\n            letter_grades.append('C+')\n        elif gpa > 1.7:\n            letter_grades.append('C')\n        elif gpa > 1.3:\n            letter_grades.append('C-')\n        elif gpa > 1.0:\n            letter_grades.append('D+')\n        elif gpa > 0.7:\n            letter_grades.append('D')\n        elif gpa > 0.0:\n            letter_grades.append('D-')\n        else:\n            letter_grades.append('E')\n    return letter_grades",
+      "test_content": "from llm_output import numerical_letter_grade\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([4.0, 3, 1.7, 2, 3.5]) == ['A+', 'B', 'C-', 'C', 'A-']\n    assert candidate([1.2]) == ['D+']\n    assert candidate([0.5]) == ['D-']\n    assert candidate([0.0]) == ['E']\n    assert candidate([1, 0.3, 1.5, 2.8, 3.3]) == ['D', 'D-', 'C-', 'B', 'B+']\n    assert candidate([0, 0.7]) == ['E', 'D-']\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(numerical_letter_grade)",
+      "context": null,
+      "attempt_num": 1
+    }
+  ]
+}

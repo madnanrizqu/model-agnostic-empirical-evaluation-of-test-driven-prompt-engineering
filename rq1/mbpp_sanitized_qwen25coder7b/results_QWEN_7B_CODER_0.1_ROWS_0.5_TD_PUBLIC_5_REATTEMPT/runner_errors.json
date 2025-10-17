@@ -1,0 +1,54 @@
+{
+  "Qwen/Qwen2.5-Coder-7B-Instruct": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "solution": "def differ_At_One_Bit_Pos(x):\n    return x > 0 and (x & (x - 1)) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "solution": "def differ_At_One_Bit_Pos(x):\n    return x > 0 and (x & (x - 1)) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    return list(string)\n\ndef remove_chars(str1, str2):\n    str1_list = str_to_list(str1)\n    str2_set = set(str_to_list(str2))\n    result = [char for char in str1_list if char not in str2_set]\n    return ''.join(result)",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "import math\n\ndef check(num):\n    reversed_num = 0\n    while num > 0:\n        reversed_num = reversed_num * 10 + num % 10\n        num //= 10\n    return reversed_num\n\ndef is_one_less_than_twice_reversed(num):\n    return num == 2 * rev(num) - 1\n\n# Example usage:\n# result = is_one_less_than_twice_reversed(18)\n# print(result)  # Output: True",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 57,
+      "prompt": "### Prompt\nWrite a python function to find the largest number that can be formed with the given list of digits.\n\n### Signature\ndef find_Max_Num(arr) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 8, in <module>\n    check(find_Max_Num)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output_test.py\", line 4, in check\n    assert candidate([1,2,3]) == 321\n           ^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758365032489175/llm_output.py\", line 7, in find_Max_Num\n    arr = sorted(arr, key=cmp_to_key(compare))\n                                     ^^^^^^^\nNameError: name 'compare' is not defined. Did you mean: 'compile'?\n",
+      "solution": "from functools import cmp_to_key\n\ndef find_Max_Num(x, y):\n    return int(y + x) - int(x + y)\n\ndef find_Max_Num(arr):\n    arr = sorted(arr, key=cmp_to_key(compare))\n    result = ''.join(map(str, arr))\n    return int(result)",
+      "test_content": "from llm_output import find_Max_Num\n\ndef check(candidate):\n    assert candidate([1,2,3]) == 321\n    assert candidate([4,5,6,1]) == 6541\n    assert candidate([1,2,3,9]) == 9321\n\ncheck(find_Max_Num)",
+      "context": "{\"function_name\": \"find_Max_Num\"}",
+      "attempt_num": 1
+    }
+  ]
+}

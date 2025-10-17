@@ -1,0 +1,355 @@
+{
+  "anthropic/claude-3.5-sonnet": [
+    {
+      "task_id": 0,
+      "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    n = len(numbers)\n    for i in range(n):\n        for j in range(i + 1, n):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False",
+      "test_content": "from llm_output import has_close_elements\n\ndef check(candidate):\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False\n\n\ncheck(has_close_elements)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 1,
+      "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [ '(()())', '((()))', '()', '((())()())' ]\nassert candidate('() (()) ((())) (((())))') == [ '()', '(())', '((()))', '(((())))' ]",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    # Remove spaces from input string\n    paren_string = paren_string.replace(\" \", \"\")\n    \n    result = []\n    current_group = []\n    depth = 0\n    \n    for char in paren_string:\n        if char == '(':\n            depth += 1\n            current_group.append(char)\n        elif char == ')':\n            depth -= 1\n            current_group.append(char)\n            \n            # When depth becomes 0, we've completed a balanced group\n            if depth == 0:\n                result.append(''.join(current_group))\n                current_group = []\n                \n    return result",
+      "test_content": "from llm_output import separate_paren_groups\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [\n        '(()())', '((()))', '()', '((())()())'\n    ]\n    assert candidate('() (()) ((())) (((())))') == [\n        '()', '(())', '((()))', '(((())))'\n    ]\n    assert candidate('(()(())((())))') == [\n        '(()(())((())))'\n    ]\n    assert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\n\ncheck(separate_paren_groups)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n\n### Test\nassert candidate(3.5) == 0.5",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def truncate_number(number: float) -> float:\n    return number - int(number)",
+      "test_content": "from llm_output import truncate_number\n\ndef check(candidate):\n    assert candidate(3.5) == 0.5\n    assert abs(candidate(1.33) - 0.33) < 1e-6\n    assert abs(candidate(123.456) - 0.456) < 1e-6\n\ncheck(truncate_number)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:\n\n### Test\nassert candidate([]) == False\nassert candidate([1, 2, -3, 1, 2, -3]) == False\nassert candidate([1, 2, -4, 5, 6]) == True",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+      "test_content": "from llm_output import below_zero\n\ndef check(candidate):\n    assert candidate([]) == False\n    assert candidate([1, 2, -3, 1, 2, -3]) == False\n    assert candidate([1, 2, -4, 5, 6]) == True\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True\n    assert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True\n\ncheck(below_zero)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n\n### Test\nassert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    if not numbers:\n        return 0.0\n    \n    # Calculate mean\n    mean = sum(numbers) / len(numbers)\n    \n    # Calculate absolute deviations from mean\n    absolute_deviations = [abs(x - mean) for x in numbers]\n    \n    # Calculate mean of absolute deviations\n    mad = sum(absolute_deviations) / len(numbers)\n    \n    return mad",
+      "test_content": "from llm_output import mean_absolute_deviation\n\ndef check(candidate):\n    assert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0]) - 1.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0, 5.0]) - 6.0/5.0) < 1e-6\n\n\ncheck(mean_absolute_deviation)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 5,
+      "prompt": "### Prompt\n     Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n\n### Signature\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n\n### Test\nassert candidate([], 7) == []",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    if not numbers:\n        return []\n    \n    result = []\n    for i, num in enumerate(numbers):\n        result.append(num)\n        if i < len(numbers) - 1:\n            result.append(delimeter)\n    \n    return result",
+      "test_content": "from llm_output import intersperse\n\ndef check(candidate):\n    assert candidate([], 7) == []\n    assert candidate([5, 6, 3, 2], 8) == [5, 8, 6, 8, 3, 8, 2]\n    assert candidate([2, 2, 2], 2) == [2, 2, 2, 2, 2]\n\ncheck(intersperse)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    groups = paren_string.split()\n    result = []\n    \n    for group in groups:\n        depth = 0\n        max_depth = 0\n        for char in group:\n            if char == '(':\n                depth += 1\n                max_depth = max(max_depth, depth)\n            elif char == ')':\n                depth -= 1\n        result.append(max_depth)\n    \n    return result",
+      "test_content": "from llm_output import parse_nested_parens\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]\n    assert candidate('() (()) ((())) (((())))') == [1, 2, 3, 4]\n    assert candidate('(()(())((())))') == [4]\n\ncheck(parse_nested_parens)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []\nassert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]",
+      "test_content": "from llm_output import filter_by_substring\n\ndef check(candidate):\n    assert candidate([], 'john') == []\n    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']\n    assert candidate(['xxx', 'asd', 'aaaxxy', 'john doe', 'xxxAAA', 'xxx'], 'xx') == ['xxx', 'aaaxxy', 'xxxAAA', 'xxx']\n    assert candidate(['grunt', 'trumpet', 'prune', 'gruesome'], 'run') == ['grunt', 'prune']\n\ncheck(filter_by_substring)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n\n### Test\nassert candidate([]) == (0, 1)\nassert candidate([1, 1, 1]) == (3, 1)",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    if not numbers:\n        return (0, 1)\n    \n    total_sum = sum(numbers)\n    product = 1\n    for num in numbers:\n        product *= num\n    \n    return (total_sum, product)",
+      "test_content": "from llm_output import sum_product\n\ndef check(candidate):\n    assert candidate([]) == (0, 1)\n    assert candidate([1, 1, 1]) == (3, 1)\n    assert candidate([100, 0]) == (100, 0)\n    assert candidate([3, 5, 7]) == (3 + 5 + 7, 3 * 5 * 7)\n    assert candidate([10]) == (10, 10)\n\ncheck(sum_product)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:\n\n### Test\nassert candidate([]) == []\nassert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    if not numbers:\n        return []\n    \n    result = []\n    current_max = float('-inf')\n    \n    for num in numbers:\n        current_max = max(current_max, num)\n        result.append(current_max)\n    \n    return result",
+      "test_content": "from llm_output import rolling_max\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]\n    assert candidate([4, 3, 2, 1]) == [4, 4, 4, 4]\n    assert candidate([3, 2, 3, 100, 3]) == [3, 3, 3, 100, 100]\n\ncheck(rolling_max)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('x') == 'x'",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def make_palindrome(string: str) -> str:\n    if not string:\n        return ''\n    \n    # Find the longest palindromic suffix\n    for i in range(len(string)):\n        suffix = string[i:]\n        if suffix == suffix[::-1]:\n            # Get the prefix before palindromic suffix\n            prefix = string[:i]\n            # Return original string + reversed prefix\n            return string + prefix[::-1]\n    \n    return string + string[:-1][::-1]",
+      "test_content": "from llm_output import make_palindrome\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('x') == 'x'\n    assert candidate('xyz') == 'xyzyx'\n    assert candidate('xyx') == 'xyx'\n    assert candidate('jerry') == 'jerryrrej'\n\ncheck(make_palindrome)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\n     Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n\n### Signature\ndef string_xor(a: str, b: str) -> str:\n\n### Test\nassert candidate('111000', '101010') == '010010'",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def string_xor(a: str, b: str) -> str:\n    result = ''\n    for bit_a, bit_b in zip(a, b):\n        result += '1' if bit_a != bit_b else '0'\n    return result",
+      "test_content": "from llm_output import string_xor\n\ndef check(candidate):\n    assert candidate('111000', '101010') == '010010'\n    assert candidate('1', '1') == '0'\n    assert candidate('0101', '0000') == '0101'\n\ncheck(string_xor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:\n\n### Test\nassert candidate([]) == None",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    return max(strings, key=len)",
+      "test_content": "from llm_output import longest\n\ndef check(candidate):\n    assert candidate([]) == None\n    assert candidate(['x', 'y', 'z']) == 'x'\n    assert candidate(['x', 'yyy', 'zzzz', 'www', 'kkkk', 'abc']) == 'zzzz'\n\ncheck(longest)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 13,
+      "prompt": "### Prompt\n     Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n\n### Signature\ndef greatest_common_divisor(a: int, b: int) -> int:\n\n### Test\nassert candidate(3, 7) == 1\nassert candidate(10, 15) == 5",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def greatest_common_divisor(a: int, b: int) -> int:\n    while b:\n        a, b = b, a % b\n    return abs(a)",
+      "test_content": "from llm_output import greatest_common_divisor\n\ndef check(candidate):\n    assert candidate(3, 7) == 1\n    assert candidate(10, 15) == 5\n    assert candidate(49, 14) == 7\n    assert candidate(144, 60) == 12\n\ncheck(greatest_common_divisor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 14,
+      "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:\n\n### Test\nassert candidate('') == []",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    return [string[:i+1] for i in range(len(string))]",
+      "test_content": "from llm_output import all_prefixes\n\ndef check(candidate):\n    assert candidate('') == []\n    assert candidate('asdfgh') == ['a', 'as', 'asd', 'asdf', 'asdfg', 'asdfgh']\n    assert candidate('WWW') == ['W', 'WW', 'WWW']\n\ncheck(all_prefixes)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 15,
+      "prompt": "### Prompt\n     Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n\n### Signature\ndef string_sequence(n: int) -> str:\n\n### Test\nassert candidate(0) == '0'",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def string_sequence(n: int) -> str:\n    return ' '.join(str(i) for i in range(n + 1))",
+      "test_content": "from llm_output import string_sequence\n\ndef check(candidate):\n    assert candidate(0) == '0'\n    assert candidate(3) == '0 1 2 3'\n    assert candidate(10) == '0 1 2 3 4 5 6 7 8 9 10'\n\ncheck(string_sequence)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 16,
+      "prompt": "### Prompt\n     Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n\n### Signature\ndef count_distinct_characters(string: str) -> int:\n\n### Test\nassert candidate('') == 0\nassert candidate('abcde') == 5",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def count_distinct_characters(string: str) -> int:\n    if not string:\n        return 0\n    return len(set(string.lower()))",
+      "test_content": "from llm_output import count_distinct_characters\n\ndef check(candidate):\n    assert candidate('') == 0\n    assert candidate('abcde') == 5\n    assert candidate('abcde' + 'cade' + 'CADE') == 5\n    assert candidate('aaaaAAAAaaaa') == 1\n    assert candidate('Jerry jERRY JeRRRY') == 5\n\ncheck(count_distinct_characters)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 17,
+      "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:\n\n### Test\nassert candidate('') == []\nassert candidate('o o o o') == [4, 4, 4, 4]\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_td_1755235732057044/llm_output_test.py\", line 10, in <module>\n    check(parse_music)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_td_1755235732057044/llm_output_test.py\", line 7, in check\n    assert candidate('o| o| .| .| o o o o') == [2, 2, 1, 1, 4, 4, 4, 4]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    if not music_string:\n        return []\n    \n    result = []\n    notes = music_string.split()\n    \n    for note in notes:\n        if note == 'o':\n            result.append(4)  # Quarter note\n        elif note == 'o|':\n            result.append(2)  # Half note\n        elif note == '.|':\n            result.append(1)  # Whole note\n            \n    return result",
+      "test_content": "from llm_output import parse_music\n\ndef check(candidate):\n    assert candidate('') == []\n    assert candidate('o o o o') == [4, 4, 4, 4]\n    assert candidate('.| .| .| .|') == [1, 1, 1, 1]\n    assert candidate('o| o| .| .| o o o o') == [2, 2, 1, 1, 4, 4, 4, 4]\n    assert candidate('o| .| o| .| o o| o o|') == [2, 1, 2, 1, 4, 2, 4, 2]\n\ncheck(parse_music)",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\n     Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n\n### Signature\ndef how_many_times(string: str, substring: str) -> int:\n\n### Test\nassert candidate('', 'x') == 0\nassert candidate('xyxyxyx', 'x') == 4",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def how_many_times(string: str, substring: str) -> int:\n    if not string or not substring:\n        return 0\n    \n    count = 0\n    for i in range(len(string) - len(substring) + 1):\n        if string[i:i+len(substring)] == substring:\n            count += 1\n    return count",
+      "test_content": "from llm_output import how_many_times\n\ndef check(candidate):\n    assert candidate('', 'x') == 0\n    assert candidate('xyxyxyx', 'x') == 4\n    assert candidate('cacacacac', 'cac') == 4\n    assert candidate('john doe', 'john') == 1\n\ncheck(how_many_times)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 19,
+      "prompt": "### Prompt\n     Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n\n### Signature\ndef sort_numbers(numbers: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('three') == 'three'",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def sort_numbers(numbers: str) -> str:\n    if not numbers:\n        return ''\n        \n    number_map = {\n        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,\n        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9\n    }\n    \n    words = numbers.split()\n    sorted_words = sorted(words, key=lambda x: number_map[x])\n    return ' '.join(sorted_words)",
+      "test_content": "from llm_output import sort_numbers\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('three') == 'three'\n    assert candidate('three five nine') == 'three five nine'\n    assert candidate('five zero four seven nine eight') == 'zero four five seven eight nine'\n    assert candidate('six five four three two one zero') == 'zero one two three four five six'\n\ncheck(sort_numbers)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 20,
+      "prompt": "### Prompt\n     From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n\n### Signature\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2]) == (3.9, 4.0)\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0]) == (5.0, 5.9)",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    min_diff = float('inf')\n    result = (0.0, 0.0)\n    \n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            diff = abs(numbers[i] - numbers[j])\n            if diff < min_diff:\n                min_diff = diff\n                result = (min(numbers[i], numbers[j]), max(numbers[i], numbers[j]))\n    \n    return result",
+      "test_content": "from llm_output import find_closest_elements\n\ndef check(candidate):\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2]) == (3.9, 4.0)\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0]) == (5.0, 5.9)\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.2]) == (2.0, 2.2)\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1]) == (2.2, 3.1)\n\n\ncheck(find_closest_elements)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 21,
+      "prompt": "### Prompt\n     Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n\n### Signature\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n\n### Test\nassert candidate([2.0, 49.9]) == [0.0, 1.0]\nassert candidate([100.0, 49.9]) == [1.0, 0.0]",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    min_val = min(numbers)\n    max_val = max(numbers)\n    \n    # If all numbers are the same, avoid division by zero\n    if min_val == max_val:\n        return [0.0] * len(numbers)\n    \n    # Apply linear transformation: (x - min) / (max - min)\n    return [(x - min_val) / (max_val - min_val) for x in numbers]",
+      "test_content": "from llm_output import rescale_to_unit\n\ndef check(candidate):\n    assert candidate([2.0, 49.9]) == [0.0, 1.0]\n    assert candidate([100.0, 49.9]) == [1.0, 0.0]\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0]) == [0.0, 0.25, 0.5, 0.75, 1.0]\n    assert candidate([2.0, 1.0, 5.0, 3.0, 4.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\n    assert candidate([12.0, 11.0, 15.0, 13.0, 14.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\n\ncheck(rescale_to_unit)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 22,
+      "prompt": "### Prompt\n     Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n\n### Signature\ndef filter_integers(values: List[Any]) -> List[int]:\n\n### Test\nassert candidate([]) == []",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List, Any\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    return [x for x in values if isinstance(x, int) and not isinstance(x, bool)]",
+      "test_content": "from llm_output import filter_integers\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([4, {}, [], 23.2, 9, 'adasd']) == [4, 9]\n    assert candidate([3, 'c', 3, 3, 'a', 'b']) == [3, 3, 3]\n\ncheck(filter_integers)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 23,
+      "prompt": "### Prompt\n     Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n\n### Signature\ndef strlen(string: str) -> int:\n\n### Test\nassert candidate('') == 0",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def strlen(string: str) -> int:\n    return len(string)",
+      "test_content": "from llm_output import strlen\n\ndef check(candidate):\n    assert candidate('') == 0\n    assert candidate('x') == 1\n    assert candidate('asdasnakj') == 9\n\ncheck(strlen)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 24,
+      "prompt": "### Prompt\n     For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n\n### Signature\ndef largest_divisor(n: int) -> int:\n\n### Test\nassert candidate(3) == 1\nassert candidate(7) == 1",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def largest_divisor(n: int) -> int:\n    for i in range(n - 1, 0, -1):\n        if n % i == 0:\n            return i",
+      "test_content": "from llm_output import largest_divisor\n\ndef check(candidate):\n    assert candidate(3) == 1\n    assert candidate(7) == 1\n    assert candidate(10) == 5\n    assert candidate(100) == 50\n    assert candidate(49) == 7\n\ncheck(largest_divisor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 25,
+      "prompt": "### Prompt\n     Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n\n### Signature\ndef factorize(n: int) -> List[int]:\n\n### Test\nassert candidate(2) == [2]\nassert candidate(4) == [2, 2]\nassert candidate(8) == [2, 2, 2]\nassert candidate(3 * 19) == [3, 19]",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    factors = []\n    divisor = 2\n    \n    while n > 1:\n        while n % divisor == 0:\n            factors.append(divisor)\n            n //= divisor\n        divisor += 1 if divisor == 2 else 2\n        \n        # Optimization: if divisor squared is greater than n,\n        # then n is prime (if it's greater than 1)\n        if divisor * divisor > n and n > 1:\n            factors.append(n)\n            break\n            \n    return factors",
+      "test_content": "from llm_output import factorize\n\ndef check(candidate):\n    assert candidate(2) == [2]\n    assert candidate(4) == [2, 2]\n    assert candidate(8) == [2, 2, 2]\n    assert candidate(3 * 19) == [3, 19]\n    assert candidate(3 * 19 * 3 * 19) == [3, 3, 19, 19]\n    assert candidate(3 * 19 * 3 * 19 * 3 * 19) == [3, 3, 3, 19, 19, 19]\n    assert candidate(3 * 19 * 19 * 19) == [3, 19, 19, 19]\n    assert candidate(3 * 2 * 3) == [2, 3, 3]\n\ncheck(factorize)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 26,
+      "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n\n### Test\nassert candidate([]) == []",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    # Count occurrences of each number\n    count_dict = {}\n    for num in numbers:\n        count_dict[num] = count_dict.get(num, 0) + 1\n    \n    # Keep only numbers that appear once\n    return [num for num in numbers if count_dict[num] == 1]",
+      "test_content": "from llm_output import remove_duplicates\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]\n    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]\n\ncheck(remove_duplicates)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 27,
+      "prompt": "### Prompt\n     For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n\n### Signature\ndef flip_case(string: str) -> str:\n\n### Test\nassert candidate('') == ''",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def flip_case(string: str) -> str:\n    return string.swapcase()",
+      "test_content": "from llm_output import flip_case\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('Hello!') == 'hELLO!'\n    assert candidate('These violent delights have violent ends') == 'tHESE VIOLENT DELIGHTS HAVE VIOLENT ENDS'\n\ncheck(flip_case)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 28,
+      "prompt": "### Prompt\n     Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n\n### Signature\ndef concatenate(strings: List[str]) -> str:\n\n### Test\nassert candidate([]) == ''",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    return ''.join(strings)",
+      "test_content": "from llm_output import concatenate\n\ndef check(candidate):\n    assert candidate([]) == ''\n    assert candidate(['x', 'y', 'z']) == 'xyz'\n    assert candidate(['x', 'y', 'z', 'w', 'k']) == 'xyzwk'\n\ncheck(concatenate)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 29,
+      "prompt": "### Prompt\n     Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n\n### Signature\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    return [s for s in strings if s.startswith(prefix)]",
+      "test_content": "from llm_output import filter_by_prefix\n\ndef check(candidate):\n    assert candidate([], 'john') == []\n    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']\n\ncheck(filter_by_prefix)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 30,
+      "prompt": "### Prompt\n    Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n\n### Signature\ndef get_positive(l: list):\n\n### Test\nassert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]\nassert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef get_positive(l: list) -> List[int]:\n    return [x for x in l if x > 0]",
+      "test_content": "from llm_output import get_positive\n\ndef check(candidate):\n    assert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]\n    assert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]\n    assert candidate([-1, -2]) == []\n    assert candidate([]) == []\n\n\ncheck(get_positive)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 31,
+      "prompt": "### Prompt\n    Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n\n### Signature\ndef is_prime(n):\n\n### Test\nassert candidate(6) == False\nassert candidate(101) == True\nassert candidate(11) == True\nassert candidate(13441) == True\nassert candidate(61) == True\nassert candidate(4) == False",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def is_prime(n):\n    if n < 2:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    \n    # Check odd numbers up to the square root of n\n    for i in range(3, int(n ** 0.5) + 1, 2):\n        if n % i == 0:\n            return False\n    return True",
+      "test_content": "from llm_output import is_prime\n\ndef check(candidate):\n    assert candidate(6) == False\n    assert candidate(101) == True\n    assert candidate(11) == True\n    assert candidate(13441) == True\n    assert candidate(61) == True\n    assert candidate(4) == False\n    assert candidate(1) == False\n    assert candidate(5) == True\n    assert candidate(11) == True\n    assert candidate(17) == True\n    assert candidate(5 * 17) == False\n    assert candidate(11 * 7) == False\n    assert candidate(13441 * 19) == False\n\n\ncheck(is_prime)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 33,
+      "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n\n### Signature\ndef sort_third(l: list):\n\n### Test\nassert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))\nassert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple(sort_third([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))\nassert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple(sort_third([5, 8, -12, 4, 23, 2, 3, 11, 12, -10]))",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def sort_third(l: list):\n    # Get indices divisible by 3\n    third_indices = [i for i in range(len(l)) if i % 3 == 0]\n    \n    # Get values at those indices and sort them\n    third_values = sorted([l[i] for i in third_indices])\n    \n    # Create a new list copying the original\n    result = l.copy()\n    \n    # Replace values at indices divisible by 3 with sorted values\n    for index, value in zip(third_indices, third_values):\n        result[index] = value\n        \n    return result",
+      "test_content": "from llm_output import sort_third\n\ndef check(candidate):\n    assert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))\n    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple(sort_third([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))\n    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple(sort_third([5, 8, -12, 4, 23, 2, 3, 11, 12, -10]))\n    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2])) == tuple([2, 6, 3, 4, 8, 9, 5])\n    assert tuple(candidate([5, 8, 3, 4, 6, 9, 2])) == tuple([2, 8, 3, 4, 6, 9, 5])\n    assert tuple(candidate([5, 6, 9, 4, 8, 3, 2])) == tuple([2, 6, 9, 4, 8, 3, 5])\n    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2, 1])) == tuple([2, 6, 3, 4, 8, 9, 5, 1])\n\n\ncheck(sort_third)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 34,
+      "prompt": "### Prompt\n    Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n\n### Signature\ndef unique(l: list):\n\n### Test\nassert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123] ",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\n\ndef unique(l: list) -> List:\n    return sorted(list(set(l)))",
+      "test_content": "from llm_output import unique\n\ndef check(candidate):\n    assert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123]\n\n\ncheck(unique)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 35,
+      "prompt": "### Prompt\n    Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n\n### Signature\ndef max_element(l: list):\n\n### Test\nassert candidate([1, 2, 3]) == 3",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def max_element(l: list):\n    if not l:\n        return None\n    max_val = l[0]\n    for num in l:\n        if num > max_val:\n            max_val = num\n    return max_val",
+      "test_content": "from llm_output import max_element\n\ndef check(candidate):\n    assert candidate([1, 2, 3]) == 3\n    assert candidate([5, 3, -5, 2, -3, 3, 9, 0, 124, 1, -10]) == 124\n\ncheck(max_element)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 36,
+      "prompt": "### Prompt\n    Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n\n### Signature\ndef fizz_buzz(n: int):\n\n### Test\nassert candidate(50) == 0\nassert candidate(78) == 2\nassert candidate(79) == 3\nassert candidate(100) == 3",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def fizz_buzz(n: int) -> int:\n    count = 0\n    for i in range(1, n):\n        if i % 11 == 0 or i % 13 == 0:\n            count += str(i).count('7')\n    return count",
+      "test_content": "from llm_output import fizz_buzz\n\ndef check(candidate):\n    assert candidate(50) == 0\n    assert candidate(78) == 2\n    assert candidate(79) == 3\n    assert candidate(100) == 3\n    assert candidate(200) == 6\n    assert candidate(4000) == 192\n    assert candidate(10000) == 639\n    assert candidate(100000) == 8026\n\n\ncheck(fizz_buzz)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 37,
+      "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n\n### Signature\ndef sort_even(l: list):\n\n### Test\nassert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def sort_even(l: list) -> list:\n    # Extract elements at even indices\n    even_indices = [l[i] for i in range(0, len(l), 2)]\n    \n    # Sort the even-indexed elements\n    even_indices.sort()\n    \n    # Create result list by keeping odd indices same and replacing even indices with sorted values\n    result = []\n    even_counter = 0\n    \n    for i in range(len(l)):\n        if i % 2 == 0:\n            result.append(even_indices[even_counter])\n            even_counter += 1\n        else:\n            result.append(l[i])\n            \n    return result",
+      "test_content": "from llm_output import sort_even\n\ndef check(candidate):\n    assert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])\n    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple([-10, 3, -5, 2, -3, 3, 5, 0, 9, 1, 123])\n    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple([-12, 8, 3, 4, 5, 2, 12, 11, 23, -10])\n\n\ncheck(sort_even)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 39,
+      "prompt": "### Prompt\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n\n### Signature\ndef prime_fib(n: int):\n\n### Test\nassert candidate(1) == 2\nassert candidate(2) == 3\nassert candidate(3) == 5\nassert candidate(4) == 13\nassert candidate(5) == 89\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_td_1755235732057044/llm_output_test.py\", line 16, in <module>\n    check(prime_fib)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35sonnet_td_1755235732057044/llm_output_test.py\", line 11, in check\n    assert candidate(8) == 28657\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from typing import List\nfrom math import sqrt\n\ndef prime_fib(n: int) -> int:\n    def is_prime(num: int) -> bool:\n        if num < 2:\n            return False\n        for i in range(2, int(sqrt(num)) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    def fibonacci() -> List[int]:\n        fib = [1, 1]\n        while len(fib) < 50:  # Generate more Fibonacci numbers to handle larger n\n            fib.append(fib[-1] + fib[-2])\n        return fib\n\n    count = 0\n    fib_numbers = fibonacci()\n    \n    for num in fib_numbers:\n        if is_prime(num):\n            count += 1\n            if count == n:\n                return num\n    \n    # Generate more Fibonacci numbers if needed\n    last = fib_numbers[-1]\n    second_last = fib_numbers[-2]\n    \n    while count < n:\n        next_fib = last + second_last\n        if is_prime(next_fib):\n            count += 1\n            if count == n:\n                return next_fib\n        second_last = last\n        last = next_fib\n    \n    return 0",
+      "test_content": "from llm_output import prime_fib\n\ndef check(candidate):\n    assert candidate(1) == 2\n    assert candidate(2) == 3\n    assert candidate(3) == 5\n    assert candidate(4) == 13\n    assert candidate(5) == 89\n    assert candidate(6) == 233\n    assert candidate(7) == 1597\n    assert candidate(8) == 28657\n    assert candidate(9) == 514229\n    assert candidate(10) == 433494437\n\n\ncheck(prime_fib)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 40,
+      "prompt": "### Prompt\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n### Signature\ndef triples_sum_to_zero(l: list):\n\n### Test\nassert candidate([1, 3, 5, 0]) == False\nassert candidate([1, 3, 5, -1]) == False\nassert candidate([1, 3, -2, 1]) == True\nassert candidate([1, 2, 3, 7]) == False",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def triples_sum_to_zero(l: list) -> bool:\n    n = len(l)\n    for i in range(n - 2):\n        for j in range(i + 1, n - 1):\n            for k in range(j + 1, n):\n                if l[i] + l[j] + l[k] == 0:\n                    return True\n    return False",
+      "test_content": "from llm_output import triples_sum_to_zero\n\ndef check(candidate):\n    assert candidate([1, 3, 5, 0]) == False\n    assert candidate([1, 3, 5, -1]) == False\n    assert candidate([1, 3, -2, 1]) == True\n    assert candidate([1, 2, 3, 7]) == False\n    assert candidate([1, 2, 5, 7]) == False\n    assert candidate([2, 4, -5, 3, 9, 7]) == True\n    assert candidate([1]) == False\n    assert candidate([1, 3, 5, -100]) == False\n    assert candidate([100, 3, 5, -100]) == False\n\n\ncheck(triples_sum_to_zero)",
+      "context": null,
+      "attempt_num": 1
+    }
+  ]
+}

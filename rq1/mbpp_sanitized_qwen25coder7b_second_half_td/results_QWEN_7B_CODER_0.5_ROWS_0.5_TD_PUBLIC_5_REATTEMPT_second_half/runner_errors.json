@@ -1,0 +1,124 @@
+{
+  "Qwen/Qwen2.5-Coder-7B-Instruct": [
+    {
+      "task_id": 461,
+      "prompt": "### Prompt\nWrite a python function to count the upper case characters in a given string.\n\n### Signature\ndef upper_ctr(str):\n\n### Test\nassert candidate('PYthon') == 1",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 1, in <module>\n    from llm_output import upper_ctr\nImportError: cannot import name 'upper_ctr' from 'llm_output' (/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output.py)\n",
+      "solution": "def upper_ctr(str):\n    return sum(1 for char in str if char.isupper())",
+      "test_content": "from llm_output import upper_ctr\n\ndef check(candidate):\n    assert candidate('PYthon') == 1\n    assert candidate('BigData') == 1\n    assert candidate('program') == 0\n\ncheck(upper_ctr)",
+      "context": "{\"function_name\": \"upper_ctr\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 563,
+      "prompt": "### Prompt\nWrite a function to extract values between quotation marks from a string.\n\n### Signature\ndef extract_values(text):\n\n### Test\nassert extract_values(\"Python\", \"PHP\", \"Java\") == [\"Python\", \"PHP\", \"Java\"]",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 10, in <module>\n    check(extract_values)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 5, in check\n    assert extract_values(\"Python\", \"PHP\", \"Java\") == [\"Python\", \"PHP\", \"Java\"]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: extract_values() takes 1 positional argument but 3 were given\n",
+      "solution": "import re\n\ndef extract_values(text):\n    return re.findall(r'\"(.*?)\"', text)",
+      "test_content": "from llm_output import extract_values\n\n\ndef check(candidate):\n    assert extract_values(\"Python\", \"PHP\", \"Java\") == [\"Python\", \"PHP\", \"Java\"]\n    assert extract_values(\"python\", \"program\", \"language\") == [\"python\", \"program\", \"language\"]\n    assert extract_values(\"red\", \"blue\", \"green\", \"yellow\") == [\"red\", \"blue\", \"language\", \"yellow\"]\n\n\ncheck(extract_values)",
+      "context": "{\"function_name\": \"extract_values\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 580,
+      "prompt": "### Prompt\nWrite a function to remove uneven elements in the nested mixed tuple.\n\n### Signature\ndef even_ele(test_tuple, even_fnc):\n\n### Test\nassert candidate((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)), 6, 8)",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 8, in <module>\n    check(extract_even)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 4, in check\n    assert candidate((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)), 6, 8)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: extract_even() missing 1 required positional argument: 'even_fnc'\n",
+      "solution": "def extract_even(test_tuple, even_fnc):\n    result = []\n    for item in test_tuple:\n        if isinstance(item, tuple):\n            result.append(even_ele(item, even_fnc))\n        elif even_fnc(item):\n            result.append(item)\n    return tuple(result)\n\ndef even_fnc(x):\n    return x % 2 == 0",
+      "test_content": "from llm_output import extract_even\n\ndef check(candidate):\n    assert candidate((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)), 6, 8)\n    assert candidate((5, 6, (8, 7, (4, 8)), 7, 9)) == (6, (8, (4, 8)))\n    assert candidate((5, 6, (9, 8, (4, 6)), 8, 10)) == (6, (8, (4, 6)), 8, 10)\n\ncheck(extract_even)",
+      "context": "{\"function_name\": \"extract_even\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 580,
+      "prompt": "### Prompt\nWrite a function to remove uneven elements in the nested mixed tuple.\n\n### Signature\ndef even_ele(test_tuple, even_fnc):\n\n### Test\nassert candidate((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)), 6, 8)\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 8, in <module>\n    check(extract_even)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 4, in check\n    assert candidate((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)), 6, 8)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: extract_even() missing 1 required positional argument: 'even_fnc'\n",
+      "solution": "def extract_even(test_tuple, even_fnc):\n    result = []\n    for item in test_tuple:\n        if isinstance(item, tuple):\n            result.append(even_ele(item, even_fnc))\n        elif even_fnc(item):\n            result.append(item)\n    return tuple(result)\n\ndef even_fnc(x):\n    return x % 2 == 0",
+      "test_content": "from llm_output import extract_even\n\ndef check(candidate):\n    assert candidate((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)), 6, 8)\n    assert candidate((5, 6, (8, 7, (4, 8)), 7, 9)) == (6, (8, (4, 8)))\n    assert candidate((5, 6, (9, 8, (4, 6)), 8, 10)) == (6, (8, (4, 6)), 8, 10)\n\ncheck(extract_even)",
+      "context": "{\"function_name\": \"extract_even\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 592,
+      "prompt": "### Prompt\nWrite a python function to find the sum of the product of consecutive binomial co-efficients.\n\n### Signature\ndef binomial_Coeff(n,k):\n\n### Test\nassert candidate(3) == 15",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 8, in <module>\n    check(sum_Of_product)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 4, in check\n    assert candidate(3) == 15\n           ^^^^^^^^^^^^\nTypeError: sum_Of_product() missing 1 required positional argument: 'k'\n",
+      "solution": "from math import comb\n\ndef sum_Of_product(n, k):\n    sum_product = 0\n    for i in range(1, n):\n        sum_product += comb(n, i) * comb(n, i - 1)\n    return sum_product",
+      "test_content": "from llm_output import sum_Of_product\n\ndef check(candidate):\n    assert candidate(3) == 15\n    assert candidate(4) == 56\n    assert candidate(1) == 1\n\ncheck(sum_Of_product)",
+      "context": "{\"function_name\": \"sum_Of_product\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 596,
+      "prompt": "### Prompt\nWrite a function to find the size in bytes of the given tuple.\n\n### Signature\ndef tuple_size(tuple_list):\n\n### Test\nassert candidate((\"A\", 1, \"B\", 2, \"C\", 3) ) == sys.getsizeof((\"A\", 1, \"B\", 2, \"C\", 3))",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 8, in <module>\n    check(tuple_size)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 4, in check\n    assert candidate((\"A\", 1, \"B\", 2, \"C\", 3) ) == sys.getsizeof((\"A\", 1, \"B\", 2, \"C\", 3))\n                                                   ^^^\nNameError: name 'sys' is not defined\n",
+      "solution": "import sys\n\ndef tuple_size(tuple_list):\n    return sys.getsizeof(tuple_list)",
+      "test_content": "from llm_output import tuple_size\n\ndef check(candidate):\n    assert candidate((\"A\", 1, \"B\", 2, \"C\", 3) ) == sys.getsizeof((\"A\", 1, \"B\", 2, \"C\", 3))\n    assert candidate((1, \"Raju\", 2, \"Nikhil\", 3, \"Deepanshu\") ) == sys.getsizeof((1, \"Raju\", 2, \"Nikhil\", 3, \"Deepanshu\"))\n    assert candidate(((1, \"Lion\"), ( 2, \"Tiger\"), (3, \"Fox\"), (4, \"Wolf\"))  ) == sys.getsizeof(((1, \"Lion\"), ( 2, \"Tiger\"), (3, \"Fox\"), (4, \"Wolf\")))\n\ncheck(tuple_size)",
+      "context": "{\"function_name\": \"tuple_size\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 617,
+      "prompt": "### Prompt\nWrite a function to check for the number of jumps required of given length to reach a point of form (d, 0) from origin in a 2d plane.\n\n### Signature\ndef min_Jumps(steps, d):\n\n### Test\nassert candidate((3,4),11)==3.5",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 8, in <module>\n    check(min_Jumps)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 4, in check\n    assert candidate((3,4),11)==3.5\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output.py\", line 4, in min_Jumps\n    return math.sqrt(steps**2 + d**2)\n                     ~~~~~^^~\nTypeError: unsupported operand type(s) for ** or pow(): 'tuple' and 'int'\n",
+      "solution": "import math\n\ndef min_Jumps(steps, d):\n    return math.sqrt(steps**2 + d**2)",
+      "test_content": "from llm_output import min_Jumps\n\ndef check(candidate):\n    assert candidate((3,4),11)==3.5\n    assert candidate((3,4),0)==0\n    assert candidate((11,14),11)==1\n\ncheck(min_Jumps)",
+      "context": "{\"function_name\": \"min_Jumps\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 751,
+      "prompt": "### Prompt\nWrite a function to check if the given array represents min heap or not. https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/\n\n### Signature\ndef check_min_heap_helper(arr, i):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6]) == True",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 8, in <module>\n    check(check_min_heap)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 4, in check\n    assert candidate([1, 2, 3, 4, 5, 6]) == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: check_min_heap() missing 1 required positional argument: 'i'\n",
+      "solution": "def check_min_heap(arr, i):\n    n = len(arr)\n    if i > (n // 2) - 1:\n        return True\n    if arr[i] <= arr[2 * i + 1] and arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 1) and check_min_heap_helper(arr, 2 * i + 2):\n        return True\n    return False",
+      "test_content": "from llm_output import check_min_heap\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6]) == True\n    assert candidate([2, 3, 4, 5, 10, 15]) == True\n    assert candidate([2, 10, 4, 5, 3, 15]) == False\n\ncheck(check_min_heap)",
+      "context": "{\"function_name\": \"check_min_heap\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 751,
+      "prompt": "### Prompt\nWrite a function to check if the given array represents min heap or not. https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/\n\n### Signature\ndef check_min_heap_helper(arr, i):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6]) == True\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 8, in <module>\n    check(check_min_heap)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 4, in check\n    assert candidate([1, 2, 3, 4, 5, 6]) == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: check_min_heap() missing 1 required positional argument: 'i'\n",
+      "solution": "def check_min_heap(arr, i):\n    n = len(arr)\n    if i > (n // 2) - 1:\n        return True\n    if arr[i] <= arr[2 * i + 1] and arr[i] <= arr[2 * i + 2] and check_min_heap_helper(arr, 2 * i + 1) and check_min_heap_helper(arr, 2 * i + 2):\n        return True\n    return False",
+      "test_content": "from llm_output import check_min_heap\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6]) == True\n    assert candidate([2, 3, 4, 5, 10, 15]) == True\n    assert candidate([2, 10, 4, 5, 3, 15]) == False\n\ncheck(check_min_heap)",
+      "context": "{\"function_name\": \"check_min_heap\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 763,
+      "prompt": "### Prompt\nWrite a python function to find the minimum difference between any two elements in a given array. https://www.geeksforgeeks.org/find-minimum-difference-pair/\n\n### Signature\ndef find_min_diff(arr,n):\n\n### Test\nassert candidate((1,5,3,19,18,25),6) == 1",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 8, in <module>\n    check(find_min_diff)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 4, in check\n    assert candidate((1,5,3,19,18,25),6) == 1\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output.py\", line 2, in find_min_diff\n    arr.sort()\n    ^^^^^^^^\nAttributeError: 'tuple' object has no attribute 'sort'\n",
+      "solution": "def find_min_diff(arr,n):\n    arr.sort()\n    min_diff = float('inf')\n    for i in range(1, n):\n        min_diff = min(min_diff, arr[i] - arr[i-1])\n    return min_diff",
+      "test_content": "from llm_output import find_min_diff\n\ndef check(candidate):\n    assert candidate((1,5,3,19,18,25),6) == 1\n    assert candidate((4,3,2,6),4) == 1\n    assert candidate((30,5,20,9),4) == 4\n\ncheck(find_min_diff)",
+      "context": "{\"function_name\": \"find_min_diff\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 786,
+      "prompt": "### Prompt\nWrite a function to locate the right insertion point for a specified value in sorted order.\n\n### Signature\ndef right_insertion(a, x):\n\n### Test\nassert candidate([1,2,4,5],6)==4",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 1, in <module>\n    from llm_output import right_insertion\nImportError: cannot import name 'right_insertion' from 'llm_output' (/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output.py)\n",
+      "solution": "import bisect\n\ndef right_insertion(a, x):\n    return bisect.bisect_right(a, x)",
+      "test_content": "from llm_output import right_insertion\n\ndef check(candidate):\n    assert candidate([1,2,4,5],6)==4\n    assert candidate([1,2,4,5],3)==2\n    assert candidate([1,2,4,5],7)==4\n\ncheck(right_insertion)",
+      "context": "{\"function_name\": \"right_insertion\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 797,
+      "prompt": "### Prompt\nWrite a python function to find the sum of all odd natural numbers within the range l and r.\n\n### Signature\ndef sum_odd(n):\n\n### Test\nassert candidate(2,5) == 8",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 8, in <module>\n    check(sum_in_range)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_second_half_td_1760709794532511/llm_output_test.py\", line 4, in check\n    assert candidate(2,5) == 8\n           ^^^^^^^^^^^^^^\nTypeError: sum_in_range() takes 1 positional argument but 2 were given\n",
+      "solution": "def sum_in_range(n):\n    return sum(i for i in range(1, n+1, 2))",
+      "test_content": "from llm_output import sum_in_range\n\ndef check(candidate):\n    assert candidate(2,5) == 8\n    assert candidate(5,7) == 12\n    assert candidate(7,13) == 40\n\ncheck(sum_in_range)",
+      "context": "{\"function_name\": \"sum_in_range\"}",
+      "attempt_num": 1
+    }
+  ]
+}

@@ -1,0 +1,422 @@
+[
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 2,
+        "solution": "===START===\nfrom typing import List\n\ndef similar_elements(test_tup1: List[int], test_tup2: List[int]) -> str:\n    shared_elements = set(test_tup1) & set(test_tup2)\n    return str(sorted(shared_elements))\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):",
+        "timestamp": "2025-08-13T11:15:16.136228",
+        "response_time": "2.32",
+        "context": "{\"function_name\": \"similar_elements\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 3,
+        "solution": "===START===\nimport math\n\ndef is_not_prime(n: int) -> str:\n    if n <= 1:\n        return \"True\"\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return \"True\"\n    return \"False\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):",
+        "timestamp": "2025-08-13T11:15:18.005983",
+        "response_time": "1.87",
+        "context": "{\"function_name\": \"is_not_prime\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 4,
+        "solution": "===START===\nfrom typing import List\nimport heapq\n\ndef heap_queue_largest(nums: List[int], n: int) -> List[int]:\n    return sorted(heapq.nlargest(n, nums), reverse=True)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):",
+        "timestamp": "2025-08-13T11:15:19.491436",
+        "response_time": "1.48",
+        "context": "{\"function_name\": \"heap_queue_largest\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 6,
+        "solution": "===START===\ndef is_Power_Of_Two(x: int) -> str:\n    if x <= 0:\n        return \"No\"\n    return \"Yes\" if (x & (x - 1)) == 0 else \"No\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+        "timestamp": "2025-08-13T11:15:21.605201",
+        "response_time": "2.11",
+        "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 7,
+        "solution": "===START===\nfrom typing import List\n\ndef find_char_long(text: str) -> List[str]:\n    words = text.split()\n    long_words = [word for word in words if len(word) >= 4]\n    return long_words\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):",
+        "timestamp": "2025-08-13T11:15:23.370705",
+        "response_time": "1.76",
+        "context": "{\"function_name\": \"find_char_long\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 8,
+        "solution": "===START===\nfrom typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    return [x ** 2 for x in nums]\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):",
+        "timestamp": "2025-08-13T11:15:24.601491",
+        "response_time": "1.23",
+        "context": "{\"function_name\": \"square_nums\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 9,
+        "solution": "===START===\nfrom typing import List\n\ndef find_Rotations(s: str) -> int:\n    n = len(s)\n    if n == 0:\n        return 0\n    \n    # Create a concatenated string\n    doubled_s = s + s\n    \n    # Find the minimum rotation\n    for i in range(1, n):\n        if doubled_s[i:i+n] == s:\n            return i\n    \n    return n  # If no rotation found, return the length of the string\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):",
+        "timestamp": "2025-08-13T11:15:27.614779",
+        "response_time": "3.01",
+        "context": "{\"function_name\": \"find_Rotations\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 11,
+        "solution": "===START===\ndef remove_Occ(s: str, ch: str) -> str:\n    first_index = s.find(ch)\n    last_index = s.rfind(ch)\n    \n    if first_index == -1 or first_index == last_index:\n        return s.replace(ch, '', 1)  # Remove only one occurrence if it's the same\n    \n    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]\n\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):",
+        "timestamp": "2025-08-13T11:15:30.818706",
+        "response_time": "3.20",
+        "context": "{\"function_name\": \"remove_Occ\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 12,
+        "solution": "===START===\nfrom typing import List\n\ndef sort_matrix(M: List[List[int]]) -> List[List[int]]:\n    return sorted(M, key=sum)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):",
+        "timestamp": "2025-08-13T11:15:32.106718",
+        "response_time": "1.29",
+        "context": "{\"function_name\": \"sort_matrix\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 14,
+        "solution": "===START===\nfrom typing import Union\n\ndef find_Volume(l: Union[int, float], b: Union[int, float], h: Union[int, float]) -> str:\n    volume = (1/2) * l * b * h\n    return str(volume)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to find the volume of a triangular prism.\n\n### Signature\ndef find_Volume(l,b,h) :",
+        "timestamp": "2025-08-13T11:15:34.618974",
+        "response_time": "2.51",
+        "context": "{\"function_name\": \"find_Volume\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 16,
+        "solution": "===START===\nimport re\n\ndef text_lowercase_underscore(text: str) -> bool:\n    return bool(re.fullmatch(r'[a-z]+(_[a-z]+)*', text))\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise.\n\n### Signature\ndef text_lowercase_underscore(text):",
+        "timestamp": "2025-08-13T11:15:36.877696",
+        "response_time": "2.26",
+        "context": "{\"function_name\": \"text_lowercase_underscore\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 17,
+        "solution": "===START===\ndef square_perimeter(a: float) -> float:\n    return 4 * a\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function that returns the perimeter of a square given its side length as input.\n\n### Signature\ndef square_perimeter(a):",
+        "timestamp": "2025-08-13T11:15:37.830548",
+        "response_time": "0.95",
+        "context": "{\"function_name\": \"square_perimeter\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 18,
+        "solution": "===START===\nfrom typing import List\n\ndef str_to_list(string: str) -> List[str]:\n    return list(filter(lambda char: char not in string, string))\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):",
+        "timestamp": "2025-08-13T11:15:39.358539",
+        "response_time": "1.53",
+        "context": "{\"function_name\": \"remove_dirty_chars\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 19,
+        "solution": "===START===\nfrom typing import List\n\ndef test_duplicate(arraynums: List[int]) -> str:\n    if len(arraynums) != len(set(arraynums)):\n        return \"Duplicate found\"\n    return \"No duplicates\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find whether a given array of integers contains any duplicate element.\n\n### Signature\ndef test_duplicate(arraynums):",
+        "timestamp": "2025-08-13T11:15:41.345334",
+        "response_time": "1.98",
+        "context": "{\"function_name\": \"test_duplicate\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 20,
+        "solution": "===START===\nfrom typing import Union\n\ndef is_woodall(x: Union[int, float]) -> str:\n    if x < 0:\n        return \"Not Woodall\"\n    \n    n = 0\n    woodall_numbers = set()\n    \n    while True:\n        woodall_number = (1 << n) - 1  # 2^n - 1\n        if woodall_number > x:\n            break\n        woodall_numbers.add(woodall_number)\n        n += 1\n    \n    for w in woodall_numbers:\n        if (x - w) % 2 == 0:\n            return \"Woodall\"\n    \n    return \"Not Woodall\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to check if the given number is woodball or not.\n\n### Signature\ndef is_woodall(x):",
+        "timestamp": "2025-08-13T11:15:45.959055",
+        "response_time": "4.61",
+        "context": "{\"function_name\": \"is_woodall\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 56,
+        "solution": "===START===\nfrom typing import Any\n\ndef rev(num: int) -> str:\n    reversed_num = int(str(num)[::-1])\n    if num == 2 * reversed_num - 1:\n        return \"True\"\n    else:\n        return \"False\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):",
+        "timestamp": "2025-08-13T11:15:47.786315",
+        "response_time": "1.83",
+        "context": "{\"function_name\": \"check\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 57,
+        "solution": "===START===\nfrom typing import List\n\ndef find_Max_Num(arr: List[int]) -> str:\n    # Convert the list of integers to a list of strings\n    arr_str = list(map(str, arr))\n    # Sort the list of strings based on custom comparator\n    arr_str.sort(key=lambda x: x*10, reverse=True)\n    # Join the sorted strings into the largest number\n    largest_num = ''.join(arr_str)\n    # Handle the case where the largest number is '0'\n    return largest_num if largest_num[0] != '0' else '0'\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to find the largest number that can be formed with the given list of digits.\n\n### Signature\ndef find_Max_Num(arr) :",
+        "timestamp": "2025-08-13T11:15:51.235390",
+        "response_time": "3.45",
+        "context": "{\"function_name\": \"find_Max_Num\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 58,
+        "solution": "===START===\ndef opposite_Signs(x: int, y: int) -> str:\n    if (x < 0 and y > 0) or (x > 0 and y < 0):\n        return \"True\"\n    else:\n        return \"False\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to check whether the given two integers have opposite sign or not.\n\n### Signature\ndef opposite_Signs(x,y):",
+        "timestamp": "2025-08-13T11:15:52.999970",
+        "response_time": "1.76",
+        "context": "{\"function_name\": \"opposite_Signs\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 59,
+        "solution": "===START===\nimport math\n\ndef is_octagonal(n: int) -> str:\n    if n < 1:\n        return \"Not an octagonal number\"\n    \n    # The formula for the nth octagonal number is n * (3n - 2)\n    octagonal_number = n * (3 * n - 2)\n    \n    return str(octagonal_number)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find the nth octagonal number.\n\n### Signature\ndef is_octagonal(n):",
+        "timestamp": "2025-08-13T11:15:55.206795",
+        "response_time": "2.21",
+        "context": "{\"function_name\": \"is_octagonal\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 61,
+        "solution": "===START===\ndef count_Substrings(s: str) -> str:\n    count = 0\n    n = len(s)\n    \n    for i in range(n):\n        digit_sum = 0\n        for j in range(i, n):\n            digit_sum += int(s[j])\n            length = j - i + 1\n            if digit_sum == length:\n                count += 1\n                \n    return str(count)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to count the number of substrings with the sum of digits equal to their length.\n\n### Signature\ndef count_Substrings(s):",
+        "timestamp": "2025-08-13T11:15:57.877163",
+        "response_time": "2.67",
+        "context": "{\"function_name\": \"count_Substrings\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 62,
+        "solution": "===START===\nfrom typing import List\n\ndef smallest_num(xs: List[int]) -> int:\n    if not xs:\n        raise ValueError(\"The list cannot be empty\")\n    smallest = xs[0]\n    for num in xs:\n        if num < smallest:\n            smallest = num\n    return smallest\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to find smallest number in a list.\n\n### Signature\ndef smallest_num(xs):",
+        "timestamp": "2025-08-13T11:15:59.594885",
+        "response_time": "1.72",
+        "context": "{\"function_name\": \"smallest_num\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 63,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef max_difference(test_list: List[Tuple[int, int]]) -> str:\n    if not test_list:\n        return \"0\"\n    \n    max_diff = float('-inf')\n    \n    for i in range(len(test_list)):\n        for j in range(i + 1, len(test_list)):\n            diff = abs(test_list[i][0] - test_list[j][0]) + abs(test_list[i][1] - test_list[j][1])\n            max_diff = max(max_diff, diff)\n    \n    return str(max_diff)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find the maximum difference between available pairs in the given tuple list.\n\n### Signature\ndef max_difference(test_list):",
+        "timestamp": "2025-08-13T11:16:02.634015",
+        "response_time": "3.04",
+        "context": "{\"function_name\": \"max_difference\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 64,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef subject_marks(subjectmarks: List[Tuple[str, int]]) -> List[Tuple[str, int]]:\n    return sorted(subjectmarks, key=lambda x: x[1])\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to sort a list of tuples using the second value of each tuple.\n\n### Signature\ndef subject_marks(subjectmarks):",
+        "timestamp": "2025-08-13T11:16:03.970979",
+        "response_time": "1.33",
+        "context": "{\"function_name\": \"subject_marks\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 65,
+        "solution": "===START===\nfrom typing import List, Union\n\ndef recursive_list_sum(data_list: Union[List[Union[int, List]], int]) -> int:\n    if isinstance(data_list, int):\n        return data_list\n    total = 0\n    for item in data_list:\n        total += recursive_list_sum(item)\n    return total\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to flatten a list and sum all of its elements.\n\n### Signature\ndef recursive_list_sum(data_list):",
+        "timestamp": "2025-08-13T11:16:05.772239",
+        "response_time": "1.80",
+        "context": "{\"function_name\": \"recursive_list_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 66,
+        "solution": "===START===\nfrom typing import List\n\ndef pos_count(lst: List[int]) -> int:\n    return sum(1 for x in lst if x > 0)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to count the number of positive numbers in a list.\n\n### Signature\ndef pos_count(list):",
+        "timestamp": "2025-08-13T11:16:07.101065",
+        "response_time": "1.33",
+        "context": "{\"function_name\": \"pos_count\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 67,
+        "solution": "===START===\nfrom math import factorial\n\ndef bell_number(n: int) -> int:\n    bell = [[0 for _ in range(n + 1)] for _ in range(n + 1)]\n    bell[0][0] = 1\n\n    for i in range(1, n + 1):\n        bell[i][0] = bell[i - 1][i - 1]\n\n        for j in range(1, i + 1):\n            bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1]\n\n    return bell[n][0]\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find the number of ways to partition a set of Bell numbers.\n\n### Signature\ndef bell_number(n):",
+        "timestamp": "2025-08-13T11:16:10.186007",
+        "response_time": "3.08",
+        "context": "{\"function_name\": \"bell_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 68,
+        "solution": "===START===\nfrom typing import List\n\ndef is_Monotonic(A: List[int]) -> str:\n    if not A:\n        return \"True\"\n    \n    increasing = decreasing = True\n    \n    for i in range(1, len(A)):\n        if A[i] > A[i - 1]:\n            decreasing = False\n        elif A[i] < A[i - 1]:\n            increasing = False\n            \n    return \"True\" if increasing or decreasing else \"False\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to check whether the given array is monotonic or not.\n\n### Signature\ndef is_Monotonic(A):",
+        "timestamp": "2025-08-13T11:16:12.367593",
+        "response_time": "2.18",
+        "context": "{\"function_name\": \"is_Monotonic\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 69,
+        "solution": "===START===\nfrom typing import List\n\ndef is_sublist(l: List[int], s: List[int]) -> str:\n    if len(s) == 0:\n        return \"Yes\"\n    if len(l) < len(s):\n        return \"No\"\n    \n    for i in range(len(l) - len(s) + 1):\n        if l[i:i + len(s)] == s:\n            return \"Yes\"\n    \n    return \"No\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to check whether a list contains the given sublist or not.\n\n### Signature\ndef is_sublist(l, s):",
+        "timestamp": "2025-08-13T11:16:14.475698",
+        "response_time": "2.11",
+        "context": "{\"function_name\": \"is_sublist\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 70,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef find_equal_tuple(Input: List[Tuple]) -> str:\n    if not Input:\n        return \"All tuples have equal length\"\n    \n    length = len(Input[0])\n    for tup in Input:\n        if len(tup) != length:\n            return \"Not all tuples have equal length\"\n    \n    return \"All tuples have equal length\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find whether all the given tuples have equal length or not.\n\n### Signature\ndef find_equal_tuple(Input):",
+        "timestamp": "2025-08-13T11:16:16.343219",
+        "response_time": "1.86",
+        "context": "{\"function_name\": \"get_equal\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 71,
+        "solution": "===START===\nfrom typing import List\n\ndef comb_sort(nums: List[float]) -> List[float]:\n    gap = len(nums)\n    shrink = 1.3\n    sorted = False\n\n    while not sorted:\n        gap = int(gap / shrink)\n        if gap < 1:\n            gap = 1\n        \n        sorted = True\n        \n        for i in range(len(nums) - gap):\n            if nums[i] > nums[i + gap]:\n                nums[i], nums[i + gap] = nums[i + gap], nums[i]\n                sorted = False\n\n    return nums\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to sort a list of elements.\n\n### Signature\ndef comb_sort(nums):",
+        "timestamp": "2025-08-13T11:16:19.529167",
+        "response_time": "3.18",
+        "context": "{\"function_name\": \"comb_sort\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 72,
+        "solution": "===START===\nfrom typing import Union\n\ndef dif_Square(n: Union[int, float]) -> str:\n    if n < 0:\n        return \"No\"\n    if n % 4 == 0 or n % 4 == 1:\n        return \"Yes\"\n    return \"No\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to check whether the given number can be represented as the difference of two squares or not.\n\n### Signature\ndef dif_Square(n):",
+        "timestamp": "2025-08-13T11:16:21.114833",
+        "response_time": "1.58",
+        "context": "{\"function_name\": \"dif_Square\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 74,
+        "solution": "===START===\nfrom typing import List\n\ndef is_samepatterns(colors: List[str], patterns: List[str]) -> str:\n    if len(colors) != len(patterns):\n        return \"No\"\n    \n    color_to_pattern = {}\n    pattern_to_color = {}\n    \n    for color, pattern in zip(colors, patterns):\n        if color in color_to_pattern:\n            if color_to_pattern[color] != pattern:\n                return \"No\"\n        else:\n            color_to_pattern[color] = pattern\n        \n        if pattern in pattern_to_color:\n            if pattern_to_color[pattern] != color:\n                return \"No\"\n        else:\n            pattern_to_color[pattern] = color\n            \n    return \"Yes\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to check whether it follows the sequence given in the patterns array.\n\n### Signature\ndef is_samepatterns(colors, patterns):",
+        "timestamp": "2025-08-13T11:16:24.500201",
+        "response_time": "3.38",
+        "context": "{\"function_name\": \"is_samepatterns\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 75,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef find_tuples(test_list: List[Tuple[int]], K: int) -> str:\n    result = [tup for tup in test_list if all(elem % K == 0 for elem in tup)]\n    return str(result)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find tuples which have all elements divisible by k from the given list of tuples.\n\n### Signature\ndef find_tuples(test_list, K):",
+        "timestamp": "2025-08-13T11:16:27.366569",
+        "response_time": "2.86",
+        "context": "{\"function_name\": \"find_tuples\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 77,
+        "solution": "===START===\ndef is_Diff(n: int) -> str:\n    if n % 11 == 0:\n        return \"Divisible by 11\"\n    else:\n        return \"Not divisible by 11\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to find whether a number is divisible by 11.\n\n### Signature\ndef is_Diff(n):",
+        "timestamp": "2025-08-13T11:16:28.919557",
+        "response_time": "1.55",
+        "context": "{\"function_name\": \"is_Diff\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 79,
+        "solution": "===START===\ndef word_len(s: str) -> str:\n    if len(s) % 2 == 1:\n        return \"Odd\"\n    else:\n        return \"Even\"\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to check whether the length of the word is odd or not.\n\n### Signature\ndef word_len(s):",
+        "timestamp": "2025-08-13T11:16:30.593583",
+        "response_time": "1.67",
+        "context": "{\"function_name\": \"word_len\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 80,
+        "solution": "===START===\nfrom typing import Union\n\ndef tetrahedral_number(n: Union[int, float]) -> int:\n    if n < 1:\n        return 0\n    return n * (n + 1) * (n + 2) // 6\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find the nth tetrahedral number.\n\n### Signature\ndef tetrahedral_number(n):",
+        "timestamp": "2025-08-13T11:16:32.233946",
+        "response_time": "1.63",
+        "context": "{\"function_name\": \"tetrahedral_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 82,
+        "solution": "===START===\nimport math\n\ndef volume_sphere(r: float) -> str:\n    volume = (4/3) * math.pi * (r ** 3)\n    return str(volume)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find the volume of a sphere.\n\n### Signature\ndef volume_sphere(r):",
+        "timestamp": "2025-08-13T11:16:33.983103",
+        "response_time": "1.75",
+        "context": "{\"function_name\": \"volume_sphere\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 83,
+        "solution": "===START===\ndef get_Char(strr: str) -> str:\n    total_ascii = sum(ord(char) for char in strr)\n    index = total_ascii % 26\n    return chr(index + ord('a'))\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a python function to find the character made by adding the ASCII value of all the characters of the given string modulo 26.\n\n### Signature\ndef get_Char(strr):",
+        "timestamp": "2025-08-13T11:16:35.644538",
+        "response_time": "1.66",
+        "context": "{\"function_name\": \"get_Char\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 84,
+        "solution": "===START===\nfrom typing import Union\n\ndef sequence(n: int) -> Union[int, str]:\n    if n < 1:\n        return \"Input must be a positive integer.\"\n    if n == 1 or n == 2:\n        return 1\n    if n == 3:\n        return 2\n    \n    seq = [0] * (n + 1)\n    seq[1], seq[2], seq[3] = 1, 1, 2\n    \n    for i in range(4, n + 1):\n        seq[i] = seq[seq[i - 1]] + seq[i - seq[i - 1]]\n    \n    return seq[n]\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find the nth number in the newman conway sequence.\n\n### Signature\ndef sequence(n):",
+        "timestamp": "2025-08-13T11:16:39.155903",
+        "response_time": "3.51",
+        "context": "{\"function_name\": \"sequence\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 85,
+        "solution": "===START===\nimport math\n\ndef surfacearea_sphere(r: float) -> str:\n    surface_area = 4 * math.pi * (r ** 2)\n    return str(surface_area)\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find the surface area of a sphere.\n\n### Signature\ndef surfacearea_sphere(r):",
+        "timestamp": "2025-08-13T11:16:40.650101",
+        "response_time": "1.49",
+        "context": "{\"function_name\": \"surfacearea_sphere\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 86,
+        "solution": "===START===\nfrom typing import Union\n\ndef centered_hexagonal_number(n: Union[int, float]) -> Union[int, float]:\n    if n < 1:\n        return 0\n    return 3 * n * (n - 1) + 1\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to find nth centered hexagonal number.\n\n### Signature\ndef centered_hexagonal_number(n):",
+        "timestamp": "2025-08-13T11:16:42.643143",
+        "response_time": "1.99",
+        "context": "{\"function_name\": \"centered_hexagonal_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_chatgpt4omini",
+        "dataset_row_id": 87,
+        "solution": "===START===\nfrom typing import Dict\n\ndef merge_dictionaries_three(dict1: Dict, dict2: Dict, dict3: Dict) -> Dict:\n    merged_dict = {**dict1, **dict2, **dict3}\n    return merged_dict\n===END===",
+        "llm_name": "openai/gpt-4o-mini-2024-07-18",
+        "prompt": "### Prompt\nWrite a function to merge three dictionaries into a single dictionary.\n\n### Signature\ndef merge_dictionaries_three(dict1,dict2, dict3):",
+        "timestamp": "2025-08-13T11:16:44.173447",
+        "response_time": "1.53",
+        "context": "{\"function_name\": \"merge_dictionaries_three\"}"
+    }
+]

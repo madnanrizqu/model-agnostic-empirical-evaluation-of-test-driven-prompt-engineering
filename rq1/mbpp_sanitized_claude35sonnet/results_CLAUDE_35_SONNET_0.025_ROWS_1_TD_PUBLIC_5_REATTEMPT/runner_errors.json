@@ -1,0 +1,14 @@
+{
+  "anthropic/claude-3.5-sonnet": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "solution": "def differ_At_One_Bit_Pos(x):\n    # Count the number of set bits in x\n    # If x is power of 2, it will have exactly one set bit\n    if x <= 0:\n        return False\n        \n    # Using bitwise AND to check if x has only one set bit\n    # A power of 2 number minus 1 will have all bits set up to that position\n    # Example: 8 (1000) - 1 = 7 (0111)\n    # When we do AND of x and (x-1), it should give 0 for power of 2\n    return (x & (x - 1)) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    }
+  ]
+}

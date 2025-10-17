@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 2,
+    "solution": "from typing import List\n\ndef similar_elements(test_tup1: List, test_tup2: List) -> str:\n    # Convert lists to sets for efficient intersection operation\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    \n    # Find common elements using set intersection\n    common_elements = set1.intersection(set2)\n    \n    # Convert result back to list and sort for consistent output\n    result = sorted(list(common_elements))\n    \n    # Return formatted string of shared elements\n    return str(result)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):",
+    "timestamp": "2025-08-10T15:31:12.727198",
+    "response_time": "3.19",
+    "context": "{\"function_name\": \"similar_elements\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 3,
+    "solution": "def is_not_prime(n):\n    # Handle numbers less than 2\n    if n < 2:\n        return True\n    \n    # Check for divisibility from 2 to square root of n\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return True\n            \n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):",
+    "timestamp": "2025-08-10T15:31:16.032690",
+    "response_time": "3.30",
+    "context": "{\"function_name\": \"is_not_prime\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 4,
+    "solution": "import heapq\nfrom typing import List\n\ndef heap_queue_largest(nums: List[int], n: int) -> str:\n    # Convert numbers to negative for max heap behavior\n    neg_nums = [-x for x in nums]\n    # Create heap from negative numbers\n    heapq.heapify(neg_nums)\n    \n    # Get n largest by getting n smallest negative numbers\n    result = []\n    for _ in range(min(n, len(nums))):\n        result.append(-heapq.heappop(neg_nums))\n    \n    # Return result as comma-separated string\n    return ','.join(map(str, result))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):",
+    "timestamp": "2025-08-10T15:31:21.074808",
+    "response_time": "5.04",
+    "context": "{\"function_name\": \"heap_queue_largest\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 6,
+    "solution": "def differ_At_One_Bit_Pos(x):\n    # Count the number of set bits in x\n    # If x is power of 2, it will have exactly one set bit\n    if x <= 0:\n        return False\n        \n    # Using bitwise AND to check if x has only one set bit\n    # A power of 2 number minus 1 will have all bits set up to that position\n    # Example: 8 (1000) - 1 = 7 (0111)\n    # When we do AND of x and (x-1), it should give 0 for power of 2\n    return (x & (x - 1)) == 0",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+    "timestamp": "2025-08-10T15:31:26.144625",
+    "response_time": "5.07",
+    "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 7,
+    "solution": "import re\nfrom typing import List\n\ndef find_char_long(text: str) -> List[str]:\n    # Use regex to find all words (sequences of letters) that are 4 or more characters long\n    pattern = r'\\b[a-zA-Z]{4,}\\b'\n    words = re.findall(pattern, text)\n    return words",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):",
+    "timestamp": "2025-08-10T15:31:29.159707",
+    "response_time": "3.01",
+    "context": "{\"function_name\": \"find_char_long\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 8,
+    "solution": "from typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    \"\"\"\n    Returns a list containing squares of individual elements from the input list\n    \n    Args:\n        nums: List of integers\n        \n    Returns:\n        List of integers containing squares of input elements\n    \"\"\"\n    return [num * num for num in nums]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):",
+    "timestamp": "2025-08-10T15:31:33.364879",
+    "response_time": "4.20",
+    "context": "{\"function_name\": \"square_nums\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 9,
+    "solution": "def find_Rotations(str):\n    if not str:\n        return 0\n    \n    n = len(str)\n    if n <= 1:\n        return 0\n        \n    # Create concatenated string\n    temp = str + str\n    \n    for i in range(1, n):\n        # Get substring of length n starting from index i\n        rotated = temp[i:i+n]\n        if rotated == str:\n            return i\n            \n    return n",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):",
+    "timestamp": "2025-08-10T15:31:37.972949",
+    "response_time": "4.61",
+    "context": "{\"function_name\": \"find_Rotations\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 11,
+    "solution": "def remove_Occ(s, ch):\n    # Find first occurrence\n    first = s.find(ch)\n    \n    # If character not found, return original string\n    if first == -1:\n        return s\n        \n    # Convert to list for easier manipulation\n    s_list = list(s)\n    \n    # Remove first occurrence\n    s_list.pop(first)\n    \n    # Find last occurrence in remaining string\n    # Convert back to string to search from end\n    remaining = ''.join(s_list)\n    last = remaining.rfind(ch)\n    \n    # If no second occurrence found, return string with just first removal\n    if last == -1:\n        return remaining\n        \n    # Remove last occurrence and return final string\n    s_list = list(remaining)\n    s_list.pop(last)\n    return ''.join(s_list)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):",
+    "timestamp": "2025-08-10T15:31:42.238659",
+    "response_time": "4.26",
+    "context": "{\"function_name\": \"remove_Occ\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 12,
+    "solution": "from typing import List\n\ndef sort_matrix(M: List[List[int]]) -> List[List[int]]:\n    # Calculate row sums and create pairs of (sum, row)\n    row_sums = [(sum(row), i, row) for i, row in enumerate(M)]\n    \n    # Sort based on row sums\n    row_sums.sort(key=lambda x: x[0])\n    \n    # Return sorted matrix\n    return [row for _, _, row in row_sums]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):",
+    "timestamp": "2025-08-10T15:31:45.167897",
+    "response_time": "2.93",
+    "context": "{\"function_name\": \"sort_matrix\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet",
+    "dataset_row_id": 14,
+    "solution": "def find_Volume(l,b,h):\n    \"\"\"\n    Calculate the volume of a triangular prism\n    \n    Args:\n        l (float): length of the triangular prism\n        b (float): base of the triangular face\n        h (float): height of the triangular face\n    \n    Returns:\n        float: volume of the triangular prism\n    \"\"\"\n    # Volume = (1/2 * base * height) * length\n    # First calculate area of triangle\n    triangle_area = 0.5 * b * h\n    # Multiply by length to get volume\n    volume = triangle_area * l\n    return volume",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the volume of a triangular prism.\n\n### Signature\ndef find_Volume(l,b,h) :",
+    "timestamp": "2025-08-10T15:31:50.347193",
+    "response_time": "5.18",
+    "context": "{\"function_name\": \"find_Volume\"}"
+  }
+]

@@ -1,0 +1,104 @@
+{
+  "Qwen/Qwen2.5-Coder-7B-Instruct": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "solution": "def differ_At_One_Bit_Pos(x):\n    return x > 0 and (x & (x - 1)) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "solution": "def differ_At_One_Bit_Pos(x):\n    return x > 0 and (x & (x - 1)) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    return list(string)\n\ndef remove_chars(str1, str2):\n    str1_list = str_to_list(str1)\n    str2_set = set(str_to_list(str2))\n    result = [char for char in str1_list if char not in str2_set]\n    return ''.join(result)",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "import math\n\ndef check(num):\n    reversed_num = 0\n    while num > 0:\n        reversed_num = reversed_num * 10 + num % 10\n        num //= 10\n    return reversed_num\n\ndef is_one_less_than_twice_reversed(n):\n    return n == 2 * rev(n) - 1\n\n# Example usage:\n# result = is_one_less_than_twice_reversed(18)\n# print(result)  # Output: True",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 57,
+      "prompt": "### Prompt\nWrite a python function to find the largest number that can be formed with the given list of digits.\n\n### Signature\ndef find_Max_Num(arr) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 8, in <module>\n    check(find_Max_Num)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert candidate([1,2,3]) == 321\n           ^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output.py\", line 7, in find_Max_Num\n    arr = sorted(arr, key=cmp_to_key(compare))\n                                     ^^^^^^^\nNameError: name 'compare' is not defined. Did you mean: 'compile'?\n",
+      "solution": "from functools import cmp_to_key\n\ndef find_Max_Num(x, y):\n    return int(y + x) - int(x + y)\n\ndef find_Max_Num(arr):\n    arr = sorted(arr, key=cmp_to_key(compare))\n    result = ''.join(map(str, arr))\n    return int(result)",
+      "test_content": "from llm_output import find_Max_Num\n\ndef check(candidate):\n    assert candidate([1,2,3]) == 321\n    assert candidate([4,5,6,1]) == 6541\n    assert candidate([1,2,3,9]) == 9321\n\ncheck(find_Max_Num)",
+      "context": "{\"function_name\": \"find_Max_Num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 67,
+      "prompt": "### Prompt\nWrite a function to find the number of ways to partition a set of Bell numbers.\n\n### Signature\ndef bell_number(n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Test execution timed out after 30 seconds - possible infinite loop",
+      "solution": "from math import factorial\n\ndef bell_number(n):\n    def binomial_coefficient(n, k):\n        return factorial(n) // (factorial(k) * factorial(n - k))\n    \n    def bell_number_recursive(n):\n        if n == 0:\n            return 1\n        bell = 0\n        for k in range(n):\n            bell += binomial_coefficient(n - 1, k) * bell_number_recursive(k)\n        return bell\n    \n    return bell_number_recursive(n)",
+      "test_content": "from llm_output import bell_number\n\ndef check(candidate):\n    assert candidate(2)==2\n    assert candidate(10)==115975\n    assert candidate(56)==6775685320645824322581483068371419745979053216268760300\n\ncheck(bell_number)",
+      "context": "{\"function_name\": \"bell_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 133,
+      "prompt": "### Prompt\nWrite a function to calculate the sum of the negative numbers of a given list of numbers.\n\n### Signature\ndef sum_negativenum(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 8, in <module>\n    check(sum_negativenum)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert candidate([2, 4, -6, -9, 11, -12, 14, -5, 17])==-32\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output.py\", line 4, in sum_negativenum\n    return np.sum(nums[nums < 0])\n                       ^^^^^^^^\nTypeError: '<' not supported between instances of 'list' and 'int'\n",
+      "solution": "import numpy as np\n\ndef sum_negativenum(nums):\n    return np.sum(nums[nums < 0])",
+      "test_content": "from llm_output import sum_negativenum\n\ndef check(candidate):\n    assert candidate([2, 4, -6, -9, 11, -12, 14, -5, 17])==-32\n    assert candidate([10,15,-14,13,-18,12,-20])==-52\n    assert candidate([19, -65, 57, 39, 152,-639, 121, 44, 90, -190])==-894\n\ncheck(sum_negativenum)",
+      "context": "{\"function_name\": \"sum_negativenum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 164,
+      "prompt": "### Prompt\nWrite a function to determine if the sum of the divisors of two integers are the same.\n\n### Signature\ndef div_sum(n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 8, in <module>\n    check(are_equivalent)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert candidate(36, 57) == False\n           ^^^^^^^^^^^^^^^^^\nTypeError: are_equivalent() takes 1 positional argument but 2 were given\n",
+      "solution": "import math\n\ndef are_equivalent(n):\n    def sum_of_divisors(num):\n        total = 1\n        sqrt_n = int(math.sqrt(num))\n        for i in range(2, sqrt_n + 1):\n            if num % i == 0:\n                total += i\n                if i != num // i:\n                    total += num // i\n        return total\n\n    return sum_of_divisors(n)",
+      "test_content": "from llm_output import are_equivalent\n\ndef check(candidate):\n    assert candidate(36, 57) == False\n    assert candidate(2, 4) == False\n    assert candidate(23, 47) == True\n\ncheck(are_equivalent)",
+      "context": "{\"function_name\": \"are_equivalent\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 167,
+      "prompt": "### Prompt\nWrite a python function to find the smallest power of 2 greater than or equal to n.\n\n### Signature\ndef next_power_of_2(n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 8, in <module>\n    check(next_power_of_2)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert candidate(0) == 1\n           ^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output.py\", line 4, in next_power_of_2\n    return 2 ** math.ceil(math.log2(n))\n                          ^^^^^^^^^^^^\nValueError: math domain error\n",
+      "solution": "import math\n\ndef next_power_of_2(n):\n    return 2 ** math.ceil(math.log2(n))",
+      "test_content": "from llm_output import next_power_of_2\n\ndef check(candidate):\n    assert candidate(0) == 1\n    assert candidate(5) == 8\n    assert candidate(17) == 32\n\ncheck(next_power_of_2)",
+      "context": "{\"function_name\": \"next_power_of_2\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 223,
+      "prompt": "### Prompt\nWrite a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)\n\n### Signature\ndef is_majority(arr, n, x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_1758369066532799/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "solution": "from typing import List\n\ndef binary_search(arr: List[int], n: int, x: int) -> bool:\n    first_occurrence = find_first_occurrence(arr, n, x)\n    if first_occurrence == -1:\n        return False\n    if first_occurrence + n // 2 < n and arr[first_occurrence + n // 2] == x:\n        return True\n    return False\n\ndef find_first_occurrence(arr: List[int], n: int, x: int) -> int:\n    low, high = 0, n - 1\n    result = -1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == x:\n            result = mid\n            high = mid - 1\n        elif arr[mid] < x:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return result",
+      "test_content": "from llm_output import binary_search\n\ndef check(candidate):\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n    assert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False\n    assert is_majority([1, 1, 1, 2, 2], 5, 1) == True\n    assert is_majority([1, 1, 2, 2], 5, 1) == False\n\ncheck(binary_search)",
+      "context": "{\"function_name\": \"binary_search\"}",
+      "attempt_num": 1
+    }
+  ]
+}

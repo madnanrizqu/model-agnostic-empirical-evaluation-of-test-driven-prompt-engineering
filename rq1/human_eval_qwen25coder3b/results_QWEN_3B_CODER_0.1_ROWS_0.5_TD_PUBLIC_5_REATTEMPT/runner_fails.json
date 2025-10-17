@@ -1,0 +1,54 @@
+{
+  "Qwen/Qwen2.5-Coder-3B-Instruct": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder3b_1758367241582125/llm_output_test.py\", line 8, in <module>\n    check(truncate_number)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder3b_1758367241582125/llm_output_test.py\", line 4, in check\n    assert candidate(3.5) == 0.5\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "from llm_output import truncate_number\n\ndef check(candidate):\n    assert candidate(3.5) == 0.5\n    assert abs(candidate(1.33) - 0.33) < 1e-6\n    assert abs(candidate(123.456) - 0.456) < 1e-6\n\ncheck(truncate_number)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder3b_1758367241582125/llm_output_test.py\", line 8, in <module>\n    check(truncate_number)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder3b_1758367241582125/llm_output_test.py\", line 4, in check\n    assert candidate(3.5) == 0.5\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "Qwen/Qwen2.5-Coder-7B-Instruct": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n\n### Test\nassert candidate(13,9) == True\nassert candidate(15,8) == False\nassert candidate(2,4) == False",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "solution": "def differ_At_One_Bit_Pos(x):\n    return x > 0 and (x & (x - 1)) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):\n\n### Test\nassert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 8, in <module>\n    check(sort_matrix)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 4, in check\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()\n",
+      "solution": "import numpy as np\n\ndef sort_matrix(M):\n    return np.array(sorted(M, key=sum))",
+      "test_content": "from llm_output import sort_matrix\n\ndef check(candidate):\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n    assert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\n    assert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]\n\ncheck(sort_matrix)",
+      "context": "{\"function_name\": \"sort_matrix\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):\n\n### Test\nassert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    return ''.join([char for char in string if char not in \"pros\"])",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):\n\n### Test\nassert candidate(70) == False",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "def check(num):\n    reversed_num = int(str(num)[::-1])\n    return num == 2 * reversed_num - 1",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 124,
+      "prompt": "### Prompt\nWrite a function to get the angle of a complex number.\n\n### Signature\ndef angle_complex(a,b):\n\n### Test\nassert math.isclose(candidate(0,1j), 1.5707963267948966, rel_tol=0.001)",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 9, in <module>\n    check(angle_complex)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 5, in check\n    assert math.isclose(candidate(0,1j), 1.5707963267948966, rel_tol=0.001)\n                        ^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output.py\", line 4, in angle_complex\n    return math.atan2(b, a)\n           ^^^^^^^^^^^^^^^^\nTypeError: must be real number, not complex\n",
+      "solution": "import math\n\ndef angle_complex(a, b):\n    return math.atan2(b, a)",
+      "test_content": "from llm_output import angle_complex\n\nimport math\ndef check(candidate):\n    assert math.isclose(candidate(0,1j), 1.5707963267948966, rel_tol=0.001)\n    assert math.isclose(candidate(2,1j), 0.4636476090008061, rel_tol=0.001)\n    assert math.isclose(candidate(0,2j), 1.5707963267948966, rel_tol=0.001)\n\ncheck(angle_complex)",
+      "context": "{\"function_name\": \"angle_complex\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 164,
+      "prompt": "### Prompt\nWrite a function to determine if the sum of the divisors of two integers are the same.\n\n### Signature\ndef div_sum(n):\n\n### Test\nassert candidate(36, 57) == False",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 8, in <module>\n    check(are_equivalent)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 4, in check\n    assert candidate(36, 57) == False\n           ^^^^^^^^^^^^^^^^^\nTypeError: are_equivalent() takes 1 positional argument but 2 were given\n",
+      "solution": "import math\n\ndef are_equivalent(n):\n    def sum_of_divisors(x):\n        total = 1\n        for i in range(2, int(math.sqrt(x)) + 1):\n            if x % i == 0:\n                total += i\n                if i != x // i:\n                    total += x // i\n        return total\n    \n    return sum_of_divisors(n)",
+      "test_content": "from llm_output import are_equivalent\n\ndef check(candidate):\n    assert candidate(36, 57) == False\n    assert candidate(2, 4) == False\n    assert candidate(23, 47) == True\n\ncheck(are_equivalent)",
+      "context": "{\"function_name\": \"are_equivalent\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 223,
+      "prompt": "### Prompt\nWrite a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)\n\n### Signature\ndef is_majority(arr, n, x):\n\n### Test\nassert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\nassert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "solution": "def binary_search(arr, n, x):\n    first_occurrence = find_first_occurrence(arr, n, x)\n    if first_occurrence == -1:\n        return False\n    if first_occurrence + n // 2 < n and arr[first_occurrence + n // 2] == x:\n        return True\n    return False\n\ndef find_first_occurrence(arr, n, x):\n    low, high = 0, n - 1\n    result = -1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == x:\n            result = mid\n            high = mid - 1\n        elif arr[mid] < x:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return result",
+      "test_content": "from llm_output import binary_search\n\ndef check(candidate):\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n    assert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False\n    assert is_majority([1, 1, 1, 2, 2], 5, 1) == True\n    assert is_majority([1, 1, 2, 2], 5, 1) == False\n\ncheck(binary_search)",
+      "context": "{\"function_name\": \"binary_search\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 301,
+      "prompt": "### Prompt\nWrite a function to find the depth of a dictionary.\n\n### Signature\ndef dict_depth(d):\n\n### Test\nassert candidate({'a':1, 'b': {'c': {'d': {}}}})==4",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 8, in <module>\n    check(dict_depth)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 4, in check\n    assert candidate({'a':1, 'b': {'c': {'d': {}}}})==4\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output.py\", line 4, in dict_depth\n    if isinstance(d, collections.abc.Mapping):\n                     ^^^^^^^^^^^^^^^\nAttributeError: module 'collections' has no attribute 'abc'\n",
+      "solution": "import collections\n\ndef dict_depth(d):\n    if isinstance(d, collections.abc.Mapping):\n        return 1 + (max(map(dict_depth, d.values())) if d else 0)\n    return 0",
+      "test_content": "from llm_output import dict_depth\n\ndef check(candidate):\n    assert candidate({'a':1, 'b': {'c': {'d': {}}}})==4\n    assert candidate({'a':1, 'b': {'c':'python'}})==2\n    assert candidate({1: 'Sun', 2: {3: {4:'Mon'}}})==3\n\ncheck(dict_depth)",
+      "context": "{\"function_name\": \"dict_depth\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 398,
+      "prompt": "### Prompt\nWrite a function to compute the sum of digits of each number of a given list.\n\n### Signature\ndef sum_of_digits(nums):\n\n### Test\nassert candidate([10,2,56])==14",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 8, in <module>\n    check(sum_of_digits)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 5, in check\n    assert candidate([[10,20,4,5,'b',70,'a']])==19\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output.py\", line 2, in sum_of_digits\n    return sum(sum(int(digit) for digit in str(abs(num))) for num in nums)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output.py\", line 2, in <genexpr>\n    return sum(sum(int(digit) for digit in str(abs(num))) for num in nums)\n                                               ^^^^^^^^\nTypeError: bad operand type for abs(): 'list'\n",
+      "solution": "def sum_of_digits(nums):\n    return sum(sum(int(digit) for digit in str(abs(num))) for num in nums)",
+      "test_content": "from llm_output import sum_of_digits\n\ndef check(candidate):\n    assert candidate([10,2,56])==14\n    assert candidate([[10,20,4,5,'b',70,'a']])==19\n    assert candidate([10,20,-4,5,-70])==19\n\ncheck(sum_of_digits)",
+      "context": "{\"function_name\": \"sum_of_digits\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 408,
+      "prompt": "### Prompt\nWrite a function to find k number of smallest pairs which consist of one element from the first array and one element from the second array.\n\n### Signature\ndef k_smallest_pairs(nums1, nums2, k):\n\n### Test\nassert k_smallest_pairs([1,3,7],[2,4,6],2)==[[1, 2], [1, 4]]",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 8, in <module>\n    check(push)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder7b_td_1760709780449087/llm_output_test.py\", line 4, in check\n    assert k_smallest_pairs([1,3,7],[2,4,6],2)==[[1, 2], [1, 4]]\n           ^^^^^^^^^^^^^^^^\nNameError: name 'k_smallest_pairs' is not defined\n",
+      "solution": "import heapq\n\ndef push(nums1, nums2, k):\n    if not nums1 or not nums2:\n        return []\n    \n    min_heap = []\n    for i in range(min(k, len(nums1))):\n        heapq.heappush(min_heap, (nums1[i] + nums2[0], i, 0))\n    \n    result = []\n    while min_heap and len(result) < k:\n        _, i, j = heapq.heappop(min_heap)\n        result.append([nums1[i], nums2[j]])\n        if j + 1 < len(nums2):\n            heapq.heappush(min_heap, (nums1[i] + nums2[j + 1], i, j + 1))\n    \n    return result",
+      "test_content": "from llm_output import push\n\ndef check(candidate):\n    assert k_smallest_pairs([1,3,7],[2,4,6],2)==[[1, 2], [1, 4]]\n    assert k_smallest_pairs([1,3,7],[2,4,6],1)==[[1, 2]]\n    assert k_smallest_pairs([1,3,7],[2,4,6],7)==[[1, 2], [1, 4], [3, 2], [1, 6], [3, 4], [3, 6], [7, 2]]\n\ncheck(push)",
+      "context": "{\"function_name\": \"push\"}",
+      "attempt_num": 1
+    }
+  ]
+}

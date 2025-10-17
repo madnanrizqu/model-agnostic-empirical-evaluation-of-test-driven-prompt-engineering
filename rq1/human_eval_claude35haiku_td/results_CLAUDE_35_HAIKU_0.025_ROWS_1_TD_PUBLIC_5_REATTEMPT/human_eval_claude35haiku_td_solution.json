@@ -1,0 +1,38 @@
+[
+    {
+        "dataset_name": "human_eval_claude35haiku_td",
+        "dataset_row_id": 0,
+        "solution": "===START===\nfrom typing import List\nimport math\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    # Compare each number with every other number in the list\n    for i in range(len(numbers)):\n        for j in range(i+1, len(numbers)):\n            # Calculate absolute difference between two numbers\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    \n    # If no two numbers are closer than threshold, return False\n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False\nassert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True\nassert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True\nassert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False ",
+        "timestamp": "2025-08-10T15:32:54.244185",
+        "response_time": "3.45"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_td",
+        "dataset_row_id": 1,
+        "solution": "I'll solve this problem by implementing a function that separates balanced parentheses groups. Here's the solution:\n\n===START===\nfrom typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    # Remove all spaces from the input string\n    paren_string = paren_string.replace(' ', '')\n    \n    result = []\n    current_group = ''\n    depth = 0\n    \n    for char in paren_string:\n        current_group += char\n        \n        if char == '(':\n            depth += 1\n        elif char == ')':\n            depth -= 1\n        \n        # When depth reaches 0, we have a complete balanced group\n        if depth == 0 and current_group:\n            result.append(current_group)\n            current_group = ''\n    \n    return result\n===END===\n\nThis solution works as follows:\n\n1. First, remove all spaces from the input string using `replace()`.\n2. Initialize an empty `result` list to store the separated groups.\n3. Use a `current_group` string to build each group.\n4. Use a `depth` counter to track the nesting level of parentheses.\n5. Iterate through each character in the string:\n   - Add the character to `current_group`\n   - If the character is '(', increment `depth`\n   - If the character is ')', decrement `depth`\n   - When `depth` reaches 0, it means a complete balanced group is found\n   - Append the `current_group` to `result` and reset `current_group`\n6. Return the list of separated groups.\n\nThe solution handles various scenarios like nested and non-nested parentheses groups, and ignores spaces as required.",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [ '(()())', '((()))', '()', '((())()())' ]\nassert candidate('() (()) ((())) (((())))') == [ '()', '(())', '((()))', '(((())))' ]\nassert candidate('(()(())((())))') == [ '(()(())((())))' ]\nassert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']",
+        "timestamp": "2025-08-10T15:33:01.838406",
+        "response_time": "7.59"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_td",
+        "dataset_row_id": 2,
+        "solution": "===START===\nfrom typing import Union\n\ndef truncate_number(number: float) -> float:\n    \"\"\"\n    Decompose a positive floating point number into its decimal part.\n    \n    Args:\n        number (float): A positive floating point number\n    \n    Returns:\n        float: The decimal part of the number (always less than 1)\n    \"\"\"\n    # Use the subtraction of integer part from original number to get decimal part\n    return number - int(number)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n\n### Test\nassert candidate(3.5) == 0.5\nassert abs(candidate(1.33) - 0.33) < 1e-6\nassert abs(candidate(123.456) - 0.456) < 1e-6",
+        "timestamp": "2025-08-10T15:33:05.289597",
+        "response_time": "3.45"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku_td",
+        "dataset_row_id": 3,
+        "solution": "===START===\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:\n\n### Test\nassert candidate([]) == False\nassert candidate([1, 2, -3, 1, 2, -3]) == False\nassert candidate([1, 2, -4, 5, 6]) == True\nassert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False\nassert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True\nassert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True",
+        "timestamp": "2025-08-10T15:33:06.862538",
+        "response_time": "1.57"
+    }
+]

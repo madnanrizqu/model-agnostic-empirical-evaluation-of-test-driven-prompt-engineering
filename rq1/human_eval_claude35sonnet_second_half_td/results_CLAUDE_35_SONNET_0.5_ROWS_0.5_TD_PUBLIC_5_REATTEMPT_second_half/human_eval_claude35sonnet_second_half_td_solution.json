@@ -1,0 +1,740 @@
+[
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 82,
+        "solution": "===START===\ndef prime_length(string):\n    length = len(string)\n    \n    # Handle edge cases\n    if length < 2:\n        return False\n    \n    # Check if length is prime\n    for i in range(2, int(length ** 0.5) + 1):\n        if length % i == 0:\n            return False\n    \n    return True\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Write a function that takes a string and returns True if the string\n    length is a prime number or False otherwise\n    Examples\n    prime_length('Hello') == True\n    prime_length('abcdcba') == True\n    prime_length('kittens') == True\n    prime_length('orange') == False\n\n### Signature\ndef prime_length(string):\n\n### Test\nassert candidate('Hello') == True\nassert candidate('abcdcba') == True\nassert candidate('kittens') == True\nassert candidate('orange') == False\nassert candidate('wow') == True\nassert candidate('world') == True\nassert candidate('MadaM') == True\nassert candidate('Wow') == True",
+        "timestamp": "2025-10-17T19:03:08.798926",
+        "response_time": "3.91"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 83,
+        "solution": "===START===\ndef starts_one_ends(n):\n    # For n=1, only the number 1 satisfies the condition\n    if n == 1:\n        return 1\n    \n    # For n > 1:\n    # Numbers starting with 1: 1 followed by any (n-1) digits = 1 * 10^(n-1)\n    # Numbers ending with 1: Any digit (1-9) followed by any digits and ending in 1 = 9 * 10^(n-2)\n    # Need to subtract numbers that are counted twice (numbers that both start and end with 1)\n    # Numbers that start and end with 1: 1 followed by any (n-2) digits and ending in 1 = 1 * 10^(n-2)\n    \n    start_with_one = 10 ** (n-1)  # Numbers starting with 1\n    end_with_one = 9 * (10 ** (n-2))  # Numbers ending with 1\n    both = 10 ** (n-2)  # Numbers both starting and ending with 1\n    \n    return start_with_one + end_with_one - both\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n\n### Signature\ndef starts_one_ends(n):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(1) == 1\nassert candidate(2) == 18",
+        "timestamp": "2025-10-17T19:03:17.691274",
+        "response_time": "8.89"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 84,
+        "solution": "===START===\ndef solve(N):\n    # Calculate sum of digits\n    digit_sum = sum(int(digit) for digit in str(N))\n    \n    # Convert to binary string and remove '0b' prefix\n    binary_sum = bin(digit_sum)[2:]\n    \n    return binary_sum\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a positive integer N, return the total sum of its digits in binary.\n\n### Signature\ndef solve(N):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(1000) == \"1\", \"Error\"\nassert candidate(150) == \"110\", \"Error\"",
+        "timestamp": "2025-10-17T19:03:19.586652",
+        "response_time": "1.89"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 85,
+        "solution": "===START===\ndef add(lst):\n    sum = 0\n    for i in range(1, len(lst), 2):  # Start from index 1 (odd index) and step by 2\n        if lst[i] % 2 == 0:  # Check if number is even\n            sum += lst[i]\n    return sum\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n### Signature\ndef add(lst):\n\n### Test\nassert candidate([4, 88]) == 88\nassert candidate([4, 5, 6, 7, 2, 122]) == 122",
+        "timestamp": "2025-10-17T19:03:21.497855",
+        "response_time": "1.91"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 86,
+        "solution": "===START===\ndef anti_shuffle(s):\n    # Split the string into words while preserving spaces\n    words = []\n    current_word = ''\n    for char in s:\n        if char == ' ':\n            if current_word:\n                words.append(current_word)\n                current_word = ''\n            words.append(' ')\n        else:\n            current_word += char\n    if current_word:\n        words.append(current_word)\n\n    # Sort characters in each word\n    result = ''\n    for word in words:\n        if word == ' ':\n            result += word\n        else:\n            result += ''.join(sorted(word))\n\n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n### Signature\ndef anti_shuffle(s):\n\n### Test\nassert candidate('Hi') == 'Hi'\nassert candidate('hello') == 'ehllo'\nassert candidate('number') == 'bemnru'\nassert candidate('abcd') == 'abcd'",
+        "timestamp": "2025-10-17T19:03:25.681890",
+        "response_time": "4.18"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 87,
+        "solution": "===START===\ndef get_row(lst, x):\n    coordinates = []\n    for row_idx, row in enumerate(lst):\n        # Find all occurrences of x in current row\n        col_indices = [col_idx for col_idx, val in enumerate(row) if val == x]\n        # Add coordinates for current row in descending column order\n        coordinates.extend([(row_idx, col_idx) for col_idx in sorted(col_indices, reverse=True)])\n    \n    # Sort by row in ascending order\n    coordinates.sort(key=lambda coord: coord[0])\n    return coordinates\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a 2 dimensional data, as a nested lists,\n    which is similar to matrix, however, unlike matrices,\n    each row may contain a different number of columns.\n    Given lst, and integer x, find integers x in the list,\n    and return list of tuples, [(x1, y1), (x2, y2) ...] such that\n    each tuple is a coordinate - (row, columns), starting with 0.\n    Sort coordinates initially by rows in ascending order.\n    Also, sort coordinates of the row by columns in descending order.\n\n### Signature\ndef get_row(lst, x):\n\n### Test\nassert candidate([ [1,2,3,4,5,6], [1,2,3,4,1,6], [1,2,3,4,5,1]\nassert candidate([ [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6]\nassert candidate([ [1,2,3,4,5,6], [1,2,3,4,5,6], [1,1,3,4,5,6], [1,2,1,4,5,6], [1,2,3,1,5,6], [1,2,3,4,1,6], [1,2,3,4,5,1]",
+        "timestamp": "2025-10-17T19:03:29.569962",
+        "response_time": "3.89"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 88,
+        "solution": "===START===\ndef sort_array(array):\n    if not array:\n        return []\n    \n    # Calculate sum of first and last elements\n    sum_first_last = array[0] + array[-1]\n    \n    # Create a copy of the array\n    sorted_array = array.copy()\n    \n    # Sort in ascending order if sum is odd, descending if sum is even\n    if sum_first_last % 2 == 1:\n        sorted_array.sort()\n    else:\n        sorted_array.sort(reverse=True)\n    \n    return sorted_array\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n### Signature\ndef sort_array(array):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([]) == [], \"Error\"\nassert candidate([5]) == [5], \"Error\"\nassert candidate([2, 4, 3, 0, 1, 5]) == [0, 1, 2, 3, 4, 5], \"Error\"",
+        "timestamp": "2025-10-17T19:03:34.692028",
+        "response_time": "5.12"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 89,
+        "solution": "===START===\ndef encrypt(s):\n    # Create a mapping of original letters to encrypted letters\n    original = 'abcdefghijklmnopqrstuvwxyz'\n    # Shift each letter by 4 positions (2 * 2)\n    shifted = 'efghijklmnopqrstuvwxyzabcd'\n    \n    # Create translation table\n    trans = str.maketrans(original, shifted)\n    \n    # Return encrypted string using translation table\n    return s.translate(trans)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated.\n    The alphabet should be rotated in a manner such that the letters\n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n\n### Signature\ndef encrypt(s):\n\n### Test\nassert candidate('hi') == 'lm', \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('asdfghjkl') == 'ewhjklnop', \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('gf') == 'kj', \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('et') == 'ix', \"This prints if this assert fails 1 (good for debugging!)\" ",
+        "timestamp": "2025-10-17T19:03:38.552333",
+        "response_time": "3.86"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 90,
+        "solution": "===START===\ndef next_smallest(lst):\n    if len(lst) < 2:\n        return None\n    \n    # Convert list to set to remove duplicates\n    unique_nums = set(lst)\n    if len(unique_nums) < 2:\n        return None\n    \n    # Convert back to list and sort\n    sorted_nums = sorted(unique_nums)\n    return sorted_nums[1]\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n\n### Signature\ndef next_smallest(lst):\n\n### Test\nassert candidate([1, 2, 3, 4, 5]) == 2\nassert candidate([5, 1, 4, 3, 2]) == 2\nassert candidate([]) == None\nassert candidate([1, 1]) == None",
+        "timestamp": "2025-10-17T19:03:41.683000",
+        "response_time": "3.13"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 91,
+        "solution": "===START===\ndef is_bored(S):\n    # Split into sentences using multiple delimiters\n    sentences = []\n    current = \"\"\n    \n    for char in S:\n        if char in '.?!':\n            current = current.strip()\n            if current:\n                sentences.append(current)\n            current = \"\"\n        else:\n            current += char\n    \n    # Add the last sentence if it exists\n    if current.strip():\n        sentences.append(current.strip())\n    \n    # Count sentences starting with 'I'\n    boredom_count = 0\n    for sentence in sentences:\n        words = sentence.split()\n        if words and words[0] == 'I':\n            boredom_count += 1\n            \n    return boredom_count\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n\n### Signature\ndef is_bored(S):\n\n### Test\nassert candidate(\"Hello world\") == 0, \"Test 1\"\nassert candidate(\"Is the sky blue?\") == 0, \"Test 2\"\nassert candidate(\"I love It !\") == 1, \"Test 3\"",
+        "timestamp": "2025-10-17T19:03:47.229547",
+        "response_time": "5.54"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 92,
+        "solution": "===START===\ndef any_int(x, y, z):\n    # Check if all numbers are integers\n    if not (isinstance(x, int) and isinstance(y, int) and isinstance(z, int)):\n        if not (x.is_integer() and y.is_integer() and z.is_integer()):\n            return False\n    \n    # Check if any number equals the sum of other two\n    if x == y + z or y == x + z or z == x + y:\n        return True\n    \n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n\n### Signature\ndef any_int(x, y, z):\n\n### Test\nassert candidate(2, 3, 1)==True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(2.5, 2, 3)==False, \"This prints if this assert fails 2 (good for debugging!)\"\nassert candidate(1.5, 5, 3.5)==False, \"This prints if this assert fails 3 (good for debugging!)\"\nassert candidate(2, 6, 2)==False, \"This prints if this assert fails 4 (good for debugging!)\"\nassert candidate(4, 2, 2)==True, \"This prints if this assert fails 5 (good for debugging!)\"",
+        "timestamp": "2025-10-17T19:03:49.583197",
+        "response_time": "2.35"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 93,
+        "solution": "===START===\ndef encode(message):\n    vowels = 'aeiouAEIOU'\n    vowel_map = {'a': 'c', 'e': 'g', 'i': 'k', 'o': 'q', 'u': 'w',\n                 'A': 'C', 'E': 'G', 'I': 'K', 'O': 'Q', 'U': 'W'}\n    \n    result = ''\n    for char in message:\n        if char in vowels:\n            result += vowel_map[char].swapcase()\n        else:\n            result += char.swapcase()\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Write a function that takes a message, and encodes in such a\n    way that it swaps case of all letters, replaces all vowels in\n    the message with the letter that appears 2 places ahead of that\n    vowel in the english alphabet.\n    Assume only letters.\n\n### Signature\ndef encode(message):\n\n### Test\nassert candidate('TEST') == 'tgst', \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('Mudasir') == 'mWDCSKR', \"This prints if this assert fails 2 (good for debugging!)\"",
+        "timestamp": "2025-10-17T19:03:54.449551",
+        "response_time": "4.86"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 94,
+        "solution": "===START===\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef skjkasdkd(lst):\n    # Find the largest prime number in the list\n    largest_prime = 0\n    for num in lst:\n        if is_prime(num) and num > largest_prime:\n            largest_prime = num\n    \n    # Calculate sum of digits of the largest prime\n    return sum(int(digit) for digit in str(largest_prime))\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n### Signature\ndef skjkasdkd(lst):\n\n### Test\nassert candidate([0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3]) == 10, \"This prints if this assert fails 1 (good for debugging!)\"  # Check some edge cases that are easy to work out by hand.\nassert candidate([1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1]) == 25, \"This prints if this assert fails 2 (also good for debugging!)\"  # Check some edge cases that are easy to work out by hand.\nassert candidate([1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3]) == 13, \"This prints if this assert fails 3 (also good for debugging!)\"  # Check some edge cases that are easy to work out by hand.\nassert candidate([0,724,32,71,99,32,6,0,5,91,83,0,5,6]) == 11, \"This prints if this assert fails 4 (also good for debugging!)\"  # Check some edge cases that are easy to work out by hand.",
+        "timestamp": "2025-10-17T19:03:59.204525",
+        "response_time": "4.75"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 95,
+        "solution": "===START===\ndef check_dict_case(dict):\n    if not dict:\n        return False\n    \n    keys = list(dict.keys())\n    \n    # Check if all keys are strings\n    if not all(isinstance(key, str) for key in keys):\n        return False\n    \n    # Check if all keys are lowercase\n    all_lower = all(key.islower() for key in keys)\n    \n    # Check if all keys are uppercase\n    all_upper = all(key.isupper() for key in keys)\n    \n    return all_lower or all_upper\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a dictionary, return True if all keys are strings in lower\n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n\n### Signature\ndef check_dict_case(dict):\n\n### Test\nassert candidate({\"p\":\"pineapple\", \"b\":\"banana\"}) == True, \"First test error: \" + str(candidate({\"p\":\"pineapple\", \"b\":\"banana\"}))\nassert candidate({\"p\":\"pineapple\", \"A\":\"banana\", \"B\":\"banana\"}) == False, \"Second test error: \" + str(candidate({\"p\":\"pineapple\", \"A\":\"banana\", \"B\":\"banana\"}))\nassert candidate({\"p\":\"pineapple\", 5:\"banana\", \"a\":\"apple\"}) == False, \"Third test error: \" + str(candidate({\"p\":\"pineapple\", 5:\"banana\", \"a\":\"apple\"}))",
+        "timestamp": "2025-10-17T19:04:03.464278",
+        "response_time": "4.26"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 96,
+        "solution": "===START===\ndef count_up_to(n):\n    if n < 2:\n        return []\n    \n    # Create a boolean array for marking non-prime numbers\n    is_composite = [False] * n\n    primes = []\n    \n    # Use Sieve of Eratosthenes to mark non-prime numbers\n    for i in range(2, n):\n        if not is_composite[i]:\n            primes.append(i)\n            # Mark multiples of current prime as composite\n            for j in range(i * i, n, i):\n                is_composite[j] = True\n    \n    return primes\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Implement a function that takes an non-negative integer and returns an array of the first n\n    integers that are prime numbers and less than n.\n    for example:\n    count_up_to(5) => [2,3]\n    count_up_to(11) => [2,3,5,7]\n    count_up_to(0) => []\n    count_up_to(20) => [2,3,5,7,11,13,17,19]\n    count_up_to(1) => []\n    count_up_to(18) => [2,3,5,7,11,13,17]\n\n### Signature\ndef count_up_to(n):\n\n### Test\nassert candidate(5) == [2,3]\nassert candidate(6) == [2,3,5]\nassert candidate(7) == [2,3,5]\nassert candidate(10) == [2,3,5,7]\nassert candidate(0) == []",
+        "timestamp": "2025-10-17T19:04:07.442394",
+        "response_time": "3.98"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 97,
+        "solution": "===START===\ndef multiply(a, b):\n    # Get unit digits using modulo 10 and multiply them\n    return abs(a % 10) * abs(b % 10)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Complete the function that takes two integers and returns\n    the product of their unit digits.\n    Assume the input is always valid.\n    Examples:\n    multiply(148, 412) should return 16.\n    multiply(19, 28) should return 72.\n    multiply(2020, 1851) should return 0.\n    multiply(14,-15) should return 20.\n\n### Signature\ndef multiply(a, b):\n\n### Test\nassert candidate(148, 412) == 16, \"First test error: \" + str(candidate(148, 412))\nassert candidate(19, 28) == 72, \"Second test error: \" + str(candidate(19, 28))\nassert candidate(2020, 1851) == 0, \"Third test error: \" + str(candidate(2020, 1851))\nassert candidate(14,-15) == 20, \"Fourth test error: \" + str(candidate(14,-15))",
+        "timestamp": "2025-10-17T19:04:09.809704",
+        "response_time": "2.37"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 98,
+        "solution": "===START===\ndef count_upper(s):\n    vowels = set('AEIOU')\n    count = 0\n    for i in range(0, len(s), 2):\n        if s[i] in vowels:\n            count += 1\n    return count\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a string s, count the number of uppercase vowels in even indices.\n\n### Signature\ndef count_upper(s):\n\n### Test\nassert candidate('aBCdEf')  == 1\nassert candidate('abcdefg') == 0\nassert candidate('dBBE') == 0\nassert candidate('B')  == 0",
+        "timestamp": "2025-10-17T19:04:12.259143",
+        "response_time": "2.45"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 99,
+        "solution": "===START===\ndef closest_integer(value):\n    number = float(value)\n    decimal_part = number % 1\n    \n    if decimal_part == 0.5:\n        return int(number + 0.5)\n    \n    return round(number)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n\n### Signature\ndef closest_integer(value):\n\n### Test\nassert candidate(\"10\") == 10, \"Test 1\"\nassert candidate(\"14.5\") == 15, \"Test 2\"",
+        "timestamp": "2025-10-17T19:04:14.013200",
+        "response_time": "1.75"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 100,
+        "solution": "===START===\ndef make_a_pile(n):\n    result = []\n    current = n\n    \n    for _ in range(n):\n        result.append(current)\n        # If current number is even, add 2 to get next even\n        # If current number is odd, add 2 to get next odd\n        current += 2\n        \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n\n### Signature\ndef make_a_pile(n):\n\n### Test\nassert candidate(3) == [3, 5, 7], \"Test 3\"\nassert candidate(4) == [4,6,8,10], \"Test 4\"\nassert candidate(5) == [5, 7, 9, 11, 13]",
+        "timestamp": "2025-10-17T19:04:17.973091",
+        "response_time": "3.96"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 101,
+        "solution": "===START===\ndef words_string(s):\n    return [word.strip() for word in s.replace(',', ' ').split()]\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n\n### Signature\ndef words_string(s):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\nassert candidate(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\nassert candidate(\"Hi, my name\") == [\"Hi\", \"my\", \"name\"]",
+        "timestamp": "2025-10-17T19:04:20.004296",
+        "response_time": "2.03"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 102,
+        "solution": "===START===\ndef choose_num(x, y):\n    # If x is greater than y, no valid range exists\n    if x > y:\n        return -1\n    \n    # Start from the larger number and work backwards\n    # to find the first even number in range\n    start = min(y, y)\n    \n    # If start is odd, decrease by 1 to get to even number\n    if start % 2 != 0:\n        start -= 1\n    \n    # Check if the even number is within range\n    if start >= x:\n        return start\n    \n    return -1\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If\n    there's no such number, then the function should return -1.\n\n### Signature\ndef choose_num(x, y):\n\n### Test\nassert candidate(12, 15) == 14\nassert candidate(13, 12) == -1\nassert candidate(33, 12354) == 12354\nassert candidate(5234, 5233) == -1",
+        "timestamp": "2025-10-17T19:04:24.884417",
+        "response_time": "4.88"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 103,
+        "solution": "===START===\ndef rounded_avg(n, m):\n    if n > m:\n        return -1\n    \n    # Calculate the average\n    total = sum(range(n, m + 1))\n    count = m - n + 1\n    avg = total / count\n    \n    # Round to nearest integer\n    rounded = round(avg)\n    \n    # Convert to binary string\n    return bin(rounded)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m).\n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n\n### Signature\ndef rounded_avg(n, m):\n\n### Test\nassert candidate(1, 5) == \"0b11\"\nassert candidate(7, 13) == \"0b1010\"\nassert candidate(964,977) == \"0b1111001010\"\nassert candidate(996,997) == \"0b1111100100\"\nassert candidate(560,851) == \"0b1011000010\"\nassert candidate(185,546) == \"0b101101110\"",
+        "timestamp": "2025-10-17T19:04:28.789131",
+        "response_time": "3.90"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 104,
+        "solution": "===START===\ndef unique_digits(x):\n    def has_no_even_digits(num):\n        return all(int(digit) % 2 == 1 for digit in str(num))\n    \n    # Filter numbers with no even digits and sort the result\n    return sorted([num for num in x if has_no_even_digits(num)])\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a list of positive integers x. return a sorted list of all\n    elements that hasn't any even digit.\n\n### Signature\ndef unique_digits(x):\n\n### Test\nassert candidate([15, 33, 1422, 1]) == [1, 15, 33]\nassert candidate([152, 323, 1422, 10]) == []",
+        "timestamp": "2025-10-17T19:04:31.311289",
+        "response_time": "2.52"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 105,
+        "solution": "===START===\ndef by_length(arr):\n    # Dictionary mapping numbers to their word representations\n    num_to_word = {\n        1: \"One\",\n        2: \"Two\",\n        3: \"Three\",\n        4: \"Four\",\n        5: \"Five\",\n        6: \"Six\",\n        7: \"Seven\",\n        8: \"Eight\",\n        9: \"Nine\"\n    }\n    \n    # Filter numbers between 1 and 9\n    filtered = [x for x in arr if 1 <= x <= 9]\n    \n    # Sort in ascending order\n    filtered.sort()\n    \n    # Reverse the sorted array\n    filtered.reverse()\n    \n    # Convert numbers to words\n    return [num_to_word[num] for num in filtered]\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given an array of integers, sort the integers that are between 1 and 9 inclusive,\n    reverse the resulting array, and then replace each digit by its corresponding name from\n    \"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\".\n\n### Signature\ndef by_length(arr):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([2, 1, 1, 4, 5, 8, 2, 3]) == [\"Eight\", \"Five\", \"Four\", \"Three\", \"Two\", \"Two\", \"One\", \"One\"], \"Error\"\nassert candidate([]) == [], \"Error\"",
+        "timestamp": "2025-10-17T19:04:34.365816",
+        "response_time": "3.05"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 106,
+        "solution": "===START===\ndef f(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 2 == 0:  # even index\n            # Calculate factorial\n            factorial = 1\n            for j in range(1, i + 1):\n                factorial *= j\n            result.append(factorial)\n        else:  # odd index\n            # Calculate sum from 1 to i\n            sum_to_i = sum(range(1, i + 1))\n            result.append(sum_to_i)\n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Implement the function f that takes n as a parameter,\n    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even\n    or the sum of numbers from 1 to i otherwise.\n    i starts from 1.\n    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).\n    Example:\n    f(5) == [1, 2, 6, 24, 15]\n\n### Signature\ndef f(n):\n\n### Test\nassert candidate(5) == [1, 2, 6, 24, 15]\nassert candidate(7) == [1, 2, 6, 24, 15, 720, 28]",
+        "timestamp": "2025-10-17T19:04:36.767987",
+        "response_time": "2.40"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 107,
+        "solution": "===START===\ndef even_odd_palindrome(n):\n    def is_palindrome(num):\n        return str(num) == str(num)[::-1]\n    \n    even_count = 0\n    odd_count = 0\n    \n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n    \n    return (even_count, odd_count)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n### Signature\ndef even_odd_palindrome(n):\n\n### Test\nassert candidate(123) == (8, 13)\nassert candidate(12) == (4, 6)\nassert candidate(3) == (1, 2)\nassert candidate(63) == (6, 8)",
+        "timestamp": "2025-10-17T19:04:39.982051",
+        "response_time": "3.21"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 108,
+        "solution": "===START===\ndef count_nums(arr):\n    def sum_digits(num):\n        # Convert number to string to process digits\n        num_str = str(abs(num))\n        total = 0\n        \n        # If number is negative, make first digit negative\n        if num < 0:\n            if len(num_str) > 0:\n                total -= int(num_str[0])\n                num_str = num_str[1:]\n        \n        # Add remaining digits\n        for digit in num_str:\n            total += int(digit)\n            \n        return total\n    \n    # Count numbers where sum of digits is greater than 0\n    return sum(1 for num in arr if sum_digits(num) > 0)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n\n### Signature\ndef count_nums(arr):\n\n### Test\nassert candidate([]) == 0\nassert candidate([-1, -2, 0]) == 0\nassert candidate([1, 1, 2, -2, 3, 4, 5]) == 6\nassert candidate([1, 6, 9, -6, 0, 1, 5]) == 5",
+        "timestamp": "2025-10-17T19:04:44.179975",
+        "response_time": "4.20"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 109,
+        "solution": "===START===\ndef move_one_ball(arr):\n    n = len(arr)\n    if n <= 1:\n        return True\n    \n    # Find the number of rotations needed\n    rotations = 0\n    min_element = min(arr)\n    min_index = arr.index(min_element)\n    \n    # Check if after rotation, array would be sorted\n    rotated = arr[min_index:] + arr[:min_index]\n    \n    # Check if rotated array is sorted\n    for i in range(1, len(rotated)):\n        if rotated[i] < rotated[i-1]:\n            return False\n            \n    return True\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing\n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n\n### Signature\ndef move_one_ball(arr):\n\n### Test\nassert candidate([3, 4, 5, 1, 2])==True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([3, 5, 10, 1, 2])==True",
+        "timestamp": "2025-10-17T19:04:47.419195",
+        "response_time": "3.24"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 110,
+        "solution": "===START===\ndef exchange(lst1, lst2):\n    # Count the number of odd numbers in lst1\n    odd_count_lst1 = sum(1 for x in lst1 if x % 2 != 0)\n    \n    # Count the number of even numbers in lst2\n    even_count_lst2 = sum(1 for x in lst2 if x % 2 == 0)\n    \n    # If there are enough even numbers in lst2 to replace all odd numbers in lst1\n    if even_count_lst2 >= odd_count_lst1:\n        return \"YES\"\n    return \"NO\"\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    In this problem, you will implement a function that takes two lists of numbers,\n    and determines whether it is possible to perform an exchange of elements\n    between them to make lst1 a list of only even numbers.\n    There is no limit on the number of exchanged elements between lst1 and lst2.\n    If it is possible to exchange elements between the lst1 and lst2 to make\n    all the elements of lst1 to be even, return \"YES\".\n    Otherwise, return \"NO\".\n    For example:\n    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => \"YES\"\n    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => \"NO\"\n    It is assumed that the input lists will be non-empty.\n\n### Signature\ndef exchange(lst1, lst2):\n\n### Test\nassert candidate([1, 2, 3, 4], [1, 2, 3, 4]) == \"YES\"\nassert candidate([1, 2, 3, 4], [1, 5, 3, 4]) == \"NO\"\nassert candidate([1, 2, 3, 4], [2, 1, 4, 3]) == \"YES\"",
+        "timestamp": "2025-10-17T19:04:51.196502",
+        "response_time": "3.78"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 111,
+        "solution": "===START===\nfrom collections import Counter\n\ndef histogram(test):\n    # Split the string into list of letters\n    letters = test.split()\n    \n    # Count occurrences of each letter\n    letter_counts = Counter(letters)\n    \n    # Find the maximum count\n    max_count = max(letter_counts.values())\n    \n    # Create dictionary with letters that have the maximum count\n    result = {letter: count for letter, count in letter_counts.items() if count == max_count}\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a string representing a space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n\n### Signature\ndef histogram(test):\n\n### Test\nassert candidate('a b b a') == {'a':2,'b': 2}, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('a b c a b') == {'a': 2, 'b': 2}, \"This prints if this assert fails 2 (good for debugging!)\"\nassert candidate('a b c d g') == {'a': 1, 'b': 1, 'c': 1, 'd': 1, 'g': 1}, \"This prints if this assert fails 3 (good for debugging!)\"\nassert candidate('r t g') == {'r': 1,'t': 1,'g': 1}, \"This prints if this assert fails 4 (good for debugging!)\"",
+        "timestamp": "2025-10-17T19:04:54.983399",
+        "response_time": "3.78"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 112,
+        "solution": "===START===\ndef reverse_delete(s,c):\n    # Remove all characters from s that are in c\n    result = ''.join(char for char in s if char not in c)\n    \n    # Check if the resulting string is palindrome\n    is_palindrome = result == result[::-1]\n    \n    return (result, is_palindrome)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Task\n    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c\n    then check if the result string is palindrome.\n    A string is called palindrome if it reads the same backward as forward.\n    You should return a tuple containing the result string and True/False for the check.\n    Example\n    For s = \"abcde\", c = \"ae\", the result should be ('bcd',False)\n    For s = \"abcdef\", c = \"b\"  the result should be ('acdef',False)\n    For s = \"abcdedcba\", c = \"ab\", the result should be ('cdedc',True)\n\n### Signature\ndef reverse_delete(s,c):\n\n### Test\nassert candidate(\"abcde\",\"ae\") == ('bcd',False)\nassert candidate(\"abcdef\", \"b\") == ('acdef',False)\nassert candidate(\"abcdedcba\",\"ab\") == ('cdedc',True)\nassert candidate(\"dwik\",\"w\") == ('dik',False)",
+        "timestamp": "2025-10-17T19:04:56.647923",
+        "response_time": "1.66"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 113,
+        "solution": "===START===\ndef odd_count(lst):\n    result = []\n    for idx, num_str in enumerate(lst):\n        odd_count = sum(1 for digit in num_str if int(digit) % 2 == 1)\n        template = \"the number of odd elements {0}n the str{0}ng {0} of the {0}nput.\"\n        result.append(template.format(odd_count))\n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n### Signature\ndef odd_count(lst):\n\n### Test\nassert candidate(['1234567']) == [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"], \"Test 1\"\nassert candidate(['3',\"11111111\"]) == [\"the number of odd elements 1n the str1ng 1 of the 1nput.\", \"the number of odd elements 8n the str8ng 8 of the 8nput.\"], \"Test 2\"",
+        "timestamp": "2025-10-17T19:05:00.824475",
+        "response_time": "4.17"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 114,
+        "solution": "===START===\ndef minSubArraySum(nums):\n    n = len(nums)\n    min_sum = float('inf')\n    \n    # For each starting position\n    for i in range(n):\n        current_sum = 0\n        # For each possible subarray length starting at i\n        for j in range(i, n):\n            current_sum += nums[j]\n            min_sum = min(min_sum, current_sum)\n    \n    return min_sum\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n\n### Signature\ndef minSubArraySum(nums):\n\n### Test\nassert candidate([2, 3, 4, 1, 2, 4]) == 1, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([-1, -2, -3]) == -6\nassert candidate([-1, -2, -3, 2, -10]) == -14\nassert candidate([-9999999999999999]) == -9999999999999999\nassert candidate([0, 10, 20, 1000000]) == 0\nassert candidate([-1, -2, -3, 10, -5]) == -6",
+        "timestamp": "2025-10-17T19:05:03.074784",
+        "response_time": "2.25"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 115,
+        "solution": "Let me write a solution for finding the minimum number of times buckets need to be lowered to empty wells with given capacity.\n\n===START===\ndef max_fill(grid, capacity):\n    # Count total operations needed to empty all wells\n    operations = 0\n    \n    # Get dimensions of the grid\n    rows = len(grid)\n    cols = len(grid[0])\n    \n    # Process each well (row) separately\n    for row in grid:\n        # Count water units in current well\n        water_units = sum(row)\n        # Calculate number of bucket operations needed for this well\n        # Using integer division to round up\n        if water_units > 0:\n            operations += (water_units + capacity - 1) // capacity\n            \n    return operations\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a rectangular grid of wells. Each row represents a single well,\n    and each 1 in a row represents a single unit of water.\n    Each well has a corresponding bucket that can be used to extract water from it,\n    and all buckets have the same capacity.\n    Your task is to use the buckets to empty the wells.\n    Output the number of times you need to lower the buckets.\n\n### Signature\ndef max_fill(grid, capacity):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1) == 6, \"Error\"\nassert candidate([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2) == 5, \"Error\"",
+        "timestamp": "2025-10-17T19:05:09.190573",
+        "response_time": "6.11"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 116,
+        "solution": "===START===\ndef sort_array(arr):\n    def count_ones(n):\n        # Convert negative numbers to positive for binary counting\n        num = abs(n)\n        return bin(num).count('1')\n    \n    # Sort based on number of 1's in binary, then by decimal value\n    return sorted(arr, key=lambda x: (count_ones(x), x))\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n### Signature\ndef sort_array(arr):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1,5,2,3,4]) == [1, 2, 4, 3, 5]\nassert candidate([-2,-3,-4,-5,-6]) == [-4, -2, -6, -5, -3]\nassert candidate([1,0,2,3,4]) == [0, 1, 2, 4, 3]\nassert candidate([]) == []",
+        "timestamp": "2025-10-17T19:05:11.432568",
+        "response_time": "2.24"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 117,
+        "solution": "===START===\ndef select_words(s, n):\n    if not s:\n        return []\n    \n    vowels = set('aeiouAEIOU')\n    result = []\n    \n    # Split the string into words\n    words = s.split()\n    \n    for word in words:\n        # Count consonants in the word\n        consonant_count = sum(1 for char in word if char.isalpha() and char not in vowels)\n        if consonant_count == n:\n            result.append(word)\n            \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a string s and a natural number n, you have been tasked to implement\n    a function that returns a list of all words from string s that contain exactly\n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n\n### Signature\ndef select_words(s, n):\n\n### Test\nassert candidate(\"Mary had a little lamb\", 4) == [\"little\"], \"First test error: \" + str(candidate(\"Mary had a little lamb\", 4))\nassert candidate(\"Mary had a little lamb\", 3) == [\"Mary\", \"lamb\"], \"Second test error: \" + str(candidate(\"Mary had a little lamb\", 3))\nassert candidate(\"simple white space\", 2) == [], \"Third test error: \" + str(candidate(\"simple white space\", 2))",
+        "timestamp": "2025-10-17T19:05:13.911302",
+        "response_time": "2.48"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 118,
+        "solution": "===START===\ndef get_closest_vowel(word):\n    vowels = set('aeiouAEIOU')\n    \n    # Iterate through the word from right to left\n    for i in range(len(word)-2, 0, -1):\n        # Check if current character is a vowel\n        if word[i] in vowels:\n            # Check if surrounded by consonants\n            if (word[i-1] not in vowels) and (word[i+1] not in vowels):\n                return word[i]\n    \n    return \"\"\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a word. Your task is to find the closest vowel that stands between\n    two consonants from the right side of the word (case sensitive).\n\n### Signature\ndef get_closest_vowel(word):\n\n### Test\nassert candidate(\"yogurt\") == \"u\"\nassert candidate(\"full\") == \"u\"\nassert candidate(\"easy\") == \"\"\nassert candidate(\"eAsy\") == \"\"\nassert candidate(\"ali\") == \"\"\nassert candidate(\"bad\") == \"a\"\nassert candidate(\"most\") == \"o\"",
+        "timestamp": "2025-10-17T19:05:16.616029",
+        "response_time": "2.70"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 119,
+        "solution": "===START===\ndef match_parens(lst):\n    # Try both possible concatenations\n    s1 = lst[0] + lst[1]\n    s2 = lst[1] + lst[0]\n    \n    def is_balanced(s):\n        count = 0\n        for char in s:\n            if char == '(':\n                count += 1\n            else:\n                count -= 1\n            if count < 0:  # More closing than opening at any point\n                return False\n        return count == 0  # All parentheses should be matched\n    \n    # If either concatenation results in balanced parentheses, return 'Yes'\n    if is_balanced(s1) or is_balanced(s2):\n        return 'Yes'\n    return 'No'\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n### Signature\ndef match_parens(lst):\n\n### Test\nassert candidate(['()(', ')']) == 'Yes'\nassert candidate([')', ')']) == 'No'\nassert candidate(['(()(())', '())())']) == 'No'\nassert candidate([')())', '(()()(']) == 'Yes'\nassert candidate(['(())))', '(()())((']) == 'Yes'\nassert candidate(['()', '())']) == 'No'",
+        "timestamp": "2025-10-17T19:05:19.822237",
+        "response_time": "3.20"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 120,
+        "solution": "===START===\ndef maximum(arr, k):\n    return sorted(arr)[-k:]\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given an array arr of integers and a positive integer k, return a sorted list\n    of length k with the maximum k numbers in arr.\n\n### Signature\ndef maximum(arr, k):\n\n### Test\nassert candidate([-3, -4, 5], 3) == [-4, -3, 5]\nassert candidate([4, -4, 4], 2) == [4, 4]\nassert candidate([-3, 2, 1, 2, -1, -2, 1], 1) == [2]\nassert candidate([123, -123, 20, 0 , 1, 2, -3], 3) == [2, 20, 123]\nassert candidate([-123, 20, 0 , 1, 2, -3], 4) == [0, 1, 2, 20]",
+        "timestamp": "2025-10-17T19:05:21.611339",
+        "response_time": "1.79"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 121,
+        "solution": "===START===\ndef solution(lst):\n    # Sum elements at even indices (0, 2, 4, ...) that are odd\n    return sum(num for i, num in enumerate(lst) if i % 2 == 0 and num % 2 == 1)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n\n### Signature\ndef solution(lst):\n\n### Test\nassert candidate([5, 8, 7, 1])    == 12\nassert candidate([3, 3, 3, 3, 3]) == 9\nassert candidate([30, 13, 24, 321]) == 0",
+        "timestamp": "2025-10-17T19:05:24.320683",
+        "response_time": "2.71"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 122,
+        "solution": "===START===\ndef add_elements(arr, k):\n    # Take first k elements\n    elements = arr[:k]\n    \n    # Sum elements that have at most 2 digits (absolute value between 0 and 99)\n    total = 0\n    for num in elements:\n        if abs(num) <= 99:\n            total += num\n            \n    return total\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n### Signature\ndef add_elements(arr, k):\n\n### Test\nassert candidate([1,-2,-3,41,57,76,87,88,99], 3) == -4\nassert candidate([111,121,3,4000,5,6], 2) == 0",
+        "timestamp": "2025-10-17T19:05:26.517438",
+        "response_time": "2.19"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 123,
+        "solution": "===START===\ndef get_odd_collatz(n):\n    sequence = []\n    current = n\n    \n    while current != 1:\n        if current % 2 == 1:  # if number is odd\n            sequence.append(current)\n        if current % 2 == 0:  # if even\n            current = current // 2\n        else:\n            current = 3 * current + 1\n            \n    sequence.append(1)  # add the final 1\n    return sorted(sequence)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.\n\n### Signature\ndef get_odd_collatz(n):\n\n### Test\nassert candidate(14) == [1, 5, 7, 11, 13, 17]\nassert candidate(5) == [1, 5]",
+        "timestamp": "2025-10-17T19:05:30.633843",
+        "response_time": "4.11"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 124,
+        "solution": "===START===\ndef valid_date(date):\n    if not date:\n        return False\n    \n    try:\n        month, day, year = map(int, date.split('-'))\n        \n        if month < 1 or month > 12:\n            return False\n            \n        # Months with 31 days\n        if month in [1, 3, 5, 7, 8, 10, 12]:\n            if day < 1 or day > 31:\n                return False\n        # Months with 30 days\n        elif month in [4, 6, 9, 11]:\n            if day < 1 or day > 30:\n                return False\n        # February\n        elif month == 2:\n            if day < 1 or day > 29:\n                return False\n                \n        return True\n        \n    except:\n        return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You have to write a function which validates a given date string and\n    returns True if the date is valid otherwise False.\n    The date is valid if all of the following rules are satisfied:\n    1. The date string is not empty.\n    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.\n    3. The months should not be less than 1 or higher than 12.\n    4. The date should be in the format: mm-dd-yyyy\n\n### Signature\ndef valid_date(date):\n\n### Test\nassert candidate('03-11-2000') == True \nassert candidate('15-01-2012') == False \nassert candidate('04-0-2040') == False \nassert candidate('06-04-2020') == True \nassert candidate('01-01-2007') == True \nassert candidate('03-32-2011') == False \nassert candidate('') == False \nassert candidate('04-31-3000') == False ",
+        "timestamp": "2025-10-17T19:05:34.792485",
+        "response_time": "4.16"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 125,
+        "solution": "===START===\ndef split_words(txt):\n    # Check for whitespace\n    if ' ' in txt:\n        return txt.split()\n    \n    # Check for commas\n    if ',' in txt:\n        return txt.split(',')\n    \n    # Count lowercase letters with odd position in alphabet\n    count = 0\n    for char in txt:\n        if char.isalpha() and char.islower():\n            # Calculate position in alphabet (0-25)\n            position = ord(char) - ord('a')\n            if position % 2 == 1:  # Check if position is odd\n                count += 1\n    \n    return count\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3\n\n### Signature\ndef split_words(txt):\n\n### Test\nassert candidate(\"Hello world!\") == [\"Hello\",\"world!\"]\nassert candidate(\"Hello,world!\") == [\"Hello\",\"world!\"]\nassert candidate(\"Hello world,!\") == [\"Hello\",\"world,!\"]\nassert candidate(\"Hello,Hello,world !\") == [\"Hello,Hello,world\",\"!\"]",
+        "timestamp": "2025-10-17T19:05:38.627856",
+        "response_time": "3.83"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 126,
+        "solution": "===START===\nfrom collections import Counter\n\ndef is_sorted(lst):\n    # Check for duplicates first\n    counts = Counter(lst)\n    if any(count > 1 for count in counts.values()):\n        return False\n    \n    # Check if list is sorted\n    for i in range(len(lst)-1):\n        if lst[i] > lst[i+1]:\n            return False\n    return True\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n### Signature\ndef is_sorted(lst):\n\n### Test\nassert candidate([5]) == True\nassert candidate([1, 2, 3, 4, 5]) == True\nassert candidate([1, 3, 2, 4, 5]) == False\nassert candidate([1, 2, 3, 4, 5, 6]) == True\nassert candidate([1, 2, 3, 4, 5, 6, 7]) == True\nassert candidate([1, 3, 2, 4, 5, 6, 7]) == False, \"This prints if this assert fails 1 (good for debugging!)\"",
+        "timestamp": "2025-10-17T19:05:42.239632",
+        "response_time": "3.61"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 127,
+        "solution": "===START===\ndef intersection(interval1, interval2):\n    # Find intersection points\n    start = max(interval1[0], interval2[0])\n    end = min(interval1[1], interval2[1])\n    \n    # If no intersection or single point intersection\n    if start > end:\n        return \"NO\"\n    \n    # Calculate length of intersection\n    length = end - start\n    \n    # Add 1 because intervals are closed\n    length = length + 1\n    \n    # Check if length is prime\n    if length < 2:\n        return \"NO\"\n    \n    for i in range(2, int(length ** 0.5) + 1):\n        if length % i == 0:\n            return \"NO\"\n            \n    return \"YES\"\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given two intervals,\n    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).\n    The given intervals are closed which means that the interval (start, end)\n    includes both start and end.\n    For each given interval, it is assumed that its start is less or equal its end.\n    Your task is to determine whether the length of intersection of these two\n    intervals is a prime number.\n    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)\n    which its length is 1, which not a prime number.\n    If the length of the intersection is a prime number, return \"YES\",\n    otherwise, return \"NO\".\n    If the two intervals don't intersect, return \"NO\".\n\n### Signature\ndef intersection(interval1, interval2):\n\n### Test\nassert candidate((1, 2), (2, 3)) == \"NO\"\nassert candidate((-1, 1), (0, 4)) == \"NO\"\nassert candidate((-3, -1), (-5, 5)) == \"YES\"\nassert candidate((-2, 2), (-4, 0)) == \"YES\"  # Check some edge cases that are easy to work out by hand.",
+        "timestamp": "2025-10-17T19:05:47.259347",
+        "response_time": "5.02"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 128,
+        "solution": "===START===\ndef prod_signs(arr):\n    if not arr:\n        return None\n    \n    magnitude_sum = 0\n    sign_product = 1\n    \n    for num in arr:\n        magnitude_sum += abs(num)\n        if num > 0:\n            sign = 1\n        elif num < 0:\n            sign = -1\n        else:\n            sign = 0\n        sign_product *= sign\n        \n    return magnitude_sum * sign_product\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n### Signature\ndef prod_signs(arr):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1, 2, 2, -4]) == -9\nassert candidate([0, 1]) == 0\nassert candidate([1, 1, 1, 2, 3, -1, 1]) == -10\nassert candidate([]) == None",
+        "timestamp": "2025-10-17T19:05:49.428565",
+        "response_time": "2.17"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 129,
+        "solution": "===START===\ndef minPath(grid, k):\n    n = len(grid)\n    # Create a mapping of value to position\n    pos = {}\n    for i in range(n):\n        for j in range(n):\n            pos[grid[i][j]] = (i, j)\n    \n    # Initialize result array\n    result = [1]\n    \n    # For each step after the first one\n    for i in range(1, k):\n        last_val = result[-1]\n        last_pos = pos[last_val]\n        \n        # Find the next value that gives minimum path\n        min_next = float('inf')\n        min_dist = float('inf')\n        \n        # Check all possible values\n        for val in range(1, n*n + 1):\n            if val == last_val:\n                continue\n            \n            curr_pos = pos[val]\n            # Calculate Manhattan distance\n            dist = abs(curr_pos[0] - last_pos[0]) + abs(curr_pos[1] - last_pos[1])\n            \n            # Update minimum if this gives a better path\n            if dist < min_dist or (dist == min_dist and val < min_next):\n                min_dist = dist\n                min_next = val\n        \n        result.append(min_next)\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k,\n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n### Signature\ndef minPath(grid, k):\n\n### Test\nassert candidate([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3) == [1, 2, 1]\nassert candidate([[5, 9, 3], [4, 1, 6], [7, 8, 2]], 1) == [1]\nassert candidate([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]], 4) == [1, 2, 1, 2]\nassert candidate([[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7) == [1, 10, 1, 10, 1, 10, 1]\nassert candidate([[8, 14, 9, 2], [6, 4, 13, 15], [5, 7, 1, 12], [3, 10, 11, 16]], 5) == [1, 7, 1, 7, 1]",
+        "timestamp": "2025-10-17T19:05:56.255661",
+        "response_time": "6.82"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 130,
+        "solution": "===START===\ndef tri(n):\n    # Initialize the sequence with first element\n    sequence = [1]\n    \n    # Base case: if n = 0, return [1]\n    if n == 0:\n        return sequence\n        \n    # Add the second element (tri(1) = 3)\n    sequence.append(3)\n    \n    # For n >= 1, calculate remaining elements\n    for i in range(2, n + 1):\n        if i % 2 == 0:  # Even numbers\n            sequence.append(1 + i / 2)\n        else:  # Odd numbers\n            # For odd numbers, we need tri(n-1) + tri(n-2) + tri(n+1)\n            # tri(n+1) is 1 + (n+1)/2 since n+1 is even\n            next_even = 1 + (i + 1) / 2\n            sequence.append(sequence[i-1] + sequence[i-2] + next_even)\n            \n    return sequence\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in\n    the last couple centuries. However, what people don't know is Tribonacci sequence.\n    Tribonacci sequence is defined by the recurrence:\n    tri(1) = 3\n    tri(n) = 1 + n / 2, if n is even.\n    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.\n    For example:\n    tri(2) = 1 + (2 / 2) = 2\n    tri(4) = 3\n    tri(3) = tri(2) + tri(1) + tri(4)\n           = 2 + 3 + 3 = 8\n    You are given a non-negative integer number n, you have to a return a list of the\n    first n + 1 numbers of the Tribonacci sequence.\n    Examples:\n    tri(3) = [1, 3, 2, 8]\n\n### Signature\ndef tri(n):\n\n### Test\nassert candidate(3) == [1, 3, 2.0, 8.0]\nassert candidate(4) == [1, 3, 2.0, 8.0, 3.0]\nassert candidate(5) == [1, 3, 2.0, 8.0, 3.0, 15.0]\nassert candidate(6) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0]\nassert candidate(7) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0]",
+        "timestamp": "2025-10-17T19:06:02.399546",
+        "response_time": "6.14"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 131,
+        "solution": "===START===\ndef digits(n):\n    product = 1\n    has_odd = False\n    \n    while n > 0:\n        digit = n % 10\n        if digit % 2 == 1:  # if digit is odd\n            product *= digit\n            has_odd = True\n        n //= 10\n    \n    return product if has_odd else 0\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n\n### Signature\ndef digits(n):\n\n### Test\nassert candidate(5) == 5\nassert candidate(54) == 5\nassert candidate(120) ==1",
+        "timestamp": "2025-10-17T19:06:05.282632",
+        "response_time": "2.88"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 132,
+        "solution": "===START===\ndef is_nested(string):\n    # Find all valid subsequences and check if any has nesting\n    n = len(string)\n    stack = []\n    valid_pairs = []\n    \n    # First, find all matching pairs\n    for i in range(n):\n        if string[i] == '[':\n            stack.append(i)\n        elif string[i] == ']' and stack:\n            valid_pairs.append((stack.pop(), i))\n    \n    # Check if any pair is nested within another\n    for i, pair1 in enumerate(valid_pairs):\n        for pair2 in valid_pairs[i+1:]:\n            # Check if either pair is nested within the other\n            if (pair1[0] < pair2[0] and pair2[1] < pair1[1]) or \\\n               (pair2[0] < pair1[0] and pair1[1] < pair2[1]):\n                return True\n    \n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets\n    where at least one bracket in the subsequence is nested.\n\n### Signature\ndef is_nested(string):\n\n### Test\nassert candidate('[[]]') == True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('[]]]]]]][[[[[]') == False\nassert candidate('[][]') == False\nassert candidate(('[]')) == False\nassert candidate('[[[[]]]]') == True\nassert candidate('[]]]]]]]]]]') == False\nassert candidate('[][][[]]') == True",
+        "timestamp": "2025-10-17T19:06:09.212882",
+        "response_time": "3.93"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 133,
+        "solution": "===START===\nimport math\n\ndef sum_squares(lst):\n    return sum(math.ceil(x) ** 2 for x in lst)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a list of numbers.\n    You need to return the sum of squared numbers in the given list,\n    round each element in the list to the upper int(Ceiling) first.\n    Examples:\n    For lst = [1,2,3] the output should be 14\n    For lst = [1,4,9] the output should be 98\n    For lst = [1,3,5,7] the output should be 84\n    For lst = [1.4,4.2,0] the output should be 29\n    For lst = [-2.4,1,1] the output should be 6\n\n### Signature\ndef sum_squares(lst):\n\n### Test\nassert candidate([1,2,3])==14, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1.0,2,3])==14, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1,3,5,7])==84, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1.4,4.2,0])==29, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([-2.4,1,1])==6, \"This prints if this assert fails 1 (good for debugging!)\" \nassert candidate([100,1,15,2])==10230, \"This prints if this assert fails 1 (good for debugging!)\"",
+        "timestamp": "2025-10-17T19:06:11.758506",
+        "response_time": "2.54"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 134,
+        "solution": "===START===\ndef check_if_last_char_is_a_letter(txt):\n    # If string is empty, return False\n    if not txt:\n        return False\n    \n    # Get the last character\n    last_char = txt[-1]\n    \n    # Check if last character is alphabetical\n    if not last_char.isalpha():\n        return False\n    \n    # If string length is 1 and it's alphabetical, return True\n    if len(txt) == 1:\n        return True\n    \n    # Check if the character before last char is a space\n    return txt[-2] == ' '\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n### Signature\ndef check_if_last_char_is_a_letter(txt):\n\n### Test\nassert candidate(\"apple\") == False\nassert candidate(\"apple pi e\") == True\nassert candidate(\"eeeee\") == False\nassert candidate(\"A\") == True\nassert candidate(\"Pumpkin pie \") == False",
+        "timestamp": "2025-10-17T19:06:14.653980",
+        "response_time": "2.89"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 135,
+        "solution": "===START===\ndef can_arrange(arr):\n    for i in range(1, len(arr)):\n        if arr[i] < arr[i-1]:\n            return i\n    return -1\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n### Signature\ndef can_arrange(arr):\n\n### Test\nassert candidate([1,2,4,3,5])==3\nassert candidate([1,2,4,5])==-1",
+        "timestamp": "2025-10-17T19:06:16.039721",
+        "response_time": "1.38"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 136,
+        "solution": "===START===\ndef largest_smallest_integers(lst):\n    neg_nums = [x for x in lst if x < 0]\n    pos_nums = [x for x in lst if x > 0]\n    \n    largest_neg = max(neg_nums) if neg_nums else None\n    smallest_pos = min(pos_nums) if pos_nums else None\n    \n    return (largest_neg, smallest_pos)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n### Signature\ndef largest_smallest_integers(lst):\n\n### Test\nassert candidate([2, 4, 1, 3, 5, 7]) == (None, 1)\nassert candidate([2, 4, 1, 3, 5, 7, 0]) == (None, 1)\nassert candidate([1, 3, 2, 4, 5, 6, -2]) == (-2, 1)\nassert candidate([4, 5, 3, 6, 2, 7, -7]) == (-7, 2)\nassert candidate([7, 3, 8, 4, 9, 2, 5, -9]) == (-9, 2)\nassert candidate([]) == (None, None)",
+        "timestamp": "2025-10-17T19:06:17.999606",
+        "response_time": "1.95"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 137,
+        "solution": "===START===\ndef compare_one(a, b):\n    # Convert strings to numbers if needed\n    def convert_value(val):\n        if isinstance(val, str):\n            # Handle both . and , as decimal separators\n            try:\n                return float(val.replace(',', '.'))\n            except ValueError:\n                return val\n        return val\n\n    # Convert values\n    val_a = convert_value(a)\n    val_b = convert_value(b)\n\n    # Compare numeric values\n    try:\n        if val_a == val_b:\n            return None\n        # Return the larger value in its original type\n        if val_a > val_b:\n            return a\n        return b\n    except TypeError:\n        # If comparison fails (e.g., different types that can't be compared)\n        return None\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n### Signature\ndef compare_one(a, b):\n\n### Test\nassert candidate(1, 2) == 2\nassert candidate(1, 2.5) == 2.5\nassert candidate(2, 3) == 3\nassert candidate(5, 6) == 6",
+        "timestamp": "2025-10-17T19:06:23.358122",
+        "response_time": "5.35"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 138,
+        "solution": "===START===\ndef is_equal_to_sum_even(n):\n    # If n is less than 8 (minimum sum of 4 even numbers: 2+2+2+2), return False\n    if n < 8:\n        return False\n    \n    # If n is odd, it can't be sum of even numbers\n    if n % 2 != 0:\n        return False\n    \n    # If n/4 is even, we can split n into 4 equal parts\n    if (n // 4) % 2 == 0:\n        return True\n    \n    # If n >= 10, we can always find 4 even numbers that sum to n\n    # For example: 2 + 2 + 2 + (n-6) where (n-6) is even and > 0\n    return n >= 10\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n\n### Signature\ndef is_equal_to_sum_even(n):\n\n### Test\nassert candidate(4) == False\nassert candidate(6) == False\nassert candidate(8) == True\nassert candidate(10) == True",
+        "timestamp": "2025-10-17T19:06:30.567234",
+        "response_time": "7.21"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 139,
+        "solution": "===START===\ndef special_factorial(n):\n    def factorial(x):\n        if x <= 1:\n            return 1\n        return x * factorial(x-1)\n    \n    result = 1\n    for i in range(1, n+1):\n        result *= factorial(i)\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    The Brazilian factorial is defined as:\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\n    where n > 0\n\n### Signature\ndef special_factorial(n):\n\n### Test\nassert candidate(4) == 288, \"Test 4\"\nassert candidate(5) == 34560, \"Test 5\"",
+        "timestamp": "2025-10-17T19:06:32.386025",
+        "response_time": "1.81"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 140,
+        "solution": "===START===\ndef fix_spaces(text):\n    # First, handle cases with more than 2 consecutive spaces\n    while '   ' in text:\n        text = text.replace('   ', '-')\n    \n    # Then replace remaining single spaces with underscores\n    text = text.replace(' ', '_')\n    \n    return text\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a string text, replace all spaces in it with underscores,\n    and if a string has more than 2 consecutive spaces,\n    then replace all consecutive spaces with -\n\n### Signature\ndef fix_spaces(text):\n\n### Test\nassert candidate(\"Example\") == \"Example\", \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(\"Mudasir Hanif \") == \"Mudasir_Hanif_\", \"This prints if this assert fails 2 (good for debugging!)\"",
+        "timestamp": "2025-10-17T19:06:34.207850",
+        "response_time": "1.82"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 141,
+        "solution": "===START===\ndef file_name_check(file_name):\n    # Check if there's exactly one dot\n    if file_name.count('.') != 1:\n        return 'No'\n    \n    # Split into name and extension\n    name, ext = file_name.split('.')\n    \n    # Check if name is empty\n    if not name:\n        return 'No'\n    \n    # Check if extension is valid\n    if ext not in ['txt', 'exe', 'dll']:\n        return 'No'\n    \n    # Check if first character is a letter\n    if not name[0].isalpha():\n        return 'No'\n    \n    # Count digits in name\n    digit_count = sum(c.isdigit() for c in name)\n    if digit_count > 3:\n        return 'No'\n    \n    return 'Yes'\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions\n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from\n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n\n### Signature\ndef file_name_check(file_name):\n\n### Test\nassert candidate(\"example.txt\") == 'Yes'\nassert candidate(\"1example.dll\") == 'No'\nassert candidate('s1sdf3.asd') == 'No'\nassert candidate('K.dll') == 'Yes'\nassert candidate('MY16FILE3.exe') == 'Yes'\nassert candidate('His12FILE94.exe') == 'No'\nassert candidate('_Y.txt') == 'No'\nassert candidate('?aREYA.exe') == 'No'\nassert candidate('/this_is_valid.dll') == 'No'\nassert candidate('this_is_valid.wow') == 'No'\nassert candidate('this_is_valid.txt') == 'Yes'\nassert candidate('this_is_valid.txtexe') == 'No'\nassert candidate('#this2_i4s_5valid.ten') == 'No'",
+        "timestamp": "2025-10-17T19:06:40.048768",
+        "response_time": "5.84"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 142,
+        "solution": "===START===\ndef sum_squares(lst):\n    result = 0\n    for i in range(len(lst)):\n        if i % 3 == 0:\n            result += lst[i] ** 2\n        elif i % 4 == 0:\n            result += lst[i] ** 3\n        else:\n            result += lst[i]\n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    \"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a\n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not\n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries.\n\n### Signature\ndef sum_squares(lst):\n\n### Test\nassert candidate([1,2,3]) == 6\nassert candidate([1,4,9]) == 14\nassert candidate([]) == 0\nassert candidate([1,1,1,1,1,1,1,1,1]) == 9\nassert candidate([-1,-1,-1,-1,-1,-1,-1,-1,-1]) == -3",
+        "timestamp": "2025-10-17T19:06:42.727333",
+        "response_time": "2.67"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 143,
+        "solution": "===START===\ndef is_prime(n):\n    if n < 2:\n        return False\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef words_in_sentence(sentence):\n    words = sentence.split()\n    prime_length_words = [word for word in words if is_prime(len(word))]\n    return \" \".join(prime_length_words)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a string representing a sentence,\n    the sentence contains some words separated by a space,\n    and you have to return a string that contains the words from the original sentence,\n    whose lengths are prime numbers,\n    the order of the words in the new string should be the same as the original one.\n\n### Signature\ndef words_in_sentence(sentence):\n\n### Test\nassert candidate(\"This is a test\") == \"is\"\nassert candidate(\"lets go for swimming\") == \"go for\"\nassert candidate(\"there is no place available here\") == \"there is no place\"",
+        "timestamp": "2025-10-17T19:06:45.957245",
+        "response_time": "3.23"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 144,
+        "solution": "===START===\nfrom fractions import Fraction\n\ndef simplify(x, n):\n    # Convert string fractions to Fraction objects\n    x_frac = Fraction(*map(int, x.split('/')))\n    n_frac = Fraction(*map(int, n.split('/')))\n    \n    # Multiply the fractions\n    result = x_frac * n_frac\n    \n    # Check if the result is a whole number\n    # A fraction is a whole number if its denominator is 1\n    return result.denominator == 1\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Your task is to implement a function that will simplify the expression\n    x * n. The function returns True if x * n evaluates to a whole number and False\n    otherwise. Both x and n, are string representation of a fraction, and have the following format,\n    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.\n\n### Signature\ndef simplify(x, n):\n\n### Test\nassert candidate(\"1/5\", \"5/1\") == True, 'test1'\nassert candidate(\"1/6\", \"2/1\") == False, 'test2'\nassert candidate(\"5/1\", \"3/1\") == True, 'test3'\nassert candidate(\"7/10\", \"10/2\") == False, 'test4'\nassert candidate(\"2/10\", \"50/10\") == True, 'test5'\nassert candidate(\"7/2\", \"4/2\") == True, 'test6'",
+        "timestamp": "2025-10-17T19:06:50.289879",
+        "response_time": "4.33"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 145,
+        "solution": "===START===\ndef order_by_points(nums):\n    def digit_sum(n):\n        # Convert to absolute value and string to handle negative numbers\n        return sum(int(d) for d in str(abs(n)))\n    \n    # Create list of tuples with (original_index, number, digit_sum)\n    indexed_nums = list(enumerate(nums))\n    # Sort by digit sum first, then by original index for stable sort\n    sorted_nums = sorted(indexed_nums, key=lambda x: (digit_sum(x[1]), x[0]))\n    # Return only the numbers in the new order\n    return [x[1] for x in sorted_nums]\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n### Signature\ndef order_by_points(nums):\n\n### Test\nassert candidate([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\nassert candidate([1234,423,463,145,2,423,423,53,6,37,3457,3,56,0,46]) == [0, 2, 3, 6, 53, 423, 423, 423, 1234, 145, 37, 46, 56, 463, 3457]\nassert candidate([]) == []",
+        "timestamp": "2025-10-17T19:06:55.364956",
+        "response_time": "5.07"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 146,
+        "solution": "===START===\ndef specialFilter(nums):\n    def is_first_last_odd(num):\n        # Convert number to string, handling negative numbers\n        num_str = str(abs(num))\n        \n        # Get first and last digits\n        first_digit = int(num_str[0])\n        last_digit = int(num_str[-1])\n        \n        # Check if both first and last digits are odd\n        return first_digit % 2 == 1 and last_digit % 2 == 1\n    \n    # Count numbers that are > 10 and have odd first and last digits\n    count = 0\n    for num in nums:\n        if abs(num) > 10 and is_first_last_odd(num):\n            count += 1\n    \n    return count\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Write a function that takes an array of numbers as input and returns\n    the number of elements in the array that are greater than 10 and both\n    first and last digits of a number are odd (1, 3, 5, 7, 9).\n    For example:\n    specialFilter([15, -73, 14, -15]) => 1\n    specialFilter([33, -2, -3, 45, 21, 109]) => 2\n\n### Signature\ndef specialFilter(nums):\n\n### Test\nassert candidate([5, -2, 1, -5]) == 0\nassert candidate([15, -73, 14, -15]) == 1\nassert candidate([33, -2, -3, 45, 21, 109]) == 2",
+        "timestamp": "2025-10-17T19:06:59.584785",
+        "response_time": "4.22"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 147,
+        "solution": "===START===\ndef get_max_triples(n):\n    # Create array a according to formula\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    \n    # Counter for valid triples\n    count = 0\n    \n    # Check all possible triples where i < j < k\n    for i in range(n-2):\n        for j in range(i+1, n-1):\n            for k in range(j+1, n):\n                if (a[i] + a[j] + a[k]) % 3 == 0:\n                    count += 1\n    \n    return count\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a positive integer n. You have to create an integer array a of length n.\n        For each i (1 \u2264 i \u2264 n), the value of a[i] = i * i - i + 1.\n        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k,\n    and a[i] + a[j] + a[k] is a multiple of 3.\n\n### Signature\ndef get_max_triples(n):\n\n### Test\nassert candidate(5) == 1\nassert candidate(6) == 4",
+        "timestamp": "2025-10-17T19:07:03.668809",
+        "response_time": "4.08"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 148,
+        "solution": "===START===\ndef bf(planet1, planet2):\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n    \n    try:\n        pos1 = planets.index(planet1)\n        pos2 = planets.index(planet2)\n    except ValueError:\n        return tuple()\n    \n    start, end = min(pos1, pos2), max(pos1, pos2)\n    return tuple(planets[start + 1:end])\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    There are eight planets in our solar system: the closerst to the Sun\n    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn,\n    Uranus, Neptune.\n    Write a function that takes two planet names as strings planet1 and planet2.\n    The function should return a tuple containing all planets whose orbits are\n    located between the orbit of planet1 and the orbit of planet2, sorted by\n    the proximity to the sun.\n    The function should return an empty tuple if planet1 or planet2\n    are not correct planet names.\n    Examples\n    bf(\"Jupiter\", \"Neptune\") ==> (\"Saturn\", \"Uranus\")\n    bf(\"Earth\", \"Mercury\") ==> (\"Venus\")\n    bf(\"Mercury\", \"Uranus\") ==> (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\")\n\n### Signature\ndef bf(planet1, planet2):\n\n### Test\nassert candidate(\"Jupiter\", \"Neptune\") == (\"Saturn\", \"Uranus\"), \"First test error: \" + str(len(candidate(\"Jupiter\", \"Neptune\")))\nassert candidate(\"Earth\", \"Mercury\") == (\"Venus\",), \"Second test error: \" + str(candidate(\"Earth\", \"Mercury\"))\nassert candidate(\"Mercury\", \"Uranus\") == (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\"), \"Third test error: \" + str(candidate(\"Mercury\", \"Uranus\"))",
+        "timestamp": "2025-10-17T19:07:07.652748",
+        "response_time": "3.98"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 149,
+        "solution": "===START===\ndef sorted_list_sum(lst):\n    # Filter out strings with odd lengths\n    even_length_strings = [s for s in lst if len(s) % 2 == 0]\n    \n    # Sort by length first, then alphabetically\n    return sorted(even_length_strings, key=lambda x: (len(x), x))\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Write a function that accepts a list of strings as a parameter,\n    deletes the strings that have odd lengths from it,\n    and returns the resulted list with a sorted order,\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n    The order of the list should be ascending by length of each word, and you\n    should return the list sorted by that rule.\n    If two words have the same length, sort the list alphabetically.\n    The function should return a list of strings in sorted order.\n    You may assume that all words will have the same length.\n    For example:\n    assert list_sort([\"aa\", \"a\", \"aaa\"]) => [\"aa\"]\n    assert list_sort([\"ab\", \"a\", \"aaa\", \"cd\"]) => [\"ab\", \"cd\"]\n\n### Signature\ndef sorted_list_sum(lst):\n\n### Test\nassert candidate([\"aa\", \"a\", \"aaa\"]) == [\"aa\"]\nassert candidate([\"school\", \"AI\", \"asdf\", \"b\"]) == [\"AI\", \"asdf\", \"school\"]\nassert candidate([\"d\", \"b\", \"c\", \"a\"]) == []",
+        "timestamp": "2025-10-17T19:07:10.814750",
+        "response_time": "3.16"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 150,
+        "solution": "===START===\ndef x_or_y(n, x, y):\n    if n < 2:\n        return y\n    \n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return y\n    \n    return x\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    A simple program which should return the value of x if n is\n    a prime number and should return the value of y otherwise.\n\n### Signature\ndef x_or_y(n, x, y):\n\n### Test\nassert candidate(7, 34, 12) == 34\nassert candidate(15, 8, 5) == 5\nassert candidate(3, 33, 5212) == 33\nassert candidate(1259, 3, 52) == 3\nassert candidate(7919, -1, 12) == -1",
+        "timestamp": "2025-10-17T19:07:12.634040",
+        "response_time": "1.82"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 151,
+        "solution": "===START===\ndef double_the_difference(lst):\n    total = 0\n    for num in lst:\n        # Check if number is integer and not negative\n        if isinstance(num, (int, float)) and num >= 0 and num.is_integer():\n            # Check if number is odd\n            if int(num) % 2 == 1:\n                total += int(num) * int(num)\n    return total\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n\n### Signature\ndef double_the_difference(lst):\n\n### Test\nassert candidate([]) == 0 , \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([5, 4]) == 25 , \"This prints if this assert fails 2 (good for debugging!)\"\nassert candidate([0.1, 0.2, 0.3]) == 0 , \"This prints if this assert fails 3 (good for debugging!)\"",
+        "timestamp": "2025-10-17T19:07:16.499131",
+        "response_time": "3.86"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 152,
+        "solution": "===START===\ndef compare(game,guess):\n    result = []\n    for score, prediction in zip(game, guess):\n        result.append(abs(score - prediction))\n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    I think we all remember that feeling when the result of some long-awaited\n    event is finally known. The feelings and thoughts you have at that moment are\n    definitely worth noting down and comparing.\n    Your task is to determine if a person correctly guessed the results of a number of matches.\n    You are given two arrays of scores and guesses of equal length, where each index shows a match.\n    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,\n    the value is 0, and if not, the value is the absolute difference between the guess and the score.\n\n### Signature\ndef compare(game,guess):\n\n### Test\nassert candidate([1,2,3,4,5,1],[1,2,3,4,2,-2])==[0,0,0,0,3,3], \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([0,0,0,0,0,0],[0,0,0,0,0,0])==[0,0,0,0,0,0], \"This prints if this assert fails 1 (good for debugging!)\"",
+        "timestamp": "2025-10-17T19:07:19.033221",
+        "response_time": "2.53"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 153,
+        "solution": "===START===\ndef Strongest_Extension(class_name, extensions):\n    def calculate_strength(ext):\n        upper_count = sum(1 for c in ext if c.isupper())\n        lower_count = sum(1 for c in ext if c.islower())\n        return upper_count - lower_count\n\n    strongest_ext = max(extensions, key=calculate_strength)\n    return f\"{class_name}.{strongest_ext}\"\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You will be given the name of a class (a string) and a list of extensions.\n    The extensions are to be used to load additional classes to the class. The\n    strength of the extension is as follows: Let CAP be the number of the uppercase\n    letters in the extension's name, and let SM be the number of lowercase letters\n    in the extension's name, the strength is given by the fraction CAP - SM.\n    You should find the strongest extension and return a string in this\n    format: ClassName.StrongestExtensionName.\n    If there are two or more extensions with the same strength, you should\n    choose the one that comes first in the list.\n    For example, if you are given \"Slices\" as the class and a list of the\n    extensions: ['SErviNGSliCes', 'Cheese', 'StuFfed'] then you should\n    return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension\n    (its strength is -1).\n    Example:\n    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'\n\n### Signature\ndef Strongest_Extension(class_name, extensions):\n\n### Test\nassert candidate('Watashi', ['tEN', 'niNE', 'eIGHt8OKe']) == 'Watashi.eIGHt8OKe'\nassert candidate('Boku123', ['nani', 'NazeDa', 'YEs.WeCaNe', '32145tggg']) == 'Boku123.YEs.WeCaNe'\nassert candidate('__YESIMHERE', ['t', 'eMptY', 'nothing', 'zeR00', 'NuLl__', '123NoooneB321']) == '__YESIMHERE.NuLl__'\nassert candidate('K', ['Ta', 'TAR', 't234An', 'cosSo']) == 'K.TAR'",
+        "timestamp": "2025-10-17T19:07:23.036743",
+        "response_time": "4.00"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 154,
+        "solution": "===START===\ndef cycpattern_check(a, b):\n    if len(b) > len(a):\n        return False\n    \n    # Generate all possible rotations of b\n    b_length = len(b)\n    rotations = [b[i:] + b[:i] for i in range(b_length)]\n    \n    # Check if any rotation is a substring of a\n    for rotation in rotations:\n        if rotation in a:\n            return True\n            \n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n### Signature\ndef cycpattern_check(a , b):\n\n### Test\nassert  candidate(\"xyzw\",\"xyw\") == False , \"test #0\"\nassert  candidate(\"yello\",\"ell\") == True , \"test #1\"\nassert  candidate(\"whattup\",\"ptut\") == False , \"test #2\"",
+        "timestamp": "2025-10-17T19:07:25.622235",
+        "response_time": "2.58"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 155,
+        "solution": "===START===\ndef even_odd_count(num):\n    # Convert number to positive if negative\n    num = abs(num)\n    \n    # Convert number to string to process digits\n    num_str = str(num)\n    \n    even_count = 0\n    odd_count = 0\n    \n    # Count even and odd digits\n    for digit in num_str:\n        if int(digit) % 2 == 0:\n            even_count += 1\n        else:\n            odd_count += 1\n            \n    return (even_count, odd_count)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n### Signature\ndef even_odd_count(num):\n\n### Test\nassert candidate(7) == (0, 1)\nassert candidate(-78) == (1, 1)\nassert candidate(3452) == (2, 2)\nassert candidate(346211) == (3, 3)",
+        "timestamp": "2025-10-17T19:07:29.239676",
+        "response_time": "3.61"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 156,
+        "solution": "===START===\ndef int_to_mini_roman(number):\n    roman_values = [\n        (1000, 'm'),\n        (900, 'cm'),\n        (500, 'd'),\n        (400, 'cd'),\n        (100, 'c'),\n        (90, 'xc'),\n        (50, 'l'),\n        (40, 'xl'),\n        (10, 'x'),\n        (9, 'ix'),\n        (5, 'v'),\n        (4, 'iv'),\n        (1, 'i')\n    ]\n    \n    result = ''\n    for value, symbol in roman_values:\n        while number >= value:\n            result += symbol\n            number -= value\n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n### Signature\ndef int_to_mini_roman(number):\n\n### Test\nassert candidate(19) == 'xix'\nassert candidate(152) == 'clii'\nassert candidate(251) == 'ccli'\nassert candidate(426) == 'cdxxvi'\nassert candidate(500) == 'd'\nassert candidate(1) == 'i'\nassert candidate(4) == 'iv'",
+        "timestamp": "2025-10-17T19:07:33.337245",
+        "response_time": "4.09"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 157,
+        "solution": "===START===\ndef right_angle_triangle(a, b, c):\n    # Sort sides to ensure the longest side is c\n    sides = sorted([a, b, c])\n    a, b, c = sides[0], sides[1], sides[2]\n    \n    # Check if it satisfies the Pythagorean theorem\n    # a\u00b2 + b\u00b2 = c\u00b2\n    return a*a + b*b == c*c\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    A right-angled triangle is a triangle in which one angle is right angle or\n    90 degree.\n    Example:\n    right_angle_triangle(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n\n### Signature\ndef right_angle_triangle(a, b, c):\n\n### Test\nassert candidate(3, 4, 5) == True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(1, 2, 3) == False\nassert candidate(10, 6, 8) == True\nassert candidate(2, 2, 2) == False\nassert candidate(7, 24, 25) == True",
+        "timestamp": "2025-10-17T19:07:35.812159",
+        "response_time": "2.47"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 158,
+        "solution": "===START===\ndef find_max(words):\n    max_unique = 0\n    result = None\n    \n    for word in words:\n        unique_chars = len(set(word))\n        if unique_chars > max_unique:\n            max_unique = unique_chars\n            result = word\n        elif unique_chars == max_unique:\n            result = min(result, word)\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n### Signature\ndef find_max(words):\n\n### Test\nassert (candidate([\"name\", \"of\", \"string\"]) == \"string\"), \"t1\"\nassert (candidate([\"name\", \"enam\", \"game\"]) == \"enam\"), 't2'\nassert (candidate([\"aaaaaaa\", \"bb\", \"cc\"]) == \"aaaaaaa\"), 't3'\nassert (candidate([\"abc\", \"cba\"]) == \"abc\"), 't4'\nassert (candidate([\"play\", \"this\", \"game\", \"of\",\"footbott\"]) == \"footbott\"), 't5'",
+        "timestamp": "2025-10-17T19:07:38.644833",
+        "response_time": "2.83"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 159,
+        "solution": "===START===\ndef eat(number, need, remaining):\n    # Calculate how many carrots can actually be eaten\n    can_eat = min(need, remaining)\n    \n    # Calculate total carrots eaten (initial + what can be eaten now)\n    total_eaten = number + can_eat\n    \n    # Calculate remaining carrots after eating\n    carrots_left = remaining - can_eat\n    \n    return [total_eaten, carrots_left]\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You're a hungry rabbit, and you already have eaten a certain number of carrots,\n    but now you need to eat more carrots to complete the day's meals.\n    you should return an array of [ total number of eaten carrots after your meals,\n                                    the number of carrots left after your meals ]\n    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.\n\n### Signature\ndef eat(number, need, remaining):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(5, 6, 10) == [11, 4], \"Error\"\nassert candidate(4, 8, 9) == [12, 1], \"Error\"\nassert candidate(1, 10, 10) == [11, 0], \"Error\"",
+        "timestamp": "2025-10-17T19:07:41.015102",
+        "response_time": "2.37"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 160,
+        "solution": "===START===\ndef do_algebra(operator, operand):\n    result = operand[0]\n    op_index = 0\n    \n    for i in range(1, len(operand)):\n        current_op = operator[op_index]\n        if current_op == '+':\n            result += operand[i]\n        elif current_op == '-':\n            result -= operand[i]\n        elif current_op == '*':\n            result *= operand[i]\n        elif current_op == '/':\n            result /= operand[i]\n        elif current_op == '**':\n            result **= operand[i]\n        op_index += 1\n        \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given two lists operator, and operand. The first list has basic algebra operations, and\n    the second list is a list of integers. Use the two given lists to build the algebric\n    expression and return the evaluation of this expression.\n\n### Signature\ndef do_algebra(operator, operand):\n\n### Test\nassert candidate(['**', '*', '+'], [2, 3, 4, 5]) == 37\nassert candidate(['+', '*', '-'], [2, 3, 4, 5]) == 9",
+        "timestamp": "2025-10-17T19:07:43.782564",
+        "response_time": "2.76"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 161,
+        "solution": "===START===\ndef solve(s):\n    # Check if string contains any letters\n    has_letters = any(c.isalpha() for c in s)\n    \n    if not has_letters:\n        # If no letters, reverse the entire string\n        return s[::-1]\n    \n    # If letters exist, swap case for letters and keep others as is\n    return ''.join(c.swapcase() if c.isalpha() else c for c in s)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa,\n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n\n### Signature\ndef solve(s):\n\n### Test\nassert candidate(\"AsDf\") == \"aSdF\"\nassert candidate(\"1234\") == \"4321\"\nassert candidate(\"ab\") == \"AB\"\nassert candidate(\"#a@C\") == \"#A@c\"",
+        "timestamp": "2025-10-17T19:07:48.531572",
+        "response_time": "4.74"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 162,
+        "solution": "===START===\nimport hashlib\n\ndef string_to_md5(text):\n    if not text:\n        return None\n    return hashlib.md5(text.encode()).hexdigest()\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n### Signature\ndef string_to_md5(text):\n\n### Test\nassert candidate('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\nassert candidate('') == None",
+        "timestamp": "2025-10-17T19:07:49.850062",
+        "response_time": "1.32"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet_second_half_td",
+        "dataset_row_id": 163,
+        "solution": "===START===\ndef generate_integers(a, b):\n    # Ensure a is smaller than b\n    start = min(a, b)\n    end = max(a, b)\n    \n    # Create a list of even digits between start and end\n    result = []\n    for num in range(start, end + 1):\n        if num < 10 and num % 2 == 0:\n            result.append(num)\n    \n    return sorted(result)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n### Signature\ndef generate_integers(a, b):\n\n### Test\nassert candidate(2, 10) == [2, 4, 6, 8], \"Test 1\"\nassert candidate(10, 2) == [2, 4, 6, 8], \"Test 2\"",
+        "timestamp": "2025-10-17T19:07:53.656000",
+        "response_time": "3.80"
+    }
+]

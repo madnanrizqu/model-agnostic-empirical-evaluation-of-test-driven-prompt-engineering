@@ -1,0 +1,422 @@
+[
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 2,
+        "solution": "===START===\nfrom typing import List, Any\n\ndef similar_elements(test_tup1: List[Any], test_tup2: List[Any]) -> str:\n    # Convert lists to sets for efficient intersection\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    \n    # Find common elements\n    common_elements = list(set1.intersection(set2))\n    \n    # Convert result to string representation\n    return str(common_elements)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):",
+        "timestamp": "2025-08-13T11:14:52.837480",
+        "response_time": "4.26",
+        "context": "{\"function_name\": \"similar_elements\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 3,
+        "solution": "===START===\nfrom typing import Union\n\ndef is_not_prime(n: Union[int, float]) -> bool:\n    \"\"\"\n    Identify if a given number is not a prime number.\n    \n    Args:\n        n (int or float): The number to check for primality\n    \n    Returns:\n        bool: True if the number is not prime, False if it is prime\n    \"\"\"\n    # Handle edge cases\n    if not isinstance(n, int) or n <= 1:\n        return True\n    \n    # Check for divisibility from 2 to square root of n\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return True\n    \n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):",
+        "timestamp": "2025-08-13T11:14:55.867117",
+        "response_time": "3.03",
+        "context": "{\"function_name\": \"is_not_prime\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 4,
+        "solution": "===START===\nfrom typing import List\nimport heapq\n\ndef heap_queue_largest(nums: List[int], n: int) -> List[int]:\n    # If n is larger than the list length, return the entire sorted list in descending order\n    if n >= len(nums):\n        return sorted(nums, reverse=True)\n    \n    # Use heapq to find the n largest elements\n    # Create a min heap of size n\n    heap = nums[:n]\n    heapq.heapify(heap)\n    \n    # For remaining elements, if an element is larger than the smallest in heap, \n    # replace the smallest element\n    for num in nums[n:]:\n        if num > heap[0]:\n            heapq.heapreplace(heap, num)\n    \n    # Return the heap sorted in descending order\n    return sorted(heap, reverse=True)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):",
+        "timestamp": "2025-08-13T11:14:59.844754",
+        "response_time": "3.98",
+        "context": "{\"function_name\": \"heap_queue_largest\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 6,
+        "solution": "===START===\nfrom typing import Union\n\ndef is_Power_Of_Two(x: Union[int, float]) -> bool:\n    \"\"\"\n    Check if two numbers differ at only one bit position.\n    \n    Args:\n        x (int): The input number to check\n    \n    Returns:\n        bool: True if the number differs at only one bit position, False otherwise\n    \"\"\"\n    # If x is 0, it cannot be a power of 2\n    if x == 0:\n        return False\n    \n    # Check if x is a power of 2 by using bitwise AND operation\n    # A number that is a power of 2 will have only one bit set\n    # Subtracting 1 from a power of 2 will give a number with all lower bits set\n    # So x & (x-1) will be 0 for a power of 2\n    return x & (x - 1) == 0\n\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+        "timestamp": "2025-08-13T11:15:03.948561",
+        "response_time": "4.10",
+        "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 7,
+        "solution": "===START===\nfrom typing import List\nimport re\n\ndef find_char_long(text: str) -> List[str]:\n    # Use regex to find all words that are at least 4 characters long\n    words = re.findall(r'\\b\\w{4,}\\b', text)\n    return words\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):",
+        "timestamp": "2025-08-13T11:15:06.138505",
+        "response_time": "2.19",
+        "context": "{\"function_name\": \"find_char_long\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 8,
+        "solution": "===START===\nfrom typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    \"\"\"\n    Find squares of individual elements in a list.\n    \n    Args:\n        nums (List[int]): Input list of numbers\n    \n    Returns:\n        List[int]: List of squared numbers\n    \"\"\"\n    return [num * num for num in nums]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):",
+        "timestamp": "2025-08-13T11:15:08.230110",
+        "response_time": "2.09",
+        "context": "{\"function_name\": \"square_nums\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 9,
+        "solution": "===START===\nfrom typing import Union\n\ndef find_Rotations(str: str) -> Union[int, str]:\n    # If string is empty or has only one character, no rotations possible\n    if not str or len(str) <= 1:\n        return 0\n    \n    # Concatenate the string with itself \n    double_str = str + str\n    \n    # Try all possible rotations\n    for rotations in range(1, len(str)):\n        # Check if rotated substring exists in double string\n        rotated_str = str[rotations:] + str[:rotations]\n        if rotated_str in double_str[len(str):]:\n            return rotations\n    \n    # If no rotation makes the string same\n    return 0\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):",
+        "timestamp": "2025-08-13T11:15:11.687720",
+        "response_time": "3.46",
+        "context": "{\"function_name\": \"find_Rotations\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 11,
+        "solution": "===START===\nfrom typing import Optional\n\ndef remove_Occ(s: str, ch: str) -> str:\n    # If string is empty or character not found, return original string\n    if not s or ch not in s:\n        return s\n    \n    # Find first occurrence\n    first_index = s.find(ch)\n    \n    # Find last occurrence \n    last_index = s.rfind(ch)\n    \n    # If first and last index are same, remove that single occurrence\n    if first_index == last_index:\n        return s[:first_index] + s[first_index+1:]\n    \n    # Remove first and last occurrence\n    return s[:first_index] + s[first_index+1:last_index] + s[last_index+1:]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):",
+        "timestamp": "2025-08-13T11:15:15.025943",
+        "response_time": "3.33",
+        "context": "{\"function_name\": \"remove_Occ\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 12,
+        "solution": "===START===\nfrom typing import List\n\ndef sort_matrix(M: List[List[int]]) -> List[List[int]]:\n    # If matrix is empty, return empty matrix\n    if not M:\n        return []\n    \n    # Create a list of tuples with (row sum, original row)\n    row_sums = [(sum(row), row) for row in M]\n    \n    # Sort the list of tuples based on row sums\n    row_sums.sort(key=lambda x: x[0])\n    \n    # Extract and return the sorted rows\n    return [row for _, row in row_sums]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):",
+        "timestamp": "2025-08-13T11:15:18.783423",
+        "response_time": "3.75",
+        "context": "{\"function_name\": \"sort_matrix\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 14,
+        "solution": "===START===\nfrom typing import Union\n\ndef find_Volume(l: Union[int, float], b: Union[int, float], h: Union[int, float]) -> float:\n    \"\"\"\n    Calculate the volume of a triangular prism.\n    \n    Args:\n        l (float/int): Length of the base triangle's base\n        b (float/int): Width/breadth of the base triangle\n        h (float/int): Height of the prism\n    \n    Returns:\n        float: Volume of the triangular prism\n    \"\"\"\n    # Calculate the area of the triangular base first\n    base_area = 0.5 * l * b\n    \n    # Calculate volume by multiplying base area with height\n    volume = base_area * h\n    \n    return volume\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to find the volume of a triangular prism.\n\n### Signature\ndef find_Volume(l,b,h) :",
+        "timestamp": "2025-08-13T11:15:22.450388",
+        "response_time": "3.66",
+        "context": "{\"function_name\": \"find_Volume\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 16,
+        "solution": "===START===\nimport re\nfrom typing import Any\n\ndef text_lowercase_underscore(text: str) -> bool:\n    \"\"\"\n    Check if the input string contains only lowercase letters joined with underscores.\n    \n    Args:\n        text (str): Input string to check\n    \n    Returns:\n        bool: True if string matches lowercase letters with underscores, False otherwise\n    \"\"\"\n    # Regular expression pattern to match lowercase letters and underscores\n    pattern = r'^[a-z]+(_[a-z]+)*$'\n    \n    # Check if the entire string matches the pattern\n    return bool(re.match(pattern, text))\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise.\n\n### Signature\ndef text_lowercase_underscore(text):",
+        "timestamp": "2025-08-13T11:15:25.672840",
+        "response_time": "3.22",
+        "context": "{\"function_name\": \"text_lowercase_underscore\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 17,
+        "solution": "===START===\nfrom typing import Union\n\ndef square_perimeter(a: Union[int, float]) -> Union[int, float]:\n    \"\"\"\n    Calculate the perimeter of a square given its side length.\n    \n    Args:\n        a (int or float): Length of a side of the square\n    \n    Returns:\n        int or float: Perimeter of the square (4 * side length)\n    \"\"\"\n    return 4 * a\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function that returns the perimeter of a square given its side length as input.\n\n### Signature\ndef square_perimeter(a):",
+        "timestamp": "2025-08-13T11:15:28.027437",
+        "response_time": "2.35",
+        "context": "{\"function_name\": \"square_perimeter\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 18,
+        "solution": "===START===\nfrom typing import List\n\ndef str_to_list(string: str) -> str:\n    \"\"\"\n    Remove characters from the first string which are present in the second string.\n    \n    Args:\n        string (str): Input string containing two strings separated by a comma\n    \n    Returns:\n        str: First string with characters from the second string removed\n    \"\"\"\n    # Split the input string into two strings\n    first_str, second_str = string.split(',')\n    \n    # Convert second string to a set of unique characters for efficient lookup\n    chars_to_remove = set(second_str)\n    \n    # Create a new string by filtering out characters present in chars_to_remove\n    result = ''.join(char for char in first_str if char not in chars_to_remove)\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):",
+        "timestamp": "2025-08-13T11:15:32.587993",
+        "response_time": "4.56",
+        "context": "{\"function_name\": \"remove_dirty_chars\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 19,
+        "solution": "===START===\nfrom typing import List\n\ndef test_duplicate(arraynums: List[int]) -> bool:\n    \"\"\"\n    Check if the given array contains any duplicate elements.\n    \n    Args:\n        arraynums (List[int]): Input array of integers\n    \n    Returns:\n        bool: True if duplicates exist, False otherwise\n    \"\"\"\n    # Use a set to track unique elements \n    # If set length is less than array length, duplicates exist\n    return len(set(arraynums)) < len(arraynums)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find whether a given array of integers contains any duplicate element.\n\n### Signature\ndef test_duplicate(arraynums):",
+        "timestamp": "2025-08-13T11:15:35.561686",
+        "response_time": "2.97",
+        "context": "{\"function_name\": \"test_duplicate\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 20,
+        "solution": "===START===\nfrom typing import Union\n\ndef is_woodall(x: Union[int, float]) -> bool:\n    \"\"\"\n    Check if a given number is a Woodall number.\n    \n    A Woodall number is defined as a number of the form n * 2^n - 1, \n    where n is a positive integer.\n    \n    Args:\n        x (int or float): The number to check\n    \n    Returns:\n        bool: True if the number is a Woodall number, False otherwise\n    \"\"\"\n    # Check if x is a positive integer\n    if not isinstance(x, int) or x <= 0:\n        return False\n    \n    # Check Woodall number condition\n    for n in range(1, x + 1):\n        woodall_num = n * (2 ** n) - 1\n        if woodall_num == x:\n            return True\n        # Optimization: break if woodall number exceeds input\n        if woodall_num > x:\n            break\n    \n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to check if the given number is woodball or not.\n\n### Signature\ndef is_woodall(x):",
+        "timestamp": "2025-08-13T11:15:39.988509",
+        "response_time": "4.43",
+        "context": "{\"function_name\": \"is_woodall\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 56,
+        "solution": "===START===\nfrom typing import Union\n\ndef rev(num: Union[int, str]) -> bool:\n    # Convert input to string to handle both int and str inputs\n    num_str = str(num)\n    \n    # Reverse the number string\n    reversed_num_str = num_str[::-1]\n    \n    # Convert reversed string back to integer\n    reversed_num = int(reversed_num_str)\n    \n    # Check if the original number is one less than twice its reverse\n    return int(num) == (2 * reversed_num - 1)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):",
+        "timestamp": "2025-08-13T11:15:44.897779",
+        "response_time": "4.91",
+        "context": "{\"function_name\": \"check\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 57,
+        "solution": "===START===\nfrom typing import List\n\ndef find_Max_Num(arr: List[int]) -> str:\n    # Convert integers to strings for easier sorting\n    str_arr = [str(num) for num in arr]\n    \n    # Custom sorting with a key that ensures largest number formation\n    # Sort in descending order based on a custom comparison \n    # that concatenates digits to form the largest possible number\n    str_arr.sort(key=lambda x: x*len(max(str_arr, key=len)), reverse=True)\n    \n    # Join the sorted strings to form the largest number\n    return ''.join(str_arr)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to find the largest number that can be formed with the given list of digits.\n\n### Signature\ndef find_Max_Num(arr) :",
+        "timestamp": "2025-08-13T11:15:49.270796",
+        "response_time": "4.37",
+        "context": "{\"function_name\": \"find_Max_Num\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 58,
+        "solution": "===START===\nfrom typing import Union\n\ndef opposite_Signs(x: Union[int, float], y: Union[int, float]) -> bool:\n    \"\"\"\n    Check whether two given integers have opposite signs.\n    \n    Args:\n        x (int/float): First number\n        y (int/float): Second number\n    \n    Returns:\n        bool: True if x and y have opposite signs, False otherwise\n    \"\"\"\n    # XOR the sign bits to determine if signs are opposite\n    return (x < 0) != (y < 0)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to check whether the given two integers have opposite sign or not.\n\n### Signature\ndef opposite_Signs(x,y):",
+        "timestamp": "2025-08-13T11:15:52.143807",
+        "response_time": "2.87",
+        "context": "{\"function_name\": \"opposite_Signs\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 59,
+        "solution": "===START===\nfrom typing import Union\n\ndef is_octagonal(n: int) -> Union[int, bool]:\n    \"\"\"\n    Calculate the nth octagonal number or check if a number is octagonal.\n    \n    An octagonal number is a figurate number that extends the concept of triangular and square numbers to the octagon.\n    The nth octagonal number is calculated by the formula: n * (3n - 2)\n    \n    Args:\n        n (int): If positive, calculates the nth octagonal number.\n                 If 0 or negative, checks if the input is an octagonal number.\n    \n    Returns:\n        Union[int, bool]: \n        - If n > 0: Returns the nth octagonal number \n        - If n <= 0: Returns True if the input is an octagonal number, False otherwise\n    \"\"\"\n    # If n is positive, calculate the nth octagonal number\n    if n > 0:\n        return n * (3 * n - 2)\n    \n    # If n is 0 or negative, check if it's an octagonal number\n    if n <= 0:\n        # Solve the quadratic equation to check if the number is octagonal\n        # Octagonal number formula: k * (3k - 2)\n        # Rearrange to: 3k^2 - 2k - x = 0\n        # Use quadratic formula to solve\n        \n        # Discriminant calculation\n        discriminant = 1 + 12 * n\n        \n        # Check if perfect square and solution is integer\n        if discriminant >= 0:\n            sqrt_disc = int(discriminant ** 0.5)\n            if sqrt_disc * sqrt_disc == discriminant:\n                k = (2 + sqrt_disc) // 6\n                if k * (3 * k - 2) == n:\n                    return True\n        \n        return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find the nth octagonal number.\n\n### Signature\ndef is_octagonal(n):",
+        "timestamp": "2025-08-13T11:16:00.030678",
+        "response_time": "7.88",
+        "context": "{\"function_name\": \"is_octagonal\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 61,
+        "solution": "===START===\nfrom typing import List\n\ndef count_Substrings(s: str) -> int:\n    \"\"\"\n    Count the number of substrings where the sum of digits equals the substring's length.\n    \n    Args:\n        s (str): Input string containing digits\n    \n    Returns:\n        int: Number of valid substrings\n    \"\"\"\n    count = 0\n    n = len(s)\n    \n    # Iterate through all possible substrings\n    for start in range(n):\n        for end in range(start, n):\n            substring = s[start:end+1]\n            \n            # Calculate sum of digits in substring\n            digit_sum = sum(int(digit) for digit in substring)\n            \n            # Check if sum of digits equals substring length\n            if digit_sum == len(substring):\n                count += 1\n    \n    return count\n\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to count the number of substrings with the sum of digits equal to their length.\n\n### Signature\ndef count_Substrings(s):",
+        "timestamp": "2025-08-13T11:16:03.704145",
+        "response_time": "3.67",
+        "context": "{\"function_name\": \"count_Substrings\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 62,
+        "solution": "===START===\nfrom typing import List, Union\n\ndef smallest_num(xs: List[Union[int, float]]) -> Union[int, float]:\n    \"\"\"\n    Find the smallest number in a given list.\n    \n    Args:\n        xs (List[Union[int, float]]): A list of numbers\n    \n    Returns:\n        Union[int, float]: The smallest number in the list\n    \"\"\"\n    if not xs:\n        return None\n    \n    smallest = xs[0]\n    for num in xs[1:]:\n        if num < smallest:\n            smallest = num\n    \n    return smallest\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to find smallest number in a list.\n\n### Signature\ndef smallest_num(xs):",
+        "timestamp": "2025-08-13T11:16:06.202468",
+        "response_time": "2.50",
+        "context": "{\"function_name\": \"smallest_num\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 63,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef max_difference(test_list: List[Tuple[int, int]]) -> int:\n    \"\"\"\n    Find the maximum difference between available pairs in the given tuple list.\n    \n    Args:\n        test_list (List[Tuple[int, int]]): List of tuples containing pairs of integers\n    \n    Returns:\n        int: Maximum difference between pairs\n    \"\"\"\n    # If list is empty, return 0\n    if not test_list:\n        return 0\n    \n    # Initialize max difference to minimum possible value\n    max_diff = float('-inf')\n    \n    # Compare each pair with every other pair\n    for i in range(len(test_list)):\n        for j in range(i+1, len(test_list)):\n            # Calculate absolute difference between pairs\n            current_diff = abs(test_list[i][0] - test_list[j][1])\n            \n            # Update max difference if current difference is larger\n            max_diff = max(max_diff, current_diff)\n    \n    return max_diff\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find the maximum difference between available pairs in the given tuple list.\n\n### Signature\ndef max_difference(test_list):",
+        "timestamp": "2025-08-13T11:16:10.086702",
+        "response_time": "3.83",
+        "context": "{\"function_name\": \"max_difference\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 64,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef subject_marks(subjectmarks: List[Tuple[str, int]]) -> List[Tuple[str, int]]:\n    \"\"\"\n    Sort a list of tuples based on the second value (marks) in ascending order.\n    \n    Args:\n        subjectmarks: A list of tuples where each tuple contains (subject, marks)\n    \n    Returns:\n        A new list of tuples sorted by marks in ascending order\n    \"\"\"\n    return sorted(subjectmarks, key=lambda x: x[1])\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to sort a list of tuples using the second value of each tuple.\n\n### Signature\ndef subject_marks(subjectmarks):",
+        "timestamp": "2025-08-13T11:16:12.505241",
+        "response_time": "2.41",
+        "context": "{\"function_name\": \"subject_marks\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 65,
+        "solution": "===START===\nfrom typing import List, Union\n\ndef recursive_list_sum(data_list: List[Union[int, List]]) -> int:\n    \"\"\"\n    Recursively flatten a nested list and sum all of its elements.\n    \n    Args:\n        data_list (List[Union[int, List]]): A potentially nested list of integers\n    \n    Returns:\n        int: Sum of all elements in the flattened list\n    \"\"\"\n    total = 0\n    \n    for item in data_list:\n        # If the item is a list, recursively sum its elements\n        if isinstance(item, list):\n            total += recursive_list_sum(item)\n        # If the item is an integer, add it to the total\n        elif isinstance(item, int):\n            total += item\n    \n    return total\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to flatten a list and sum all of its elements.\n\n### Signature\ndef recursive_list_sum(data_list):",
+        "timestamp": "2025-08-13T11:16:15.566691",
+        "response_time": "3.06",
+        "context": "{\"function_name\": \"recursive_list_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 66,
+        "solution": "===START===\nfrom typing import List\n\ndef pos_count(list: List[int]) -> int:\n    \"\"\"\n    Count the number of positive numbers in the given list.\n    \n    Args:\n        list (List[int]): Input list of integers\n    \n    Returns:\n        int: Number of positive integers in the list\n    \"\"\"\n    return sum(1 for num in list if num > 0)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to count the number of positive numbers in a list.\n\n### Signature\ndef pos_count(list):",
+        "timestamp": "2025-08-13T11:16:18.174607",
+        "response_time": "2.61",
+        "context": "{\"function_name\": \"pos_count\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 67,
+        "solution": "===START===\nfrom typing import List\n\ndef bell_number(n: int) -> int:\n    \"\"\"\n    Calculate the Bell number for a given set size n.\n    Bell number represents the number of ways to partition a set of n elements.\n    \n    Args:\n        n (int): The size of the set\n    \n    Returns:\n        int: The Bell number for the given set size\n    \"\"\"\n    # Create a 2D array to store Bell triangle values\n    bell_triangle: List[List[int]] = [[0 for _ in range(n+1)] for _ in range(n+1)]\n    \n    # First value in Bell triangle is always 1\n    bell_triangle[0][0] = 1\n    \n    # Compute Bell triangle\n    for i in range(1, n+1):\n        # First number in each row is the last number of previous row\n        bell_triangle[i][0] = bell_triangle[i-1][i-1]\n        \n        # Compute other values in the row\n        for j in range(1, i+1):\n            bell_triangle[i][j] = bell_triangle[i-1][j-1] + bell_triangle[i][j-1]\n    \n    # The Bell number is the last number in the first column\n    return bell_triangle[n][0]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find the number of ways to partition a set of Bell numbers.\n\n### Signature\ndef bell_number(n):",
+        "timestamp": "2025-08-13T11:16:23.496287",
+        "response_time": "5.32",
+        "context": "{\"function_name\": \"bell_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 68,
+        "solution": "===START===\nfrom typing import List\n\ndef is_Monotonic(A: List[int]) -> bool:\n    # If array has 0 or 1 element, it is monotonic by default\n    if len(A) <= 1:\n        return True\n    \n    # Track if array is potentially increasing or decreasing\n    is_increasing = is_decreasing = True\n    \n    # Iterate through the array and check monotonicity\n    for i in range(1, len(A)):\n        # Check if array is not increasing\n        if A[i] < A[i-1]:\n            is_increasing = False\n        \n        # Check if array is not decreasing\n        if A[i] > A[i-1]:\n            is_decreasing = False\n    \n    # Return true if array is either increasing or decreasing\n    return is_increasing or is_decreasing\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to check whether the given array is monotonic or not.\n\n### Signature\ndef is_Monotonic(A):",
+        "timestamp": "2025-08-13T11:16:27.991006",
+        "response_time": "4.49",
+        "context": "{\"function_name\": \"is_Monotonic\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 69,
+        "solution": "===START===\nfrom typing import List\n\ndef is_sublist(l: List[int], s: List[int]) -> bool:\n    # If the sublist is empty, it's always considered a sublist\n    if not s:\n        return True\n    \n    # If the sublist is longer than the main list, it can't be a sublist\n    if len(s) > len(l):\n        return False\n    \n    # Iterate through the main list to find potential starting points\n    for i in range(len(l) - len(s) + 1):\n        # Check if the sublist matches the current slice of the main list\n        if l[i:i+len(s)] == s:\n            return True\n    \n    # If no match is found, return False\n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to check whether a list contains the given sublist or not.\n\n### Signature\ndef is_sublist(l, s):",
+        "timestamp": "2025-08-13T11:16:31.374657",
+        "response_time": "3.38",
+        "context": "{\"function_name\": \"is_sublist\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 70,
+        "solution": "===START===\nfrom typing import List, Tuple, Any\n\ndef find_equal_tuple(Input: List[Tuple[Any]]) -> str:\n    \"\"\"\n    Check if all tuples in the input list have equal length\n    \n    Args:\n        Input (List[Tuple[Any]]): List of tuples to check for equal length\n    \n    Returns:\n        str: 'Yes' if all tuples have equal length, 'No' otherwise\n    \"\"\"\n    # If input is empty or contains only one tuple, return 'Yes'\n    if len(Input) <= 1:\n        return 'Yes'\n    \n    # Get the length of the first tuple\n    first_tuple_length = len(Input[0])\n    \n    # Check if all tuples have the same length as the first tuple\n    for tuple_item in Input[1:]:\n        if len(tuple_item) != first_tuple_length:\n            return 'No'\n    \n    return 'Yes'\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find whether all the given tuples have equal length or not.\n\n### Signature\ndef find_equal_tuple(Input):",
+        "timestamp": "2025-08-13T11:16:35.638134",
+        "response_time": "4.26",
+        "context": "{\"function_name\": \"get_equal\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 71,
+        "solution": "===START===\nfrom typing import List\n\ndef comb_sort(nums: List[int]) -> List[int]:\n    \"\"\"\n    Implement comb sort algorithm to sort a list of numbers.\n    \n    Args:\n        nums (List[int]): Input list of numbers to be sorted\n    \n    Returns:\n        List[int]: Sorted list of numbers\n    \"\"\"\n    # If list is empty or has only one element, return as is\n    if len(nums) <= 1:\n        return nums\n    \n    # Initialize gap and shrink factor\n    gap = len(nums)\n    shrink = 1.3  # Standard shrink factor for comb sort\n    sorted_flag = False\n    \n    while not sorted_flag:\n        # Update gap\n        gap = max(int(gap / shrink), 1)\n        \n        # Assume list is sorted until proven otherwise\n        sorted_flag = True\n        \n        # Compare elements with current gap\n        for i in range(len(nums) - gap):\n            if nums[i] > nums[i + gap]:\n                # Swap elements\n                nums[i], nums[i + gap] = nums[i + gap], nums[i]\n                # List is not sorted yet\n                sorted_flag = False\n        \n        # If gap is 1 and no swaps occurred, list is sorted\n        if gap == 1 and sorted_flag:\n            break\n    \n    return nums\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to sort a list of elements.\n\n### Signature\ndef comb_sort(nums):",
+        "timestamp": "2025-08-13T11:16:41.868647",
+        "response_time": "6.23",
+        "context": "{\"function_name\": \"comb_sort\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 72,
+        "solution": "===START===\nfrom typing import Union\n\ndef dif_Square(n: int) -> Union[bool, str]:\n    \"\"\"\n    Check whether the given number can be represented as the difference of two squares.\n    \n    Args:\n        n (int): The number to check\n    \n    Returns:\n        bool: True if the number can be represented as difference of two squares, False otherwise\n    \"\"\"\n    # Iterate through possible values of first square\n    for i in range(int(n**0.5) + 1):\n        # Calculate the remaining value after subtracting first square\n        remaining = n + i*i\n        \n        # Check if remaining value is a perfect square\n        j = int(remaining**0.5)\n        if j*j == remaining:\n            return True\n    \n    return False\n\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to check whether the given number can be represented as the difference of two squares or not.\n\n### Signature\ndef dif_Square(n):",
+        "timestamp": "2025-08-13T11:16:45.437126",
+        "response_time": "3.57",
+        "context": "{\"function_name\": \"dif_Square\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 74,
+        "solution": "===START===\nfrom typing import List\n\ndef is_samepatterns(colors: List[str], patterns: List[str]) -> bool:\n    # Check if lengths are different\n    if len(colors) != len(patterns):\n        return False\n    \n    # Create mappings to track color to pattern and pattern to color\n    color_to_pattern = {}\n    pattern_to_color = {}\n    \n    # Iterate through colors and patterns simultaneously \n    for color, pattern in zip(colors, patterns):\n        # If color already mapped to a pattern\n        if color in color_to_pattern:\n            # Check if current mapping matches previous mapping\n            if color_to_pattern[color] != pattern:\n                return False\n        \n        # If pattern already mapped to a color  \n        if pattern in pattern_to_color:\n            # Check if current mapping matches previous mapping\n            if pattern_to_color[pattern] != color:\n                return False\n        \n        # Create mappings\n        color_to_pattern[color] = pattern\n        pattern_to_color[pattern] = color\n    \n    # If all checks pass, return True\n    return True\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to check whether it follows the sequence given in the patterns array.\n\n### Signature\ndef is_samepatterns(colors, patterns):",
+        "timestamp": "2025-08-13T11:16:49.907536",
+        "response_time": "4.47",
+        "context": "{\"function_name\": \"is_samepatterns\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 75,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef find_tuples(test_list: List[Tuple[int, ...]], K: int) -> List[Tuple[int, ...]]:\n    \"\"\"\n    Find tuples where all elements are divisible by K.\n    \n    Args:\n        test_list: List of tuples to check\n        K: Divisor to check against\n    \n    Returns:\n        List of tuples where all elements are divisible by K\n    \"\"\"\n    # Use list comprehension to filter tuples \n    # where all elements are divisible by K\n    return [tup for tup in test_list if all(elem % K == 0 for elem in tup)]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find tuples which have all elements divisible by k from the given list of tuples.\n\n### Signature\ndef find_tuples(test_list, K):",
+        "timestamp": "2025-08-13T11:16:53.430716",
+        "response_time": "3.52",
+        "context": "{\"function_name\": \"find_tuples\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 77,
+        "solution": "===START===\nfrom typing import Union\n\ndef is_Diff(n: Union[int, str]) -> bool:\n    \"\"\"\n    Check if a given number is divisible by 11.\n    \n    Args:\n        n (int or str): The number to check for divisibility by 11\n    \n    Returns:\n        bool: True if the number is divisible by 11, False otherwise\n    \"\"\"\n    # Convert input to integer if it's a string\n    try:\n        num = int(n)\n    except ValueError:\n        return False\n    \n    # Check divisibility by 11\n    return num % 11 == 0\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to find whether a number is divisible by 11.\n\n### Signature\ndef is_Diff(n):",
+        "timestamp": "2025-08-13T11:16:56.245906",
+        "response_time": "2.81",
+        "context": "{\"function_name\": \"is_Diff\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 79,
+        "solution": "===START===\nfrom typing import Union\n\ndef word_len(s: str) -> Union[bool, str]:\n    \"\"\"\n    Check whether the length of the given word is odd or not.\n    \n    Args:\n        s (str): Input word to check length\n    \n    Returns:\n        bool: True if length is odd, False if length is even\n    \"\"\"\n    return len(s) % 2 != 0\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to check whether the length of the word is odd or not.\n\n### Signature\ndef word_len(s):",
+        "timestamp": "2025-08-13T11:16:58.924738",
+        "response_time": "2.68",
+        "context": "{\"function_name\": \"word_len\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 80,
+        "solution": "===START===\nfrom typing import Union\n\ndef tetrahedral_number(n: int) -> int:\n    \"\"\"\n    Calculate the nth tetrahedral number.\n    \n    A tetrahedral number is the sum of the first n triangular numbers.\n    It represents the number of objects needed to form a tetrahedral stack.\n    \n    Formula: T(n) = n * (n + 1) * (n + 2) / 6\n    \n    Args:\n        n (int): The position of the tetrahedral number to calculate\n    \n    Returns:\n        int: The nth tetrahedral number\n    \"\"\"\n    if n < 0:\n        return 0\n    \n    return n * (n + 1) * (n + 2) // 6\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find the nth tetrahedral number.\n\n### Signature\ndef tetrahedral_number(n):",
+        "timestamp": "2025-08-13T11:17:02.437122",
+        "response_time": "3.51",
+        "context": "{\"function_name\": \"tetrahedral_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 82,
+        "solution": "===START===\nfrom math import pi\n\ndef volume_sphere(r):\n    \"\"\"\n    Calculate the volume of a sphere given its radius.\n    \n    Args:\n        r (float): Radius of the sphere\n    \n    Returns:\n        float: Volume of the sphere\n    \"\"\"\n    return (4/3) * pi * (r ** 3)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find the volume of a sphere.\n\n### Signature\ndef volume_sphere(r):",
+        "timestamp": "2025-08-13T11:17:04.303867",
+        "response_time": "1.86",
+        "context": "{\"function_name\": \"volume_sphere\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 83,
+        "solution": "===START===\nfrom typing import Union\n\ndef get_Char(strr: str) -> str:\n    # Calculate the sum of ASCII values of all characters in the string\n    ascii_sum = sum(ord(char) for char in strr)\n    \n    # Take modulo 26 to get a value between 0-25\n    modulo_value = ascii_sum % 26\n    \n    # Convert the modulo value to corresponding uppercase letter\n    # Add 65 to map 0-25 to ASCII values of uppercase A-Z\n    result_char = chr(modulo_value + 65)\n    \n    return result_char\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a python function to find the character made by adding the ASCII value of all the characters of the given string modulo 26.\n\n### Signature\ndef get_Char(strr):",
+        "timestamp": "2025-08-13T11:17:07.512093",
+        "response_time": "3.21",
+        "context": "{\"function_name\": \"get_Char\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 84,
+        "solution": "===START===\nfrom typing import List\n\ndef sequence(n: int) -> int:\n    \"\"\"\n    Find the nth number in the Newman-Conway sequence.\n    \n    The Newman-Conway sequence is defined as follows:\n    P(1) = 1\n    P(2) = 1\n    P(n) = P(P(n-1)) + P(n-1), for n > 2\n    \n    Args:\n        n (int): The position in the sequence to find\n    \n    Returns:\n        int: The nth number in the Newman-Conway sequence\n    \"\"\"\n    # Handle base cases\n    if n <= 0:\n        return 0\n    if n == 1 or n == 2:\n        return 1\n    \n    # Initialize the sequence with first two elements\n    seq = [0, 1, 1]\n    \n    # Generate sequence up to nth term\n    for i in range(3, n + 1):\n        next_term = seq[seq[i-1]] + seq[i-1]\n        seq.append(next_term)\n    \n    return seq[n]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find the nth number in the newman conway sequence.\n\n### Signature\ndef sequence(n):",
+        "timestamp": "2025-08-13T11:17:13.003235",
+        "response_time": "5.49",
+        "context": "{\"function_name\": \"sequence\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 85,
+        "solution": "===START===\nfrom math import pi\n\ndef surfacearea_sphere(r):\n    \"\"\"\n    Calculate the surface area of a sphere given its radius.\n    \n    Args:\n        r (float): Radius of the sphere\n    \n    Returns:\n        float: Surface area of the sphere\n    \"\"\"\n    return 4 * pi * r**2\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find the surface area of a sphere.\n\n### Signature\ndef surfacearea_sphere(r):",
+        "timestamp": "2025-08-13T11:17:14.873404",
+        "response_time": "1.87",
+        "context": "{\"function_name\": \"surfacearea_sphere\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 86,
+        "solution": "===START===\nfrom typing import Union\n\ndef centered_hexagonal_number(n: int) -> int:\n    \"\"\"\n    Calculate the nth centered hexagonal number.\n    \n    A centered hexagonal number is a figurate number that represents a hexagon \n    with a dot in the center and all other dots surrounding the center in a hexagonal lattice.\n    \n    The formula for the nth centered hexagonal number is: 1 + 6 * (n * (n - 1) / 2)\n    \n    Args:\n        n (int): The position of the centered hexagonal number to calculate (n >= 1)\n    \n    Returns:\n        int: The nth centered hexagonal number\n    \"\"\"\n    if n < 1:\n        return 0\n    \n    return 1 + 6 * (n * (n - 1) // 2)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to find nth centered hexagonal number.\n\n### Signature\ndef centered_hexagonal_number(n):",
+        "timestamp": "2025-08-13T11:17:18.982488",
+        "response_time": "4.11",
+        "context": "{\"function_name\": \"centered_hexagonal_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_claude35haiku",
+        "dataset_row_id": 87,
+        "solution": "===START===\nfrom typing import Dict, Any\n\ndef merge_dictionaries_three(dict1: Dict[Any, Any], dict2: Dict[Any, Any], dict3: Dict[Any, Any]) -> Dict[Any, Any]:\n    \"\"\"\n    Merge three dictionaries into a single dictionary.\n    \n    Args:\n        dict1 (dict): First input dictionary\n        dict2 (dict): Second input dictionary\n        dict3 (dict): Third input dictionary\n    \n    Returns:\n        dict: A merged dictionary containing all key-value pairs from the input dictionaries\n    \"\"\"\n    # Create a new dictionary and update it with key-value pairs from each input dictionary\n    # Later dictionaries will overwrite keys from earlier dictionaries if there are duplicates\n    merged_dict = {}\n    merged_dict.update(dict1)\n    merged_dict.update(dict2)\n    merged_dict.update(dict3)\n    \n    return merged_dict\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\nWrite a function to merge three dictionaries into a single dictionary.\n\n### Signature\ndef merge_dictionaries_three(dict1,dict2, dict3):",
+        "timestamp": "2025-08-13T11:17:23.184379",
+        "response_time": "4.20",
+        "context": "{\"function_name\": \"merge_dictionaries_three\"}"
+    }
+]

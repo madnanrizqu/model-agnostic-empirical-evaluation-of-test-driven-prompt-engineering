@@ -1,0 +1,14 @@
+{
+  "anthropic/claude-3.5-haiku": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "solution": "from typing import Union\n\ndef differ_At_One_Bit_Pos(x: Union[int, float]) -> bool:\n    \"\"\"\n    Check if two numbers differ at only one bit position.\n    \n    Args:\n        x (int): The input number to check\n    \n    Returns:\n        bool: True if the number differs at only one bit position, False otherwise\n    \"\"\"\n    # If x is 0, it cannot differ at only one bit position\n    if x == 0:\n        return False\n    \n    # Check if x is a power of 2 by using bitwise AND operation\n    # A number that is a power of 2 will have only one bit set\n    # Subtracting 1 from a power of 2 will give a number with all lower bits set\n    # So x & (x-1) will be 0 for a power of 2\n    return x & (x - 1) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    }
+  ]
+}

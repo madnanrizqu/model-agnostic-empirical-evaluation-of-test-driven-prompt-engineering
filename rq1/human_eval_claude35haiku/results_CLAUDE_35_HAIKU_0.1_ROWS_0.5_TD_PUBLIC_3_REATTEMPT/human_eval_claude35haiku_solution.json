@@ -1,0 +1,146 @@
+[
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 0,
+        "solution": "===START===\nfrom typing import List\nfrom itertools import combinations\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    # Use itertools.combinations to generate all unique pairs of numbers\n    for a, b in combinations(numbers, 2):\n        # Check if absolute difference between any two numbers is less than threshold\n        if abs(a - b) < threshold:\n            return True\n    \n    # If no pair found within threshold, return False\n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:",
+        "timestamp": "2025-08-13T11:05:55.071561",
+        "response_time": "3.71"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 1,
+        "solution": "===START===\nfrom typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    # Remove all whitespace from the input string\n    paren_string = paren_string.replace(' ', '')\n    \n    result = []\n    current_group = []\n    depth = 0\n    \n    for char in paren_string:\n        if char == '(':\n            depth += 1\n            current_group.append(char)\n        elif char == ')':\n            depth -= 1\n            current_group.append(char)\n            \n            # If depth is 0, we've completed a balanced group\n            if depth == 0:\n                result.append(''.join(current_group))\n                current_group = []\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:",
+        "timestamp": "2025-08-13T11:05:58.522194",
+        "response_time": "3.45"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 2,
+        "solution": "===START===\nfrom typing import Union\n\ndef truncate_number(number: float) -> float:\n    \"\"\"\n    Decompose a positive floating point number into its decimal part.\n    \n    Args:\n        number (float): A positive floating point number\n    \n    Returns:\n        float: The decimal part of the number (always less than 1)\n    \"\"\"\n    # Use the subtraction of integer part from original number to get decimal part\n    return number - int(number)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:",
+        "timestamp": "2025-08-13T11:06:01.765970",
+        "response_time": "3.24"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 3,
+        "solution": "===START===\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:",
+        "timestamp": "2025-08-13T11:06:03.881571",
+        "response_time": "2.11"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 4,
+        "solution": "===START===\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    # If list is empty, return 0\n    if not numbers:\n        return 0.0\n    \n    # Calculate mean of the numbers\n    mean = sum(numbers) / len(numbers)\n    \n    # Calculate absolute deviations from the mean\n    absolute_deviations = [abs(x - mean) for x in numbers]\n    \n    # Calculate mean of absolute deviations\n    mad = sum(absolute_deviations) / len(numbers)\n    \n    return mad\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:",
+        "timestamp": "2025-08-13T11:06:07.569230",
+        "response_time": "3.68"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 5,
+        "solution": "===START===\nfrom typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    # If input list is empty, return empty list\n    if not numbers:\n        return []\n    \n    # Initialize result list with first element\n    result = [numbers[0]]\n    \n    # Iterate through remaining elements \n    for num in numbers[1:]:\n        # Add delimiter after each previous element\n        result.append(delimeter)\n        result.append(num)\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n\n### Signature\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:",
+        "timestamp": "2025-08-13T11:06:10.147907",
+        "response_time": "2.58"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 6,
+        "solution": "I'll solve this by creating a function that calculates the maximum nesting depth for each group of parentheses in the input string.\n\n===START===\nfrom typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    # Split the input string into groups of parentheses\n    groups = paren_string.split()\n    \n    # Result list to store max nesting depths\n    max_depths = []\n    \n    # Process each group of parentheses\n    for group in groups:\n        # Track current depth and max depth\n        current_depth = 0\n        max_depth = 0\n        \n        # Iterate through each character in the group\n        for char in group:\n            if char == '(':\n                # Increment current depth when opening parenthesis\n                current_depth += 1\n                # Update max depth if current depth is deeper\n                max_depth = max(max_depth, current_depth)\n            elif char == ')':\n                # Decrement current depth when closing parenthesis\n                current_depth -= 1\n        \n        # Add max depth for this group to results\n        max_depths.append(max_depth)\n    \n    return max_depths\n===END===\n\nThe solution works as follows:\n\n1. Split the input string into groups of parentheses using `split()`.\n2. For each group:\n   - Initialize `current_depth` and `max_depth` to 0.\n   - Iterate through each character:\n     - If '(', increment `current_depth` and update `max_depth` if needed.\n     - If ')', decrement `current_depth`.\n3. Append the `max_depth` for each group to the result list.\n4. Return the list of maximum nesting depths.\n\nExample:\n- Input: \"(()()) ((())) ()\"\n- Output: [2, 3, 1]\n\nThe function handles:\n- Multiple groups of parentheses\n- Varying depths of nesting\n- Empty groups\n- Correctly tracks the maximum depth of nesting\n\nTime complexity is O(n), where n is the total number of characters in the input string.",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:",
+        "timestamp": "2025-08-13T11:06:18.740762",
+        "response_time": "8.59"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 7,
+        "solution": "===START===\nfrom typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:",
+        "timestamp": "2025-08-13T11:06:20.971164",
+        "response_time": "2.23"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 8,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    # Handle empty list case\n    if not numbers:\n        return (0, 1)\n    \n    # Calculate sum of all numbers\n    total_sum = sum(numbers)\n    \n    # Calculate product of all numbers\n    total_product = 1\n    for num in numbers:\n        total_product *= num\n    \n    return (total_sum, total_product)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:",
+        "timestamp": "2025-08-13T11:06:23.917396",
+        "response_time": "2.95"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 9,
+        "solution": "===START===\nfrom typing import List\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    if not numbers:\n        return []\n    \n    result = [numbers[0]]\n    current_max = numbers[0]\n    \n    for num in numbers[1:]:\n        current_max = max(current_max, num)\n        result.append(current_max)\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:",
+        "timestamp": "2025-08-13T11:06:26.655628",
+        "response_time": "2.74"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 10,
+        "solution": "===START===\nfrom typing import List\n\ndef make_palindrome(string: str) -> str:\n    # Handle empty string case\n    if not string:\n        return ''\n    \n    # Function to check if a string is a palindrome\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n    \n    # Try finding the longest palindromic suffix\n    for i in range(len(string)):\n        # Check if the substring from start to end is a palindrome\n        if is_palindrome(string[i:]):\n            # Prepend the reversed prefix to make the full palindrome\n            return string + string[:i][::-1]\n    \n    # If no palindromic suffix found, return the string with its reverse\n    return string + string[::-1]\n\n===END===\n\nThe solution works as follows:\n1. If the input string is empty, return an empty string.\n2. Define a helper function `is_palindrome()` to check if a string is a palindrome.\n3. Iterate through the string from the start:\n   - Check if the substring from current index to end is a palindrome\n   - If found, prepend the reversed prefix to the original string\n4. If no palindromic suffix is found, simply append the reversed string to itself.\n\nKey points:\n- Time complexity is O(n\u00b2) due to palindrome checking\n- Handles edge cases like empty string and strings with no palindromic suffix\n- Follows the requirement of finding the shortest palindrome that begins with the input string\n\nThe function passes the given test cases:\n- `make_palindrome('')` returns `''`\n- `make_palindrome('cat')` returns `'catac'`\n- `make_palindrome('cata')` returns `'catac'`",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:",
+        "timestamp": "2025-08-13T11:06:34.059206",
+        "response_time": "7.40"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 11,
+        "solution": "===START===\ndef string_xor(a: str, b: str) -> str:\n    # Ensure inputs are of equal length by padding with zeros if needed\n    max_len = max(len(a), len(b))\n    a = a.zfill(max_len)\n    b = b.zfill(max_len)\n    \n    # Perform XOR operation bit by bit\n    result = ''\n    for bit_a, bit_b in zip(a, b):\n        # XOR operation: 1^1=0, 1^0=1, 0^1=1, 0^0=0\n        result += str(int(bit_a) ^ int(bit_b))\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n\n### Signature\ndef string_xor(a: str, b: str) -> str:",
+        "timestamp": "2025-08-13T11:06:37.560493",
+        "response_time": "3.50"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 12,
+        "solution": "===START===\nfrom typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    \n    return max(strings, key=len)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:",
+        "timestamp": "2025-08-13T11:06:39.089785",
+        "response_time": "1.53"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 13,
+        "solution": "===START===\nfrom typing import Union\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    # Use Euclidean algorithm to find GCD\n    # Take absolute values to handle negative inputs\n    a, b = abs(a), abs(b)\n    \n    # If b is 0, return a\n    if b == 0:\n        return a\n    \n    # Recursive implementation of Euclidean algorithm\n    return greatest_common_divisor(b, a % b)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n\n### Signature\ndef greatest_common_divisor(a: int, b: int) -> int:",
+        "timestamp": "2025-08-13T11:06:42.497029",
+        "response_time": "3.41"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 14,
+        "solution": "===START===\nfrom typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    # Create a list to store prefixes\n    prefixes = []\n    \n    # Iterate through possible prefix lengths\n    for i in range(1, len(string) + 1):\n        # Add each prefix from start of string up to current length\n        prefixes.append(string[:i])\n    \n    return prefixes\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:",
+        "timestamp": "2025-08-13T11:06:45.650538",
+        "response_time": "3.15"
+    },
+    {
+        "dataset_name": "human_eval_claude35haiku",
+        "dataset_row_id": 15,
+        "solution": "===START===\nfrom typing import List\n\ndef string_sequence(n: int) -> str:\n    # Create a list of numbers from 0 to n (inclusive)\n    numbers: List[str] = [str(num) for num in range(n + 1)]\n    \n    # Join the numbers with space delimiter\n    return ' '.join(numbers)\n===END===",
+        "llm_name": "anthropic/claude-3.5-haiku",
+        "prompt": "### Prompt\n     Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n\n### Signature\ndef string_sequence(n: int) -> str:",
+        "timestamp": "2025-08-13T11:06:48.578199",
+        "response_time": "2.93"
+    }
+]

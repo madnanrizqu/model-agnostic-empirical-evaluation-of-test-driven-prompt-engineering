@@ -1,0 +1,44 @@
+{
+  "anthropic/claude-3.5-sonnet": [
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):\n\n### Test\nassert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 1, in <module>\n    from llm_output import find_char_long\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nImportError: cannot import name 'sort_matrix' from 'llm_output' (/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py)\n",
+      "solution": "def sort_matrix(M):\n    # Create a list of tuples containing row sums and original rows\n    row_sums = [(sum(row), row) for row in M]\n    # Sort based on row sums\n    row_sums.sort(key=lambda x: x[0])\n    # Return only the sorted rows\n    return [row for _, row in row_sums]",
+      "test_content": "from llm_output import sort_matrix\n\ndef check(candidate):\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n    assert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\n    assert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]\n\ncheck(sort_matrix)",
+      "context": "{\"function_name\": \"sort_matrix\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):\n\n### Test\nassert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    if not isinstance(string, tuple):\n        return string\n    \n    str1, str2 = string\n    result = ''\n    \n    # Create a set of characters from the second string for O(1) lookup\n    chars_to_remove = set(str2)\n    \n    # Add characters from first string only if they're not in the second string\n    for char in str1:\n        if char not in chars_to_remove:\n            result += char\n            \n    return result",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):\n\n### Test\nassert candidate(70) == False",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "def check(num):\n    # Convert number to string to reverse it\n    num_str = str(num)\n    # Convert reversed string back to integer\n    reversed_num = int(num_str[::-1])\n    # Check if number is one less than twice its reverse\n    return num == (2 * reversed_num - 1)",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 70,
+      "prompt": "### Prompt\nWrite a function to find whether all the given tuples have equal length or not.\n\n### Signature\ndef find_equal_tuple(Input):\n\n### Test\nassert candidate([(11, 22, 33), (44, 55, 66)]) == True",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "from typing import List, Tuple\n\ndef get_equal(Input: List[Tuple]) -> bool:\n    if not Input:\n        return True\n    \n    first_tuple_len = len(Input[0])\n    return all(len(tup) == first_tuple_len for tup in Input)",
+      "test_content": "from llm_output import get_equal\n\ndef check(candidate):\n    assert candidate([(11, 22, 33), (44, 55, 66)]) == True\n    assert candidate([(1, 2, 3), (4, 5, 6, 7)]) == False\n    assert candidate([(1, 2), (3, 4)]) == True\n\ncheck(get_equal)",
+      "context": "{\"function_name\": \"get_equal\"}",
+      "attempt_num": 1
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "qwen/qwen-2.5-coder-32b-instruct": [
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef is_not_prime(n: int) -> bool:\n    if n <= 1:\n        return True\n    if n <= 3:\n        return False\n    if n % 2 == 0 or n % 3 == 0:\n        return True\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return True\n        i += 6\n    return False",
+      "test_content": "from llm_output import is_not_prime\n\ndef check(candidate):\n    assert candidate(2) == False\n    assert candidate(10) == True\n    assert candidate(35) == True\n    assert candidate(37) == False\n\ncheck(is_not_prime)",
+      "context": "{\"function_name\": \"is_not_prime\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    return [num ** 2 for num in nums]",
+      "test_content": "from llm_output import square_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n    assert candidate([10,20,30])==([100,400,900])\n    assert candidate([12,15])==([144,225])\n\ncheck(square_nums)",
+      "context": "{\"function_name\": \"square_nums\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):",
+      "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+      "solution": "from typing import List\n\ndef remove_Occ(s: str, ch: str) -> str:\n    first_occurrence_index = s.find(ch)\n    if first_occurrence_index == -1:\n        return s\n    \n    last_occurrence_index = s.rfind(ch)\n    if last_occurrence_index == -1 or first_occurrence_index == last_occurrence_index:\n        return s[:first_occurrence_index] + s[first_occurrence_index + 1:]\n    \n    return s[:first_occurrence_index] + s[first_occurrence_index + 1:last_occurrence_index] + s[last_occurrence_index + 1:]",
+      "test_content": "from llm_output import remove_Occ\n\ndef check(candidate):\n    assert candidate(\"hello\",\"l\") == \"heo\"\n    assert candidate(\"abcda\",\"a\") == \"bcd\"\n    assert candidate(\"PHP\",\"P\") == \"H\"\n\ncheck(remove_Occ)",
+      "context": "{\"function_name\": \"remove_Occ\"}",
+      "attempt_num": 1
+    }
+  ]
+}

@@ -1,0 +1,2142 @@
+[
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 425,
+        "solution": "===START===\nfrom typing import List\n\ndef count_element_in_list(list1: List[List[int]], x: int) -> int:\n    count = 0\n    for sublist in list1:\n        if x in sublist:\n            count += 1\n    return count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to count the number of sublists containing a particular element.\n\n### Signature\ndef count_element_in_list(list1, x):\n\n### Test\nassert candidate([[1, 3], [5, 7], [1, 11], [1, 15, 7]],1)==3",
+        "timestamp": "2025-10-17T17:30:35.977924",
+        "response_time": "3.37",
+        "context": "{\"function_name\": \"count_element_in_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 426,
+        "solution": "===START===\nfrom typing import List\n\ndef filter_oddnumbers(nums: List[int]) -> List[int]:\n    return [num for num in nums if num % 2 != 0]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to filter odd numbers.\n\n### Signature\ndef filter_oddnumbers(nums):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1,3,5,7,9]",
+        "timestamp": "2025-10-17T17:30:38.056566",
+        "response_time": "2.08",
+        "context": "{\"function_name\": \"filter_oddnumbers\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 427,
+        "solution": "===START===\ndef change_date_format(dt):\n    year, month, day = dt.split('-')\n    return f\"{day}-{month}-{year}\"\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to convert a date of yyyy-mm-dd format to dd-mm-yyyy format.\n\n### Signature\ndef change_date_format(dt):\n\n### Test\nassert candidate(\"2026-01-02\") == \"\"\"02-01-2026\"\"\"",
+        "timestamp": "2025-10-17T17:30:39.325779",
+        "response_time": "1.27",
+        "context": "{\"function_name\": \"change_date_format\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 428,
+        "solution": "===START===\ndef shell_sort(my_list):\n    n = len(my_list)\n    gap = n // 2\n\n    while gap > 0:\n        for i in range(gap, n):\n            temp = my_list[i]\n            j = i\n            while j >= gap and my_list[j - gap] > temp:\n                my_list[j] = my_list[j - gap]\n                j -= gap\n            my_list[j] = temp\n        gap //= 2\n    return my_list\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to sort the given array by using shell sort.\n\n### Signature\ndef shell_sort(my_list):\n\n### Test\nassert candidate([12, 23, 4, 5, 3, 2, 12, 81, 56, 95]) == [2, 3, 4, 5, 12, 12, 23, 56, 81, 95]",
+        "timestamp": "2025-10-17T17:30:43.129700",
+        "response_time": "3.80",
+        "context": "{\"function_name\": \"shell_sort\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 429,
+        "solution": "===START===\nfrom itertools import starmap\nfrom operator import and_\n\ndef and_tuples(test_tup1, test_tup2):\n    return tuple(starmap(and_, zip(test_tup1, test_tup2)))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to extract the elementwise and tuples from the given two tuples.\n\n### Signature\ndef and_tuples(test_tup1, test_tup2):\n\n### Test\nassert candidate((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)",
+        "timestamp": "2025-10-17T17:30:44.991613",
+        "response_time": "1.86",
+        "context": "{\"function_name\": \"and_tuples\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 430,
+        "solution": "===START===\nimport math\n\ndef parabola_directrix(a, b, c):\n    if a == 0:\n        raise ValueError(\"Coefficient 'a' cannot be zero for a parabola.\")\n    directrix = c - (b**2 + 1) / (4 * a)\n    return directrix\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the directrix of a parabola.\n\n### Signature\ndef parabola_directrix(a, b, c):\n\n### Test\nassert candidate(5,3,2)==-198",
+        "timestamp": "2025-10-17T17:30:47.806146",
+        "response_time": "2.81",
+        "context": "{\"function_name\": \"parabola_directrix\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 431,
+        "solution": "===START===\ndef common_element(list1, list2):\n    set1 = set(list1)\n    set2 = set(list2)\n    return not set1.isdisjoint(set2)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that takes two lists and returns true if they have at least one common element.\n\n### Signature\ndef common_element(list1, list2):\n\n### Test\nassert candidate([1,2,3,4,5], [5,6,7,8,9])==True",
+        "timestamp": "2025-10-17T17:30:49.436184",
+        "response_time": "1.63",
+        "context": "{\"function_name\": \"common_element\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 432,
+        "solution": "===START===\ndef median_trapezium(base1, base2, height):\n    return 0.5 * (base1 + base2)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the median length of a trapezium.\n\n### Signature\ndef median_trapezium(base1,base2,height):\n\n### Test\nassert candidate(15,25,35)==20",
+        "timestamp": "2025-10-17T17:30:50.788185",
+        "response_time": "1.35",
+        "context": "{\"function_name\": \"median_trapezium\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 433,
+        "solution": "===START===\nfrom typing import List\n\ndef check_greater(arr: List[int], number: int) -> bool:\n    for element in arr:\n        if number <= element:\n            return False\n    return True\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether the entered number is greater than the elements of the given array.\n\n### Signature\ndef check_greater(arr, number):\n\n### Test\nassert candidate([1, 2, 3, 4, 5], 4) == False",
+        "timestamp": "2025-10-17T17:30:52.567301",
+        "response_time": "1.78",
+        "context": "{\"function_name\": \"check_greater\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 434,
+        "solution": "===START===\nimport re\n\ndef text_match_one(text):\n    pattern = r'ab+'\n    return bool(re.search(pattern, text))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that matches a string that has an a followed by one or more b's.\n\n### Signature\ndef text_match_one(text):\n\n### Test\nassert candidate(\"ac\")==False",
+        "timestamp": "2025-10-17T17:30:53.901936",
+        "response_time": "1.33",
+        "context": "{\"function_name\": \"text_match_one\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 435,
+        "solution": "===START===\ndef last_Digit(n) :\n    return n % 10\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the last digit of a given number.\n\n### Signature\ndef last_Digit(n) :\n\n### Test\nassert candidate(123) == 3",
+        "timestamp": "2025-10-17T17:30:54.831079",
+        "response_time": "0.93",
+        "context": "{\"function_name\": \"last_Digit\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 436,
+        "solution": "===START===\nfrom typing import List\n\ndef neg_nos(list1: List[int]) -> List[int]:\n    return [num for num in list1 if num < 0]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to return the negative numbers in a list.\n\n### Signature\ndef neg_nos(list1):\n\n### Test\nassert candidate([-1,4,5,-6]) == [-1,-6]",
+        "timestamp": "2025-10-17T17:30:56.354644",
+        "response_time": "1.52",
+        "context": "{\"function_name\": \"neg_nos\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 437,
+        "solution": "===START===\ndef remove_odd(str1):\n    return str1[1::2]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove odd characters in a string.\n\n### Signature\ndef remove_odd(str1):\n\n### Test\nassert candidate(\"python\")==(\"yhn\")",
+        "timestamp": "2025-10-17T17:30:57.382041",
+        "response_time": "1.02",
+        "context": "{\"function_name\": \"remove_odd\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 438,
+        "solution": "===START===\nfrom collections import defaultdict\n\ndef count_bidirectional(test_list):\n    pair_count = defaultdict(int)\n    bidirectional_count = 0\n    \n    for a, b in test_list:\n        if (b, a) in pair_count:\n            bidirectional_count += 1\n            pair_count[(b, a)] -= 1\n            if pair_count[(b, a)] == 0:\n                del pair_count[(b, a)]\n        else:\n            pair_count[(a, b)] += 1\n    \n    return bidirectional_count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to count bidirectional tuple pairs.\n\n### Signature\ndef count_bidirectional(test_list):\n\n### Test\nassert candidate([(5, 6), (1, 2), (6, 5), (9, 1), (6, 5), (2, 1)] ) == 3",
+        "timestamp": "2025-10-17T17:31:01.456385",
+        "response_time": "4.07",
+        "context": "{\"function_name\": \"count_bidirectional\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 439,
+        "solution": "===START===\ndef multiple_to_single(L):\n    return int(''.join(map(str, L)))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to join a list of multiple integers into a single integer.\n\n### Signature\ndef multiple_to_single(L):\n\n### Test\nassert candidate([11, 33, 50])==113350",
+        "timestamp": "2025-10-17T17:31:02.452486",
+        "response_time": "0.99",
+        "context": "{\"function_name\": \"multiple_to_single\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 440,
+        "solution": "===START===\nimport re\n\ndef find_adverb_position(text):\n    # Regular expression to find adverbs ending in 'ly'\n    match = re.search(r\"\\b\\w+ly\\b\", text)\n    if match:\n        start_pos = match.start()\n        end_pos = match.end()\n        adverb = match.group()\n        return (start_pos, end_pos, adverb)\n    return None\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the first adverb and their positions in a given sentence.\n\n### Signature\ndef find_adverb_position(text):\n\n### Test\nassert candidate(\"clearly!! we can see the sky\")==(0, 7, \"\"\"clearly\"\"\")",
+        "timestamp": "2025-10-17T17:31:05.478485",
+        "response_time": "3.02",
+        "context": "{\"function_name\": \"find_adverb_position\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 441,
+        "solution": "===START===\ndef surfacearea_cube(l):\n    return 6 * l * l\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the surface area of a cube of a given size.\n\n### Signature\ndef surfacearea_cube(l):\n\n### Test\nassert candidate(5)==150",
+        "timestamp": "2025-10-17T17:31:06.473696",
+        "response_time": "0.99",
+        "context": "{\"function_name\": \"surfacearea_cube\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 442,
+        "solution": "===START===\nfrom typing import List\n\ndef positive_count(nums: List[int]) -> float:\n    if not nums:\n        return 0.0\n    positive_nums = [num for num in nums if num > 0]\n    return len(positive_nums) / len(nums)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the ration of positive numbers in an array of integers.\n\n### Signature\ndef positive_count(nums):\n\n### Test\nassert candidate([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8])==0.54",
+        "timestamp": "2025-10-17T17:31:08.741178",
+        "response_time": "2.27",
+        "context": "{\"function_name\": \"positive_count\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 443,
+        "solution": "===START===\nfrom typing import List\n\ndef largest_neg(list1: List[int]) -> int:\n    largest_negative = None\n    for num in list1:\n        if num < 0:\n            if largest_negative is None or num < largest_negative:\n                largest_negative = num\n    return largest_negative\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the largest negative number from the given list.\n\n### Signature\ndef largest_neg(list1):\n\n### Test\nassert candidate([1,2,3,-4,-6]) == -6",
+        "timestamp": "2025-10-17T17:31:11.161430",
+        "response_time": "2.42",
+        "context": "{\"function_name\": \"largest_neg\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 444,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef trim_tuple(test_list: List[Tuple[int, ...]], K: int) -> str:\n    trimmed_list = [tup[K:] for tup in test_list]\n    return str(trimmed_list)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to trim each tuple by k in the given tuple list.\n\n### Signature\ndef trim_tuple(test_list, K):\n\n### Test\nassert candidate([(5, 3, 2, 1, 4), (3, 4, 9, 2, 1),(9, 1, 2, 3, 5), (4, 8, 2, 1, 7)], 2) == '[(2,), (9,), (2,), (2,)]'",
+        "timestamp": "2025-10-17T17:31:13.183190",
+        "response_time": "2.02",
+        "context": "{\"function_name\": \"trim_tuple\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 445,
+        "solution": "===START===\nfrom itertools import starmap\nfrom operator import mul\n\ndef index_multiplication(test_tup1, test_tup2):\n    res = tuple(tuple(starmap(mul, zip(sub1, sub2))) for sub1, sub2 in zip(test_tup1, test_tup2))\n    return res\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to perform index wise multiplication of tuple elements in the given two tuples.\n\n### Signature\ndef index_multiplication(test_tup1, test_tup2):\n\n### Test\nassert candidate(((1, 3), (4, 5), (2, 9), (1, 10)),((6, 7), (3, 9), (1, 1), (7, 3)) ) == ((6, 21), (12, 45), (2, 9), (7, 30))",
+        "timestamp": "2025-10-17T17:31:15.867907",
+        "response_time": "2.68",
+        "context": "{\"function_name\": \"index_multiplication\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 446,
+        "solution": "===START===\nfrom collections import Counter\n\ndef count_Occurrence(tup, lst):\n    count = Counter(tup)\n    return sum(count[element] for element in lst)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to count the occurence of all elements of list in a tuple.\n\n### Signature\ndef count_Occurrence(tup, lst):\n\n### Test\nassert candidate(('a', 'a', 'c', 'b', 'd'),['a', 'b'] ) == 3",
+        "timestamp": "2025-10-17T17:31:17.395101",
+        "response_time": "1.53",
+        "context": "{\"function_name\": \"count_Occurrence\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 447,
+        "solution": "===START===\ndef cube_nums(nums):\n    return [x ** 3 for x in nums]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find cubes of individual elements in a list.\n\n### Signature\ndef cube_nums(nums):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]",
+        "timestamp": "2025-10-17T17:31:18.357494",
+        "response_time": "0.96",
+        "context": "{\"function_name\": \"cube_nums\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 448,
+        "solution": "===START===\ndef cal_sum(n):\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 3\n    elif n == 2:\n        return 3\n    elif n == 3:\n        return 5\n    \n    p0, p1, p2 = 3, 0, 2\n    total_sum = p0 + p1 + p2\n    \n    for i in range(4, n + 1):\n        p_next = p0 + p1\n        total_sum += p_next\n        p0, p1, p2 = p1, p2, p_next\n    \n    return total_sum\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to calculate the sum of perrin numbers.\n\n### Signature\ndef cal_sum(n):\n\n### Test\nassert candidate(9) == 49",
+        "timestamp": "2025-10-17T17:31:23.328508",
+        "response_time": "4.97",
+        "context": "{\"function_name\": \"cal_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 450,
+        "solution": "===START===\nfrom typing import List\n\ndef extract_string(strings: List[str], length: int) -> List[str]:\n    return [s for s in strings if len(s) == length]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to extract specified size of strings from a given list of string values.\n\n### Signature\ndef extract_string(str, l):\n\n### Test\nassert candidate(['Python', 'list', 'exercises', 'practice', 'solution'] ,8)==['practice', 'solution']",
+        "timestamp": "2025-10-17T17:31:24.982898",
+        "response_time": "1.65",
+        "context": "{\"function_name\": \"extract_string\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 451,
+        "solution": "===START===\nimport re\n\ndef remove_whitespaces(text1):\n    return re.sub(r'\\s+', '', text1)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove all whitespaces from the given string.\n\n### Signature\ndef remove_whitespaces(text1):\n\n### Test\nassert candidate(' Google    Flutter ') == 'GoogleFlutter'",
+        "timestamp": "2025-10-17T17:31:26.115355",
+        "response_time": "1.13",
+        "context": "{\"function_name\": \"remove_whitespaces\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 452,
+        "solution": "===START===\ndef loss_amount(actual_cost, sale_amount):\n    if actual_cost > sale_amount:\n        return actual_cost - sale_amount\n    else:\n        return 0\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that gives loss amount on a sale if the given amount has loss else return 0.\n\n### Signature\ndef loss_amount(actual_cost,sale_amount):\n\n### Test\nassert candidate(1500,1200)==0",
+        "timestamp": "2025-10-17T17:31:27.689134",
+        "response_time": "1.57",
+        "context": "{\"function_name\": \"loss_amount\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 453,
+        "solution": "===START===\ndef sumofFactors(n) :\n    import math\n    res = 1\n    if n % 2 != 0:\n        return 0\n    while n % 2 == 0:\n        n = n // 2\n        res += 2\n    for i in range(3, int(math.sqrt(n) + 1)):\n        count = 0\n        curr_sum = 1\n        curr_term = 1\n        while n % i == 0:\n            count += 1\n            n = n // i\n            curr_term *= i\n            curr_sum += curr_term\n        res *= curr_sum\n    if n >= 2:\n        res *= (1 + n)\n    return res\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of even factors of a number.\n\n### Signature\ndef sumofFactors(n) :\n\n### Test\nassert candidate(18) == 26",
+        "timestamp": "2025-10-17T17:31:33.419209",
+        "response_time": "5.73",
+        "context": "{\"function_name\": \"sumofFactors\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 454,
+        "solution": "===START===\nimport re\n\ndef text_match_wordz(text):\n    return bool(re.search(r'\\b\\w*z\\w*\\b', text))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that matches a word containing 'z'.\n\n### Signature\ndef text_match_wordz(text):\n\n### Test\nassert candidate(\"pythonz.\")==True",
+        "timestamp": "2025-10-17T17:31:34.810079",
+        "response_time": "1.39",
+        "context": "{\"function_name\": \"text_match_wordz\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 455,
+        "solution": "===START===\ndef check_monthnumb_number(monthnum2):\n    months_with_31_days = {1, 3, 5, 7, 8, 10, 12}\n    return monthnum2 in months_with_31_days\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether the given month number contains 31 days or not.\n\n### Signature\ndef check_monthnumb_number(monthnum2):\n\n### Test\nassert candidate(5)==True",
+        "timestamp": "2025-10-17T17:31:37.025964",
+        "response_time": "2.21",
+        "context": "{\"function_name\": \"check_monthnumb_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 456,
+        "solution": "===START===\ndef reverse_string_list(stringlist):\n    return [s[::-1] for s in stringlist]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to reverse each string in a given list of string values.\n\n### Signature\ndef reverse_string_list(stringlist):\n\n### Test\nassert candidate(['Red', 'Green', 'Blue', 'White', 'Black'])==['deR', 'neerG', 'eulB', 'etihW', 'kcalB']",
+        "timestamp": "2025-10-17T17:31:38.214937",
+        "response_time": "1.19",
+        "context": "{\"function_name\": \"reverse_string_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 457,
+        "solution": "===START===\nfrom typing import List\n\ndef Find_Min(lst: List[List[int]]) -> List[int]:\n    if not lst:\n        return []\n    min_length = float('inf')\n    min_sublist = []\n    for sublist in lst:\n        if len(sublist) < min_length:\n            min_length = len(sublist)\n            min_sublist = sublist\n    return min_sublist\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sublist having minimum length.\n\n### Signature\ndef Find_Min(lst):\n\n### Test\nassert candidate([[1],[1,2],[1,2,3]]) == [1]",
+        "timestamp": "2025-10-17T17:31:41.182294",
+        "response_time": "2.96",
+        "context": "{\"function_name\": \"Find_Min\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 458,
+        "solution": "===START===\ndef rectangle_area(l, b):\n    return l * b\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the area of a rectangle.\n\n### Signature\ndef rectangle_area(l,b):\n\n### Test\nassert candidate(10,20)==200",
+        "timestamp": "2025-10-17T17:31:42.011999",
+        "response_time": "0.83",
+        "context": "{\"function_name\": \"rectangle_area\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 459,
+        "solution": "===START===\nimport re\n\ndef remove_uppercase(str1):\n    return re.sub('[A-Z]+', '', str1)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove uppercase substrings from a given string.\n\n### Signature\ndef remove_uppercase(str1):\n\n### Test\nassert candidate('cAstyoUrFavoRitETVshoWs') == 'cstyoravoitshos'",
+        "timestamp": "2025-10-17T17:31:43.322749",
+        "response_time": "1.31",
+        "context": "{\"function_name\": \"remove_uppercase\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 460,
+        "solution": "===START===\nfrom typing import List\n\ndef Extract(lst: List[List[int]]) -> List[int]:\n    return [sublist[0] for sublist in lst if sublist]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to get the first element of each sublist.\n\n### Signature\ndef Extract(lst):\n\n### Test\nassert candidate([[1, 2], [3, 4, 5], [6, 7, 8, 9]]) == [1, 3, 6]",
+        "timestamp": "2025-10-17T17:31:44.798838",
+        "response_time": "1.47",
+        "context": "{\"function_name\": \"Extract\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 461,
+        "solution": "===START===\ndef upper_ctr(str):\n    count = 0\n    for char in str:\n        if char.isupper():\n            count += 1\n    return count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to count the upper case characters in a given string.\n\n### Signature\ndef upper_ctr(str):\n\n### Test\nassert candidate('PYthon') == 1",
+        "timestamp": "2025-10-17T17:31:46.263960",
+        "response_time": "1.46",
+        "context": "{\"function_name\": \"upper_ctr\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 462,
+        "solution": "===START===\nfrom itertools import combinations\n\ndef combinations_list(list1):\n    result = []\n    for r in range(len(list1) + 1):\n        for combo in combinations(list1, r):\n            result.append(list(combo))\n    return result\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find all possible combinations of the elements of a given list.\n\n### Signature\ndef combinations_list(list1):\n\n### Test\nassert candidate(['orange', 'red', 'green', 'blue'])==[[], ['orange'], ['red'], ['red', 'orange'], ['green'], ['green', 'orange'], ['green', 'red'], ['green', 'red', 'orange'], ['blue'], ['blue', 'orange'], ['blue', 'red'], ['blue', 'red', 'orange'], ['blue', 'green'], ['blue', 'green', 'orange'], ['blue', 'green', 'red'], ['blue', 'green', 'red', 'orange']]",
+        "timestamp": "2025-10-17T17:31:48.279297",
+        "response_time": "2.01",
+        "context": "{\"function_name\": \"combinations_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 463,
+        "solution": "===START===\nfrom typing import List\n\ndef max_subarray_product(arr: List[int]) -> int:\n    if not arr:\n        return 0\n    \n    max_product = arr[0]\n    min_product = arr[0]\n    result = arr[0]\n    \n    for num in arr[1:]:\n        if num < 0:\n            max_product, min_product = min_product, max_product\n        \n        max_product = max(num, max_product * num)\n        min_product = min(num, min_product * num)\n        \n        result = max(result, max_product)\n    \n    return result\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the maximum product subarray of the given array.\n\n### Signature\ndef max_subarray_product(arr):\n\n### Test\nassert candidate([1, -2, -3, 0, 7, -8, -2]) == 112",
+        "timestamp": "2025-10-17T17:31:52.737089",
+        "response_time": "4.46",
+        "context": "{\"function_name\": \"max_subarray_product\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 464,
+        "solution": "===START===\ndef check_value(d, n):\n    return all(value == n for value in d.values())\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check if all values are same in a dictionary.\n\n### Signature\ndef check_value(dict, n):\n\n### Test\nassert candidate({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12},10)==False",
+        "timestamp": "2025-10-17T17:31:53.697766",
+        "response_time": "0.96",
+        "context": "{\"function_name\": \"check_value\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 465,
+        "solution": "===START===\ndef drop_empty(dict1):\n    return {k: v for k, v in dict1.items() if v is not None and v != ''}\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to drop empty items from a given dictionary.\n\n### Signature\ndef drop_empty(dict1):\n\n### Test\nassert candidate({'c1': 'Red', 'c2': 'Green', 'c3':None})=={'c1': 'Red', 'c2': 'Green'}",
+        "timestamp": "2025-10-17T17:31:55.134964",
+        "response_time": "1.43",
+        "context": "{\"function_name\": \"drop_empty\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 468,
+        "solution": "===START===\nfrom functools import reduce\n\ndef max_product(arr):\n    if not arr:\n        return 0\n    \n    n = len(arr)\n    dp = arr[:]\n    max_product = arr[0]\n    \n    for i in range(1, n):\n        for j in range(i):\n            if arr[i] > arr[j] and dp[i] < dp[j] * arr[i]:\n                dp[i] = dp[j] * arr[i]\n        max_product = max(max_product, dp[i])\n    \n    return max_product\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the maximum product formed by multiplying numbers of an increasing subsequence of that array.\n\n### Signature\ndef max_product(arr):\n\n### Test\nassert candidate([3, 100, 4, 5, 150, 6]) == 3000",
+        "timestamp": "2025-10-17T17:31:58.941635",
+        "response_time": "3.80",
+        "context": "{\"function_name\": \"max_product\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 470,
+        "solution": "===START===\nfrom typing import Tuple\n\ndef add_pairwise(test_tup: Tuple[int, ...]) -> Tuple[int, ...]:\n    return tuple(test_tup[i] + test_tup[i + 1] for i in range(len(test_tup) - 1))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the pairwise addition of the neighboring elements of the given tuple.\n\n### Signature\ndef add_pairwise(test_tup):\n\n### Test\nassert candidate((1, 5, 7, 8, 10)) == (6, 12, 15, 18)",
+        "timestamp": "2025-10-17T17:32:01.039641",
+        "response_time": "2.09",
+        "context": "{\"function_name\": \"add_pairwise\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 471,
+        "solution": "===START===\nfrom functools import reduce\n\ndef find_remainder(arr, n):\n    product = reduce(lambda x, y: x * y, arr)\n    return product % n\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the product of the array multiplication modulo n.\n\n### Signature\ndef find_remainder(arr, n):\n\n### Test\nassert candidate([ 100, 10, 5, 25, 35, 14 ],11) ==9",
+        "timestamp": "2025-10-17T17:32:02.606142",
+        "response_time": "1.56",
+        "context": "{\"function_name\": \"find_remainder\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 472,
+        "solution": "===START===\nfrom typing import List\n\ndef check_Consecutive(l: List[int]) -> bool:\n    if not l:\n        return False\n    sorted_list = sorted(l)\n    return all(b - a == 1 for a, b in zip(sorted_list, sorted_list[1:]))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to check whether the given list contains consecutive numbers or not.\n\n### Signature\ndef check_Consecutive(l):\n\n### Test\nassert candidate([1,2,3,4,5]) == True",
+        "timestamp": "2025-10-17T17:32:04.850210",
+        "response_time": "2.24",
+        "context": "{\"function_name\": \"check_Consecutive\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 473,
+        "solution": "===START===\nfrom typing import List, Tuple, Set\n\ndef tuple_intersection(test_list1: List[Tuple[int, int]], test_list2: List[Tuple[int, int]]) -> Set[Tuple[int, int]]:\n    # Convert each tuple in the lists to a sorted tuple to ensure order doesn't matter\n    sorted_tuples1 = {tuple(sorted(t)) for t in test_list1}\n    sorted_tuples2 = {tuple(sorted(t)) for t in test_list2}\n    \n    # Find the intersection of the two sets\n    intersection = sorted_tuples1.intersection(sorted_tuples2)\n    \n    return intersection\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the tuple intersection of elements in the given tuple list irrespective of their order.\n\n### Signature\ndef tuple_intersection(test_list1, test_list2):\n\n### Test\nassert candidate([(3, 4), (5, 6), (9, 10), (4, 5)] , [(5, 4), (3, 4), (6, 5), (9, 11)]) == {(4, 5), (3, 4), (5, 6)}",
+        "timestamp": "2025-10-17T17:32:09.283216",
+        "response_time": "4.43",
+        "context": "{\"function_name\": \"tuple_intersection\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 474,
+        "solution": "===START===\ndef replace_char(str1, ch, newch):\n    return str1.replace(ch, newch)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to replace characters in a string.\n\n### Signature\ndef replace_char(str1,ch,newch):\n\n### Test\nassert candidate(\"polygon\",\"\"\"y\"\"\",\"\"\"l\"\"\")==(\"pollgon\")",
+        "timestamp": "2025-10-17T17:32:10.431012",
+        "response_time": "1.14",
+        "context": "{\"function_name\": \"replace_char\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 475,
+        "solution": "===START===\nfrom operator import itemgetter\n\ndef sort_counter(dict1):\n    return sorted(dict1.items(), key=itemgetter(1), reverse=True)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to sort a dictionary by value.\n\n### Signature\ndef sort_counter(dict1):\n\n### Test\nassert candidate({'Math':81, 'Physics':83, 'Chemistry':87})==[('Chemistry', 87), ('Physics', 83), ('Math', 81)]",
+        "timestamp": "2025-10-17T17:32:11.783142",
+        "response_time": "1.35",
+        "context": "{\"function_name\": \"sort_counter\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 476,
+        "solution": "===START===\ndef big_sum(nums):\n    if not nums:\n        return 0\n    return max(nums) + min(nums)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of the largest and smallest value in a given array.\n\n### Signature\ndef big_sum(nums):\n\n### Test\nassert candidate([1,2,3]) == 4",
+        "timestamp": "2025-10-17T17:32:12.934044",
+        "response_time": "1.15",
+        "context": "{\"function_name\": \"big_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 477,
+        "solution": "===START===\ndef is_lower(string):\n    return string.lower()\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to convert the given string to lower case.\n\n### Signature\ndef is_lower(string):\n\n### Test\nassert candidate(\"InValid\") == \"invalid\"",
+        "timestamp": "2025-10-17T17:32:13.697063",
+        "response_time": "0.76",
+        "context": "{\"function_name\": \"is_lower\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 478,
+        "solution": "===START===\nimport re\n\ndef remove_lowercase(str1):\n    return re.sub('[a-z]', '', str1)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove lowercase substrings from a given string.\n\n### Signature\ndef remove_lowercase(str1):\n\n### Test\nassert candidate(\"PYTHon\")==(\"\"\"PYTH\"\"\")",
+        "timestamp": "2025-10-17T17:32:14.762165",
+        "response_time": "1.06",
+        "context": "{\"function_name\": \"remove_lowercase\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 479,
+        "solution": "===START===\ndef first_Digit(n) :\n    n = abs(n)  # Ensure n is positive\n    while n >= 10:\n        n //= 10\n    return n\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the first digit of a given number.\n\n### Signature\ndef first_Digit(n) :\n\n### Test\nassert candidate(123) == 1",
+        "timestamp": "2025-10-17T17:32:16.517071",
+        "response_time": "1.75",
+        "context": "{\"function_name\": \"first_Digit\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 554,
+        "solution": "===START===\nfrom typing import List\n\ndef Split(lst: List[int]) -> List[int]:\n    return [num for num in lst if num % 2 != 0]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function which takes a list of integers and only returns the odd ones.\n\n### Signature\ndef Split(list):\n\n### Test\nassert candidate([1,2,3,4,5,6]) == [1,3,5]",
+        "timestamp": "2025-10-17T17:32:18.085924",
+        "response_time": "1.56",
+        "context": "{\"function_name\": \"Split\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 555,
+        "solution": "===START===\ndef difference(n):\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    sum_of_numbers = sum(i for i in range(1, n+1))\n    return sum_of_cubes - sum_of_numbers\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the difference between the sum of cubes of the first n natural numbers and the sum of the first n natural numbers.\n\n### Signature\ndef difference(n) :\n\n### Test\nassert candidate(3) == 30",
+        "timestamp": "2025-10-17T17:32:20.228868",
+        "response_time": "2.14",
+        "context": "{\"function_name\": \"difference\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 556,
+        "solution": "===START===\nfrom typing import List\n\ndef find_Odd_Pair(A: List[int], N: int) -> int:\n    odd_count = 0\n    even_count = 0\n    \n    for num in A:\n        if num % 2 == 0:\n            even_count += 1\n        else:\n            odd_count += 1\n    \n    return odd_count * even_count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to count the number of pairs whose xor value is odd.\n\n### Signature\ndef find_Odd_Pair(A,N) :\n\n### Test\nassert candidate([5,4,7,2,1],5) == 6",
+        "timestamp": "2025-10-17T17:32:23.533127",
+        "response_time": "3.30",
+        "context": "{\"function_name\": \"find_Odd_Pair\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 557,
+        "solution": "===START===\ndef toggle_string(string):\n    return ''.join([char.lower() if char.isupper() else char.upper() for char in string])\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to toggle the case of all characters in a string.\n\n### Signature\ndef toggle_string(string):\n\n### Test\nassert candidate(\"Python\")==(\"pYTHON\")",
+        "timestamp": "2025-10-17T17:32:24.816978",
+        "response_time": "1.28",
+        "context": "{\"function_name\": \"toggle_string\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 558,
+        "solution": "===START===\nfrom itertools import zip_longest\n\ndef digit_distance_nums(n1, n2):\n    str_n1, str_n2 = str(n1).zfill(max(len(str(n1)), len(str(n2)))), str(n2).zfill(max(len(str(n1)), len(str(n2))))\n    return sum(abs(int(d1) - int(d2)) for d1, d2 in zip_longest(str_n1, str_n2))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of the per-digit difference between two integers.\n\n### Signature\ndef digit_distance_nums(n1, n2):\n\n### Test\nassert candidate(1,2) == 1",
+        "timestamp": "2025-10-17T17:32:28.224986",
+        "response_time": "3.40",
+        "context": "{\"function_name\": \"digit_distance_nums\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 559,
+        "solution": "===START===\nfrom typing import List\n\ndef max_sub_array_sum(a: List[int], size: int) -> int:\n    max_so_far = float('-inf')\n    max_ending_here = 0\n    \n    for i in range(size):\n        max_ending_here += a[i]\n        if max_so_far < max_ending_here:\n            max_so_far = max_ending_here\n        if max_ending_here < 0:\n            max_ending_here = 0\n    \n    return max_so_far\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the sum of the largest contiguous sublist in the given list.\n\n### Signature\ndef max_sub_array_sum(a, size):\n\n### Test\nassert candidate([-2, -3, 4, -1, -2, 1, 5, -3], 8) == 7",
+        "timestamp": "2025-10-17T17:32:32.075491",
+        "response_time": "3.85",
+        "context": "{\"function_name\": \"max_sub_array_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 560,
+        "solution": "===START===\nfrom typing import Tuple\n\ndef union_elements(test_tup1: Tuple[int], test_tup2: Tuple[int]) -> Tuple[int]:\n    # Combine both tuples and convert to a set to find unique elements\n    combined_set = set(test_tup1) | set(test_tup2)\n    # Sort the unique elements and convert back to a tuple\n    sorted_tuple = tuple(sorted(combined_set))\n    return sorted_tuple\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the union of the elements of two given tuples and output them in sorted order.\n\n### Signature\ndef union_elements(test_tup1, test_tup2):\n\n### Test\nassert candidate((3, 4, 5, 6),(5, 7, 4, 10) ) == (3, 4, 5, 6, 7, 10)",
+        "timestamp": "2025-10-17T17:32:35.474595",
+        "response_time": "3.40",
+        "context": "{\"function_name\": \"union_elements\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 562,
+        "solution": "===START===\nfrom typing import List\n\ndef Find_Max_Length(lst: List[List[int]]) -> int:\n    if not lst:\n        return 0\n    return max(len(sublist) for sublist in lst)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the length of the longest sublists.\n\n### Signature\ndef Find_Max_Length(lst):\n\n### Test\nassert candidate([[1],[1,4],[5,6,7,8]]) == 4",
+        "timestamp": "2025-10-17T17:32:37.205256",
+        "response_time": "1.73",
+        "context": "{\"function_name\": \"Find_Max_Length\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 563,
+        "solution": "===START===\nimport re\n\ndef extract_values(text):\n    return re.findall(r'\"(.*?)\"', text)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to extract values between quotation marks from a string.\n\n### Signature\ndef extract_values(text):\n\n### Test\nassert extract_values(\"Python\", \"PHP\", \"Java\") == [\"Python\", \"PHP\", \"Java\"]",
+        "timestamp": "2025-10-17T17:32:38.520561",
+        "response_time": "1.31",
+        "context": "{\"function_name\": \"extract_values\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 564,
+        "solution": "===START===\nfrom itertools import combinations\n\ndef count_Pairs(arr, n):\n    count = 0\n    for pair in combinations(arr, 2):\n        if pair[0] != pair[1]:\n            count += 1\n    return count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function which takes a list of integers and counts the number of possible unordered pairs where both elements are unequal.\n\n### Signature\ndef count_Pairs(arr,n):\n\n### Test\nassert candidate([1,2,1],3) == 2",
+        "timestamp": "2025-10-17T17:32:40.610366",
+        "response_time": "2.09",
+        "context": "{\"function_name\": \"count_Pairs\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 565,
+        "solution": "===START===\ndef split(word):\n    return list(word)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to split a string into characters.\n\n### Signature\ndef split(word):\n\n### Test\nassert candidate('python') == ['p','y','t','h','o','n']",
+        "timestamp": "2025-10-17T17:32:41.399886",
+        "response_time": "0.79",
+        "context": "{\"function_name\": \"split\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 566,
+        "solution": "===START===\ndef sum_digits(n):\n    return sum(int(digit) for digit in str(n))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to get the sum of the digits of a non-negative integer.\n\n### Signature\ndef sum_digits(n):\n\n### Test\nassert candidate(345)==12",
+        "timestamp": "2025-10-17T17:32:42.439611",
+        "response_time": "1.04",
+        "context": "{\"function_name\": \"sum_digits\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 567,
+        "solution": "===START===\nfrom typing import List\n\ndef issort_list(list1: List[int]) -> bool:\n    return all(list1[i] <= list1[i + 1] for i in range(len(list1) - 1))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether a specified list is sorted or not.\n\n### Signature\ndef issort_list(list1):\n\n### Test\nassert candidate([1,2,4,6,8,10,12,14,16,17])==True",
+        "timestamp": "2025-10-17T17:32:44.467730",
+        "response_time": "2.02",
+        "context": "{\"function_name\": \"issort_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 568,
+        "solution": "===START===\ndef empty_list(length):\n    return [{} for _ in range(length)]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to create a list of N empty dictionaries.\n\n### Signature\ndef empty_list(length):\n\n### Test\nassert candidate(5)==[{},{},{},{},{}]",
+        "timestamp": "2025-10-17T17:32:45.376244",
+        "response_time": "0.91",
+        "context": "{\"function_name\": \"empty_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 569,
+        "solution": "===START===\nfrom typing import List\n\ndef sort_sublists(list1: List[List[str]]) -> List[List[str]]:\n    return [sorted(sublist) for sublist in list1]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to sort each sublist of strings in a given list of lists.\n\n### Signature\ndef sort_sublists(list1):\n\n### Test\nassert candidate([['green', 'orange'], ['black', 'white'], ['white', 'black', 'orange']])==[['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]",
+        "timestamp": "2025-10-17T17:32:46.910251",
+        "response_time": "1.53",
+        "context": "{\"function_name\": \"sort_sublists\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 572,
+        "solution": "===START===\nfrom collections import Counter\n\ndef two_unique_nums(nums):\n    count = Counter(nums)\n    return [num for num in nums if count[num] == 1]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to remove duplicate numbers from a given number of lists.\n\n### Signature\ndef two_unique_nums(nums):\n\n### Test\nassert candidate([1,2,3,2,3,4,5]) == [1, 4, 5]",
+        "timestamp": "2025-10-17T17:32:48.437809",
+        "response_time": "1.52",
+        "context": "{\"function_name\": \"two_unique_nums\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 573,
+        "solution": "===START===\nfrom functools import reduce\nfrom operator import mul\n\ndef unique_product(list_data):\n    unique_numbers = set(list_data)\n    return reduce(mul, unique_numbers, 1)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to calculate the product of the unique numbers in a given list.\n\n### Signature\ndef unique_product(list_data):\n\n### Test\nassert candidate([10, 20, 30, 40, 20, 50, 60, 40]) ==  720000000",
+        "timestamp": "2025-10-17T17:32:50.137948",
+        "response_time": "1.70",
+        "context": "{\"function_name\": \"unique_product\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 574,
+        "solution": "===START===\nimport math\n\ndef surfacearea_cylinder(r,h):\n    return 2 * math.pi * r * (r + h)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the surface area of a cylinder.\n\n### Signature\ndef surfacearea_cylinder(r,h):\n\n### Test\nassert candidate(10,5)==942.45",
+        "timestamp": "2025-10-17T17:32:51.479327",
+        "response_time": "1.34",
+        "context": "{\"function_name\": \"surfacearea_cylinder\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 576,
+        "solution": "===START===\ndef is_Sub_Array(A, B):\n    len_A = len(A)\n    len_B = len(B)\n    \n    for i in range(len_A):\n        if A[i] == B[0]:\n            j = 1\n            while j < len_B and i + j < len_A and A[i + j] == B[j]:\n                j += 1\n            if j == len_B:\n                return True\n    return False\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to check whether a list is sublist of another or not.\n\n### Signature\ndef is_Sub_Array(A,B):\n\n### Test\nassert candidate([1,4,3,5],[1,2]) == False",
+        "timestamp": "2025-10-17T17:32:54.968866",
+        "response_time": "3.49",
+        "context": "{\"function_name\": \"is_Sub_Array\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 577,
+        "solution": "===START===\ndef last_Digit_Factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    last_digit = 1\n    for i in range(2, n + 1):\n        last_digit = (last_digit * i) % 10\n    return last_digit\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the last digit in factorial of a given number.\n\n### Signature\ndef last_Digit_Factorial(n):\n\n### Test\nassert candidate(4) == 4",
+        "timestamp": "2025-10-17T17:32:57.371917",
+        "response_time": "2.40",
+        "context": "{\"function_name\": \"last_Digit_Factorial\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 578,
+        "solution": "===START===\nfrom itertools import chain\n\ndef interleave_lists(list1, list2, list3):\n    return list(chain(*zip(list1, list2, list3)))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to interleave 3 lists of the same length into a single flat list.\n\n### Signature\ndef interleave_lists(list1,list2,list3):\n\n### Test\nassert candidate([1,2,3,4,5,6,7],[10,20,30,40,50,60,70],[100,200,300,400,500,600,700])==[1, 10, 100, 2, 20, 200, 3, 30, 300, 4, 40, 400, 5, 50, 500, 6, 60, 600, 7, 70, 700]",
+        "timestamp": "2025-10-17T17:32:58.862669",
+        "response_time": "1.49",
+        "context": "{\"function_name\": \"interleave_lists\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 579,
+        "solution": "===START===\nfrom typing import Tuple\n\ndef find_dissimilar(test_tup1: Tuple, test_tup2: Tuple) -> Tuple:\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    dissimilar_elements = set1.symmetric_difference(set2)\n    return tuple(dissimilar_elements)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the dissimilar elements in the given two tuples.\n\n### Signature\ndef find_dissimilar(test_tup1, test_tup2):\n\n### Test\nassert candidate((3, 4, 5, 6), (5, 7, 4, 10)) == (3, 6, 7, 10)",
+        "timestamp": "2025-10-17T17:33:01.480076",
+        "response_time": "2.61",
+        "context": "{\"function_name\": \"find_dissimilar\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 580,
+        "solution": "===START===\nfrom collections.abc import Iterable\n\ndef even_ele(test_tuple, even_fnc):\n    def filter_even_elements(tup):\n        result = []\n        for element in tup:\n            if isinstance(element, Iterable) and not isinstance(element, str):\n                filtered_subtuple = filter_even_elements(element)\n                if filtered_subtuple:\n                    result.append(tuple(filtered_subtuple))\n            elif even_fnc(element):\n                result.append(element)\n        return result\n    \n    return tuple(filter_even_elements(test_tuple))\n\ndef even_fnc(x):\n    return x % 2 == 0\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove uneven elements in the nested mixed tuple.\n\n### Signature\ndef even_ele(test_tuple, even_fnc):\n\n### Test\nassert candidate((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)), 6, 8)",
+        "timestamp": "2025-10-17T17:33:05.648893",
+        "response_time": "4.16",
+        "context": "{\"function_name\": \"extract_even\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 581,
+        "solution": "===START===\nimport math\n\ndef surface_Area(b, s):\n    base_area = b ** 2\n    lateral_surface_area = 2 * b * s\n    return base_area + lateral_surface_area\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the surface area of a square pyramid with a given base edge and height.\n\n### Signature\ndef surface_Area(b,s):\n\n### Test\nassert candidate(3,4) == 33",
+        "timestamp": "2025-10-17T17:33:07.412343",
+        "response_time": "1.76",
+        "context": "{\"function_name\": \"surface_Area\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 582,
+        "solution": "===START===\ndef my_dict(dict1):\n    return len(dict1) == 0\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check if a dictionary is empty\n\n### Signature\ndef my_dict(dict1):\n\n### Test\nassert candidate({10})==False",
+        "timestamp": "2025-10-17T17:33:08.338408",
+        "response_time": "0.92",
+        "context": "{\"function_name\": \"my_dict\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 583,
+        "solution": "===START===\nfrom math import factorial\n\ndef catalan_number(num):\n    return factorial(2 * num) // (factorial(num + 1) * factorial(num))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function which returns nth catalan number.\n\n### Signature\ndef catalan_number(num):\n\n### Test\nassert candidate(10)==16796",
+        "timestamp": "2025-10-17T17:33:09.845413",
+        "response_time": "1.50",
+        "context": "{\"function_name\": \"catalan_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 584,
+        "solution": "===START===\nimport re\n\ndef find_adverbs(text):\n    match = re.search(r'\\b\\w+ly\\b', text)\n    if match:\n        start, end = match.span()\n        return f\"{start}-{end}: {match.group()}\"\n    return None\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the first adverb ending with ly and its positions in a given string.\n\n### Signature\ndef find_adverbs(text):\n\n### Test\nassert candidate(\"Clearly, he has no excuse for such behavior.\") == \"\"\"0-7: Clearly\"\"\"",
+        "timestamp": "2025-10-17T17:33:11.933543",
+        "response_time": "2.08",
+        "context": "{\"function_name\": \"find_adverbs\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 585,
+        "solution": "===START===\nfrom heapq import nlargest\n\ndef expensive_items(items, n):\n    return nlargest(n, items, key=lambda x: x['price'])\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the n most expensive items in a given dataset.\n\n### Signature\ndef expensive_items(items,n):\n\n### Test\nassert candidate([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}],1)==[{'name': 'Item-2', 'price': 555.22}]",
+        "timestamp": "2025-10-17T17:33:13.380177",
+        "response_time": "1.44",
+        "context": "{\"function_name\": \"expensive_items\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 586,
+        "solution": "===START===\nfrom typing import List\n\ndef split_Arr(l: List[int], n: int) -> List[int]:\n    return l[n:] + l[:n]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to split a list at the nth eelment and add the first part to the end.\n\n### Signature\ndef split_Arr(l, n):\n\n### Test\nassert candidate([12,10,5,6,52,36],2) == [5,6,52,36,12,10]",
+        "timestamp": "2025-10-17T17:33:14.984614",
+        "response_time": "1.60",
+        "context": "{\"function_name\": \"split_Arr\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 587,
+        "solution": "===START===\ndef list_tuple(listx):\n    return tuple(listx)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to convert a list to a tuple.\n\n### Signature\ndef list_tuple(listx):\n\n### Test\nassert candidate([5, 10, 7, 4, 15, 3])==(5, 10, 7, 4, 15, 3)",
+        "timestamp": "2025-10-17T17:33:15.837694",
+        "response_time": "0.85",
+        "context": "{\"function_name\": \"list_tuple\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 588,
+        "solution": "===START===\ndef big_diff(nums):\n    if not nums:\n        return 0\n    max_val = max(nums)\n    min_val = min(nums)\n    return max_val - min_val\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the difference between largest and smallest value in a given list.\n\n### Signature\ndef big_diff(nums):\n\n### Test\nassert candidate([1,2,3,4]) == 3",
+        "timestamp": "2025-10-17T17:33:17.363404",
+        "response_time": "1.52",
+        "context": "{\"function_name\": \"big_diff\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 589,
+        "solution": "===START===\nimport math\n\ndef perfect_squares(a, b):\n    start = math.ceil(math.sqrt(a))\n    end = math.floor(math.sqrt(b))\n    return [i**2 for i in range(start, end + 1)]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find perfect squares between two given numbers.\n\n### Signature\ndef perfect_squares(a, b):\n\n### Test\nassert candidate(1,30)==[1, 4, 9, 16, 25]",
+        "timestamp": "2025-10-17T17:33:19.338522",
+        "response_time": "1.97",
+        "context": "{\"function_name\": \"perfect_squares\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 590,
+        "solution": "===START===\nimport math\n\ndef polar_rect(x, y):\n    r = math.sqrt(x**2 + y**2)\n    theta = math.atan2(y, x)\n    rect_complex = complex(x, y)\n    return ((r, theta), rect_complex)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to convert polar coordinates to rectangular coordinates.\n\n### Signature\ndef polar_rect(x,y):\n\n### Test\nassert candidate(3,4)==((5.0, 0.9272952180016122), (-2+2.4492935982947064e-16j))",
+        "timestamp": "2025-10-17T17:33:21.717963",
+        "response_time": "2.38",
+        "context": "{\"function_name\": \"polar_rect\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 591,
+        "solution": "===START===\ndef swap_List(newList):\n    if len(newList) < 2:\n        return newList\n    newList[0], newList[-1] = newList[-1], newList[0]\n    return newList\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to interchange the first and last elements in a list.\n\n### Signature\ndef swap_List(newList):\n\n### Test\nassert candidate([12, 35, 9, 56, 24]) == [24, 35, 9, 56, 12]",
+        "timestamp": "2025-10-17T17:33:23.381202",
+        "response_time": "1.66",
+        "context": "{\"function_name\": \"swap_List\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 592,
+        "solution": "===START===\nfrom math import comb\n\ndef binomial_Coeff(n, k):\n    return comb(n, k)\n\ndef sum_of_product_of_consecutive_binomial_coeffs(n):\n    total_sum = 0\n    for k in range(n):\n        total_sum += binomial_Coeff(n, k) * binomial_Coeff(n, k + 1)\n    return total_sum\n\ndef candidate(n):\n    return sum_of_product_of_consecutive_binomial_coeffs(n)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of the product of consecutive binomial co-efficients.\n\n### Signature\ndef binomial_Coeff(n,k):\n\n### Test\nassert candidate(3) == 15",
+        "timestamp": "2025-10-17T17:33:26.799238",
+        "response_time": "3.41",
+        "context": "{\"function_name\": \"sum_Of_product\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 593,
+        "solution": "===START===\nimport re\n\ndef removezero_ip(ip):\n    return '.'.join(str(int(part)) for part in ip.split('.'))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove leading zeroes from an ip address.\n\n### Signature\ndef removezero_ip(ip):\n\n### Test\nassert candidate(\"216.08.094.196\")==(\"\"\"216.8.94.196\"\"\")",
+        "timestamp": "2025-10-17T17:33:28.069379",
+        "response_time": "1.27",
+        "context": "{\"function_name\": \"removezero_ip\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 594,
+        "solution": "===START===\ndef diff_even_odd(list1):\n    first_even = None\n    first_odd = None\n    \n    for num in list1:\n        if first_even is None and num % 2 == 0:\n            first_even = num\n        if first_odd is None and num % 2 != 0:\n            first_odd = num\n        if first_even is not None and first_odd is not None:\n            break\n    \n    if first_even is not None and first_odd is not None:\n        return first_even - first_odd\n    else:\n        return None\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the difference of the first even and first odd number of a given list.\n\n### Signature\ndef diff_even_odd(list1):\n\n### Test\nassert candidate([1,3,5,7,4,1,6,8])==3",
+        "timestamp": "2025-10-17T17:33:32.176339",
+        "response_time": "4.10",
+        "context": "{\"function_name\": \"diff_even_odd\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 595,
+        "solution": "===START===\ndef min_Swaps(str1, str2):\n    if len(str1) != len(str2):\n        return -1\n    \n    mismatches = 0\n    for i in range(len(str1)):\n        if str1[i] != str2[i]:\n            mismatches += 1\n    \n    if mismatches % 2 != 0:\n        return -1\n    \n    return mismatches // 2\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to count minimum number of swaps required to convert one binary number represented as a string to another.\n\n### Signature\ndef min_Swaps(str1,str2) :\n\n### Test\nassert candidate(\"1101\",\"1110\") == 1",
+        "timestamp": "2025-10-17T17:33:35.418620",
+        "response_time": "3.24",
+        "context": "{\"function_name\": \"min_Swaps\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 596,
+        "solution": "===START===\nimport sys\n\ndef tuple_size(tuple_list):\n    return sys.getsizeof(tuple_list)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the size in bytes of the given tuple.\n\n### Signature\ndef tuple_size(tuple_list):\n\n### Test\nassert candidate((\"A\", 1, \"B\", 2, \"C\", 3) ) == sys.getsizeof((\"A\", 1, \"B\", 2, \"C\", 3))",
+        "timestamp": "2025-10-17T17:33:36.430132",
+        "response_time": "1.01",
+        "context": "{\"function_name\": \"tuple_size\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 597,
+        "solution": "===START===\nfrom bisect import bisect_right\n\ndef find_kth(arr1, arr2, k):\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    \n    low, high = 0, len(arr1)\n    while low <= high:\n        partition1 = (low + high) // 2\n        partition2 = k - partition1\n        \n        maxLeft1 = float('-inf') if partition1 == 0 else arr1[partition1 - 1]\n        minRight1 = float('inf') if partition1 == len(arr1) else arr1[partition1]\n        \n        maxLeft2 = float('-inf') if partition2 == 0 else arr2[partition2 - 1]\n        minRight2 = float('inf') if partition2 == len(arr2) else arr2[partition2]\n        \n        if maxLeft1 <= minRight2 and maxLeft2 <= minRight1:\n            return max(maxLeft1, maxLeft2)\n        elif maxLeft1 > minRight2:\n            high = partition1 - 1\n        else:\n            low = partition1 + 1\n    return -1\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find kth element from the given two sorted arrays.\n\n### Signature\ndef find_kth(arr1, arr2, k):\n\n### Test\nassert candidate([2, 3, 6, 7, 9], [1, 4, 8, 10], 5) == 6",
+        "timestamp": "2025-10-17T17:33:45.007384",
+        "response_time": "8.57",
+        "context": "{\"function_name\": \"find_kth\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 598,
+        "solution": "===START===\ndef armstrong_number(number):\n    digits = [int(d) for d in str(number)]\n    num_digits = len(digits)\n    armstrong_sum = sum(d ** num_digits for d in digits)\n    return armstrong_sum == number\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether the given number is armstrong or not.\n\n### Signature\ndef armstrong_number(number):\n\n### Test\nassert candidate(153)==True",
+        "timestamp": "2025-10-17T17:33:47.111502",
+        "response_time": "2.10",
+        "context": "{\"function_name\": \"armstrong_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 599,
+        "solution": "===START===\ndef sum_average(number):\n    total_sum = number * (number + 1) // 2\n    average = total_sum / number\n    return total_sum, average\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find sum and average of first n natural numbers.\n\n### Signature\ndef sum_average(number):\n\n### Test\nassert candidate(10)==(55, 5.5)",
+        "timestamp": "2025-10-17T17:33:48.567738",
+        "response_time": "1.45",
+        "context": "{\"function_name\": \"sum_average\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 600,
+        "solution": "===START===\ndef is_Even(n) :\n    return n % 2 == 0\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to check whether the given number is even or not.\n\n### Signature\ndef is_Even(n) :\n\n### Test\nassert candidate(1) == False",
+        "timestamp": "2025-10-17T17:33:49.649420",
+        "response_time": "1.08",
+        "context": "{\"function_name\": \"is_Even\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 602,
+        "solution": "===START===\ndef first_repeated_char(str1):\n    seen = set()\n    for char in str1:\n        if char in seen:\n            return char\n        seen.add(char)\n    return None\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the first repeated character in a given string.\n\n### Signature\ndef first_repeated_char(str1):\n\n### Test\nassert candidate(\"abcabc\") == \"a\"",
+        "timestamp": "2025-10-17T17:33:51.317131",
+        "response_time": "1.66",
+        "context": "{\"function_name\": \"first_repeated_char\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 603,
+        "solution": "===START===\nfrom typing import List\n\ndef get_ludic(n: int) -> List[int]:\n    if n < 1:\n        return []\n    \n    ludics = list(range(1, n + 1))\n    index = 1\n    \n    while index < len(ludics):\n        first_ludic = ludics[index]\n        remove_index = index + first_ludic\n        while remove_index < len(ludics):\n            ludics.pop(remove_index)\n            remove_index += first_ludic - 1\n        index += 1\n    \n    return ludics\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to get all lucid numbers smaller than or equal to a given integer.\n\n### Signature\ndef get_ludic(n):\n\n### Test\nassert candidate(10) == [1, 2, 3, 5, 7]",
+        "timestamp": "2025-10-17T17:33:55.539713",
+        "response_time": "4.22",
+        "context": "{\"function_name\": \"get_ludic\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 604,
+        "solution": "===START===\ndef reverse_words(s):\n    return ' '.join(s.split()[::-1])\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to reverse words seperated by spaces in a given string.\n\n### Signature\ndef reverse_words(s):\n\n### Test\nassert candidate(\"python program\")==(\"program python\")",
+        "timestamp": "2025-10-17T17:33:56.460224",
+        "response_time": "0.92",
+        "context": "{\"function_name\": \"reverse_words\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 605,
+        "solution": "===START===\nimport math\n\ndef prime_num(num):\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    i = 5\n    while i * i <= num:\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check if the given integer is a prime number.\n\n### Signature\ndef prime_num(num):\n\n### Test\nassert candidate(13)==True",
+        "timestamp": "2025-10-17T17:34:00.203370",
+        "response_time": "3.74",
+        "context": "{\"function_name\": \"prime_num\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 606,
+        "solution": "===START===\nimport math\n\ndef radian_degree(degree):\n    return math.radians(degree)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to convert degrees to radians.\n\n### Signature\ndef radian_degree(degree):\n\n### Test\nassert candidate(90)==1.5707963267948966",
+        "timestamp": "2025-10-17T17:34:01.197257",
+        "response_time": "0.99",
+        "context": "{\"function_name\": \"radian_degree\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 607,
+        "solution": "===START===\nimport re\n\ndef find_literals(text, pattern):\n    match = re.search(pattern, text)\n    if match:\n        start_index = match.start()\n        end_index = match.end() - 1\n        return (match.re.pattern, start_index, end_index)\n    return None\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to search a string for a regex pattern. The function should return the matching subtring, a start index and an end index.\n\n### Signature\ndef find_literals(text, pattern):\n\n### Test\nassert candidate('The quick brown fox jumps over the lazy dog.', 'fox') == ('fox', 16, 19)",
+        "timestamp": "2025-10-17T17:34:03.546350",
+        "response_time": "2.34",
+        "context": "{\"function_name\": \"find_literals\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 608,
+        "solution": "===START===\nfrom math import factorial\n\ndef bell_Number(n):\n    def stirling_second_kind(n, k):\n        if n == k == 0:\n            return 1\n        if n == 0 or k == 0:\n            return 0\n        return k * stirling_second_kind(n - 1, k) + stirling_second_kind(n - 1, k - 1)\n    \n    bell = 0\n    for k in range(n + 1):\n        bell += stirling_second_kind(n, k)\n    return bell\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find nth bell number.\n\n### Signature\ndef bell_Number(n):\n\n### Test\nassert candidate(2) == 2",
+        "timestamp": "2025-10-17T17:34:07.557357",
+        "response_time": "4.01",
+        "context": "{\"function_name\": \"bell_Number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 610,
+        "solution": "===START===\nfrom typing import List\n\ndef remove_kth_element(list1: List, L: int) -> List:\n    if L < 0 or L >= len(list1):\n        return list1\n    return list1[:L] + list1[L+1:]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function which takes a list and returns a list with the same elements, but the k'th element removed.\n\n### Signature\ndef remove_kth_element(list1, L):\n\n### Test\nassert candidate([1,1,2,3,4,4,5,1],3)==[1, 1, 3, 4, 4, 5, 1]",
+        "timestamp": "2025-10-17T17:34:09.666193",
+        "response_time": "2.10",
+        "context": "{\"function_name\": \"remove_kth_element\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 611,
+        "solution": "===START===\nfrom typing import List\n\ndef max_of_nth(test_list: List[List[int]], N: int) -> int:\n    return max(row[N] for row in test_list)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function which given a matrix represented as a list of lists returns the max of the n'th column.\n\n### Signature\ndef max_of_nth(test_list, N):\n\n### Test\nassert candidate([[5, 6, 7], [1, 3, 5], [8, 9, 19]], 2) == 19",
+        "timestamp": "2025-10-17T17:34:11.242903",
+        "response_time": "1.57",
+        "context": "{\"function_name\": \"max_of_nth\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 612,
+        "solution": "===START===\nfrom typing import List\n\ndef merge(lst: List[List]) -> List[List]:\n    first_elements = [sublist[0] for sublist in lst]\n    second_elements = [sublist[1] for sublist in lst]\n    return [first_elements, second_elements]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function which takes a list of lists, where each sublist has two elements, and returns a list of two lists where the first list has the first element of each sublist and the second one has the second.\n\n### Signature\ndef merge(lst):\n\n### Test\nassert candidate([['x', 'y'], ['a', 'b'], ['m', 'n']]) == [['x', 'a', 'm'], ['y', 'b', 'n']]",
+        "timestamp": "2025-10-17T17:34:13.454271",
+        "response_time": "2.21",
+        "context": "{\"function_name\": \"merge\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 614,
+        "solution": "===START===\nfrom itertools import chain\n\ndef cummulative_sum(test_list):\n    return sum(chain.from_iterable(test_list))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the cumulative sum of all the values that are present in the given tuple list.\n\n### Signature\ndef cummulative_sum(test_list):\n\n### Test\nassert candidate([(1, 3), (5, 6, 7), (2, 6)]) == 30",
+        "timestamp": "2025-10-17T17:34:14.573000",
+        "response_time": "1.11",
+        "context": "{\"function_name\": \"cummulative_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 615,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef average_tuple(nums) -> List[float]:\n    return [sum(t) / len(t) for t in nums]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function which takes a tuple of tuples and returns the average value for each tuple as a list.\n\n### Signature\ndef average_tuple(nums):\n\n### Test\nassert candidate(((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39, 32), (1, 2, 3, 4)))==[30.5, 34.25, 27.0, 23.25]",
+        "timestamp": "2025-10-17T17:34:16.115337",
+        "response_time": "1.54",
+        "context": "{\"function_name\": \"average_tuple\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 616,
+        "solution": "===START===\ndef tuple_modulo(test_tup1, test_tup2):\n    return tuple(a % b for a, b in zip(test_tup1, test_tup2))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function which takes two tuples of the same length and performs the element wise modulo.\n\n### Signature\ndef tuple_modulo(test_tup1, test_tup2):\n\n### Test\nassert candidate((10, 4, 5, 6), (5, 6, 7, 5)) == (0, 4, 5, 1)",
+        "timestamp": "2025-10-17T17:34:17.697748",
+        "response_time": "1.58",
+        "context": "{\"function_name\": \"tuple_modulo\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 617,
+        "solution": "===START===\nfrom math import ceil\n\ndef min_Jumps(steps, d):\n    x, y = steps\n    if d % x == 0:\n        return d // x\n    elif d % y == 0:\n        return d // y\n    else:\n        return min(ceil(d / x), ceil(d / y))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check for the number of jumps required of given length to reach a point of form (d, 0) from origin in a 2d plane.\n\n### Signature\ndef min_Jumps(steps, d):\n\n### Test\nassert candidate((3,4),11)==3.5",
+        "timestamp": "2025-10-17T17:34:20.372326",
+        "response_time": "2.67",
+        "context": "{\"function_name\": \"min_Jumps\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 618,
+        "solution": "===START===\nfrom typing import List\n\ndef div_list(nums1: List[float], nums2: List[float]) -> List[float]:\n    return [a / b for a, b in zip(nums1, nums2)]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to divide two lists element wise.\n\n### Signature\ndef div_list(nums1,nums2):\n\n### Test\nassert candidate([4,5,6],[1, 2, 3])==[4.0,2.5,2.0]",
+        "timestamp": "2025-10-17T17:34:21.994302",
+        "response_time": "1.62",
+        "context": "{\"function_name\": \"div_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 619,
+        "solution": "===START===\nimport re\n\ndef move_num(test_str):\n    letters = re.findall(r'[a-zA-Z]+', test_str)\n    numbers = re.findall(r'\\d+', test_str)\n    return ''.join(letters) + ''.join(numbers)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to move all the numbers to the end of the given string.\n\n### Signature\ndef move_num(test_str):\n\n### Test\nassert candidate('I1love143you55three3000thousand') == 'Iloveyouthreethousand1143553000'",
+        "timestamp": "2025-10-17T17:34:24.043683",
+        "response_time": "2.05",
+        "context": "{\"function_name\": \"move_num\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 620,
+        "solution": "===START===\nfrom typing import List\n\ndef largest_subset(a: List[int]) -> int:\n    if not a:\n        return 0\n\n    n = len(a)\n    a.sort()\n    dp = [1] * n\n\n    for i in range(1, n):\n        for j in range(i):\n            if a[i] % a[j] == 0:\n                dp[i] = max(dp[i], dp[j] + 1)\n\n    return max(dp)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the size of the largest subset of a list of numbers so that every pair is divisible.\n\n### Signature\ndef largest_subset(a):\n\n### Test\nassert candidate([ 1, 3, 6, 13, 17, 18 ]) == 4",
+        "timestamp": "2025-10-17T17:34:27.470399",
+        "response_time": "3.42",
+        "context": "{\"function_name\": \"largest_subset\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 622,
+        "solution": "===START===\nfrom typing import List\n\ndef get_median(arr1: List[int], arr2: List[int], n: int) -> float:\n    # Merge the two sorted arrays\n    merged = []\n    i = j = 0\n    while i < n and j < n:\n        if arr1[i] < arr2[j]:\n            merged.append(arr1[i])\n            i += 1\n        else:\n            merged.append(arr2[j])\n            j += 1\n    \n    # If there are remaining elements in arr1\n    while i < n:\n        merged.append(arr1[i])\n        i += 1\n    \n    # If there are remaining elements in arr2\n    while j < n:\n        merged.append(arr2[j])\n        j += 1\n    \n    # Since the arrays are of the same size, the median will be the average of the two middle elements\n    median = (merged[n - 1] + merged[n]) / 2\n    return median\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the median of two sorted lists of same size.\n\n### Signature\ndef get_median(arr1, arr2, n):\n\n### Test\nassert candidate([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0",
+        "timestamp": "2025-10-17T17:34:34.373073",
+        "response_time": "6.90",
+        "context": "{\"function_name\": \"get_median\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 623,
+        "solution": "===START===\nfrom typing import List\n\ndef nth_nums(nums: List[int], n: int) -> List[int]:\n    return [x ** n for x in nums]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to compute the n-th power of each number in a list.\n\n### Signature\ndef nth_nums(nums,n):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],2)==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]",
+        "timestamp": "2025-10-17T17:34:35.812928",
+        "response_time": "1.44",
+        "context": "{\"function_name\": \"nth_nums\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 624,
+        "solution": "===START===\ndef is_upper(string):\n    return string.upper()\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to convert a given string to uppercase.\n\n### Signature\ndef is_upper(string):\n\n### Test\nassert candidate(\"person\") ==\"PERSON\"",
+        "timestamp": "2025-10-17T17:34:36.635896",
+        "response_time": "0.82",
+        "context": "{\"function_name\": \"is_upper\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 625,
+        "solution": "===START===\ndef swap_List(newList):\n    if len(newList) < 2:\n        return newList\n    newList[0], newList[-1] = newList[-1], newList[0]\n    return newList\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to interchange the first and last element in a given list.\n\n### Signature\ndef swap_List(newList):\n\n### Test\nassert candidate([1,2,3]) == [3,2,1]",
+        "timestamp": "2025-10-17T17:34:38.409926",
+        "response_time": "1.77",
+        "context": "{\"function_name\": \"swap_List\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 626,
+        "solution": "===START===\nimport math\n\ndef triangle_area(r) :\n    if r <= 0:\n        return None\n    # The largest triangle that can be inscribed in a semicircle is a right-angled triangle\n    # with the hypotenuse as the diameter of the semicircle.\n    # The area of such a triangle is (1/2) * base * height, where base and height are both equal to the radius.\n    return (1/2) * r * r\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the area of the largest triangle that can be inscribed in a semicircle with a given radius.\n\n### Signature\ndef triangle_area(r) :\n\n### Test\nassert candidate(-1) == None",
+        "timestamp": "2025-10-17T17:34:42.109209",
+        "response_time": "3.70",
+        "context": "{\"function_name\": \"triangle_area\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 627,
+        "solution": "===START===\ndef find_First_Missing(array, start=0, end=None):\n    if end is None:\n        end = len(array) - 1\n\n    if start > end:\n        return start\n\n    mid = (start + end) // 2\n\n    if array[mid] == mid:\n        return find_First_Missing(array, mid + 1, end)\n    else:\n        return find_First_Missing(array, start, mid - 1)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the smallest missing number from a sorted list of natural numbers.\n\n### Signature\ndef find_First_Missing(array,start=0,end=None):\n\n### Test\nassert candidate([0,1,2,3]) == 4",
+        "timestamp": "2025-10-17T17:34:45.615704",
+        "response_time": "3.50",
+        "context": "{\"function_name\": \"find_First_Missing\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 628,
+        "solution": "===START===\ndef replace_spaces(string):\n    return string.replace(' ', '%20')\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to replace all spaces in the given string with '%20'.\n\n### Signature\ndef replace_spaces(string):\n\n### Test\nassert candidate(\"My Name is Dawood\") == \"\"\"My%20Name%20is%20Dawood\"\"\"",
+        "timestamp": "2025-10-17T17:34:46.559506",
+        "response_time": "0.94",
+        "context": "{\"function_name\": \"replace_spaces\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 629,
+        "solution": "===START===\ndef Split(lst):\n    return [num for num in lst if num % 2 == 0]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find even numbers from a list of numbers.\n\n### Signature\ndef Split(list):\n\n### Test\nassert candidate([1,2,3,4,5]) == [2,4]",
+        "timestamp": "2025-10-17T17:34:47.677245",
+        "response_time": "1.11",
+        "context": "{\"function_name\": \"Split\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 630,
+        "solution": "===START===\nfrom itertools import product\n\ndef adjac(ele, sub = []):\n    x, y = ele\n    return [list(coord) for coord in product(range(x-1, x+2), range(y-1, y+2))]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to extract all the adjacent coordinates of the given coordinate tuple.\n\n### Signature\ndef adjac(ele, sub = []):\n\n### Test\nassert candidate((3, 4)) == [[2, 3], [2, 4], [2, 5], [3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5]]",
+        "timestamp": "2025-10-17T17:34:49.678625",
+        "response_time": "2.00",
+        "context": "{\"function_name\": \"get_coordinates\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 631,
+        "solution": "===START===\ndef replace_spaces(text):\n    result = []\n    for char in text:\n        if char == ' ':\n            result.append('_')\n        elif char == '_':\n            result.append(' ')\n        else:\n            result.append(char)\n    return ''.join(result)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to replace whitespaces with an underscore and vice versa in a given string.\n\n### Signature\ndef replace_spaces(text):\n\n### Test\nassert candidate('Jumanji The Jungle') == 'Jumanji_The_Jungle'",
+        "timestamp": "2025-10-17T17:34:51.735852",
+        "response_time": "2.05",
+        "context": "{\"function_name\": \"replace_spaces\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 632,
+        "solution": "===START===\ndef move_zero(num_list):\n    non_zeroes = [num for num in num_list if num != 0]\n    zeroes = [0] * (len(num_list) - len(non_zeroes))\n    return non_zeroes + zeroes\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to move all zeroes to the end of the given list.\n\n### Signature\ndef move_zero(num_list):\n\n### Test\nassert candidate([1,0,2,0,3,4]) == [1,2,3,4,0,0]",
+        "timestamp": "2025-10-17T17:34:53.832509",
+        "response_time": "2.09",
+        "context": "{\"function_name\": \"move_zero\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 633,
+        "solution": "===START===\ndef pair_xor_Sum(arr,n) :\n    total_sum = 0\n    for i in range(n):\n        for j in range(i + 1, n):\n            total_sum += arr[i] ^ arr[j]\n    return total_sum\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of xor of all pairs of numbers in the given list.\n\n### Signature\ndef pair_xor_Sum(arr,n) :\n\n### Test\nassert candidate([5,9,7,6],4) == 47",
+        "timestamp": "2025-10-17T17:34:55.850188",
+        "response_time": "2.01",
+        "context": "{\"function_name\": \"pair_xor_Sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 635,
+        "solution": "===START===\nfrom typing import List\n\ndef heap_sort(iterable: List[int]) -> List[int]:\n    def heapify(arr, n, i):\n        largest = i\n        l = 2 * i + 1\n        r = 2 * i + 2\n\n        if l < n and arr[i] < arr[l]:\n            largest = l\n\n        if r < n and arr[largest] < arr[r]:\n            largest = r\n\n        if largest != i:\n            arr[i], arr[largest] = arr[largest], arr[i]\n            heapify(arr, n, largest)\n\n    n = len(iterable)\n\n    for i in range(n // 2 - 1, -1, -1):\n        heapify(iterable, n, i)\n\n    for i in range(n - 1, 0, -1):\n        iterable[i], iterable[0] = iterable[0], iterable[i]\n        heapify(iterable, i, 0)\n\n    return iterable\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to sort the given list.\n\n### Signature\ndef heap_sort(iterable):\n\n### Test\nassert candidate([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])==[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",
+        "timestamp": "2025-10-17T17:35:02.855408",
+        "response_time": "7.00",
+        "context": "{\"function_name\": \"heap_sort\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 637,
+        "solution": "===START===\ndef noprofit_noloss(actual_cost, sale_amount):\n    return actual_cost == sale_amount\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether the given amount has no profit and no loss\n\n### Signature\ndef noprofit_noloss(actual_cost,sale_amount):\n\n### Test\nassert candidate(1500,1200)==False",
+        "timestamp": "2025-10-17T17:35:03.967133",
+        "response_time": "1.11",
+        "context": "{\"function_name\": \"noprofit_noloss\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 638,
+        "solution": "===START===\nimport math\n\ndef wind_chill(v, t):\n    if v < 5 or t > 10:\n        return t\n    wind_chill_index = 13.12 + 0.6215 * t - 11.37 * (v ** 0.16) + 0.3965 * t * (v ** 0.16)\n    return math.ceil(wind_chill_index)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to calculate the wind chill index rounded to the next integer given the wind velocity in km/h and a temperature in celsius.\n\n### Signature\ndef wind_chill(v,t):\n\n### Test\nassert candidate(120,35)==40",
+        "timestamp": "2025-10-17T17:35:07.688281",
+        "response_time": "3.72",
+        "context": "{\"function_name\": \"wind_chill\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 639,
+        "solution": "===START===\nfrom typing import List\n\ndef sample_nam(sample_names: List[str]) -> int:\n    return sum(len(name) for name in sample_names if name[0].isupper())\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.\n\n### Signature\ndef sample_nam(sample_names):\n\n### Test\nassert candidate(['sally', 'Dylan', 'rebecca', 'Diana', 'Joanne', 'keith'])==16",
+        "timestamp": "2025-10-17T17:35:09.268091",
+        "response_time": "1.57",
+        "context": "{\"function_name\": \"sample_nam\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 640,
+        "solution": "===START===\nimport re\n\ndef remove_parenthesis(items):\n    return [re.sub(r' \\(.*?\\)', '', item).strip() for item in items]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove the parenthesis and what is inbetween them from a string.\n\n### Signature\ndef remove_parenthesis(items):\n\n### Test\nassert candidate([\"python (chrome)\"])==(\"python\")",
+        "timestamp": "2025-10-17T17:35:10.977664",
+        "response_time": "1.70",
+        "context": "{\"function_name\": \"remove_parenthesis\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 641,
+        "solution": "===START===\ndef is_nonagonal(n):\n    return int(n * (7 * n - 5) / 2)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the nth nonagonal number.\n\n### Signature\ndef is_nonagonal(n):\n\n### Test\nassert candidate(10) == 325",
+        "timestamp": "2025-10-17T17:35:12.244776",
+        "response_time": "1.26",
+        "context": "{\"function_name\": \"is_nonagonal\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 643,
+        "solution": "===START===\nimport re\n\ndef text_match_wordz_middle(text):\n    pattern = r'\\Bz\\B'\n    return bool(re.search(pattern, text))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that checks if a strings contains 'z', except at the start and end of the word.\n\n### Signature\ndef text_match_wordz_middle(text):\n\n### Test\nassert candidate(\"pythonzabc.\")==True",
+        "timestamp": "2025-10-17T17:35:13.647663",
+        "response_time": "1.40",
+        "context": "{\"function_name\": \"text_match_wordz_middle\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 644,
+        "solution": "===START===\nfrom typing import List\n\ndef reverse_Array_Upto_K(input: List[int], k: int) -> List[int]:\n    if k > len(input):\n        k = len(input)\n    return input[:k][::-1] + input[k:]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to reverse an array upto a given position.\n\n### Signature\ndef reverse_Array_Upto_K(input, k):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6],4) == [4, 3, 2, 1, 5, 6]",
+        "timestamp": "2025-10-17T17:35:15.611201",
+        "response_time": "1.96",
+        "context": "{\"function_name\": \"reverse_Array_Upto_K\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 720,
+        "solution": "===START===\ndef add_dict_to_tuple(test_tup, test_dict):\n    return test_tup + (test_dict,)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to add a dictionary to the tuple. The output should be a tuple.\n\n### Signature\ndef add_dict_to_tuple(test_tup, test_dict):\n\n### Test\nassert candidate((4, 5, 6), {\"MSAM\" : 1, \"is\" : 2, \"best\" : 3} ) == (4, 5, 6, {\"\"\"MSAM\"\"\": 1, \"\"\"is\"\"\": 2, \"\"\"best\"\"\": 3})",
+        "timestamp": "2025-10-17T17:35:16.861543",
+        "response_time": "1.25",
+        "context": "{\"function_name\": \"add_dict_to_tuple\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 721,
+        "solution": "===START===\nfrom typing import List\n\ndef maxAverageOfPath(cost: List[List[int]]) -> float:\n    n = len(cost)\n    dp = [[0] * n for _ in range(n)]\n    \n    dp[0][0] = cost[0][0]\n    \n    for i in range(1, n):\n        dp[i][0] = dp[i-1][0] + cost[i][0]\n        dp[0][i] = dp[0][i-1] + cost[0][i]\n    \n    for i in range(1, n):\n        for j in range(1, n):\n            dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + cost[i][j]\n    \n    max_cost = dp[n-1][n-1]\n    max_average = max_cost / (2 * n - 1)\n    \n    return max_average\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nGiven a square matrix of size N*N given as a list of lists, where each cell is associated with a specific cost. A path is defined as a specific sequence of cells that starts from the top-left cell move only right or down and ends on bottom right cell. We want to find a path with the maximum average over all existing paths. Average is computed as total cost divided by the number of cells visited in the path.\n\n### Signature\ndef maxAverageOfPath(cost):\n\n### Test\nassert candidate([[1, 2, 3], [6, 5, 4], [7, 3, 9]]) == 5.2\nassert candidate([[2, 3, 4], [7, 6, 5], [8, 4, 10]]) == 6.2",
+        "timestamp": "2025-10-17T17:35:23.522668",
+        "response_time": "6.66",
+        "context": "{\"function_name\": \"maxAverageOfPath\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 722,
+        "solution": "===START===\ndef filter_data(students, h, w):\n    return {name: data for name, data in students.items() if data[0] > h and data[1] > w}\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nThe input is given as - a dictionary with a student name as a key and a tuple of float (student_height, student_weight) as a value, - minimal height, - minimal weight. Write a function to filter students that have height and weight above the minimum.\n\n### Signature\ndef filter_data(students,h,w):\n\n### Test\nassert candidate({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},6.0,70)=={'Cierra Vega': (6.2, 70)}",
+        "timestamp": "2025-10-17T17:35:25.338554",
+        "response_time": "1.81",
+        "context": "{\"function_name\": \"filter_data\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 723,
+        "solution": "===START===\nfrom typing import List\n\ndef count_same_pair(nums1: List[int], nums2: List[int]) -> int:\n    count = 0\n    for i in range(len(nums1)):\n        if nums1[i] == nums2[i]:\n            count += 1\n    return count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nThe input is defined as two lists of the same length. Write a function to count indices where the lists have the same values.\n\n### Signature\ndef count_same_pair(nums1, nums2):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8],[2, 2, 3, 1, 2, 6, 7, 9])==4\nassert candidate([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8],[2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8])==11",
+        "timestamp": "2025-10-17T17:35:27.654419",
+        "response_time": "2.31",
+        "context": "{\"function_name\": \"count_same_pair\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 724,
+        "solution": "===START===\nimport math\n\ndef power_base_sum(base, power):\n    result = base ** power\n    digit_sum = sum(int(digit) for digit in str(result))\n    return digit_sum\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that takes base and power as arguments and calculate the sum of all digits of the base to the specified power.\n\n### Signature\ndef power_base_sum(base, power):\n\n### Test\nassert candidate(2,100)==115\nassert candidate(8,10)==37",
+        "timestamp": "2025-10-17T17:35:29.228838",
+        "response_time": "1.57",
+        "context": "{\"function_name\": \"power_base_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 725,
+        "solution": "===START===\nimport re\n\ndef extract_quotation(text1):\n    return re.findall(r'\"(.*?)\"', text1)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to extract values between quotation marks \" \" of the given string.\n\n### Signature\ndef extract_quotation(text1):\n\n### Test\nassert extract_quotation('Cortex \"A53\" Based \"multi\" tasking \"Processor\"') == ['A53', 'multi', 'Processor']\nassert extract_quotation('Cast your \"favorite\" entertainment \"apps\"') == ['favorite', 'apps']",
+        "timestamp": "2025-10-17T17:35:30.433114",
+        "response_time": "1.20",
+        "context": "{\"function_name\": \"extract_quotation\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 726,
+        "solution": "===START===\nfrom typing import Tuple\n\ndef multiply_elements(test_tup: Tuple[int, ...]) -> Tuple[int, ...]:\n    return tuple(test_tup[i] * test_tup[i + 1] for i in range(len(test_tup) - 1))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that takes as input a tuple of numbers (t_1,...,t_{N+1}) and returns a tuple of length N where the i-th element of the tuple is equal to t_i * t_{i+1}.\n\n### Signature\ndef multiply_elements(test_tup):\n\n### Test\nassert candidate((1, 5, 7, 8, 10)) == (5, 35, 56, 80)\nassert candidate((2, 4, 5, 6, 7)) == (8, 20, 30, 42)",
+        "timestamp": "2025-10-17T17:35:32.646234",
+        "response_time": "2.21",
+        "context": "{\"function_name\": \"multiply_elements\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 728,
+        "solution": "===START===\ndef sum_list(lst1, lst2):\n    return [a + b for a, b in zip(lst1, lst2)]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function takes as input two lists [a_1,...,a_n], [b_1,...,b_n] and returns [a_1+b_1,...,a_n+b_n].\n\n### Signature\ndef sum_list(lst1,lst2):\n\n### Test\nassert candidate([10,20,30],[15,25,35])==[25,45,65]",
+        "timestamp": "2025-10-17T17:35:33.954329",
+        "response_time": "1.30",
+        "context": "{\"function_name\": \"sum_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 730,
+        "solution": "===START===\nfrom typing import List\n\ndef consecutive_duplicates(nums: List[int]) -> List[int]:\n    if not nums:\n        return []\n    \n    result = [nums[0]]\n    for i in range(1, len(nums)):\n        if nums[i] != nums[i - 1]:\n            result.append(nums[i])\n    \n    return result\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove consecutive duplicates of a given list.\n\n### Signature\ndef consecutive_duplicates(nums):\n\n### Test\nassert candidate([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4 ])==[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4]\nassert candidate([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10])==[10, 15, 19, 18, 17, 26, 17, 18, 10]",
+        "timestamp": "2025-10-17T17:35:36.573191",
+        "response_time": "2.61",
+        "context": "{\"function_name\": \"consecutive_duplicates\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 731,
+        "solution": "===START===\nimport math\n\ndef lateralsurface_cone(r,h):\n    slant_height = math.sqrt(r**2 + h**2)\n    lateral_surface_area = math.pi * r * slant_height\n    return lateral_surface_area\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the lateral surface area of a cone given radius r and the height h.\n\n### Signature\ndef lateralsurface_cone(r,h):\n\n### Test\nassert candidate(5,12)==204.20352248333654",
+        "timestamp": "2025-10-17T17:35:38.559374",
+        "response_time": "1.98",
+        "context": "{\"function_name\": \"lateralsurface_cone\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 732,
+        "solution": "===START===\nimport re\n\ndef replace_specialchar(text):\n    return re.sub(r'[ ,.]', ':', text)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to replace all occurrences of spaces, commas, or dots with a colon.\n\n### Signature\ndef replace_specialchar(text):\n\n### Test\nassert candidate('Python language, Programming language.')==('Python:language::Programming:language:')",
+        "timestamp": "2025-10-17T17:35:39.828416",
+        "response_time": "1.26",
+        "context": "{\"function_name\": \"replace_specialchar\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 733,
+        "solution": "===START===\nfrom typing import List\n\ndef find_first_occurrence(A: List[int], x: int) -> int:\n    left, right = 0, len(A) - 1\n    result = -1\n    while left <= right:\n        mid = (left + right) // 2\n        if A[mid] == x:\n            result = mid\n            right = mid - 1\n        elif A[mid] < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return result\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the index of the first occurrence of a given number in a sorted array.\n\n### Signature\ndef find_first_occurrence(A, x):\n\n### Test\nassert candidate([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1",
+        "timestamp": "2025-10-17T17:35:43.828679",
+        "response_time": "4.00",
+        "context": "{\"function_name\": \"find_first_occurrence\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 734,
+        "solution": "===START===\nfrom itertools import combinations\n\ndef sum_Of_Subarray_Prod(arr):\n    total_sum = 0\n    n = len(arr)\n    for r in range(1, n + 1):\n        for combo in combinations(arr, r):\n            product = 1\n            for num in combo:\n                product *= num\n            total_sum += product\n    return total_sum\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find sum of products of all possible sublists of a given list. https://www.geeksforgeeks.org/sum-of-products-of-all-possible-subarrays/\n\n### Signature\ndef sum_Of_Subarray_Prod(arr):\n\n### Test\nassert candidate([1,2,3]) == 20",
+        "timestamp": "2025-10-17T17:35:46.824792",
+        "response_time": "2.99",
+        "context": "{\"function_name\": \"sum_Of_Subarray_Prod\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 735,
+        "solution": "===START===\nimport math\n\ndef set_middle_bits(n):\n    if n < 3:\n        return n\n    num_bits = int(math.log2(n)) + 1\n    mask = (1 << (num_bits - 2)) - 1\n    mask <<= 1\n    return n ^ mask\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to toggle bits of the number except the first and the last bit. https://www.geeksforgeeks.org/toggle-bits-number-expect-first-last-bits/\n\n### Signature\ndef set_middle_bits(n):\n\n### Test\nassert candidate(9) == 15\nassert candidate(10) == 12",
+        "timestamp": "2025-10-17T17:35:49.612259",
+        "response_time": "2.78",
+        "context": "{\"function_name\": \"toggle_middle_bits\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 736,
+        "solution": "===START===\nfrom bisect import bisect_left\n\ndef left_insertion(a, x):\n    return bisect_left(a, x)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to locate the left insertion point for a specified value in sorted order. https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-data-structure-exercise-24.php\n\n### Signature\ndef left_insertion(a, x):\n\n### Test\nassert candidate([1,2,4,5],6)==4",
+        "timestamp": "2025-10-17T17:35:51.160076",
+        "response_time": "1.54",
+        "context": "{\"function_name\": \"left_insertion\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 737,
+        "solution": "===START===\nimport re\n\ndef check_str(string):\n    return bool(re.match(r'^[aeiouAEIOU]', string))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether the given string is starting with a vowel or not using regex.\n\n### Signature\ndef check_str(string):\n\n### Test\nassert candidate(\"annie\")",
+        "timestamp": "2025-10-17T17:35:52.437422",
+        "response_time": "1.27",
+        "context": "{\"function_name\": \"check_str\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 738,
+        "solution": "===START===\ndef geometric_sum(n):\n    if n < 0:\n        return 0\n    else:\n        return 1 / (pow(2, n)) + geometric_sum(n - 1)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to calculate the geometric sum of n-1. https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-recursion-exercise-9.php\n\n### Signature\ndef geometric_sum(n):\n\n### Test\nassert candidate(7) == 1.9921875",
+        "timestamp": "2025-10-17T17:35:54.262022",
+        "response_time": "1.82",
+        "context": "{\"function_name\": \"geometric_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 739,
+        "solution": "===START===\nimport math\n\ndef find_Index(n):\n    # Calculate the smallest number with n digits\n    smallest_n_digit_number = 10**(n-1)\n    \n    # The formula to find the index i of the triangular number is derived from\n    # the quadratic equation i * (i + 1) / 2 = triangular_number\n    # Rearranging gives i^2 + i - 2 * triangular_number = 0\n    # Using the quadratic formula i = (-b + sqrt(b^2 - 4ac)) / (2a)\n    # Here a = 1, b = 1, c = -2 * smallest_n_digit_number\n    a = 1\n    b = 1\n    c = -2 * smallest_n_digit_number\n    \n    # Calculate the discriminant\n    discriminant = b**2 - 4*a*c\n    \n    # Calculate the positive root of the quadratic equation\n    i = (-b + math.sqrt(discriminant)) / (2*a)\n    \n    # Since i must be an integer, we take the ceiling of the result\n    index = math.ceil(i)\n    \n    return index\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the index of smallest triangular number with n digits. https://www.geeksforgeeks.org/index-of-smallest-triangular-number-with-n-digits/\n\n### Signature\ndef find_Index(n):\n\n### Test\nassert candidate(2) == 4",
+        "timestamp": "2025-10-17T17:36:02.590457",
+        "response_time": "8.32",
+        "context": "{\"function_name\": \"find_Index\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 740,
+        "solution": "===START===\ndef tuple_to_dict(test_tup):\n    res = dict(test_tup[idx : idx + 2] for idx in range(0, len(test_tup), 2))\n    return res\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to convert the given tuple to a key-value dictionary using adjacent elements. https://www.geeksforgeeks.org/python-convert-tuple-to-adjacent-pair-dictionary/\n\n### Signature\ndef tuple_to_dict(test_tup):\n\n### Test\nassert candidate((1, 5, 7, 10, 13, 5)) == {1: 5, 7: 10, 13: 5}",
+        "timestamp": "2025-10-17T17:36:04.402832",
+        "response_time": "1.81",
+        "context": "{\"function_name\": \"tuple_to_dict\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 741,
+        "solution": "===START===\ndef all_Characters_Same(s):\n    return len(set(s)) == 1\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to check whether all the characters are same or not.\n\n### Signature\ndef all_Characters_Same(s) :\n\n### Test\nassert candidate(\"python\") == False",
+        "timestamp": "2025-10-17T17:36:05.460116",
+        "response_time": "1.05",
+        "context": "{\"function_name\": \"all_Characters_Same\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 742,
+        "solution": "===START===\nimport math\n\ndef area_tetrahedron(side):\n    return math.sqrt(3) * (side ** 2)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to caluclate the area of a tetrahedron.\n\n### Signature\ndef area_tetrahedron(side):\n\n### Test\nassert candidate(3)==15.588457268119894",
+        "timestamp": "2025-10-17T17:36:06.680313",
+        "response_time": "1.21",
+        "context": "{\"function_name\": \"area_tetrahedron\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 743,
+        "solution": "===START===\nfrom typing import List\n\ndef rotate_right(lst: List[int], m: int) -> List[int]:\n    n = len(lst)\n    m = m % n  # In case m is greater than n\n    return lst[-m:] + lst[:-m]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to rotate a given list by specified number of items to the right direction. https://www.geeksforgeeks.org/python-program-right-rotate-list-n/\n\n### Signature\ndef rotate_right(list, m):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3)==[8, 9, 10, 1, 2, 3, 4, 5, 6, 7]",
+        "timestamp": "2025-10-17T17:36:08.812676",
+        "response_time": "2.13",
+        "context": "{\"function_name\": \"rotate_right\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 744,
+        "solution": "===START===\ndef check_none(test_tup):\n    return any(element is None for element in test_tup)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check if the given tuple has any none value or not.\n\n### Signature\ndef check_none(test_tup):\n\n### Test\nassert candidate((10, 4, 5, 6, None)) == True",
+        "timestamp": "2025-10-17T17:36:10.224327",
+        "response_time": "1.41",
+        "context": "{\"function_name\": \"check_none\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 745,
+        "solution": "===START===\nfrom typing import List\n\ndef divisible_by_digits(startnum: int, endnum: int) -> List[int]:\n    result = []\n    for num in range(startnum, endnum + 1):\n        str_num = str(num)\n        if all(int(digit) != 0 and num % int(digit) == 0 for digit in str_num):\n            result.append(num)\n    return result\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find numbers within a given range from startnum ti endnum where every number is divisible by every digit it contains. https://www.w3resource.com/python-exercises/lambda/python-lambda-exercise-24.php\n\n### Signature\ndef divisible_by_digits(startnum, endnum):\n\n### Test\nassert candidate(1,22)==[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]",
+        "timestamp": "2025-10-17T17:36:13.380015",
+        "response_time": "3.15",
+        "context": "{\"function_name\": \"divisible_by_digits\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 746,
+        "solution": "===START===\nimport math\n\ndef sector_area(r, a):\n    if a > 360:\n        return None\n    return (a / 360) * math.pi * r ** 2\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find area of a sector. The function takes the radius and angle as inputs. Function should return None if the angle is larger than 360 degrees.\n\n### Signature\ndef sector_area(r,a):\n\n### Test\nassert candidate(4,45)==6.283185307179586",
+        "timestamp": "2025-10-17T17:36:15.276082",
+        "response_time": "1.89",
+        "context": "{\"function_name\": \"sector_area\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 747,
+        "solution": "===START===\nfrom typing import List\n\ndef lcs_of_three(X: str, Y: str, Z: str) -> int:\n    m = len(X)\n    n = len(Y)\n    o = len(Z)\n    \n    # Create a 3D array to store lengths of longest common subsequence.\n    L = [[[0 for i in range(o+1)] for j in range(n+1)] for k in range(m+1)]\n    \n    # Build the L table in bottom-up fashion\n    for i in range(m+1):\n        for j in range(n+1):\n            for k in range(o+1):\n                if i == 0 or j == 0 or k == 0:\n                    L[i][j][k] = 0\n                elif X[i-1] == Y[j-1] and X[i-1] == Z[k-1]:\n                    L[i][j][k] = L[i-1][j-1][k-1] + 1\n                else:\n                    L[i][j][k] = max(max(L[i-1][j][k], L[i][j-1][k]), L[i][j][k-1])\n    \n    # L[m][n][o] contains the length of LCS for X[0..n-1], Y[0..m-1] and Z[0..o-1]\n    return L[m][n][o]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the longest common subsequence for the given three string sequence. https://www.geeksforgeeks.org/lcs-longest-common-subsequence-three-strings/\n\n### Signature\ndef lcs_of_three(X, Y, Z):\n\n### Test\nassert candidate('AGGT12', '12TXAYB', '12XBA') == 2",
+        "timestamp": "2025-10-17T17:36:25.227658",
+        "response_time": "9.95",
+        "context": "{\"function_name\": \"lcs_of_three\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 748,
+        "solution": "===START===\nimport re\n\ndef capital_words_spaces(str1):\n    return re.sub(r'(?<!^)(?=[A-Z])', ' ', str1)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to put spaces between words starting with capital letters in a given string.\n\n### Signature\ndef capital_words_spaces(str1):\n\n### Test\nassert candidate(\"Python\") == \"\"\"Python\"\"\"",
+        "timestamp": "2025-10-17T17:36:26.819697",
+        "response_time": "1.59",
+        "context": "{\"function_name\": \"capital_words_spaces\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 749,
+        "solution": "===START===\nfrom typing import List\n\ndef sort_numeric_strings(nums_str: List[str]) -> List[int]:\n    return sorted(int(num) for num in nums_str)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to sort a given list of strings of numbers numerically. https://www.geeksforgeeks.org/python-sort-numeric-strings-in-a-list/\n\n### Signature\ndef sort_numeric_strings(nums_str):\n\n### Test\nassert candidate( ['4','12','45','7','0','100','200','-12','-500'])==[-500, -12, 0, 4, 7, 12, 45, 100, 200]",
+        "timestamp": "2025-10-17T17:36:28.340173",
+        "response_time": "1.52",
+        "context": "{\"function_name\": \"sort_numeric_strings\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 750,
+        "solution": "===START===\ndef add_tuple(test_list, test_tup):\n    return test_list + list(test_tup)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to add the given tuple to the given list.\n\n### Signature\ndef add_tuple(test_list, test_tup):\n\n### Test\nassert candidate([5, 6, 7], (9, 10)) == [5, 6, 7, 9, 10]",
+        "timestamp": "2025-10-17T17:36:29.462252",
+        "response_time": "1.11",
+        "context": "{\"function_name\": \"add_tuple\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 751,
+        "solution": "===START===\nfrom typing import List\n\ndef check_min_heap_helper(arr: List[int], i: int) -> bool:\n    if i >= (len(arr) - 2) // 2:\n        return True\n    if (arr[i] <= arr[2 * i + 1] and\n        arr[i] <= arr[2 * i + 2] and\n        check_min_heap_helper(arr, 2 * i + 1) and\n        check_min_heap_helper(arr, 2 * i + 2)):\n        return True\n    return False\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check if the given array represents min heap or not. https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/\n\n### Signature\ndef check_min_heap_helper(arr, i):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6]) == True",
+        "timestamp": "2025-10-17T17:36:33.587306",
+        "response_time": "4.12",
+        "context": "{\"function_name\": \"check_min_heap\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 752,
+        "solution": "===START===\ndef jacobsthal_num(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(2, n + 1):\n            a, b = b, 2 * b + a\n        return b\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the nth jacobsthal number. https://www.geeksforgeeks.org/jacobsthal-and-jacobsthal-lucas-numbers/ 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, ...\n\n### Signature\ndef jacobsthal_num(n):\n\n### Test\nassert candidate(5) == 11\nassert candidate(2) == 1",
+        "timestamp": "2025-10-17T17:36:36.426766",
+        "response_time": "2.83",
+        "context": "{\"function_name\": \"jacobsthal_num\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 753,
+        "solution": "===START===\nfrom heapq import nsmallest\n\ndef min_k(test_list, K):\n    return nsmallest(K, test_list, key=lambda x: x[1])\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find minimum k records from tuple list. https://www.geeksforgeeks.org/python-find-minimum-k-records-from-tuple-list/ - in this case a verbatim copy of test cases\n\n### Signature\ndef min_k(test_list, K):\n\n### Test\nassert candidate([('Manjeet', 10), ('Akshat', 4), ('Akash', 2), ('Nikhil', 8)], 2) == [('Akash', 2), ('Akshat', 4)]",
+        "timestamp": "2025-10-17T17:36:37.998533",
+        "response_time": "1.57",
+        "context": "{\"function_name\": \"min_k\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 754,
+        "solution": "===START===\ndef extract_index_list(l1, l2, l3):\n    common_elements = []\n    for i in range(min(len(l1), len(l2), len(l3))):\n        if l1[i] == l2[i] == l3[i]:\n            common_elements.append(l1[i])\n    return common_elements\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWe say that an element is common for lists l1, l2, l3 if it appears in all three lists under the same index. Write a function to find common elements from three lists. The function should return a list.\n\n### Signature\ndef extract_index_list(l1, l2, l3):\n\n### Test\nassert candidate([1, 1, 3, 4, 5, 6, 7],[0, 1, 2, 3, 4, 5, 7],[0, 1, 2, 3, 4, 5, 7])==[1, 7]\nassert candidate([1, 1, 3, 4, 5, 6, 7],[0, 1, 2, 3, 4, 6, 5],[0, 1, 2, 3, 4, 6, 7])==[1, 6]",
+        "timestamp": "2025-10-17T17:36:40.587748",
+        "response_time": "2.58",
+        "context": "{\"function_name\": \"extract_index_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 755,
+        "solution": "===START===\nimport math\n\ndef second_smallest(numbers):\n    if len(numbers) < 2:\n        raise ValueError(\"List must contain at least two elements\")\n    \n    first, second = math.inf, math.inf\n    for number in numbers:\n        if number < first:\n            second = first\n            first = number\n        elif first < number < second:\n            second = number\n    \n    if second == math.inf:\n        raise ValueError(\"List must contain at least two distinct elements\")\n    \n    return second\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the second smallest number in a list.\n\n### Signature\ndef second_smallest(numbers):\n\n### Test\nassert candidate([1, 2, -8, -2, 0, -2])==-2\nassert candidate([1, 1, -0.5, 0, 2, -2, -2])==-0.5",
+        "timestamp": "2025-10-17T17:36:44.340119",
+        "response_time": "3.75",
+        "context": "{\"function_name\": \"second_smallest\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 756,
+        "solution": "===START===\nimport re\n\ndef text_match_zero_one(text):\n    patterns = 'ab+'\n    if re.search(patterns, text):\n        return True\n    else:\n        return False\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that matches a string that has an 'a' followed by one or more 'b's. https://www.w3resource.com/python-exercises/re/python-re-exercise-3.php\n\n### Signature\ndef text_match_zero_one(text):\n\n### Test\nassert candidate(\"ac\")==False\nassert candidate(\"dc\")==False\nassert candidate(\"abbbba\")==True",
+        "timestamp": "2025-10-17T17:36:45.967906",
+        "response_time": "1.62",
+        "context": "{\"function_name\": \"text_match_zero_one\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 757,
+        "solution": "===START===\nfrom typing import List\n\ndef count_reverse_pairs(test_list: List[str]) -> int:\n    count = 0\n    seen = set()\n    for word in test_list:\n        reverse_word = word[::-1]\n        if reverse_word in seen:\n            count += 1\n        seen.add(word)\n    return count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to count the pairs of reverse strings in the given string list. https://www.geeksforgeeks.org/python-program-to-count-the-pairs-of-reverse-strings/\n\n### Signature\ndef count_reverse_pairs(test_list):\n\n### Test\nassert candidate([\"julia\", \"best\", \"tseb\", \"for\", \"ailuj\"])== 2",
+        "timestamp": "2025-10-17T17:36:48.877490",
+        "response_time": "2.90",
+        "context": "{\"function_name\": \"count_reverse_pairs\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 758,
+        "solution": "===START===\nfrom collections import defaultdict\n\ndef unique_sublists(list1):\n    result = defaultdict(int)\n    for sublist in list1:\n        result[tuple(sublist)] += 1\n    return dict(result)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to count lists within a list. The function should return a dictionary where every list is converted to a tuple and the value of such tuple is the number of its occurencies in the original list.\n\n### Signature\ndef unique_sublists(list1):\n\n### Test\nassert candidate([[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]] )=={(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}\nassert candidate([['green', 'orange'], ['black'], ['green', 'orange'], ['white']])=={('green', 'orange'): 2, ('black',): 1, ('white',): 1}",
+        "timestamp": "2025-10-17T17:36:50.602660",
+        "response_time": "1.71",
+        "context": "{\"function_name\": \"unique_sublists\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 759,
+        "solution": "===START===\nimport re\n\ndef is_decimal(num):\n    pattern = re.compile(r\"^\\d+\\.\\d{2}$\")\n    return bool(pattern.match(num))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether a given string is a decimal number with a precision of 2.\n\n### Signature\ndef is_decimal(num):\n\n### Test\nassert candidate('123.11')==True\nassert candidate('e666.86')==False",
+        "timestamp": "2025-10-17T17:36:51.948750",
+        "response_time": "1.34",
+        "context": "{\"function_name\": \"is_decimal\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 760,
+        "solution": "===START===\nfrom typing import List\n\ndef unique_Element(arr: List[int]) -> bool:\n    return len(set(arr)) == 1\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to check whether a list of numbers contains only one distinct element or not.\n\n### Signature\ndef unique_Element(arr):\n\n### Test\nassert candidate([1,1,1]) == True",
+        "timestamp": "2025-10-17T17:36:53.224397",
+        "response_time": "1.27",
+        "context": "{\"function_name\": \"unique_Element\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 762,
+        "solution": "===START===\ndef check_monthnumber_number(monthnum3):\n    return monthnum3 in {4, 6, 9, 11}\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether the given month number contains 30 days or not. Months are given as number from 1 to 12.\n\n### Signature\ndef check_monthnumber_number(monthnum3):\n\n### Test\nassert candidate(6)==True",
+        "timestamp": "2025-10-17T17:36:54.493450",
+        "response_time": "1.26",
+        "context": "{\"function_name\": \"check_monthnumber_number\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 763,
+        "solution": "===START===\nfrom typing import List\n\ndef find_min_diff(arr: List[int], n: int) -> int:\n    if n < 2:\n        return float('inf')  # Not enough elements to form a pair\n    \n    arr.sort()\n    min_diff = float('inf')\n    \n    for i in range(n - 1):\n        min_diff = min(min_diff, arr[i + 1] - arr[i])\n    \n    return min_diff\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the minimum difference between any two elements in a given array. https://www.geeksforgeeks.org/find-minimum-difference-pair/\n\n### Signature\ndef find_min_diff(arr,n):\n\n### Test\nassert candidate((1,5,3,19,18,25),6) == 1",
+        "timestamp": "2025-10-17T17:36:57.764604",
+        "response_time": "3.27",
+        "context": "{\"function_name\": \"find_min_diff\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 764,
+        "solution": "===START===\ndef number_ctr(str):\n    count = 0\n    for char in str:\n        if char.isdigit():\n            count += 1\n    return count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to count number of digits in a given string.\n\n### Signature\ndef number_ctr(str):\n\n### Test\nassert candidate('program2bedone') == 1\nassert candidate('3wonders') == 1",
+        "timestamp": "2025-10-17T17:36:59.261474",
+        "response_time": "1.49",
+        "context": "{\"function_name\": \"number_ctr\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 765,
+        "solution": "===START===\nimport math\n\ndef is_polite(n):\n    # A number is polite if it is not of the form 2^k\n    # We need to find the nth polite number\n    count = 0\n    num = 0\n    while count < n:\n        num += 1\n        # Check if num is not a power of 2\n        if (num & (num - 1)) != 0:\n            count += 1\n    return num\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/\n\n### Signature\ndef is_polite(n):\n\n### Test\nassert candidate(7) == 11",
+        "timestamp": "2025-10-17T17:37:02.864076",
+        "response_time": "3.60",
+        "context": "{\"function_name\": \"is_polite\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 766,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef pair_wise(l1: List[int]) -> List[Tuple[int, int]]:\n    result = []\n    for i in range(len(l1) - 1):\n        result.append((l1[i], l1[i + 1]))\n    return result\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to return a list of all pairs of consecutive items in a given list.\n\n### Signature\ndef pair_wise(l1):\n\n### Test\nassert candidate([1,1,2,3,3,4,4,5])==[(1, 1), (1, 2), (2, 3), (3, 3), (3, 4), (4, 4), (4, 5)]\nassert candidate([1,5,7,9,10])==[(1, 5), (5, 7), (7, 9), (9, 10)]",
+        "timestamp": "2025-10-17T17:37:05.230950",
+        "response_time": "2.36",
+        "context": "{\"function_name\": \"pair_wise\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 767,
+        "solution": "===START===\nfrom typing import List\n\ndef get_pairs_count(arr: List[int], target_sum: int) -> int:\n    count = 0\n    seen = {}\n    for number in arr:\n        complement = target_sum - number\n        if complement in seen:\n            count += seen[complement]\n        if number in seen:\n            seen[number] += 1\n        else:\n            seen[number] = 1\n    return count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to count the number of pairs whose sum is equal to \u2018sum\u2019. The funtion gets as input a list of numbers and the sum,\n\n### Signature\ndef get_pairs_count(arr, sum):\n\n### Test\nassert candidate([1,1,1,1],2) == 6\nassert candidate([1,5,7,-1,5],6) == 3",
+        "timestamp": "2025-10-17T17:37:08.415412",
+        "response_time": "3.18",
+        "context": "{\"function_name\": \"get_pairs_count\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 769,
+        "solution": "===START===\nfrom typing import List\n\ndef Diff(li1: List[int], li2: List[int]) -> List[int]:\n    return [item for item in li1 if item not in li2]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to get the difference between two lists.\n\n### Signature\ndef Diff(li1,li2):\n\n### Test\nassert (candidate([10, 15, 20, 25, 30, 35, 40], [25, 40, 35])) == [10, 20, 30, 15]",
+        "timestamp": "2025-10-17T17:37:10.112114",
+        "response_time": "1.69",
+        "context": "{\"function_name\": \"Diff\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 770,
+        "solution": "===START===\ndef odd_num_sum(n):\n    sum_of_fourth_powers = 0\n    for i in range(n):\n        odd_number = 2 * i + 1\n        sum_of_fourth_powers += odd_number ** 4\n    return sum_of_fourth_powers\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of fourth power of first n odd natural numbers.\n\n### Signature\ndef odd_num_sum(n) :\n\n### Test\nassert candidate(2) == 82",
+        "timestamp": "2025-10-17T17:37:12.481802",
+        "response_time": "2.37",
+        "context": "{\"function_name\": \"odd_num_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 771,
+        "solution": "===START===\nfrom collections import deque\n\ndef check_expression(exp):\n    stack = deque()\n    matching_bracket = {')': '(', '}': '{', ']': '['}\n    \n    for char in exp:\n        if char in matching_bracket.values():\n            stack.append(char)\n        elif char in matching_bracket.keys():\n            if stack and stack[-1] == matching_bracket[char]:\n                stack.pop()\n            else:\n                return False\n    \n    return not stack\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check if the given expression is balanced or not. https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/\n\n### Signature\ndef check_expression(exp):\n\n### Test\nassert candidate(\"{()}[{}]\") == True",
+        "timestamp": "2025-10-17T17:37:15.941121",
+        "response_time": "3.46",
+        "context": "{\"function_name\": \"check_expression\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 772,
+        "solution": "===START===\nimport re\n\ndef remove_length(test_str, K):\n    # Use regex to find all words and filter out those with length K\n    words = re.findall(r'\\b\\w+\\b', test_str)\n    filtered_words = [word for word in words if len(word) != K]\n    # Join the filtered words back into a string\n    return ' '.join(filtered_words)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove all the words with k length in the given string.\n\n### Signature\ndef remove_length(test_str, K):\n\n### Test\nassert candidate('The person is most value tet', 3) == 'person is most value'",
+        "timestamp": "2025-10-17T17:37:18.826132",
+        "response_time": "2.88",
+        "context": "{\"function_name\": \"remove_length\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 773,
+        "solution": "===START===\nimport re\n\ndef occurance_substring(text, pattern):\n    match = re.search(pattern, text)\n    if match:\n        start = match.start()\n        end = match.end()\n        return (pattern, start, end)\n    else:\n        return None\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the occurrence and position of the substrings within a string. Return None if there is no match.\n\n### Signature\ndef occurance_substring(text,pattern):\n\n### Test\nassert candidate('python programming, python language','python')==('python', 0, 6)\nassert candidate('python programming,programming language','programming')==('programming', 7, 18)",
+        "timestamp": "2025-10-17T17:37:21.021189",
+        "response_time": "2.19",
+        "context": "{\"function_name\": \"occurance_substring\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 775,
+        "solution": "===START===\ndef odd_position(nums):\n    for index in range(1, len(nums), 2):\n        if nums[index] % 2 == 0:\n            return False\n    return True\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to check whether every odd index contains odd numbers of a given list.\n\n### Signature\ndef odd_position(nums):\n\n### Test\nassert candidate([2,1,4,3,6,7,6,3]) == True",
+        "timestamp": "2025-10-17T17:37:22.608032",
+        "response_time": "1.58",
+        "context": "{\"function_name\": \"odd_position\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 776,
+        "solution": "===START===\ndef count_vowels(test_str):\n    vowels = set('aeiou')\n    count = 0\n    for i in range(1, len(test_str) - 1):\n        if test_str[i - 1] in vowels or test_str[i + 1] in vowels:\n            count += 1\n    if len(test_str) > 1:\n        if test_str[0] in vowels and test_str[1] not in vowels:\n            count += 1\n        if test_str[-1] in vowels and test_str[-2] not in vowels:\n            count += 1\n    return count\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to count those characters which have vowels as their neighbors in the given string.\n\n### Signature\ndef count_vowels(test_str):\n\n### Test\nassert candidate('bestinstareels') == 7",
+        "timestamp": "2025-10-17T17:37:27.022038",
+        "response_time": "4.41",
+        "context": "{\"function_name\": \"count_vowels\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 777,
+        "solution": "===START===\nfrom collections import Counter\n\ndef find_sum(arr):\n    element_counts = Counter(arr)\n    non_repeated_elements = [element for element, count in element_counts.items() if count == 1]\n    return sum(non_repeated_elements)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of non-repeated elements in a given list.\n\n### Signature\ndef find_sum(arr):\n\n### Test\nassert candidate([1,2,3,1,1,4,5,6]) == 21",
+        "timestamp": "2025-10-17T17:37:29.043898",
+        "response_time": "2.02",
+        "context": "{\"function_name\": \"find_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 778,
+        "solution": "===START===\nfrom itertools import groupby\n\ndef pack_consecutive_duplicates(list1):\n    return [list(group) for _, group in groupby(list1)]\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to pack consecutive duplicates of a given list elements into sublists.\n\n### Signature\ndef pack_consecutive_duplicates(list1):\n\n### Test\nassert candidate([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4])==[[0, 0], [1], [2], [3], [4, 4], [5], [6, 6, 6], [7], [8], [9], [4, 4]]",
+        "timestamp": "2025-10-17T17:37:30.376930",
+        "response_time": "1.33",
+        "context": "{\"function_name\": \"pack_consecutive_duplicates\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 779,
+        "solution": "===START===\nfrom collections import defaultdict\n\ndef unique_sublists(list1):\n    count_dict = defaultdict(int)\n    for sublist in list1:\n        count_dict[tuple(sublist)] += 1\n    return dict(count_dict)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to count the number of lists within a list. The function should return a dictionary, where every list is turned to a tuple, and the value of the tuple is the number of its occurrences.\n\n### Signature\ndef unique_sublists(list1):\n\n### Test\nassert candidate([[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]])=={(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}",
+        "timestamp": "2025-10-17T17:37:32.279547",
+        "response_time": "1.90",
+        "context": "{\"function_name\": \"unique_sublists\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 780,
+        "solution": "===START===\nfrom itertools import combinations\n\ndef find_combinations(test_list):\n    res = [(b1 + a1, b2 + a2) for (a1, a2), (b1, b2) in combinations(test_list, 2)]\n    return res\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the combinations of sums with tuples in the given tuple list. https://www.geeksforgeeks.org/python-combinations-of-sum-with-tuples-in-tuple-list/\n\n### Signature\ndef find_combinations(test_list):\n\n### Test\nassert candidate([(2, 4), (6, 7), (5, 1), (6, 10)]) == [(8, 11), (7, 5), (8, 14), (11, 8), (12, 17), (11, 11)]",
+        "timestamp": "2025-10-17T17:37:34.393247",
+        "response_time": "2.11",
+        "context": "{\"function_name\": \"find_combinations\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 781,
+        "solution": "===START===\ndef count_divisors(n):\n    count = 0\n    for i in range(1, n + 1):\n        if n % i == 0:\n            count += 1\n    return count % 2 == 0\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to check whether the count of divisors is even. https://www.w3resource.com/python-exercises/basic/python-basic-1-exercise-24.php\n\n### Signature\ndef count_divisors(n) :\n\n### Test\nassert candidate(10)",
+        "timestamp": "2025-10-17T17:37:36.501433",
+        "response_time": "2.10",
+        "context": "{\"function_name\": \"count_divisors\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 782,
+        "solution": "===START===\nfrom typing import List\n\ndef odd_length_sum(arr: List[int]) -> int:\n    total_sum = 0\n    n = len(arr)\n    for i in range(n):\n        # Calculate the number of subarrays in which arr[i] is present\n        count = ((i + 1) * (n - i) + 1) // 2\n        # If count is odd, add arr[i] to the total sum\n        if count % 2 == 1:\n            total_sum += arr[i]\n    return total_sum\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of all odd length subarrays. https://www.geeksforgeeks.org/sum-of-all-odd-length-subarrays/\n\n### Signature\ndef odd_length_sum(arr):\n\n### Test\nassert candidate([1,2,4]) == 14",
+        "timestamp": "2025-10-17T17:37:40.496015",
+        "response_time": "3.99",
+        "context": "{\"function_name\": \"odd_length_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 783,
+        "solution": "===START===\nfrom math import floor\n\ndef rgb_to_hsv(r, g, b):\n    r, g, b = r / 255.0, g / 255.0, b / 255.0\n    mx = max(r, g, b)\n    mn = min(r, g, b)\n    df = mx - mn\n    if mx == mn:\n        h = 0\n    elif mx == r:\n        h = (60 * ((g - b) / df) + 360) % 360\n    elif mx == g:\n        h = (60 * ((b - r) / df) + 120) % 360\n    elif mx == b:\n        h = (60 * ((r - g) / df) + 240) % 360\n    if mx == 0:\n        s = 0\n    else:\n        s = (df / mx) * 100\n    v = mx * 100\n    return h, s, v\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to convert rgb color to hsv color. https://www.geeksforgeeks.org/program-change-rgb-color-model-hsv-color-model/\n\n### Signature\ndef rgb_to_hsv(r, g, b):\n\n### Test\nassert candidate(255, 255, 255)==(0, 0.0, 100.0)",
+        "timestamp": "2025-10-17T17:37:48.336994",
+        "response_time": "7.83",
+        "context": "{\"function_name\": \"rgb_to_hsv\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 784,
+        "solution": "===START===\ndef mul_even_odd(list1):\n    first_even = None\n    first_odd = None\n    \n    for num in list1:\n        if first_even is None and num % 2 == 0:\n            first_even = num\n        if first_odd is None and num % 2 != 0:\n            first_odd = num\n        if first_even is not None and first_odd is not None:\n            break\n    \n    if first_even is not None and first_odd is not None:\n        return first_even * first_odd\n    else:\n        return None\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find the product of first even and odd number of a given list.\n\n### Signature\ndef mul_even_odd(list1):\n\n### Test\nassert candidate([1,3,5,7,4,1,6,8])==4",
+        "timestamp": "2025-10-17T17:37:52.437735",
+        "response_time": "4.09",
+        "context": "{\"function_name\": \"mul_even_odd\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 785,
+        "solution": "===START===\nimport ast\n\ndef tuple_str_int(test_str):\n    return ast.literal_eval(test_str)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to convert tuple string to integer tuple.\n\n### Signature\ndef tuple_str_int(test_str):\n\n### Test\nassert candidate(\"(7, 8, 9)\") == (7, 8, 9)\nassert candidate(\"(1, 2, 3)\") == (1, 2, 3)",
+        "timestamp": "2025-10-17T17:37:53.442250",
+        "response_time": "1.00",
+        "context": "{\"function_name\": \"tuple_str_int\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 786,
+        "solution": "===START===\nfrom bisect import bisect_right\n\ndef right_insertion(a, x):\n    return bisect_right(a, x)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to locate the right insertion point for a specified value in sorted order.\n\n### Signature\ndef right_insertion(a, x):\n\n### Test\nassert candidate([1,2,4,5],6)==4",
+        "timestamp": "2025-10-17T17:37:54.702473",
+        "response_time": "1.25",
+        "context": "{\"function_name\": \"right_insertion\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 787,
+        "solution": "===START===\nimport re\n\ndef text_match_three(text):\n    pattern = r'ab{3}'\n    return bool(re.search(pattern, text))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that matches a string that has an a followed by three 'b'.\n\n### Signature\ndef text_match_three(text):\n\n### Test\nassert not candidate(\"ac\")\nassert not candidate(\"dc\")",
+        "timestamp": "2025-10-17T17:37:56.032701",
+        "response_time": "1.32",
+        "context": "{\"function_name\": \"text_match_three\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 788,
+        "solution": "===START===\ndef new_tuple(test_list, test_str):\n    return tuple(f'\"\"\"{item}\"\"\"' for item in test_list) + (f'\"\"\"{test_str}\"\"\"',)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to create a new tuple from the given string and list.\n\n### Signature\ndef new_tuple(test_list, test_str):\n\n### Test\nassert candidate([\"WEB\", \"is\"], \"best\") == (\"\"\"WEB\"\"\", \"\"\"is\"\"\", \"\"\"best\"\"\")",
+        "timestamp": "2025-10-17T17:37:57.640234",
+        "response_time": "1.60",
+        "context": "{\"function_name\": \"new_tuple\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 790,
+        "solution": "===START===\ndef even_position(nums):\n    for i in range(0, len(nums), 2):\n        if nums[i] % 2 != 0:\n            return False\n    return True\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to check whether every even index contains even numbers of a given list.\n\n### Signature\ndef even_position(nums):\n\n### Test\nassert candidate([3,2,1]) == False",
+        "timestamp": "2025-10-17T17:37:59.437249",
+        "response_time": "1.79",
+        "context": "{\"function_name\": \"even_position\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 791,
+        "solution": "===START===\ndef remove_nested(test_tup):\n    return tuple(item for item in test_tup if not isinstance(item, tuple))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove tuples from the given tuple.\n\n### Signature\ndef remove_nested(test_tup):\n\n### Test\nassert candidate((1, 5, 7, (4, 6), 10)) == (1, 5, 7, 10)\nassert candidate((2, 6, 8, (5, 7), 11)) == (2, 6, 8, 11)",
+        "timestamp": "2025-10-17T17:38:00.700826",
+        "response_time": "1.26",
+        "context": "{\"function_name\": \"remove_nested\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 792,
+        "solution": "===START===\ndef count_list(input_list):\n    return len(input_list)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to count the number of lists in a given number of lists.\n\n### Signature\ndef count_list(input_list):\n\n### Test\nassert candidate([[1, 3], [5, 7], [9, 11], [13, 15, 17]]) == 4",
+        "timestamp": "2025-10-17T17:38:01.567028",
+        "response_time": "0.86",
+        "context": "{\"function_name\": \"count_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 793,
+        "solution": "===START===\ndef last(arr, x):\n    import bisect\n    # Find the position where x would be inserted to keep the array sorted\n    pos = bisect.bisect_right(arr, x)\n    # Check if the element before the insertion point is x\n    if pos > 0 and arr[pos - 1] == x:\n        return pos - 1\n    return -1\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the last position of an element in a sorted array.\n\n### Signature\ndef last(arr,x):\n\n### Test\nassert candidate([1,2,3],1) == 0",
+        "timestamp": "2025-10-17T17:38:04.454686",
+        "response_time": "2.88",
+        "context": "{\"function_name\": \"last\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 794,
+        "solution": "===START===\nimport re\n\ndef text_starta_endb(text):\n    pattern = r'^a.*b$'\n    return bool(re.match(pattern, text))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that matches a string that has an 'a' followed by anything, ending in 'b'.\n\n### Signature\ndef text_starta_endb(text):\n\n### Test\nassert candidate(\"aabbbb\")",
+        "timestamp": "2025-10-17T17:38:05.864228",
+        "response_time": "1.40",
+        "context": "{\"function_name\": \"text_starta_endb\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 796,
+        "solution": "===START===\ndef return_sum(dict):\n    return sum(dict.values())\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite function to find the sum of all items in the given dictionary.\n\n### Signature\ndef return_sum(dict):\n\n### Test\nassert candidate({'a': 100, 'b':200, 'c':300}) == 600",
+        "timestamp": "2025-10-17T17:38:06.646868",
+        "response_time": "0.77",
+        "context": "{\"function_name\": \"return_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 797,
+        "solution": "===START===\ndef sum_odd(l, r):\n    total = 0\n    for number in range(l, r + 1):\n        if number % 2 != 0:\n            total += number\n    return total\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of all odd natural numbers within the range l and r.\n\n### Signature\ndef sum_odd(n):\n\n### Test\nassert candidate(2,5) == 8",
+        "timestamp": "2025-10-17T17:38:08.385797",
+        "response_time": "1.73",
+        "context": "{\"function_name\": \"sum_in_range\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 798,
+        "solution": "===START===\ndef _sum(arr):\n    return sum(arr)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the sum of an array.\n\n### Signature\ndef _sum(arr):\n\n### Test\nassert candidate([1, 2, 3]) == 6",
+        "timestamp": "2025-10-17T17:38:09.229532",
+        "response_time": "0.83",
+        "context": "{\"function_name\": \"_sum\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 799,
+        "solution": "===START===\ndef left_rotate(n, d):\n    return (n << d) | (n >> (32 - d))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to that rotate left bits by d bits a given number. We assume that the number is 32 bit.\n\n### Signature\ndef left_rotate(n,d):\n\n### Test\nassert candidate(16,2) == 64\nassert candidate(10,2) == 40\nassert candidate(99,3) == 792",
+        "timestamp": "2025-10-17T17:38:10.429836",
+        "response_time": "1.19",
+        "context": "{\"function_name\": \"left_rotate\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 800,
+        "solution": "===START===\nimport re\n\ndef remove_all_spaces(text):\n    return re.sub(r'\\s+', '', text)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to remove all whitespaces from a string.\n\n### Signature\ndef remove_all_spaces(text):\n\n### Test\nassert candidate('python  program')==('pythonprogram')\nassert candidate('python   programming    language')==('pythonprogramminglanguage')",
+        "timestamp": "2025-10-17T17:38:11.537208",
+        "response_time": "1.10",
+        "context": "{\"function_name\": \"remove_all_spaces\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 801,
+        "solution": "===START===\ndef test_three_equal(x, y, z):\n    if x == y == z:\n        return 3\n    elif x == y or y == z or x == z:\n        return 2\n    else:\n        return 0\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to count the number of equal numbers from three given integers.\n\n### Signature\ndef test_three_equal(x,y,z):\n\n### Test\nassert candidate(1,1,1) == 3",
+        "timestamp": "2025-10-17T17:38:13.514263",
+        "response_time": "1.97",
+        "context": "{\"function_name\": \"test_three_equal\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 802,
+        "solution": "===START===\nfrom typing import List\n\ndef count_rotation(arr: List[int]) -> int:\n    n = len(arr)\n    for i in range(1, n):\n        if arr[i] < arr[i - 1]:\n            return i\n    return 0\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to count the number of rotations required to generate a sorted array. https://www.geeksforgeeks.org/count-of-rotations-required-to-generate-a-sorted-array/\n\n### Signature\ndef count_rotation(arr):\n\n### Test\nassert candidate([3,2,1]) == 1\nassert candidate([4,5,1,2,3]) == 2",
+        "timestamp": "2025-10-17T17:38:15.649322",
+        "response_time": "2.13",
+        "context": "{\"function_name\": \"count_rotation\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 803,
+        "solution": "===START===\nimport math\n\ndef is_perfect_square(n):\n    if n < 0:\n        return False\n    root = math.isqrt(n)\n    return root * root == n\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether the given number is a perfect square or not. https://www.geeksforgeeks.org/check-if-given-number-is-perfect-square-in-cpp/\n\n### Signature\ndef is_perfect_square(n) :\n\n### Test\nassert not candidate(10)\nassert candidate(36)\nassert not candidate(14)",
+        "timestamp": "2025-10-17T17:38:17.289533",
+        "response_time": "1.63",
+        "context": "{\"function_name\": \"is_perfect_square\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 804,
+        "solution": "===START===\nfrom typing import List\n\ndef is_product_even(arr: List[int]) -> bool:\n    for num in arr:\n        if num % 2 == 0:\n            return True\n    return False\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check whether the product of numbers in a list is even or not.\n\n### Signature\ndef is_product_even(arr):\n\n### Test\nassert candidate([1,2,3])",
+        "timestamp": "2025-10-17T17:38:19.036738",
+        "response_time": "1.74",
+        "context": "{\"function_name\": \"is_product_even\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 805,
+        "solution": "===START===\nfrom functools import reduce\n\ndef max_sum_list(lists):\n    return reduce(lambda a, b: a if sum(a) > sum(b) else b, lists)\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function that returns the list in a list of lists whose sum of elements is the highest.\n\n### Signature\ndef max_sum_list(lists):\n\n### Test\nassert candidate([[1,2,3], [4,5,6], [10,11,12], [7,8,9]])==[10, 11, 12]",
+        "timestamp": "2025-10-17T17:38:20.543071",
+        "response_time": "1.50",
+        "context": "{\"function_name\": \"max_sum_list\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 806,
+        "solution": "===START===\nimport re\n\ndef max_run_uppercase(test_str):\n    # Find all sequences of uppercase letters\n    uppercase_runs = re.findall('[A-Z]+', test_str)\n    # Return the length of the longest sequence found\n    return max(len(run) for run in uppercase_runs) if uppercase_runs else 0\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to find maximum run of uppercase characters in the given string.\n\n### Signature\ndef max_run_uppercase(test_str):\n\n### Test\nassert candidate('GeMKSForGERksISBESt') == 5",
+        "timestamp": "2025-10-17T17:38:23.050228",
+        "response_time": "2.50",
+        "context": "{\"function_name\": \"max_run_uppercase\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 807,
+        "solution": "===START===\ndef first_odd(nums):\n    for num in nums:\n        if num % 2 != 0:\n            return num\n    return None\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a python function to find the first odd number in a given list of numbers.\n\n### Signature\ndef first_odd(nums):\n\n### Test\nassert candidate([1,3,5]) == 1",
+        "timestamp": "2025-10-17T17:38:24.661883",
+        "response_time": "1.60",
+        "context": "{\"function_name\": \"first_odd\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 808,
+        "solution": "===START===\ndef check_K(test_tup, K):\n    return K in test_tup\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check if the given tuples contain the k or not.\n\n### Signature\ndef check_K(test_tup, K):\n\n### Test\nassert candidate((10, 4, 5, 6, 8), 6) == True",
+        "timestamp": "2025-10-17T17:38:25.690096",
+        "response_time": "1.02",
+        "context": "{\"function_name\": \"check_K\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b_second_half_td",
+        "dataset_row_id": 809,
+        "solution": "===START===\nfrom typing import Tuple\n\ndef check_smaller(test_tup1: Tuple[int], test_tup2: Tuple[int]) -> bool:\n    return all(x > y for x, y in zip(test_tup1, test_tup2))\n===END===",
+        "llm_name": "Qwen/Qwen2.5-Coder-32B-Instruct",
+        "prompt": "### Prompt\nWrite a function to check if each element of second tuple is smaller than its corresponding element in the first tuple.\n\n### Signature\ndef check_smaller(test_tup1, test_tup2):\n\n### Test\nassert candidate((1, 2, 3), (2, 3, 4)) == False",
+        "timestamp": "2025-10-17T17:38:27.701047",
+        "response_time": "2.00",
+        "context": "{\"function_name\": \"check_smaller\"}"
+    }
+]

@@ -1,0 +1,2142 @@
+[
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 425,
+    "solution": "def count_element_in_list(list1, x):\n    count = 0\n    for item in list1:\n        if isinstance(item, list):\n            if x in item:\n                count += 1\n        elif item == x:\n            count += 1\n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to count the number of sublists containing a particular element.\n\n### Signature\ndef count_element_in_list(list1, x):",
+    "timestamp": "2025-10-17T19:07:25.032684",
+    "response_time": "3.06",
+    "context": "{\"function_name\": \"count_element_in_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 426,
+    "solution": "def filter_oddnumbers(nums):\n    return [num for num in nums if num % 2 != 0]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to filter odd numbers.\n\n### Signature\ndef filter_oddnumbers(nums):",
+    "timestamp": "2025-10-17T19:07:27.012866",
+    "response_time": "1.98",
+    "context": "{\"function_name\": \"filter_oddnumbers\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 427,
+    "solution": "from datetime import datetime\n\ndef change_date_format(dt):\n    try:\n        # Parse the input date string\n        date_obj = datetime.strptime(dt, '%Y-%m-%d')\n        # Convert to desired format\n        return date_obj.strftime('%d-%m-%Y')\n    except ValueError:\n        return \"Invalid date format\"",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to convert a date of yyyy-mm-dd format to dd-mm-yyyy format.\n\n### Signature\ndef change_date_format(dt):",
+    "timestamp": "2025-10-17T19:07:30.092687",
+    "response_time": "3.08",
+    "context": "{\"function_name\": \"change_date_format\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 428,
+    "solution": "def shell_sort(my_list):\n    n = len(my_list)\n    gap = n // 2\n\n    while gap > 0:\n        for i in range(gap, n):\n            temp = my_list[i]\n            j = i\n\n            while j >= gap and my_list[j - gap] > temp:\n                my_list[j] = my_list[j - gap]\n                j -= gap\n\n            my_list[j] = temp\n        gap //= 2\n\n    return my_list",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to sort the given array by using shell sort.\n\n### Signature\ndef shell_sort(my_list):",
+    "timestamp": "2025-10-17T19:07:33.721575",
+    "response_time": "3.63",
+    "context": "{\"function_name\": \"shell_sort\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 429,
+    "solution": "def and_tuples(test_tup1, test_tup2):\n    # Convert tuples to sets\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    \n    # Find common elements\n    common_elements = set1.intersection(set2)\n    \n    # Convert back to tuple\n    result = tuple(common_elements)\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to extract the elementwise and tuples from the given two tuples.\n\n### Signature\ndef and_tuples(test_tup1, test_tup2):",
+    "timestamp": "2025-10-17T19:07:35.778918",
+    "response_time": "2.06",
+    "context": "{\"function_name\": \"and_tuples\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 430,
+    "solution": "def parabola_directrix(a, b, c):\n    \"\"\"\n    Find the directrix of a parabola given its quadratic equation in the form ax\u00b2 + bx + c\n    Returns the y-coordinate of the directrix line\n    \n    Parameters:\n    a (float): coefficient of x\u00b2\n    b (float): coefficient of x\n    c (float): constant term\n    \n    Returns:\n    float: y-coordinate of the directrix\n    \"\"\"\n    if a == 0:\n        raise ValueError(\"Not a parabola: coefficient of x\u00b2 must not be zero\")\n        \n    # Find vertex coordinates\n    h = -b / (2*a)  # x-coordinate of vertex\n    k = a*h*h + b*h + c  # y-coordinate of vertex\n    \n    # Find focal length (p)\n    p = 1/(4*a)\n    \n    # Directrix is p units below vertex for a > 0\n    # and p units above vertex for a < 0\n    directrix = k - p if a > 0 else k + p\n    \n    return directrix",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the directrix of a parabola.\n\n### Signature\ndef parabola_directrix(a, b, c):",
+    "timestamp": "2025-10-17T19:07:40.290691",
+    "response_time": "4.51",
+    "context": "{\"function_name\": \"parabola_directrix\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 431,
+    "solution": "def common_element(list1, list2):\n    # Convert lists to sets for efficient comparison\n    set1 = set(list1)\n    set2 = set(list2)\n    \n    # Return True if intersection is not empty\n    return bool(set1.intersection(set2))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that takes two lists and returns true if they have at least one common element.\n\n### Signature\ndef common_element(list1, list2):",
+    "timestamp": "2025-10-17T19:07:42.580003",
+    "response_time": "2.29",
+    "context": "{\"function_name\": \"common_element\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 432,
+    "solution": "def median_trapezium(base1, base2, height):\n    \"\"\"\n    Calculate the median length of a trapezium.\n    The median length is the line segment parallel to the bases that connects the midpoints of the non-parallel sides.\n    \n    Args:\n        base1 (float): Length of first parallel side\n        base2 (float): Length of second parallel side\n        height (float): Height of the trapezium\n        \n    Returns:\n        float: Length of the median\n    \"\"\"\n    return (base1 + base2) / 2",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the median length of a trapezium.\n\n### Signature\ndef median_trapezium(base1,base2,height):",
+    "timestamp": "2025-10-17T19:07:45.011677",
+    "response_time": "2.43",
+    "context": "{\"function_name\": \"median_trapezium\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 433,
+    "solution": "def check_greater(arr, number):\n    for element in arr:\n        if number <= element:\n            return False\n    return True",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether the entered number is greater than the elements of the given array.\n\n### Signature\ndef check_greater(arr, number):",
+    "timestamp": "2025-10-17T19:07:46.822020",
+    "response_time": "1.81",
+    "context": "{\"function_name\": \"check_greater\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 434,
+    "solution": "import re\n\ndef text_match_one(text):\n    pattern = 'ab+'\n    if re.search(pattern, text):\n        return True\n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that matches a string that has an a followed by one or more b's.\n\n### Signature\ndef text_match_one(text):",
+    "timestamp": "2025-10-17T19:07:48.184870",
+    "response_time": "1.36",
+    "context": "{\"function_name\": \"text_match_one\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 435,
+    "solution": "def last_Digit(n):\n    # Convert negative numbers to positive\n    n = abs(n)\n    # Return the last digit using modulo operator\n    return n % 10",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the last digit of a given number.\n\n### Signature\ndef last_Digit(n) :",
+    "timestamp": "2025-10-17T19:07:49.789544",
+    "response_time": "1.60",
+    "context": "{\"function_name\": \"last_Digit\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 436,
+    "solution": "def neg_nos(list1):\n    return [num for num in list1 if num < 0]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to return the negative numbers in a list.\n\n### Signature\ndef neg_nos(list1):",
+    "timestamp": "2025-10-17T19:07:52.006987",
+    "response_time": "2.21",
+    "context": "{\"function_name\": \"neg_nos\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 437,
+    "solution": "def remove_odd(str1):\n    # Return empty string if input is empty\n    if not str1:\n        return \"\"\n    \n    # Create a new string with characters at even indices (0-based)\n    return str1[::2]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove odd characters in a string.\n\n### Signature\ndef remove_odd(str1):",
+    "timestamp": "2025-10-17T19:07:53.783641",
+    "response_time": "1.77",
+    "context": "{\"function_name\": \"remove_odd\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 438,
+    "solution": "def count_bidirectional(test_list):\n    # Create a set to store unique bidirectional pairs\n    bidirectional_pairs = set()\n    \n    # Count for bidirectional pairs\n    count = 0\n    \n    # Iterate through each tuple in the list\n    for pair in test_list:\n        # Create reverse of current tuple\n        reverse_pair = (pair[1], pair[0])\n        \n        # If either pair or its reverse is not in set\n        if pair not in bidirectional_pairs and reverse_pair not in bidirectional_pairs:\n            bidirectional_pairs.add(pair)\n        else:\n            # If found a bidirectional pair, increment count\n            if pair not in bidirectional_pairs:\n                count += 1\n    \n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to count bidirectional tuple pairs.\n\n### Signature\ndef count_bidirectional(test_list):",
+    "timestamp": "2025-10-17T19:07:58.614949",
+    "response_time": "4.83",
+    "context": "{\"function_name\": \"count_bidirectional\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 439,
+    "solution": "def multiple_to_single(L):\n    # Convert each integer to string and join them\n    return int(''.join(map(str, L)))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to join a list of multiple integers into a single integer.\n\n### Signature\ndef multiple_to_single(L):",
+    "timestamp": "2025-10-17T19:08:00.832700",
+    "response_time": "2.22",
+    "context": "{\"function_name\": \"multiple_to_single\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 440,
+    "solution": "import re\n\ndef find_adverb_position(text):\n    # Common adverb endings pattern\n    adverb_pattern = r'\\b\\w+ly\\b'\n    \n    # Find the first match\n    match = re.search(adverb_pattern, text)\n    \n    if match:\n        # Return tuple with adverb and its position\n        return (match.group(), match.start())\n    else:\n        # Return None if no adverb is found\n        return None",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the first adverb and their positions in a given sentence.\n\n### Signature\ndef find_adverb_position(text):",
+    "timestamp": "2025-10-17T19:08:04.983298",
+    "response_time": "4.15",
+    "context": "{\"function_name\": \"find_adverb_position\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 441,
+    "solution": "def surfacearea_cube(l):\n    \"\"\"\n    Calculate the surface area of a cube given its length.\n    \n    Args:\n        l (int/float): Length of one side of the cube\n        \n    Returns:\n        float: Surface area of the cube\n    \"\"\"\n    return 6 * l * l",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the surface area of a cube of a given size.\n\n### Signature\ndef surfacearea_cube(l):",
+    "timestamp": "2025-10-17T19:08:08.025296",
+    "response_time": "3.04",
+    "context": "{\"function_name\": \"surfacearea_cube\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 442,
+    "solution": "def positive_count(nums):\n    if not nums:\n        return 0\n    \n    positive_numbers = sum(1 for num in nums if num > 0)\n    return positive_numbers / len(nums)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the ration of positive numbers in an array of integers.\n\n### Signature\ndef positive_count(nums):",
+    "timestamp": "2025-10-17T19:08:09.591389",
+    "response_time": "1.56",
+    "context": "{\"function_name\": \"positive_count\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 443,
+    "solution": "def largest_neg(list1):\n    # Initialize with None to handle cases where no negative numbers exist\n    largest_negative = None\n    \n    # Iterate through the list\n    for num in list1:\n        # Check if the number is negative\n        if num < 0:\n            # Update largest_negative if it's None or if current number is larger\n            if largest_negative is None or num > largest_negative:\n                largest_negative = num\n    \n    return largest_negative",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the largest negative number from the given list.\n\n### Signature\ndef largest_neg(list1):",
+    "timestamp": "2025-10-17T19:08:13.093840",
+    "response_time": "3.50",
+    "context": "{\"function_name\": \"largest_neg\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 444,
+    "solution": "def trim_tuple(test_list, K):\n    # Return empty list if input list is empty\n    if not test_list:\n        return []\n    \n    # Process each tuple in the list\n    result = []\n    for tup in test_list:\n        # If K is greater than or equal to tuple length, skip this tuple\n        if K >= len(tup):\n            continue\n        # Add trimmed tuple (removing K elements from start and end)\n        result.append(tup[K:-K] if K > 0 else tup)\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to trim each tuple by k in the given tuple list.\n\n### Signature\ndef trim_tuple(test_list, K):",
+    "timestamp": "2025-10-17T19:08:16.115021",
+    "response_time": "3.02",
+    "context": "{\"function_name\": \"trim_tuple\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 445,
+    "solution": "def index_multiplication(test_tup1, test_tup2):\n    # Convert tuples to lists for easier manipulation\n    result = []\n    \n    # Get the minimum length of both tuples to avoid index out of range\n    min_length = min(len(test_tup1), len(test_tup2))\n    \n    # Multiply elements at corresponding indices\n    for i in range(min_length):\n        result.append(test_tup1[i] * test_tup2[i])\n    \n    # Convert back to tuple and return\n    return tuple(result)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to perform index wise multiplication of tuple elements in the given two tuples.\n\n### Signature\ndef index_multiplication(test_tup1, test_tup2):",
+    "timestamp": "2025-10-17T19:08:20.025601",
+    "response_time": "3.91",
+    "context": "{\"function_name\": \"index_multiplication\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 446,
+    "solution": "from collections import Counter\n\ndef count_Occurrence(tup, lst):\n    # Convert list to Counter object to get frequency of each element\n    lst_counter = Counter(lst)\n    \n    # Create a list to store counts of each tuple element\n    result = []\n    \n    # For each element in tuple, get its count from list\n    for item in tup:\n        count = lst_counter.get(item, 0)\n        result.append(count)\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to count the occurence of all elements of list in a tuple.\n\n### Signature\ndef count_Occurrence(tup, lst):",
+    "timestamp": "2025-10-17T19:08:24.191514",
+    "response_time": "4.16",
+    "context": "{\"function_name\": \"count_Occurrence\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 447,
+    "solution": "def cube_nums(nums):\n    \"\"\"\n    Returns a list containing cubes of individual elements from the input list.\n    \n    Args:\n        nums: List of numbers\n    Returns:\n        List containing cubes of input numbers\n    \"\"\"\n    return [num ** 3 for num in nums]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find cubes of individual elements in a list.\n\n### Signature\ndef cube_nums(nums):",
+    "timestamp": "2025-10-17T19:08:27.114369",
+    "response_time": "2.92",
+    "context": "{\"function_name\": \"cube_nums\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 448,
+    "solution": "def cal_sum(n):\n    if n <= 0:\n        return 0\n    \n    # Initialize first three numbers of Perrin sequence\n    p0, p1, p2 = 3, 0, 2\n    perrin_sum = p0 + p1 + p2\n    \n    if n <= 3:\n        return sum([p0, p1, p2][:n])\n    \n    # Calculate remaining Perrin numbers and their sum\n    for i in range(3, n):\n        # Next Perrin number is sum of numbers at (n-3) and (n-2) positions\n        next_num = p0 + p1\n        perrin_sum += next_num\n        # Update values for next iteration\n        p0, p1, p2 = p1, p2, next_num\n    \n    return perrin_sum",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to calculate the sum of perrin numbers.\n\n### Signature\ndef cal_sum(n):",
+    "timestamp": "2025-10-17T19:08:32.882050",
+    "response_time": "5.76",
+    "context": "{\"function_name\": \"cal_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 450,
+    "solution": "def extract_string(str_list, l):\n    \"\"\"\n    Extract strings of specified length from a list of strings\n    \n    Args:\n        str_list: List of strings to process\n        l: Length of strings to extract\n        \n    Returns:\n        List containing strings of specified length\n    \"\"\"\n    return [s for s in str_list if len(s) == l]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to extract specified size of strings from a given list of string values.\n\n### Signature\ndef extract_string(str, l):",
+    "timestamp": "2025-10-17T19:08:34.918670",
+    "response_time": "2.04",
+    "context": "{\"function_name\": \"extract_string\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 451,
+    "solution": "def remove_whitespaces(text1):\n    return ''.join(text1.split())",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove all whitespaces from the given string.\n\n### Signature\ndef remove_whitespaces(text1):",
+    "timestamp": "2025-10-17T19:08:36.166302",
+    "response_time": "1.25",
+    "context": "{\"function_name\": \"remove_whitespaces\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 452,
+    "solution": "def loss_amount(actual_cost, sale_amount):\n    if sale_amount < actual_cost:\n        return actual_cost - sale_amount\n    return 0",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that gives loss amount on a sale if the given amount has loss else return 0.\n\n### Signature\ndef loss_amount(actual_cost,sale_amount):",
+    "timestamp": "2025-10-17T19:08:38.308645",
+    "response_time": "2.14",
+    "context": "{\"function_name\": \"loss_amount\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 453,
+    "solution": "def sumofFactors(n):\n    # Initialize sum of factors\n    sum = 0\n    \n    # Check for all numbers from 1 to n\n    for i in range(1, n + 1):\n        # If i is a factor of n and is even\n        if n % i == 0 and i % 2 == 0:\n            sum += i\n            \n    return sum",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of even factors of a number.\n\n### Signature\ndef sumofFactors(n) :",
+    "timestamp": "2025-10-17T19:08:41.561575",
+    "response_time": "3.25",
+    "context": "{\"function_name\": \"sumofFactors\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 454,
+    "solution": "import re\n\ndef text_match_wordz(text):\n    pattern = r'\\w*z\\w*'\n    if re.search(pattern, text):\n        return True\n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that matches a word containing 'z'.\n\n### Signature\ndef text_match_wordz(text):",
+    "timestamp": "2025-10-17T19:08:43.751043",
+    "response_time": "2.19",
+    "context": "{\"function_name\": \"text_match_wordz\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 455,
+    "solution": "def check_monthnumb_number(monthnum2):\n    # List of months with 31 days\n    months_with_31_days = [1, 3, 5, 7, 8, 10, 12]\n    \n    # Check if the month number is valid (between 1 and 12)\n    if monthnum2 < 1 or monthnum2 > 12:\n        return False\n    \n    # Check if the month has 31 days\n    return monthnum2 in months_with_31_days",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether the given month number contains 31 days or not.\n\n### Signature\ndef check_monthnumb_number(monthnum2):",
+    "timestamp": "2025-10-17T19:08:47.252698",
+    "response_time": "3.50",
+    "context": "{\"function_name\": \"check_monthnumb_number\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 456,
+    "solution": "def reverse_string_list(stringlist):\n    return [s[::-1] for s in stringlist]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to reverse each string in a given list of string values.\n\n### Signature\ndef reverse_string_list(stringlist):",
+    "timestamp": "2025-10-17T19:08:48.697597",
+    "response_time": "1.44",
+    "context": "{\"function_name\": \"reverse_string_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 457,
+    "solution": "def Find_Min(lst):\n    if not lst:\n        return None\n    \n    min_length = float('inf')\n    min_sublist = None\n    \n    for item in lst:\n        if isinstance(item, (list, tuple)):\n            current_length = len(item)\n            if current_length < min_length:\n                min_length = current_length\n                min_sublist = item\n    \n    return min_sublist",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sublist having minimum length.\n\n### Signature\ndef Find_Min(lst):",
+    "timestamp": "2025-10-17T19:08:51.314189",
+    "response_time": "2.61",
+    "context": "{\"function_name\": \"Find_Min\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 458,
+    "solution": "def rectangle_area(l,b):\n    \"\"\"\n    Calculate the area of a rectangle.\n    \n    Args:\n        l (float): Length of the rectangle\n        b (float): Breadth of the rectangle\n    \n    Returns:\n        float: Area of the rectangle\n    \"\"\"\n    return l * b",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the area of a rectangle.\n\n### Signature\ndef rectangle_area(l,b):",
+    "timestamp": "2025-10-17T19:08:54.162305",
+    "response_time": "2.85",
+    "context": "{\"function_name\": \"rectangle_area\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 459,
+    "solution": "def remove_uppercase(str1):\n    if not str1:\n        return \"\"\n    \n    result = []\n    i = 0\n    while i < len(str1):\n        # If current character is not uppercase, add it to result\n        if not str1[i].isupper():\n            result.append(str1[i])\n            i += 1\n        else:\n            # Skip all consecutive uppercase characters\n            while i < len(str1) and str1[i].isupper():\n                i += 1\n    \n    return \"\".join(result)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove uppercase substrings from a given string.\n\n### Signature\ndef remove_uppercase(str1):",
+    "timestamp": "2025-10-17T19:08:57.987762",
+    "response_time": "3.82",
+    "context": "{\"function_name\": \"remove_uppercase\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 460,
+    "solution": "def Extract(lst):\n    return [item[0] for item in lst if item]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to get the first element of each sublist.\n\n### Signature\ndef Extract(lst):",
+    "timestamp": "2025-10-17T19:08:59.903818",
+    "response_time": "1.91",
+    "context": "{\"function_name\": \"Extract\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 461,
+    "solution": "def upper_ctr(str):\n    count = 0\n    for char in str:\n        if char.isupper():\n            count += 1\n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to count the upper case characters in a given string.\n\n### Signature\ndef upper_ctr(str):",
+    "timestamp": "2025-10-17T19:09:01.644079",
+    "response_time": "1.74",
+    "context": "{\"function_name\": \"upper_ctr\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 462,
+    "solution": "from itertools import combinations\n\ndef combinations_list(list1):\n    all_combinations = []\n    for r in range(1, len(list1) + 1):\n        all_combinations.extend(list(combinations(list1, r)))\n    return all_combinations",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find all possible combinations of the elements of a given list.\n\n### Signature\ndef combinations_list(list1):",
+    "timestamp": "2025-10-17T19:09:03.869737",
+    "response_time": "2.22",
+    "context": "{\"function_name\": \"combinations_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 463,
+    "solution": "from typing import List\n\ndef max_subarray_product(arr: List[int]) -> int:\n    if not arr:\n        return 0\n    \n    n = len(arr)\n    max_product = arr[0]\n    curr_max = arr[0]\n    curr_min = arr[0]\n    \n    for i in range(1, n):\n        # Store the current max since we'll update it\n        temp = curr_max\n        \n        # Compare current number with products of current number with \n        # previous max and min\n        curr_max = max(arr[i], max(curr_max * arr[i], curr_min * arr[i]))\n        curr_min = min(arr[i], min(temp * arr[i], curr_min * arr[i]))\n        \n        # Update global maximum\n        max_product = max(max_product, curr_max)\n    \n    return max_product",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the maximum product subarray of the given array.\n\n### Signature\ndef max_subarray_product(arr):",
+    "timestamp": "2025-10-17T19:09:08.242412",
+    "response_time": "4.37",
+    "context": "{\"function_name\": \"max_subarray_product\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 464,
+    "solution": "def check_value(dict, n):\n    # Get the first value from the dictionary\n    first_value = next(iter(dict.values()))\n    \n    # Compare all values with the first value\n    for value in dict.values():\n        if value != first_value:\n            return False\n    \n    return True",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check if all values are same in a dictionary.\n\n### Signature\ndef check_value(dict, n):",
+    "timestamp": "2025-10-17T19:09:10.609262",
+    "response_time": "2.37",
+    "context": "{\"function_name\": \"check_value\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 465,
+    "solution": "def drop_empty(dict1):\n    return {k: v for k, v in dict1.items() if v is not None and v != \"\" and v != [] and v != {}}",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to drop empty items from a given dictionary.\n\n### Signature\ndef drop_empty(dict1):",
+    "timestamp": "2025-10-17T19:09:12.434097",
+    "response_time": "1.82",
+    "context": "{\"function_name\": \"drop_empty\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 468,
+    "solution": "def max_product(arr):\n    if not arr:\n        return 0\n    \n    n = len(arr)\n    # dp[i] stores the maximum product ending at index i\n    dp = [1] * n\n    \n    # Initialize dp with the numbers themselves\n    for i in range(n):\n        dp[i] = arr[i]\n    \n    # For each position, check all previous positions\n    for i in range(1, n):\n        for j in range(i):\n            # If current number is greater than previous number\n            if arr[i] > arr[j]:\n                # Update dp[i] if product with previous subsequence gives larger value\n                dp[i] = max(dp[i], dp[j] * arr[i])\n    \n    # Return the maximum value in dp array\n    return max(dp)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the maximum product formed by multiplying numbers of an increasing subsequence of that array.\n\n### Signature\ndef max_product(arr):",
+    "timestamp": "2025-10-17T19:09:18.649147",
+    "response_time": "6.21",
+    "context": "{\"function_name\": \"max_product\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 470,
+    "solution": "def add_pairwise(test_tup):\n    # Convert tuple to list for easier manipulation\n    result = []\n    \n    # Iterate through tuple elements up to second-to-last element\n    for i in range(len(test_tup) - 1):\n        # Add current element with next element\n        pair_sum = test_tup[i] + test_tup[i + 1]\n        result.append(pair_sum)\n    \n    # Convert result back to tuple and return\n    return tuple(result)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the pairwise addition of the neighboring elements of the given tuple.\n\n### Signature\ndef add_pairwise(test_tup):",
+    "timestamp": "2025-10-17T19:09:22.052077",
+    "response_time": "3.40",
+    "context": "{\"function_name\": \"add_pairwise\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 471,
+    "solution": "def find_remainder(arr, n):\n    result = 1\n    for num in arr:\n        result = (result * num) % n\n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the product of the array multiplication modulo n.\n\n### Signature\ndef find_remainder(arr, n):",
+    "timestamp": "2025-10-17T19:09:23.765213",
+    "response_time": "1.71",
+    "context": "{\"function_name\": \"find_remainder\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 472,
+    "solution": "def check_Consecutive(l):\n    # Sort the list first\n    l = sorted(l)\n    \n    # Check if each element is consecutive\n    for i in range(1, len(l)):\n        if l[i] - l[i-1] != 1:\n            return False\n    \n    return True",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to check whether the given list contains consecutive numbers or not.\n\n### Signature\ndef check_Consecutive(l):",
+    "timestamp": "2025-10-17T19:09:26.503735",
+    "response_time": "2.74",
+    "context": "{\"function_name\": \"check_Consecutive\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 473,
+    "solution": "def tuple_intersection(test_list1, test_list2):\n    # Convert tuples in lists to sets for order-independent comparison\n    set_list1 = [set(t) for t in test_list1]\n    set_list2 = [set(t) for t in test_list2]\n    \n    # Find common elements using set intersection\n    common_sets = []\n    for s1 in set_list1:\n        if s1 in set_list2:\n            # Convert back to tuple and add to result\n            common_sets.append(tuple(sorted(s1)))\n    \n    return common_sets",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the tuple intersection of elements in the given tuple list irrespective of their order.\n\n### Signature\ndef tuple_intersection(test_list1, test_list2):",
+    "timestamp": "2025-10-17T19:09:31.447521",
+    "response_time": "4.94",
+    "context": "{\"function_name\": \"tuple_intersection\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 474,
+    "solution": "def replace_char(str1, ch, newch):\n    return str1.replace(ch, newch)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to replace characters in a string.\n\n### Signature\ndef replace_char(str1,ch,newch):",
+    "timestamp": "2025-10-17T19:09:32.842749",
+    "response_time": "1.39",
+    "context": "{\"function_name\": \"replace_char\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 475,
+    "solution": "def sort_counter(dict1):\n    return dict(sorted(dict1.items(), key=lambda x: x[1]))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to sort a dictionary by value.\n\n### Signature\ndef sort_counter(dict1):",
+    "timestamp": "2025-10-17T19:09:34.878176",
+    "response_time": "2.03",
+    "context": "{\"function_name\": \"sort_counter\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 476,
+    "solution": "def big_sum(nums):\n    if not nums:\n        return 0\n    return max(nums) + min(nums)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of the largest and smallest value in a given array.\n\n### Signature\ndef big_sum(nums):",
+    "timestamp": "2025-10-17T19:09:36.876212",
+    "response_time": "2.00",
+    "context": "{\"function_name\": \"big_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 477,
+    "solution": "def is_lower(string):\n    return string.lower()",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to convert the given string to lower case.\n\n### Signature\ndef is_lower(string):",
+    "timestamp": "2025-10-17T19:09:40.106887",
+    "response_time": "3.23",
+    "context": "{\"function_name\": \"is_lower\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 478,
+    "solution": "def remove_lowercase(str1):\n    if not str1:\n        return \"\"\n    \n    result = []\n    i = 0\n    while i < len(str1):\n        # If current character is uppercase, keep it\n        if str1[i].isupper():\n            result.append(str1[i])\n            i += 1\n        else:\n            # Skip all lowercase characters\n            while i < len(str1) and str1[i].islower():\n                i += 1\n    \n    return \"\".join(result)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove lowercase substrings from a given string.\n\n### Signature\ndef remove_lowercase(str1):",
+    "timestamp": "2025-10-17T19:09:42.575403",
+    "response_time": "2.47",
+    "context": "{\"function_name\": \"remove_lowercase\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 479,
+    "solution": "def first_Digit(n) :\n    # Convert number to absolute value to handle negative numbers\n    n = abs(n)\n    \n    # Keep dividing by 10 until we get a single digit\n    while n >= 10:\n        n = n // 10\n        \n    return n",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the first digit of a given number.\n\n### Signature\ndef first_Digit(n) :",
+    "timestamp": "2025-10-17T19:09:45.169666",
+    "response_time": "2.59",
+    "context": "{\"function_name\": \"first_Digit\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 554,
+    "solution": "def Split(list):\n    return [num for num in list if num % 2 != 0]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function which takes a list of integers and only returns the odd ones.\n\n### Signature\ndef Split(list):",
+    "timestamp": "2025-10-17T19:09:47.264067",
+    "response_time": "2.09",
+    "context": "{\"function_name\": \"Split\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 555,
+    "solution": "def difference(n) :\n    # Calculate sum of cubes of first n natural numbers\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    \n    # Calculate sum of first n natural numbers\n    sum_of_numbers = sum(i for i in range(1, n+1))\n    \n    # Return the difference\n    return sum_of_cubes - sum_of_numbers",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the difference between the sum of cubes of the first n natural numbers and the sum of the first n natural numbers.\n\n### Signature\ndef difference(n) :",
+    "timestamp": "2025-10-17T19:09:51.102169",
+    "response_time": "3.83",
+    "context": "{\"function_name\": \"difference\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 556,
+    "solution": "def find_Odd_Pair(A, N):\n    count = 0\n    for i in range(N):\n        for j in range(i+1, N):\n            if (A[i] ^ A[j]) % 2 == 1:\n                count += 1\n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to count the number of pairs whose xor value is odd.\n\n### Signature\ndef find_Odd_Pair(A,N) :",
+    "timestamp": "2025-10-17T19:09:53.396586",
+    "response_time": "2.29",
+    "context": "{\"function_name\": \"find_Odd_Pair\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 557,
+    "solution": "def toggle_string(string):\n    return string.swapcase()",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to toggle the case of all characters in a string.\n\n### Signature\ndef toggle_string(string):",
+    "timestamp": "2025-10-17T19:09:54.501026",
+    "response_time": "1.10",
+    "context": "{\"function_name\": \"toggle_string\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 558,
+    "solution": "def digit_distance_nums(n1, n2):\n    # Convert numbers to strings for digit manipulation\n    str1 = str(abs(n1))\n    str2 = str(abs(n2))\n    \n    # Make strings equal length by padding with zeros\n    max_len = max(len(str1), len(str2))\n    str1 = str1.zfill(max_len)\n    str2 = str2.zfill(max_len)\n    \n    # Calculate sum of absolute differences between corresponding digits\n    total = sum(abs(int(d1) - int(d2)) for d1, d2 in zip(str1, str2))\n    \n    return total",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of the per-digit difference between two integers.\n\n### Signature\ndef digit_distance_nums(n1, n2):",
+    "timestamp": "2025-10-17T19:09:59.136565",
+    "response_time": "4.63",
+    "context": "{\"function_name\": \"digit_distance_nums\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 559,
+    "solution": "def max_sub_array_sum(a, size):\n    max_so_far = float('-inf')\n    max_ending_here = 0\n    \n    for i in range(size):\n        max_ending_here = max_ending_here + a[i]\n        \n        if max_so_far < max_ending_here:\n            max_so_far = max_ending_here\n            \n        if max_ending_here < 0:\n            max_ending_here = 0\n            \n    return max_so_far",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the sum of the largest contiguous sublist in the given list.\n\n### Signature\ndef max_sub_array_sum(a, size):",
+    "timestamp": "2025-10-17T19:10:01.624609",
+    "response_time": "2.48",
+    "context": "{\"function_name\": \"max_sub_array_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 560,
+    "solution": "def union_elements(test_tup1, test_tup2):\n    # Convert tuples to sets and perform union\n    union_set = set(test_tup1) | set(test_tup2)\n    \n    # Convert back to sorted tuple\n    return tuple(sorted(union_set))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the union of the elements of two given tuples and output them in sorted order.\n\n### Signature\ndef union_elements(test_tup1, test_tup2):",
+    "timestamp": "2025-10-17T19:10:03.460832",
+    "response_time": "1.83",
+    "context": "{\"function_name\": \"union_elements\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 562,
+    "solution": "def Find_Max_Length(lst):\n    if not lst:\n        return 0\n    max_length = 0\n    for item in lst:\n        if isinstance(item, list):\n            current_length = len(item)\n            max_length = max(max_length, current_length)\n    return max_length",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the length of the longest sublists.\n\n### Signature\ndef Find_Max_Length(lst):",
+    "timestamp": "2025-10-17T19:10:05.337713",
+    "response_time": "1.87",
+    "context": "{\"function_name\": \"Find_Max_Length\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 563,
+    "solution": "import re\n\ndef extract_values(text):\n    pattern = r'[\"\\']([^\"\\']*)[\"\\']'\n    matches = re.findall(pattern, text)\n    return matches",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to extract values between quotation marks from a string.\n\n### Signature\ndef extract_values(text):",
+    "timestamp": "2025-10-17T19:10:07.321165",
+    "response_time": "1.98",
+    "context": "{\"function_name\": \"extract_values\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 564,
+    "solution": "def count_Pairs(arr,n):\n    count = 0\n    for i in range(n):\n        for j in range(i+1, n):\n            if arr[i] != arr[j]:\n                count += 1\n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function which takes a list of integers and counts the number of possible unordered pairs where both elements are unequal.\n\n### Signature\ndef count_Pairs(arr,n):",
+    "timestamp": "2025-10-17T19:10:10.200234",
+    "response_time": "2.87",
+    "context": "{\"function_name\": \"count_Pairs\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 565,
+    "solution": "def split(word):\n    return list(word)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to split a string into characters.\n\n### Signature\ndef split(word):",
+    "timestamp": "2025-10-17T19:10:11.974453",
+    "response_time": "1.77",
+    "context": "{\"function_name\": \"split\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 566,
+    "solution": "def sum_digits(n):\n    if n == 0:\n        return 0\n    return sum(int(digit) for digit in str(n))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to get the sum of the digits of a non-negative integer.\n\n### Signature\ndef sum_digits(n):",
+    "timestamp": "2025-10-17T19:10:13.720087",
+    "response_time": "1.74",
+    "context": "{\"function_name\": \"sum_digits\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 567,
+    "solution": "def issort_list(list1):\n    if len(list1) <= 1:\n        return True\n    \n    # Check if list is sorted in ascending order\n    is_ascending = all(list1[i] <= list1[i + 1] for i in range(len(list1) - 1))\n    \n    # Check if list is sorted in descending order\n    is_descending = all(list1[i] >= list1[i + 1] for i in range(len(list1) - 1))\n    \n    return is_ascending or is_descending",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether a specified list is sorted or not.\n\n### Signature\ndef issort_list(list1):",
+    "timestamp": "2025-10-17T19:10:17.269217",
+    "response_time": "3.55",
+    "context": "{\"function_name\": \"issort_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 568,
+    "solution": "def empty_list(length):\n    return [{} for _ in range(length)]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to create a list of N empty dictionaries.\n\n### Signature\ndef empty_list(length):",
+    "timestamp": "2025-10-17T19:10:19.129715",
+    "response_time": "1.86",
+    "context": "{\"function_name\": \"empty_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 569,
+    "solution": "def sort_sublists(list1):\n    return [sorted(sublist) for sublist in list1]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to sort each sublist of strings in a given list of lists.\n\n### Signature\ndef sort_sublists(list1):",
+    "timestamp": "2025-10-17T19:10:20.872411",
+    "response_time": "1.74",
+    "context": "{\"function_name\": \"sort_sublists\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 572,
+    "solution": "def two_unique_nums(nums):\n    # Convert list to set to remove duplicates and back to list\n    unique_nums = list(set(nums))\n    return unique_nums",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to remove duplicate numbers from a given number of lists.\n\n### Signature\ndef two_unique_nums(nums):",
+    "timestamp": "2025-10-17T19:10:22.730556",
+    "response_time": "1.85",
+    "context": "{\"function_name\": \"two_unique_nums\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 573,
+    "solution": "from typing import List\n\ndef unique_product(list_data):\n    # Convert list to set to get unique numbers\n    unique_numbers = set(list_data)\n    \n    # Initialize product as 1\n    product = 1\n    \n    # Multiply all unique numbers\n    for num in unique_numbers:\n        product *= num\n    \n    return product",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to calculate the product of the unique numbers in a given list.\n\n### Signature\ndef unique_product(list_data):",
+    "timestamp": "2025-10-17T19:10:24.742148",
+    "response_time": "2.01",
+    "context": "{\"function_name\": \"unique_product\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 574,
+    "solution": "import math\n\ndef surfacearea_cylinder(r,h):\n    \"\"\"\n    Calculate the surface area of a cylinder.\n    \n    Args:\n        r (float): radius of the cylinder\n        h (float): height of the cylinder\n        \n    Returns:\n        float: total surface area of the cylinder\n    \"\"\"\n    # Surface area = 2\u03c0r\u00b2 + 2\u03c0rh\n    # where r is radius and h is height\n    \n    circle_area = 2 * math.pi * (r ** 2)  # area of top and bottom circles\n    lateral_area = 2 * math.pi * r * h     # lateral surface area\n    total_area = circle_area + lateral_area\n    \n    return total_area",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the surface area of a cylinder.\n\n### Signature\ndef surfacearea_cylinder(r,h):",
+    "timestamp": "2025-10-17T19:10:27.685394",
+    "response_time": "2.94",
+    "context": "{\"function_name\": \"surfacearea_cylinder\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 576,
+    "solution": "def is_Sub_Array(A, B):\n    if not B:  # If B is empty, it's considered a sublist\n        return True\n    \n    if len(B) > len(A):  # If B is longer than A, it can't be a sublist\n        return False\n    \n    # Check for sublist by comparing slices of A with B\n    for i in range(len(A) - len(B) + 1):\n        if A[i:i+len(B)] == B:\n            return True\n    \n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to check whether a list is sublist of another or not.\n\n### Signature\ndef is_Sub_Array(A,B):",
+    "timestamp": "2025-10-17T19:10:31.924653",
+    "response_time": "4.24",
+    "context": "{\"function_name\": \"is_Sub_Array\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 577,
+    "solution": "def last_Digit_Factorial(n):\n    if n < 0:\n        return 0\n    if n <= 1:\n        return 1\n        \n    factorial = 1\n    for i in range(2, n + 1):\n        factorial = (factorial * i) % 10\n        \n    return factorial",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the last digit in factorial of a given number.\n\n### Signature\ndef last_Digit_Factorial(n):",
+    "timestamp": "2025-10-17T19:10:35.021016",
+    "response_time": "3.09",
+    "context": "{\"function_name\": \"last_Digit_Factorial\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 578,
+    "solution": "def interleave_lists(list1,list2,list3):\n    result = []\n    for i in range(len(list1)):\n        result.extend([list1[i], list2[i], list3[i]])\n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to interleave 3 lists of the same length into a single flat list.\n\n### Signature\ndef interleave_lists(list1,list2,list3):",
+    "timestamp": "2025-10-17T19:10:37.833544",
+    "response_time": "2.81",
+    "context": "{\"function_name\": \"interleave_lists\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 579,
+    "solution": "def find_dissimilar(test_tup1, test_tup2):\n    # Convert tuples to sets\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    \n    # Find symmetric difference between sets\n    dissimilar = set1.symmetric_difference(set2)\n    \n    # Convert result back to tuple and return\n    return tuple(dissimilar)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the dissimilar elements in the given two tuples.\n\n### Signature\ndef find_dissimilar(test_tup1, test_tup2):",
+    "timestamp": "2025-10-17T19:10:39.966899",
+    "response_time": "2.13",
+    "context": "{\"function_name\": \"find_dissimilar\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 580,
+    "solution": "def extract_even(test_tuple, even_fnc):\n    if isinstance(test_tuple, tuple):\n        return tuple(even_ele(item, even_fnc) for item in test_tuple if not isinstance(item, (int, float)) or even_fnc(item))\n    return test_tuple",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove uneven elements in the nested mixed tuple.\n\n### Signature\ndef even_ele(test_tuple, even_fnc):",
+    "timestamp": "2025-10-17T19:10:42.586084",
+    "response_time": "2.62",
+    "context": "{\"function_name\": \"extract_even\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 581,
+    "solution": "import math\n\ndef surface_Area(b, s):\n    \"\"\"\n    Calculate the surface area of a square pyramid\n    b: length of base edge\n    s: slant height (height of triangular face)\n    \"\"\"\n    # Area of square base\n    base_area = b * b\n    \n    # Area of four triangular faces\n    triangular_faces_area = 2 * b * s\n    \n    # Total surface area\n    total_surface_area = base_area + triangular_faces_area\n    \n    return total_surface_area",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the surface area of a square pyramid with a given base edge and height.\n\n### Signature\ndef surface_Area(b,s):",
+    "timestamp": "2025-10-17T19:10:45.089055",
+    "response_time": "2.50",
+    "context": "{\"function_name\": \"surface_Area\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 582,
+    "solution": "def my_dict(dict1):\n    return len(dict1) == 0",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check if a dictionary is empty\n\n### Signature\ndef my_dict(dict1):",
+    "timestamp": "2025-10-17T19:10:46.144953",
+    "response_time": "1.05",
+    "context": "{\"function_name\": \"my_dict\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 583,
+    "solution": "def catalan_number(num):\n    if num <= 1:\n        return 1\n    \n    # Initialize first catalan number\n    catalan = [0] * (num + 1)\n    catalan[0] = catalan[1] = 1\n    \n    # Calculate subsequent catalan numbers\n    for i in range(2, num + 1):\n        for j in range(i):\n            catalan[i] += catalan[j] * catalan[i-1-j]\n            \n    return catalan[num]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function which returns nth catalan number.\n\n### Signature\ndef catalan_number(num):",
+    "timestamp": "2025-10-17T19:10:50.467680",
+    "response_time": "4.32",
+    "context": "{\"function_name\": \"catalan_number\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 584,
+    "solution": "def find_adverbs(text):\n    if not text:\n        return None, -1, -1\n    \n    words = text.split()\n    for i, word in enumerate(words):\n        if word.endswith('ly'):\n            # Calculate start and end positions\n            start = len(' '.join(words[:i]))\n            if i > 0:\n                start += 1  # Add space for words after first word\n            end = start + len(word)\n            return word, start, end\n    \n    return None, -1, -1",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the first adverb ending with ly and its positions in a given string.\n\n### Signature\ndef find_adverbs(text):",
+    "timestamp": "2025-10-17T19:10:54.768741",
+    "response_time": "4.30",
+    "context": "{\"function_name\": \"find_adverbs\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 585,
+    "solution": "from typing import List, Dict\nfrom heapq import nlargest\n\ndef expensive_items(items: List[Dict[str, float]], n: int) -> List[Dict[str, float]]:\n    \"\"\"\n    Find the n most expensive items in a list of items.\n    \n    Args:\n        items: List of dictionaries where each dictionary represents an item with a 'price' key\n        n: Number of most expensive items to return\n        \n    Returns:\n        List of n most expensive items sorted by price in descending order\n    \"\"\"\n    return nlargest(n, items, key=lambda x: x['price'])",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the n most expensive items in a given dataset.\n\n### Signature\ndef expensive_items(items,n):",
+    "timestamp": "2025-10-17T19:10:57.352394",
+    "response_time": "2.58",
+    "context": "{\"function_name\": \"expensive_items\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 586,
+    "solution": "def split_Arr(l, n):\n    if not l or n <= 0 or n >= len(l):\n        return l\n    return l[n:] + l[:n]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to split a list at the nth eelment and add the first part to the end.\n\n### Signature\ndef split_Arr(l, n):",
+    "timestamp": "2025-10-17T19:10:59.624360",
+    "response_time": "2.27",
+    "context": "{\"function_name\": \"split_Arr\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 587,
+    "solution": "def list_tuple(listx):\n    return tuple(listx)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to convert a list to a tuple.\n\n### Signature\ndef list_tuple(listx):",
+    "timestamp": "2025-10-17T19:11:01.278108",
+    "response_time": "1.65",
+    "context": "{\"function_name\": \"list_tuple\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 588,
+    "solution": "def big_diff(nums):\n    if not nums:\n        return 0\n    return max(nums) - min(nums)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the difference between largest and smallest value in a given list.\n\n### Signature\ndef big_diff(nums):",
+    "timestamp": "2025-10-17T19:11:03.431371",
+    "response_time": "2.15",
+    "context": "{\"function_name\": \"big_diff\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 589,
+    "solution": "def perfect_squares(a, b):\n    \"\"\"\n    Find all perfect squares between two numbers a and b (inclusive).\n    Returns a list of perfect squares in ascending order.\n    \"\"\"\n    result = []\n    # Find the ceiling of square root of a\n    start = int((a ** 0.5) + 0.5)\n    # If start^2 is less than a, increment start\n    if start * start < a:\n        start += 1\n    \n    # Find all perfect squares until we exceed b\n    current = start\n    while current * current <= b:\n        result.append(current * current)\n        current += 1\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find perfect squares between two given numbers.\n\n### Signature\ndef perfect_squares(a, b):",
+    "timestamp": "2025-10-17T19:11:07.453391",
+    "response_time": "4.02",
+    "context": "{\"function_name\": \"perfect_squares\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 590,
+    "solution": "import math\n\ndef polar_rect(x, y):\n    \"\"\"\n    Convert polar coordinates (r, theta) to rectangular coordinates (x, y)\n    x represents radius (r)\n    y represents angle in radians (theta)\n    Returns tuple (x, y) of rectangular coordinates\n    \"\"\"\n    rect_x = x * math.cos(y)\n    rect_y = x * math.sin(y)\n    return (rect_x, rect_y)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to convert polar coordinates to rectangular coordinates.\n\n### Signature\ndef polar_rect(x,y):",
+    "timestamp": "2025-10-17T19:11:09.646710",
+    "response_time": "2.19",
+    "context": "{\"function_name\": \"polar_rect\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 591,
+    "solution": "def swap_List(newList):\n    # Check if list has at least one element\n    if len(newList) < 1:\n        return newList\n        \n    # Store first and last elements\n    newList[0], newList[-1] = newList[-1], newList[0]\n    \n    return newList",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to interchange the first and last elements in a list.\n\n### Signature\ndef swap_List(newList):",
+    "timestamp": "2025-10-17T19:11:12.626856",
+    "response_time": "2.98",
+    "context": "{\"function_name\": \"swap_List\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 592,
+    "solution": "def sum_Of_product(n, k):\n    # Base cases\n    if k > n:\n        return 0\n    if k == 0 or k == n:\n        return 1\n    \n    # Calculate binomial coefficient using Pascal's triangle concept\n    res = 1\n    for i in range(k):\n        res = res * (n - i)\n        res = res // (i + 1)\n    return res\n\ndef sum_consecutive_binomial_products(n):\n    sum = 0\n    for k in range(n):\n        # Calculate product of consecutive binomial coefficients\n        product = binomial_Coeff(n, k) * binomial_Coeff(n, k + 1)\n        sum += product\n    return sum",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of the product of consecutive binomial co-efficients.\n\n### Signature\ndef binomial_Coeff(n,k):",
+    "timestamp": "2025-10-17T19:11:16.404668",
+    "response_time": "3.77",
+    "context": "{\"function_name\": \"sum_Of_product\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 593,
+    "solution": "def removezero_ip(ip):\n    # Split the IP address into octets\n    octets = ip.split('.')\n    \n    # Remove leading zeros from each octet and join back\n    cleaned_octets = [str(int(octet)) for octet in octets]\n    \n    # Return the cleaned IP address\n    return '.'.join(cleaned_octets)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove leading zeroes from an ip address.\n\n### Signature\ndef removezero_ip(ip):",
+    "timestamp": "2025-10-17T19:11:19.239863",
+    "response_time": "2.83",
+    "context": "{\"function_name\": \"removezero_ip\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 594,
+    "solution": "def diff_even_odd(list1):\n    first_even = None\n    first_odd = None\n    \n    for num in list1:\n        if first_even is None and num % 2 == 0:\n            first_even = num\n        if first_odd is None and num % 2 != 0:\n            first_odd = num\n        if first_even is not None and first_odd is not None:\n            break\n    \n    if first_even is None or first_odd is None:\n        return 0\n    \n    return first_even - first_odd",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the difference of the first even and first odd number of a given list.\n\n### Signature\ndef diff_even_odd(list1):",
+    "timestamp": "2025-10-17T19:11:21.457073",
+    "response_time": "2.21",
+    "context": "{\"function_name\": \"diff_even_odd\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 595,
+    "solution": "def min_Swaps(str1, str2):\n    # Check if lengths are equal\n    if len(str1) != len(str2):\n        return -1\n    \n    # Check if both strings have same number of 1's and 0's\n    if str1.count('1') != str2.count('1'):\n        return -1\n    \n    swaps = 0\n    n = len(str1)\n    \n    # Convert strings to lists for easier manipulation\n    s1 = list(str1)\n    s2 = list(str2)\n    \n    i = 0\n    while i < n:\n        if s1[i] != s2[i]:\n            # Find next position where s1 has the required character\n            j = i + 1\n            while j < n and s1[j] != s2[i]:\n                j += 1\n            \n            # Swap characters\n            if j < n:\n                s1[i], s1[j] = s1[j], s1[i]\n                swaps += 1\n        i += 1\n    \n    return swaps",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to count minimum number of swaps required to convert one binary number represented as a string to another.\n\n### Signature\ndef min_Swaps(str1,str2) :",
+    "timestamp": "2025-10-17T19:11:27.700871",
+    "response_time": "6.24",
+    "context": "{\"function_name\": \"min_Swaps\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 596,
+    "solution": "import sys\n\ndef tuple_size(tuple_list):\n    return sys.getsizeof(tuple_list)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the size in bytes of the given tuple.\n\n### Signature\ndef tuple_size(tuple_list):",
+    "timestamp": "2025-10-17T19:11:29.760551",
+    "response_time": "2.06",
+    "context": "{\"function_name\": \"tuple_size\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 597,
+    "solution": "def find_kth(arr1, arr2, k):\n    if not arr1:\n        return arr2[k]\n    if not arr2:\n        return arr1[k]\n    \n    mid1, mid2 = len(arr1) // 2, len(arr2) // 2\n    \n    if mid1 + mid2 < k:\n        if arr1[mid1] > arr2[mid2]:\n            return find_kth(arr1, arr2[mid2 + 1:], k - mid2 - 1)\n        else:\n            return find_kth(arr1[mid1 + 1:], arr2, k - mid1 - 1)\n    else:\n        if arr1[mid1] > arr2[mid2]:\n            return find_kth(arr1[:mid1], arr2, k)\n        else:\n            return find_kth(arr1, arr2[:mid2], k)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find kth element from the given two sorted arrays.\n\n### Signature\ndef find_kth(arr1, arr2, k):",
+    "timestamp": "2025-10-17T19:11:35.256589",
+    "response_time": "5.49",
+    "context": "{\"function_name\": \"find_kth\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 598,
+    "solution": "def armstrong_number(number):\n    # Convert number to string to count digits\n    num_str = str(number)\n    num_digits = len(num_str)\n    \n    # Calculate sum of each digit raised to power of number of digits\n    sum_of_powers = sum(int(digit) ** num_digits for digit in num_str)\n    \n    # Return True if number is armstrong number, False otherwise\n    return sum_of_powers == number",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether the given number is armstrong or not.\n\n### Signature\ndef armstrong_number(number):",
+    "timestamp": "2025-10-17T19:11:38.134960",
+    "response_time": "2.87",
+    "context": "{\"function_name\": \"armstrong_number\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 599,
+    "solution": "def sum_average(number):\n    if number <= 0:\n        return 0, 0\n    \n    # Calculate sum of first n natural numbers\n    total_sum = (number * (number + 1)) // 2\n    \n    # Calculate average\n    average = total_sum / number\n    \n    return total_sum, average",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find sum and average of first n natural numbers.\n\n### Signature\ndef sum_average(number):",
+    "timestamp": "2025-10-17T19:11:40.817156",
+    "response_time": "2.68",
+    "context": "{\"function_name\": \"sum_average\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 600,
+    "solution": "def is_Even(n):\n    return n % 2 == 0",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to check whether the given number is even or not.\n\n### Signature\ndef is_Even(n) :",
+    "timestamp": "2025-10-17T19:11:42.646293",
+    "response_time": "1.83",
+    "context": "{\"function_name\": \"is_Even\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 602,
+    "solution": "def first_repeated_char(str1):\n    # Create a set to store characters\n    char_set = set()\n    \n    # Iterate through each character in the string\n    for char in str1:\n        # If character is already in set, it's the first repeat\n        if char in char_set:\n            return char\n        # Add character to set\n        char_set.add(char)\n    \n    # If no repeated character is found\n    return None",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the first repeated character in a given string.\n\n### Signature\ndef first_repeated_char(str1):",
+    "timestamp": "2025-10-17T19:11:45.575362",
+    "response_time": "2.93",
+    "context": "{\"function_name\": \"first_repeated_char\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 603,
+    "solution": "def get_ludic(n):\n    if n < 1:\n        return []\n    \n    # Initialize list with numbers from 1 to n\n    numbers = list(range(1, n + 1))\n    numbers[0] = 0  # Mark 1 as non-ludic\n    ludic = []\n    \n    i = 1  # Start from index 1 (number 2)\n    while i < len(numbers):\n        if numbers[i] == 0:\n            i += 1\n            continue\n            \n        current = numbers[i]\n        ludic.append(current)\n        \n        # Remove every current-th number after current\n        j = i + current\n        while j < len(numbers):\n            numbers[j] = 0\n            j += current\n            \n        i += 1\n    \n    return sorted(ludic)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to get all lucid numbers smaller than or equal to a given integer.\n\n### Signature\ndef get_ludic(n):",
+    "timestamp": "2025-10-17T19:11:49.450754",
+    "response_time": "3.87",
+    "context": "{\"function_name\": \"get_ludic\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 604,
+    "solution": "def reverse_words(s):\n    # Split the string into words\n    words = s.split()\n    # Reverse the list of words\n    words = words[::-1]\n    # Join the words back with spaces\n    return ' '.join(words)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to reverse words seperated by spaces in a given string.\n\n### Signature\ndef reverse_words(s):",
+    "timestamp": "2025-10-17T19:11:51.010115",
+    "response_time": "1.56",
+    "context": "{\"function_name\": \"reverse_words\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 605,
+    "solution": "def prime_num(num):\n    if num < 2:\n        return False\n    for i in range(2, int(num ** 0.5) + 1):\n        if num % i == 0:\n            return False\n    return True",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check if the given integer is a prime number.\n\n### Signature\ndef prime_num(num):",
+    "timestamp": "2025-10-17T19:11:53.138609",
+    "response_time": "2.12",
+    "context": "{\"function_name\": \"prime_num\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 606,
+    "solution": "import math\n\ndef radian_degree(degree):\n    return degree * (math.pi / 180)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to convert degrees to radians.\n\n### Signature\ndef radian_degree(degree):",
+    "timestamp": "2025-10-17T19:11:54.549074",
+    "response_time": "1.41",
+    "context": "{\"function_name\": \"radian_degree\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 607,
+    "solution": "import re\n\ndef find_literals(text, pattern):\n    match = re.search(pattern, text)\n    if match:\n        return match.group(), match.start(), match.end()\n    return None, -1, -1",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to search a string for a regex pattern. The function should return the matching subtring, a start index and an end index.\n\n### Signature\ndef find_literals(text, pattern):",
+    "timestamp": "2025-10-17T19:11:56.042227",
+    "response_time": "1.49",
+    "context": "{\"function_name\": \"find_literals\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 608,
+    "solution": "def bell_Number(n):\n    # Create a 2D array to store Bell numbers\n    bell = [[0 for i in range(n+1)] for j in range(n+1)]\n    \n    # Initialize first Bell number\n    bell[0][0] = 1\n    \n    # Calculate Bell Numbers\n    for i in range(1, n+1):\n        # First number of current row is last number\n        # of previous row\n        bell[i][0] = bell[i-1][i-1]\n        \n        # Fill entries in current row using the recursive\n        # formula\n        for j in range(1, i+1):\n            bell[i][j] = bell[i-1][j-1] + bell[i][j-1]\n    \n    return bell[n][0]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find nth bell number.\n\n### Signature\ndef bell_Number(n):",
+    "timestamp": "2025-10-17T19:12:00.892633",
+    "response_time": "4.85",
+    "context": "{\"function_name\": \"bell_Number\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 610,
+    "solution": "def remove_kth_element(list1, k):\n    if not list1 or k < 0 or k >= len(list1):\n        return list1\n    return list1[:k] + list1[k+1:]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function which takes a list and returns a list with the same elements, but the k'th element removed.\n\n### Signature\ndef remove_kth_element(list1, L):",
+    "timestamp": "2025-10-17T19:12:03.363917",
+    "response_time": "2.47",
+    "context": "{\"function_name\": \"remove_kth_element\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 611,
+    "solution": "def max_of_nth(test_list, N):\n    # Extract the N-th column from the matrix\n    nth_column = [row[N] for row in test_list]\n    # Return the maximum value in the column\n    return max(nth_column)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function which given a matrix represented as a list of lists returns the max of the n'th column.\n\n### Signature\ndef max_of_nth(test_list, N):",
+    "timestamp": "2025-10-17T19:12:05.753856",
+    "response_time": "2.39",
+    "context": "{\"function_name\": \"max_of_nth\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 612,
+    "solution": "def merge(lst):\n    first_elements = []\n    second_elements = []\n    \n    for sublist in lst:\n        first_elements.append(sublist[0])\n        second_elements.append(sublist[1])\n    \n    return [first_elements, second_elements]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function which takes a list of lists, where each sublist has two elements, and returns a list of two lists where the first list has the first element of each sublist and the second one has the second.\n\n### Signature\ndef merge(lst):",
+    "timestamp": "2025-10-17T19:12:08.200469",
+    "response_time": "2.44",
+    "context": "{\"function_name\": \"merge\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 614,
+    "solution": "from typing import List, Tuple\n\ndef cummulative_sum(test_list: List[Tuple]) -> int:\n    total = 0\n    for tup in test_list:\n        total += sum(tup)\n    return total",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the cumulative sum of all the values that are present in the given tuple list.\n\n### Signature\ndef cummulative_sum(test_list):",
+    "timestamp": "2025-10-17T19:12:09.751044",
+    "response_time": "1.55",
+    "context": "{\"function_name\": \"cummulative_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 615,
+    "solution": "from typing import Tuple, List\n\ndef average_tuple(nums: Tuple[Tuple[int, ...], ...]) -> List[float]:\n    if not nums or not nums[0]:\n        return []\n    \n    # Get the length of inner tuples\n    length = len(nums[0])\n    \n    # Initialize sums for each position\n    sums = [0] * length\n    \n    # Sum up values at each position\n    for tup in nums:\n        for i in range(length):\n            sums[i] += tup[i]\n    \n    # Calculate averages by dividing by number of tuples\n    return [sum_val / len(nums) for sum_val in sums]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function which takes a tuple of tuples and returns the average value for each tuple as a list.\n\n### Signature\ndef average_tuple(nums):",
+    "timestamp": "2025-10-17T19:12:14.368515",
+    "response_time": "4.61",
+    "context": "{\"function_name\": \"average_tuple\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 616,
+    "solution": "def tuple_modulo(test_tup1, test_tup2):\n    if len(test_tup1) != len(test_tup2):\n        raise ValueError(\"Tuples must be of equal length\")\n    \n    result = tuple(x % y for x, y in zip(test_tup1, test_tup2))\n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function which takes two tuples of the same length and performs the element wise modulo.\n\n### Signature\ndef tuple_modulo(test_tup1, test_tup2):",
+    "timestamp": "2025-10-17T19:12:17.021260",
+    "response_time": "2.65",
+    "context": "{\"function_name\": \"tuple_modulo\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 617,
+    "solution": "def min_Jumps(steps, d):\n    # Convert d to positive as jumps will be same for -d\n    d = abs(d)\n    \n    # Initialize current position sum\n    curr_sum = 0\n    # Initialize number of jumps\n    jumps = 0\n    \n    # Keep taking jumps until we reach or cross target\n    while curr_sum < d:\n        jumps += 1\n        curr_sum += steps\n        \n        # If we've reached exactly d, return jumps\n        if curr_sum == d:\n            return jumps\n    \n    # If we've crossed d, we need to check if we can reach d\n    # by changing some jumps to negative\n    while (curr_sum - d) % 2 != 0:\n        jumps += 1\n        curr_sum += steps\n    \n    return jumps",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check for the number of jumps required of given length to reach a point of form (d, 0) from origin in a 2d plane.\n\n### Signature\ndef min_Jumps(steps, d):",
+    "timestamp": "2025-10-17T19:12:22.141592",
+    "response_time": "5.12",
+    "context": "{\"function_name\": \"min_Jumps\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 618,
+    "solution": "def div_list(nums1, nums2):\n    if len(nums1) != len(nums2):\n        raise ValueError(\"Lists must be of equal length\")\n    \n    result = []\n    for n1, n2 in zip(nums1, nums2):\n        if n2 == 0:\n            raise ZeroDivisionError(\"Division by zero is not allowed\")\n        result.append(n1 / n2)\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to divide two lists element wise.\n\n### Signature\ndef div_list(nums1,nums2):",
+    "timestamp": "2025-10-17T19:12:26.630768",
+    "response_time": "4.48",
+    "context": "{\"function_name\": \"div_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 619,
+    "solution": "def move_num(test_str):\n    # Initialize empty strings for numbers and non-numbers\n    numbers = ''\n    non_numbers = ''\n    \n    # Iterate through each character in the string\n    for char in test_str:\n        # If character is a digit, add to numbers string\n        if char.isdigit():\n            numbers += char\n        # If character is not a digit, add to non_numbers string\n        else:\n            non_numbers += char\n    \n    # Return concatenated string with non-numbers followed by numbers\n    return non_numbers + numbers",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to move all the numbers to the end of the given string.\n\n### Signature\ndef move_num(test_str):",
+    "timestamp": "2025-10-17T19:12:30.585418",
+    "response_time": "3.95",
+    "context": "{\"function_name\": \"move_num\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 620,
+    "solution": "def largest_subset(a):\n    if not a:\n        return 0\n    \n    # Sort the array to ensure we check divisibility from smaller to larger numbers\n    a.sort()\n    n = len(a)\n    \n    # dp[i] represents the length of the largest divisible subset ending at index i\n    dp = [1] * n\n    \n    # For tracking the maximum subset\n    max_len = 1\n    \n    # Check each number with all previous numbers\n    for i in range(1, n):\n        for j in range(i):\n            # If current number is divisible by previous number\n            if a[i] % a[j] == 0:\n                # Update dp[i] if we can form a longer subset\n                dp[i] = max(dp[i], dp[j] + 1)\n        max_len = max(max_len, dp[i])\n    \n    return max_len",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the size of the largest subset of a list of numbers so that every pair is divisible.\n\n### Signature\ndef largest_subset(a):",
+    "timestamp": "2025-10-17T19:12:37.319940",
+    "response_time": "6.73",
+    "context": "{\"function_name\": \"largest_subset\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 622,
+    "solution": "def get_median(arr1, arr2, n):\n    # Initialize pointers for both arrays\n    i = 0  # pointer for arr1\n    j = 0  # pointer for arr2\n    count = 0\n    m1 = m2 = -1\n\n    # Loop until we reach the median position\n    while count <= n:\n        # If arr1 pointer reaches end, take elements from arr2\n        if i == n:\n            m1 = m2\n            m2 = arr2[j]\n            j += 1\n        # If arr2 pointer reaches end, take elements from arr1\n        elif j == n:\n            m1 = m2\n            m2 = arr1[i]\n            i += 1\n        # Compare elements from both arrays\n        elif arr1[i] <= arr2[j]:\n            m1 = m2\n            m2 = arr1[i]\n            i += 1\n        else:\n            m1 = m2\n            m2 = arr2[j]\n            j += 1\n        count += 1\n\n    # Return average of middle elements\n    return (m1 + m2) / 2",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the median of two sorted lists of same size.\n\n### Signature\ndef get_median(arr1, arr2, n):",
+    "timestamp": "2025-10-17T19:12:43.243502",
+    "response_time": "5.92",
+    "context": "{\"function_name\": \"get_median\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 623,
+    "solution": "def nth_nums(nums, n):\n    return [num ** n for num in nums]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to compute the n-th power of each number in a list.\n\n### Signature\ndef nth_nums(nums,n):",
+    "timestamp": "2025-10-17T19:12:44.996396",
+    "response_time": "1.75",
+    "context": "{\"function_name\": \"nth_nums\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 624,
+    "solution": "def is_upper(string):\n    return string.upper()",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to convert a given string to uppercase.\n\n### Signature\ndef is_upper(string):",
+    "timestamp": "2025-10-17T19:12:46.242488",
+    "response_time": "1.24",
+    "context": "{\"function_name\": \"is_upper\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 625,
+    "solution": "def swap_List(newList):\n    # Check if list has at least 2 elements\n    if len(newList) >= 2:\n        # Store first and last elements\n        newList[0], newList[-1] = newList[-1], newList[0]\n    return newList",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to interchange the first and last element in a given list.\n\n### Signature\ndef swap_List(newList):",
+    "timestamp": "2025-10-17T19:12:48.490813",
+    "response_time": "2.24",
+    "context": "{\"function_name\": \"swap_List\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 626,
+    "solution": "import math\n\ndef triangle_area(r):\n    # The largest inscribed triangle in a semicircle is isosceles\n    # with the diameter as its base\n    # The height of this triangle can be found using trigonometry\n    \n    # Base is the diameter\n    base = 2 * r\n    \n    # Height can be calculated using the radius\n    # The height is r * sin(60\u00b0) = r * (\u221a3/2)\n    height = r * math.sqrt(3) / 2\n    \n    # Area of triangle = (1/2) * base * height\n    area = 0.5 * base * height\n    \n    return area",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the area of the largest triangle that can be inscribed in a semicircle with a given radius.\n\n### Signature\ndef triangle_area(r) :",
+    "timestamp": "2025-10-17T19:12:51.299356",
+    "response_time": "2.80",
+    "context": "{\"function_name\": \"triangle_area\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 627,
+    "solution": "def find_First_Missing(array, start=0, end=None):\n    if not array:\n        return start\n    \n    if end is None:\n        end = len(array) - 1\n        \n    if start > end:\n        return start\n        \n    if start != array[start]:\n        return start\n        \n    mid = (start + end) // 2\n    \n    # If this is true then left half has no missing number\n    if array[mid] == mid:\n        return find_First_Missing(array, mid + 1, end)\n    \n    return find_First_Missing(array, start, mid)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the smallest missing number from a sorted list of natural numbers.\n\n### Signature\ndef find_First_Missing(array,start=0,end=None):",
+    "timestamp": "2025-10-17T19:12:55.605158",
+    "response_time": "4.30",
+    "context": "{\"function_name\": \"find_First_Missing\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 628,
+    "solution": "def replace_spaces(string):\n    return string.replace(' ', '%20')",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to replace all spaces in the given string with '%20'.\n\n### Signature\ndef replace_spaces(string):",
+    "timestamp": "2025-10-17T19:12:57.067233",
+    "response_time": "1.46",
+    "context": "{\"function_name\": \"replace_spaces\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 629,
+    "solution": "def Split(list):\n    even_numbers = []\n    for num in list:\n        if num % 2 == 0:\n            even_numbers.append(num)\n    return even_numbers",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find even numbers from a list of numbers.\n\n### Signature\ndef Split(list):",
+    "timestamp": "2025-10-17T19:12:58.604804",
+    "response_time": "1.53",
+    "context": "{\"function_name\": \"Split\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 630,
+    "solution": "def get_coordinates(ele, sub = []):\n    \"\"\"\n    Returns a list of adjacent coordinates for a given coordinate tuple.\n    \n    Args:\n        ele (tuple): A tuple of coordinates (x, y)\n        sub (list): Optional list of coordinates to exclude from the result\n    \n    Returns:\n        list: List of adjacent coordinate tuples\n    \"\"\"\n    x, y = ele\n    adjacent = [\n        (x-1, y-1), (x-1, y), (x-1, y+1),\n        (x, y-1),             (x, y+1),\n        (x+1, y-1), (x+1, y), (x+1, y+1)\n    ]\n    \n    # Remove any coordinates that are in the sub list\n    if sub:\n        adjacent = [coord for coord in adjacent if coord not in sub]\n        \n    return adjacent",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to extract all the adjacent coordinates of the given coordinate tuple.\n\n### Signature\ndef adjac(ele, sub = []):",
+    "timestamp": "2025-10-17T19:13:03.012044",
+    "response_time": "4.40",
+    "context": "{\"function_name\": \"get_coordinates\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 631,
+    "solution": "def replace_spaces(text):\n    result = \"\"\n    for char in text:\n        if char == \" \":\n            result += \"_\"\n        elif char == \"_\":\n            result += \" \"\n        else:\n            result += char\n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to replace whitespaces with an underscore and vice versa in a given string.\n\n### Signature\ndef replace_spaces(text):",
+    "timestamp": "2025-10-17T19:13:05.517772",
+    "response_time": "2.50",
+    "context": "{\"function_name\": \"replace_spaces\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 632,
+    "solution": "def move_zero(num_list):\n    non_zero = [x for x in num_list if x != 0]\n    zeros = [0] * (len(num_list) - len(non_zero))\n    num_list[:] = non_zero + zeros",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to move all zeroes to the end of the given list.\n\n### Signature\ndef move_zero(num_list):",
+    "timestamp": "2025-10-17T19:13:07.691332",
+    "response_time": "2.17",
+    "context": "{\"function_name\": \"move_zero\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 633,
+    "solution": "def pair_xor_Sum(arr,n) :\n    xor_sum = 0\n    # Calculate XOR of all possible pairs\n    for i in range(n):\n        for j in range(i+1, n):\n            xor_sum += arr[i] ^ arr[j]\n    return xor_sum",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of xor of all pairs of numbers in the given list.\n\n### Signature\ndef pair_xor_Sum(arr,n) :",
+    "timestamp": "2025-10-17T19:13:10.381341",
+    "response_time": "2.69",
+    "context": "{\"function_name\": \"pair_xor_Sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 635,
+    "solution": "def heap_sort(iterable):\n    def heapify(arr, n, i):\n        largest = i\n        left = 2 * i + 1\n        right = 2 * i + 2\n\n        if left < n and arr[left] > arr[largest]:\n            largest = left\n\n        if right < n and arr[right] > arr[largest]:\n            largest = right\n\n        if largest != i:\n            arr[i], arr[largest] = arr[largest], arr[i]\n            heapify(arr, n, largest)\n\n    arr = list(iterable)\n    n = len(arr)\n\n    # Build max heap\n    for i in range(n // 2 - 1, -1, -1):\n        heapify(arr, n, i)\n\n    # Extract elements from heap one by one\n    for i in range(n - 1, 0, -1):\n        arr[0], arr[i] = arr[i], arr[0]\n        heapify(arr, i, 0)\n\n    return arr",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to sort the given list.\n\n### Signature\ndef heap_sort(iterable):",
+    "timestamp": "2025-10-17T19:13:13.822881",
+    "response_time": "3.44",
+    "context": "{\"function_name\": \"heap_sort\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 637,
+    "solution": "def noprofit_noloss(actual_cost, sale_amount):\n    return actual_cost == sale_amount",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether the given amount has no profit and no loss\n\n### Signature\ndef noprofit_noloss(actual_cost,sale_amount):",
+    "timestamp": "2025-10-17T19:13:15.906449",
+    "response_time": "2.08",
+    "context": "{\"function_name\": \"noprofit_noloss\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 638,
+    "solution": "import math\n\ndef wind_chill(v, t):\n    # Convert temperature from Celsius to Fahrenheit\n    tf = (t * 9/5) + 32\n    \n    # Convert wind velocity from km/h to mph\n    mph = v * 0.621371\n    \n    # Calculate wind chill using the formula\n    # Wind Chill = 35.74 + 0.6215T - 35.75(V^0.16) + 0.4275T(V^0.16)\n    # where T is temperature in Fahrenheit and V is wind speed in mph\n    wc = 35.74 + (0.6215 * tf) - (35.75 * (mph ** 0.16)) + (0.4275 * tf * (mph ** 0.16))\n    \n    # Convert wind chill back to Celsius\n    wc_celsius = (wc - 32) * 5/9\n    \n    # Round to the next integer\n    return math.ceil(wc_celsius)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to calculate the wind chill index rounded to the next integer given the wind velocity in km/h and a temperature in celsius.\n\n### Signature\ndef wind_chill(v,t):",
+    "timestamp": "2025-10-17T19:13:20.485053",
+    "response_time": "4.57",
+    "context": "{\"function_name\": \"wind_chill\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 639,
+    "solution": "def sample_nam(sample_names):\n    # Filter names that start with uppercase and sum their lengths\n    return sum(len(name) for name in sample_names if name and name[0].isupper())",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.\n\n### Signature\ndef sample_nam(sample_names):",
+    "timestamp": "2025-10-17T19:13:22.582011",
+    "response_time": "2.09",
+    "context": "{\"function_name\": \"sample_nam\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 640,
+    "solution": "def remove_parenthesis(items):\n    stack = []\n    skip = 0\n    result = \"\"\n    \n    for char in items:\n        if char == '(':\n            stack.append(char)\n            skip += 1\n        elif char == ')' and stack:\n            stack.pop()\n            skip -= 1\n        elif skip == 0:\n            result += char\n            \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove the parenthesis and what is inbetween them from a string.\n\n### Signature\ndef remove_parenthesis(items):",
+    "timestamp": "2025-10-17T19:13:25.235356",
+    "response_time": "2.65",
+    "context": "{\"function_name\": \"remove_parenthesis\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 641,
+    "solution": "def is_nonagonal(n):\n    \"\"\"\n    Calculate the nth nonagonal number.\n    A nonagonal number is a figurate number that extends the concept of triangular and square numbers\n    to a nonagon (9-sided polygon).\n    Formula: n * (7n - 5) / 2\n    \"\"\"\n    return n * (7 * n - 5) // 2",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the nth nonagonal number.\n\n### Signature\ndef is_nonagonal(n):",
+    "timestamp": "2025-10-17T19:13:27.166368",
+    "response_time": "1.93",
+    "context": "{\"function_name\": \"is_nonagonal\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 643,
+    "solution": "import re\n\ndef text_match_wordz_middle(text):\n    pattern = r'\\w+z\\w+'\n    if re.search(pattern, text):\n        return True\n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that checks if a strings contains 'z', except at the start and end of the word.\n\n### Signature\ndef text_match_wordz_middle(text):",
+    "timestamp": "2025-10-17T19:13:28.709373",
+    "response_time": "1.54",
+    "context": "{\"function_name\": \"text_match_wordz_middle\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 644,
+    "solution": "def reverse_Array_Upto_K(input, k):\n    if not input or k <= 0 or k > len(input):\n        return input\n    \n    # Convert k to 0-based index\n    k = k - 1\n    \n    # Initialize pointers\n    left = 0\n    right = k\n    \n    # Reverse array elements from start to k\n    while left < right:\n        input[left], input[right] = input[right], input[left]\n        left += 1\n        right -= 1\n    \n    return input",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to reverse an array upto a given position.\n\n### Signature\ndef reverse_Array_Upto_K(input, k):",
+    "timestamp": "2025-10-17T19:13:31.448075",
+    "response_time": "2.73",
+    "context": "{\"function_name\": \"reverse_Array_Upto_K\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 720,
+    "solution": "def add_dict_to_tuple(test_tup, test_dict):\n    # Convert tuple to list\n    temp_list = list(test_tup)\n    # Append dictionary to list\n    temp_list.append(test_dict)\n    # Convert back to tuple and return\n    return tuple(temp_list)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to add a dictionary to the tuple. The output should be a tuple.\n\n### Signature\ndef add_dict_to_tuple(test_tup, test_dict):",
+    "timestamp": "2025-10-17T19:13:34.348215",
+    "response_time": "2.90",
+    "context": "{\"function_name\": \"add_dict_to_tuple\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 721,
+    "solution": "def maxAverageOfPath(cost):\n    if not cost or not cost[0]:\n        return 0.0\n    \n    n = len(cost)\n    # dp[i][j][k] stores maximum sum for path of length k+1 ending at (i,j)\n    dp = [[[float('-inf')] * (2*n) for _ in range(n)] for _ in range(n)]\n    \n    # Initialize starting point\n    dp[0][0][0] = cost[0][0]\n    \n    # For each path length\n    for k in range(1, 2*n-1):\n        # For each possible ending position (i,j)\n        for i in range(n):\n            for j in range(n):\n                # Skip if this position cannot be reached with current path length\n                if i + j != k:\n                    continue\n                    \n                # Get value from top cell (if exists)\n                if i > 0:\n                    dp[i][j][k] = max(dp[i][j][k], dp[i-1][j][k-1] + cost[i][j])\n                \n                # Get value from left cell (if exists)\n                if j > 0:\n                    dp[i][j][k] = max(dp[i][j][k], dp[i][j-1][k-1] + cost[i][j])\n    \n    # Find maximum average among all possible path lengths ending at (n-1,n-1)\n    max_avg = float('-inf')\n    for k in range(n-1, 2*n-1):  # minimum path length is n-1\n        if dp[n-1][n-1][k] != float('-inf'):\n            avg = dp[n-1][n-1][k] / (k + 1)\n            max_avg = max(max_avg, avg)\n    \n    return max_avg",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nGiven a square matrix of size N*N given as a list of lists, where each cell is associated with a specific cost. A path is defined as a specific sequence of cells that starts from the top-left cell move only right or down and ends on bottom right cell. We want to find a path with the maximum average over all existing paths. Average is computed as total cost divided by the number of cells visited in the path.\n\n### Signature\ndef maxAverageOfPath(cost):",
+    "timestamp": "2025-10-17T19:13:41.580797",
+    "response_time": "7.23",
+    "context": "{\"function_name\": \"maxAverageOfPath\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 722,
+    "solution": "def filter_data(students, h, w):\n    \"\"\"\n    Filter students based on minimum height and weight requirements.\n    \n    Args:\n        students (dict): Dictionary with student names as keys and (height, weight) tuples as values\n        h (float): Minimum height requirement\n        w (float): Minimum weight requirement\n    \n    Returns:\n        dict: Filtered dictionary containing only students meeting both requirements\n    \"\"\"\n    return {name: measurements for name, measurements in students.items() \n            if measurements[0] >= h and measurements[1] >= w}",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nThe input is given as - a dictionary with a student name as a key and a tuple of float (student_height, student_weight) as a value, - minimal height, - minimal weight. Write a function to filter students that have height and weight above the minimum.\n\n### Signature\ndef filter_data(students,h,w):",
+    "timestamp": "2025-10-17T19:13:43.878521",
+    "response_time": "2.29",
+    "context": "{\"function_name\": \"filter_data\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 723,
+    "solution": "def count_same_pair(nums1, nums2):\n    count = 0\n    for i in range(len(nums1)):\n        if nums1[i] == nums2[i]:\n            count += 1\n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nThe input is defined as two lists of the same length. Write a function to count indices where the lists have the same values.\n\n### Signature\ndef count_same_pair(nums1, nums2):",
+    "timestamp": "2025-10-17T19:13:46.342935",
+    "response_time": "2.46",
+    "context": "{\"function_name\": \"count_same_pair\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 724,
+    "solution": "def power_base_sum(base, power):\n    # Calculate base raised to power\n    result = base ** power\n    \n    # Convert number to string to iterate through digits\n    result_str = str(result)\n    \n    # Sum all digits\n    digit_sum = sum(int(digit) for digit in result_str)\n    \n    return digit_sum",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that takes base and power as arguments and calculate the sum of all digits of the base to the specified power.\n\n### Signature\ndef power_base_sum(base, power):",
+    "timestamp": "2025-10-17T19:13:49.321964",
+    "response_time": "2.97",
+    "context": "{\"function_name\": \"power_base_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 725,
+    "solution": "import re\n\ndef extract_quotation(text1):\n    pattern = r'\"([^\"]*)\"'\n    matches = re.findall(pattern, text1)\n    return matches",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to extract values between quotation marks \" \" of the given string.\n\n### Signature\ndef extract_quotation(text1):",
+    "timestamp": "2025-10-17T19:13:51.394297",
+    "response_time": "2.07",
+    "context": "{\"function_name\": \"extract_quotation\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 726,
+    "solution": "def multiply_elements(test_tup):\n    return tuple(test_tup[i] * test_tup[i+1] for i in range(len(test_tup)-1))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that takes as input a tuple of numbers (t_1,...,t_{N+1}) and returns a tuple of length N where the i-th element of the tuple is equal to t_i * t_{i+1}.\n\n### Signature\ndef multiply_elements(test_tup):",
+    "timestamp": "2025-10-17T19:13:53.231416",
+    "response_time": "1.83",
+    "context": "{\"function_name\": \"multiply_elements\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 728,
+    "solution": "def sum_list(lst1, lst2):\n    return [a + b for a, b in zip(lst1, lst2)]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function takes as input two lists [a_1,...,a_n], [b_1,...,b_n] and returns [a_1+b_1,...,a_n+b_n].\n\n### Signature\ndef sum_list(lst1,lst2):",
+    "timestamp": "2025-10-17T19:13:55.293852",
+    "response_time": "2.06",
+    "context": "{\"function_name\": \"sum_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 730,
+    "solution": "def consecutive_duplicates(nums):\n    if not nums:\n        return []\n    \n    result = [nums[0]]\n    for i in range(1, len(nums)):\n        if nums[i] != nums[i-1]:\n            result.append(nums[i])\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove consecutive duplicates of a given list.\n\n### Signature\ndef consecutive_duplicates(nums):",
+    "timestamp": "2025-10-17T19:13:57.490846",
+    "response_time": "2.19",
+    "context": "{\"function_name\": \"consecutive_duplicates\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 731,
+    "solution": "import math\n\ndef lateralsurface_cone(r,h):\n    # Calculate slant height using Pythagorean theorem\n    slant_height = math.sqrt(r**2 + h**2)\n    # Calculate lateral surface area using formula: \u03c0 * r * s\n    lateral_surface_area = math.pi * r * slant_height\n    return lateral_surface_area",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the lateral surface area of a cone given radius r and the height h.\n\n### Signature\ndef lateralsurface_cone(r,h):",
+    "timestamp": "2025-10-17T19:13:59.561013",
+    "response_time": "2.06",
+    "context": "{\"function_name\": \"lateralsurface_cone\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 732,
+    "solution": "def replace_specialchar(text):\n    return text.replace(' ', ':').replace(',', ':').replace('.', ':')",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to replace all occurrences of spaces, commas, or dots with a colon.\n\n### Signature\ndef replace_specialchar(text):",
+    "timestamp": "2025-10-17T19:14:01.002890",
+    "response_time": "1.44",
+    "context": "{\"function_name\": \"replace_specialchar\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 733,
+    "solution": "def find_first_occurrence(A, x):\n    left = 0\n    right = len(A) - 1\n    result = -1\n\n    while left <= right:\n        mid = (left + right) // 2\n        \n        if A[mid] == x:\n            result = mid\n            right = mid - 1  # Continue searching in the left half\n        elif A[mid] < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n\n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the index of the first occurrence of a given number in a sorted array.\n\n### Signature\ndef find_first_occurrence(A, x):",
+    "timestamp": "2025-10-17T19:14:04.484743",
+    "response_time": "3.48",
+    "context": "{\"function_name\": \"find_first_occurrence\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 734,
+    "solution": "def sum_Of_Subarray_Prod(arr):\n    n = len(arr)\n    total_sum = 0\n    \n    # Generate all possible subarrays\n    for start in range(n):\n        for end in range(start, n):\n            # Calculate product of current subarray\n            product = 1\n            for i in range(start, end + 1):\n                product *= arr[i]\n            total_sum += product\n            \n    return total_sum",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find sum of products of all possible sublists of a given list. https://www.geeksforgeeks.org/sum-of-products-of-all-possible-subarrays/\n\n### Signature\ndef sum_Of_Subarray_Prod(arr):",
+    "timestamp": "2025-10-17T19:14:06.765378",
+    "response_time": "2.27",
+    "context": "{\"function_name\": \"sum_Of_Subarray_Prod\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 735,
+    "solution": "def toggle_middle_bits(n):\n    # If number has less than 3 bits, no middle bits to toggle\n    if n < 4:\n        return n\n    \n    # Find position of leftmost bit\n    position = 0\n    temp = n\n    while temp:\n        position += 1\n        temp = temp >> 1\n    \n    # Create a mask with all bits set except first and last\n    # First shift 1 to leftmost position and subtract 1 to get all 1s\n    # Then shift right by 1 to unset last bit\n    mask = (1 << position) - 1\n    # Unset first bit by XORing with appropriate mask\n    mask = mask ^ (1 << (position - 1))\n    # Now mask has all 1s except for first and last positions\n    \n    # Toggle middle bits using XOR with mask\n    return n ^ mask",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to toggle bits of the number except the first and the last bit. https://www.geeksforgeeks.org/toggle-bits-number-expect-first-last-bits/\n\n### Signature\ndef set_middle_bits(n):",
+    "timestamp": "2025-10-17T19:14:12.615624",
+    "response_time": "5.84",
+    "context": "{\"function_name\": \"toggle_middle_bits\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 736,
+    "solution": "from bisect import bisect_left\n\ndef left_insertion(a, x):\n    \"\"\"\n    Find the index where x should be inserted in sorted list a to maintain order.\n    \n    Args:\n        a: A sorted list of numbers\n        x: The value to find insertion point for\n        \n    Returns:\n        The index where x should be inserted\n    \"\"\"\n    return bisect_left(a, x)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to locate the left insertion point for a specified value in sorted order. https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-data-structure-exercise-24.php\n\n### Signature\ndef left_insertion(a, x):",
+    "timestamp": "2025-10-17T19:14:15.792677",
+    "response_time": "3.17",
+    "context": "{\"function_name\": \"left_insertion\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 737,
+    "solution": "import re\n\ndef check_str(string):\n    pattern = r'^[aeiouAEIOU]'\n    return bool(re.match(pattern, string))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether the given string is starting with a vowel or not using regex.\n\n### Signature\ndef check_str(string):",
+    "timestamp": "2025-10-17T19:14:17.813994",
+    "response_time": "2.02",
+    "context": "{\"function_name\": \"check_str\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 738,
+    "solution": "def geometric_sum(n):\n    if n < 1:\n        return 0\n    return 1 / (2 ** (n - 1)) + geometric_sum(n - 1)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to calculate the geometric sum of n-1. https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-recursion-exercise-9.php\n\n### Signature\ndef geometric_sum(n):",
+    "timestamp": "2025-10-17T19:14:20.556570",
+    "response_time": "2.74",
+    "context": "{\"function_name\": \"geometric_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 739,
+    "solution": "import math\n\ndef find_Index(n):\n    # Function to count digits in a number\n    def count_digits(num):\n        return len(str(num))\n    \n    # Function to get triangular number for given index\n    def get_triangular_number(index):\n        return (index * (index + 1)) // 2\n    \n    # Binary search to find the index\n    left = 1\n    right = 10**n  # A reasonable upper bound\n    \n    result = -1\n    while left <= right:\n        mid = (left + right) // 2\n        tri_num = get_triangular_number(mid)\n        digits = count_digits(tri_num)\n        \n        if digits == n:\n            result = mid\n            right = mid - 1  # Try to find a smaller index\n        elif digits < n:\n            left = mid + 1\n        else:\n            right = mid - 1\n            \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the index of smallest triangular number with n digits. https://www.geeksforgeeks.org/index-of-smallest-triangular-number-with-n-digits/\n\n### Signature\ndef find_Index(n):",
+    "timestamp": "2025-10-17T19:14:25.449549",
+    "response_time": "4.89",
+    "context": "{\"function_name\": \"find_Index\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 740,
+    "solution": "def tuple_to_dict(test_tup):\n    # Check if tuple length is even\n    if len(test_tup) % 2 != 0:\n        return {}\n    \n    # Create dictionary using dictionary comprehension\n    # Taking elements at even indices as keys and odd indices as values\n    return {test_tup[i]: test_tup[i + 1] for i in range(0, len(test_tup), 2)}",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to convert the given tuple to a key-value dictionary using adjacent elements. https://www.geeksforgeeks.org/python-convert-tuple-to-adjacent-pair-dictionary/\n\n### Signature\ndef tuple_to_dict(test_tup):",
+    "timestamp": "2025-10-17T19:14:27.809939",
+    "response_time": "2.35",
+    "context": "{\"function_name\": \"tuple_to_dict\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 741,
+    "solution": "def all_Characters_Same(s) :\n    # If string is empty or has only one character, return True\n    if len(s) <= 1:\n        return True\n    \n    # Compare all characters with first character\n    first_char = s[0]\n    for char in s[1:]:\n        if char != first_char:\n            return False\n    \n    return True",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to check whether all the characters are same or not.\n\n### Signature\ndef all_Characters_Same(s) :",
+    "timestamp": "2025-10-17T19:14:30.592126",
+    "response_time": "2.78",
+    "context": "{\"function_name\": \"all_Characters_Same\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 742,
+    "solution": "import math\n\ndef area_tetrahedron(side):\n    \"\"\"\n    Calculate the surface area of a regular tetrahedron given its side length.\n    The formula for surface area is: A = sqrt(3) * side^2\n    \"\"\"\n    return math.sqrt(3) * side * side",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to caluclate the area of a tetrahedron.\n\n### Signature\ndef area_tetrahedron(side):",
+    "timestamp": "2025-10-17T19:14:32.864802",
+    "response_time": "2.27",
+    "context": "{\"function_name\": \"area_tetrahedron\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 743,
+    "solution": "def rotate_right(list, m):\n    if not list:\n        return list\n    \n    # Handle cases where m is larger than list length\n    m = m % len(list)\n    \n    # Slice the list and concatenate\n    return list[-m:] + list[:-m]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to rotate a given list by specified number of items to the right direction. https://www.geeksforgeeks.org/python-program-right-rotate-list-n/\n\n### Signature\ndef rotate_right(list, m):",
+    "timestamp": "2025-10-17T19:14:34.892205",
+    "response_time": "2.02",
+    "context": "{\"function_name\": \"rotate_right\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 744,
+    "solution": "def check_none(test_tup):\n    return None in test_tup",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check if the given tuple has any none value or not.\n\n### Signature\ndef check_none(test_tup):",
+    "timestamp": "2025-10-17T19:14:36.115400",
+    "response_time": "1.22",
+    "context": "{\"function_name\": \"check_none\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 745,
+    "solution": "def divisible_by_digits(startnum, endnum):\n    def is_divisible_by_digits(num):\n        # Convert number to string to iterate through digits\n        num_str = str(num)\n        # Check if number is divisible by all its digits\n        for digit in num_str:\n            # Skip if digit is 0\n            if digit == '0':\n                return False\n            if num % int(digit) != 0:\n                return False\n        return True\n    \n    # Create list of numbers that satisfy the condition\n    result = []\n    for num in range(startnum, endnum + 1):\n        if is_divisible_by_digits(num):\n            result.append(num)\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find numbers within a given range from startnum ti endnum where every number is divisible by every digit it contains. https://www.w3resource.com/python-exercises/lambda/python-lambda-exercise-24.php\n\n### Signature\ndef divisible_by_digits(startnum, endnum):",
+    "timestamp": "2025-10-17T19:14:39.852159",
+    "response_time": "3.73",
+    "context": "{\"function_name\": \"divisible_by_digits\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 746,
+    "solution": "import math\n\ndef sector_area(r,a):\n    if a > 360:\n        return None\n    area = (math.pi * r * r * a) / 360\n    return area",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find area of a sector. The function takes the radius and angle as inputs. Function should return None if the angle is larger than 360 degrees.\n\n### Signature\ndef sector_area(r,a):",
+    "timestamp": "2025-10-17T19:14:42.013794",
+    "response_time": "2.16",
+    "context": "{\"function_name\": \"sector_area\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 747,
+    "solution": "def lcs_of_three(X, Y, Z):\n    m, n, o = len(X), len(Y), len(Z)\n    \n    # Create a 3D table to store results of subproblems\n    L = [[[0 for i in range(o+1)] for j in range(n+1)] for k in range(m+1)]\n    \n    # Fill L[m][n][o] in bottom up fashion\n    for i in range(m+1):\n        for j in range(n+1):\n            for k in range(o+1):\n                if (i == 0 or j == 0 or k == 0):\n                    L[i][j][k] = 0\n                elif (X[i-1] == Y[j-1] and X[i-1] == Z[k-1]):\n                    L[i][j][k] = L[i-1][j-1][k-1] + 1\n                else:\n                    L[i][j][k] = max(max(L[i-1][j][k], L[i][j-1][k]), L[i][j][k-1])\n    \n    return L[m][n][o]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the longest common subsequence for the given three string sequence. https://www.geeksforgeeks.org/lcs-longest-common-subsequence-three-strings/\n\n### Signature\ndef lcs_of_three(X, Y, Z):",
+    "timestamp": "2025-10-17T19:14:46.734999",
+    "response_time": "4.71",
+    "context": "{\"function_name\": \"lcs_of_three\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 748,
+    "solution": "def capital_words_spaces(str1):\n    if not str1:\n        return str1\n    \n    result = str1[0]\n    for i in range(1, len(str1)):\n        if str1[i].isupper():\n            result += ' ' + str1[i]\n        else:\n            result += str1[i]\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to put spaces between words starting with capital letters in a given string.\n\n### Signature\ndef capital_words_spaces(str1):",
+    "timestamp": "2025-10-17T19:14:49.573205",
+    "response_time": "2.83",
+    "context": "{\"function_name\": \"capital_words_spaces\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 749,
+    "solution": "def sort_numeric_strings(nums_str):\n    return sorted(nums_str, key=int)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to sort a given list of strings of numbers numerically. https://www.geeksforgeeks.org/python-sort-numeric-strings-in-a-list/\n\n### Signature\ndef sort_numeric_strings(nums_str):",
+    "timestamp": "2025-10-17T19:14:50.812675",
+    "response_time": "1.23",
+    "context": "{\"function_name\": \"sort_numeric_strings\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 750,
+    "solution": "def add_tuple(test_list, test_tup):\n    test_list.append(test_tup)\n    return test_list",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to add the given tuple to the given list.\n\n### Signature\ndef add_tuple(test_list, test_tup):",
+    "timestamp": "2025-10-17T19:14:52.897653",
+    "response_time": "2.08",
+    "context": "{\"function_name\": \"add_tuple\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 751,
+    "solution": "def check_min_heap(arr, i):\n    # Get array length\n    n = len(arr)\n    \n    # Get left and right child indices\n    left = 2 * i + 1\n    right = 2 * i + 2\n    \n    # If current node is leaf node, return True as it follows min heap property\n    if left >= n:\n        return True\n    \n    # Check if current node is smaller than its children\n    # and recursively check for left and right subtrees\n    is_heap = arr[i] <= arr[left]  # Current node should be smaller than left child\n    \n    if right < n:  # If right child exists\n        is_heap = is_heap and arr[i] <= arr[right]  # Current node should be smaller than right child\n    \n    # If current node follows min heap property,\n    # recursively check for left and right subtrees\n    if is_heap:\n        return check_min_heap_helper(arr, left) and (right >= n or check_min_heap_helper(arr, right))\n    \n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check if the given array represents min heap or not. https://www.geeksforgeeks.org/how-to-check-if-a-given-array-represents-a-binary-heap/\n\n### Signature\ndef check_min_heap_helper(arr, i):",
+    "timestamp": "2025-10-17T19:14:57.514523",
+    "response_time": "4.61",
+    "context": "{\"function_name\": \"check_min_heap\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 752,
+    "solution": "def jacobsthal_num(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    \n    # Using the formula: J(n) = J(n-1) + 2*J(n-2)\n    a, b = 0, 1\n    for _ in range(2, n + 1):\n        a, b = b, b + 2 * a\n    return b",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the nth jacobsthal number. https://www.geeksforgeeks.org/jacobsthal-and-jacobsthal-lucas-numbers/ 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, ...\n\n### Signature\ndef jacobsthal_num(n):",
+    "timestamp": "2025-10-17T19:14:59.664737",
+    "response_time": "2.14",
+    "context": "{\"function_name\": \"jacobsthal_num\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 753,
+    "solution": "def min_k(test_list, K):\n    # Sort the list based on the second element of each tuple\n    sorted_list = sorted(test_list, key=lambda x: x[1])\n    \n    # Return first K elements\n    return sorted_list[:K]",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find minimum k records from tuple list. https://www.geeksforgeeks.org/python-find-minimum-k-records-from-tuple-list/ - in this case a verbatim copy of test cases\n\n### Signature\ndef min_k(test_list, K):",
+    "timestamp": "2025-10-17T19:15:01.264879",
+    "response_time": "1.59",
+    "context": "{\"function_name\": \"min_k\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 754,
+    "solution": "def extract_index_list(l1, l2, l3):\n    # Find the minimum length among the three lists\n    min_length = min(len(l1), len(l2), len(l3))\n    \n    # Initialize result list\n    common_elements = []\n    \n    # Check elements at each index up to min_length\n    for i in range(min_length):\n        if l1[i] == l2[i] == l3[i]:\n            common_elements.append(l1[i])\n            \n    return common_elements",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWe say that an element is common for lists l1, l2, l3 if it appears in all three lists under the same index. Write a function to find common elements from three lists. The function should return a list.\n\n### Signature\ndef extract_index_list(l1, l2, l3):",
+    "timestamp": "2025-10-17T19:15:05.221310",
+    "response_time": "3.95",
+    "context": "{\"function_name\": \"extract_index_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 755,
+    "solution": "def second_smallest(numbers):\n    if len(numbers) < 2:\n        return None\n    \n    smallest = float('inf')\n    second_smallest_num = float('inf')\n    \n    for num in numbers:\n        if num < smallest:\n            second_smallest_num = smallest\n            smallest = num\n        elif num < second_smallest_num and num != smallest:\n            second_smallest_num = num\n    \n    if second_smallest_num == float('inf'):\n        return None\n        \n    return second_smallest_num",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the second smallest number in a list.\n\n### Signature\ndef second_smallest(numbers):",
+    "timestamp": "2025-10-17T19:15:08.026224",
+    "response_time": "2.80",
+    "context": "{\"function_name\": \"second_smallest\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 756,
+    "solution": "import re\n\ndef text_match_zero_one(text):\n    pattern = 'ab+?'\n    if re.search(pattern, text):\n        return True\n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that matches a string that has an 'a' followed by one or more 'b's. https://www.w3resource.com/python-exercises/re/python-re-exercise-3.php\n\n### Signature\ndef text_match_zero_one(text):",
+    "timestamp": "2025-10-17T19:15:09.601183",
+    "response_time": "1.57",
+    "context": "{\"function_name\": \"text_match_zero_one\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 757,
+    "solution": "def count_reverse_pairs(test_list):\n    # Initialize counter for reverse pairs\n    count = 0\n    \n    # Get length of list\n    n = len(test_list)\n    \n    # Compare each string with all other strings\n    for i in range(n):\n        for j in range(i + 1, n):\n            # Check if current string is reverse of compared string\n            if test_list[i] == test_list[j][::-1]:\n                count += 1\n    \n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to count the pairs of reverse strings in the given string list. https://www.geeksforgeeks.org/python-program-to-count-the-pairs-of-reverse-strings/\n\n### Signature\ndef count_reverse_pairs(test_list):",
+    "timestamp": "2025-10-17T19:15:13.943081",
+    "response_time": "4.34",
+    "context": "{\"function_name\": \"count_reverse_pairs\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 758,
+    "solution": "from collections import defaultdict\n\ndef unique_sublists(list1):\n    # Create a defaultdict to store counts\n    count_dict = defaultdict(int)\n    \n    # Iterate through the list\n    for item in list1:\n        # Check if item is a list\n        if isinstance(item, list):\n            # Convert list to tuple for hashability and count\n            count_dict[tuple(item)] += 1\n    \n    # Convert defaultdict to regular dict\n    return dict(count_dict)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to count lists within a list. The function should return a dictionary where every list is converted to a tuple and the value of such tuple is the number of its occurencies in the original list.\n\n### Signature\ndef unique_sublists(list1):",
+    "timestamp": "2025-10-17T19:15:17.077441",
+    "response_time": "3.13",
+    "context": "{\"function_name\": \"unique_sublists\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 759,
+    "solution": "import re\n\ndef is_decimal(num):\n    # Regular expression pattern for decimal number with exactly 2 decimal places\n    pattern = r'^\\d+\\.\\d{2}$'\n    \n    # Check if the string matches the pattern\n    if re.match(pattern, num):\n        return True\n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether a given string is a decimal number with a precision of 2.\n\n### Signature\ndef is_decimal(num):",
+    "timestamp": "2025-10-17T19:15:19.365050",
+    "response_time": "2.28",
+    "context": "{\"function_name\": \"is_decimal\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 760,
+    "solution": "def unique_Element(arr):\n    # Return True if all elements are same, False otherwise\n    return len(set(arr)) == 1",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to check whether a list of numbers contains only one distinct element or not.\n\n### Signature\ndef unique_Element(arr):",
+    "timestamp": "2025-10-17T19:15:21.713632",
+    "response_time": "2.34",
+    "context": "{\"function_name\": \"unique_Element\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 762,
+    "solution": "def check_monthnumber_number(monthnum3):\n    # List of months with 30 days (April, June, September, November)\n    months_with_30_days = [4, 6, 9, 11]\n    \n    # Check if the input month number is in the list of months with 30 days\n    return monthnum3 in months_with_30_days",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether the given month number contains 30 days or not. Months are given as number from 1 to 12.\n\n### Signature\ndef check_monthnumber_number(monthnum3):",
+    "timestamp": "2025-10-17T19:15:25.839173",
+    "response_time": "4.12",
+    "context": "{\"function_name\": \"check_monthnumber_number\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 763,
+    "solution": "def find_min_diff(arr, n):\n    # If array has less than 2 elements, return -1\n    if n < 2:\n        return -1\n    \n    # Sort the array\n    arr.sort()\n    \n    # Initialize minimum difference as the largest possible value\n    min_diff = float('inf')\n    \n    # Compare adjacent elements to find minimum difference\n    for i in range(n-1):\n        diff = arr[i+1] - arr[i]\n        min_diff = min(min_diff, diff)\n    \n    return min_diff",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the minimum difference between any two elements in a given array. https://www.geeksforgeeks.org/find-minimum-difference-pair/\n\n### Signature\ndef find_min_diff(arr,n):",
+    "timestamp": "2025-10-17T19:15:29.368604",
+    "response_time": "3.52",
+    "context": "{\"function_name\": \"find_min_diff\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 764,
+    "solution": "def number_ctr(str):\n    count = 0\n    for char in str:\n        if char.isdigit():\n            count += 1\n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to count number of digits in a given string.\n\n### Signature\ndef number_ctr(str):",
+    "timestamp": "2025-10-17T19:15:31.129495",
+    "response_time": "1.75",
+    "context": "{\"function_name\": \"number_ctr\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 765,
+    "solution": "def is_polite(n):\n    # Function to find nth polite number\n    count = 0\n    num = 1\n    \n    while count < n:\n        # For each number, try to find consecutive sum starting from 2\n        current = num + 1\n        sum_so_far = current\n        found = False\n        \n        # Try different lengths of consecutive numbers\n        while sum_so_far <= num:\n            if sum_so_far == num:\n                found = True\n                break\n            current += 1\n            sum_so_far += current\n        \n        if found:\n            count += 1\n            if count == n:\n                return num\n        num += 1\n    \n    return num",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/\n\n### Signature\ndef is_polite(n):",
+    "timestamp": "2025-10-17T19:15:35.017344",
+    "response_time": "3.88",
+    "context": "{\"function_name\": \"is_polite\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 766,
+    "solution": "from typing import List, Any\n\ndef pair_wise(l1: List[Any]) -> List[tuple]:\n    if len(l1) < 2:\n        return []\n    return list(zip(l1[:-1], l1[1:]))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to return a list of all pairs of consecutive items in a given list.\n\n### Signature\ndef pair_wise(l1):",
+    "timestamp": "2025-10-17T19:15:37.141794",
+    "response_time": "2.12",
+    "context": "{\"function_name\": \"pair_wise\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 767,
+    "solution": "def get_pairs_count(arr, sum):\n    count = 0\n    n = len(arr)\n    \n    # Consider all possible pairs\n    for i in range(n):\n        for j in range(i + 1, n):\n            if arr[i] + arr[j] == sum:\n                count += 1\n    \n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to count the number of pairs whose sum is equal to \u2018sum\u2019. The funtion gets as input a list of numbers and the sum,\n\n### Signature\ndef get_pairs_count(arr, sum):",
+    "timestamp": "2025-10-17T19:15:39.149715",
+    "response_time": "2.00",
+    "context": "{\"function_name\": \"get_pairs_count\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 769,
+    "solution": "def Diff(li1,li2):\n    return list(set(li1) - set(li2)) + list(set(li2) - set(li1))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to get the difference between two lists.\n\n### Signature\ndef Diff(li1,li2):",
+    "timestamp": "2025-10-17T19:15:41.010620",
+    "response_time": "1.86",
+    "context": "{\"function_name\": \"Diff\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 770,
+    "solution": "def odd_num_sum(n):\n    sum = 0\n    num = 1  # First odd number\n    count = 0\n    \n    while count < n:\n        sum += num ** 4  # Adding fourth power of odd number\n        num += 2  # Moving to next odd number\n        count += 1\n        \n    return sum",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of fourth power of first n odd natural numbers.\n\n### Signature\ndef odd_num_sum(n) :",
+    "timestamp": "2025-10-17T19:15:43.947091",
+    "response_time": "2.93",
+    "context": "{\"function_name\": \"odd_num_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 771,
+    "solution": "def check_expression(exp):\n    stack = []\n    # Dictionary to store opening and closing brackets mapping\n    brackets = {')': '(', '}': '{', ']': '['}\n    \n    # Traverse each character in the expression\n    for char in exp:\n        # If character is an opening bracket, push it to stack\n        if char in '({[':\n            stack.append(char)\n        # If character is a closing bracket\n        elif char in ')}]':\n            # If stack is empty or top of stack doesn't match\n            if not stack or stack.pop() != brackets[char]:\n                return False\n    \n    # Expression is balanced only if stack is empty at the end\n    return len(stack) == 0",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check if the given expression is balanced or not. https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/\n\n### Signature\ndef check_expression(exp):",
+    "timestamp": "2025-10-17T19:15:48.485766",
+    "response_time": "4.53",
+    "context": "{\"function_name\": \"check_expression\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 772,
+    "solution": "def remove_length(test_str, K):\n    # Split the string into words\n    words = test_str.split()\n    \n    # Filter out words with length K\n    filtered_words = [word for word in words if len(word) != K]\n    \n    # Join the filtered words back into a string\n    return ' '.join(filtered_words)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove all the words with k length in the given string.\n\n### Signature\ndef remove_length(test_str, K):",
+    "timestamp": "2025-10-17T19:15:51.050635",
+    "response_time": "2.56",
+    "context": "{\"function_name\": \"remove_length\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 773,
+    "solution": "def occurance_substring(text, pattern):\n    if not text or not pattern:\n        return None\n    \n    pattern_length = len(pattern)\n    text_length = len(text)\n    result = []\n    \n    # If pattern is longer than text, no match possible\n    if pattern_length > text_length:\n        return None\n    \n    # Check each possible starting position in text\n    for i in range(text_length - pattern_length + 1):\n        # If we find a match at current position\n        if text[i:i + pattern_length] == pattern:\n            result.append((i, i + pattern_length - 1))\n    \n    # Return None if no matches found, otherwise return list of positions\n    return result if result else None",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the occurrence and position of the substrings within a string. Return None if there is no match.\n\n### Signature\ndef occurance_substring(text,pattern):",
+    "timestamp": "2025-10-17T19:15:55.925488",
+    "response_time": "4.87",
+    "context": "{\"function_name\": \"occurance_substring\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 775,
+    "solution": "def odd_position(nums):\n    # Check if list is empty or has only one element\n    if len(nums) <= 1:\n        return True\n    \n    # Check each odd index (1, 3, 5, ...) for odd numbers\n    for i in range(1, len(nums), 2):\n        if nums[i] % 2 == 0:  # if number at odd index is even\n            return False\n    \n    return True",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to check whether every odd index contains odd numbers of a given list.\n\n### Signature\ndef odd_position(nums):",
+    "timestamp": "2025-10-17T19:15:59.958280",
+    "response_time": "4.03",
+    "context": "{\"function_name\": \"odd_position\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 776,
+    "solution": "def count_vowels(test_str):\n    if len(test_str) < 3:\n        return 0\n        \n    vowels = set('aeiouAEIOU')\n    count = 0\n    \n    for i in range(1, len(test_str) - 1):\n        # Check if current character has vowels as neighbors\n        if (test_str[i-1] in vowels) and (test_str[i+1] in vowels):\n            count += 1\n            \n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to count those characters which have vowels as their neighbors in the given string.\n\n### Signature\ndef count_vowels(test_str):",
+    "timestamp": "2025-10-17T19:16:04.331190",
+    "response_time": "4.37",
+    "context": "{\"function_name\": \"count_vowels\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 777,
+    "solution": "def find_sum(arr):\n    # Convert list to set to remove duplicates, then sum the unique elements\n    return sum(set(arr))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of non-repeated elements in a given list.\n\n### Signature\ndef find_sum(arr):",
+    "timestamp": "2025-10-17T19:16:06.308078",
+    "response_time": "1.97",
+    "context": "{\"function_name\": \"find_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 778,
+    "solution": "def pack_consecutive_duplicates(list1):\n    if not list1:\n        return []\n    \n    result = []\n    current_group = [list1[0]]\n    \n    for item in list1[1:]:\n        if item == current_group[0]:\n            current_group.append(item)\n        else:\n            result.append(current_group)\n            current_group = [item]\n    \n    result.append(current_group)\n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to pack consecutive duplicates of a given list elements into sublists.\n\n### Signature\ndef pack_consecutive_duplicates(list1):",
+    "timestamp": "2025-10-17T19:16:09.055008",
+    "response_time": "2.74",
+    "context": "{\"function_name\": \"pack_consecutive_duplicates\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 779,
+    "solution": "from collections import defaultdict\nfrom typing import List, Dict, Tuple\n\ndef unique_sublists(list1: List) -> Dict[Tuple, int]:\n    count_dict = defaultdict(int)\n    \n    for item in list1:\n        if isinstance(item, list):\n            count_dict[tuple(item)] += 1\n            \n    return dict(count_dict)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to count the number of lists within a list. The function should return a dictionary, where every list is turned to a tuple, and the value of the tuple is the number of its occurrences.\n\n### Signature\ndef unique_sublists(list1):",
+    "timestamp": "2025-10-17T19:16:12.087814",
+    "response_time": "3.03",
+    "context": "{\"function_name\": \"unique_sublists\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 780,
+    "solution": "from itertools import combinations\n\ndef find_combinations(test_list):\n    # Extract all possible combinations of tuples\n    all_combs = []\n    for r in range(1, len(test_list) + 1):\n        all_combs.extend(list(combinations(test_list, r)))\n    \n    # Create a dictionary to store sum combinations\n    result = {}\n    \n    # Calculate sum for each combination and group them\n    for comb in all_combs:\n        curr_sum = sum(sum(x) for x in comb)\n        if curr_sum in result:\n            result[curr_sum].append(comb)\n        else:\n            result[curr_sum] = [comb]\n    \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the combinations of sums with tuples in the given tuple list. https://www.geeksforgeeks.org/python-combinations-of-sum-with-tuples-in-tuple-list/\n\n### Signature\ndef find_combinations(test_list):",
+    "timestamp": "2025-10-17T19:16:15.535217",
+    "response_time": "3.44",
+    "context": "{\"function_name\": \"find_combinations\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 781,
+    "solution": "def count_divisors(n) :\n    count = 0\n    for i in range(1, n + 1):\n        if n % i == 0:\n            count += 1\n    return count % 2 == 0",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to check whether the count of divisors is even. https://www.w3resource.com/python-exercises/basic/python-basic-1-exercise-24.php\n\n### Signature\ndef count_divisors(n) :",
+    "timestamp": "2025-10-17T19:16:17.863991",
+    "response_time": "2.32",
+    "context": "{\"function_name\": \"count_divisors\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 782,
+    "solution": "def odd_length_sum(arr):\n    n = len(arr)\n    total_sum = 0\n    \n    # Consider all possible odd lengths from 1 to n\n    for length in range(1, n + 1, 2):\n        # Consider all possible starting positions for current length\n        for start in range(n - length + 1):\n            # Sum elements from start to start+length\n            for i in range(start, start + length):\n                total_sum += arr[i]\n    \n    return total_sum",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of all odd length subarrays. https://www.geeksforgeeks.org/sum-of-all-odd-length-subarrays/\n\n### Signature\ndef odd_length_sum(arr):",
+    "timestamp": "2025-10-17T19:16:21.392401",
+    "response_time": "3.52",
+    "context": "{\"function_name\": \"odd_length_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 783,
+    "solution": "def rgb_to_hsv(r, g, b):\n    # Scale RGB values to range 0-1\n    r, g, b = r/255.0, g/255.0, b/255.0\n    \n    # Find maximum and minimum values\n    cmax = max(r, g, b)\n    cmin = min(r, g, b)\n    diff = cmax - cmin\n    \n    # Initialize h\n    h = 0\n    \n    # Calculate h (hue)\n    if diff == 0:\n        h = 0\n    elif cmax == r:\n        h = (60 * ((g-b)/diff) + 360) % 360\n    elif cmax == g:\n        h = (60 * ((b-r)/diff) + 120) % 360\n    elif cmax == b:\n        h = (60 * ((r-g)/diff) + 240) % 360\n    \n    # Calculate s (saturation)\n    s = 0 if cmax == 0 else (diff / cmax) * 100\n    \n    # Calculate v (value)\n    v = cmax * 100\n    \n    return (h, s, v)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to convert rgb color to hsv color. https://www.geeksforgeeks.org/program-change-rgb-color-model-hsv-color-model/\n\n### Signature\ndef rgb_to_hsv(r, g, b):",
+    "timestamp": "2025-10-17T19:16:28.131724",
+    "response_time": "6.73",
+    "context": "{\"function_name\": \"rgb_to_hsv\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 784,
+    "solution": "from typing import List\n\ndef mul_even_odd(list1):\n    first_even = None\n    first_odd = None\n    \n    for num in list1:\n        if first_even is None and num % 2 == 0:\n            first_even = num\n        if first_odd is None and num % 2 != 0:\n            first_odd = num\n        if first_even is not None and first_odd is not None:\n            break\n    \n    if first_even is None or first_odd is None:\n        return None\n    \n    return first_even * first_odd",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find the product of first even and odd number of a given list.\n\n### Signature\ndef mul_even_odd(list1):",
+    "timestamp": "2025-10-17T19:16:30.455341",
+    "response_time": "2.32",
+    "context": "{\"function_name\": \"mul_even_odd\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 785,
+    "solution": "def tuple_str_int(test_str):\n    # Remove parentheses and split by comma\n    str_nums = test_str.strip('()').split(',')\n    # Convert each string number to integer and create tuple\n    return tuple(int(num.strip()) for num in str_nums)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to convert tuple string to integer tuple.\n\n### Signature\ndef tuple_str_int(test_str):",
+    "timestamp": "2025-10-17T19:16:32.926818",
+    "response_time": "2.47",
+    "context": "{\"function_name\": \"tuple_str_int\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 786,
+    "solution": "from bisect import bisect_right\n\ndef right_insertion(a, x):\n    \"\"\"\n    Find the rightmost position where x should be inserted in sorted array a.\n    \n    Args:\n        a: List of comparable elements in sorted order\n        x: Element to find insertion point for\n        \n    Returns:\n        Integer index where x should be inserted to maintain sorted order\n    \"\"\"\n    return bisect_right(a, x)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to locate the right insertion point for a specified value in sorted order.\n\n### Signature\ndef right_insertion(a, x):",
+    "timestamp": "2025-10-17T19:16:36.082192",
+    "response_time": "3.15",
+    "context": "{\"function_name\": \"right_insertion\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 787,
+    "solution": "import re\n\ndef text_match_three(text):\n    pattern = 'ab{3}'\n    if re.search(pattern, text):\n        return True\n    return False",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that matches a string that has an a followed by three 'b'.\n\n### Signature\ndef text_match_three(text):",
+    "timestamp": "2025-10-17T19:16:38.152146",
+    "response_time": "2.06",
+    "context": "{\"function_name\": \"text_match_three\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 788,
+    "solution": "def new_tuple(test_list, test_str):\n    # Convert string to tuple\n    str_tuple = tuple(test_str)\n    \n    # Convert list to tuple\n    list_tuple = tuple(test_list)\n    \n    # Combine both tuples\n    result_tuple = str_tuple + list_tuple\n    \n    return result_tuple",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to create a new tuple from the given string and list.\n\n### Signature\ndef new_tuple(test_list, test_str):",
+    "timestamp": "2025-10-17T19:16:40.183256",
+    "response_time": "2.02",
+    "context": "{\"function_name\": \"new_tuple\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 790,
+    "solution": "def even_position(nums):\n    for i in range(0, len(nums), 2):\n        if nums[i] % 2 != 0:\n            return False\n    return True",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to check whether every even index contains even numbers of a given list.\n\n### Signature\ndef even_position(nums):",
+    "timestamp": "2025-10-17T19:16:42.160654",
+    "response_time": "1.97",
+    "context": "{\"function_name\": \"even_position\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 791,
+    "solution": "def remove_nested(test_tup):\n    return tuple(item for item in test_tup if not isinstance(item, tuple))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove tuples from the given tuple.\n\n### Signature\ndef remove_nested(test_tup):",
+    "timestamp": "2025-10-17T19:16:43.939803",
+    "response_time": "1.77",
+    "context": "{\"function_name\": \"remove_nested\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 792,
+    "solution": "def count_list(input_list):\n    count = 0\n    for item in input_list:\n        if isinstance(item, list):\n            count += 1\n    return count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to count the number of lists in a given number of lists.\n\n### Signature\ndef count_list(input_list):",
+    "timestamp": "2025-10-17T19:16:45.278182",
+    "response_time": "1.33",
+    "context": "{\"function_name\": \"count_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 793,
+    "solution": "def last(arr, x):\n    left = 0\n    right = len(arr) - 1\n    result = -1\n\n    while left <= right:\n        mid = (left + right) // 2\n        \n        if arr[mid] == x:\n            result = mid\n            # Continue searching in the right half for last occurrence\n            left = mid + 1\n        elif arr[mid] < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n            \n    return result",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the last position of an element in a sorted array.\n\n### Signature\ndef last(arr,x):",
+    "timestamp": "2025-10-17T19:16:48.709671",
+    "response_time": "3.42",
+    "context": "{\"function_name\": \"last\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 794,
+    "solution": "import re\n\ndef text_starta_endb(text):\n    pattern = r'^a.*b$'\n    return bool(re.match(pattern, text))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that matches a string that has an 'a' followed by anything, ending in 'b'.\n\n### Signature\ndef text_starta_endb(text):",
+    "timestamp": "2025-10-17T19:16:50.458842",
+    "response_time": "1.74",
+    "context": "{\"function_name\": \"text_starta_endb\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 796,
+    "solution": "def return_sum(dict):\n    total = 0\n    for value in dict.values():\n        if isinstance(value, (int, float)):\n            total += value\n    return total",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite function to find the sum of all items in the given dictionary.\n\n### Signature\ndef return_sum(dict):",
+    "timestamp": "2025-10-17T19:16:51.995414",
+    "response_time": "1.53",
+    "context": "{\"function_name\": \"return_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 797,
+    "solution": "def sum_in_range(n):\n    # Initialize variables for range\n    l = 1\n    r = n\n    \n    # Initialize sum\n    total = 0\n    \n    # Loop through range and add odd numbers\n    for num in range(l, r + 1):\n        if num % 2 != 0:  # Check if number is odd\n            total += num\n            \n    return total",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of all odd natural numbers within the range l and r.\n\n### Signature\ndef sum_odd(n):",
+    "timestamp": "2025-10-17T19:16:55.398932",
+    "response_time": "3.40",
+    "context": "{\"function_name\": \"sum_in_range\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 798,
+    "solution": "def _sum(arr):\n    total = 0\n    for num in arr:\n        total += num\n    return total",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the sum of an array.\n\n### Signature\ndef _sum(arr):",
+    "timestamp": "2025-10-17T19:16:56.851045",
+    "response_time": "1.44",
+    "context": "{\"function_name\": \"_sum\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 799,
+    "solution": "def left_rotate(n,d):\n    # Normalize d to be within 0-31 range since we're working with 32 bits\n    d = d % 32\n    \n    # Convert to 32 bit by using mask\n    n = n & 0xFFFFFFFF\n    \n    # Left shift by d bits\n    left = (n << d) & 0xFFFFFFFF\n    \n    # Right shift by (32-d) bits\n    right = (n >> (32 - d)) & 0xFFFFFFFF\n    \n    # Combine both parts and return\n    return (left | right) & 0xFFFFFFFF",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to that rotate left bits by d bits a given number. We assume that the number is 32 bit.\n\n### Signature\ndef left_rotate(n,d):",
+    "timestamp": "2025-10-17T19:17:01.923854",
+    "response_time": "5.07",
+    "context": "{\"function_name\": \"left_rotate\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 800,
+    "solution": "def remove_all_spaces(text):\n    return \"\".join(text.split())",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to remove all whitespaces from a string.\n\n### Signature\ndef remove_all_spaces(text):",
+    "timestamp": "2025-10-17T19:17:03.674895",
+    "response_time": "1.74",
+    "context": "{\"function_name\": \"remove_all_spaces\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 801,
+    "solution": "def test_three_equal(x,y,z):\n    if x == y == z:\n        return 3\n    elif x == y or y == z or x == z:\n        return 2\n    else:\n        return 0",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to count the number of equal numbers from three given integers.\n\n### Signature\ndef test_three_equal(x,y,z):",
+    "timestamp": "2025-10-17T19:17:05.886800",
+    "response_time": "2.21",
+    "context": "{\"function_name\": \"test_three_equal\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 802,
+    "solution": "def count_rotation(arr):\n    n = len(arr)\n    if n <= 1:\n        return 0\n        \n    # Find the minimum element's index\n    # That will be the number of rotations\n    min_idx = 0\n    for i in range(1, n):\n        if arr[i] < arr[min_idx]:\n            min_idx = i\n            \n    return min_idx",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to count the number of rotations required to generate a sorted array. https://www.geeksforgeeks.org/count-of-rotations-required-to-generate-a-sorted-array/\n\n### Signature\ndef count_rotation(arr):",
+    "timestamp": "2025-10-17T19:17:08.973172",
+    "response_time": "3.08",
+    "context": "{\"function_name\": \"count_rotation\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 803,
+    "solution": "import math\n\ndef is_perfect_square(n):\n    # For negative numbers, return False as they cannot be perfect squares\n    if n < 0:\n        return False\n    \n    # Find the square root\n    sqrt = int(math.sqrt(n))\n    \n    # Check if the square of the square root equals the original number\n    return sqrt * sqrt == n",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether the given number is a perfect square or not. https://www.geeksforgeeks.org/check-if-given-number-is-perfect-square-in-cpp/\n\n### Signature\ndef is_perfect_square(n) :",
+    "timestamp": "2025-10-17T19:17:11.019421",
+    "response_time": "2.04",
+    "context": "{\"function_name\": \"is_perfect_square\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 804,
+    "solution": "from functools import reduce\nfrom operator import mul\n\ndef is_product_even(arr):\n    if not arr:\n        return False\n    product = reduce(mul, arr, 1)\n    return product % 2 == 0",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check whether the product of numbers in a list is even or not.\n\n### Signature\ndef is_product_even(arr):",
+    "timestamp": "2025-10-17T19:17:13.625815",
+    "response_time": "2.60",
+    "context": "{\"function_name\": \"is_product_even\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 805,
+    "solution": "def max_sum_list(lists):\n    if not lists:\n        return None\n    return max(lists, key=sum)",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function that returns the list in a list of lists whose sum of elements is the highest.\n\n### Signature\ndef max_sum_list(lists):",
+    "timestamp": "2025-10-17T19:17:15.509547",
+    "response_time": "1.88",
+    "context": "{\"function_name\": \"max_sum_list\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 806,
+    "solution": "def max_run_uppercase(test_str):\n    if not test_str:\n        return 0\n    \n    max_count = 0\n    current_count = 0\n    \n    for char in test_str:\n        if char.isupper():\n            current_count += 1\n            max_count = max(max_count, current_count)\n        else:\n            current_count = 0\n            \n    return max_count",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to find maximum run of uppercase characters in the given string.\n\n### Signature\ndef max_run_uppercase(test_str):",
+    "timestamp": "2025-10-17T19:17:18.587794",
+    "response_time": "3.07",
+    "context": "{\"function_name\": \"max_run_uppercase\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 807,
+    "solution": "def first_odd(nums):\n    for num in nums:\n        if num % 2 != 0:\n            return num\n    return None",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a python function to find the first odd number in a given list of numbers.\n\n### Signature\ndef first_odd(nums):",
+    "timestamp": "2025-10-17T19:17:20.423958",
+    "response_time": "1.83",
+    "context": "{\"function_name\": \"first_odd\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 808,
+    "solution": "def check_K(test_tup, K):\n    # Convert tuple to string to handle nested tuples\n    str_tup = str(test_tup)\n    # Check if K exists in the string representation\n    return str(K) in str_tup",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check if the given tuples contain the k or not.\n\n### Signature\ndef check_K(test_tup, K):",
+    "timestamp": "2025-10-17T19:17:22.454189",
+    "response_time": "2.02",
+    "context": "{\"function_name\": \"check_K\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35sonnet_second_half",
+    "dataset_row_id": 809,
+    "solution": "def check_smaller(test_tup1, test_tup2):\n    if len(test_tup1) != len(test_tup2):\n        return False\n    return all(y < x for x, y in zip(test_tup1, test_tup2))",
+    "llm_name": "anthropic/claude-3.5-sonnet",
+    "prompt": "### Prompt\nWrite a function to check if each element of second tuple is smaller than its corresponding element in the first tuple.\n\n### Signature\ndef check_smaller(test_tup1, test_tup2):",
+    "timestamp": "2025-10-17T19:17:24.688247",
+    "response_time": "2.23",
+    "context": "{\"function_name\": \"check_smaller\"}"
+  }
+]

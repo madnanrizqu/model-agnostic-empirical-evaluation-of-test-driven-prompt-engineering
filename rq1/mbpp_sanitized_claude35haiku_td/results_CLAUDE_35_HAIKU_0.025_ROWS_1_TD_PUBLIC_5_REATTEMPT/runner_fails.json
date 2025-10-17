@@ -1,0 +1,24 @@
+{
+  "anthropic/claude-3.5-haiku": [
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\nassert candidate([10,20,30])==([100,400,900])\nassert candidate([12,15])==([144,225])",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 4\n    return [num * num for num in nums] float:\n                                       ^^^^^\nSyntaxError: invalid syntax\n",
+      "solution": "from typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    return [num * num for num in nums]",
+      "test_content": "from llm_output import square_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n    assert candidate([10,20,30])==([100,400,900])\n    assert candidate([12,15])==([144,225])\n\ncheck(square_nums)",
+      "context": "{\"function_name\": \"square_nums\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):\n\n### Test\nassert candidate(\"aaaa\") == 1\nassert candidate(\"ab\") == 2\nassert candidate(\"abc\") == 3",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(find_Rotations)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 5, in check\n    assert candidate(\"ab\") == 2\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import Union\n\ndef find_Rotations(s: str) -> Union[int, float]:\n    # If string is empty or single character, no rotations possible\n    if len(s) <= 1:\n        return float('inf')\n    \n    # Check all possible rotations\n    for rotations in range(1, len(s)):\n        # Rotate the string and check if it matches original\n        rotated = s[rotations:] + s[:rotations]\n        if rotated == s:\n            return rotations\n    \n    # If no rotation makes the string same, return infinity\n    return float('inf')",
+      "test_content": "from llm_output import find_Rotations\n\ndef check(candidate):\n    assert candidate(\"aaaa\") == 1\n    assert candidate(\"ab\") == 2\n    assert candidate(\"abc\") == 3\n\ncheck(find_Rotations)",
+      "context": "{\"function_name\": \"find_Rotations\"}",
+      "attempt_num": 1
+    }
+  ]
+}

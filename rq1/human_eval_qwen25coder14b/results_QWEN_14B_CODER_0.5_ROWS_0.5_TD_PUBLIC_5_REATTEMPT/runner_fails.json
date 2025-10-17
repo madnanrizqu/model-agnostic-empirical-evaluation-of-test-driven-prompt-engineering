@@ -1,0 +1,634 @@
+{
+  "Qwen/Qwen2.5-Coder-14B-Instruct": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 8, in <module>\n    check(truncate_number)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 4, in check\n    assert candidate(3.5) == 0.5\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "from llm_output import truncate_number\n\ndef check(candidate):\n    assert candidate(3.5) == 0.5\n    assert abs(candidate(1.33) - 0.33) < 1e-6\n    assert abs(candidate(123.456) - 0.456) < 1e-6\n\ncheck(truncate_number)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 8, in <module>\n    check(truncate_number)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 4, in check\n    assert candidate(3.5) == 0.5\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 8, in <module>\n    check(truncate_number)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 4, in check\n    assert candidate(3.5) == 0.5\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "from llm_output import truncate_number\n\ndef check(candidate):\n    assert candidate(3.5) == 0.5\n    assert abs(candidate(1.33) - 0.33) < 1e-6\n    assert abs(candidate(123.456) - 0.456) < 1e-6\n\ncheck(truncate_number)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 8, in <module>\n    check(truncate_number)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 4, in check\n    assert candidate(3.5) == 0.5\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import floor\n\ndef truncate_number(number: float) -> float:\n    return floor(number)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 10, in <module>\n    check(make_palindrome)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 5, in check\n    assert candidate('x') == 'x'\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def make_palindrome(string: str) -> str:\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n\n    if not string:\n        return string\n\n    for i in range(len(string), -1, -1):\n        if is_palindrome(string[i:]):\n            return string + string[:i][::-1]\n\n    return string",
+      "test_content": "from llm_output import make_palindrome\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('x') == 'x'\n    assert candidate('xyz') == 'xyzyx'\n    assert candidate('xyx') == 'xyx'\n    assert candidate('jerry') == 'jerryrrej'\n\ncheck(make_palindrome)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 10, in <module>\n    check(make_palindrome)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 5, in check\n    assert candidate('x') == 'x'\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def make_palindrome(string: str) -> str:\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n\n    if not string:\n        return string\n\n    for i in range(len(string), -1, -1):\n        if is_palindrome(string[i:]):\n            return string + string[:i][::-1]\n\n    return string",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 10, in <module>\n    check(make_palindrome)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 5, in check\n    assert candidate('x') == 'x'\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def make_palindrome(string: str) -> str:\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n\n    if not string:\n        return string\n\n    for i in range(len(string), -1, -1):\n        if is_palindrome(string[i:]):\n            return string + string[:i][::-1]\n\n    return string",
+      "test_content": "from llm_output import make_palindrome\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('x') == 'x'\n    assert candidate('xyz') == 'xyzyx'\n    assert candidate('xyx') == 'xyx'\n    assert candidate('jerry') == 'jerryrrej'\n\ncheck(make_palindrome)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 10, in <module>\n    check(make_palindrome)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 5, in check\n    assert candidate('x') == 'x'\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def make_palindrome(string: str) -> str:\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n\n    if not string:\n        return string\n\n    for i in range(len(string), -1, -1):\n        if is_palindrome(string[i:]):\n            return string + string[:i][::-1]\n\n    return string",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def make_palindrome(string: str) -> str:\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n\n    if not string:\n        return string\n\n    for i in range(len(string), -1, -1):\n        if is_palindrome(string[i:]):\n            return string + string[:i][::-1]\n\n    return string",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 17,
+      "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output.py\", line 1, in <module>\n    def parse_music(music_string: str) -> List[int]:\n                                          ^^^^\nNameError: name 'List' is not defined. Did you mean: 'list'?\n",
+      "solution": "def parse_music(music_string: str) -> List[int]:\n    beats = []\n    notes = music_string.split()\n    for note in notes:\n        if note.endswith('4'):\n            beats.append(4)\n        elif note.endswith('2'):\n            beats.append(2)\n        elif note.endswith('1'):\n            beats.append(1)\n        else:\n            beats.append(0)\n    return beats",
+      "test_content": "from llm_output import parse_music\n\ndef check(candidate):\n    assert candidate('') == []\n    assert candidate('o o o o') == [4, 4, 4, 4]\n    assert candidate('.| .| .| .|') == [1, 1, 1, 1]\n    assert candidate('o| o| .| .| o o o o') == [2, 2, 1, 1, 4, 4, 4, 4]\n    assert candidate('o| .| o| .| o o| o o|') == [2, 1, 2, 1, 4, 2, 4, 2]\n\ncheck(parse_music)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 17,
+      "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output.py\", line 1, in <module>\n    def parse_music(music_string: str) -> List[int]:\n                                          ^^^^\nNameError: name 'List' is not defined. Did you mean: 'list'?\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def parse_music(music_string: str) -> List[int]:\n    beats = []\n    notes = music_string.split()\n    for note in notes:\n        if note.endswith('4'):\n            beats.append(4)\n        elif note.endswith('2'):\n            beats.append(2)\n        elif note.endswith('1'):\n            beats.append(1)\n        else:\n            beats.append(0)\n    return beats",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 17,
+      "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 10, in <module>\n    check(parse_music)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 5, in check\n    assert candidate('o o o o') == [4, 4, 4, 4]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    beats = []\n    notes = music_string.split()\n    for note in notes:\n        if note.endswith('4'):\n            beats.append(4)\n        elif note.endswith('2'):\n            beats.append(2)\n        elif note.endswith('1'):\n            beats.append(1)\n        else:\n            beats.append(0)\n    return beats",
+      "test_content": "from llm_output import parse_music\n\ndef check(candidate):\n    assert candidate('') == []\n    assert candidate('o o o o') == [4, 4, 4, 4]\n    assert candidate('.| .| .| .|') == [1, 1, 1, 1]\n    assert candidate('o| o| .| .| o o o o') == [2, 2, 1, 1, 4, 4, 4, 4]\n    assert candidate('o| .| o| .| o o| o o|') == [2, 1, 2, 1, 4, 2, 4, 2]\n\ncheck(parse_music)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 17,
+      "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 10, in <module>\n    check(parse_music)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 5, in check\n    assert candidate('o o o o') == [4, 4, 4, 4]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    beats = []\n    notes = music_string.split()\n    for note in notes:\n        if note.endswith('4'):\n            beats.append(4)\n        elif note.endswith('2'):\n            beats.append(2)\n        elif note.endswith('1'):\n            beats.append(1)\n        else:\n            beats.append(0)\n    return beats",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 17,
+      "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    beats = []\n    notes = music_string.split()\n    for note in notes:\n        if note.endswith('4'):\n            beats.append(4)\n        elif note.endswith('2'):\n            beats.append(2)\n        elif note.endswith('1'):\n            beats.append(1)\n        else:\n            beats.append(0)\n    return beats",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 26,
+      "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 8, in <module>\n    check(remove_duplicates)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 6, in check\n    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    seen = set()\n    result = []\n    for number in numbers:\n        if number not in seen:\n            seen.add(number)\n            result.append(number)\n    return result",
+      "test_content": "from llm_output import remove_duplicates\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]\n    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]\n\ncheck(remove_duplicates)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 26,
+      "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 8, in <module>\n    check(remove_duplicates)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 6, in check\n    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    seen = set()\n    result = []\n    for number in numbers:\n        if number not in seen:\n            seen.add(number)\n            result.append(number)\n    return result",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 26,
+      "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    seen = set()\n    result = []\n    for number in numbers:\n        if number not in seen:\n            seen.add(number)\n            result.append(number)\n    return result",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 26,
+      "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    seen = set()\n    result = []\n    for number in numbers:\n        if number not in seen:\n            seen.add(number)\n            result.append(number)\n    return result",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 26,
+      "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    seen = set()\n    result = []\n    for number in numbers:\n        if number not in seen:\n            seen.add(number)\n            result.append(number)\n    return result",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 32,
+      "prompt": "### Prompt\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n\n### Signature\ndef poly(xs: list, x: float):\n\n### Prompt\n     xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n\n### Signature\ndef find_zero(xs: list):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 20, in <module>\n    check(poly)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 16, in check\n    solution = candidate(copy.deepcopy(coeffs))\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: poly() missing 1 required positional argument: 'x'\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    return sum(coeff * (x ** idx) for idx, coeff in enumerate(xs))\n\ndef find_zero(xs: List[float]) -> float:\n    if len(xs) % 2 != 0:\n        raise ValueError(\"The list of coefficients must have an even number of elements.\")\n    \n    # Use numpy's roots function to find the roots of the polynomial\n    roots = np.roots(xs)\n    # Return the first real root found\n    for root in roots:\n        if np.isreal(root):\n            return np.real(root)\n    raise ValueError(\"No real root found.\")",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 32,
+      "prompt": "### Prompt\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n\n### Signature\ndef poly(xs: list, x: float):\n\n### Prompt\n     xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n\n### Signature\ndef find_zero(xs: list):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    return sum(coeff * (x ** idx) for idx, coeff in enumerate(xs))\n\ndef find_zero(xs: List[float]) -> float:\n    if len(xs) % 2 != 0:\n        raise ValueError(\"The list of coefficients must have an even number of elements.\")\n    \n    # Use numpy's roots function to find the roots of the polynomial\n    roots = np.roots(xs)\n    # Return the first real root found\n    for root in roots:\n        if np.isreal(root):\n            return np.real(root)\n    raise ValueError(\"No real root found.\")",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 32,
+      "prompt": "### Prompt\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n\n### Signature\ndef poly(xs: list, x: float):\n\n### Prompt\n     xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n\n### Signature\ndef find_zero(xs: list):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from typing import List\n\ndef poly(xs: List[float], x: float) -> float:\n    return sum(coeff * (x ** idx) for idx, coeff in enumerate(xs))\n\ndef find_zero(xs: List[float]) -> float:\n    if len(xs) % 2 != 0:\n        raise ValueError(\"The list of coefficients must have an even number of elements.\")\n    \n    # Use numpy's roots function to find the roots of the polynomial\n    roots = np.roots(xs)\n    # Return the first real root found\n    for root in roots:\n        if np.isreal(root):\n            return np.real(root)\n    raise ValueError(\"No real root found.\")",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 38,
+      "prompt": "### Prompt\n    returns encoded string by cycling groups of three characters.\n\n### Signature\ndef encode_cyclic(s: str):\n\n### Prompt\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n\n### Signature\ndef decode_cyclic(s: str):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 14, in <module>\n    check(encode_cyclic)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 11, in check\n    assert candidate(encoded_str) == str\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def encode_cyclic(s: str) -> str:\n    encoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            encoded.append(group[1:] + group[0])\n        else:\n            encoded.append(group)\n    return ''.join(encoded)\n\ndef decode_cyclic(s: str) -> str:\n    decoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            decoded.append(group[-1] + group[:-1])\n        else:\n            decoded.append(group)\n    return ''.join(decoded)",
+      "test_content": "from llm_output import encode_cyclic\n\ndef check(candidate):\n    from random import randint, choice\n    import string\n\n    letters = string.ascii_lowercase\n    for _ in range(100):\n        str = ''.join(choice(letters) for i in range(randint(10, 20)))\n        encoded_str = encode_cyclic(str)\n        assert candidate(encoded_str) == str\n\n\ncheck(encode_cyclic)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 38,
+      "prompt": "### Prompt\n    returns encoded string by cycling groups of three characters.\n\n### Signature\ndef encode_cyclic(s: str):\n\n### Prompt\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n\n### Signature\ndef decode_cyclic(s: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 14, in <module>\n    check(encode_cyclic)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 11, in check\n    assert candidate(encoded_str) == str\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def encode_cyclic(s: str) -> str:\n    encoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            encoded.append(group[1:] + group[0])\n        else:\n            encoded.append(group)\n    return ''.join(encoded)\n\ndef decode_cyclic(s: str) -> str:\n    decoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            decoded.append(group[-1] + group[:-1])\n        else:\n            decoded.append(group)\n    return ''.join(decoded)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 38,
+      "prompt": "### Prompt\n    returns encoded string by cycling groups of three characters.\n\n### Signature\ndef encode_cyclic(s: str):\n\n### Prompt\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n\n### Signature\ndef decode_cyclic(s: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 14, in <module>\n    check(encode_cyclic)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 11, in check\n    assert candidate(encoded_str) == str\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def encode_cyclic(s: str) -> str:\n    encoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            encoded.append(group[1:] + group[0])\n        else:\n            encoded.append(group)\n    return ''.join(encoded)\n\ndef decode_cyclic(s: str) -> str:\n    decoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            decoded.append(group[-1] + group[:-1])\n        else:\n            decoded.append(group)\n    return ''.join(decoded)",
+      "test_content": "from llm_output import encode_cyclic\n\ndef check(candidate):\n    from random import randint, choice\n    import string\n\n    letters = string.ascii_lowercase\n    for _ in range(100):\n        str = ''.join(choice(letters) for i in range(randint(10, 20)))\n        encoded_str = encode_cyclic(str)\n        assert candidate(encoded_str) == str\n\n\ncheck(encode_cyclic)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 38,
+      "prompt": "### Prompt\n    returns encoded string by cycling groups of three characters.\n\n### Signature\ndef encode_cyclic(s: str):\n\n### Prompt\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n\n### Signature\ndef decode_cyclic(s: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 14, in <module>\n    check(encode_cyclic)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 11, in check\n    assert candidate(encoded_str) == str\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def encode_cyclic(s: str) -> str:\n    encoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            encoded.append(group[1:] + group[0])\n        else:\n            encoded.append(group)\n    return ''.join(encoded)\n\ndef decode_cyclic(s: str) -> str:\n    decoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            decoded.append(group[-1] + group[:-1])\n        else:\n            decoded.append(group)\n    return ''.join(decoded)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 38,
+      "prompt": "### Prompt\n    returns encoded string by cycling groups of three characters.\n\n### Signature\ndef encode_cyclic(s: str):\n\n### Prompt\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n\n### Signature\ndef decode_cyclic(s: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def encode_cyclic(s: str) -> str:\n    encoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            encoded.append(group[1:] + group[0])\n        else:\n            encoded.append(group)\n    return ''.join(encoded)\n\ndef decode_cyclic(s: str) -> str:\n    decoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            decoded.append(group[-1] + group[:-1])\n        else:\n            decoded.append(group)\n    return ''.join(decoded)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 50,
+      "prompt": "### Prompt\n    returns encoded string by shifting every character by 5 in the alphabet.\n\n### Signature\ndef encode_shift(s: str):\n\n### Prompt\n    takes as input string encoded with encode_shift function. Returns decoded string.\n\n### Signature\ndef decode_shift(s: str):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(encode_shift)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 12, in check\n    assert candidate(copy.deepcopy(encoded_str)) == str\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def encode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') + 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') + 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)\n\ndef decode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') - 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') - 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)",
+      "test_content": "from llm_output import encode_shift\n\ndef check(candidate):\n    from random import randint, choice\n    import copy\n    import string\n\n    letters = string.ascii_lowercase\n    for _ in range(100):\n        str = ''.join(choice(letters) for i in range(randint(10, 20)))\n        encoded_str = encode_shift(str)\n        assert candidate(copy.deepcopy(encoded_str)) == str\n\n\ncheck(encode_shift)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 50,
+      "prompt": "### Prompt\n    returns encoded string by shifting every character by 5 in the alphabet.\n\n### Signature\ndef encode_shift(s: str):\n\n### Prompt\n    takes as input string encoded with encode_shift function. Returns decoded string.\n\n### Signature\ndef decode_shift(s: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(encode_shift)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 12, in check\n    assert candidate(copy.deepcopy(encoded_str)) == str\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def encode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') + 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') + 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)\n\ndef decode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') - 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') - 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 50,
+      "prompt": "### Prompt\n    returns encoded string by shifting every character by 5 in the alphabet.\n\n### Signature\ndef encode_shift(s: str):\n\n### Prompt\n    takes as input string encoded with encode_shift function. Returns decoded string.\n\n### Signature\ndef decode_shift(s: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(encode_shift)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 12, in check\n    assert candidate(copy.deepcopy(encoded_str)) == str\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def encode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') + 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') + 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)\n\ndef decode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') - 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') - 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)",
+      "test_content": "from llm_output import encode_shift\n\ndef check(candidate):\n    from random import randint, choice\n    import copy\n    import string\n\n    letters = string.ascii_lowercase\n    for _ in range(100):\n        str = ''.join(choice(letters) for i in range(randint(10, 20)))\n        encoded_str = encode_shift(str)\n        assert candidate(copy.deepcopy(encoded_str)) == str\n\n\ncheck(encode_shift)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 50,
+      "prompt": "### Prompt\n    returns encoded string by shifting every character by 5 in the alphabet.\n\n### Signature\ndef encode_shift(s: str):\n\n### Prompt\n    takes as input string encoded with encode_shift function. Returns decoded string.\n\n### Signature\ndef decode_shift(s: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(encode_shift)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 12, in check\n    assert candidate(copy.deepcopy(encoded_str)) == str\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def encode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') + 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') + 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)\n\ndef decode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') - 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') - 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 50,
+      "prompt": "### Prompt\n    returns encoded string by shifting every character by 5 in the alphabet.\n\n### Signature\ndef encode_shift(s: str):\n\n### Prompt\n    takes as input string encoded with encode_shift function. Returns decoded string.\n\n### Signature\ndef decode_shift(s: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def encode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') + 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') + 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)\n\ndef decode_shift(s: str) -> str:\n    def shift_char(c: str) -> str:\n        if 'a' <= c <= 'z':\n            return chr((ord(c) - ord('a') - 5) % 26 + ord('a'))\n        elif 'A' <= c <= 'Z':\n            return chr((ord(c) - ord('A') - 5) % 26 + ord('A'))\n        else:\n            return c\n\n    return ''.join(shift_char(c) for c in s)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 54,
+      "prompt": "### Prompt\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n\n### Signature\ndef same_chars(s0: str, s1: str):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 13, in <module>\n    check(same_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 4, in check\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from collections import Counter\n\ndef same_chars(s0: str, s1: str) -> bool:\n    return Counter(s0) == Counter(s1)",
+      "test_content": "from llm_output import same_chars\n\ndef check(candidate):\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\n    assert candidate('abcd', 'dddddddabc') == True\n    assert candidate('dddddddabc', 'abcd') == True\n    assert candidate('eabcd', 'dddddddabc') == False\n    assert candidate('abcd', 'dddddddabcf') == False\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddddabc') == False\n    assert candidate('aabb', 'aaccc') == False\n\n\ncheck(same_chars)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 54,
+      "prompt": "### Prompt\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n\n### Signature\ndef same_chars(s0: str, s1: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 13, in <module>\n    check(same_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 4, in check\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from collections import Counter\n\ndef same_chars(s0: str, s1: str) -> bool:\n    return Counter(s0) == Counter(s1)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 54,
+      "prompt": "### Prompt\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n\n### Signature\ndef same_chars(s0: str, s1: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 13, in <module>\n    check(same_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 4, in check\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from collections import Counter\n\ndef same_chars(s0: str, s1: str) -> bool:\n    return Counter(s0) == Counter(s1)",
+      "test_content": "from llm_output import same_chars\n\ndef check(candidate):\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\n    assert candidate('abcd', 'dddddddabc') == True\n    assert candidate('dddddddabc', 'abcd') == True\n    assert candidate('eabcd', 'dddddddabc') == False\n    assert candidate('abcd', 'dddddddabcf') == False\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddddabc') == False\n    assert candidate('aabb', 'aaccc') == False\n\n\ncheck(same_chars)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 54,
+      "prompt": "### Prompt\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n\n### Signature\ndef same_chars(s0: str, s1: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 13, in <module>\n    check(same_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 4, in check\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from collections import Counter\n\ndef same_chars(s0: str, s1: str) -> bool:\n    return Counter(s0) == Counter(s1)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 54,
+      "prompt": "### Prompt\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n\n### Signature\ndef same_chars(s0: str, s1: str):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from collections import Counter\n\ndef same_chars(s0: str, s1: str) -> bool:\n    return Counter(s0) == Counter(s1)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 65,
+      "prompt": "### Prompt\n    Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n\n### Signature\ndef circular_shift(x, shift):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(circular_shift)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate(12, 2) == \"12\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def circular_shift(x, shift):\n    x_str = str(x)\n    num_digits = len(x_str)\n    \n    if shift >= num_digits:\n        return x_str[::-1]\n    \n    shift = shift % num_digits\n    return x_str[-shift:] + x_str[:-shift]",
+      "test_content": "from llm_output import circular_shift\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(100, 2) == \"001\"\n    assert candidate(12, 2) == \"12\"\n    assert candidate(97, 8) == \"79\"\n    assert candidate(12, 1) == \"21\", \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(11, 101) == \"11\", \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(circular_shift)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 65,
+      "prompt": "### Prompt\n    Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n\n### Signature\ndef circular_shift(x, shift):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(circular_shift)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate(12, 2) == \"12\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def circular_shift(x, shift):\n    x_str = str(x)\n    num_digits = len(x_str)\n    \n    if shift >= num_digits:\n        return x_str[::-1]\n    \n    shift = shift % num_digits\n    return x_str[-shift:] + x_str[:-shift]",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 65,
+      "prompt": "### Prompt\n    Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n\n### Signature\ndef circular_shift(x, shift):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(circular_shift)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate(12, 2) == \"12\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def circular_shift(x, shift):\n    x_str = str(x)\n    num_digits = len(x_str)\n    \n    if shift >= num_digits:\n        return x_str[::-1]\n    \n    shift = shift % num_digits\n    return x_str[-shift:] + x_str[:-shift]",
+      "test_content": "from llm_output import circular_shift\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(100, 2) == \"001\"\n    assert candidate(12, 2) == \"12\"\n    assert candidate(97, 8) == \"79\"\n    assert candidate(12, 1) == \"21\", \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(11, 101) == \"11\", \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(circular_shift)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 65,
+      "prompt": "### Prompt\n    Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n\n### Signature\ndef circular_shift(x, shift):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(circular_shift)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate(12, 2) == \"12\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def circular_shift(x, shift):\n    x_str = str(x)\n    num_digits = len(x_str)\n    \n    if shift >= num_digits:\n        return x_str[::-1]\n    \n    shift = shift % num_digits\n    return x_str[-shift:] + x_str[:-shift]",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 65,
+      "prompt": "### Prompt\n    Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n\n### Signature\ndef circular_shift(x, shift):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def circular_shift(x, shift):\n    x_str = str(x)\n    num_digits = len(x_str)\n    \n    if shift >= num_digits:\n        return x_str[::-1]\n    \n    shift = shift % num_digits\n    return x_str[-shift:] + x_str[:-shift]",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 68,
+      "prompt": "### Prompt\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n### Signature\ndef pluck(arr):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 20, in <module>\n    check(pluck)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Error\n",
+      "solution": "def pluck(arr):\n    min_even_value = float('inf')\n    min_index = -1\n    \n    for index, value in enumerate(arr):\n        if value % 2 == 0 and value < min_even_value:\n            min_even_value = value\n            min_index = index\n    \n    if min_index == -1:\n        return None  # No even value found\n    \n    return arr.pop(min_index)",
+      "test_content": "from llm_output import pluck\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n    assert candidate([1,2,3]) == [2, 1], \"Error\"\n    assert candidate([]) == [], \"Error\"\n    assert candidate([5, 0, 3, 0, 4, 2]) == [0, 1], \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([1, 2, 3, 0, 5, 3]) == [0, 3], \"Error\"\n    assert candidate([5, 4, 8, 4 ,8]) == [4, 1], \"Error\"\n    assert candidate([7, 6, 7, 1]) == [6, 1], \"Error\"\n    assert candidate([7, 9, 7, 1]) == [], \"Error\"\n\n\ncheck(pluck)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 68,
+      "prompt": "### Prompt\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n### Signature\ndef pluck(arr):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 20, in <module>\n    check(pluck)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Error\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def pluck(arr):\n    min_even_value = float('inf')\n    min_index = -1\n    \n    for index, value in enumerate(arr):\n        if value % 2 == 0 and value < min_even_value:\n            min_even_value = value\n            min_index = index\n    \n    if min_index == -1:\n        return None  # No even value found\n    \n    return arr.pop(min_index)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 68,
+      "prompt": "### Prompt\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n### Signature\ndef pluck(arr):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 20, in <module>\n    check(pluck)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Error\n",
+      "solution": "def pluck(arr):\n    min_even_value = float('inf')\n    min_index = -1\n    \n    for index, value in enumerate(arr):\n        if value % 2 == 0 and value < min_even_value:\n            min_even_value = value\n            min_index = index\n    \n    if min_index == -1:\n        return None  # No even value found\n    \n    return arr.pop(min_index)",
+      "test_content": "from llm_output import pluck\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n    assert candidate([1,2,3]) == [2, 1], \"Error\"\n    assert candidate([]) == [], \"Error\"\n    assert candidate([5, 0, 3, 0, 4, 2]) == [0, 1], \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([1, 2, 3, 0, 5, 3]) == [0, 3], \"Error\"\n    assert candidate([5, 4, 8, 4 ,8]) == [4, 1], \"Error\"\n    assert candidate([7, 6, 7, 1]) == [6, 1], \"Error\"\n    assert candidate([7, 9, 7, 1]) == [], \"Error\"\n\n\ncheck(pluck)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 68,
+      "prompt": "### Prompt\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n### Signature\ndef pluck(arr):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 20, in <module>\n    check(pluck)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Error\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def pluck(arr):\n    min_even_value = float('inf')\n    min_index = -1\n    \n    for index, value in enumerate(arr):\n        if value % 2 == 0 and value < min_even_value:\n            min_even_value = value\n            min_index = index\n    \n    if min_index == -1:\n        return None  # No even value found\n    \n    return arr.pop(min_index)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 68,
+      "prompt": "### Prompt\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n### Signature\ndef pluck(arr):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def pluck(arr):\n    min_even_value = float('inf')\n    min_index = -1\n    \n    for index, value in enumerate(arr):\n        if value % 2 == 0 and value < min_even_value:\n            min_even_value = value\n            min_index = index\n    \n    if min_index == -1:\n        return None  # No even value found\n    \n    return arr.pop(min_index)",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 74,
+      "prompt": "### Prompt\n    Write a function that accepts two lists of strings and returns the list that has\n    total number of chars in the all strings of the list less than the other list.\n\n### Signature\ndef total_match(lst1, lst2):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 22, in <module>\n    check(total_match)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 13, in check\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def total_match(lst1, lst2):\n    total_chars_lst1 = sum(len(s) for s in lst1)\n    total_chars_lst2 = sum(len(s) for s in lst2)\n    \n    if total_chars_lst1 < total_chars_lst2:\n        return lst1\n    else:\n        return lst2",
+      "test_content": "from llm_output import total_match\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([], []) == []\n    assert candidate(['hi', 'admin'], ['hi', 'hi']) == ['hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) == ['hi', 'admin']\n    assert candidate(['4'], ['1', '2', '3', '4', '5']) == ['4']\n    assert candidate(['hi', 'admin'], ['hI', 'Hi']) == ['hI', 'Hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hi']) == ['hI', 'hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([], ['this']) == []\n    assert candidate(['this'], []) == []\n\n\ncheck(total_match)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 74,
+      "prompt": "### Prompt\n    Write a function that accepts two lists of strings and returns the list that has\n    total number of chars in the all strings of the list less than the other list.\n\n### Signature\ndef total_match(lst1, lst2):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 22, in <module>\n    check(total_match)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 13, in check\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def total_match(lst1, lst2):\n    total_chars_lst1 = sum(len(s) for s in lst1)\n    total_chars_lst2 = sum(len(s) for s in lst2)\n    \n    if total_chars_lst1 < total_chars_lst2:\n        return lst1\n    else:\n        return lst2",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 74,
+      "prompt": "### Prompt\n    Write a function that accepts two lists of strings and returns the list that has\n    total number of chars in the all strings of the list less than the other list.\n\n### Signature\ndef total_match(lst1, lst2):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 22, in <module>\n    check(total_match)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 13, in check\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def total_match(lst1, lst2):\n    total_chars_lst1 = sum(len(s) for s in lst1)\n    total_chars_lst2 = sum(len(s) for s in lst2)\n    \n    if total_chars_lst1 < total_chars_lst2:\n        return lst1\n    else:\n        return lst2",
+      "test_content": "from llm_output import total_match\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([], []) == []\n    assert candidate(['hi', 'admin'], ['hi', 'hi']) == ['hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) == ['hi', 'admin']\n    assert candidate(['4'], ['1', '2', '3', '4', '5']) == ['4']\n    assert candidate(['hi', 'admin'], ['hI', 'Hi']) == ['hI', 'Hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hi']) == ['hI', 'hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([], ['this']) == []\n    assert candidate(['this'], []) == []\n\n\ncheck(total_match)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 74,
+      "prompt": "### Prompt\n    Write a function that accepts two lists of strings and returns the list that has\n    total number of chars in the all strings of the list less than the other list.\n\n### Signature\ndef total_match(lst1, lst2):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 22, in <module>\n    check(total_match)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 13, in check\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def total_match(lst1, lst2):\n    total_chars_lst1 = sum(len(s) for s in lst1)\n    total_chars_lst2 = sum(len(s) for s in lst2)\n    \n    if total_chars_lst1 < total_chars_lst2:\n        return lst1\n    else:\n        return lst2",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 74,
+      "prompt": "### Prompt\n    Write a function that accepts two lists of strings and returns the list that has\n    total number of chars in the all strings of the list less than the other list.\n\n### Signature\ndef total_match(lst1, lst2):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def total_match(lst1, lst2):\n    total_chars_lst1 = sum(len(s) for s in lst1)\n    total_chars_lst2 = sum(len(s) for s in lst2)\n    \n    if total_chars_lst1 < total_chars_lst2:\n        return lst1\n    else:\n        return lst2",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 75,
+      "prompt": "### Prompt\n    Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100.\n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n\n### Signature\ndef is_multiply_prime(a):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 17, in <module>\n    check(is_multiply_prime)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate(8) == True\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from math import sqrt\n\ndef is_multiply_prime(a):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    prime_factors = 0\n    for i in range(2, int(sqrt(a)) + 1):\n        if a % i == 0 and is_prime(i):\n            prime_factors += 1\n            while a % i == 0:\n                a //= i\n    if a > 1 and is_prime(a):\n        prime_factors += 1\n\n    return prime_factors == 3",
+      "test_content": "from llm_output import is_multiply_prime\n\ndef check(candidate):\n\n    assert candidate(5) == False\n    assert candidate(30) == True\n    assert candidate(8) == True\n    assert candidate(10) == False\n    assert candidate(125) == True\n    assert candidate(3 * 5 * 7) == True\n    assert candidate(3 * 6 * 7) == False\n    assert candidate(9 * 9 * 9) == False\n    assert candidate(11 * 9 * 9) == False\n    assert candidate(11 * 13 * 7) == True\n\n\ncheck(is_multiply_prime)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 75,
+      "prompt": "### Prompt\n    Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100.\n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n\n### Signature\ndef is_multiply_prime(a):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 17, in <module>\n    check(is_multiply_prime)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate(8) == True\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 17, in <module>\n    check(is_multiply_prime)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate(8) == True\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from math import sqrt\n\ndef is_multiply_prime(a):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    prime_factors = 0\n    for i in range(2, int(sqrt(a)) + 1):\n        if a % i == 0 and is_prime(i):\n            prime_factors += 1\n            while a % i == 0:\n                a //= i\n    if a > 1 and is_prime(a):\n        prime_factors += 1\n\n    return prime_factors == 3",
+      "test_content": "from llm_output import is_multiply_prime\n\ndef check(candidate):\n\n    assert candidate(5) == False\n    assert candidate(30) == True\n    assert candidate(8) == True\n    assert candidate(10) == False\n    assert candidate(125) == True\n    assert candidate(3 * 5 * 7) == True\n    assert candidate(3 * 6 * 7) == False\n    assert candidate(9 * 9 * 9) == False\n    assert candidate(11 * 9 * 9) == False\n    assert candidate(11 * 13 * 7) == True\n\n\ncheck(is_multiply_prime)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 75,
+      "prompt": "### Prompt\n    Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100.\n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n\n### Signature\ndef is_multiply_prime(a):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 17, in <module>\n    check(is_multiply_prime)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 7, in check\n    assert candidate(8) == True\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import sqrt\n\ndef is_multiply_prime(a):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    prime_factors = 0\n    for i in range(2, int(sqrt(a)) + 1):\n        if a % i == 0 and is_prime(i):\n            prime_factors += 1\n            while a % i == 0:\n                a //= i\n    if a > 1 and is_prime(a):\n        prime_factors += 1\n\n    return prime_factors == 3",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 75,
+      "prompt": "### Prompt\n    Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100.\n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n\n### Signature\ndef is_multiply_prime(a):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import sqrt\n\ndef is_multiply_prime(a):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    prime_factors = 0\n    for i in range(2, int(sqrt(a)) + 1):\n        if a % i == 0 and is_prime(i):\n            prime_factors += 1\n            while a % i == 0:\n                a //= i\n    if a > 1 and is_prime(a):\n        prime_factors += 1\n\n    return prime_factors == 3",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 75,
+      "prompt": "### Prompt\n    Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100.\n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n\n### Signature\ndef is_multiply_prime(a):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "from math import sqrt\n\ndef is_multiply_prime(a):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        i = 5\n        while i * i <= n:\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    prime_factors = 0\n    for i in range(2, int(sqrt(a)) + 1):\n        if a % i == 0 and is_prime(i):\n            prime_factors += 1\n            while a % i == 0:\n                a //= i\n    if a > 1 and is_prime(a):\n        prime_factors += 1\n\n    return prime_factors == 3",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 79,
+      "prompt": "### Prompt\n    You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n### Signature\ndef decimal_to_binary(decimal):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(decimal_to_binary)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 6, in check\n    assert candidate(0) == \"db0db\"\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"0\"\n    \n    binary = \"\"\n    while decimal > 0:\n        binary = str(decimal % 2) + binary\n        decimal = decimal // 2\n    \n    return binary",
+      "test_content": "from llm_output import decimal_to_binary\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(0) == \"db0db\"\n    assert candidate(32) == \"db100000db\"\n    assert candidate(103) == \"db1100111db\"\n    assert candidate(15) == \"db1111db\", \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(decimal_to_binary)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 79,
+      "prompt": "### Prompt\n    You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n### Signature\ndef decimal_to_binary(decimal):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(decimal_to_binary)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 6, in check\n    assert candidate(0) == \"db0db\"\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"0\"\n    \n    binary = \"\"\n    while decimal > 0:\n        binary = str(decimal % 2) + binary\n        decimal = decimal // 2\n    \n    return binary",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 79,
+      "prompt": "### Prompt\n    You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n### Signature\ndef decimal_to_binary(decimal):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(decimal_to_binary)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 6, in check\n    assert candidate(0) == \"db0db\"\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"0\"\n    \n    binary = \"\"\n    while decimal > 0:\n        binary = str(decimal % 2) + binary\n        decimal = decimal // 2\n    \n    return binary",
+      "test_content": "from llm_output import decimal_to_binary\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(0) == \"db0db\"\n    assert candidate(32) == \"db100000db\"\n    assert candidate(103) == \"db1100111db\"\n    assert candidate(15) == \"db1111db\", \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(decimal_to_binary)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 79,
+      "prompt": "### Prompt\n    You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n### Signature\ndef decimal_to_binary(decimal):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 15, in <module>\n    check(decimal_to_binary)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_qwen25coder14b_1760713487191479/llm_output_test.py\", line 6, in check\n    assert candidate(0) == \"db0db\"\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"0\"\n    \n    binary = \"\"\n    while decimal > 0:\n        binary = str(decimal % 2) + binary\n        decimal = decimal // 2\n    \n    return binary",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 79,
+      "prompt": "### Prompt\n    You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n### Signature\ndef decimal_to_binary(decimal):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Formatting failure: Warning: Code markers not found in code block",
+      "solution": "def decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"0\"\n    \n    binary = \"\"\n    while decimal > 0:\n        binary = str(decimal % 2) + binary\n        decimal = decimal // 2\n    \n    return binary",
+      "test_content": "",
+      "context": null,
+      "attempt_num": 5
+    }
+  ]
+}

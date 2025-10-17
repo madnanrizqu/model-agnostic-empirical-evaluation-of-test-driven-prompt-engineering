@@ -1,0 +1,849 @@
+Log file created at: /Users/madnanrizqu/Code/Research/learn/thesis/rq1/logs/run_all_20251017_223958.log
+
+--- CONFIGURATION SETTINGS ---
+LLM_TO_USE: OPEN_LLM
+RATIO_OF_ROWS_TO_RUN: 0.5
+REATTEMPT_MAX_NUM: 5
+RESULT_DIR_NAME: results_OPEN_LLM_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT
+TEST_DRIVEN_RATIO: 0.5
+----------------------------
+
+Starting rq1/run_all.py in GENERATE-AND-TEST mode
+Found 1 subdirectories to process: ['human_eval_chatgpt4o']
+Using 1 parallel workers
+Starting parallel processing of 1 subdirectories
+Processing: human_eval_chatgpt4o
+Running get_solution.py for human_eval_chatgpt4o
+Starting: get_solution.py
+Completed: get_solution.py (146.7s)
+Running test_solution.py for human_eval_chatgpt4o
+Starting: test_solution.py
+Error running test_solution.py: Command '['/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/bin/python', '/Users/madnanrizqu/Code/Research/learn/thesis/rq1/human_eval_chatgpt4o/test_solution.py']' died with <Signals.SIGINT: 2>.
+
+--- STDOUT before failure ---
+Reading solutions from /Users/madnanrizqu/Code/Research/learn/thesis/rq1/human_eval_chatgpt4o/results_CHATGPT_4O_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT/human_eval_chatgpt4o_solution.json
+Found 82 solutions to format
+Formatted solution 1/82 for task ID 0
+Formatted solution 2/82 for task ID 1
+Formatted solution 3/82 for task ID 2
+Formatted solution 4/82 for task ID 3
+Formatted solution 5/82 for task ID 4
+Formatted solution 6/82 for task ID 5
+Formatted solution 7/82 for task ID 6
+Formatted solution 8/82 for task ID 7
+Formatted solution 9/82 for task ID 8
+Formatted solution 10/82 for task ID 9
+Formatted solution 11/82 for task ID 10
+Formatted solution 12/82 for task ID 11
+Formatted solution 13/82 for task ID 12
+Formatted solution 14/82 for task ID 13
+Formatted solution 15/82 for task ID 14
+Formatted solution 16/82 for task ID 15
+Formatted solution 17/82 for task ID 16
+Formatted solution 18/82 for task ID 17
+Formatted solution 19/82 for task ID 18
+Formatted solution 20/82 for task ID 19
+Formatted solution 21/82 for task ID 20
+Formatted solution 22/82 for task ID 21
+Formatted solution 23/82 for task ID 22
+Formatted solution 24/82 for task ID 23
+Formatted solution 25/82 for task ID 24
+Formatted solution 26/82 for task ID 25
+Formatted solution 27/82 for task ID 26
+Formatted solution 28/82 for task ID 27
+Formatted solution 29/82 for task ID 28
+Formatted solution 30/82 for task ID 29
+Formatted solution 31/82 for task ID 30
+Formatted solution 32/82 for task ID 31
+Formatted solution 33/82 for task ID 32
+Formatted solution 34/82 for task ID 33
+Formatted solution 35/82 for task ID 34
+Formatted solution 36/82 for task ID 35
+Formatted solution 37/82 for task ID 36
+Formatted solution 38/82 for task ID 37
+Formatted solution 39/82 for task ID 38
+Formatted solution 40/82 for task ID 39
+Formatted solution 41/82 for task ID 40
+Error formatting solution 42/82 for task ID 41: Warning: Code markers not found in code block
+Formatted solution 43/82 for task ID 42
+Formatted solution 44/82 for task ID 43
+Formatted solution 45/82 for task ID 44
+Formatted solution 46/82 for task ID 45
+Formatted solution 47/82 for task ID 46
+Formatted solution 48/82 for task ID 47
+Formatted solution 49/82 for task ID 48
+Formatted solution 50/82 for task ID 49
+Formatted solution 51/82 for task ID 50
+Formatted solution 52/82 for task ID 51
+Formatted solution 53/82 for task ID 52
+Formatted solution 54/82 for task ID 53
+Formatted solution 55/82 for task ID 54
+Formatted solution 56/82 for task ID 55
+Formatted solution 57/82 for task ID 56
+Formatted solution 58/82 for task ID 57
+Formatted solution 59/82 for task ID 58
+Formatted solution 60/82 for task ID 59
+Formatted solution 61/82 for task ID 60
+Formatted solution 62/82 for task ID 61
+Formatted solution 63/82 for task ID 62
+Formatted solution 64/82 for task ID 63
+Formatted solution 65/82 for task ID 64
+Formatted solution 66/82 for task ID 65
+Formatted solution 67/82 for task ID 66
+Formatted solution 68/82 for task ID 67
+Formatted solution 69/82 for task ID 68
+Formatted solution 70/82 for task ID 69
+Formatted solution 71/82 for task ID 70
+Formatted solution 72/82 for task ID 71
+Formatted solution 73/82 for task ID 72
+Formatted solution 74/82 for task ID 73
+Formatted solution 75/82 for task ID 74
+Formatted solution 76/82 for task ID 75
+Formatted solution 77/82 for task ID 76
+Formatted solution 78/82 for task ID 77
+Formatted solution 79/82 for task ID 78
+Formatted solution 80/82 for task ID 79
+Formatted solution 81/82 for task ID 80
+Formatted solution 82/82 for task ID 81
+Formatted solutions written to /Users/madnanrizqu/Code/Research/learn/thesis/rq1/human_eval_chatgpt4o/results_CHATGPT_4O_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT/human_eval_chatgpt4o_solution_formatted.json
+Using temp directory: /Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728
+Test run for task: 0
+
+Processing task: 0
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 1
+Compile Fail: LLM file
+Preparation fail attempt no:  1
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output.py", line 1, in <module>
+    def separate_paren_groups(paren_string: str) -> List[str]:
+                                                    ^^^^
+NameError: name 'List' is not defined. Did you mean: 'list'?
+
+
+Solving row id 1...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 1.85 seconds
+Test run for task: 1
+
+Processing task: 1
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 2
+
+Processing task: 2
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 3
+
+Processing task: 3
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 4
+
+Processing task: 4
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 5
+
+Processing task: 5
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 6
+
+Processing task: 6
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 7
+
+Processing task: 7
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 8
+Compile Fail: LLM file
+Preparation fail attempt no:  1
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output.py", line 1, in <module>
+    def sum_product(numbers: List[int]) -> Tuple[int, int]:
+                             ^^^^
+NameError: name 'List' is not defined. Did you mean: 'list'?
+
+
+Solving row id 8...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 1.43 seconds
+Test run for task: 8
+
+Processing task: 8
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 9
+Compile Fail: LLM file
+Preparation fail attempt no:  1
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output.py", line 1, in <module>
+    def rolling_max(numbers: List[int]) -> List[int]:
+                             ^^^^
+NameError: name 'List' is not defined. Did you mean: 'list'?
+
+
+Solving row id 9...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 1.06 seconds
+Test run for task: 9
+
+Processing task: 9
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 10
+Compile Fail: Stdin validation
+Preparation fail attempt no:  1
+Remediation message:  Code contains forbidden stdin patterns: main execution blockPlease rewrite without sys.stdin.read(), input(), or main() functions
+
+Solving row id 10...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 1.75 seconds
+Test run for task: 10
+
+Processing task: 10
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 11
+
+Processing task: 11
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 12
+
+Processing task: 12
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 13
+
+Processing task: 13
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 14
+
+Processing task: 14
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 15
+
+Processing task: 15
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 16
+
+Processing task: 16
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 17
+
+Processing task: 17
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  1
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 10, in <module>
+    check(parse_music)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 5, in check
+    assert candidate('o o o o') == [4, 4, 4, 4]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 17...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 2.25 seconds
+Test run for task: 17
+
+Processing task: 17
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  2
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 10, in <module>
+    check(parse_music)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 5, in check
+    assert candidate('o o o o') == [4, 4, 4, 4]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 17...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 2.44 seconds
+Test run for task: 17
+
+Processing task: 17
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  3
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 10, in <module>
+    check(parse_music)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 5, in check
+    assert candidate('o o o o') == [4, 4, 4, 4]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 17...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 3.94 seconds
+Test run for task: 17
+
+Processing task: 17
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  4
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 10, in <module>
+    check(parse_music)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 5, in check
+    assert candidate('o o o o') == [4, 4, 4, 4]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 17...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 2.45 seconds
+Test run for task: 17
+
+Processing task: 17
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  5
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 10, in <module>
+    check(parse_music)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 5, in check
+    assert candidate('o o o o') == [4, 4, 4, 4]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+Test run for task: 18
+
+Processing task: 18
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 19
+
+Processing task: 19
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 20
+
+Processing task: 20
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 21
+Compile Fail: LLM file
+Preparation fail attempt no:  1
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output.py", line 1, in <module>
+    def rescale_to_unit(numbers: List[float]) -> List[float]:
+                                 ^^^^
+NameError: name 'List' is not defined. Did you mean: 'list'?
+
+
+Solving row id 21...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 1.39 seconds
+Test run for task: 21
+
+Processing task: 21
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 22
+
+Processing task: 22
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 23
+
+Processing task: 23
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 24
+
+Processing task: 24
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 25
+
+Processing task: 25
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 26
+
+Processing task: 26
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 27
+
+Processing task: 27
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 28
+
+Processing task: 28
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 29
+
+Processing task: 29
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 30
+
+Processing task: 30
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 31
+
+Processing task: 31
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 32
+
+Processing task: 32
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  1
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 20, in <module>
+    check(poly)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 16, in check
+    solution = candidate(copy.deepcopy(coeffs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: poly() missing 1 required positional argument: 'x'
+
+Error
+
+Solving row id 32...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 2.96 seconds
+Test run for task: 32
+
+Processing task: 32
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  2
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 20, in <module>
+    check(poly)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 16, in check
+    solution = candidate(copy.deepcopy(coeffs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: poly() missing 1 required positional argument: 'x'
+
+Error
+
+Solving row id 32...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 2.95 seconds
+Test run for task: 32
+
+Processing task: 32
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  3
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 20, in <module>
+    check(poly)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 16, in check
+    solution = candidate(copy.deepcopy(coeffs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: poly() missing 1 required positional argument: 'x'
+
+Error
+
+Solving row id 32...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 3.28 seconds
+Test run for task: 32
+
+Processing task: 32
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  4
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 20, in <module>
+    check(poly)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 16, in check
+    solution = candidate(copy.deepcopy(coeffs))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: poly() missing 1 required positional argument: 'x'
+
+Error
+
+Solving row id 32...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 3.55 seconds
+Error formatting solution attempt no: 5
+Remediation message:  Warning: Code markers not found in code block
+Test run for task: 33
+
+Processing task: 33
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 34
+
+Processing task: 34
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 35
+
+Processing task: 35
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 36
+
+Processing task: 36
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 37
+
+Processing task: 37
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 38
+
+Processing task: 38
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  1
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 14, in <module>
+    check(encode_cyclic)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 11, in check
+    assert candidate(encoded_str) == str
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 38...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 1.50 seconds
+Test run for task: 38
+
+Processing task: 38
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  2
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 14, in <module>
+    check(encode_cyclic)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 11, in check
+    assert candidate(encoded_str) == str
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 38...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 2.79 seconds
+Test run for task: 38
+
+Processing task: 38
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  3
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 14, in <module>
+    check(encode_cyclic)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 11, in check
+    assert candidate(encoded_str) == str
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 38...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 9.61 seconds
+Test run for task: 38
+
+Processing task: 38
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  4
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 14, in <module>
+    check(encode_cyclic)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 11, in check
+    assert candidate(encoded_str) == str
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 38...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 2.02 seconds
+Test run for task: 38
+
+Processing task: 38
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  5
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 14, in <module>
+    check(encode_cyclic)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 11, in check
+    assert candidate(encoded_str) == str
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+Test run for task: 39
+
+Processing task: 39
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 40
+
+Processing task: 40
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 41
+Compile Fail: LLM file
+Preparation fail attempt no:  1
+Remediation message:    File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output.py", line 1
+    Warning: Code markers not found in code block
+                  ^^^^^^^
+SyntaxError: invalid syntax
+
+
+Solving row id 41...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 2.47 seconds
+Test run for task: 41
+
+Processing task: 41
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  2
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 11, in <module>
+    check(car_race_collision)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 4, in check
+    assert candidate(2) == 4
+           ^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 41...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 1.90 seconds
+Test run for task: 41
+
+Processing task: 41
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 42
+
+Processing task: 42
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 43
+
+Processing task: 43
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 44
+
+Processing task: 44
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 45
+
+Processing task: 45
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 46
+
+Processing task: 46
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 47
+
+Processing task: 47
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 48
+
+Processing task: 48
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 49
+
+Processing task: 49
+LLM: openai/gpt-4o-2024-11-20
+Passed
+Test run for task: 50
+
+Processing task: 50
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  1
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 15, in <module>
+    check(encode_shift)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 12, in check
+    assert candidate(copy.deepcopy(encoded_str)) == str
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 50...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 1.98 seconds
+Test run for task: 50
+
+Processing task: 50
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  2
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 15, in <module>
+    check(encode_shift)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 12, in check
+    assert candidate(copy.deepcopy(encoded_str)) == str
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 50...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Success! API Response time: 2.04 seconds
+Test run for task: 50
+
+Processing task: 50
+LLM: openai/gpt-4o-2024-11-20
+Execution fail attempt no:  3
+Remediation message:  Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 15, in <module>
+    check(encode_shift)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728/llm_output_test.py", line 12, in check
+    assert candidate(copy.deepcopy(encoded_str)) == str
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+Fail
+
+Solving row id 50...
+Calling model openai/gpt-4o-2024-11-20...
+Using parameters: temperature: 0, seed: 1000
+Timeout: 150 seconds
+Cleaned up temp directory: /Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_chatgpt4o_1760730146019728
+
+
+--- STDERR from failure ---
+Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/rq1/human_eval_chatgpt4o/test_solution.py", line 34, in <module>
+    runner.run()
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/test_runner_module/main.py", line 479, in run
+    self._process_solution(entry, idx)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/test_runner_module/main.py", line 224, in _process_solution
+    results, _ = llm_module.get_solution_with_existing_messages(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/llm_module/main.py", line 233, in get_solution_with_existing_messages
+    response_msg, timestamp, elapsed_seconds = self.__call_model(
+                                               ^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/llm_module/main.py", line 104, in __call_model
+    response = model["client"].chat.completions.create(**api_params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/openai/_utils/_utils.py", line 287, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/openai/resources/chat/completions/completions.py", line 1087, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/openai/_base_client.py", line 1249, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/openai/_base_client.py", line 972, in request
+    response = self._client.send(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpx/_client.py", line 928, in send
+    raise exc
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpx/_client.py", line 922, in send
+    response.read()
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpx/_models.py", line 881, in read
+    self._content = b"".join(self.iter_bytes())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpx/_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpx/_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpx/_client.py", line 153, in __iter__
+    for chunk in self._stream:
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpx/_transports/default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 407, in __iter__
+    raise exc from None
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 342, in __iter__
+    raise exc
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Library/Caches/pypoetry/virtualenvs/tdd-llm-USDprmI7-py3.11/lib/python3.11/site-packages/httpcore/_backends/sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/.pyenv/versions/3.11.14/lib/python3.11/ssl.py", line 1295, in recv
+    return self.read(buflen)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/.pyenv/versions/3.11.14/lib/python3.11/ssl.py", line 1168, in read
+    return self._sslobj.read(len)
+           ^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+Failed test_solution.py after 67.37 seconds
+Completed human_eval_chatgpt4o. Progress: 1/1 subdirectories completed (100.0%)

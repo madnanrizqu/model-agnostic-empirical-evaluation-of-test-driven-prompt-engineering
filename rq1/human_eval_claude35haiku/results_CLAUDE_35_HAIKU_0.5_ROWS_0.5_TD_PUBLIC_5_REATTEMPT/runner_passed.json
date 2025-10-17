@@ -1,0 +1,697 @@
+{
+  "anthropic/claude-3.5-haiku": [
+    {
+      "task_id": 0,
+      "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    # Compare each number with every other number in the list\n    for i in range(len(numbers)):\n        for j in range(i+1, len(numbers)):\n            # Check if absolute difference between two numbers is less than threshold\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    \n    # If no pair of numbers is closer than threshold, return False\n    return False",
+      "test_content": "from llm_output import has_close_elements\n\ndef check(candidate):\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False\n\n\ncheck(has_close_elements)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 1,
+      "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    # Remove all whitespace from the input string\n    paren_string = paren_string.replace(' ', '')\n    \n    result = []\n    current_group = []\n    depth = 0\n    \n    for char in paren_string:\n        if char == '(':\n            depth += 1\n            current_group.append(char)\n        elif char == ')':\n            depth -= 1\n            current_group.append(char)\n            \n            # When depth reaches 0, we've completed a balanced group\n            if depth == 0:\n                result.append(''.join(current_group))\n                current_group = []\n    \n    return result",
+      "test_content": "from llm_output import separate_paren_groups\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [\n        '(()())', '((()))', '()', '((())()())'\n    ]\n    assert candidate('() (()) ((())) (((())))') == [\n        '()', '(())', '((()))', '(((())))'\n    ]\n    assert candidate('(()(())((())))') == [\n        '(()(())((())))'\n    ]\n    assert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\n\ncheck(separate_paren_groups)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "import math\n\ndef truncate_number(number: float) -> float:\n    \"\"\"\n    Decompose a positive floating point number into its decimal part.\n    \n    Args:\n        number (float): A positive floating point number\n    \n    Returns:\n        float: The decimal part of the number (always < 1)\n    \"\"\"\n    # Use math.floor to get the integer part\n    # Subtract integer part from original number to get decimal part\n    return number - math.floor(number)",
+      "test_content": "from llm_output import truncate_number\n\ndef check(candidate):\n    assert candidate(3.5) == 0.5\n    assert abs(candidate(1.33) - 0.33) < 1e-6\n    assert abs(candidate(123.456) - 0.456) < 1e-6\n\ncheck(truncate_number)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+      "test_content": "from llm_output import below_zero\n\ndef check(candidate):\n    assert candidate([]) == False\n    assert candidate([1, 2, -3, 1, 2, -3]) == False\n    assert candidate([1, 2, -4, 5, 6]) == True\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True\n    assert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True\n\ncheck(below_zero)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    # Check if the list is empty to avoid division by zero\n    if not numbers:\n        return 0.0\n    \n    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n    \n    # Calculate the absolute deviations from the mean\n    absolute_deviations = [abs(x - mean) for x in numbers]\n    \n    # Calculate the mean of absolute deviations\n    mad = sum(absolute_deviations) / len(numbers)\n    \n    return mad",
+      "test_content": "from llm_output import mean_absolute_deviation\n\ndef check(candidate):\n    assert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0]) - 1.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0, 5.0]) - 6.0/5.0) < 1e-6\n\n\ncheck(mean_absolute_deviation)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 5,
+      "prompt": "### Prompt\n     Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n\n### Signature\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    # If the input list is empty, return an empty list\n    if not numbers:\n        return []\n    \n    # Initialize result list with the first element\n    result = [numbers[0]]\n    \n    # Iterate through the rest of the list\n    for num in numbers[1:]:\n        # Add delimiter between each original list element\n        result.append(delimeter)\n        result.append(num)\n    \n    return result",
+      "test_content": "from llm_output import intersperse\n\ndef check(candidate):\n    assert candidate([], 7) == []\n    assert candidate([5, 6, 3, 2], 8) == [5, 8, 6, 8, 3, 8, 2]\n    assert candidate([2, 2, 2], 2) == [2, 2, 2, 2, 2]\n\ncheck(intersperse)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    # Split the input string into groups of parentheses\n    groups = paren_string.split()\n    \n    # Function to calculate max nesting depth for a single group\n    def max_depth(group: str) -> int:\n        current_depth = 0\n        max_depth = 0\n        \n        for char in group:\n            if char == '(':\n                current_depth += 1\n                max_depth = max(max_depth, current_depth)\n            elif char == ')':\n                current_depth -= 1\n        \n        return max_depth\n    \n    # Calculate max depth for each group\n    return [max_depth(group) for group in groups]",
+      "test_content": "from llm_output import parse_nested_parens\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]\n    assert candidate('() (()) ((())) (((())))') == [1, 2, 3, 4]\n    assert candidate('(()(())((())))') == [4]\n\ncheck(parse_nested_parens)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]",
+      "test_content": "from llm_output import filter_by_substring\n\ndef check(candidate):\n    assert candidate([], 'john') == []\n    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']\n    assert candidate(['xxx', 'asd', 'aaaxxy', 'john doe', 'xxxAAA', 'xxx'], 'xx') == ['xxx', 'aaaxxy', 'xxxAAA', 'xxx']\n    assert candidate(['grunt', 'trumpet', 'prune', 'gruesome'], 'run') == ['grunt', 'prune']\n\ncheck(filter_by_substring)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    # Handle empty list case\n    if not numbers:\n        return (0, 1)\n    \n    # Calculate sum of all numbers\n    total_sum = sum(numbers)\n    \n    # Calculate product of all numbers\n    total_product = 1\n    for num in numbers:\n        total_product *= num\n    \n    return (total_sum, total_product)",
+      "test_content": "from llm_output import sum_product\n\ndef check(candidate):\n    assert candidate([]) == (0, 1)\n    assert candidate([1, 1, 1]) == (3, 1)\n    assert candidate([100, 0]) == (100, 0)\n    assert candidate([3, 5, 7]) == (3 + 5 + 7, 3 * 5 * 7)\n    assert candidate([10]) == (10, 10)\n\ncheck(sum_product)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    if not numbers:\n        return []\n    \n    result = [numbers[0]]\n    current_max = numbers[0]\n    \n    for num in numbers[1:]:\n        current_max = max(current_max, num)\n        result.append(current_max)\n    \n    return result",
+      "test_content": "from llm_output import rolling_max\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]\n    assert candidate([4, 3, 2, 1]) == [4, 4, 4, 4]\n    assert candidate([3, 2, 3, 100, 3]) == [3, 3, 3, 100, 100]\n\ncheck(rolling_max)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 10, in <module>\n    check(make_palindrome)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 6, in check\n    assert candidate('xyz') == 'xyzyx'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def make_palindrome(string: str) -> str:\n    # Handle empty string case\n    if not string:\n        return ''\n    \n    # Try to find the longest palindromic prefix\n    for i in range(len(string)):\n        # Check if the substring from the beginning is a palindrome\n        if is_palindrome(string[i:]):\n            # Prepend the reversed non-palindromic part\n            return string + string[:i][::-1]\n    \n    # If no palindromic suffix found, simply mirror the string\n    return string + string[-2::-1]\n\ndef is_palindrome(s: str) -> bool:\n    return s == s[::-1]",
+      "test_content": "from llm_output import make_palindrome\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('x') == 'x'\n    assert candidate('xyz') == 'xyzyx'\n    assert candidate('xyx') == 'xyx'\n    assert candidate('jerry') == 'jerryrrej'\n\ncheck(make_palindrome)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\n     Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n\n### Signature\ndef string_xor(a: str, b: str) -> str:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def string_xor(a: str, b: str) -> str:\n    # Ensure inputs are of equal length by padding with zeros if needed\n    max_len = max(len(a), len(b))\n    a = a.zfill(max_len)\n    b = b.zfill(max_len)\n    \n    # Perform XOR operation character by character\n    result = ''.join('0' if a[i] == b[i] else '1' for i in range(max_len))\n    \n    return result",
+      "test_content": "from llm_output import string_xor\n\ndef check(candidate):\n    assert candidate('111000', '101010') == '010010'\n    assert candidate('1', '1') == '0'\n    assert candidate('0101', '0000') == '0101'\n\ncheck(string_xor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    \n    return max(strings, key=len)",
+      "test_content": "from llm_output import longest\n\ndef check(candidate):\n    assert candidate([]) == None\n    assert candidate(['x', 'y', 'z']) == 'x'\n    assert candidate(['x', 'yyy', 'zzzz', 'www', 'kkkk', 'abc']) == 'zzzz'\n\ncheck(longest)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 13,
+      "prompt": "### Prompt\n     Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n\n### Signature\ndef greatest_common_divisor(a: int, b: int) -> int:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def greatest_common_divisor(a: int, b: int) -> int:\n    # Use Euclidean algorithm to find greatest common divisor\n    while b:\n        a, b = b, a % b\n    return abs(a)",
+      "test_content": "from llm_output import greatest_common_divisor\n\ndef check(candidate):\n    assert candidate(3, 7) == 1\n    assert candidate(10, 15) == 5\n    assert candidate(49, 14) == 7\n    assert candidate(144, 60) == 12\n\ncheck(greatest_common_divisor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 14,
+      "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    return [string[:i+1] for i in range(len(string))]",
+      "test_content": "from llm_output import all_prefixes\n\ndef check(candidate):\n    assert candidate('') == []\n    assert candidate('asdfgh') == ['a', 'as', 'asd', 'asdf', 'asdfg', 'asdfgh']\n    assert candidate('WWW') == ['W', 'WW', 'WWW']\n\ncheck(all_prefixes)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 15,
+      "prompt": "### Prompt\n     Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n\n### Signature\ndef string_sequence(n: int) -> str:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def string_sequence(n: int) -> str:\n    \"\"\"\n    Generate a space-delimited string of numbers from 0 to n inclusive.\n    \n    Args:\n        n (int): The upper limit of the sequence\n    \n    Returns:\n        str: Space-separated string of numbers from 0 to n\n    \"\"\"\n    return ' '.join(str(num) for num in range(n + 1))",
+      "test_content": "from llm_output import string_sequence\n\ndef check(candidate):\n    assert candidate(0) == '0'\n    assert candidate(3) == '0 1 2 3'\n    assert candidate(10) == '0 1 2 3 4 5 6 7 8 9 10'\n\ncheck(string_sequence)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 16,
+      "prompt": "### Prompt\n     Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n\n### Signature\ndef count_distinct_characters(string: str) -> int:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def count_distinct_characters(string: str) -> int:\n    # Convert the string to lowercase to make comparison case-insensitive\n    # Use set() to get unique characters\n    return len(set(string.lower()))",
+      "test_content": "from llm_output import count_distinct_characters\n\ndef check(candidate):\n    assert candidate('') == 0\n    assert candidate('abcde') == 5\n    assert candidate('abcde' + 'cade' + 'CADE') == 5\n    assert candidate('aaaaAAAAaaaa') == 1\n    assert candidate('Jerry jERRY JeRRRY') == 5\n\ncheck(count_distinct_characters)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 17,
+      "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 10, in <module>\n    check(parse_music)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 7, in check\n    assert candidate('o| o| .| .| o o o o') == [2, 2, 1, 1, 4, 4, 4, 4]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    # If string is empty, return empty list\n    if not music_string:\n        return []\n    \n    # Split the string by spaces\n    notes = music_string.split()\n    \n    # Determine beats for each note\n    beats = []\n    for note in notes:\n        # Whole note 'o' is 4 beats\n        if note == 'o':\n            beats.append(4)\n        # Half note 'o|' is 2 beats\n        elif note == 'o|':\n            beats.append(2)\n        # Quarter note '.' is 1 beat\n        elif note == '.':\n            beats.append(1)\n        # Half note '.|' is 1 beat\n        elif note == '.|':\n            beats.append(1)\n    \n    return beats",
+      "test_content": "from llm_output import parse_music\n\ndef check(candidate):\n    assert candidate('') == []\n    assert candidate('o o o o') == [4, 4, 4, 4]\n    assert candidate('.| .| .| .|') == [1, 1, 1, 1]\n    assert candidate('o| o| .| .| o o o o') == [2, 2, 1, 1, 4, 4, 4, 4]\n    assert candidate('o| .| o| .| o o| o o|') == [2, 1, 2, 1, 4, 2, 4, 2]\n\ncheck(parse_music)",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\n     Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n\n### Signature\ndef how_many_times(string: str, substring: str) -> int:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def how_many_times(string: str, substring: str) -> int:\n    # Handle edge cases\n    if not string or not substring:\n        return 0\n    \n    # Initialize count\n    count = 0\n    \n    # Iterate through possible starting positions\n    for i in range(len(string) - len(substring) + 1):\n        # Check if substring starts at current position\n        if string[i:i+len(substring)] == substring:\n            count += 1\n    \n    return count",
+      "test_content": "from llm_output import how_many_times\n\ndef check(candidate):\n    assert candidate('', 'x') == 0\n    assert candidate('xyxyxyx', 'x') == 4\n    assert candidate('cacacacac', 'cac') == 4\n    assert candidate('john doe', 'john') == 1\n\ncheck(how_many_times)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 19,
+      "prompt": "### Prompt\n     Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n\n### Signature\ndef sort_numbers(numbers: str) -> str:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def sort_numbers(numbers: str) -> str:\n    # Dictionary to map word numbers to numeric values\n    number_map = {\n        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, \n        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9\n    }\n    \n    # Split the input string into a list of word numbers\n    number_words = numbers.split()\n    \n    # Sort the word numbers based on their numeric values\n    sorted_words = sorted(number_words, key=lambda x: number_map[x])\n    \n    # Join the sorted words back into a space-delimited string\n    return ' '.join(sorted_words)",
+      "test_content": "from llm_output import sort_numbers\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('three') == 'three'\n    assert candidate('three five nine') == 'three five nine'\n    assert candidate('five zero four seven nine eight') == 'zero four five seven eight nine'\n    assert candidate('six five four three two one zero') == 'zero one two three four five six'\n\ncheck(sort_numbers)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 20,
+      "prompt": "### Prompt\n     From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n\n### Signature\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    # Check if list has at least 2 elements\n    if len(numbers) < 2:\n        raise ValueError(\"List must have at least two elements\")\n    \n    # Initialize minimum difference and result\n    min_diff = float('inf')\n    closest_pair = (numbers[0], numbers[1])\n    \n    # Compare each pair of numbers\n    for i in range(len(numbers)):\n        for j in range(i+1, len(numbers)):\n            # Calculate absolute difference\n            diff = abs(numbers[i] - numbers[j])\n            \n            # Update if smaller difference found\n            if diff < min_diff:\n                min_diff = diff\n                # Ensure smaller number comes first\n                closest_pair = (min(numbers[i], numbers[j]), max(numbers[i], numbers[j]))\n    \n    return closest_pair",
+      "test_content": "from llm_output import find_closest_elements\n\ndef check(candidate):\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2]) == (3.9, 4.0)\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0]) == (5.0, 5.9)\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.2]) == (2.0, 2.2)\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0]) == (2.0, 2.0)\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1]) == (2.2, 3.1)\n\n\ncheck(find_closest_elements)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 21,
+      "prompt": "### Prompt\n     Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n\n### Signature\ndef rescale_to_unit(numbers: List[float]) -> List[float]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    # Check if the list has at least two elements\n    if len(numbers) < 2:\n        return numbers\n    \n    # Find the minimum and maximum values in the list\n    min_val = min(numbers)\n    max_val = max(numbers)\n    \n    # If all numbers are the same, return a list of zeros\n    if min_val == max_val:\n        return [0.0] * len(numbers)\n    \n    # Apply linear transformation\n    return [(x - min_val) / (max_val - min_val) for x in numbers]",
+      "test_content": "from llm_output import rescale_to_unit\n\ndef check(candidate):\n    assert candidate([2.0, 49.9]) == [0.0, 1.0]\n    assert candidate([100.0, 49.9]) == [1.0, 0.0]\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0]) == [0.0, 0.25, 0.5, 0.75, 1.0]\n    assert candidate([2.0, 1.0, 5.0, 3.0, 4.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\n    assert candidate([12.0, 11.0, 15.0, 13.0, 14.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\n\ncheck(rescale_to_unit)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 22,
+      "prompt": "### Prompt\n     Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n\n### Signature\ndef filter_integers(values: List[Any]) -> List[int]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List, Any\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    return [value for value in values if isinstance(value, int)]",
+      "test_content": "from llm_output import filter_integers\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([4, {}, [], 23.2, 9, 'adasd']) == [4, 9]\n    assert candidate([3, 'c', 3, 3, 'a', 'b']) == [3, 3, 3]\n\ncheck(filter_integers)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 23,
+      "prompt": "### Prompt\n     Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n\n### Signature\ndef strlen(string: str) -> int:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def strlen(string: str) -> int:\n    return len(string)",
+      "test_content": "from llm_output import strlen\n\ndef check(candidate):\n    assert candidate('') == 0\n    assert candidate('x') == 1\n    assert candidate('asdasnakj') == 9\n\ncheck(strlen)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 24,
+      "prompt": "### Prompt\n     For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n\n### Signature\ndef largest_divisor(n: int) -> int:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def largest_divisor(n: int) -> int:\n    # Iterate from n-1 down to 1\n    for i in range(n-1, 0, -1):\n        # If i divides n evenly, return it immediately\n        if n % i == 0:\n            return i",
+      "test_content": "from llm_output import largest_divisor\n\ndef check(candidate):\n    assert candidate(3) == 1\n    assert candidate(7) == 1\n    assert candidate(10) == 5\n    assert candidate(100) == 50\n    assert candidate(49) == 7\n\ncheck(largest_divisor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 25,
+      "prompt": "### Prompt\n     Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n\n### Signature\ndef factorize(n: int) -> List[int]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    # Handle edge cases\n    if n <= 1:\n        return []\n    \n    # Initialize result list and start with smallest prime factor\n    factors = []\n    divisor = 2\n    \n    # Continue factoring until n becomes 1\n    while n > 1:\n        # If current divisor divides n evenly\n        if n % divisor == 0:\n            # Add divisor to factors\n            factors.append(divisor)\n            # Divide n by divisor\n            n //= divisor\n        else:\n            # If current divisor doesn't divide n, move to next potential divisor\n            divisor += 1\n    \n    return factors",
+      "test_content": "from llm_output import factorize\n\ndef check(candidate):\n    assert candidate(2) == [2]\n    assert candidate(4) == [2, 2]\n    assert candidate(8) == [2, 2, 2]\n    assert candidate(3 * 19) == [3, 19]\n    assert candidate(3 * 19 * 3 * 19) == [3, 3, 19, 19]\n    assert candidate(3 * 19 * 3 * 19 * 3 * 19) == [3, 3, 3, 19, 19, 19]\n    assert candidate(3 * 19 * 19 * 19) == [3, 19, 19, 19]\n    assert candidate(3 * 2 * 3) == [2, 3, 3]\n\ncheck(factorize)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 26,
+      "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    # Count occurrences of each number\n    count_dict = {}\n    for num in numbers:\n        count_dict[num] = count_dict.get(num, 0) + 1\n    \n    # Return only numbers that appear exactly once\n    return [num for num in numbers if count_dict[num] == 1]",
+      "test_content": "from llm_output import remove_duplicates\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]\n    assert candidate([1, 2, 3, 2, 4, 3, 5]) == [1, 4, 5]\n\ncheck(remove_duplicates)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 27,
+      "prompt": "### Prompt\n     For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n\n### Signature\ndef flip_case(string: str) -> str:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def flip_case(string: str) -> str:\n    \"\"\"\n    Flip the case of each character in the input string.\n    Lowercase characters become uppercase and vice versa.\n    \n    Args:\n        string (str): The input string to flip case\n    \n    Returns:\n        str: A new string with case of each character flipped\n    \"\"\"\n    return string.swapcase()",
+      "test_content": "from llm_output import flip_case\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('Hello!') == 'hELLO!'\n    assert candidate('These violent delights have violent ends') == 'tHESE VIOLENT DELIGHTS HAVE VIOLENT ENDS'\n\ncheck(flip_case)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 28,
+      "prompt": "### Prompt\n     Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n\n### Signature\ndef concatenate(strings: List[str]) -> str:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    return ''.join(strings)",
+      "test_content": "from llm_output import concatenate\n\ndef check(candidate):\n    assert candidate([]) == ''\n    assert candidate(['x', 'y', 'z']) == 'xyz'\n    assert candidate(['x', 'y', 'z', 'w', 'k']) == 'xyzwk'\n\ncheck(concatenate)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 29,
+      "prompt": "### Prompt\n     Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n\n### Signature\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    return [s for s in strings if s.startswith(prefix)]",
+      "test_content": "from llm_output import filter_by_prefix\n\ndef check(candidate):\n    assert candidate([], 'john') == []\n    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']\n\ncheck(filter_by_prefix)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 30,
+      "prompt": "### Prompt\n    Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n\n### Signature\ndef get_positive(l: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def get_positive(l: list):\n    return [num for num in l if num > 0]",
+      "test_content": "from llm_output import get_positive\n\ndef check(candidate):\n    assert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]\n    assert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]\n    assert candidate([-1, -2]) == []\n    assert candidate([]) == []\n\n\ncheck(get_positive)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 31,
+      "prompt": "### Prompt\n    Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n\n### Signature\ndef is_prime(n):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def is_prime(n):\n    # Handle edge cases\n    if n <= 1:\n        return False\n    \n    # Check for divisibility up to square root of n\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    \n    return True",
+      "test_content": "from llm_output import is_prime\n\ndef check(candidate):\n    assert candidate(6) == False\n    assert candidate(101) == True\n    assert candidate(11) == True\n    assert candidate(13441) == True\n    assert candidate(61) == True\n    assert candidate(4) == False\n    assert candidate(1) == False\n    assert candidate(5) == True\n    assert candidate(11) == True\n    assert candidate(17) == True\n    assert candidate(5 * 17) == False\n    assert candidate(11 * 7) == False\n    assert candidate(13441 * 19) == False\n\n\ncheck(is_prime)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 33,
+      "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n\n### Signature\ndef sort_third(l: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def sort_third(l: list):\n    # Create a copy of the original list to modify\n    result = l.copy()\n    \n    # Extract elements at indices divisible by 3\n    third_indices_elements = [l[i] for i in range(len(l)) if i % 3 == 0]\n    \n    # Sort these elements\n    sorted_third_indices_elements = sorted(third_indices_elements)\n    \n    # Replace elements at indices divisible by 3 with sorted values\n    for i in range(0, len(l), 3):\n        result[i] = sorted_third_indices_elements[i // 3]\n    \n    return result",
+      "test_content": "from llm_output import sort_third\n\ndef check(candidate):\n    assert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))\n    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple(sort_third([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))\n    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple(sort_third([5, 8, -12, 4, 23, 2, 3, 11, 12, -10]))\n    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2])) == tuple([2, 6, 3, 4, 8, 9, 5])\n    assert tuple(candidate([5, 8, 3, 4, 6, 9, 2])) == tuple([2, 8, 3, 4, 6, 9, 5])\n    assert tuple(candidate([5, 6, 9, 4, 8, 3, 2])) == tuple([2, 6, 9, 4, 8, 3, 5])\n    assert tuple(candidate([5, 6, 3, 4, 8, 9, 2, 1])) == tuple([2, 6, 3, 4, 8, 9, 5, 1])\n\n\ncheck(sort_third)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 34,
+      "prompt": "### Prompt\n    Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n\n### Signature\ndef unique(l: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def unique(l: list):\n    \"\"\"\n    Return a sorted list of unique elements from the input list.\n    \n    Args:\n        l (list): Input list with potentially duplicate elements\n    \n    Returns:\n        list: Sorted list of unique elements\n    \"\"\"\n    return sorted(set(l))",
+      "test_content": "from llm_output import unique\n\ndef check(candidate):\n    assert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123]\n\n\ncheck(unique)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 35,
+      "prompt": "### Prompt\n    Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n\n### Signature\ndef max_element(l: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def max_element(l: list):\n    \"\"\"\n    Returns the maximum element in the given list.\n    \n    Args:\n        l (list): Input list of numbers\n    \n    Returns:\n        The maximum value in the list\n    \"\"\"\n    if not l:  # Handle empty list case\n        return None\n    \n    max_val = l[0]  # Initialize max with first element\n    for num in l[1:]:\n        if num > max_val:\n            max_val = num\n    \n    return max_val",
+      "test_content": "from llm_output import max_element\n\ndef check(candidate):\n    assert candidate([1, 2, 3]) == 3\n    assert candidate([5, 3, -5, 2, -3, 3, 9, 0, 124, 1, -10]) == 124\n\ncheck(max_element)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 36,
+      "prompt": "### Prompt\n    Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n\n### Signature\ndef fizz_buzz(n: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def fizz_buzz(n: int):\n    # Initialize count of 7s\n    count_sevens = 0\n    \n    # Iterate through numbers less than n\n    for num in range(1, n):\n        # Check if number is divisible by 11 or 13\n        if num % 11 == 0 or num % 13 == 0:\n            # Convert number to string to count 7s\n            str_num = str(num)\n            count_sevens += str_num.count('7')\n    \n    return count_sevens",
+      "test_content": "from llm_output import fizz_buzz\n\ndef check(candidate):\n    assert candidate(50) == 0\n    assert candidate(78) == 2\n    assert candidate(79) == 3\n    assert candidate(100) == 3\n    assert candidate(200) == 6\n    assert candidate(4000) == 192\n    assert candidate(10000) == 639\n    assert candidate(100000) == 8026\n\n\ncheck(fizz_buzz)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 37,
+      "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n\n### Signature\ndef sort_even(l: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def sort_even(l: list):\n    # If list is empty or has only one element, return as is\n    if len(l) <= 1:\n        return l\n    \n    # Extract even-indexed elements to be sorted\n    even_indices_values = [l[i] for i in range(0, len(l), 2)]\n    \n    # Sort the even-indexed values\n    sorted_even_values = sorted(even_indices_values)\n    \n    # Create a new list with sorted even-indexed values\n    result = l.copy()\n    for i in range(0, len(l), 2):\n        result[i] = sorted_even_values[i // 2]\n    \n    return result",
+      "test_content": "from llm_output import sort_even\n\ndef check(candidate):\n    assert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])\n    assert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple([-10, 3, -5, 2, -3, 3, 5, 0, 9, 1, 123])\n    assert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple([-12, 8, 3, 4, 5, 2, 12, 11, 23, -10])\n\n\ncheck(sort_even)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 39,
+      "prompt": "### Prompt\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n\n### Signature\ndef prime_fib(n: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def is_prime(num):\n    if num < 2:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\ndef prime_fib(n: int):\n    count = 0\n    a, b = 0, 1\n    \n    while True:\n        next_fib = a + b\n        if is_prime(next_fib):\n            count += 1\n            if count == n:\n                return next_fib\n        a, b = b, next_fib",
+      "test_content": "from llm_output import prime_fib\n\ndef check(candidate):\n    assert candidate(1) == 2\n    assert candidate(2) == 3\n    assert candidate(3) == 5\n    assert candidate(4) == 13\n    assert candidate(5) == 89\n    assert candidate(6) == 233\n    assert candidate(7) == 1597\n    assert candidate(8) == 28657\n    assert candidate(9) == 514229\n    assert candidate(10) == 433494437\n\n\ncheck(prime_fib)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 40,
+      "prompt": "### Prompt\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n### Signature\ndef triples_sum_to_zero(l: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def triples_sum_to_zero(l: list):\n    # If list has less than 3 elements, return False\n    if len(l) < 3:\n        return False\n    \n    # Sort the list to help with efficient searching\n    l.sort()\n    \n    # Iterate through the list, fixing one element at a time\n    for i in range(len(l) - 2):\n        # Skip duplicates to avoid repeated checks\n        if i > 0 and l[i] == l[i-1]:\n            continue\n        \n        # Use two-pointer technique to find complementary pair\n        left = i + 1\n        right = len(l) - 1\n        \n        while left < right:\n            current_sum = l[i] + l[left] + l[right]\n            \n            # If sum is zero, we found a valid triple\n            if current_sum == 0:\n                return True\n            \n            # If sum is less than zero, move left pointer to increase sum\n            if current_sum < 0:\n                left += 1\n            \n            # If sum is greater than zero, move right pointer to decrease sum\n            else:\n                right -= 1\n    \n    # No triple found that sums to zero\n    return False",
+      "test_content": "from llm_output import triples_sum_to_zero\n\ndef check(candidate):\n    assert candidate([1, 3, 5, 0]) == False\n    assert candidate([1, 3, 5, -1]) == False\n    assert candidate([1, 3, -2, 1]) == True\n    assert candidate([1, 2, 3, 7]) == False\n    assert candidate([1, 2, 5, 7]) == False\n    assert candidate([2, 4, -5, 3, 9, 7]) == True\n    assert candidate([1]) == False\n    assert candidate([1, 3, 5, -100]) == False\n    assert candidate([100, 3, 5, -100]) == False\n\n\ncheck(triples_sum_to_zero)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 41,
+      "prompt": "### Prompt\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n### Signature\ndef car_race_collision(n: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def car_race_collision(n: int):\n    \"\"\"\n    Calculate the number of collisions when n cars move in opposite directions\n    \n    Args:\n        n (int): Number of cars moving in each direction\n    \n    Returns:\n        int: Total number of collisions\n    \"\"\"\n    # Total number of collisions is always n * n \n    # Each car from left to right will collide with each car from right to left\n    return n * n",
+      "test_content": "from llm_output import car_race_collision\n\ndef check(candidate):\n    assert candidate(2) == 4\n    assert candidate(3) == 9\n    assert candidate(4) == 16\n    assert candidate(8) == 64\n    assert candidate(10) == 100\n\n\ncheck(car_race_collision)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 42,
+      "prompt": "### Prompt\n    Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n\n### Signature\ndef incr_list(l: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def incr_list(l: list):\n    \"\"\"\n    Return a new list with each element incremented by 1.\n    \n    Args:\n        l (list): Input list of numbers\n    \n    Returns:\n        list: New list with each element incremented by 1\n    \"\"\"\n    return [x + 1 for x in l]",
+      "test_content": "from llm_output import incr_list\n\ndef check(candidate):\n    assert candidate([]) == []\n    assert candidate([3, 2, 1]) == [4, 3, 2]\n    assert candidate([5, 2, 5, 2, 3, 3, 9, 0, 123]) == [6, 3, 6, 3, 4, 4, 10, 1, 124]\n\n\ncheck(incr_list)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 43,
+      "prompt": "### Prompt\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    >>> pairs_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> pairs_sum_to_zero([1, 3, -2, 1])\n    False\n    >>> pairs_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])\n    True\n    >>> pairs_sum_to_zero([1])\n    False\n\n### Signature\ndef pairs_sum_to_zero(l):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def pairs_sum_to_zero(l):\n    # If list has less than 2 elements, return False\n    if len(l) < 2:\n        return False\n    \n    # Use a set to track seen numbers for O(n) time complexity\n    seen = set()\n    \n    # Iterate through the list \n    for num in l:\n        # Check if the negative of current number exists in seen set\n        if -num in seen:\n            return True\n        \n        # Add current number to seen set\n        seen.add(num)\n    \n    # No pair found that sums to zero\n    return False",
+      "test_content": "from llm_output import pairs_sum_to_zero\n\ndef check(candidate):\n    assert candidate([1, 3, 5, 0]) == False\n    assert candidate([1, 3, -2, 1]) == False\n    assert candidate([1, 2, 3, 7]) == False\n    assert candidate([2, 4, -5, 3, 5, 7]) == True\n    assert candidate([1]) == False\n\n    assert candidate([-3, 9, -1, 3, 2, 30]) == True\n    assert candidate([-3, 9, -1, 3, 2, 31]) == True\n    assert candidate([-3, 9, -1, 4, 2, 30]) == False\n    assert candidate([-3, 9, -1, 4, 2, 31]) == False\n\n\ncheck(pairs_sum_to_zero)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 44,
+      "prompt": "### Prompt\n    Change numerical base of input number x to base.\n    return string representation after the conversion.\n    base numbers are less than 10.\n    >>> change_base(8, 3)\n    '22'\n    >>> change_base(8, 2)\n    '1000'\n    >>> change_base(7, 2)\n    '111'\n\n### Signature\ndef change_base(x: int, base: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def change_base(x: int, base: int):\n    # Handle special case of 0\n    if x == 0:\n        return '0'\n    \n    # Store the result digits\n    digits = []\n    \n    # Convert decimal to specified base\n    while x > 0:\n        # Get remainder when divided by base\n        remainder = x % base\n        \n        # Prepend the remainder to digits list\n        digits.insert(0, str(remainder))\n        \n        # Integer division to reduce x\n        x //= base\n    \n    # Join digits into a string and return\n    return ''.join(digits)",
+      "test_content": "from llm_output import change_base\n\ndef check(candidate):\n    assert candidate(8, 3) == \"22\"\n    assert candidate(9, 3) == \"100\"\n    assert candidate(234, 2) == \"11101010\"\n    assert candidate(16, 2) == \"10000\"\n    assert candidate(8, 2) == \"1000\"\n    assert candidate(7, 2) == \"111\"\n    for x in range(2, 8):\n        assert candidate(x, x + 1) == str(x)\n\n\ncheck(change_base)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 45,
+      "prompt": "### Prompt\n    Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n\n### Signature\ndef triangle_area(a, h):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def triangle_area(a, h):\n    \"\"\"\n    Calculate the area of a triangle given the length of a side and its height.\n    \n    Args:\n        a (float): Length of the base of the triangle\n        h (float): Height of the triangle\n    \n    Returns:\n        float: Area of the triangle\n    \"\"\"\n    return 0.5 * a * h",
+      "test_content": "from llm_output import triangle_area\n\ndef check(candidate):\n    assert candidate(5, 3) == 7.5\n    assert candidate(2, 2) == 2.0\n    assert candidate(10, 8) == 40.0\n\n\ncheck(triangle_area)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 46,
+      "prompt": "### Prompt\n    The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n\n### Signature\ndef fib4(n: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def fib4(n: int):\n    # Handle base cases\n    if n == 0 or n == 1 or n == 3:\n        return 0\n    if n == 2:\n        return 2\n    \n    # Initialize array to store Fib4 sequence values\n    sequence = [0, 0, 2, 0]\n    \n    # Compute Fib4 sequence iteratively\n    for _ in range(4, n + 1):\n        # Next value is sum of previous 4 values\n        next_val = sum(sequence)\n        # Shift values in the sequence\n        sequence = sequence[1:] + [next_val]\n    \n    # Return the last computed value\n    return sequence[-1]",
+      "test_content": "from llm_output import fib4\n\ndef check(candidate):\n    assert candidate(5) == 4\n    assert candidate(8) == 28\n    assert candidate(10) == 104\n    assert candidate(12) == 386\n\n\ncheck(fib4)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 47,
+      "prompt": "### Prompt\n    Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n\n### Signature\ndef median(l: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "import statistics\n\ndef median(l: list):\n    # Sort the list first\n    sorted_list = sorted(l)\n    \n    # Get the length of the list\n    n = len(sorted_list)\n    \n    # If list is empty, return None\n    if n == 0:\n        return None\n    \n    # If list has odd number of elements\n    if n % 2 == 1:\n        return sorted_list[n // 2]\n    \n    # If list has even number of elements\n    # Return average of two middle elements\n    return (sorted_list[n // 2 - 1] + sorted_list[n // 2]) / 2",
+      "test_content": "from llm_output import median\n\ndef check(candidate):\n    assert candidate([3, 1, 2, 4, 5]) == 3\n    assert candidate([-10, 4, 6, 1000, 10, 20]) == 8.0\n    assert candidate([5]) == 5\n    assert candidate([6, 5]) == 5.5\n    assert candidate([8, 1, 3, 9, 9, 2, 7]) == 7 \n\n\ncheck(median)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 48,
+      "prompt": "### Prompt\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n\n### Signature\ndef is_palindrome(text: str):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def is_palindrome(text: str):\n    # Remove any whitespace and convert to lowercase for consistent comparison\n    # Compare the string with its reverse\n    return text == text[::-1]",
+      "test_content": "from llm_output import is_palindrome\n\ndef check(candidate):\n    assert candidate('') == True\n    assert candidate('aba') == True\n    assert candidate('aaaaa') == True\n    assert candidate('zbcd') == False\n    assert candidate('xywyx') == True\n    assert candidate('xywyz') == False\n    assert candidate('xywzx') == False\n\n\ncheck(is_palindrome)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 49,
+      "prompt": "### Prompt\n    Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n\n### Signature\ndef modp(n: int, p: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def modp(n: int, p: int):\n    \"\"\"\n    Compute 2^n modulo p efficiently using binary exponentiation.\n    \n    Args:\n        n (int): The exponent\n        p (int): The modulus\n    \n    Returns:\n        int: 2^n mod p\n    \"\"\"\n    # Special case for 0 exponent\n    if n == 0:\n        return 1\n    \n    # Initialize result and base\n    result = 1\n    base = 2\n    \n    # Use binary exponentiation (square and multiply)\n    while n > 0:\n        # If current bit is 1, multiply result by base\n        if n & 1:\n            result = (result * base) % p\n        \n        # Square the base\n        base = (base * base) % p\n        \n        # Right shift n\n        n >>= 1\n    \n    return result",
+      "test_content": "from llm_output import modp\n\ndef check(candidate):\n    assert candidate(3, 5) == 3\n    assert candidate(1101, 101) == 2\n    assert candidate(0, 101) == 1\n    assert candidate(3, 11) == 8\n    assert candidate(100, 101) == 1\n    assert candidate(30, 5) == 4\n    assert candidate(31, 5) == 3\n\n\ncheck(modp)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 51,
+      "prompt": "### Prompt\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n\n### Signature\ndef remove_vowels(text):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def remove_vowels(text):\n    # Define vowels (both lowercase and uppercase)\n    vowels = 'aeiouAEIOU'\n    \n    # Use list comprehension to filter out vowels\n    return ''.join(char for char in text if char not in vowels)",
+      "test_content": "from llm_output import remove_vowels\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate(\"abcdef\\nghijklm\") == 'bcdf\\nghjklm'\n    assert candidate('fedcba') == 'fdcb'\n    assert candidate('eeeee') == ''\n    assert candidate('acBAA') == 'cB'\n    assert candidate('EcBOO') == 'cB'\n    assert candidate('ybcd') == 'ybcd'\n\n\ncheck(remove_vowels)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 52,
+      "prompt": "### Prompt\n    Return True if all numbers in the list l are below threshold t.\n    >>> below_threshold([1, 2, 4, 10], 100)\n    True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n\n### Signature\ndef below_threshold(l: list, t: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def below_threshold(l: list, t: int):\n    \"\"\"\n    Check if all numbers in the list are below the given threshold.\n    \n    Args:\n        l (list): List of numbers to check\n        t (int): Threshold value\n    \n    Returns:\n        bool: True if all numbers are below threshold, False otherwise\n    \"\"\"\n    return all(num < t for num in l)",
+      "test_content": "from llm_output import below_threshold\n\ndef check(candidate):\n    assert candidate([1, 2, 4, 10], 100)\n    assert not candidate([1, 20, 4, 10], 5)\n    assert candidate([1, 20, 4, 10], 21)\n    assert candidate([1, 20, 4, 10], 22)\n    assert candidate([1, 8, 4, 10], 11)\n    assert not candidate([1, 8, 4, 10], 10)\n\n\ncheck(below_threshold)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 53,
+      "prompt": "### Prompt\n    Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n\n### Signature\ndef add(x: int, y: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def add(x: int, y: int) -> int:\n    return x + y",
+      "test_content": "from llm_output import add\n\ndef check(candidate):\n    import random\n\n    assert candidate(0, 1) == 1\n    assert candidate(1, 0) == 1\n    assert candidate(2, 3) == 5\n    assert candidate(5, 7) == 12\n    assert candidate(7, 5) == 12\n\n    for i in range(100):\n        x, y = random.randint(0, 1000), random.randint(0, 1000)\n        assert candidate(x, y) == x + y\n\n\ncheck(add)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 54,
+      "prompt": "### Prompt\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n\n### Signature\ndef same_chars(s0: str, s1: str):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def same_chars(s0: str, s1: str):\n    \"\"\"\n    Check if two words have the same characters, regardless of their frequency or order.\n    \n    Args:\n        s0 (str): First input string\n        s1 (str): Second input string\n    \n    Returns:\n        bool: True if both strings contain exactly the same unique characters, False otherwise\n    \"\"\"\n    # Convert strings to sets of unique characters\n    set0 = set(s0)\n    set1 = set(s1)\n    \n    # Compare the sets of unique characters\n    return set0 == set1",
+      "test_content": "from llm_output import same_chars\n\ndef check(candidate):\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\n    assert candidate('abcd', 'dddddddabc') == True\n    assert candidate('dddddddabc', 'abcd') == True\n    assert candidate('eabcd', 'dddddddabc') == False\n    assert candidate('abcd', 'dddddddabcf') == False\n    assert candidate('eabcdzzzz', 'dddzzzzzzzddddabc') == False\n    assert candidate('aabb', 'aaccc') == False\n\n\ncheck(same_chars)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 55,
+      "prompt": "### Prompt\n    Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n\n### Signature\ndef fib(n: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def fib(n: int):\n    # Handle base cases\n    if n <= 0:\n        return 0\n    if n == 1 or n == 2:\n        return 1\n    \n    # Use dynamic programming to calculate Fibonacci number\n    # Initialize first two Fibonacci numbers\n    a, b = 1, 1\n    \n    # Iterate to calculate nth Fibonacci number\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    \n    return b",
+      "test_content": "from llm_output import fib\n\ndef check(candidate):\n    assert candidate(10) == 55\n    assert candidate(1) == 1\n    assert candidate(8) == 21\n    assert candidate(11) == 89\n    assert candidate(12) == 144\n\n\ncheck(fib)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\n     brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n### Signature\ndef correct_bracketing(brackets: str):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def correct_bracketing(brackets: str):\n    # Track the count of open brackets\n    stack = 0\n    \n    # Iterate through each character in the brackets string\n    for bracket in brackets:\n        # If opening bracket, increment stack\n        if bracket == '<':\n            stack += 1\n        # If closing bracket, decrement stack\n        elif bracket == '>':\n            stack -= 1\n        \n        # If stack becomes negative, means closing bracket before opening\n        if stack < 0:\n            return False\n    \n    # At the end, stack should be zero for correct bracketing\n    return stack == 0",
+      "test_content": "from llm_output import correct_bracketing\n\ndef check(candidate):\n    assert candidate(\"<>\")\n    assert candidate(\"<<><>>\")\n    assert candidate(\"<><><<><>><>\")\n    assert candidate(\"<><><<<><><>><>><<><><<>>>\")\n    assert not candidate(\"<<<><>>>>\")\n    assert not candidate(\"><<>\")\n    assert not candidate(\"<\")\n    assert not candidate(\"<<<<\")\n    assert not candidate(\">\")\n    assert not candidate(\"<<>\")\n    assert not candidate(\"<><><<><>><>><<>\")\n    assert not candidate(\"<><><<><>><>>><>\")\n\n\ncheck(correct_bracketing)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 57,
+      "prompt": "### Prompt\n    Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n\n### Signature\ndef monotonic(l: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def monotonic(l: list):\n    \"\"\"\n    Check if list elements are monotonically increasing or decreasing.\n    \n    Args:\n        l (list): Input list of comparable elements\n    \n    Returns:\n        bool: True if list is monotonically increasing or decreasing, False otherwise\n    \"\"\"\n    # Check if list is increasing\n    increasing = all(l[i] <= l[i+1] for i in range(len(l)-1))\n    \n    # Check if list is decreasing\n    decreasing = all(l[i] >= l[i+1] for i in range(len(l)-1))\n    \n    return increasing or decreasing",
+      "test_content": "from llm_output import monotonic\n\ndef check(candidate):\n    assert candidate([1, 2, 4, 10]) == True\n    assert candidate([1, 2, 4, 20]) == True\n    assert candidate([1, 20, 4, 10]) == False\n    assert candidate([4, 1, 0, -10]) == True\n    assert candidate([4, 1, 1, 0]) == True\n    assert candidate([1, 2, 3, 2, 5, 60]) == False\n    assert candidate([1, 2, 3, 4, 5, 60]) == True\n    assert candidate([9, 9, 9, 9]) == True\n\n\ncheck(monotonic)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 58,
+      "prompt": "### Prompt\n    Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n### Signature\ndef common(l1: list, l2: list):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def common(l1: list, l2: list):\n    # Convert lists to sets to remove duplicates and find common elements\n    common_elements = sorted(set(l1) & set(l2))\n    return common_elements",
+      "test_content": "from llm_output import common\n\ndef check(candidate):\n    assert candidate([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]\n    assert candidate([5, 3, 2, 8], [3, 2]) == [2, 3]\n    assert candidate([4, 3, 2, 8], [3, 2, 4]) == [2, 3, 4]\n    assert candidate([4, 3, 2, 8], []) == []\n\n\ncheck(common)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 59,
+      "prompt": "### Prompt\n    Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n\n### Signature\ndef largest_prime_factor(n: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def largest_prime_factor(n: int):\n    # Start with the smallest prime factor 2\n    factor = 2\n    \n    # Keep dividing n by the current factor while possible\n    while factor * factor <= n:\n        # If n is divisible by factor, divide it out\n        if n % factor == 0:\n            n //= factor\n        else:\n            # If not divisible, increment factor\n            factor += 1\n    \n    # At this point, n is either 1 or the largest prime factor\n    return n",
+      "test_content": "from llm_output import largest_prime_factor\n\ndef check(candidate):\n    assert candidate(15) == 5\n    assert candidate(27) == 3\n    assert candidate(63) == 7\n    assert candidate(330) == 11\n    assert candidate(13195) == 29\n\n\ncheck(largest_prime_factor)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 60,
+      "prompt": "### Prompt\n    sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n\n### Signature\ndef sum_to_n(n: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def sum_to_n(n: int):\n    \"\"\"\n    Calculate the sum of all integers from 1 to n.\n    \n    Args:\n        n (int): The upper limit of the summation\n    \n    Returns:\n        int: The sum of integers from 1 to n\n    \"\"\"\n    return sum(range(1, n + 1))",
+      "test_content": "from llm_output import sum_to_n\n\ndef check(candidate):\n    assert candidate(1) == 1\n    assert candidate(6) == 21\n    assert candidate(11) == 66\n    assert candidate(30) == 465\n    assert candidate(100) == 5050\n\n\ncheck(sum_to_n)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 61,
+      "prompt": "### Prompt\n     brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n### Signature\ndef correct_bracketing(brackets: str):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def correct_bracketing(brackets: str):\n    # Track the count of open brackets\n    stack = 0\n    \n    # Iterate through each character in the brackets string\n    for bracket in brackets:\n        # If it's an opening bracket, increment the stack\n        if bracket == '(':\n            stack += 1\n        # If it's a closing bracket, decrement the stack\n        else:\n            stack -= 1\n        \n        # If stack becomes negative, it means closing bracket before opening\n        if stack < 0:\n            return False\n    \n    # At the end, stack should be zero for correct bracketing\n    return stack == 0",
+      "test_content": "from llm_output import correct_bracketing\n\ndef check(candidate):\n    assert candidate(\"()\")\n    assert candidate(\"(()())\")\n    assert candidate(\"()()(()())()\")\n    assert candidate(\"()()((()()())())(()()(()))\")\n    assert not candidate(\"((()())))\")\n    assert not candidate(\")(()\")\n    assert not candidate(\"(\")\n    assert not candidate(\"((((\")\n    assert not candidate(\")\")\n    assert not candidate(\"(()\")\n    assert not candidate(\"()()(()())())(()\")\n    assert not candidate(\"()()(()())()))()\")\n\n\ncheck(correct_bracketing)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 62,
+      "prompt": "### Prompt\n     xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n     Return derivative of this polynomial in the same form.\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n\n### Signature\ndef derivative(xs: list):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 11, in <module>\n    check(derivative)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 8, in check\n    assert candidate([1]) == []\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def derivative(xs: list):\n    \"\"\"\n    Calculate the derivative of a polynomial represented by its coefficients.\n    \n    Args:\n        xs (list): Coefficients of the polynomial from lowest to highest degree\n    \n    Returns:\n        list: Coefficients of the derivative polynomial\n    \"\"\"\n    # If polynomial is constant (degree 0), return empty list\n    if len(xs) <= 1:\n        return []\n    \n    # Derivative: multiply each coefficient by its degree\n    return [xs[i] * i for i in range(1, len(xs))]",
+      "test_content": "from llm_output import derivative\n\ndef check(candidate):\n    assert candidate([3, 1, 2, 4, 5]) == [1, 4, 12, 20]\n    assert candidate([1, 2, 3]) == [2, 6]\n    assert candidate([3, 2, 1]) == [2, 2]\n    assert candidate([3, 2, 1, 0, 4]) == [2, 2, 0, 16]\n    assert candidate([1]) == []\n\n\ncheck(derivative)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 63,
+      "prompt": "### Prompt\n    The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).\n    Please write a function to efficiently compute the n-th element of the fibfib number sequence.\n    >>> fibfib(1)\n    0\n    >>> fibfib(5)\n    4\n    >>> fibfib(8)\n    24\n\n### Signature\ndef fibfib(n: int):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def fibfib(n: int):\n    # Handle base cases\n    if n <= 0:\n        return 0\n    if n <= 2:\n        return 0 if n <= 1 else 1\n    \n    # Use dynamic programming to efficiently compute FibFib numbers\n    # Initialize array to store previous FibFib numbers\n    dp = [0] * (n + 1)\n    dp[2] = 1\n    \n    # Compute FibFib numbers iteratively\n    for i in range(3, n + 1):\n        dp[i] = dp[i-1] + dp[i-2] + dp[i-3]\n    \n    return dp[n]",
+      "test_content": "from llm_output import fibfib\n\ndef check(candidate):\n    assert candidate(2) == 1\n    assert candidate(1) == 0\n    assert candidate(5) == 4\n    assert candidate(8) == 24\n    assert candidate(10) == 81\n    assert candidate(12) == 274\n    assert candidate(14) == 927\n\n\ncheck(fibfib)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 64,
+      "prompt": "### Prompt\n    Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n### Signature\ndef vowels_count(s):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def vowels_count(s):\n    # Convert the string to lowercase to handle both upper and lower case\n    s = s.lower()\n    \n    # Define vowels including 'y' only when it's at the end of the word\n    vowels = set('aeiou')\n    \n    # Count vowels in the string\n    count = 0\n    for i, char in enumerate(s):\n        # Check if character is a vowel\n        if char in vowels:\n            count += 1\n        # Special case for 'y' at the end of the word\n        elif char == 'y' and i == len(s) - 1:\n            count += 1\n    \n    return count",
+      "test_content": "from llm_output import vowels_count\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"abcde\") == 2, \"Test 1\"\n    assert candidate(\"Alone\") == 3, \"Test 2\"\n    assert candidate(\"key\") == 2, \"Test 3\"\n    assert candidate(\"bye\") == 1, \"Test 4\"\n    assert candidate(\"keY\") == 2, \"Test 5\"\n    assert candidate(\"bYe\") == 1, \"Test 6\"\n    assert candidate(\"ACEDY\") == 3, \"Test 7\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(vowels_count)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 66,
+      "prompt": "### Prompt\n    Task\n    Write a function that takes a string as input and returns the sum of the upper characters only'\n    ASCII codes.\n\n### Signature\ndef digitSum(s):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def digitSum(s):\n    \"\"\"\n    Calculate the sum of ASCII codes for uppercase characters in the input string.\n    \n    Args:\n        s (str): Input string to process\n    \n    Returns:\n        int: Sum of ASCII codes of uppercase characters\n    \"\"\"\n    return sum(ord(char) for char in s if char.isupper())",
+      "test_content": "from llm_output import digitSum\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(\"\") == 0, \"Error\"\n    assert candidate(\"abAB\") == 131, \"Error\"\n    assert candidate(\"abcCd\") == 67, \"Error\"\n    assert candidate(\"helloE\") == 69, \"Error\"\n    assert candidate(\"woArBld\") == 131, \"Error\"\n    assert candidate(\"aAaaaXa\") == 153, \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(\" How are yOu?\") == 151, \"Error\"\n    assert candidate(\"You arE Very Smart\") == 327, \"Error\"\n\n\ncheck(digitSum)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 67,
+      "prompt": "### Prompt\n    In this task, you will be given a string that represents a number of apples and oranges\n    that are distributed in a basket of fruit this basket contains\n    apples, oranges, and mango fruits. Given the string that represents the total number of\n    the oranges and apples and an integer that represent the total number of the fruits\n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n\n### Signature\ndef fruit_distribution(s,n):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "import re\n\ndef fruit_distribution(s, n):\n    # Use regex to extract the numbers of apples and oranges from the string\n    numbers = re.findall(r'\\d+', s)\n    \n    # Convert extracted numbers to integers \n    apples = int(numbers[0])\n    oranges = int(numbers[1])\n    \n    # Calculate number of mangoes by subtracting apples and oranges from total fruits\n    mangoes = n - apples - oranges\n    \n    return mangoes",
+      "test_content": "from llm_output import fruit_distribution\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"5 apples and 6 oranges\",19) == 8\n    assert candidate(\"5 apples and 6 oranges\",21) == 10\n    assert candidate(\"0 apples and 1 oranges\",3) == 2\n    assert candidate(\"1 apples and 0 oranges\",3) == 2\n    assert candidate(\"2 apples and 3 oranges\",100) == 95\n    assert candidate(\"2 apples and 3 oranges\",5) == 0\n    assert candidate(\"1 apples and 100 oranges\",120) == 19\n\ncheck(fruit_distribution)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 68,
+      "prompt": "### Prompt\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n### Signature\ndef pluck(arr):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 20, in <module>\n    check(pluck)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 7, in check\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Error\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def pluck(arr):\n    # Find all even values with their indices\n    even_values_with_indices = [(num, idx) for idx, num in enumerate(arr) if num % 2 == 0]\n    \n    # If no even values exist, return an empty list\n    if not even_values_with_indices:\n        return []\n    \n    # Find the smallest even value\n    smallest_even = min(even_values_with_indices, key=lambda x: (x[0], x[1]))\n    \n    # Return a list with the smallest even value and its index\n    return [smallest_even[0], smallest_even[1]]",
+      "test_content": "from llm_output import pluck\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([4,2,3]) == [2, 1], \"Error\"\n    assert candidate([1,2,3]) == [2, 1], \"Error\"\n    assert candidate([]) == [], \"Error\"\n    assert candidate([5, 0, 3, 0, 4, 2]) == [0, 1], \"Error\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([1, 2, 3, 0, 5, 3]) == [0, 3], \"Error\"\n    assert candidate([5, 4, 8, 4 ,8]) == [4, 1], \"Error\"\n    assert candidate([7, 6, 7, 1]) == [6, 1], \"Error\"\n    assert candidate([7, 9, 7, 1]) == [], \"Error\"\n\n\ncheck(pluck)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 69,
+      "prompt": "### Prompt\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than\n    zero, and has a frequency greater than or equal to the value of the integer itself.\n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n\n### Signature\ndef search(lst):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from collections import Counter\n\ndef search(lst):\n    # Count the frequency of each number in the list\n    freq_counter = Counter(lst)\n    \n    # Sort the unique numbers in descending order\n    unique_nums = sorted(set(lst), reverse=True)\n    \n    # Check each unique number\n    for num in unique_nums:\n        # If the frequency of the number is greater than or equal to the number itself\n        if freq_counter[num] >= num:\n            return num\n    \n    # If no such number is found\n    return -1",
+      "test_content": "from llm_output import search\n\ndef check(candidate):\n\n    # manually generated tests\n    assert candidate([5, 5, 5, 5, 1]) == 1\n    assert candidate([4, 1, 4, 1, 4, 4]) == 4\n    assert candidate([3, 3]) == -1\n    assert candidate([8, 8, 8, 8, 8, 8, 8, 8]) == 8\n    assert candidate([2, 3, 3, 2, 2]) == 2\n\n    # automatically generated tests\n    assert candidate([2, 7, 8, 8, 4, 8, 7, 3, 9, 6, 5, 10, 4, 3, 6, 7, 1, 7, 4, 10, 8, 1]) == 1\n    assert candidate([3, 2, 8, 2]) == 2\n    assert candidate([6, 7, 1, 8, 8, 10, 5, 8, 5, 3, 10]) == 1\n    assert candidate([8, 8, 3, 6, 5, 6, 4]) == -1\n    assert candidate([6, 9, 6, 7, 1, 4, 7, 1, 8, 8, 9, 8, 10, 10, 8, 4, 10, 4, 10, 1, 2, 9, 5, 7, 9]) == 1\n    assert candidate([1, 9, 10, 1, 3]) == 1\n    assert candidate([6, 9, 7, 5, 8, 7, 5, 3, 7, 5, 10, 10, 3, 6, 10, 2, 8, 6, 5, 4, 9, 5, 3, 10]) == 5\n    assert candidate([1]) == 1\n    assert candidate([8, 8, 10, 6, 4, 3, 5, 8, 2, 4, 2, 8, 4, 6, 10, 4, 2, 1, 10, 2, 1, 1, 5]) == 4\n    assert candidate([2, 10, 4, 8, 2, 10, 5, 1, 2, 9, 5, 5, 6, 3, 8, 6, 4, 10]) == 2\n    assert candidate([1, 6, 10, 1, 6, 9, 10, 8, 6, 8, 7, 3]) == 1\n    assert candidate([9, 2, 4, 1, 5, 1, 5, 2, 5, 7, 7, 7, 3, 10, 1, 5, 4, 2, 8, 4, 1, 9, 10, 7, 10, 2, 8, 10, 9, 4]) == 4\n    assert candidate([2, 6, 4, 2, 8, 7, 5, 6, 4, 10, 4, 6, 3, 7, 8, 8, 3, 1, 4, 2, 2, 10, 7]) == 4\n    assert candidate([9, 8, 6, 10, 2, 6, 10, 2, 7, 8, 10, 3, 8, 2, 6, 2, 3, 1]) == 2\n    assert candidate([5, 5, 3, 9, 5, 6, 3, 2, 8, 5, 6, 10, 10, 6, 8, 4, 10, 7, 7, 10, 8]) == -1\n    assert candidate([10]) == -1\n    assert candidate([9, 7, 7, 2, 4, 7, 2, 10, 9, 7, 5, 7, 2]) == 2\n    assert candidate([5, 4, 10, 2, 1, 1, 10, 3, 6, 1, 8]) == 1\n    assert candidate([7, 9, 9, 9, 3, 4, 1, 5, 9, 1, 2, 1, 1, 10, 7, 5, 6, 7, 6, 7, 7, 6]) == 1\n    assert candidate([3, 10, 10, 9, 2]) == -1\n\n\ncheck(search)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 70,
+      "prompt": "### Prompt\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n### Signature\ndef strange_sort_list(lst):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def strange_sort_list(lst):\n    # If list is empty, return empty list\n    if not lst:\n        return []\n    \n    # Create a copy of the input list to avoid modifying original\n    sorted_list = sorted(lst)\n    \n    # Initialize result list and flags for min/max selection\n    result = []\n    use_min = True\n    \n    # Continue until all elements are processed\n    while sorted_list:\n        if use_min:\n            # Select and remove the smallest remaining element\n            result.append(sorted_list.pop(0))\n        else:\n            # Select and remove the largest remaining element\n            result.append(sorted_list.pop())\n        \n        # Toggle between min and max selection\n        use_min = not use_min\n    \n    return result",
+      "test_content": "from llm_output import strange_sort_list\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1, 2, 3, 4]) == [1, 4, 2, 3]\n    assert candidate([5, 6, 7, 8, 9]) == [5, 9, 6, 8, 7]\n    assert candidate([1, 2, 3, 4, 5]) == [1, 5, 2, 4, 3]\n    assert candidate([5, 6, 7, 8, 9, 1]) == [1, 9, 5, 8, 6, 7]\n    assert candidate([5, 5, 5, 5]) == [5, 5, 5, 5]\n    assert candidate([]) == []\n    assert candidate([1,2,3,4,5,6,7,8]) == [1, 8, 2, 7, 3, 6, 4, 5]\n    assert candidate([0,2,2,2,5,5,-5,-5]) == [-5, 5, -5, 5, 0, 2, 2, 2]\n    assert candidate([111111]) == [111111]\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(strange_sort_list)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 71,
+      "prompt": "### Prompt\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle.\n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater\n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n\n### Signature\ndef triangle_area(a, b, c):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "import math\n\ndef triangle_area(a, b, c):\n    # Check if the sides can form a valid triangle\n    if (a + b <= c) or (a + c <= b) or (b + c <= a):\n        return -1\n    \n    # Calculate semi-perimeter\n    s = (a + b + c) / 2\n    \n    # Calculate area using Heron's formula\n    area = math.sqrt(s * (s - a) * (s - b) * (s - c))\n    \n    # Round to 2 decimal points\n    return round(area, 2)",
+      "test_content": "from llm_output import triangle_area\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(3, 4, 5) == 6.00, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(1, 2, 10) == -1\n    assert candidate(4, 8, 5) == 8.18\n    assert candidate(2, 2, 2) == 1.73\n    assert candidate(1, 2, 3) == -1\n    assert candidate(10, 5, 7) == 16.25\n    assert candidate(2, 6, 3) == -1\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1, 1, 1) == 0.43, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(2, 2, 10) == -1\n\n\ncheck(triangle_area)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 72,
+      "prompt": "### Prompt\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n\n### Signature\ndef will_it_fly(q,w):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def will_it_fly(q, w):\n    # Check if the list is a palindrome (balanced)\n    if q != q[::-1]:\n        return False\n    \n    # Check if the sum of elements is less than or equal to maximum weight\n    if sum(q) > w:\n        return False\n    \n    # If both conditions are met, the object will fly\n    return True",
+      "test_content": "from llm_output import will_it_fly\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([3, 2, 3], 9) is True\n    assert candidate([1, 2], 5) is False\n    assert candidate([3], 5) is True\n    assert candidate([3, 2, 3], 1) is False\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1, 2, 3], 6) is False\n    assert candidate([5], 5) is True\n\n\ncheck(will_it_fly)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 73,
+      "prompt": "### Prompt\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n\n### Signature\ndef smallest_change(arr):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 18, in <module>\n    check(smallest_change)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 6, in check\n    assert candidate([1,2,3,5,4,7,9,6]) == 4\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def smallest_change(arr):\n    \"\"\"\n    Find the minimum number of elements that need to be changed to make the array palindromic.\n    \n    Args:\n        arr (list): Input array of integers\n    \n    Returns:\n        int: Minimum number of changes required to make the array palindromic\n    \"\"\"\n    n = len(arr)\n    \n    # Count changes needed to make array palindromic\n    changes = 0\n    left, right = 0, n - 1\n    \n    while left < right:\n        # If elements at symmetric positions are different, increment changes\n        if arr[left] != arr[right]:\n            changes += 1\n        \n        left += 1\n        right -= 1\n    \n    return changes",
+      "test_content": "from llm_output import smallest_change\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([1,2,3,5,4,7,9,6]) == 4\n    assert candidate([1, 2, 3, 4, 3, 2, 2]) == 1\n    assert candidate([1, 4, 2]) == 1\n    assert candidate([1, 4, 4, 2]) == 1\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([1, 2, 3, 2, 1]) == 0\n    assert candidate([3, 1, 1, 3]) == 0\n    assert candidate([1]) == 0\n    assert candidate([0, 1]) == 1\n\n\ncheck(smallest_change)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 74,
+      "prompt": "### Prompt\n    Write a function that accepts two lists of strings and returns the list that has\n    total number of chars in the all strings of the list less than the other list.\n\n### Signature\ndef total_match(lst1, lst2):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def total_match(lst1, lst2):\n    # Calculate total characters in lst1\n    total_chars_lst1 = sum(len(s) for s in lst1)\n    \n    # Calculate total characters in lst2\n    total_chars_lst2 = sum(len(s) for s in lst2)\n    \n    # Return the list with fewer total characters\n    # If totals are equal, return the first list\n    return lst1 if total_chars_lst1 <= total_chars_lst2 else lst2",
+      "test_content": "from llm_output import total_match\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate([], []) == []\n    assert candidate(['hi', 'admin'], ['hi', 'hi']) == ['hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) == ['hi', 'admin']\n    assert candidate(['4'], ['1', '2', '3', '4', '5']) == ['4']\n    assert candidate(['hi', 'admin'], ['hI', 'Hi']) == ['hI', 'Hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hi']) == ['hI', 'hi', 'hi']\n    assert candidate(['hi', 'admin'], ['hI', 'hi', 'hii']) == ['hi', 'admin']\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate([], ['this']) == []\n    assert candidate(['this'], []) == []\n\n\ncheck(total_match)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 76,
+      "prompt": "### Prompt\n    Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n\n### Signature\ndef is_simple_power(x, n):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 20, in <module>\n    check(is_simple_power)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 16, in check\n    assert candidate(1, 1)==True, \"This prints if this assert fails 2 (also good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 2 (also good for debugging!)\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def is_simple_power(x, n):\n    # Special case: 1 is a power of 1\n    if n == 1:\n        return x == 1\n    \n    # If n is less than or equal to 1 (except the special case above), \n    # it can't be a valid power base\n    if n <= 1:\n        return False\n    \n    # Check if x is a simple power of n\n    power = 1\n    while power < x:\n        power *= n\n    \n    # Return True if x is exactly equal to n raised to some integer power\n    return power == x",
+      "test_content": "from llm_output import is_simple_power\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(16, 2)== True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(143214, 16)== False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(4, 2)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(9, 3)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(16, 4)==True, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(24, 2)==False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(128, 4)==False, \"This prints if this assert fails 1 (good for debugging!)\"\n    assert candidate(12, 6)==False, \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(1, 1)==True, \"This prints if this assert fails 2 (also good for debugging!)\"\n    assert candidate(1, 12)==True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(is_simple_power)",
+      "context": null,
+      "attempt_num": 4
+    },
+    {
+      "task_id": 77,
+      "prompt": "### Prompt\n    Write a function that takes an integer a and returns True\n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n\n### Signature\ndef iscube(a):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 19, in <module>\n    check(iscube)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 9, in check\n    assert candidate(64) == True, \"Fourth test error: \" + str(candidate(64))\n           ^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fourth test error: False\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def iscube(a):\n    # Handle special cases first\n    if a == 0 or a == 1 or a == -1:\n        return True\n    \n    # Check if the absolute value of a is a perfect cube\n    # We'll use integer cube root method\n    cube_root = round(abs(a) ** (1/3))\n    \n    # Check if the cube of the rounded cube root equals the absolute input\n    return cube_root ** 3 == abs(a)",
+      "test_content": "from llm_output import iscube\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(1) == True, \"First test error: \" + str(candidate(1))\n    assert candidate(2) == False, \"Second test error: \" + str(candidate(2))\n    assert candidate(-1) == True, \"Third test error: \" + str(candidate(-1))\n    assert candidate(64) == True, \"Fourth test error: \" + str(candidate(64))\n    assert candidate(180) == False, \"Fifth test error: \" + str(candidate(180))\n    assert candidate(1000) == True, \"Sixth test error: \" + str(candidate(1000))\n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate(0) == True, \"1st edge test error: \" + str(candidate(0))\n    assert candidate(1729) == False, \"2nd edge test error: \" + str(candidate(1728))\n\n\ncheck(iscube)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 78,
+      "prompt": "### Prompt\n    You have been tasked to write a function that receives\n    a hexadecimal number as a string and counts the number of hexadecimal\n    digits that are primes (prime number, or a prime, is a natural number\n    greater than 1 that is not a product of two smaller natural numbers).\n    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.\n    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...\n    So you have to determine a number of the following digits: 2, 3, 5, 7,\n    B (=decimal 11), D (=decimal 13).\n    Note: you may assume the input is always correct or empty string,\n    and symbols A,B,C,D,E,F are always uppercase.\n    Examples:\n    For num = \"AB\" the output should be 1.\n    For num = \"1077E\" the output should be 2.\n    For num = \"ABED1A33\" the output should be 4.\n    For num = \"123456789ABCDEF0\" the output should be 6.\n    For num = \"2020\" the output should be 2.\n\n### Signature\ndef hex_key(num):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def is_prime(n):\n    \"\"\"Helper function to check if a number is prime.\"\"\"\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef hex_key(num):\n    \"\"\"\n    Count the number of prime hexadecimal digits in the input string.\n    \n    Args:\n        num (str): A hexadecimal number as a string\n    \n    Returns:\n        int: Number of prime hexadecimal digits\n    \"\"\"\n    # Define prime hex digits (in decimal)\n    prime_hex_digits = {2, 3, 5, 7, 11, 13}\n    \n    # Count prime hex digits\n    prime_count = 0\n    \n    # Convert hex digits to decimal and check if prime\n    for digit in num:\n        # Convert hex digit to decimal\n        if digit.isdigit():\n            decimal_value = int(digit)\n        else:\n            # Convert A-F to 10-15\n            decimal_value = ord(digit) - ord('A') + 10\n        \n        # Check if the decimal value is a prime hex digit\n        if decimal_value in prime_hex_digits:\n            prime_count += 1\n    \n    return prime_count",
+      "test_content": "from llm_output import hex_key\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"AB\") == 1, \"First test error: \" + str(candidate(\"AB\"))      \n    assert candidate(\"1077E\") == 2, \"Second test error: \" + str(candidate(\"1077E\"))  \n    assert candidate(\"ABED1A33\") == 4, \"Third test error: \" + str(candidate(\"ABED1A33\"))      \n    assert candidate(\"2020\") == 2, \"Fourth test error: \" + str(candidate(\"2020\"))  \n    assert candidate(\"123456789ABCDEF0\") == 6, \"Fifth test error: \" + str(candidate(\"123456789ABCDEF0\"))      \n    assert candidate(\"112233445566778899AABBCCDDEEFF00\") == 12, \"Sixth test error: \" + str(candidate(\"112233445566778899AABBCCDDEEFF00\"))  \n\n\n    # Check some edge cases that are easy to work out by hand.\n    assert candidate([]) == 0\n\n\ncheck(hex_key)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 79,
+      "prompt": "### Prompt\n    You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n### Signature\ndef decimal_to_binary(decimal):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 15, in <module>\n    check(decimal_to_binary)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/human_eval_claude35haiku_1760706440296478/llm_output_test.py\", line 9, in check\n    assert candidate(15) == \"db1111db\", \"This prints if this assert fails 1 (good for debugging!)\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: This prints if this assert fails 1 (good for debugging!)\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def decimal_to_binary(decimal):\n    # Special case for 0\n    if decimal == 0:\n        return \"db0db\"\n    \n    # Convert decimal to binary string\n    binary = \"\"\n    while decimal > 0:\n        binary = str(decimal % 2) + binary\n        decimal //= 2\n    \n    # Prepend and append 'db'\n    return 'db' + binary + 'db'",
+      "test_content": "from llm_output import decimal_to_binary\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(0) == \"db0db\"\n    assert candidate(32) == \"db100000db\"\n    assert candidate(103) == \"db1100111db\"\n    assert candidate(15) == \"db1111db\", \"This prints if this assert fails 1 (good for debugging!)\"\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True, \"This prints if this assert fails 2 (also good for debugging!)\"\n\n\ncheck(decimal_to_binary)",
+      "context": null,
+      "attempt_num": 5
+    },
+    {
+      "task_id": 80,
+      "prompt": "### Prompt\n    You are given a string s.\n    Your task is to check if the string is happy or not.\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct\n    For example:\n    is_happy(a) => False\n    is_happy(aa) => False\n    is_happy(abcd) => True\n    is_happy(aabb) => False\n    is_happy(adb) => True\n    is_happy(xyy) => False\n\n### Signature\ndef is_happy(s):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def is_happy(s):\n    # Check if string length is less than 3\n    if len(s) < 3:\n        return False\n    \n    # Check every 3 consecutive letters for distinctness\n    for i in range(len(s) - 2):\n        # Check if any 3 consecutive letters have duplicates\n        if len(set(s[i:i+3])) < 3:\n            return False\n    \n    # If we've made it through all checks, the string is happy\n    return True",
+      "test_content": "from llm_output import is_happy\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate(\"a\") == False , \"a\"\n    assert candidate(\"aa\") == False , \"aa\"\n    assert candidate(\"abcd\") == True , \"abcd\"\n    assert candidate(\"aabb\") == False , \"aabb\"\n    assert candidate(\"adb\") == True , \"adb\"\n    assert candidate(\"xyy\") == False , \"xyy\"\n    assert candidate(\"iopaxpoi\") == True , \"iopaxpoi\"\n    assert candidate(\"iopaxioi\") == False , \"iopaxioi\"\n\ncheck(is_happy)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 81,
+      "prompt": "### Prompt\n    It is the last week of the semester and the teacher has to give the grades\n    to students. The teacher has been making her own algorithm for grading.\n    The only problem is, she has lost the code she used for grading.\n    She has given you a list of GPAs for some students and you have to write\n    a function that can output a list of letter grades using the following table:\n             GPA       |    Letter grade\n              4.0                A+\n            > 3.7                A\n            > 3.3                A-\n            > 3.0                B+\n            > 2.7                B\n            > 2.3                B-\n            > 2.0                C+\n            > 1.7                C\n            > 1.3                C-\n            > 1.0                D+\n            > 0.7                D\n            > 0.0                D-\n              0.0                E\n\n### Signature\ndef numerical_letter_grade(grades):",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "def numerical_letter_grade(grades):\n    \"\"\"\n    Convert numerical GPAs to letter grades based on specified grading scale.\n    \n    Args:\n        grades (list): List of numerical GPAs\n    \n    Returns:\n        list: Corresponding letter grades\n    \"\"\"\n    def get_letter_grade(gpa):\n        if gpa == 4.0:\n            return 'A+'\n        elif gpa > 3.7:\n            return 'A'\n        elif gpa > 3.3:\n            return 'A-'\n        elif gpa > 3.0:\n            return 'B+'\n        elif gpa > 2.7:\n            return 'B'\n        elif gpa > 2.3:\n            return 'B-'\n        elif gpa > 2.0:\n            return 'C+'\n        elif gpa > 1.7:\n            return 'C'\n        elif gpa > 1.3:\n            return 'C-'\n        elif gpa > 1.0:\n            return 'D+'\n        elif gpa > 0.7:\n            return 'D'\n        elif gpa > 0.0:\n            return 'D-'\n        else:\n            return 'E'\n    \n    return [get_letter_grade(gpa) for gpa in grades]",
+      "test_content": "from llm_output import numerical_letter_grade\n\ndef check(candidate):\n\n    # Check some simple cases\n    assert candidate([4.0, 3, 1.7, 2, 3.5]) == ['A+', 'B', 'C-', 'C', 'A-']\n    assert candidate([1.2]) == ['D+']\n    assert candidate([0.5]) == ['D-']\n    assert candidate([0.0]) == ['E']\n    assert candidate([1, 0.3, 1.5, 2.8, 3.3]) == ['D', 'D-', 'C-', 'B', 'B+']\n    assert candidate([0, 0.7]) == ['E', 'D-']\n\n    # Check some edge cases that are easy to work out by hand.\n    assert True\n\n\ncheck(numerical_letter_grade)",
+      "context": null,
+      "attempt_num": 1
+    }
+  ]
+}

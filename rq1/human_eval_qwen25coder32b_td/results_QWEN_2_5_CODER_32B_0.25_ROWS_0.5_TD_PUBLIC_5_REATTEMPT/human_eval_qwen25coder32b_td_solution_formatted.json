@@ -1,0 +1,371 @@
+[
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 0,
+    "solution": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    numbers.sort()\n    for i in range(len(numbers) - 1):\n        if abs(numbers[i] - numbers[i + 1]) < threshold:\n            return True\n    return False",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True",
+    "timestamp": "2025-08-15T08:08:16.136656",
+    "response_time": "13.11"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 1,
+    "solution": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    result = []\n    current_group = []\n    depth = 0\n\n    for char in paren_string:\n        if char == '(':\n            depth += 1\n            current_group.append(char)\n        elif char == ')':\n            depth -= 1\n            current_group.append(char)\n            if depth == 0:\n                result.append(''.join(current_group))\n                current_group = []\n\n    return result",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [ '(()())', '((()))', '()', '((())()())' ]\nassert candidate('() (()) ((())) (((())))') == [ '()', '(())', '((()))', '(((())))' ]",
+    "timestamp": "2025-08-15T08:08:19.435508",
+    "response_time": "3.30"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 2,
+    "solution": "from typing import *\nfrom collections import *\n\ndef truncate_number(number: float) -> float:\n    integer_part = int(number)\n    decimal_part = number - integer_part\n    return decimal_part",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n\n### Test\nassert candidate(3.5) == 0.5",
+    "timestamp": "2025-08-15T08:08:20.966127",
+    "response_time": "1.53"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 3,
+    "solution": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:\n\n### Test\nassert candidate([]) == False\nassert candidate([1, 2, -3, 1, 2, -3]) == False\nassert candidate([1, 2, -4, 5, 6]) == True",
+    "timestamp": "2025-08-15T08:08:23.428645",
+    "response_time": "2.46"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 4,
+    "solution": "from typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    if not numbers:\n        return 0.0\n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(x - mean) for x in numbers) / len(numbers)\n    return mad",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n\n### Test\nassert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6",
+    "timestamp": "2025-08-15T08:08:26.096595",
+    "response_time": "2.67"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 5,
+    "solution": "from typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    if not numbers:\n        return []\n    result = [numbers[0]]\n    for number in numbers[1:]:\n        result.append(delimeter)\n        result.append(number)\n    return result",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n\n### Signature\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n\n### Test\nassert candidate([], 7) == []",
+    "timestamp": "2025-08-15T08:08:28.361612",
+    "response_time": "2.26"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 6,
+    "solution": "from typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    def max_depth(s: str) -> int:\n        depth = 0\n        max_nesting = 0\n        for char in s:\n            if char == '(':\n                depth += 1\n                if depth > max_nesting:\n                    max_nesting = depth\n            elif char == ')':\n                depth -= 1\n        return max_nesting\n\n    return [max_depth(group) for group in paren_string.split()]",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]",
+    "timestamp": "2025-08-15T08:08:30.828781",
+    "response_time": "2.47"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 7,
+    "solution": "from typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []\nassert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']",
+    "timestamp": "2025-08-15T08:08:33.156260",
+    "response_time": "2.33"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 8,
+    "solution": "from typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    if not numbers:\n        return (0, 1)\n    \n    total_sum = 0\n    total_product = 1\n    \n    for number in numbers:\n        total_sum += number\n        total_product *= number\n    \n    return (total_sum, total_product)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n\n### Test\nassert candidate([]) == (0, 1)\nassert candidate([1, 1, 1]) == (3, 1)",
+    "timestamp": "2025-08-15T08:08:35.419561",
+    "response_time": "2.26"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 9,
+    "solution": "from typing import List\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    if not numbers:\n        return []\n    \n    max_list = []\n    current_max = numbers[0]\n    for number in numbers:\n        if number > current_max:\n            current_max = number\n        max_list.append(current_max)\n    \n    return max_list",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:\n\n### Test\nassert candidate([]) == []\nassert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]",
+    "timestamp": "2025-08-15T08:08:37.910485",
+    "response_time": "2.49"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 10,
+    "solution": "from typing import List\n\ndef make_palindrome(string: str) -> str:\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n    \n    if not string:\n        return string\n    \n    for i in range(len(string), 0, -1):\n        if is_palindrome(string[:i]):\n            return string + string[i-1::-1]\n    \n    return string + string[::-1]",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('x') == 'x'",
+    "timestamp": "2025-08-15T08:08:40.462569",
+    "response_time": "2.55"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 11,
+    "solution": "from typing import List\n\ndef string_xor(a: str, b: str) -> str:\n    def xor_char(c1: str, c2: str) -> str:\n        return '1' if c1 != c2 else '0'\n    \n    result = [xor_char(a[i], b[i]) for i in range(len(a))]\n    return ''.join(result)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n\n### Signature\ndef string_xor(a: str, b: str) -> str:\n\n### Test\nassert candidate('111000', '101010') == '010010'",
+    "timestamp": "2025-08-15T08:08:42.402336",
+    "response_time": "1.94"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 12,
+    "solution": "from typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    longest_string = strings[0]\n    for string in strings[1:]:\n        if len(string) > len(longest_string):\n            longest_string = string\n    return longest_string",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:\n\n### Test\nassert candidate([]) == None",
+    "timestamp": "2025-08-15T08:08:44.656396",
+    "response_time": "2.25"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 13,
+    "solution": "from typing import *\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    while b:\n        a, b = b, a % b\n    return a",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n\n### Signature\ndef greatest_common_divisor(a: int, b: int) -> int:\n\n### Test\nassert candidate(3, 7) == 1\nassert candidate(10, 15) == 5",
+    "timestamp": "2025-08-15T08:08:46.302770",
+    "response_time": "1.64"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 14,
+    "solution": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    prefixes = []\n    for i in range(1, len(string) + 1):\n        prefixes.append(string[:i])\n    return prefixes",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:\n\n### Test\nassert candidate('') == []",
+    "timestamp": "2025-08-15T08:08:48.396127",
+    "response_time": "2.09"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 15,
+    "solution": "from typing import List\n\ndef string_sequence(n: int) -> str:\n    numbers: List[int] = list(range(n + 1))\n    return ' '.join(map(str, numbers))",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n\n### Signature\ndef string_sequence(n: int) -> str:\n\n### Test\nassert candidate(0) == '0'",
+    "timestamp": "2025-08-15T08:08:50.675919",
+    "response_time": "2.28"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 16,
+    "solution": "from typing import Set\n\ndef count_distinct_characters(string: str) -> int:\n    distinct_chars: Set[str] = set()\n    for char in string.lower():\n        distinct_chars.add(char)\n    return len(distinct_chars)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n\n### Signature\ndef count_distinct_characters(string: str) -> int:\n\n### Test\nassert candidate('') == 0\nassert candidate('abcde') == 5",
+    "timestamp": "2025-08-15T08:08:52.744996",
+    "response_time": "2.07"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 17,
+    "solution": "from typing import List\n\ndef parse_music(music_string: str) -> List[int]:\n    notes = music_string.split()\n    beats = [4 if note == 'o' else 0 for note in notes]\n    return beats",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:\n\n### Test\nassert candidate('') == []\nassert candidate('o o o o') == [4, 4, 4, 4]",
+    "timestamp": "2025-08-15T08:08:54.675428",
+    "response_time": "1.93"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 18,
+    "solution": "from typing import *\n\ndef how_many_times(string: str, substring: str) -> int:\n    count = 0\n    start = 0\n    while start <= len(string) - len(substring):\n        pos = string.find(substring, start)\n        if pos != -1:\n            count += 1\n            start = pos + 1\n        else:\n            break\n    return count",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n\n### Signature\ndef how_many_times(string: str, substring: str) -> int:\n\n### Test\nassert candidate('', 'x') == 0\nassert candidate('xyxyxyx', 'x') == 4",
+    "timestamp": "2025-08-15T08:08:56.603997",
+    "response_time": "1.93"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 19,
+    "solution": "from typing import List, Dict\n\ndef sort_numbers(numbers: str) -> str:\n    numeral_map: Dict[str, int] = {\n        'zero': 0,\n        'one': 1,\n        'two': 2,\n        'three': 3,\n        'four': 4,\n        'five': 5,\n        'six': 6,\n        'seven': 7,\n        'eight': 8,\n        'nine': 9\n    }\n    \n    if not numbers:\n        return numbers\n    \n    number_list: List[str] = numbers.split()\n    number_list.sort(key=lambda x: numeral_map[x])\n    \n    return ' '.join(number_list)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n\n### Signature\ndef sort_numbers(numbers: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('three') == 'three'",
+    "timestamp": "2025-08-15T08:08:59.959477",
+    "response_time": "3.35"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 20,
+    "solution": "from typing import List, Tuple\n\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    numbers.sort()\n    closest_pair = (numbers[0], numbers[1])\n    min_diff = abs(numbers[1] - numbers[0])\n    \n    for i in range(1, len(numbers) - 1):\n        diff = abs(numbers[i + 1] - numbers[i])\n        if diff < min_diff:\n            min_diff = diff\n            closest_pair = (numbers[i], numbers[i + 1])\n    \n    return closest_pair",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n\n### Signature\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2]) == (3.9, 4.0)\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0]) == (5.0, 5.9)",
+    "timestamp": "2025-08-15T08:09:02.464753",
+    "response_time": "2.50"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 21,
+    "solution": "from typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    min_val = min(numbers)\n    max_val = max(numbers)\n    range_val = max_val - min_val\n    return [(num - min_val) / range_val for num in numbers]",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n\n### Signature\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n\n### Test\nassert candidate([2.0, 49.9]) == [0.0, 1.0]\nassert candidate([100.0, 49.9]) == [1.0, 0.0]",
+    "timestamp": "2025-08-15T08:09:04.772855",
+    "response_time": "2.31"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 22,
+    "solution": "from typing import List, Any\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    return [value for value in values if isinstance(value, int)]",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n\n### Signature\ndef filter_integers(values: List[Any]) -> List[int]:\n\n### Test\nassert candidate([]) == []",
+    "timestamp": "2025-08-15T08:09:06.023229",
+    "response_time": "1.25"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 23,
+    "solution": "from typing import *\n\ndef strlen(string: str) -> int:\n    return len(string)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n\n### Signature\ndef strlen(string: str) -> int:\n\n### Test\nassert candidate('') == 0",
+    "timestamp": "2025-08-15T08:09:07.695195",
+    "response_time": "1.67"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 24,
+    "solution": "from typing import List\n\ndef largest_divisor(n: int) -> int:\n    for i in range(n - 1, 0, -1):\n        if n % i == 0:\n            return i\n    return 1",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n\n### Signature\ndef largest_divisor(n: int) -> int:\n\n### Test\nassert candidate(3) == 1\nassert candidate(7) == 1",
+    "timestamp": "2025-08-15T08:09:09.011227",
+    "response_time": "1.31"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 25,
+    "solution": "from typing import List\n\ndef factorize(n: int) -> List[int]:\n    factors = []\n    divisor = 2\n    while n >= 2:\n        while n % divisor == 0:\n            factors.append(divisor)\n            n //= divisor\n        divisor += 1\n    return factors",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n\n### Signature\ndef factorize(n: int) -> List[int]:\n\n### Test\nassert candidate(2) == [2]\nassert candidate(4) == [2, 2]\nassert candidate(8) == [2, 2, 2]\nassert candidate(3 * 19) == [3, 19]",
+    "timestamp": "2025-08-15T08:09:11.101054",
+    "response_time": "2.09"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 26,
+    "solution": "from typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    seen = set()\n    duplicates = set()\n    for number in numbers:\n        if number in seen:\n            duplicates.add(number)\n        seen.add(number)\n    return [number for number in numbers if number not in duplicates]",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n\n### Test\nassert candidate([]) == []",
+    "timestamp": "2025-08-15T08:09:12.627066",
+    "response_time": "1.52"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 27,
+    "solution": "from typing import List\n\ndef flip_case(string: str) -> str:\n    flipped_string = []\n    for char in string:\n        if char.islower():\n            flipped_string.append(char.upper())\n        elif char.isupper():\n            flipped_string.append(char.lower())\n        else:\n            flipped_string.append(char)\n    return ''.join(flipped_string)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n\n### Signature\ndef flip_case(string: str) -> str:\n\n### Test\nassert candidate('') == ''",
+    "timestamp": "2025-08-15T08:09:14.783110",
+    "response_time": "2.15"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 28,
+    "solution": "from typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    return ''.join(strings)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n\n### Signature\ndef concatenate(strings: List[str]) -> str:\n\n### Test\nassert candidate([]) == ''",
+    "timestamp": "2025-08-15T08:09:16.763279",
+    "response_time": "1.98"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 29,
+    "solution": "from typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    return [s for s in strings if s.startswith(prefix)]",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n     Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n\n### Signature\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []",
+    "timestamp": "2025-08-15T08:09:18.211323",
+    "response_time": "1.45"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 30,
+    "solution": "from typing import List\n\ndef get_positive(l: List[int]) -> List[int]:\n    return [num for num in l if num > 0]",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n\n### Signature\ndef get_positive(l: list):\n\n### Test\nassert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]\nassert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]",
+    "timestamp": "2025-08-15T08:09:21.135528",
+    "response_time": "2.92"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 31,
+    "solution": "from typing import Union\n\ndef is_prime(n: int) -> bool:\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n\n### Signature\ndef is_prime(n):\n\n### Test\nassert candidate(6) == False\nassert candidate(101) == True\nassert candidate(11) == True\nassert candidate(13441) == True\nassert candidate(61) == True\nassert candidate(4) == False",
+    "timestamp": "2025-08-15T08:09:24.207335",
+    "response_time": "3.07"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 32,
+    "solution": "from typing import List\nimport math\n\ndef poly(xs: List[float], x: float) -> float:\n    result = 0.0\n    for i, coeff in enumerate(xs):\n        result += coeff * (x ** i)\n    return result\n\ndef find_zero(xs: List[float]) -> float:\n    def derivative(xs: List[float], x: float) -> float:\n        result = 0.0\n        for i in range(1, len(xs)):\n            result += i * xs[i] * (x ** (i - 1))\n        return result\n\n    def newton_raphson(xs: List[float], initial_guess: float, tolerance: float = 1e-7, max_iterations: int = 1000) -> float:\n        x = initial_guess\n        for _ in range(max_iterations):\n            fx = poly(xs, x)\n            fpx = derivative(xs, x)\n            if abs(fpx) < tolerance:\n                break\n            x = x - fx / fpx\n            if abs(fx) < tolerance:\n                break\n        return x\n\n    # Initial guess can be 0 or any other value, but 0 is a reasonable starting point for simplicity\n    initial_guess = 0.0\n    return newton_raphson(xs, initial_guess)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n\n### Signature\ndef poly(xs: list, x: float):\n\n### Prompt\n     xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n\n### Signature\ndef find_zero(xs: list):\n\n### Test\nassert math.fabs(poly(coeffs, solution)) < 1e-4 ",
+    "timestamp": "2025-08-15T08:09:29.411180",
+    "response_time": "5.20"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 33,
+    "solution": "from typing import List\n\ndef sort_third(l: List[int]) -> List[int]:\n    indices_divisible_by_three = [i for i in range(len(l)) if i % 3 == 0]\n    values_to_sort = [l[i] for i in indices_divisible_by_three]\n    values_to_sort.sort()\n    \n    sorted_list = l[:]\n    for idx, value in zip(indices_divisible_by_three, values_to_sort):\n        sorted_list[idx] = value\n    \n    return sorted_list",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n\n### Signature\ndef sort_third(l: list):\n\n### Test\nassert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))\nassert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple(sort_third([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))\nassert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple(sort_third([5, 8, -12, 4, 23, 2, 3, 11, 12, -10]))",
+    "timestamp": "2025-08-15T08:09:32.614394",
+    "response_time": "3.20"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 34,
+    "solution": "from typing import List\n\ndef unique(l: List[int]) -> List[int]:\n    return sorted(set(l))",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n\n### Signature\ndef unique(l: list):\n\n### Test\nassert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123] ",
+    "timestamp": "2025-08-15T08:09:33.441544",
+    "response_time": "0.83"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 35,
+    "solution": "from typing import List\n\ndef max_element(l: List[int]) -> int:\n    if not l:\n        raise ValueError(\"List is empty\")\n    max_val = l[0]\n    for num in l:\n        if num > max_val:\n            max_val = num\n    return max_val",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n\n### Signature\ndef max_element(l: list):\n\n### Test\nassert candidate([1, 2, 3]) == 3",
+    "timestamp": "2025-08-15T08:09:36.240016",
+    "response_time": "2.80"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 36,
+    "solution": "from typing import List\n\ndef fizz_buzz(n: int) -> str:\n    count = 0\n    for i in range(n):\n        if i % 11 == 0 or i % 13 == 0:\n            count += str(i).count('7')\n    return str(count)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n\n### Signature\ndef fizz_buzz(n: int):\n\n### Test\nassert candidate(50) == 0\nassert candidate(78) == 2\nassert candidate(79) == 3\nassert candidate(100) == 3",
+    "timestamp": "2025-08-15T08:09:38.585749",
+    "response_time": "2.34"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 37,
+    "solution": "from typing import List\n\ndef sort_even(l: List[int]) -> List[int]:\n    even_indices = [i for i in range(len(l)) if i % 2 == 0]\n    even_values = sorted([l[i] for i in even_indices])\n    \n    result = l[:]\n    for idx, value in zip(even_indices, even_values):\n        result[idx] = value\n    \n    return result",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n\n### Signature\ndef sort_even(l: list):\n\n### Test\nassert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])",
+    "timestamp": "2025-08-15T08:09:41.142338",
+    "response_time": "2.55"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 38,
+    "solution": "from typing import List\n\ndef encode_cyclic(s: str) -> str:\n    def cycle_group(group: str) -> str:\n        if len(group) == 3:\n            return group[1:] + group[0]\n        return group\n    \n    groups = [s[i:i+3] for i in range(0, len(s), 3)]\n    cycled_groups = [cycle_group(group) for group in groups]\n    return ''.join(cycled_groups)\n\ndef decode_cyclic(s: str) -> str:\n    def decycle_group(group: str) -> str:\n        if len(group) == 3:\n            return group[-1] + group[:-1]\n        return group\n    \n    groups = [s[i:i+3] for i in range(0, len(s), 3)]\n    decycled_groups = [decycle_group(group) for group in groups]\n    return ''.join(decycled_groups)",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    returns encoded string by cycling groups of three characters.\n\n### Signature\ndef encode_cyclic(s: str):\n\n### Prompt\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n\n### Signature\ndef decode_cyclic(s: str):\n\n### Test\nassert candidate(encoded_str) == str ",
+    "timestamp": "2025-08-15T08:09:46.411063",
+    "response_time": "5.27"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 39,
+    "solution": "from typing import List\n\ndef is_prime(num: int) -> bool:\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    i = 5\n    while i * i <= num:\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef fibonacci_sequence(limit: int) -> List[int]:\n    fibs = [0, 1]\n    while True:\n        next_fib = fibs[-1] + fibs[-2]\n        if next_fib > limit:\n            break\n        fibs.append(next_fib)\n    return fibs\n\ndef prime_fib(n: int) -> str:\n    found_primes = []\n    a, b = 2, 3\n    while len(found_primes) < n:\n        if is_prime(a):\n            found_primes.append(a)\n        a, b = b, a + b\n    return str(found_primes[n-1])",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n\n### Signature\ndef prime_fib(n: int):\n\n### Test\nassert candidate(1) == 2\nassert candidate(2) == 3\nassert candidate(3) == 5\nassert candidate(4) == 13\nassert candidate(5) == 89",
+    "timestamp": "2025-08-15T08:09:52.291342",
+    "response_time": "5.88"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder32b_td",
+    "dataset_row_id": 40,
+    "solution": "from typing import List\n\ndef triples_sum_to_zero(l: List[int]) -> bool:\n    n = len(l)\n    for i in range(n):\n        for j in range(i + 1, n):\n            for k in range(j + 1, n):\n                if l[i] + l[j] + l[k] == 0:\n                    return True\n    return False",
+    "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+    "prompt": "### Prompt\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n### Signature\ndef triples_sum_to_zero(l: list):\n\n### Test\nassert candidate([1, 3, 5, 0]) == False\nassert candidate([1, 3, 5, -1]) == False\nassert candidate([1, 3, -2, 1]) == True\nassert candidate([1, 2, 3, 7]) == False",
+    "timestamp": "2025-08-15T08:09:54.933927",
+    "response_time": "2.64"
+  }
+]

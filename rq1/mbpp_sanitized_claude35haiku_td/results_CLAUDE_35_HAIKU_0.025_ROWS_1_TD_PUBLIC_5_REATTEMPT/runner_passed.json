@@ -1,0 +1,94 @@
+{
+  "anthropic/claude-3.5-haiku": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):\n\n### Test\nassert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\nassert set(candidate((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))\nassert set(candidate((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Tuple\n\ndef similar_elements(test_tup1: Tuple[int, ...], test_tup2: Tuple[int, ...]) -> Tuple[int, ...]:\n    # Convert tuples to sets for efficient intersection\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    \n    # Find common elements using set intersection\n    common_elements = set1.intersection(set2)\n    \n    # Convert back to tuple and return\n    return tuple(common_elements)",
+      "test_content": "from llm_output import similar_elements\n\ndef check(candidate):\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n    assert set(candidate((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))\n    assert set(candidate((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))\n\ncheck(similar_elements)",
+      "context": "{\"function_name\": \"similar_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):\n\n### Test\nassert candidate(2) == False\nassert candidate(10) == True\nassert candidate(35) == True\nassert candidate(37) == False",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef is_not_prime(n: int) -> bool:\n    \"\"\"\n    Identify if a given number is not a prime number.\n    \n    Args:\n        n (int): The number to check for primality\n    \n    Returns:\n        bool: True if the number is not prime, False if it is prime\n    \"\"\"\n    # Handle edge cases\n    if n <= 1:\n        return True\n    \n    # Check for divisibility from 2 to square root of n\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return True\n    \n    # If no divisors found, it's a prime number\n    return False",
+      "test_content": "from llm_output import is_not_prime\n\ndef check(candidate):\n    assert candidate(2) == False\n    assert candidate(10) == True\n    assert candidate(35) == True\n    assert candidate(37) == False\n\ncheck(is_not_prime)",
+      "context": "{\"function_name\": \"is_not_prime\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):\n\n### Test\nassert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\nassert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]\nassert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "import heapq\nfrom typing import List\n\ndef heap_queue_largest(nums: List[int], n: int) -> List[int]:\n    # Use heapq to find the n largest elements\n    # heapq.nlargest returns the n largest elements in descending order\n    return heapq.nlargest(n, nums)",
+      "test_content": "from llm_output import heap_queue_largest\n\ndef check(candidate):\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]\n\ncheck(heap_queue_largest)",
+      "context": "{\"function_name\": \"heap_queue_largest\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n\n### Test\nassert candidate(13,9) == True\nassert candidate(15,8) == False\nassert candidate(2,4) == False\nassert candidate(2, 3) == True\nassert candidate(5, 1) == True\nassert candidate(1, 5) == True",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef differ_At_One_Bit_Pos(x: int, y: int) -> bool:\n    # XOR the two numbers to get the bit differences\n    xor_result = x ^ y\n    \n    # Count the number of set bits in the XOR result\n    # If exactly one bit is set, it means the numbers differ at only one bit position\n    return bin(xor_result).count('1') == 1",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):\n\n### Test\nassert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])\nassert set(candidate('Jing Eco and Tech')) == set(['Jing', 'Tech'])\nassert set(candidate('Jhingai wulu road Zone 3')) == set(['Jhingai', 'wulu', 'road', 'Zone'])",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef find_char_long(text: str) -> List[str]:\n    # Split the text into words\n    words = text.split()\n    \n    # Filter words that are at least 4 characters long\n    long_words = [word for word in words if len(word) >= 4]\n    \n    return long_words",
+      "test_content": "from llm_output import find_char_long\n\ndef check(candidate):\n    assert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])\n    assert set(candidate('Jing Eco and Tech')) == set(['Jing', 'Tech'])\n    assert set(candidate('Jhingai wulu road Zone 3')) == set(['Jhingai', 'wulu', 'road', 'Zone'])\n\ncheck(find_char_long)",
+      "context": "{\"function_name\": \"find_char_long\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\nassert candidate([10,20,30])==([100,400,900])\nassert candidate([12,15])==([144,225])\n### Remediation Message\nThis code is not correct as it led to the following issues:\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 4\n    return [num * num for num in nums] float:\n                                       ^^^^^\nSyntaxError: invalid syntax\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    return [num * num for num in nums]",
+      "test_content": "from llm_output import square_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n    assert candidate([10,20,30])==([100,400,900])\n    assert candidate([12,15])==([144,225])\n\ncheck(square_nums)",
+      "context": "{\"function_name\": \"square_nums\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):\n\n### Test\nassert candidate(\"aaaa\") == 1\nassert candidate(\"ab\") == 2\nassert candidate(\"abc\") == 3\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(find_Rotations)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 5, in check\n    assert candidate(\"ab\") == 2\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef find_Rotations(s: str) -> int:\n    # If string is empty or single character, no rotations possible\n    if len(s) <= 1:\n        return 0\n    \n    # Check all possible rotations\n    for rotations in range(1, len(s) + 1):\n        # Rotate the string and check if it matches original\n        rotated = s[rotations:] + s[:rotations]\n        if rotated == s:\n            return rotations\n    \n    # If no rotation makes the string same, return the length of the string\n    return len(s)",
+      "test_content": "from llm_output import find_Rotations\n\ndef check(candidate):\n    assert candidate(\"aaaa\") == 1\n    assert candidate(\"ab\") == 2\n    assert candidate(\"abc\") == 3\n\ncheck(find_Rotations)",
+      "context": "{\"function_name\": \"find_Rotations\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):\n\n### Test\nassert candidate(\"hello\",\"l\") == \"heo\"\nassert candidate(\"abcda\",\"a\") == \"bcd\"\nassert candidate(\"PHP\",\"P\") == \"H\"",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Optional\n\ndef remove_Occ(s: str, ch: str) -> str:\n    # Find first occurrence of the character\n    first_index = s.find(ch)\n    \n    # Find last occurrence of the character \n    last_index = s.rfind(ch)\n    \n    # If character not found, return original string\n    if first_index == -1:\n        return s\n    \n    # If first and last index are same, remove that single occurrence \n    if first_index == last_index:\n        return s[:first_index] + s[first_index+1:]\n    \n    # Remove first and last occurrence\n    return s[:first_index] + s[first_index+1:last_index] + s[last_index+1:]",
+      "test_content": "from llm_output import remove_Occ\n\ndef check(candidate):\n    assert candidate(\"hello\",\"l\") == \"heo\"\n    assert candidate(\"abcda\",\"a\") == \"bcd\"\n    assert candidate(\"PHP\",\"P\") == \"H\"\n\ncheck(remove_Occ)",
+      "context": "{\"function_name\": \"remove_Occ\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):\n\n### Test\nassert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\nassert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\nassert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import List\n\ndef sort_matrix(M: List[List[int]]) -> List[List[int]]:\n    # Sort the matrix based on the sum of each row in ascending order\n    return sorted(M, key=lambda row: sum(row))",
+      "test_content": "from llm_output import sort_matrix\n\ndef check(candidate):\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n    assert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\n    assert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]\n\ncheck(sort_matrix)",
+      "context": "{\"function_name\": \"sort_matrix\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 14,
+      "prompt": "### Prompt\nWrite a python function to find the volume of a triangular prism.\n\n### Signature\ndef find_Volume(l,b,h) :\n\n### Test\nassert candidate(10,8,6) == 240\nassert candidate(3,2,2) == 6\nassert candidate(1,2,1) == 1",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "solution": "from typing import Union\n\ndef find_Volume(l: Union[int, float], b: Union[int, float], h: Union[int, float]) -> int:\n    \"\"\"\n    Calculate the volume of a triangular prism\n    \n    Args:\n        l (int/float): Length of the base triangle's base \n        b (int/float): Width/breadth of the base triangle\n        h (int/float): Height of the prism\n    \n    Returns:\n        int: Volume of the triangular prism\n    \"\"\"\n    # Volume of triangular prism = (1/2 * base * breadth) * height\n    base_area = 0.5 * l * b\n    volume = base_area * h\n    \n    return int(volume)",
+      "test_content": "from llm_output import find_Volume\n\ndef check(candidate):\n    assert candidate(10,8,6) == 240\n    assert candidate(3,2,2) == 6\n    assert candidate(1,2,1) == 1\n\ncheck(find_Volume)",
+      "context": "{\"function_name\": \"find_Volume\"}",
+      "attempt_num": 1
+    }
+  ]
+}

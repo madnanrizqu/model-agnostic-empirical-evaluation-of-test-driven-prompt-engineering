@@ -1,0 +1,24 @@
+{
+  "anthropic/claude-3.5-sonnet": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(similar_elements)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import List\n\ndef similar_elements(test_tup1: List, test_tup2: List) -> str:\n    # Convert lists to sets for efficient intersection operation\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    \n    # Find common elements using set intersection\n    common_elements = set1.intersection(set2)\n    \n    # Convert result back to list and sort for consistent output\n    result = sorted(list(common_elements))\n    \n    # Return formatted string of shared elements\n    return str(result)",
+      "test_content": "from llm_output import similar_elements\n\ndef check(candidate):\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n    assert set(candidate((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))\n    assert set(candidate((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))\n\ncheck(similar_elements)",
+      "context": "{\"function_name\": \"similar_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(heap_queue_largest)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "import heapq\nfrom typing import List\n\ndef heap_queue_largest(nums: List[int], n: int) -> str:\n    # Convert numbers to negative for max heap behavior\n    neg_nums = [-x for x in nums]\n    # Create heap from negative numbers\n    heapq.heapify(neg_nums)\n    \n    # Get n largest by getting n smallest negative numbers\n    result = []\n    for _ in range(min(n, len(nums))):\n        result.append(-heapq.heappop(neg_nums))\n    \n    # Return result as comma-separated string\n    return ','.join(map(str, result))",
+      "test_content": "from llm_output import heap_queue_largest\n\ndef check(candidate):\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]\n\ncheck(heap_queue_largest)",
+      "context": "{\"function_name\": \"heap_queue_largest\"}",
+      "attempt_num": 1
+    }
+  ]
+}

@@ -1,0 +1,1174 @@
+{
+  "Qwen/Qwen2.5-Coder-7B-Instruct": [
+    {
+      "task_id": 425,
+      "prompt": "### Prompt\nWrite a function to count the number of sublists containing a particular element.\n\n### Signature\ndef count_element_in_list(list1, x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import collections\n\ndef count_element_in_list(list1, x):\n    count = 0\n    for sublist in list1:\n        if x in sublist:\n            count += 1\n    return count",
+      "test_content": "from llm_output import count_element_in_list\n\ndef check(candidate):\n    assert candidate([[1, 3], [5, 7], [1, 11], [1, 15, 7]],1)==3\n    assert candidate([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'A')==3\n    assert candidate([['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']],'E')==1\n\ncheck(count_element_in_list)",
+      "context": "{\"function_name\": \"count_element_in_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 426,
+      "prompt": "### Prompt\nWrite a function to filter odd numbers.\n\n### Signature\ndef filter_oddnumbers(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import itertools\n\ndef filter_oddnumbers(nums):\n    return list(filter(lambda x: x % 2 != 0, nums))",
+      "test_content": "from llm_output import filter_oddnumbers\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1,3,5,7,9]\n    assert candidate([10,20,45,67,84,93])==[45,67,93]\n    assert candidate([5,7,9,8,6,4,3])==[5,7,9,3]\n\ncheck(filter_oddnumbers)",
+      "context": "{\"function_name\": \"filter_oddnumbers\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 432,
+      "prompt": "### Prompt\nWrite a function to find the median length of a trapezium.\n\n### Signature\ndef median_trapezium(base1,base2,height):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef median_trapezium(base1, base2, height):\n    median = (base1 + base2) / 2\n    return median",
+      "test_content": "from llm_output import median_trapezium\n\ndef check(candidate):\n    assert candidate(15,25,35)==20\n    assert candidate(10,20,30)==15\n    assert candidate(6,9,4)==7.5\n\ncheck(median_trapezium)",
+      "context": "{\"function_name\": \"median_trapezium\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 434,
+      "prompt": "### Prompt\nWrite a function that matches a string that has an a followed by one or more b's.\n\n### Signature\ndef text_match_one(text):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef text_match_one(text):\n    pattern = 'ab+'\n    return bool(re.search(pattern, text))",
+      "test_content": "from llm_output import text_match_one\n\ndef check(candidate):\n    assert candidate(\"ac\")==False\n    assert candidate(\"dc\")==False\n    assert candidate(\"abba\")==True\n\ncheck(text_match_one)",
+      "context": "{\"function_name\": \"text_match_one\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 435,
+      "prompt": "### Prompt\nWrite a python function to find the last digit of a given number.\n\n### Signature\ndef last_Digit(n) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def last_Digit(n):\n    return abs(n) % 10",
+      "test_content": "from llm_output import last_Digit\n\ndef check(candidate):\n    assert candidate(123) == 3\n    assert candidate(25) == 5\n    assert candidate(30) == 0\n\ncheck(last_Digit)",
+      "context": "{\"function_name\": \"last_Digit\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 436,
+      "prompt": "### Prompt\nWrite a python function to return the negative numbers in a list.\n\n### Signature\ndef neg_nos(list1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def neg_nos(list1):\n    return [num for num in list1 if num < 0]",
+      "test_content": "from llm_output import neg_nos\n\ndef check(candidate):\n    assert candidate([-1,4,5,-6]) == [-1,-6]\n    assert candidate([-1,-2,3,4]) == [-1,-2]\n    assert candidate([-7,-6,8,9]) == [-7,-6]\n\ncheck(neg_nos)",
+      "context": "{\"function_name\": \"neg_nos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 441,
+      "prompt": "### Prompt\nWrite a function to find the surface area of a cube of a given size.\n\n### Signature\ndef surfacearea_cube(l):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef surfacearea_cube(l):\n    return 6 * l * l",
+      "test_content": "from llm_output import surfacearea_cube\n\ndef check(candidate):\n    assert candidate(5)==150\n    assert candidate(3)==54\n    assert candidate(10)==600\n\ncheck(surfacearea_cube)",
+      "context": "{\"function_name\": \"surfacearea_cube\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 447,
+      "prompt": "### Prompt\nWrite a function to find cubes of individual elements in a list.\n\n### Signature\ndef cube_nums(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef cube_nums(nums):\n    return [math.pow(num, 3) for num in nums]",
+      "test_content": "from llm_output import cube_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]\n    assert candidate([10,20,30])==([1000, 8000, 27000])\n    assert candidate([12,15])==([1728, 3375])\n\ncheck(cube_nums)",
+      "context": "{\"function_name\": \"cube_nums\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 451,
+      "prompt": "### Prompt\nWrite a function to remove all whitespaces from the given string.\n\n### Signature\ndef remove_whitespaces(text1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef remove_whitespaces(text1):\n    return re.sub(r'\\s+', '', text1)",
+      "test_content": "from llm_output import remove_whitespaces\n\ndef check(candidate):\n    assert candidate(' Google    Flutter ') == 'GoogleFlutter'\n    assert candidate(' Google    Dart ') == 'GoogleDart'\n    assert candidate(' iOS    Swift ') == 'iOSSwift'\n\ncheck(remove_whitespaces)",
+      "context": "{\"function_name\": \"remove_whitespaces\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 454,
+      "prompt": "### Prompt\nWrite a function that matches a word containing 'z'.\n\n### Signature\ndef text_match_wordz(text):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef text_match_wordz(text):\n    pattern = r'\\b\\w*z\\w*\\b'\n    return bool(re.search(pattern, text))",
+      "test_content": "from llm_output import text_match_wordz\n\ndef check(candidate):\n    assert candidate(\"pythonz.\")==True\n    assert candidate(\"xyz.\")==True\n    assert candidate(\"  lang  .\")==False\n\ncheck(text_match_wordz)",
+      "context": "{\"function_name\": \"text_match_wordz\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 455,
+      "prompt": "### Prompt\nWrite a function to check whether the given month number contains 31 days or not.\n\n### Signature\ndef check_monthnumb_number(monthnum2):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def check_monthnumb_number(monthnum2):\n    # List of months with 31 days\n    months_with_31_days = [1, 3, 5, 7, 8, 10, 12]\n    \n    # Check if the month number is in the list\n    if monthnum2 in months_with_31_days:\n        return True\n    else:\n        return False",
+      "test_content": "from llm_output import check_monthnumb_number\n\ndef check(candidate):\n    assert candidate(5)==True\n    assert candidate(2)==False\n    assert candidate(6)==False\n\ncheck(check_monthnumb_number)",
+      "context": "{\"function_name\": \"check_monthnumb_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 456,
+      "prompt": "### Prompt\nWrite a function to reverse each string in a given list of string values.\n\n### Signature\ndef reverse_string_list(stringlist):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def reverse_string_list(stringlist):\n    return [s[::-1] for s in stringlist]",
+      "test_content": "from llm_output import reverse_string_list\n\ndef check(candidate):\n    assert candidate(['Red', 'Green', 'Blue', 'White', 'Black'])==['deR', 'neerG', 'eulB', 'etihW', 'kcalB']\n    assert candidate(['john','amal','joel','george'])==['nhoj','lama','leoj','egroeg']\n    assert candidate(['jack','john','mary'])==['kcaj','nhoj','yram']\n\ncheck(reverse_string_list)",
+      "context": "{\"function_name\": \"reverse_string_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 457,
+      "prompt": "### Prompt\nWrite a python function to find the sublist having minimum length.\n\n### Signature\ndef Find_Min(lst):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef Find_Min(lst):\n    if not lst:\n        return []\n    min_sublist = lst[0]\n    for sublist in lst:\n        if len(sublist) < len(min_sublist):\n            min_sublist = sublist\n    return min_sublist",
+      "test_content": "from llm_output import Find_Min\n\ndef check(candidate):\n    assert candidate([[1],[1,2],[1,2,3]]) == [1]\n    assert candidate([[1,1],[1,1,1],[1,2,7,8]]) == [1,1]\n    assert candidate([['x'],['x','y'],['x','y','z']]) == ['x']\n\ncheck(Find_Min)",
+      "context": "{\"function_name\": \"Find_Min\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 458,
+      "prompt": "### Prompt\nWrite a function to find the area of a rectangle.\n\n### Signature\ndef rectangle_area(l,b):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef rectangle_area(l, b):\n    return l * b",
+      "test_content": "from llm_output import rectangle_area\n\ndef check(candidate):\n    assert candidate(10,20)==200\n    assert candidate(10,5)==50\n    assert candidate(4,2)==8\n\ncheck(rectangle_area)",
+      "context": "{\"function_name\": \"rectangle_area\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 459,
+      "prompt": "### Prompt\nWrite a function to remove uppercase substrings from a given string.\n\n### Signature\ndef remove_uppercase(str1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef remove_uppercase(str1):\n    return re.sub('[A-Z]+', '', str1)",
+      "test_content": "from llm_output import remove_uppercase\n\ndef check(candidate):\n    assert candidate('cAstyoUrFavoRitETVshoWs') == 'cstyoravoitshos'\n    assert candidate('wAtchTheinTernEtrAdIo') == 'wtchheinerntrdo'\n    assert candidate('VoicESeaRchAndreComMendaTionS') == 'oiceachndreomendaion'\n\ncheck(remove_uppercase)",
+      "context": "{\"function_name\": \"remove_uppercase\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 460,
+      "prompt": "### Prompt\nWrite a python function to get the first element of each sublist.\n\n### Signature\ndef Extract(lst):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import itertools\n\ndef Extract(lst):\n    return [sublist[0] for sublist in lst if sublist]",
+      "test_content": "from llm_output import Extract\n\ndef check(candidate):\n    assert candidate([[1, 2], [3, 4, 5], [6, 7, 8, 9]]) == [1, 3, 6]\n    assert candidate([[1,2,3],[4, 5]]) == [1,4]\n    assert candidate([[9,8,1],[1,2]]) == [9,1]\n\ncheck(Extract)",
+      "context": "{\"function_name\": \"Extract\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 463,
+      "prompt": "### Prompt\nWrite a function to find the maximum product subarray of the given array.\n\n### Signature\ndef max_subarray_product(arr):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import numpy as np\n\ndef max_subarray_product(arr):\n    max_product = np.iinfo(int).min\n    current_max = 1\n    current_min = 1\n    \n    for num in arr:\n        if num == 0:\n            current_max, current_min = 1, 1\n            continue\n        \n        temp = current_max * num\n        current_max = max(num, temp, current_min * num)\n        current_min = min(num, temp, current_min * num)\n        \n        max_product = max(max_product, current_max)\n    \n    return max_product",
+      "test_content": "from llm_output import max_subarray_product\n\ndef check(candidate):\n    assert candidate([1, -2, -3, 0, 7, -8, -2]) == 112\n    assert candidate([6, -3, -10, 0, 2]) == 180\n    assert candidate([-2, -40, 0, -2, -3]) == 80\n\ncheck(max_subarray_product)",
+      "context": "{\"function_name\": \"max_subarray_product\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 464,
+      "prompt": "### Prompt\nWrite a function to check if all values are same in a dictionary.\n\n### Signature\ndef check_value(dict, n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import collections\n\ndef check_value(dict, n):\n    return all(value == n for value in dict.values())",
+      "test_content": "from llm_output import check_value\n\ndef check(candidate):\n    assert candidate({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12},10)==False\n    assert candidate({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12},12)==True\n    assert candidate({'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12},5)==False\n\ncheck(check_value)",
+      "context": "{\"function_name\": \"check_value\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 470,
+      "prompt": "### Prompt\nWrite a function to find the pairwise addition of the neighboring elements of the given tuple.\n\n### Signature\ndef add_pairwise(test_tup):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import itertools\n\ndef add_pairwise(test_tup):\n    return tuple(a + b for a, b in itertools.pairwise(test_tup))",
+      "test_content": "from llm_output import add_pairwise\n\ndef check(candidate):\n    assert candidate((1, 5, 7, 8, 10)) == (6, 12, 15, 18)\n    assert candidate((2, 6, 8, 9, 11)) == (8, 14, 17, 20)\n    assert candidate((3, 7, 9, 10, 12)) == (10, 16, 19, 22)\n\ncheck(add_pairwise)",
+      "context": "{\"function_name\": \"add_pairwise\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 471,
+      "prompt": "### Prompt\nWrite a python function to find the product of the array multiplication modulo n.\n\n### Signature\ndef find_remainder(arr, n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from functools import reduce\n\ndef find_remainder(arr, n):\n    return reduce(lambda x, y: (x * y) % n, arr, 1)",
+      "test_content": "from llm_output import find_remainder\n\ndef check(candidate):\n    assert candidate([ 100, 10, 5, 25, 35, 14 ],11) ==9\n    assert candidate([1,1,1],1) == 0\n    assert candidate([1,2,1],2) == 0\n\ncheck(find_remainder)",
+      "context": "{\"function_name\": \"find_remainder\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 472,
+      "prompt": "### Prompt\nWrite a python function to check whether the given list contains consecutive numbers or not.\n\n### Signature\ndef check_Consecutive(l):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef check_Consecutive(l):\n    if not l:\n        return False\n    sorted_l = sorted(l)\n    return all(math.isclose(sorted_l[i] + 1, sorted_l[i + 1]) for i in range(len(sorted_l) - 1))",
+      "test_content": "from llm_output import check_Consecutive\n\ndef check(candidate):\n    assert candidate([1,2,3,4,5]) == True\n    assert candidate([1,2,3,5,6]) == False\n    assert candidate([1,2,1]) == False\n\ncheck(check_Consecutive)",
+      "context": "{\"function_name\": \"check_Consecutive\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 474,
+      "prompt": "### Prompt\nWrite a function to replace characters in a string.\n\n### Signature\ndef replace_char(str1,ch,newch):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import string\n\ndef replace_char(str1, ch, newch):\n    return str1.replace(ch, newch)",
+      "test_content": "from llm_output import replace_char\n\ndef check(candidate):\n    assert candidate(\"polygon\",\"\"\"y\"\"\",\"\"\"l\"\"\")==(\"pollgon\")\n    assert candidate(\"character\",\"\"\"c\"\"\",\"\"\"a\"\"\")==(\"aharaater\")\n    assert candidate(\"python\",\"\"\"l\"\"\",\"\"\"a\"\"\")==(\"python\")\n\ncheck(replace_char)",
+      "context": "{\"function_name\": \"replace_char\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 476,
+      "prompt": "### Prompt\nWrite a python function to find the sum of the largest and smallest value in a given array.\n\n### Signature\ndef big_sum(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import numpy as np\n\ndef big_sum(nums):\n    return np.max(nums) + np.min(nums)",
+      "test_content": "from llm_output import big_sum\n\ndef check(candidate):\n    assert candidate([1,2,3]) == 4\n    assert candidate([-1,2,3,4]) == 3\n    assert candidate([2,3,6]) == 8\n\ncheck(big_sum)",
+      "context": "{\"function_name\": \"big_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 478,
+      "prompt": "### Prompt\nWrite a function to remove lowercase substrings from a given string.\n\n### Signature\ndef remove_lowercase(str1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef remove_lowercase(str1):\n    return re.sub(r'[a-z]', '', str1)",
+      "test_content": "from llm_output import remove_lowercase\n\ndef check(candidate):\n    assert candidate(\"PYTHon\")==(\"\"\"PYTH\"\"\")\n    assert candidate(\"FInD\")==(\"\"\"FID\"\"\")\n    assert candidate(\"STRinG\")==(\"\"\"STRG\"\"\")\n\ncheck(remove_lowercase)",
+      "context": "{\"function_name\": \"remove_lowercase\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 479,
+      "prompt": "### Prompt\nWrite a python function to find the first digit of a given number.\n\n### Signature\ndef first_Digit(n) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef first_Digit(n) :\n    if n == 0:\n        return 0\n    elif n < 0:\n        n = -n\n    while n >= 10:\n        n = n // 10\n    return n",
+      "test_content": "from llm_output import first_Digit\n\ndef check(candidate):\n    assert candidate(123) == 1\n    assert candidate(456) == 4\n    assert candidate(12) == 1\n\ncheck(first_Digit)",
+      "context": "{\"function_name\": \"first_Digit\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 554,
+      "prompt": "### Prompt\nWrite a python function which takes a list of integers and only returns the odd ones.\n\n### Signature\ndef Split(list):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef Split(lst):\n    return [x for x in lst if x % 2 != 0]",
+      "test_content": "from llm_output import Split\n\ndef check(candidate):\n    assert candidate([1,2,3,4,5,6]) == [1,3,5]\n    assert candidate([10,11,12,13]) == [11,13]\n    assert candidate([7,8,9,1]) == [7,9,1]\n\ncheck(Split)",
+      "context": "{\"function_name\": \"Split\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 555,
+      "prompt": "### Prompt\nWrite a python function to find the difference between the sum of cubes of the first n natural numbers and the sum of the first n natural numbers.\n\n### Signature\ndef difference(n) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def difference(n):\n    sum_of_cubes = sum([i**3 for i in range(1, n+1)])\n    sum_of_numbers = sum(range(1, n+1))\n    return sum_of_cubes - sum_of_numbers",
+      "test_content": "from llm_output import difference\n\ndef check(candidate):\n    assert candidate(3) == 30\n    assert candidate(5) == 210\n    assert candidate(2) == 6\n\ncheck(difference)",
+      "context": "{\"function_name\": \"difference\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 556,
+      "prompt": "### Prompt\nWrite a python function to count the number of pairs whose xor value is odd.\n\n### Signature\ndef find_Odd_Pair(A,N) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from typing import List\n\ndef find_Odd_Pair(A: List[int], N: int) -> int:\n    count = 0\n    for i in range(N):\n        for j in range(i + 1, N):\n            if (A[i] ^ A[j]) % 2 != 0:\n                count += 1\n    return count",
+      "test_content": "from llm_output import find_Odd_Pair\n\ndef check(candidate):\n    assert candidate([5,4,7,2,1],5) == 6\n    assert candidate([7,2,8,1,0,5,11],7) == 12\n    assert candidate([1,2,3],3) == 2\n\ncheck(find_Odd_Pair)",
+      "context": "{\"function_name\": \"find_Odd_Pair\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 557,
+      "prompt": "### Prompt\nWrite a function to toggle the case of all characters in a string.\n\n### Signature\ndef toggle_string(string):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def toggle_string(string):\n    return string.swapcase()",
+      "test_content": "from llm_output import toggle_string\n\ndef check(candidate):\n    assert candidate(\"Python\")==(\"pYTHON\")\n    assert candidate(\"Pangram\")==(\"pANGRAM\")\n    assert candidate(\"LIttLE\")==(\"liTTle\")\n\ncheck(toggle_string)",
+      "context": "{\"function_name\": \"toggle_string\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 558,
+      "prompt": "### Prompt\nWrite a python function to find the sum of the per-digit difference between two integers.\n\n### Signature\ndef digit_distance_nums(n1, n2):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef digit_distance_nums(n1, n2):\n    # Convert numbers to strings to easily access individual digits\n    str_n1 = str(abs(n1))\n    str_n2 = str(abs(n2))\n    \n    # Pad the shorter string with leading zeros\n    max_length = max(len(str_n1), len(str_n2))\n    str_n1 = str_n1.zfill(max_length)\n    str_n2 = str_n2.zfill(max_length)\n    \n    # Calculate the sum of the absolute differences of each digit\n    digit_sum = sum(abs(int(d1) - int(d2)) for d1, d2 in zip(str_n1, str_n2))\n    \n    return digit_sum",
+      "test_content": "from llm_output import digit_distance_nums\n\ndef check(candidate):\n    assert candidate(1,2) == 1\n    assert candidate(23,56) == 6\n    assert candidate(123,256) == 7\n\ncheck(digit_distance_nums)",
+      "context": "{\"function_name\": \"digit_distance_nums\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 559,
+      "prompt": "### Prompt\nWrite a function to find the sum of the largest contiguous sublist in the given list.\n\n### Signature\ndef max_sub_array_sum(a, size):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef max_sub_array_sum(a, size):\n    max_so_far = -sys.maxsize - 1\n    max_ending_here = 0\n    \n    for i in range(0, size):\n        max_ending_here = max_ending_here + a[i]\n        if max_so_far < max_ending_here:\n            max_so_far = max_ending_here\n        if max_ending_here < 0:\n            max_ending_here = 0\n            \n    return max_so_far",
+      "test_content": "from llm_output import max_sub_array_sum\n\ndef check(candidate):\n    assert candidate([-2, -3, 4, -1, -2, 1, 5, -3], 8) == 7\n    assert candidate([-3, -4, 5, -2, -3, 2, 6, -4], 8) == 8\n    assert candidate([-4, -5, 6, -3, -4, 3, 7, -5], 8) == 10\n\ncheck(max_sub_array_sum)",
+      "context": "{\"function_name\": \"max_sub_array_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 560,
+      "prompt": "### Prompt\nWrite a function to find the union of the elements of two given tuples and output them in sorted order.\n\n### Signature\ndef union_elements(test_tup1, test_tup2):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import collections\n\ndef union_elements(test_tup1, test_tup2):\n    # Combine both tuples and convert to a set to remove duplicates\n    combined_set = set(test_tup1) | set(test_tup2)\n    # Convert the set back to a sorted tuple\n    result = tuple(sorted(combined_set))\n    return result",
+      "test_content": "from llm_output import union_elements\n\ndef check(candidate):\n    assert candidate((3, 4, 5, 6),(5, 7, 4, 10) ) == (3, 4, 5, 6, 7, 10)\n    assert candidate((1, 2, 3, 4),(3, 4, 5, 6) ) == (1, 2, 3, 4, 5, 6)\n    assert candidate((11, 12, 13, 14),(13, 15, 16, 17) ) == (11, 12, 13, 14, 15, 16, 17)\n\ncheck(union_elements)",
+      "context": "{\"function_name\": \"union_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 564,
+      "prompt": "### Prompt\nWrite a python function which takes a list of integers and counts the number of possible unordered pairs where both elements are unequal.\n\n### Signature\ndef count_Pairs(arr,n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from itertools import combinations\n\ndef count_Pairs(arr,n):\n    count = 0\n    for pair in combinations(arr, 2):\n        if pair[0] != pair[1]:\n            count += 1\n    return count",
+      "test_content": "from llm_output import count_Pairs\n\ndef check(candidate):\n    assert candidate([1,2,1],3) == 2\n    assert candidate([1,1,1,1],4) == 0\n    assert candidate([1,2,3,4,5],5) == 10\n\ncheck(count_Pairs)",
+      "context": "{\"function_name\": \"count_Pairs\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 565,
+      "prompt": "### Prompt\nWrite a python function to split a string into characters.\n\n### Signature\ndef split(word):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def split(word):\n    return list(word)",
+      "test_content": "from llm_output import split\n\ndef check(candidate):\n    assert candidate('python') == ['p','y','t','h','o','n']\n    assert candidate('Name') == ['N','a','m','e']\n    assert candidate('program') == ['p','r','o','g','r','a','m']\n\ncheck(split)",
+      "context": "{\"function_name\": \"split\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 566,
+      "prompt": "### Prompt\nWrite a function to get the sum of the digits of a non-negative integer.\n\n### Signature\ndef sum_digits(n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef sum_digits(n):\n    return sum(int(digit) for digit in str(n))",
+      "test_content": "from llm_output import sum_digits\n\ndef check(candidate):\n    assert candidate(345)==12\n    assert candidate(12)==3\n    assert candidate(97)==16\n\ncheck(sum_digits)",
+      "context": "{\"function_name\": \"sum_digits\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 567,
+      "prompt": "### Prompt\nWrite a function to check whether a specified list is sorted or not.\n\n### Signature\ndef issort_list(list1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef issort_list(list1):\n    return list1 == sorted(list1)",
+      "test_content": "from llm_output import issort_list\n\ndef check(candidate):\n    assert candidate([1,2,4,6,8,10,12,14,16,17])==True\n    assert candidate([1, 2, 4, 6, 8, 10, 12, 14, 20, 17])==False\n    assert candidate([1, 2, 4, 6, 8, 10,15,14,20])==False\n\ncheck(issort_list)",
+      "context": "{\"function_name\": \"issort_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 568,
+      "prompt": "### Prompt\nWrite a function to create a list of N empty dictionaries.\n\n### Signature\ndef empty_list(length):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def empty_list(length):\n    return [{} for _ in range(length)]",
+      "test_content": "from llm_output import empty_list\n\ndef check(candidate):\n    assert candidate(5)==[{},{},{},{},{}]\n    assert candidate(6)==[{},{},{},{},{},{}]\n    assert candidate(7)==[{},{},{},{},{},{},{}]\n\ncheck(empty_list)",
+      "context": "{\"function_name\": \"empty_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 569,
+      "prompt": "### Prompt\nWrite a function to sort each sublist of strings in a given list of lists.\n\n### Signature\ndef sort_sublists(list1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import copy\n\ndef sort_sublists(list1):\n    sorted_list = copy.deepcopy(list1)\n    for sublist in sorted_list:\n        sublist.sort()\n    return sorted_list",
+      "test_content": "from llm_output import sort_sublists\n\ndef check(candidate):\n    assert candidate([['green', 'orange'], ['black', 'white'], ['white', 'black', 'orange']])==[['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]\n    assert candidate([['green', 'orange'], ['black'], ['green', 'orange'], ['white']])==[['green', 'orange'], ['black'], ['green', 'orange'], ['white']]\n    assert candidate([['a','b'],['d','c'],['g','h'] , ['f','e']])==[['a', 'b'], ['c', 'd'], ['g', 'h'], ['e', 'f']]\n\ncheck(sort_sublists)",
+      "context": "{\"function_name\": \"sort_sublists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 573,
+      "prompt": "### Prompt\nWrite a python function to calculate the product of the unique numbers in a given list.\n\n### Signature\ndef unique_product(list_data):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from functools import reduce\nfrom operator import mul\n\ndef unique_product(list_data):\n    unique_numbers = set(list_data)\n    return reduce(mul, unique_numbers, 1)",
+      "test_content": "from llm_output import unique_product\n\ndef check(candidate):\n    assert candidate([10, 20, 30, 40, 20, 50, 60, 40]) ==  720000000\n    assert candidate([1, 2, 3, 1,]) == 6\n    assert candidate([7, 8, 9, 0, 1, 1]) == 0\n\ncheck(unique_product)",
+      "context": "{\"function_name\": \"unique_product\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 576,
+      "prompt": "### Prompt\nWrite a python function to check whether a list is sublist of another or not.\n\n### Signature\ndef is_Sub_Array(A,B):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef is_Sub_Array(A, B):\n    if not A:\n        return True\n    if len(A) > len(B):\n        return False\n    for i in range(len(B) - len(A) + 1):\n        if B[i:i+len(A)] == A:\n            return True\n    return False",
+      "test_content": "from llm_output import is_Sub_Array\n\ndef check(candidate):\n    assert candidate([1,4,3,5],[1,2]) == False\n    assert candidate([1,2,1],[1,2,1]) == True\n    assert candidate([1,0,2,2],[2,2,0]) ==False\n\ncheck(is_Sub_Array)",
+      "context": "{\"function_name\": \"is_Sub_Array\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 577,
+      "prompt": "### Prompt\nWrite a python function to find the last digit in factorial of a given number.\n\n### Signature\ndef last_Digit_Factorial(n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef last_Digit_Factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    elif n == 2:\n        return 2\n    elif n == 3:\n        return 6\n    elif n == 4:\n        return 4\n    else:\n        last_digit = 1\n        for i in range(5, n + 1):\n            last_digit = (last_digit * (i % 10)) % 10\n        return last_digit",
+      "test_content": "from llm_output import last_Digit_Factorial\n\ndef check(candidate):\n    assert candidate(4) == 4\n    assert candidate(21) == 0\n    assert candidate(30) == 0\n\ncheck(last_Digit_Factorial)",
+      "context": "{\"function_name\": \"last_Digit_Factorial\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 578,
+      "prompt": "### Prompt\nWrite a function to interleave 3 lists of the same length into a single flat list.\n\n### Signature\ndef interleave_lists(list1,list2,list3):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import itertools\n\ndef interleave_lists(list1, list2, list3):\n    return [item for sublist in itertools.zip_longest(list1, list2, list3) for item in sublist if item is not None]",
+      "test_content": "from llm_output import interleave_lists\n\ndef check(candidate):\n    assert candidate([1,2,3,4,5,6,7],[10,20,30,40,50,60,70],[100,200,300,400,500,600,700])==[1, 10, 100, 2, 20, 200, 3, 30, 300, 4, 40, 400, 5, 50, 500, 6, 60, 600, 7, 70, 700]\n    assert candidate([10,20],[15,2],[5,10])==[10,15,5,20,2,10]\n    assert candidate([11,44], [10,15], [20,5])==[11,10,20,44,15,5]\n\ncheck(interleave_lists)",
+      "context": "{\"function_name\": \"interleave_lists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 582,
+      "prompt": "### Prompt\nWrite a function to check if a dictionary is empty\n\n### Signature\ndef my_dict(dict1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import collections\n\ndef my_dict(dict1):\n    return not bool(dict1)",
+      "test_content": "from llm_output import my_dict\n\ndef check(candidate):\n    assert candidate({10})==False\n    assert candidate({11})==False\n    assert candidate({})==True\n\ncheck(my_dict)",
+      "context": "{\"function_name\": \"my_dict\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 583,
+      "prompt": "### Prompt\nWrite a function which returns nth catalan number.\n\n### Signature\ndef catalan_number(num):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef catalan_number(num):\n    if num <= 1:\n        return 1\n    catalan = [0] * (num + 1)\n    catalan[0] = 1\n    catalan[1] = 1\n    for i in range(2, num + 1):\n        catalan[i] = 0\n        for j in range(i):\n            catalan[i] += catalan[j] * catalan[i - j - 1]\n    return catalan[num]",
+      "test_content": "from llm_output import catalan_number\n\ndef check(candidate):\n    assert candidate(10)==16796\n    assert candidate(9)==4862\n    assert candidate(7)==429\n\ncheck(catalan_number)",
+      "context": "{\"function_name\": \"catalan_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 585,
+      "prompt": "### Prompt\nWrite a function to find the n most expensive items in a given dataset.\n\n### Signature\ndef expensive_items(items,n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import heapq\n\ndef expensive_items(items, n):\n    # Using heapq.nlargest to find the n most expensive items\n    return heapq.nlargest(n, items, key=lambda x: x['price'])",
+      "test_content": "from llm_output import expensive_items\n\ndef check(candidate):\n    assert candidate([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}],1)==[{'name': 'Item-2', 'price': 555.22}]\n    assert candidate([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}, {'name': 'Item-3', 'price': 45.09}],2)==[{'name': 'Item-2', 'price': 555.22},{'name': 'Item-1', 'price': 101.1}]\n    assert candidate([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}, {'name': 'Item-3', 'price': 45.09},{'name': 'Item-4', 'price': 22.75}],1)==[{'name': 'Item-2', 'price': 555.22}]\n\ncheck(expensive_items)",
+      "context": "{\"function_name\": \"expensive_items\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 586,
+      "prompt": "### Prompt\nWrite a python function to split a list at the nth eelment and add the first part to the end.\n\n### Signature\ndef split_Arr(l, n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import copy\n\ndef split_Arr(l, n):\n    if n < 0 or n >= len(l):\n        return l  # Return the original list if n is out of bounds\n    first_part = l[:n]\n    second_part = l[n:]\n    return second_part + first_part",
+      "test_content": "from llm_output import split_Arr\n\ndef check(candidate):\n    assert candidate([12,10,5,6,52,36],2) == [5,6,52,36,12,10]\n    assert candidate([1,2,3,4],1) == [2,3,4,1]\n    assert candidate([0,1,2,3,4,5,6,7],3) == [3,4,5,6,7,0,1,2]\n\ncheck(split_Arr)",
+      "context": "{\"function_name\": \"split_Arr\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 587,
+      "prompt": "### Prompt\nWrite a function to convert a list to a tuple.\n\n### Signature\ndef list_tuple(listx):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import typing\n\ndef list_tuple(listx: typing.List[typing.Any]) -> typing.Tuple[typing.Any, ...]:\n    return tuple(listx)",
+      "test_content": "from llm_output import list_tuple\n\ndef check(candidate):\n    assert candidate([5, 10, 7, 4, 15, 3])==(5, 10, 7, 4, 15, 3)\n    assert candidate([2, 4, 5, 6, 2, 3, 4, 4, 7])==(2, 4, 5, 6, 2, 3, 4, 4, 7)\n    assert candidate([58,44,56])==(58,44,56)\n\ncheck(list_tuple)",
+      "context": "{\"function_name\": \"list_tuple\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 588,
+      "prompt": "### Prompt\nWrite a python function to find the difference between largest and smallest value in a given list.\n\n### Signature\ndef big_diff(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef big_diff(nums):\n    return max(nums) - min(nums)",
+      "test_content": "from llm_output import big_diff\n\ndef check(candidate):\n    assert candidate([1,2,3,4]) == 3\n    assert candidate([4,5,12]) == 8\n    assert candidate([9,2,3]) == 7\n\ncheck(big_diff)",
+      "context": "{\"function_name\": \"big_diff\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 589,
+      "prompt": "### Prompt\nWrite a function to find perfect squares between two given numbers.\n\n### Signature\ndef perfect_squares(a, b):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef perfect_squares(a, b):\n    start = math.ceil(math.sqrt(a))\n    end = math.floor(math.sqrt(b))\n    return [i**2 for i in range(start, end + 1)]",
+      "test_content": "from llm_output import perfect_squares\n\ndef check(candidate):\n    assert candidate(1,30)==[1, 4, 9, 16, 25]\n    assert candidate(50,100)==[64, 81, 100]\n    assert candidate(100,200)==[100, 121, 144, 169, 196]\n\ncheck(perfect_squares)",
+      "context": "{\"function_name\": \"perfect_squares\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 591,
+      "prompt": "### Prompt\nWrite a python function to interchange the first and last elements in a list.\n\n### Signature\ndef swap_List(newList):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def swap_List(newList):\n    # Storing the first and last element\n    temp = newList[0]\n    newList[0] = newList[-1]\n    newList[-1] = temp\n    return newList",
+      "test_content": "from llm_output import swap_List\n\ndef check(candidate):\n    assert candidate([12, 35, 9, 56, 24]) == [24, 35, 9, 56, 12]\n    assert candidate([1, 2, 3]) == [3, 2, 1]\n    assert candidate([4, 5, 6]) == [6, 5, 4]\n\ncheck(swap_List)",
+      "context": "{\"function_name\": \"swap_List\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 593,
+      "prompt": "### Prompt\nWrite a function to remove leading zeroes from an ip address.\n\n### Signature\ndef removezero_ip(ip):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef removezero_ip(ip):\n    return re.sub(r'\\b0+(\\d)', r'\\1', ip)",
+      "test_content": "from llm_output import removezero_ip\n\ndef check(candidate):\n    assert candidate(\"216.08.094.196\")==(\"\"\"216.8.94.196\"\"\")\n    assert candidate(\"12.01.024\")==(\"\"\"12.1.24\"\"\")\n    assert candidate(\"216.08.094.0196\")==(\"\"\"216.8.94.196\"\"\")\n\ncheck(removezero_ip)",
+      "context": "{\"function_name\": \"removezero_ip\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 594,
+      "prompt": "### Prompt\nWrite a function to find the difference of the first even and first odd number of a given list.\n\n### Signature\ndef diff_even_odd(list1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef diff_even_odd(list1):\n    first_even = math.inf\n    first_odd = math.inf\n    \n    for num in list1:\n        if num % 2 == 0 and num < first_even:\n            first_even = num\n        elif num % 2 != 0 and num < first_odd:\n            first_odd = num\n    \n    if first_even == math.inf or first_odd == math.inf:\n        return None  # Return None if there are no even or odd numbers in the list\n    \n    return first_even - first_odd",
+      "test_content": "from llm_output import diff_even_odd\n\ndef check(candidate):\n    assert candidate([1,3,5,7,4,1,6,8])==3\n    assert candidate([1,2,3,4,5,6,7,8,9,10])==1\n    assert candidate([1,5,7,9,10])==9\n\ncheck(diff_even_odd)",
+      "context": "{\"function_name\": \"diff_even_odd\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 598,
+      "prompt": "### Prompt\nWrite a function to check whether the given number is armstrong or not.\n\n### Signature\ndef armstrong_number(number):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def armstrong_number(number):\n    # Convert the number to a string to easily iterate over digits\n    num_str = str(number)\n    # Calculate the number of digits\n    num_digits = len(num_str)\n    # Calculate the sum of each digit raised to the power of the number of digits\n    sum_of_powers = sum(int(digit) ** num_digits for digit in num_str)\n    # Check if the sum of powers is equal to the original number\n    return sum_of_powers == number",
+      "test_content": "from llm_output import armstrong_number\n\ndef check(candidate):\n    assert candidate(153)==True\n    assert candidate(259)==False\n    assert candidate(4458)==False\n\ncheck(armstrong_number)",
+      "context": "{\"function_name\": \"armstrong_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 599,
+      "prompt": "### Prompt\nWrite a function to find sum and average of first n natural numbers.\n\n### Signature\ndef sum_average(number):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef sum_average(number):\n    sum_natural = number * (number + 1) // 2\n    average = sum_natural / number\n    return sum_natural, average",
+      "test_content": "from llm_output import sum_average\n\ndef check(candidate):\n    assert candidate(10)==(55, 5.5)\n    assert candidate(15)==(120, 8.0)\n    assert candidate(20)==(210, 10.5)\n\ncheck(sum_average)",
+      "context": "{\"function_name\": \"sum_average\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 600,
+      "prompt": "### Prompt\nWrite a python function to check whether the given number is even or not.\n\n### Signature\ndef is_Even(n) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def is_Even(n):\n    return n % 2 == 0",
+      "test_content": "from llm_output import is_Even\n\ndef check(candidate):\n    assert candidate(1) == False\n    assert candidate(2) == True\n    assert candidate(3) == False\n\ncheck(is_Even)",
+      "context": "{\"function_name\": \"is_Even\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 602,
+      "prompt": "### Prompt\nWrite a python function to find the first repeated character in a given string.\n\n### Signature\ndef first_repeated_char(str1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import collections\n\ndef first_repeated_char(str1):\n    char_count = collections.Counter(str1)\n    for char in str1:\n        if char_count[char] > 1:\n            return char\n    return None",
+      "test_content": "from llm_output import first_repeated_char\n\ndef check(candidate):\n    assert candidate(\"abcabc\") == \"a\"\n    assert candidate(\"abc\") == None\n    assert candidate(\"123123\") == \"1\"\n\ncheck(first_repeated_char)",
+      "context": "{\"function_name\": \"first_repeated_char\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 605,
+      "prompt": "### Prompt\nWrite a function to check if the given integer is a prime number.\n\n### Signature\ndef prime_num(num):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef prime_num(num):\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    i = 5\n    while i * i <= num:\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n        i += 6\n    return True",
+      "test_content": "from llm_output import prime_num\n\ndef check(candidate):\n    assert candidate(13)==True\n    assert candidate(7)==True\n    assert candidate(-1010)==False\n\ncheck(prime_num)",
+      "context": "{\"function_name\": \"prime_num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 606,
+      "prompt": "### Prompt\nWrite a function to convert degrees to radians.\n\n### Signature\ndef radian_degree(degree):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef radian_degree(degree):\n    return degree * (math.pi / 180)",
+      "test_content": "from llm_output import radian_degree\n\ndef check(candidate):\n    assert candidate(90)==1.5707963267948966\n    assert candidate(60)==1.0471975511965976\n    assert candidate(120)==2.0943951023931953\n\ncheck(radian_degree)",
+      "context": "{\"function_name\": \"radian_degree\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 607,
+      "prompt": "### Prompt\nWrite a function to search a string for a regex pattern. The function should return the matching subtring, a start index and an end index.\n\n### Signature\ndef find_literals(text, pattern):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef find_literals(text, pattern):\n    match = re.search(pattern, text)\n    if match:\n        return match.group(), match.start(), match.end()\n    else:\n        return None, None, None",
+      "test_content": "from llm_output import find_literals\n\ndef check(candidate):\n    assert candidate('The quick brown fox jumps over the lazy dog.', 'fox') == ('fox', 16, 19)\n    assert candidate('Its been a very crazy procedure right', 'crazy') == ('crazy', 16, 21)\n    assert candidate('Hardest choices required strongest will', 'will') == ('will', 35, 39)\n\ncheck(find_literals)",
+      "context": "{\"function_name\": \"find_literals\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 608,
+      "prompt": "### Prompt\nWrite a python function to find nth bell number.\n\n### Signature\ndef bell_Number(n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef bell_Number(n):\n    B = [[0 for i in range(n+1)] for i in range(n+1)]\n    B[0][0] = 1\n    for i in range(1, n+1):\n        B[i][0] = B[i-1][i-1]\n        for j in range(1, i+1):\n            B[i][j] = B[i-1][j-1] + B[i][j-1]\n    return B[n][0]",
+      "test_content": "from llm_output import bell_Number\n\ndef check(candidate):\n    assert candidate(2) == 2\n    assert candidate(3) == 5\n    assert candidate(4) == 15\n\ncheck(bell_Number)",
+      "context": "{\"function_name\": \"bell_Number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 611,
+      "prompt": "### Prompt\nWrite a function which given a matrix represented as a list of lists returns the max of the n'th column.\n\n### Signature\ndef max_of_nth(test_list, N):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import numpy as np\n\ndef max_of_nth(test_list, N):\n    return np.max(np.array(test_list)[:, N])",
+      "test_content": "from llm_output import max_of_nth\n\ndef check(candidate):\n    assert candidate([[5, 6, 7], [1, 3, 5], [8, 9, 19]], 2) == 19\n    assert candidate([[6, 7, 8], [2, 4, 6], [9, 10, 20]], 1) == 10\n    assert candidate([[7, 8, 9], [3, 5, 7], [10, 11, 21]], 1) == 11\n\ncheck(max_of_nth)",
+      "context": "{\"function_name\": \"max_of_nth\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 614,
+      "prompt": "### Prompt\nWrite a function to find the cumulative sum of all the values that are present in the given tuple list.\n\n### Signature\ndef cummulative_sum(test_list):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import itertools\n\ndef cummulative_sum(test_list):\n    return sum(itertools.chain.from_iterable(test_list))",
+      "test_content": "from llm_output import cummulative_sum\n\ndef check(candidate):\n    assert candidate([(1, 3), (5, 6, 7), (2, 6)]) == 30\n    assert candidate([(2, 4), (6, 7, 8), (3, 7)]) == 37\n    assert candidate([(3, 5), (7, 8, 9), (4, 8)]) == 44\n\ncheck(cummulative_sum)",
+      "context": "{\"function_name\": \"cummulative_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 616,
+      "prompt": "### Prompt\nWrite a function which takes two tuples of the same length and performs the element wise modulo.\n\n### Signature\ndef tuple_modulo(test_tup1, test_tup2):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import operator\n\ndef tuple_modulo(test_tup1, test_tup2):\n    return tuple(map(operator.mod, test_tup1, test_tup2))",
+      "test_content": "from llm_output import tuple_modulo\n\ndef check(candidate):\n    assert candidate((10, 4, 5, 6), (5, 6, 7, 5)) == (0, 4, 5, 1)\n    assert candidate((11, 5, 6, 7), (6, 7, 8, 6)) == (5, 5, 6, 1)\n    assert candidate((12, 6, 7, 8), (7, 8, 9, 7)) == (5, 6, 7, 1)\n\ncheck(tuple_modulo)",
+      "context": "{\"function_name\": \"tuple_modulo\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 618,
+      "prompt": "### Prompt\nWrite a function to divide two lists element wise.\n\n### Signature\ndef div_list(nums1,nums2):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import operator\n\ndef div_list(nums1, nums2):\n    return list(map(operator.truediv, nums1, nums2))",
+      "test_content": "from llm_output import div_list\n\ndef check(candidate):\n    assert candidate([4,5,6],[1, 2, 3])==[4.0,2.5,2.0]\n    assert candidate([3,2],[1,4])==[3.0, 0.5]\n    assert candidate([90,120],[50,70])==[1.8, 1.7142857142857142]\n\ncheck(div_list)",
+      "context": "{\"function_name\": \"div_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 619,
+      "prompt": "### Prompt\nWrite a function to move all the numbers to the end of the given string.\n\n### Signature\ndef move_num(test_str):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef move_num(test_str):\n    # Extract all numbers and non-numbers\n    nums = re.findall(r'\\d', test_str)\n    non_nums = re.findall(r'\\D', test_str)\n    \n    # Combine non-numbers and numbers\n    result = ''.join(non_nums + nums)\n    return result",
+      "test_content": "from llm_output import move_num\n\ndef check(candidate):\n    assert candidate('I1love143you55three3000thousand') == 'Iloveyouthreethousand1143553000'\n    assert candidate('Avengers124Assemble') == 'AvengersAssemble124'\n    assert candidate('Its11our12path13to14see15things16do17things') == 'Itsourpathtoseethingsdothings11121314151617'\n\ncheck(move_num)",
+      "context": "{\"function_name\": \"move_num\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 620,
+      "prompt": "### Prompt\nWrite a function to find the size of the largest subset of a list of numbers so that every pair is divisible.\n\n### Signature\ndef largest_subset(a):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from typing import List\n\ndef largest_subset(a: List[int]) -> int:\n    if not a:\n        return 0\n    \n    a.sort()\n    n = len(a)\n    dp = [1] * n\n    \n    for i in range(1, n):\n        for j in range(i):\n            if a[i] % a[j] == 0:\n                dp[i] = max(dp[i], dp[j] + 1)\n    \n    return max(dp)",
+      "test_content": "from llm_output import largest_subset\n\ndef check(candidate):\n    assert candidate([ 1, 3, 6, 13, 17, 18 ]) == 4\n    assert candidate([10, 5, 3, 15, 20]) == 3\n    assert candidate([18, 1, 3, 6, 13, 17]) == 4\n\ncheck(largest_subset)",
+      "context": "{\"function_name\": \"largest_subset\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 623,
+      "prompt": "### Prompt\nWrite a function to compute the n-th power of each number in a list.\n\n### Signature\ndef nth_nums(nums,n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef nth_nums(nums,n):\n    return [math.pow(num, n) for num in nums]",
+      "test_content": "from llm_output import nth_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],2)==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n    assert candidate([10,20,30],3)==([1000, 8000, 27000])\n    assert candidate([12,15],5)==([248832, 759375])\n\ncheck(nth_nums)",
+      "context": "{\"function_name\": \"nth_nums\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 625,
+      "prompt": "### Prompt\nWrite a python function to interchange the first and last element in a given list.\n\n### Signature\ndef swap_List(newList):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def swap_List(newList):\n    # Storing the first and last element\n    temp = newList[0]\n    newList[0] = newList[-1]\n    newList[-1] = temp\n    return newList",
+      "test_content": "from llm_output import swap_List\n\ndef check(candidate):\n    assert candidate([1,2,3]) == [3,2,1]\n    assert candidate([1,2,3,4,4]) == [4,2,3,4,1]\n    assert candidate([4,5,6]) == [6,5,4]\n\ncheck(swap_List)",
+      "context": "{\"function_name\": \"swap_List\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 628,
+      "prompt": "### Prompt\nWrite a function to replace all spaces in the given string with '%20'.\n\n### Signature\ndef replace_spaces(string):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import urllib.parse\n\ndef replace_spaces(string):\n    return urllib.parse.quote(string, safe='')",
+      "test_content": "from llm_output import replace_spaces\n\ndef check(candidate):\n    assert candidate(\"My Name is Dawood\") == \"\"\"My%20Name%20is%20Dawood\"\"\"\n    assert candidate(\"I am a Programmer\") == \"\"\"I%20am%20a%20Programmer\"\"\"\n    assert candidate(\"I love Coding\") == \"\"\"I%20love%20Coding\"\"\"\n\ncheck(replace_spaces)",
+      "context": "{\"function_name\": \"replace_spaces\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 629,
+      "prompt": "### Prompt\nWrite a python function to find even numbers from a list of numbers.\n\n### Signature\ndef Split(list):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef Split(list):\n    even_numbers = [num for num in list if num % 2 == 0]\n    return even_numbers",
+      "test_content": "from llm_output import Split\n\ndef check(candidate):\n    assert candidate([1,2,3,4,5]) == [2,4]\n    assert candidate([4,5,6,7,8,0,1]) == [4,6,8,0]\n    assert candidate ([8,12,15,19]) == [8,12]\n\ncheck(Split)",
+      "context": "{\"function_name\": \"Split\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 632,
+      "prompt": "### Prompt\nWrite a python function to move all zeroes to the end of the given list.\n\n### Signature\ndef move_zero(num_list):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def move_zero(num_list):\n    non_zero_index = 0\n    for i in range(len(num_list)):\n        if num_list[i] != 0:\n            num_list[non_zero_index], num_list[i] = num_list[i], num_list[non_zero_index]\n            non_zero_index += 1\n    return num_list",
+      "test_content": "from llm_output import move_zero\n\ndef check(candidate):\n    assert candidate([1,0,2,0,3,4]) == [1,2,3,4,0,0]\n    assert candidate([2,3,2,0,0,4,0,5,0]) == [2,3,2,4,5,0,0,0,0]\n    assert candidate([0,1,0,1,1]) == [1,1,1,0,0]\n\ncheck(move_zero)",
+      "context": "{\"function_name\": \"move_zero\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 633,
+      "prompt": "### Prompt\nWrite a python function to find the sum of xor of all pairs of numbers in the given list.\n\n### Signature\ndef pair_xor_Sum(arr,n) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def pair_xor_Sum(arr, n):\n    total_xor = 0\n    for i in range(n):\n        for j in range(i + 1, n):\n            total_xor += arr[i] ^ arr[j]\n    return total_xor",
+      "test_content": "from llm_output import pair_xor_Sum\n\ndef check(candidate):\n    assert candidate([5,9,7,6],4) == 47\n    assert candidate([7,3,5],3) == 12\n    assert candidate([7,3],2) == 4\n\ncheck(pair_xor_Sum)",
+      "context": "{\"function_name\": \"pair_xor_Sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 635,
+      "prompt": "### Prompt\nWrite a function to sort the given list.\n\n### Signature\ndef heap_sort(iterable):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import heapq\n\ndef heap_sort(iterable):\n    h = []\n    for value in iterable:\n        heapq.heappush(h, value)\n    return [heapq.heappop(h) for _ in range(len(h))]",
+      "test_content": "from llm_output import heap_sort\n\ndef check(candidate):\n    assert candidate([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])==[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n    assert candidate([25, 35, 22, 85, 14, 65, 75, 25, 58])==[14, 22, 25, 25, 35, 58, 65, 75, 85]\n    assert candidate( [7, 1, 9, 5])==[1,5,7,9]\n\ncheck(heap_sort)",
+      "context": "{\"function_name\": \"heap_sort\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 637,
+      "prompt": "### Prompt\nWrite a function to check whether the given amount has no profit and no loss\n\n### Signature\ndef noprofit_noloss(actual_cost,sale_amount):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef noprofit_noloss(actual_cost, sale_amount):\n    return math.isclose(actual_cost, sale_amount, rel_tol=1e-9)",
+      "test_content": "from llm_output import noprofit_noloss\n\ndef check(candidate):\n    assert candidate(1500,1200)==False\n    assert candidate(100,100)==True\n    assert candidate(2000,5000)==False\n\ncheck(noprofit_noloss)",
+      "context": "{\"function_name\": \"noprofit_noloss\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 638,
+      "prompt": "### Prompt\nWrite a function to calculate the wind chill index rounded to the next integer given the wind velocity in km/h and a temperature in celsius.\n\n### Signature\ndef wind_chill(v,t):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef wind_chill(v, t):\n    return round(13.12 + 0.6215*t -  11.37*math.pow(v, 0.16) + 0.3965*t*math.pow(v, 0.16))",
+      "test_content": "from llm_output import wind_chill\n\ndef check(candidate):\n    assert candidate(120,35)==40\n    assert candidate(40,20)==19\n    assert candidate(10,8)==6\n\ncheck(wind_chill)",
+      "context": "{\"function_name\": \"wind_chill\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 639,
+      "prompt": "### Prompt\nWrite a function to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.\n\n### Signature\ndef sample_nam(sample_names):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef sample_nam(sample_names):\n    total_length = 0\n    for name in sample_names:\n        if re.match(r'^[A-Z]', name):\n            total_length += len(name)\n    return total_length",
+      "test_content": "from llm_output import sample_nam\n\ndef check(candidate):\n    assert candidate(['sally', 'Dylan', 'rebecca', 'Diana', 'Joanne', 'keith'])==16\n    assert candidate([\"php\", \"res\", \"Python\", \"abcd\", \"Java\", \"aaa\"])==10\n    assert candidate([\"abcd\", \"Python\", \"abba\", \"aba\"])==6\n\ncheck(sample_nam)",
+      "context": "{\"function_name\": \"sample_nam\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 720,
+      "prompt": "### Prompt\nWrite a function to add a dictionary to the tuple. The output should be a tuple.\n\n### Signature\ndef add_dict_to_tuple(test_tup, test_dict):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import collections\n\ndef add_dict_to_tuple(test_tup, test_dict):\n    # Convert the tuple to a list to allow modification\n    temp_list = list(test_tup)\n    # Append the dictionary to the list\n    temp_list.append(test_dict)\n    # Convert the list back to a tuple\n    result = tuple(temp_list)\n    return result",
+      "test_content": "from llm_output import add_dict_to_tuple\n\ndef check(candidate):\n    assert candidate((4, 5, 6), {\"MSAM\" : 1, \"is\" : 2, \"best\" : 3} ) == (4, 5, 6, {\"\"\"MSAM\"\"\": 1, \"\"\"is\"\"\": 2, \"\"\"best\"\"\": 3})\n    assert candidate((1, 2, 3), {\"UTS\" : 2, \"is\" : 3, \"Worst\" : 4} ) == (1, 2, 3, {\"\"\"UTS\"\"\": 2, \"\"\"is\"\"\": 3, \"\"\"Worst\"\"\": 4})\n    assert candidate((8, 9, 10), {\"POS\" : 3, \"is\" : 4, \"Okay\" : 5} ) == (8, 9, 10, {\"\"\"POS\"\"\": 3, \"\"\"is\"\"\": 4, \"\"\"Okay\"\"\": 5})\n\ncheck(add_dict_to_tuple)",
+      "context": "{\"function_name\": \"add_dict_to_tuple\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 723,
+      "prompt": "### Prompt\nThe input is defined as two lists of the same length. Write a function to count indices where the lists have the same values.\n\n### Signature\ndef count_same_pair(nums1, nums2):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from typing import List\n\ndef count_same_pair(nums1: List[int], nums2: List[int]) -> int:\n    return sum(1 for a, b in zip(nums1, nums2) if a == b)",
+      "test_content": "from llm_output import count_same_pair\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8],[2, 2, 3, 1, 2, 6, 7, 9])==4\n    assert candidate([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8],[2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8])==11\n    assert candidate([2, 4, -6, -9, 11, -12, 14, -5, 17],[2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8])==1\n    assert candidate([0, 1, 1, 2],[0, 1, 2, 2])==3\n\ncheck(count_same_pair)",
+      "context": "{\"function_name\": \"count_same_pair\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 724,
+      "prompt": "### Prompt\nWrite a function that takes base and power as arguments and calculate the sum of all digits of the base to the specified power.\n\n### Signature\ndef power_base_sum(base, power):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef power_base_sum(base, power):\n    result = base ** power\n    return sum(int(digit) for digit in str(result))",
+      "test_content": "from llm_output import power_base_sum\n\ndef check(candidate):\n    assert candidate(2,100)==115\n    assert candidate(8,10)==37\n    assert candidate(8,15)==62\n    assert candidate(3,3)==9\n\ncheck(power_base_sum)",
+      "context": "{\"function_name\": \"power_base_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 725,
+      "prompt": "### Prompt\nWrite a function to extract values between quotation marks \" \" of the given string.\n\n### Signature\ndef extract_quotation(text1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef extract_quotation(text1):\n    return re.findall(r'\"(.*?)\"', text1)",
+      "test_content": "from llm_output import extract_quotation\n\n\ndef check(candidate):\n    assert extract_quotation('Cortex \"A53\" Based \"multi\" tasking \"Processor\"') == ['A53', 'multi', 'Processor']\n    assert extract_quotation('Cast your \"favorite\" entertainment \"apps\"') == ['favorite', 'apps']\n    assert extract_quotation('Watch content \"4k Ultra HD\" resolution with \"HDR 10\" Support') == ['4k Ultra HD', 'HDR 10']\n    assert extract_quotation(\"Watch content '4k Ultra HD' resolution with 'HDR 10' Support\") == []\n\n\ncheck(extract_quotation)",
+      "context": "{\"function_name\": \"extract_quotation\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 726,
+      "prompt": "### Prompt\nWrite a function that takes as input a tuple of numbers (t_1,...,t_{N+1}) and returns a tuple of length N where the i-th element of the tuple is equal to t_i * t_{i+1}.\n\n### Signature\ndef multiply_elements(test_tup):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import typing\n\ndef multiply_elements(test_t_t: typing.Tuple[int, ...]) -> typing.Tuple[int, ...]:\n    return tuple(test_t_t[i] * test_t_t[i+1] for i in range(len(test_t_t)-1))",
+      "test_content": "from llm_output import multiply_elements\n\ndef check(candidate):\n    assert candidate((1, 5, 7, 8, 10)) == (5, 35, 56, 80)\n    assert candidate((2, 4, 5, 6, 7)) == (8, 20, 30, 42)\n    assert candidate((12, 13, 14, 9, 15)) == (156, 182, 126, 135)\n    assert candidate((12,)) == ()\n\ncheck(multiply_elements)",
+      "context": "{\"function_name\": \"multiply_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 728,
+      "prompt": "### Prompt\nWrite a function takes as input two lists [a_1,...,a_n], [b_1,...,b_n] and returns [a_1+b_1,...,a_n+b_n].\n\n### Signature\ndef sum_list(lst1,lst2):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import itertools\n\ndef sum_list(lst1, lst2):\n    return [sum(pair) for pair in itertools.zip_longest(lst1, lst2, fillvalue=0)]",
+      "test_content": "from llm_output import sum_list\n\ndef check(candidate):\n    assert candidate([10,20,30],[15,25,35])==[25,45,65]\n    assert candidate([1,2,3],[5,6,7])==[6,8,10]\n    assert candidate([15,20,30],[15,45,75])==[30,65,105]\n\ncheck(sum_list)",
+      "context": "{\"function_name\": \"sum_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 730,
+      "prompt": "### Prompt\nWrite a function to remove consecutive duplicates of a given list.\n\n### Signature\ndef consecutive_duplicates(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from typing import List\n\ndef consecutive_duplicates(nums: List[int]) -> List[int]:\n    if not nums:\n        return []\n    \n    result = [nums[0]]\n    for num in nums[1:]:\n        if num != result[-1]:\n            result.append(num)\n    \n    return result",
+      "test_content": "from llm_output import consecutive_duplicates\n\ndef check(candidate):\n    assert candidate([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4 ])==[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4]\n    assert candidate([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10])==[10, 15, 19, 18, 17, 26, 17, 18, 10]\n    assert candidate(['a', 'a', 'b', 'c', 'd', 'd'])==['a', 'b', 'c', 'd']\n    assert candidate(['a', 'a', 'b', 'c', 'd', 'd', 'a', 'a'])==['a', 'b', 'c', 'd', 'a']\n\ncheck(consecutive_duplicates)",
+      "context": "{\"function_name\": \"consecutive_duplicates\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 731,
+      "prompt": "### Prompt\nWrite a function to find the lateral surface area of a cone given radius r and the height h.\n\n### Signature\ndef lateralsurface_cone(r,h):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef lateralsurface_cone(r, h):\n    slant_height = math.sqrt(r**2 + h**2)\n    lateral_surface_area = math.pi * r * slant_height\n    return lateral_surface_area",
+      "test_content": "from llm_output import lateralsurface_cone\n\ndef check(candidate):\n    assert candidate(5,12)==204.20352248333654\n    assert candidate(10,15)==566.3586699569488\n    assert candidate(19,17)==1521.8090132193388\n\ncheck(lateralsurface_cone)",
+      "context": "{\"function_name\": \"lateralsurface_cone\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 732,
+      "prompt": "### Prompt\nWrite a function to replace all occurrences of spaces, commas, or dots with a colon.\n\n### Signature\ndef replace_specialchar(text):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef replace_specialchar(text):\n    return re.sub(r'[ ,.]', ':', text)",
+      "test_content": "from llm_output import replace_specialchar\n\ndef check(candidate):\n    assert candidate('Python language, Programming language.')==('Python:language::Programming:language:')\n    assert candidate('a b c,d e f')==('a:b:c:d:e:f')\n    assert candidate('ram reshma,ram rahim')==('ram:reshma:ram:rahim')\n\ncheck(replace_specialchar)",
+      "context": "{\"function_name\": \"replace_specialchar\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 733,
+      "prompt": "### Prompt\nWrite a function to find the index of the first occurrence of a given number in a sorted array.\n\n### Signature\ndef find_first_occurrence(A, x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import bisect\n\ndef find_first_occurrence(A, x):\n    index = bisect.bisect_left(A, x)\n    if index != len(A) and A[index] == x:\n        return index\n    else:\n        return -1",
+      "test_content": "from llm_output import find_first_occurrence\n\ndef check(candidate):\n    assert candidate([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1\n    assert candidate([2, 3, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 2\n    assert candidate([2, 4, 1, 5, 6, 6, 8, 9, 9, 9], 6) == 4\n\ncheck(find_first_occurrence)",
+      "context": "{\"function_name\": \"find_first_occurrence\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 736,
+      "prompt": "### Prompt\nWrite a function to locate the left insertion point for a specified value in sorted order. https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-data-structure-exercise-24.php\n\n### Signature\ndef left_insertion(a, x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import bisect\n\ndef left_insertion(a, x):\n    return bisect.bisect_left(a, x)",
+      "test_content": "from llm_output import left_insertion\n\ndef check(candidate):\n    assert candidate([1,2,4,5],6)==4\n    assert candidate([1,2,4,5],3)==2\n    assert candidate([1,2,4,5],7)==4\n\ncheck(left_insertion)",
+      "context": "{\"function_name\": \"left_insertion\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 737,
+      "prompt": "### Prompt\nWrite a function to check whether the given string is starting with a vowel or not using regex.\n\n### Signature\ndef check_str(string):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef check_str(string):\n    pattern = r'^[aeiouAEIOU]'\n    if re.match(pattern, string):\n        return True\n    else:\n        return False",
+      "test_content": "from llm_output import check_str\n\ndef check(candidate):\n    assert candidate(\"annie\")\n    assert not candidate(\"dawood\")\n    assert candidate(\"Else\")\n\ncheck(check_str)",
+      "context": "{\"function_name\": \"check_str\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 741,
+      "prompt": "### Prompt\nWrite a python function to check whether all the characters are same or not.\n\n### Signature\ndef all_Characters_Same(s) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def all_Characters_Same(s):\n    return len(set(s)) == 1",
+      "test_content": "from llm_output import all_Characters_Same\n\ndef check(candidate):\n    assert candidate(\"python\") == False\n    assert candidate(\"aaa\") == True\n    assert candidate(\"data\") == False\n\ncheck(all_Characters_Same)",
+      "context": "{\"function_name\": \"all_Characters_Same\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 743,
+      "prompt": "### Prompt\nWrite a function to rotate a given list by specified number of items to the right direction. https://www.geeksforgeeks.org/python-program-right-rotate-list-n/\n\n### Signature\ndef rotate_right(list, m):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def rotate_right(lst, m):\n    return lst[-m:] + lst[:-m]",
+      "test_content": "from llm_output import rotate_right\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3)==[8, 9, 10, 1, 2, 3, 4, 5, 6, 7]\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],2)==[9, 10, 1, 2, 3, 4, 5, 6, 7, 8]\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],5)==[6, 7, 8, 9, 10, 1, 2, 3, 4, 5]\n\ncheck(rotate_right)",
+      "context": "{\"function_name\": \"rotate_right\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 744,
+      "prompt": "### Prompt\nWrite a function to check if the given tuple has any none value or not.\n\n### Signature\ndef check_none(test_tup):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef check_none(test_tup):\n    return any(item is None for item in test_tup)",
+      "test_content": "from llm_output import check_none\n\ndef check(candidate):\n    assert candidate((10, 4, 5, 6, None)) == True\n    assert candidate((7, 8, 9, 11, 14)) == False\n    assert candidate((1, 2, 3, 4, None)) == True\n\ncheck(check_none)",
+      "context": "{\"function_name\": \"check_none\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 745,
+      "prompt": "### Prompt\nWrite a function to find numbers within a given range from startnum ti endnum where every number is divisible by every digit it contains. https://www.w3resource.com/python-exercises/lambda/python-lambda-exercise-24.php\n\n### Signature\ndef divisible_by_digits(startnum, endnum):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from typing import List\n\ndef divisible_by_digits(startnum: int, endnum: int) -> List[int]:\n    return list(filter(lambda x: all(int(digit) != 0 and x % int(digit) == 0 for digit in str(x)), range(startnum, endnum + 1)))",
+      "test_content": "from llm_output import divisible_by_digits\n\ndef check(candidate):\n    assert candidate(1,22)==[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]\n    assert candidate(1,15)==[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15]\n    assert candidate(20,25)==[22, 24]\n\ncheck(divisible_by_digits)",
+      "context": "{\"function_name\": \"divisible_by_digits\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 747,
+      "prompt": "### Prompt\nWrite a function to find the longest common subsequence for the given three string sequence. https://www.geeksforgeeks.org/lcs-longest-common-subsequence-three-strings/\n\n### Signature\ndef lcs_of_three(X, Y, Z):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def lcs_of_three(X, Y, Z):\n    m = len(X)\n    n = len(Y)\n    o = len(Z)\n    \n    # Create a 3D array to store lengths of longest common subsequence.\n    L = [[[0 for k in range(o+1)] for j in range(n+1)] for i in range(m+1)]\n    \n    # Build the L[][][] in bottom-up fashion\n    for i in range(m+1):\n        for j in range(n+1):\n            for k in range(o+1):\n                if i == 0 or j == 0 or k == 0:\n                    L[i][j][k] = 0\n                elif X[i-1] == Y[j-1] == Z[k-1]:\n                    L[i][j][k] = L[i-1][j-1][k-1] + 1\n                else:\n                    L[i][j][k] = max(max(L[i-1][j][k], L[i][j-1][k]), L[i][j][k-1])\n    \n    # L[m][n][o] contains the length of LCS for X[0..m-1], Y[0..n-1] and Z[0..o-1]\n    return L[m][n][o]",
+      "test_content": "from llm_output import lcs_of_three\n\ndef check(candidate):\n    assert candidate('AGGT12', '12TXAYB', '12XBA') == 2\n    assert candidate('Reels', 'Reelsfor', 'ReelsforReels') == 5\n    assert candidate('abcd1e2', 'bc12ea', 'bd1ea') == 3\n\ncheck(lcs_of_three)",
+      "context": "{\"function_name\": \"lcs_of_three\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 748,
+      "prompt": "### Prompt\nWrite a function to put spaces between words starting with capital letters in a given string.\n\n### Signature\ndef capital_words_spaces(str1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef capital_words_spaces(str1):\n    return re.sub(r'([a-z])([A-Z])', r'\\1 \\2', str1)",
+      "test_content": "from llm_output import capital_words_spaces\n\ndef check(candidate):\n    assert candidate(\"Python\") == \"\"\"Python\"\"\"\n    assert candidate(\"PythonProgrammingExamples\") == \"\"\"Python Programming Examples\"\"\"\n    assert candidate(\"GetReadyToBeCodingFreak\") == \"\"\"Get Ready To Be Coding Freak\"\"\"\n\ncheck(capital_words_spaces)",
+      "context": "{\"function_name\": \"capital_words_spaces\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 754,
+      "prompt": "### Prompt\nWe say that an element is common for lists l1, l2, l3 if it appears in all three lists under the same index. Write a function to find common elements from three lists. The function should return a list.\n\n### Signature\ndef extract_index_list(l1, l2, l3):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from typing import List\n\ndef extract_index_list(l1: List[int], l2: List[int], l3: List[int]) -> List[int]:\n    common_elements = []\n    for i in range(min(len(l1), len(l2), len(l3))):\n        if l1[i] == l2[i] == l3[i]:\n            common_elements.append(l1[i])\n    return common_elements",
+      "test_content": "from llm_output import extract_index_list\n\ndef check(candidate):\n    assert candidate([1, 1, 3, 4, 5, 6, 7],[0, 1, 2, 3, 4, 5, 7],[0, 1, 2, 3, 4, 5, 7])==[1, 7]\n    assert candidate([1, 1, 3, 4, 5, 6, 7],[0, 1, 2, 3, 4, 6, 5],[0, 1, 2, 3, 4, 6, 7])==[1, 6]\n    assert candidate([1, 1, 3, 4, 6, 5, 6],[0, 1, 2, 3, 4, 5, 7],[0, 1, 2, 3, 4, 5, 7])==[1, 5]\n    assert candidate([1, 2, 3, 4, 6, 6, 6],[0, 1, 2, 3, 4, 5, 7],[0, 1, 2, 3, 4, 5, 7])==[]\n\ncheck(extract_index_list)",
+      "context": "{\"function_name\": \"extract_index_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 757,
+      "prompt": "### Prompt\nWrite a function to count the pairs of reverse strings in the given string list. https://www.geeksforgeeks.org/python-program-to-count-the-pairs-of-reverse-strings/\n\n### Signature\ndef count_reverse_pairs(test_list):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from collections import Counter\n\ndef count_reverse_pairs(test_list):\n    count = 0\n    for i in range(len(test_list)):\n        for j in range(i + 1, len(test_list)):\n            if test_list[i] == test_list[j][::-1]:\n                count += 1\n    return count",
+      "test_content": "from llm_output import count_reverse_pairs\n\ndef check(candidate):\n    assert candidate([\"julia\", \"best\", \"tseb\", \"for\", \"ailuj\"])== 2\n    assert candidate([\"geeks\", \"best\", \"for\", \"skeeg\"]) == 1\n    assert candidate([\"makes\", \"best\", \"sekam\", \"for\", \"rof\"]) == 2\n\ncheck(count_reverse_pairs)",
+      "context": "{\"function_name\": \"count_reverse_pairs\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 758,
+      "prompt": "### Prompt\nWrite a function to count lists within a list. The function should return a dictionary where every list is converted to a tuple and the value of such tuple is the number of its occurencies in the original list.\n\n### Signature\ndef unique_sublists(list1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from collections import defaultdict\n\ndef unique_sublists(list1):\n    sublist_count = defaultdict(int)\n    for sublist in list1:\n        tuple_sublist = tuple(sublist)\n        sublist_count[tuple_sublist] += 1\n    return dict(sublist_count)",
+      "test_content": "from llm_output import unique_sublists\n\ndef check(candidate):\n    assert candidate([[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]] )=={(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}\n    assert candidate([['green', 'orange'], ['black'], ['green', 'orange'], ['white']])=={('green', 'orange'): 2, ('black',): 1, ('white',): 1}\n    assert candidate([[10, 20, 30, 40], [60, 70, 50, 50], [90, 100, 200]])=={(10, 20, 30, 40): 1, (60, 70, 50, 50): 1, (90, 100, 200): 1}\n    assert candidate([['john']])=={('john',): 1}\n\ncheck(unique_sublists)",
+      "context": "{\"function_name\": \"unique_sublists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 759,
+      "prompt": "### Prompt\nWrite a function to check whether a given string is a decimal number with a precision of 2.\n\n### Signature\ndef is_decimal(num):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef is_decimal(num):\n    decimal_pattern = re.compile(r\"^\\d+(\\.\\d{1,2})?$\")\n    return bool(decimal_pattern.match(num))",
+      "test_content": "from llm_output import is_decimal\n\ndef check(candidate):\n    assert candidate('123.11')==True\n    assert candidate('e666.86')==False\n    assert candidate('3.124587')==False\n    assert candidate('1.11')==True\n    assert candidate('1.1.11')==False\n\ncheck(is_decimal)",
+      "context": "{\"function_name\": \"is_decimal\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 760,
+      "prompt": "### Prompt\nWrite a python function to check whether a list of numbers contains only one distinct element or not.\n\n### Signature\ndef unique_Element(arr):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from typing import List\n\ndef unique_Element(arr: List[int]) -> bool:\n    return len(set(arr)) == 1",
+      "test_content": "from llm_output import unique_Element\n\ndef check(candidate):\n    assert candidate([1,1,1]) == True\n    assert candidate([1,2,1,2]) == False\n    assert candidate([1,2,3,4,5]) == False\n\ncheck(unique_Element)",
+      "context": "{\"function_name\": \"unique_Element\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 762,
+      "prompt": "### Prompt\nWrite a function to check whether the given month number contains 30 days or not. Months are given as number from 1 to 12.\n\n### Signature\ndef check_monthnumber_number(monthnum3):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import calendar\n\ndef check_monthnumber_number(monthnum3):\n    return calendar.monthrange(2020, monthnum3)[1] == 30",
+      "test_content": "from llm_output import check_monthnumber_number\n\ndef check(candidate):\n    assert candidate(6)==True\n    assert candidate(2)==False\n    assert candidate(12)==False\n\ncheck(check_monthnumber_number)",
+      "context": "{\"function_name\": \"check_monthnumber_number\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 764,
+      "prompt": "### Prompt\nWrite a python function to count number of digits in a given string.\n\n### Signature\ndef number_ctr(str):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef number_ctr(str):\n    return len(re.findall(r'\\d', str))",
+      "test_content": "from llm_output import number_ctr\n\ndef check(candidate):\n    assert candidate('program2bedone') == 1\n    assert candidate('3wonders') == 1\n    assert candidate('123') == 3\n    assert candidate('3wond-1ers2') == 3\n\ncheck(number_ctr)",
+      "context": "{\"function_name\": \"number_ctr\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 766,
+      "prompt": "### Prompt\nWrite a function to return a list of all pairs of consecutive items in a given list.\n\n### Signature\ndef pair_wise(l1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from typing import List, Tuple\n\ndef pair_wise(l1: List) -> List[Tuple]:\n    return list(zip(l1, l1[1:]))",
+      "test_content": "from llm_output import pair_wise\n\ndef check(candidate):\n    assert candidate([1,1,2,3,3,4,4,5])==[(1, 1), (1, 2), (2, 3), (3, 3), (3, 4), (4, 4), (4, 5)]\n    assert candidate([1,5,7,9,10])==[(1, 5), (5, 7), (7, 9), (9, 10)]\n    assert candidate([5,1,9,7,10])==[(5, 1), (1, 9), (9, 7), (7, 10)]\n    assert candidate([1,2,3,4,5,6,7,8,9,10])==[(1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (8, 9), (9, 10)]\n\ncheck(pair_wise)",
+      "context": "{\"function_name\": \"pair_wise\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 767,
+      "prompt": "### Prompt\nWrite a python function to count the number of pairs whose sum is equal to \u2018sum\u2019. The funtion gets as input a list of numbers and the sum,\n\n### Signature\ndef get_pairs_count(arr, sum):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from collections import Counter\n\ndef get_pairs_count(arr, sum):\n    count = 0\n    freq = Counter(arr)\n    \n    for num in arr:\n        complement = sum - num\n        if complement in freq:\n            count += freq[complement]\n            if complement == num:\n                count -= 1\n    \n    return count // 2",
+      "test_content": "from llm_output import get_pairs_count\n\ndef check(candidate):\n    assert candidate([1,1,1,1],2) == 6\n    assert candidate([1,5,7,-1,5],6) == 3\n    assert candidate([1,-2,3],1) == 1\n    assert candidate([-1,-2,3],-3) == 1\n\ncheck(get_pairs_count)",
+      "context": "{\"function_name\": \"get_pairs_count\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 770,
+      "prompt": "### Prompt\nWrite a python function to find the sum of fourth power of first n odd natural numbers.\n\n### Signature\ndef odd_num_sum(n) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def odd_num_sum(n):\n    total_sum = 0\n    for i in range(1, 2*n, 2):\n        total_sum += i**4\n    return total_sum",
+      "test_content": "from llm_output import odd_num_sum\n\ndef check(candidate):\n    assert candidate(2) == 82\n    assert candidate(3) == 707\n    assert candidate(4) == 3108\n\ncheck(odd_num_sum)",
+      "context": "{\"function_name\": \"odd_num_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 771,
+      "prompt": "### Prompt\nWrite a function to check if the given expression is balanced or not. https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-an-expression/\n\n### Signature\ndef check_expression(exp):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from collections import deque\n\ndef check_expression(exp):\n    stack = deque()\n    mapping = {\")\": \"(\", \"}\": \"{\", \"]\": \"[\"}\n    \n    for char in exp:\n        if char in mapping.values():\n            stack.append(char)\n        elif char in mapping:\n            if not stack or mapping[char] != stack.pop():\n                return False\n        else:\n            continue\n    \n    return not stack",
+      "test_content": "from llm_output import check_expression\n\ndef check(candidate):\n    assert candidate(\"{()}[{}]\") == True\n    assert candidate(\"{()}[{]\") == False\n    assert candidate(\"{()}[{}][]({})\") == True\n\ncheck(check_expression)",
+      "context": "{\"function_name\": \"check_expression\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 775,
+      "prompt": "### Prompt\nWrite a python function to check whether every odd index contains odd numbers of a given list.\n\n### Signature\ndef odd_position(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef odd_position(nums):\n    for i in range(1, len(nums), 2):\n        if nums[i] % 2 == 0:\n            return False\n    return True",
+      "test_content": "from llm_output import odd_position\n\ndef check(candidate):\n    assert candidate([2,1,4,3,6,7,6,3]) == True\n    assert candidate([4,1,2]) == True\n    assert candidate([1,2,3]) == False\n\ncheck(odd_position)",
+      "context": "{\"function_name\": \"odd_position\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 778,
+      "prompt": "### Prompt\nWrite a function to pack consecutive duplicates of a given list elements into sublists.\n\n### Signature\ndef pack_consecutive_duplicates(list1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from itertools import groupby\n\ndef pack_consecutive_duplicates(list1):\n    return [list(group) for _, group in groupby(list1)]",
+      "test_content": "from llm_output import pack_consecutive_duplicates\n\ndef check(candidate):\n    assert candidate([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4])==[[0, 0], [1], [2], [3], [4, 4], [5], [6, 6, 6], [7], [8], [9], [4, 4]]\n    assert candidate([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10])==[[10, 10], [15], [19], [18, 18], [17], [26, 26], [17], [18], [10]]\n    assert candidate(['a', 'a', 'b', 'c', 'd', 'd'])==[['a', 'a'], ['b'], ['c'], ['d', 'd']]\n\ncheck(pack_consecutive_duplicates)",
+      "context": "{\"function_name\": \"pack_consecutive_duplicates\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 779,
+      "prompt": "### Prompt\nWrite a function to count the number of lists within a list. The function should return a dictionary, where every list is turned to a tuple, and the value of the tuple is the number of its occurrences.\n\n### Signature\ndef unique_sublists(list1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from collections import defaultdict\n\ndef unique_sublists(list1):\n    sublist_count = defaultdict(int)\n    for sublist in list1:\n        tuple_sublist = tuple(sublist)\n        sublist_count[tuple_sublist] += 1\n    return dict(sublist_count)",
+      "test_content": "from llm_output import unique_sublists\n\ndef check(candidate):\n    assert candidate([[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]])=={(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}\n    assert candidate([['green', 'orange'], ['black'], ['green', 'orange'], ['white']])=={('green', 'orange'): 2, ('black',): 1, ('white',): 1}\n    assert candidate([[1, 2], [3, 4], [4, 5], [6, 7]])=={(1, 2): 1, (3, 4): 1, (4, 5): 1, (6, 7): 1}\n\ncheck(unique_sublists)",
+      "context": "{\"function_name\": \"unique_sublists\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 781,
+      "prompt": "### Prompt\nWrite a python function to check whether the count of divisors is even. https://www.w3resource.com/python-exercises/basic/python-basic-1-exercise-24.php\n\n### Signature\ndef count_divisors(n) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef count_divisors(n):\n    count = 0\n    for i in range(1, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            if i * i == n:\n                count += 1\n            else:\n                count += 2\n    return count % 2 == 0",
+      "test_content": "from llm_output import count_divisors\n\ndef check(candidate):\n    assert candidate(10)\n    assert not candidate(100)\n    assert candidate(125)\n\ncheck(count_divisors)",
+      "context": "{\"function_name\": \"count_divisors\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 782,
+      "prompt": "### Prompt\nWrite a python function to find the sum of all odd length subarrays. https://www.geeksforgeeks.org/sum-of-all-odd-length-subarrays/\n\n### Signature\ndef odd_length_sum(arr):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def odd_length_sum(arr):\n    n = len(arr)\n    total_sum = 0\n    \n    # Iterate over all starting points\n    for start in range(n):\n        # Iterate over all ending points\n        for end in range(start, n):\n            # Check if the length of the subarray is odd\n            if (end - start + 1) % 2 != 0:\n                # Add the sum of the current subarray to the total sum\n                total_sum += sum(arr[start:end+1])\n    \n    return total_sum",
+      "test_content": "from llm_output import odd_length_sum\n\ndef check(candidate):\n    assert candidate([1,2,4]) == 14\n    assert candidate([1,2,1,2]) == 15\n    assert candidate([1,7]) == 8\n\ncheck(odd_length_sum)",
+      "context": "{\"function_name\": \"odd_length_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 783,
+      "prompt": "### Prompt\nWrite a function to convert rgb color to hsv color. https://www.geeksforgeeks.org/program-change-rgb-color-model-hsv-color-model/\n\n### Signature\ndef rgb_to_hsv(r, g, b):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "from math import floor, ceil\n\ndef rgb_to_hsv(r, g, b):\n    r, g, b = r / 255.0, g / 255.0, b / 255.0\n    mx = max(r, g, b)\n    mn = min(r, g, b)\n    df = mx - mn\n    if mx == mn:\n        h = 0\n    elif mx == r:\n        h = (60 * ((g - b) / df) + 360) % 360\n    elif mx == g:\n        h = (60 * ((b - r) / df) + 120) % 360\n    elif mx == b:\n        h = (60 * ((r - g) / df) + 240) % 360\n    if mx == 0:\n        s = 0\n    else:\n        s = (df / mx) * 100\n    v = mx * 100\n    return h, s, v",
+      "test_content": "from llm_output import rgb_to_hsv\n\ndef check(candidate):\n    assert candidate(255, 255, 255)==(0, 0.0, 100.0)\n    assert candidate(0, 215, 0)==(120.0, 100.0, 84.31372549019608)\n    assert candidate(10, 215, 110)==(149.26829268292684, 95.34883720930233, 84.31372549019608)\n\ncheck(rgb_to_hsv)",
+      "context": "{\"function_name\": \"rgb_to_hsv\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 784,
+      "prompt": "### Prompt\nWrite a function to find the product of first even and odd number of a given list.\n\n### Signature\ndef mul_even_odd(list1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef mul_even_odd(list1):\n    even = None\n    odd = None\n    for num in list1:\n        if num % 2 == 0:\n            even = num\n            break\n    for num in list1:\n        if num % 2 != 0:\n            odd = num\n            break\n    if even is not None and odd is not None:\n        return even * odd\n    else:\n        return None",
+      "test_content": "from llm_output import mul_even_odd\n\ndef check(candidate):\n    assert candidate([1,3,5,7,4,1,6,8])==4\n    assert candidate([1,2,3,4,5,6,7,8,9,10])==2\n    assert candidate([1,5,7,9,10])==10\n\ncheck(mul_even_odd)",
+      "context": "{\"function_name\": \"mul_even_odd\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 785,
+      "prompt": "### Prompt\nWrite a function to convert tuple string to integer tuple.\n\n### Signature\ndef tuple_str_int(test_str):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef tuple_str_int(test_str):\n    # Extract numbers from the string using regular expression\n    numbers = re.findall(r'\\d+', test_str)\n    # Convert extracted numbers to integers and create a tuple\n    result = tuple(map(int, numbers))\n    return result",
+      "test_content": "from llm_output import tuple_str_int\n\ndef check(candidate):\n    assert candidate(\"(7, 8, 9)\") == (7, 8, 9)\n    assert candidate(\"(1, 2, 3)\") == (1, 2, 3)\n    assert candidate(\"(4, 5, 6)\") == (4, 5, 6)\n    assert candidate(\"(7, 81, 19)\") == (7, 81, 19)\n\ncheck(tuple_str_int)",
+      "context": "{\"function_name\": \"tuple_str_int\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 786,
+      "prompt": "### Prompt\nWrite a function to locate the right insertion point for a specified value in sorted order.\n\n### Signature\ndef right_insertion(a, x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import bisect\n\ndef right_insertion(a, x):\n    return bisect.bisect_right(a, x)",
+      "test_content": "from llm_output import right_insertion\n\ndef check(candidate):\n    assert candidate([1,2,4,5],6)==4\n    assert candidate([1,2,4,5],3)==2\n    assert candidate([1,2,4,5],7)==4\n\ncheck(right_insertion)",
+      "context": "{\"function_name\": \"right_insertion\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 787,
+      "prompt": "### Prompt\nWrite a function that matches a string that has an a followed by three 'b'.\n\n### Signature\ndef text_match_three(text):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef text_match_three(text):\n    pattern = 'ab{3}'\n    return bool(re.search(pattern, text))",
+      "test_content": "from llm_output import text_match_three\n\ndef check(candidate):\n    assert not candidate(\"ac\")\n    assert not candidate(\"dc\")\n    assert candidate(\"abbbba\")\n    assert candidate(\"caacabbbba\")\n\ncheck(text_match_three)",
+      "context": "{\"function_name\": \"text_match_three\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 790,
+      "prompt": "### Prompt\nWrite a python function to check whether every even index contains even numbers of a given list.\n\n### Signature\ndef even_position(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef even_position(nums):\n    for i in range(0, len(nums), 2):\n        if nums[i] % 2 != 0:\n            return False\n    return True",
+      "test_content": "from llm_output import even_position\n\ndef check(candidate):\n    assert candidate([3,2,1]) == False\n    assert candidate([1,2,3]) == False\n    assert candidate([2,1,4]) == True\n\ncheck(even_position)",
+      "context": "{\"function_name\": \"even_position\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 791,
+      "prompt": "### Prompt\nWrite a function to remove tuples from the given tuple.\n\n### Signature\ndef remove_nested(test_tup):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import collections\n\ndef remove_nested(test_tup):\n    # Using a generator expression to filter out tuples\n    result = tuple(item for item in test_tup if not isinstance(item, tuple))\n    return result",
+      "test_content": "from llm_output import remove_nested\n\ndef check(candidate):\n    assert candidate((1, 5, 7, (4, 6), 10)) == (1, 5, 7, 10)\n    assert candidate((2, 6, 8, (5, 7), 11)) == (2, 6, 8, 11)\n    assert candidate((3, 7, 9, (6, 8), 12)) == (3, 7, 9, 12)\n    assert candidate((3, 7, 9, (6, 8), (5,12), 12)) == (3, 7, 9, 12)\n\ncheck(remove_nested)",
+      "context": "{\"function_name\": \"remove_nested\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 792,
+      "prompt": "### Prompt\nWrite a python function to count the number of lists in a given number of lists.\n\n### Signature\ndef count_list(input_list):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef count_list(input_list):\n    return len(input_list)",
+      "test_content": "from llm_output import count_list\n\ndef check(candidate):\n    assert candidate([[1, 3], [5, 7], [9, 11], [13, 15, 17]]) == 4\n    assert candidate([[1,2],[2,3],[4,5]]) == 3\n    assert candidate([[1,0],[2,0]]) == 2\n\ncheck(count_list)",
+      "context": "{\"function_name\": \"count_list\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 793,
+      "prompt": "### Prompt\nWrite a python function to find the last position of an element in a sorted array.\n\n### Signature\ndef last(arr,x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import bisect\n\ndef last(arr, x):\n    # Find the rightmost index where x should be inserted to maintain sorted order\n    index = bisect.bisect_right(arr, x)\n    # If the index is greater than 0 and the element at index-1 is x, return index-1\n    if index > 0 and arr[index-1] == x:\n        return index-1\n    # Otherwise, x is not in the array\n    return -1",
+      "test_content": "from llm_output import last\n\ndef check(candidate):\n    assert candidate([1,2,3],1) == 0\n    assert candidate([1,1,1,2,3,4],1) == 2\n    assert candidate([2,3,2,3,6,8,9],3) == 3\n\ncheck(last)",
+      "context": "{\"function_name\": \"last\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 794,
+      "prompt": "### Prompt\nWrite a function that matches a string that has an 'a' followed by anything, ending in 'b'.\n\n### Signature\ndef text_starta_endb(text):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef text_starta_endb(text):\n    pattern = r'^a.*b$'\n    return bool(re.match(pattern, text))",
+      "test_content": "from llm_output import text_starta_endb\n\ndef check(candidate):\n    assert candidate(\"aabbbb\")\n    assert not candidate(\"aabAbbbc\")\n    assert not candidate(\"accddbbjjj\")\n\ncheck(text_starta_endb)",
+      "context": "{\"function_name\": \"text_starta_endb\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 796,
+      "prompt": "### Prompt\nWrite function to find the sum of all items in the given dictionary.\n\n### Signature\ndef return_sum(dict):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def return_sum(dict):\n    return sum(dict.values())",
+      "test_content": "from llm_output import return_sum\n\ndef check(candidate):\n    assert candidate({'a': 100, 'b':200, 'c':300}) == 600\n    assert candidate({'a': 25, 'b':18, 'c':45}) == 88\n    assert candidate({'a': 36, 'b':39, 'c':49}) == 124\n\ncheck(return_sum)",
+      "context": "{\"function_name\": \"return_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 798,
+      "prompt": "### Prompt\nWrite a python function to find the sum of an array.\n\n### Signature\ndef _sum(arr):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "def _sum(arr):\n    return sum(arr)",
+      "test_content": "from llm_output import _sum\n\ndef check(candidate):\n    assert candidate([1, 2, 3]) == 6\n    assert candidate([15, 12, 13, 10]) == 50\n    assert candidate([0, 1, 2]) == 3\n\ncheck(_sum)",
+      "context": "{\"function_name\": \"_sum\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 799,
+      "prompt": "### Prompt\nWrite a function to that rotate left bits by d bits a given number. We assume that the number is 32 bit.\n\n### Signature\ndef left_rotate(n,d):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import sys\n\ndef left_rotate(n, d):\n    # Ensure the number is treated as a 32-bit integer\n    n &= 0xFFFFFFFF\n    # Perform the left rotation\n    return (n << d) | (n >> (32 - d))",
+      "test_content": "from llm_output import left_rotate\n\ndef check(candidate):\n    assert candidate(16,2) == 64\n    assert candidate(10,2) == 40\n    assert candidate(99,3) == 792\n    assert candidate(99,3) == 792\n    assert candidate(0b0001,3) == 0b1000\n    assert candidate(0b0101,3) == 0b101000\n    assert candidate(0b11101,3) == 0b11101000\n\ncheck(left_rotate)",
+      "context": "{\"function_name\": \"left_rotate\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 800,
+      "prompt": "### Prompt\nWrite a function to remove all whitespaces from a string.\n\n### Signature\ndef remove_all_spaces(text):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef remove_all_spaces(text):\n    return re.sub(r'\\s+', '', text)",
+      "test_content": "from llm_output import remove_all_spaces\n\ndef check(candidate):\n    assert candidate('python  program')==('pythonprogram')\n    assert candidate('python   programming    language')==('pythonprogramminglanguage')\n    assert candidate('python                     program')==('pythonprogram')\n    assert candidate('   python                     program')=='pythonprogram'\n\ncheck(remove_all_spaces)",
+      "context": "{\"function_name\": \"remove_all_spaces\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 802,
+      "prompt": "### Prompt\nWrite a python function to count the number of rotations required to generate a sorted array. https://www.geeksforgeeks.org/count-of-rotations-required-to-generate-a-sorted-array/\n\n### Signature\ndef count_rotation(arr):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import bisect\n\ndef count_rotation(arr):\n    n = len(arr)\n    for i in range(1, n):\n        if arr[i] < arr[i - 1]:\n            return i\n    return 0",
+      "test_content": "from llm_output import count_rotation\n\ndef check(candidate):\n    assert candidate([3,2,1]) == 1\n    assert candidate([4,5,1,2,3]) == 2\n    assert candidate([7,8,9,1,2,3]) == 3\n    assert candidate([1,2,3]) == 0\n    assert candidate([1,3,2]) == 2\n\ncheck(count_rotation)",
+      "context": "{\"function_name\": \"count_rotation\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 803,
+      "prompt": "### Prompt\nWrite a function to check whether the given number is a perfect square or not. https://www.geeksforgeeks.org/check-if-given-number-is-perfect-square-in-cpp/\n\n### Signature\ndef is_perfect_square(n) :",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef is_perfect_square(n):\n    if n < 0:\n        return False\n    root = int(math.sqrt(n))\n    return root * root == n",
+      "test_content": "from llm_output import is_perfect_square\n\ndef check(candidate):\n    assert not candidate(10)\n    assert candidate(36)\n    assert not candidate(14)\n    assert candidate(14*14)\n    assert not candidate(125)\n    assert candidate(125*125)\n\ncheck(is_perfect_square)",
+      "context": "{\"function_name\": \"is_perfect_square\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 804,
+      "prompt": "### Prompt\nWrite a function to check whether the product of numbers in a list is even or not.\n\n### Signature\ndef is_product_even(arr):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import math\n\ndef is_product_even(arr):\n    product = 1\n    for num in arr:\n        product *= num\n    return product % 2 == 0",
+      "test_content": "from llm_output import is_product_even\n\ndef check(candidate):\n    assert candidate([1,2,3])\n    assert candidate([1,2,1,4])\n    assert not candidate([1,1])\n\ncheck(is_product_even)",
+      "context": "{\"function_name\": \"is_product_even\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 806,
+      "prompt": "### Prompt\nWrite a function to find maximum run of uppercase characters in the given string.\n\n### Signature\ndef max_run_uppercase(test_str):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import re\n\ndef max_run_uppercase(test_str):\n    # Use regular expression to find all sequences of uppercase letters\n    uppercase_sequences = re.findall(r'[A-Z]+', test_str)\n    # Find the length of the longest sequence\n    max_length = max(len(seq) for seq in uppercase_sequences)\n    return max_length",
+      "test_content": "from llm_output import max_run_uppercase\n\ndef check(candidate):\n    assert candidate('GeMKSForGERksISBESt') == 5\n    assert candidate('PrECIOusMOVemENTSYT') == 6\n    assert candidate('GooGLEFluTTER') == 4\n\ncheck(max_run_uppercase)",
+      "context": "{\"function_name\": \"max_run_uppercase\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 807,
+      "prompt": "### Prompt\nWrite a python function to find the first odd number in a given list of numbers.\n\n### Signature\ndef first_odd(nums):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import itertools\n\ndef first_odd(nums):\n    return next((num for num in nums if num % 2 != 0), None)",
+      "test_content": "from llm_output import first_odd\n\ndef check(candidate):\n    assert candidate([1,3,5]) == 1\n    assert candidate([2,4,1,3]) == 1\n    assert candidate ([8,9,1]) == 9\n\ncheck(first_odd)",
+      "context": "{\"function_name\": \"first_odd\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 808,
+      "prompt": "### Prompt\nWrite a function to check if the given tuples contain the k or not.\n\n### Signature\ndef check_K(test_tup, K):",
+      "llm_name": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "solution": "import collections\n\ndef check_K(test_tup, K):\n    # Convert the tuple to a Counter to count occurrences of each element\n    counter = collections.Counter(test_tup)\n    # Check if K is in the counter and its count is greater than 0\n    return K in counter and counter[K] > 0",
+      "test_content": "from llm_output import check_K\n\ndef check(candidate):\n    assert candidate((10, 4, 5, 6, 8), 6) == True\n    assert candidate((1, 2, 3, 4, 5, 6), 7) == False\n    assert candidate((7, 8, 9, 44, 11, 12), 11) == True\n\ncheck(check_K)",
+      "context": "{\"function_name\": \"check_K\"}",
+      "attempt_num": 1
+    }
+  ]
+}

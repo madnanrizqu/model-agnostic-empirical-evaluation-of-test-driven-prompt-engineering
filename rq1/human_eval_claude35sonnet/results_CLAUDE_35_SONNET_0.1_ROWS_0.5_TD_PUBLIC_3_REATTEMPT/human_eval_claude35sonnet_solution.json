@@ -1,0 +1,146 @@
+[
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 0,
+        "solution": "===START===\nfrom typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    n = len(numbers)\n    for i in range(n):\n        for j in range(i + 1, n):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:",
+        "timestamp": "2025-08-13T11:05:30.740379",
+        "response_time": "6.52"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 1,
+        "solution": "===START===\nfrom typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    # Remove all spaces from input string\n    paren_string = paren_string.replace(\" \", \"\")\n    \n    result = []\n    current_group = \"\"\n    depth = 0\n    \n    for char in paren_string:\n        # Add character to current group\n        current_group += char\n        \n        # Track nesting depth\n        if char == '(':\n            depth += 1\n        elif char == ')':\n            depth -= 1\n            \n        # When depth returns to 0, we've completed a group\n        if depth == 0 and current_group:\n            result.append(current_group)\n            current_group = \"\"\n            \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:",
+        "timestamp": "2025-08-13T11:05:36.354564",
+        "response_time": "5.61"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 2,
+        "solution": "===START===\ndef truncate_number(number: float) -> float:\n    # Get the integer part using floor division\n    integer_part = number // 1\n    # Get the decimal part by subtracting integer part\n    decimal_part = number - integer_part\n    return decimal_part\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:",
+        "timestamp": "2025-08-13T11:05:39.019015",
+        "response_time": "2.66"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 3,
+        "solution": "===START===\nfrom typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:",
+        "timestamp": "2025-08-13T11:05:41.185482",
+        "response_time": "2.17"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 4,
+        "solution": "===START===\nfrom typing import List\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    if not numbers:\n        return 0.0\n        \n    # Calculate mean\n    mean = sum(numbers) / len(numbers)\n    \n    # Calculate absolute deviations from mean\n    absolute_deviations = [abs(x - mean) for x in numbers]\n    \n    # Calculate average of absolute deviations\n    mad = sum(absolute_deviations) / len(absolute_deviations)\n    \n    return mad\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:",
+        "timestamp": "2025-08-13T11:05:45.666360",
+        "response_time": "4.48"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 5,
+        "solution": "===START===\nfrom typing import List\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    if not numbers:\n        return []\n    \n    result = []\n    for i, num in enumerate(numbers):\n        result.append(num)\n        if i < len(numbers) - 1:\n            result.append(delimeter)\n    \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n\n### Signature\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:",
+        "timestamp": "2025-08-13T11:05:48.650471",
+        "response_time": "2.98"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 6,
+        "solution": "===START===\nfrom typing import List\n\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    groups = paren_string.strip().split()\n    result = []\n    \n    for group in groups:\n        max_depth = 0\n        current_depth = 0\n        \n        for char in group:\n            if char == '(':\n                current_depth += 1\n                max_depth = max(max_depth, current_depth)\n            elif char == ')':\n                current_depth -= 1\n                \n        result.append(max_depth)\n        \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:",
+        "timestamp": "2025-08-13T11:05:52.441757",
+        "response_time": "3.79"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 7,
+        "solution": "===START===\nfrom typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:",
+        "timestamp": "2025-08-13T11:05:54.572607",
+        "response_time": "2.13"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 8,
+        "solution": "===START===\nfrom typing import List, Tuple\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    if not numbers:\n        return (0, 1)\n    \n    total_sum = sum(numbers)\n    product = 1\n    for num in numbers:\n        product *= num\n    \n    return (total_sum, product)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:",
+        "timestamp": "2025-08-13T11:05:58.117918",
+        "response_time": "3.54"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 9,
+        "solution": "===START===\nfrom typing import List\n\ndef rolling_max(numbers: List[int]) -> List[int]:\n    if not numbers:\n        return []\n        \n    result = []\n    current_max = numbers[0]\n    \n    for num in numbers:\n        current_max = max(current_max, num)\n        result.append(current_max)\n        \n    return result\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:",
+        "timestamp": "2025-08-13T11:06:01.723397",
+        "response_time": "3.60"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 10,
+        "solution": "===START===\ndef make_palindrome(string: str) -> str:\n    if not string:\n        return \"\"\n    \n    # Helper function to check if a string is palindrome\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n    \n    # Find the longest palindrome suffix\n    for i in range(len(string)):\n        suffix = string[i:]\n        if is_palindrome(suffix):\n            # Get the prefix that needs to be reversed and appended\n            prefix = string[:i]\n            # Return original string + reversed prefix\n            return string + prefix[::-1]\n    \n    # If no palindrome suffix found (shouldn't happen as single char is palindrome)\n    return string + string[:-1][::-1]\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:",
+        "timestamp": "2025-08-13T11:06:07.081630",
+        "response_time": "5.36"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 11,
+        "solution": "===START===\ndef string_xor(a: str, b: str) -> str:\n    # Convert binary strings to integers using base 2\n    num1 = int(a, 2)\n    num2 = int(b, 2)\n    \n    # Perform XOR operation\n    xor_result = num1 ^ num2\n    \n    # Convert back to binary string and remove '0b' prefix\n    # zfill ensures the result has same length as longest input\n    max_len = max(len(a), len(b))\n    return bin(xor_result)[2:].zfill(max_len)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n\n### Signature\ndef string_xor(a: str, b: str) -> str:",
+        "timestamp": "2025-08-13T11:06:10.167077",
+        "response_time": "3.08"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 12,
+        "solution": "===START===\nfrom typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    return max(strings, key=len)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:",
+        "timestamp": "2025-08-13T11:06:13.066097",
+        "response_time": "2.90"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 13,
+        "solution": "===START===\ndef greatest_common_divisor(a: int, b: int) -> int:\n    # Using Euclidean algorithm\n    while b:\n        a, b = b, a % b\n    return abs(a)\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n\n### Signature\ndef greatest_common_divisor(a: int, b: int) -> int:",
+        "timestamp": "2025-08-13T11:06:15.350544",
+        "response_time": "2.28"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 14,
+        "solution": "===START===\nfrom typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    return [string[:i+1] for i in range(len(string))]\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:",
+        "timestamp": "2025-08-13T11:06:18.213183",
+        "response_time": "2.86"
+    },
+    {
+        "dataset_name": "human_eval_claude35sonnet",
+        "dataset_row_id": 15,
+        "solution": "===START===\ndef string_sequence(n: int) -> str:\n    return ' '.join(str(i) for i in range(n + 1))\n===END===",
+        "llm_name": "anthropic/claude-3.5-sonnet",
+        "prompt": "### Prompt\n     Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n\n### Signature\ndef string_sequence(n: int) -> str:",
+        "timestamp": "2025-08-13T11:06:19.917335",
+        "response_time": "1.70"
+    }
+]

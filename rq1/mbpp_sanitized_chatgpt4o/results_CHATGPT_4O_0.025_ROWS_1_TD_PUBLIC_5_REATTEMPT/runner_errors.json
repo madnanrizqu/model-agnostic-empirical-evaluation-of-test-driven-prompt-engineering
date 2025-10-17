@@ -1,0 +1,14 @@
+{
+  "openai/gpt-4o-2024-11-20": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+      "llm_name": "openai/gpt-4o-2024-11-20",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "solution": "def differ_At_One_Bit_Pos(x: int) -> str:\n    \"\"\"\n    Check whether the two numbers differ at one bit position only or not.\n    :param x: A list of two integers [a, b]\n    :return: \"Yes\" if they differ at one bit position, otherwise \"No\"\n    \"\"\"\n    if len(x) != 2:\n        return \"Invalid input\"\n    \n    a, b = x\n    # XOR the two numbers, if the result is a power of two, they differ at one bit position\n    xor_result = a ^ b\n    if xor_result & (xor_result - 1) == 0 and xor_result != 0:\n        return \"Yes\"\n    else:\n        return \"No\"",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    }
+  ]
+}

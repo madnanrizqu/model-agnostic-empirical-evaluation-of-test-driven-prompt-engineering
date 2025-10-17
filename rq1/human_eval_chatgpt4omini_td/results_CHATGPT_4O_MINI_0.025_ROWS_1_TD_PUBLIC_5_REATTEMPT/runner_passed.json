@@ -1,0 +1,40 @@
+{
+  "openai/gpt-4o-mini-2024-07-18": [
+    {
+      "task_id": 0,
+      "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False\nassert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True\nassert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True\nassert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False ",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "from typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    numbers.sort()\n    for i in range(len(numbers) - 1):\n        if abs(numbers[i] - numbers[i + 1]) < threshold:\n            return True\n    return False",
+      "test_content": "from llm_output import has_close_elements\n\ndef check(candidate):\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False\n\n\ncheck(has_close_elements)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 1,
+      "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [ '(()())', '((()))', '()', '((())()())' ]\nassert candidate('() (()) ((())) (((())))') == [ '()', '(())', '((()))', '(((())))' ]\nassert candidate('(()(())((())))') == [ '(()(())((())))' ]\nassert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "from typing import List\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    paren_string = paren_string.replace(\" \", \"\")\n    groups = []\n    current_group = []\n    balance = 0\n    \n    for char in paren_string:\n        if char == '(':\n            if balance == 0 and current_group:\n                groups.append(''.join(current_group))\n                current_group = []\n            current_group.append(char)\n            balance += 1\n        elif char == ')':\n            current_group.append(char)\n            balance -= 1\n            if balance == 0:\n                groups.append(''.join(current_group))\n                current_group = []\n    \n    return groups",
+      "test_content": "from llm_output import separate_paren_groups\n\ndef check(candidate):\n    assert candidate('(()()) ((())) () ((())()())') == [\n        '(()())', '((()))', '()', '((())()())'\n    ]\n    assert candidate('() (()) ((())) (((())))') == [\n        '()', '(())', '((()))', '(((())))'\n    ]\n    assert candidate('(()(())((())))') == [\n        '(()(())((())))'\n    ]\n    assert candidate('( ) (( )) (( )( ))') == ['()', '(())', '(()())']\n\ncheck(separate_paren_groups)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n\n### Test\nassert candidate(3.5) == 0.5\nassert abs(candidate(1.33) - 0.33) < 1e-6\nassert abs(candidate(123.456) - 0.456) < 1e-6",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "def truncate_number(number: float) -> float:\n    integer_part = int(number)\n    decimal_part = number - integer_part\n    return decimal_part",
+      "test_content": "from llm_output import truncate_number\n\ndef check(candidate):\n    assert candidate(3.5) == 0.5\n    assert abs(candidate(1.33) - 0.33) < 1e-6\n    assert abs(candidate(123.456) - 0.456) < 1e-6\n\ncheck(truncate_number)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:\n\n### Test\nassert candidate([]) == False\nassert candidate([1, 2, -3, 1, 2, -3]) == False\nassert candidate([1, 2, -4, 5, 6]) == True\nassert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False\nassert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True\nassert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True",
+      "llm_name": "openai/gpt-4o-mini-2024-07-18",
+      "solution": "from typing import List\n\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+      "test_content": "from llm_output import below_zero\n\ndef check(candidate):\n    assert candidate([]) == False\n    assert candidate([1, 2, -3, 1, 2, -3]) == False\n    assert candidate([1, 2, -4, 5, 6]) == True\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -4]) == False\n    assert candidate([1, -1, 2, -2, 5, -5, 4, -5]) == True\n    assert candidate([1, -2, 2, -2, 5, -5, 4, -4]) == True\n\ncheck(below_zero)",
+      "context": null,
+      "attempt_num": 1
+    }
+  ]
+}

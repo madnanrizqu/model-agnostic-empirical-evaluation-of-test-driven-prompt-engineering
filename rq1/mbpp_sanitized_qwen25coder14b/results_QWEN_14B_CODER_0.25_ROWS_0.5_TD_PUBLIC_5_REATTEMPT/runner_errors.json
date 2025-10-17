@@ -1,0 +1,154 @@
+{
+  "Qwen/Qwen2.5-Coder-14B-Instruct": [
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 11, in <module>\n    check(differ_At_One_Bit_Pos)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(13,9) == True\n           ^^^^^^^^^^^^^^^\nTypeError: differ_At_One_Bit_Pos() takes 1 positional argument but 2 were given\n",
+      "solution": "def differ_At_One_Bit_Pos(x):\n    # A number is a power of two if it has exactly one bit set in its binary representation.\n    # This can be checked using the property: x & (x - 1) == 0 and x != 0\n    return x != 0 and (x & (x - 1)) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 18,
+      "prompt": "### Prompt\nWrite a function to remove characters from the first string which are present in the second string.\n\n### Signature\ndef str_to_list(string):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(remove_dirty_chars)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: remove_dirty_chars() takes 1 positional argument but 2 were given\n",
+      "solution": "def remove_dirty_chars(string):\n    return list(string)",
+      "test_content": "from llm_output import remove_dirty_chars\n\ndef check(candidate):\n    assert candidate(\"probasscurve\", \"pros\") == \"\"\"bacuve\"\"\"\n    assert candidate(\"digitalindia\", \"talent\") == \"\"\"digiidi\"\"\"\n    assert candidate(\"exoticmiles\", \"toxic\") == \"\"\"emles\"\"\"\n\ncheck(remove_dirty_chars)",
+      "context": "{\"function_name\": \"remove_dirty_chars\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "def check(num):\n    # Convert the number to a string to reverse it\n    num_str = str(num)\n    # Reverse the string and convert it back to an integer\n    reversed_num = int(num_str[::-1])\n    # Check if the original number is one less than twice its reverse\n    return num == 2 * reversed_num - 1",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "def check(num):\n    # Convert the number to a string to reverse it\n    num_str = str(num)\n    # Reverse the string and convert it back to an integer\n    reversed_num = int(num_str[::-1])\n    # Check if the original number is one less than twice its reverse\n    return num == 2 * reversed_num - 1",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 56,
+      "prompt": "### Prompt\nWrite a python function to check if a given number is one less than twice its reverse.\n\n### Signature\ndef rev(num):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(check)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(70) == False\n           ^^^^^^^^^^^^^\nTypeError: 'int' object is not callable\n",
+      "solution": "def check(num):\n    # Convert the number to a string to reverse it\n    num_str = str(num)\n    # Reverse the string and convert it back to an integer\n    reversed_num = int(num_str[::-1])\n    # Check if the original number is one less than twice its reverse\n    return num == 2 * reversed_num - 1",
+      "test_content": "from llm_output import check\n\ndef check(candidate):\n    assert candidate(70) == False\n    assert candidate(23) == False\n    assert candidate(73) == True\n\ncheck(check)",
+      "context": "{\"function_name\": \"check\"}",
+      "attempt_num": 5
+    },
+    {
+      "task_id": 63,
+      "prompt": "### Prompt\nWrite a function to find the maximum difference between available pairs in the given tuple list.\n\n### Signature\ndef max_difference(test_list):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(max_difference)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output.py\", line 9, in max_difference\n    max_diff = max(max_diff, num - min_value)\n                             ~~~~^~~~~~~~~~~\nTypeError: unsupported operand type(s) for -: 'tuple' and 'tuple'\n",
+      "solution": "def max_difference(test_list):\n    if not test_list or len(test_list) < 2:\n        return 0\n    \n    max_diff = 0\n    min_value = test_list[0]\n    \n    for num in test_list[1:]:\n        max_diff = max(max_diff, num - min_value)\n        min_value = min(min_value, num)\n    \n    return max_diff",
+      "test_content": "from llm_output import max_difference\n\ndef check(candidate):\n    assert candidate([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7\n    assert candidate([(4, 6), (2, 17), (9, 13), (11, 12)]) == 15\n    assert candidate([(12, 35), (21, 27), (13, 23), (41, 22)]) == 23\n\ncheck(max_difference)",
+      "context": "{\"function_name\": \"max_difference\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 63,
+      "prompt": "### Prompt\nWrite a function to find the maximum difference between available pairs in the given tuple list.\n\n### Signature\ndef max_difference(test_list):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(max_difference)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output.py\", line 9, in max_difference\n    max_diff = max(max_diff, num - min_value)\n                             ~~~~^~~~~~~~~~~\nTypeError: unsupported operand type(s) for -: 'tuple' and 'tuple'\n",
+      "solution": "def max_difference(test_list):\n    if not test_list or len(test_list) < 2:\n        return 0\n    \n    max_diff = 0\n    min_value = test_list[0]\n    \n    for num in test_list[1:]:\n        max_diff = max(max_diff, num - min_value)\n        min_value = min(min_value, num)\n    \n    return max_diff",
+      "test_content": "from llm_output import max_difference\n\ndef check(candidate):\n    assert candidate([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7\n    assert candidate([(4, 6), (2, 17), (9, 13), (11, 12)]) == 15\n    assert candidate([(12, 35), (21, 27), (13, 23), (41, 22)]) == 23\n\ncheck(max_difference)",
+      "context": "{\"function_name\": \"max_difference\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 120,
+      "prompt": "### Prompt\nWrite a function to find the maximum absolute product between numbers in pairs of tuples within a given list.\n\n### Signature\ndef max_product_tuple(list1):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(max_product_tuple)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate([(2, 7), (2, 6), (1, 8), (4, 9)] )==36\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output.py\", line 4, in max_product_tuple\n    product1 = abs(tuple1[0] * tuple2[0])\n                   ~~~~~~^^^\nTypeError: 'int' object is not subscriptable\n",
+      "solution": "def max_product_tuple(list1):\n    max_product = float('-inf')\n    for tuple1, tuple2 in list1:\n        product1 = abs(tuple1[0] * tuple2[0])\n        product2 = abs(tuple1[1] * tuple2[1])\n        max_product = max(max_product, product1, product2)\n    return max_product",
+      "test_content": "from llm_output import max_product_tuple\n\ndef check(candidate):\n    assert candidate([(2, 7), (2, 6), (1, 8), (4, 9)] )==36\n    assert candidate([(10,20), (15,2), (5,10)] )==200\n    assert candidate([(11,44), (10,15), (20,5), (12, 9)] )==484\n\ncheck(max_product_tuple)",
+      "context": "{\"function_name\": \"max_product_tuple\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 120,
+      "prompt": "### Prompt\nWrite a function to find the maximum absolute product between numbers in pairs of tuples within a given list.\n\n### Signature\ndef max_product_tuple(list1):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(max_product_tuple)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate([(2, 7), (2, 6), (1, 8), (4, 9)] )==36\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output.py\", line 4, in max_product_tuple\n    product1 = abs(tuple1[0] * tuple2[0])\n                   ~~~~~~^^^\nTypeError: 'int' object is not subscriptable\n",
+      "solution": "def max_product_tuple(list1):\n    max_product = float('-inf')\n    for tuple1, tuple2 in list1:\n        product1 = abs(tuple1[0] * tuple2[0])\n        product2 = abs(tuple1[1] * tuple2[1])\n        max_product = max(max_product, product1, product2)\n    return max_product",
+      "test_content": "from llm_output import max_product_tuple\n\ndef check(candidate):\n    assert candidate([(2, 7), (2, 6), (1, 8), (4, 9)] )==36\n    assert candidate([(10,20), (15,2), (5,10)] )==200\n    assert candidate([(11,44), (10,15), (20,5), (12, 9)] )==484\n\ncheck(max_product_tuple)",
+      "context": "{\"function_name\": \"max_product_tuple\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 164,
+      "prompt": "### Prompt\nWrite a function to determine if the sum of the divisors of two integers are the same.\n\n### Signature\ndef div_sum(n):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(are_equivalent)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(36, 57) == False\n           ^^^^^^^^^^^^^^^^^\nTypeError: are_equivalent() takes 1 positional argument but 2 were given\n",
+      "solution": "def are_equivalent(n):\n    total = 0\n    for i in range(1, n + 1):\n        if n % i == 0:\n            total += i\n    return total\n\ndef are_div_sums_equal(a, b):\n    return div_sum(a) == div_sum(b)",
+      "test_content": "from llm_output import are_equivalent\n\ndef check(candidate):\n    assert candidate(36, 57) == False\n    assert candidate(2, 4) == False\n    assert candidate(23, 47) == True\n\ncheck(are_equivalent)",
+      "context": "{\"function_name\": \"are_equivalent\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 164,
+      "prompt": "### Prompt\nWrite a function to determine if the sum of the divisors of two integers are the same.\n\n### Signature\ndef div_sum(n):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 8, in <module>\n    check(are_equivalent)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert candidate(36, 57) == False\n           ^^^^^^^^^^^^^^^^^\nTypeError: are_equivalent() takes 1 positional argument but 2 were given\n",
+      "solution": "def are_equivalent(n):\n    total = 0\n    for i in range(1, n + 1):\n        if n % i == 0:\n            total += i\n    return total\n\ndef are_div_sums_equal(a, b):\n    return div_sum(a) == div_sum(b)",
+      "test_content": "from llm_output import are_equivalent\n\ndef check(candidate):\n    assert candidate(36, 57) == False\n    assert candidate(2, 4) == False\n    assert candidate(23, 47) == True\n\ncheck(are_equivalent)",
+      "context": "{\"function_name\": \"are_equivalent\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 223,
+      "prompt": "### Prompt\nWrite a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)\n\n### Signature\ndef is_majority(arr, n, x):",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "solution": "def binary_search(arr, n, x):\n    # Find the first occurrence of x in the array\n    left = 0\n    right = n - 1\n    first_occurrence = -1\n    \n    while left <= right:\n        mid = left + (right - left) // 2\n        if arr[mid] == x:\n            first_occurrence = mid\n            right = mid - 1\n        elif arr[mid] < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    # If x is not found, it cannot be the majority element\n    if first_occurrence == -1:\n        return False\n    \n    # Calculate the index of the last occurrence of x\n    last_occurrence = first_occurrence + (n // 2)\n    \n    # Check if the last occurrence is within bounds and is x\n    if last_occurrence < n and arr[last_occurrence] == x:\n        return True\n    \n    return False",
+      "test_content": "from llm_output import binary_search\n\ndef check(candidate):\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n    assert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False\n    assert is_majority([1, 1, 1, 2, 2], 5, 1) == True\n    assert is_majority([1, 1, 2, 2], 5, 1) == False\n\ncheck(binary_search)",
+      "context": "{\"function_name\": \"binary_search\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 223,
+      "prompt": "### Prompt\nWrite a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)\n\n### Signature\ndef is_majority(arr, n, x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "solution": "def binary_search(arr, n, x):\n    # Find the first occurrence of x in the array\n    left = 0\n    right = n - 1\n    first_occurrence = -1\n    \n    while left <= right:\n        mid = left + (right - left) // 2\n        if arr[mid] == x:\n            first_occurrence = mid\n            right = mid - 1\n        elif arr[mid] < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    # If x is not found, it cannot be the majority element\n    if first_occurrence == -1:\n        return False\n    \n    # Calculate the index of the last occurrence of x\n    last_occurrence = first_occurrence + (n // 2)\n    \n    # Check if the last occurrence is within bounds and is x\n    if last_occurrence < n and arr[last_occurrence] == x:\n        return True\n    \n    return False",
+      "test_content": "from llm_output import binary_search\n\ndef check(candidate):\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n    assert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False\n    assert is_majority([1, 1, 1, 2, 2], 5, 1) == True\n    assert is_majority([1, 1, 2, 2], 5, 1) == False\n\ncheck(binary_search)",
+      "context": "{\"function_name\": \"binary_search\"}",
+      "attempt_num": 2
+    },
+    {
+      "task_id": 223,
+      "prompt": "### Prompt\nWrite a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)\n\n### Signature\ndef is_majority(arr, n, x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "solution": "def binary_search(arr, n, x):\n    # Find the first occurrence of x in the array\n    left = 0\n    right = n - 1\n    first_occurrence = -1\n    \n    while left <= right:\n        mid = left + (right - left) // 2\n        if arr[mid] == x:\n            first_occurrence = mid\n            right = mid - 1\n        elif arr[mid] < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    # If x is not found, it cannot be the majority element\n    if first_occurrence == -1:\n        return False\n    \n    # Calculate the index of the last occurrence of x\n    last_occurrence = first_occurrence + (n // 2)\n    \n    # Check if the last occurrence is within bounds and is x\n    if last_occurrence < n and arr[last_occurrence] == x:\n        return True\n    \n    return False",
+      "test_content": "from llm_output import binary_search\n\ndef check(candidate):\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n    assert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False\n    assert is_majority([1, 1, 1, 2, 2], 5, 1) == True\n    assert is_majority([1, 1, 2, 2], 5, 1) == False\n\ncheck(binary_search)",
+      "context": "{\"function_name\": \"binary_search\"}",
+      "attempt_num": 3
+    },
+    {
+      "task_id": 223,
+      "prompt": "### Prompt\nWrite a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)\n\n### Signature\ndef is_majority(arr, n, x):\n### Remediation Message\nThis code is not correct as it led to the following issues:\nWarning: Code markers not found in code block",
+      "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 9, in <module>\n    check(binary_search)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/mbpp_sanitized_qwen25coder14b_1758369345955227/llm_output_test.py\", line 4, in check\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n           ^^^^^^^^^^^\nNameError: name 'is_majority' is not defined\n",
+      "solution": "def binary_search(arr, n, x):\n    # Find the first occurrence of x in the array\n    left = 0\n    right = n - 1\n    first_occurrence = -1\n    \n    while left <= right:\n        mid = left + (right - left) // 2\n        if arr[mid] == x:\n            first_occurrence = mid\n            right = mid - 1\n        elif arr[mid] < x:\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    # If x is not found, it cannot be the majority element\n    if first_occurrence == -1:\n        return False\n    \n    # Calculate the index of the last occurrence of x\n    last_occurrence = first_occurrence + (n // 2)\n    \n    # Check if the last occurrence is within bounds and is x\n    if last_occurrence < n and arr[last_occurrence] == x:\n        return True\n    \n    return False",
+      "test_content": "from llm_output import binary_search\n\ndef check(candidate):\n    assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True\n    assert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False\n    assert is_majority([1, 1, 1, 2, 2], 5, 1) == True\n    assert is_majority([1, 1, 2, 2], 5, 1) == False\n\ncheck(binary_search)",
+      "context": "{\"function_name\": \"binary_search\"}",
+      "attempt_num": 5
+    }
+  ]
+}

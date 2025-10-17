@@ -1,0 +1,102 @@
+[
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 2,
+        "solution": "===START===\nfrom typing import List\n\ndef similar_elements(test_tup1: List, test_tup2: List) -> str:\n    shared_elements = list(set(test_tup1) & set(test_tup2))\n    return ', '.join(map(str, shared_elements))\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):",
+        "timestamp": "2025-08-10T15:31:04.826142",
+        "response_time": "2.28",
+        "context": "{\"function_name\": \"similar_elements\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 3,
+        "solution": "===START===\nfrom typing import List\n\ndef is_not_prime(n: int) -> bool:\n    if n <= 1:\n        return True\n    if n <= 3:\n        return False\n    if n % 2 == 0 or n % 3 == 0:\n        return True\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return True\n        i += 6\n    return False\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):",
+        "timestamp": "2025-08-10T15:31:08.110521",
+        "response_time": "3.28",
+        "context": "{\"function_name\": \"is_not_prime\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 4,
+        "solution": "===START===\nfrom typing import List\nimport heapq\n\ndef heap_queue_largest(nums: List[int], n: int) -> str:\n    largest_nums = heapq.nlargest(n, nums)\n    largest_nums.sort(reverse=True)\n    return ' '.join(map(str, largest_nums))\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):",
+        "timestamp": "2025-08-10T15:31:09.600619",
+        "response_time": "1.49",
+        "context": "{\"function_name\": \"heap_queue_largest\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 6,
+        "solution": "===START===\nfrom typing import Tuple\n\ndef is_Power_Of_Two (x: int) -> bool:\n    return (x & (x - 1)) == 0 and x != 0\n\ndef check_one_bit_difference(num1: int, num2: int) -> str:\n    xor_result = num1 ^ num2\n    return \"true\" if is_Power_Of_Two(xor_result) else \"false\"\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+        "timestamp": "2025-08-10T15:31:12.640891",
+        "response_time": "3.04",
+        "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 7,
+        "solution": "===START===\nfrom typing import List\n\ndef find_char_long(text: str) -> str:\n    words = text.split()\n    long_words = [word for word in words if len(word) >= 4]\n    return ' '.join(long_words)\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):",
+        "timestamp": "2025-08-10T15:31:14.039350",
+        "response_time": "1.40",
+        "context": "{\"function_name\": \"find_char_long\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 8,
+        "solution": "===START===\nfrom typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    return [num ** 2 for num in nums]\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):",
+        "timestamp": "2025-08-10T15:31:15.564023",
+        "response_time": "1.52",
+        "context": "{\"function_name\": \"square_nums\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 9,
+        "solution": "===START===\nfrom typing import List\n\ndef find_Rotations(s: str) -> str:\n    n = len(s)\n    for i in range(1, n + 1):\n        rotated = s[i:] + s[:i]\n        if rotated == s:\n            return str(i)\n    return str(n)\n\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):",
+        "timestamp": "2025-08-10T15:31:20.596988",
+        "response_time": "5.03",
+        "context": "{\"function_name\": \"find_Rotations\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 11,
+        "solution": "===START===\nfrom typing import List\n\ndef remove_Occ(s: str, ch: str) -> str:\n    first_occurrence_index = s.find(ch)\n    if first_occurrence_index == -1:\n        return s\n    \n    last_occurrence_index = s.rfind(ch)\n    if last_occurrence_index == -1 or first_occurrence_index == last_occurrence_index:\n        return s[:first_occurrence_index] + s[first_occurrence_index + 1:]\n    \n    return s[:first_occurrence_index] + s[first_occurrence_index + 1:last_occurrence_index] + s[last_occurrence_index + 1:]\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):",
+        "timestamp": "2025-08-10T15:31:24.218476",
+        "response_time": "3.62",
+        "context": "{\"function_name\": \"remove_Occ\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 12,
+        "solution": "===START===\nfrom typing import List\n\ndef sort_matrix(M: List[List[int]]) -> str:\n    # Sort the matrix based on the sum of its rows\n    sorted_matrix = sorted(M, key=sum)\n    # Convert the sorted matrix to a string representation\n    result = \"\\n\".join([\" \".join(map(str, row)) for row in sorted_matrix])\n    return result\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):",
+        "timestamp": "2025-08-10T15:31:26.517252",
+        "response_time": "2.30",
+        "context": "{\"function_name\": \"sort_matrix\"}"
+    },
+    {
+        "dataset_name": "mbpp_sanitized_qwen25coder32b",
+        "dataset_row_id": 14,
+        "solution": "===START===\nfrom typing import Union\n\ndef find_Volume(l: Union[int, float], b: Union[int, float], h: Union[int, float]) -> str:\n    # Volume of a triangular prism = (1/2) * base * height * length\n    volume = (1/2) * b * h * l\n    return str(volume)\n===END===",
+        "llm_name": "qwen/qwen-2.5-coder-32b-instruct",
+        "prompt": "### Prompt\nWrite a python function to find the volume of a triangular prism.\n\n### Signature\ndef find_Volume(l,b,h) :",
+        "timestamp": "2025-08-10T15:31:28.870761",
+        "response_time": "2.35",
+        "context": "{\"function_name\": \"find_Volume\"}"
+    }
+]

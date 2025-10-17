@@ -1,0 +1,505 @@
+{
+  "analysis_metadata": {
+    "timestamp": "2025-08-18 14:24:47",
+    "total_configurations": 6,
+    "difficulty_levels": [
+      "EASY",
+      "MEDIUM",
+      "HARD"
+    ],
+    "config_parameters": {
+      "RATIO_OF_ROWS_TO_RUN": 0.5,
+      "TEST_DRIVEN_RATIO": 0.5,
+      "REATTEMPT_MAX_NUM": 5
+    },
+    "research_focus": "Test-Driven vs Normal Prompting Effectiveness"
+  },
+  "validation_status": {
+    "has_mismatches": false,
+    "mismatch_types": {
+      "breakdown_vs_summary": false,
+      "first_attempt_within_difficulty": false
+    },
+    "details": {
+      "Qwen/Qwen2.5-Coder-32B-Instruct": {
+        "TD": {
+          "overall_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "first_attempt_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "difficulty_mismatches": {}
+        },
+        "NORMAL": {
+          "overall_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "first_attempt_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "difficulty_mismatches": {}
+        }
+      },
+      "openai/gpt-4o-2024-11-20": {
+        "NORMAL": {
+          "overall_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "first_attempt_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "difficulty_mismatches": {}
+        },
+        "TD": {
+          "overall_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "first_attempt_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "difficulty_mismatches": {}
+        }
+      },
+      "anthropic/claude-3.5-sonnet": {
+        "NORMAL": {
+          "overall_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "first_attempt_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "difficulty_mismatches": {}
+        },
+        "TD": {
+          "overall_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "first_attempt_validation": {
+            "breakdown_total": 202,
+            "summary_total": 202,
+            "match": true
+          },
+          "difficulty_mismatches": {}
+        }
+      }
+    },
+    "summary": "All validations passed"
+  },
+  "raw_difficulty_breakdown": {
+    "openai/gpt-4o-2024-11-20": {
+      "EASY": {
+        "TD": {
+          "passed": 10,
+          "failed": 20,
+          "error": 0,
+          "total": 30,
+          "accuracy": 33.33,
+          "remediation": {
+            "passed": 15,
+            "failed": 15,
+            "error": 0,
+            "total": 30,
+            "accuracy": 50.0
+          }
+        },
+        "NORMAL": {
+          "passed": 0,
+          "failed": 29,
+          "error": 1,
+          "total": 30,
+          "accuracy": 0.0,
+          "remediation": {
+            "passed": 14,
+            "failed": 16,
+            "error": 0,
+            "total": 30,
+            "accuracy": 46.67
+          }
+        }
+      },
+      "MEDIUM": {
+        "TD": {
+          "passed": 33,
+          "failed": 96,
+          "error": 3,
+          "total": 132,
+          "accuracy": 25.0,
+          "remediation": {
+            "passed": 40,
+            "failed": 91,
+            "error": 1,
+            "total": 132,
+            "accuracy": 30.3
+          }
+        },
+        "NORMAL": {
+          "passed": 3,
+          "failed": 126,
+          "error": 3,
+          "total": 132,
+          "accuracy": 2.27,
+          "remediation": {
+            "passed": 21,
+            "failed": 109,
+            "error": 2,
+            "total": 132,
+            "accuracy": 15.91
+          }
+        }
+      },
+      "HARD": {
+        "TD": {
+          "passed": 10,
+          "failed": 26,
+          "error": 4,
+          "total": 40,
+          "accuracy": 25.0,
+          "remediation": {
+            "passed": 10,
+            "failed": 27,
+            "error": 3,
+            "total": 40,
+            "accuracy": 25.0
+          }
+        },
+        "NORMAL": {
+          "passed": 5,
+          "failed": 31,
+          "error": 4,
+          "total": 40,
+          "accuracy": 12.5,
+          "remediation": {
+            "passed": 9,
+            "failed": 29,
+            "error": 2,
+            "total": 40,
+            "accuracy": 22.5
+          }
+        }
+      }
+    },
+    "Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "EASY": {
+        "TD": {
+          "passed": 13,
+          "failed": 14,
+          "error": 3,
+          "total": 30,
+          "accuracy": 43.33,
+          "remediation": {
+            "passed": 15,
+            "failed": 13,
+            "error": 2,
+            "total": 30,
+            "accuracy": 50.0
+          }
+        },
+        "NORMAL": {
+          "passed": 0,
+          "failed": 27,
+          "error": 3,
+          "total": 30,
+          "accuracy": 0.0,
+          "remediation": {
+            "passed": 1,
+            "failed": 27,
+            "error": 2,
+            "total": 30,
+            "accuracy": 3.33
+          }
+        }
+      },
+      "MEDIUM": {
+        "TD": {
+          "passed": 42,
+          "failed": 80,
+          "error": 10,
+          "total": 132,
+          "accuracy": 31.82,
+          "remediation": {
+            "passed": 46,
+            "failed": 79,
+            "error": 7,
+            "total": 132,
+            "accuracy": 34.85
+          }
+        },
+        "NORMAL": {
+          "passed": 3,
+          "failed": 120,
+          "error": 9,
+          "total": 132,
+          "accuracy": 2.27,
+          "remediation": {
+            "passed": 5,
+            "failed": 121,
+            "error": 6,
+            "total": 132,
+            "accuracy": 3.79
+          }
+        }
+      },
+      "HARD": {
+        "TD": {
+          "passed": 8,
+          "failed": 26,
+          "error": 6,
+          "total": 40,
+          "accuracy": 20.0,
+          "remediation": {
+            "passed": 8,
+            "failed": 28,
+            "error": 4,
+            "total": 40,
+            "accuracy": 20.0
+          }
+        },
+        "NORMAL": {
+          "passed": 3,
+          "failed": 29,
+          "error": 8,
+          "total": 40,
+          "accuracy": 7.5,
+          "remediation": {
+            "passed": 3,
+            "failed": 34,
+            "error": 3,
+            "total": 40,
+            "accuracy": 7.5
+          }
+        }
+      }
+    },
+    "anthropic/claude-3.5-sonnet": {
+      "EASY": {
+        "TD": {
+          "passed": 21,
+          "failed": 8,
+          "error": 1,
+          "total": 30,
+          "accuracy": 70.0,
+          "remediation": {
+            "passed": 23,
+            "failed": 6,
+            "error": 1,
+            "total": 30,
+            "accuracy": 76.67
+          }
+        },
+        "NORMAL": {
+          "passed": 0,
+          "failed": 27,
+          "error": 3,
+          "total": 30,
+          "accuracy": 0.0,
+          "remediation": {
+            "passed": 23,
+            "failed": 6,
+            "error": 1,
+            "total": 30,
+            "accuracy": 76.67
+          }
+        }
+      },
+      "MEDIUM": {
+        "TD": {
+          "passed": 49,
+          "failed": 60,
+          "error": 23,
+          "total": 132,
+          "accuracy": 37.12,
+          "remediation": {
+            "passed": 69,
+            "failed": 48,
+            "error": 15,
+            "total": 132,
+            "accuracy": 52.27
+          }
+        },
+        "NORMAL": {
+          "passed": 4,
+          "failed": 98,
+          "error": 30,
+          "total": 132,
+          "accuracy": 3.03,
+          "remediation": {
+            "passed": 68,
+            "failed": 44,
+            "error": 20,
+            "total": 132,
+            "accuracy": 51.52
+          }
+        }
+      },
+      "HARD": {
+        "TD": {
+          "passed": 6,
+          "failed": 22,
+          "error": 12,
+          "total": 40,
+          "accuracy": 15.0,
+          "remediation": {
+            "passed": 10,
+            "failed": 19,
+            "error": 11,
+            "total": 40,
+            "accuracy": 25.0
+          }
+        },
+        "NORMAL": {
+          "passed": 6,
+          "failed": 24,
+          "error": 10,
+          "total": 40,
+          "accuracy": 15.0,
+          "remediation": {
+            "passed": 15,
+            "failed": 20,
+            "error": 5,
+            "total": 40,
+            "accuracy": 37.5
+          }
+        }
+      }
+    }
+  },
+  "raw_summary_data": {
+    "Qwen/Qwen2.5-Coder-32B-Instruct": {
+      "TD": {
+        "first_attempt": {
+          "passed": 63,
+          "failed": 120,
+          "error": 19,
+          "total": 202,
+          "accuracy": 31.19
+        },
+        "remediation": {
+          "passed": 69,
+          "failed": 120,
+          "error": 13,
+          "test_errors": 13,
+          "generation_errors": 0,
+          "total": 202,
+          "accuracy": 34.16
+        }
+      },
+      "NORMAL": {
+        "first_attempt": {
+          "passed": 6,
+          "failed": 176,
+          "error": 20,
+          "total": 202,
+          "accuracy": 2.97
+        },
+        "remediation": {
+          "passed": 9,
+          "failed": 182,
+          "error": 11,
+          "test_errors": 11,
+          "generation_errors": 0,
+          "total": 202,
+          "accuracy": 4.46
+        }
+      }
+    },
+    "openai/gpt-4o-2024-11-20": {
+      "NORMAL": {
+        "first_attempt": {
+          "passed": 8,
+          "failed": 186,
+          "error": 8,
+          "total": 202,
+          "accuracy": 3.96
+        },
+        "remediation": {
+          "passed": 44,
+          "failed": 154,
+          "error": 4,
+          "test_errors": 4,
+          "generation_errors": 0,
+          "total": 202,
+          "accuracy": 21.78
+        }
+      },
+      "TD": {
+        "first_attempt": {
+          "passed": 53,
+          "failed": 142,
+          "error": 7,
+          "total": 202,
+          "accuracy": 26.24
+        },
+        "remediation": {
+          "passed": 65,
+          "failed": 133,
+          "error": 4,
+          "test_errors": 4,
+          "generation_errors": 0,
+          "total": 202,
+          "accuracy": 32.18
+        }
+      }
+    },
+    "anthropic/claude-3.5-sonnet": {
+      "NORMAL": {
+        "first_attempt": {
+          "passed": 10,
+          "failed": 149,
+          "error": 43,
+          "total": 202,
+          "accuracy": 4.95
+        },
+        "remediation": {
+          "passed": 106,
+          "failed": 70,
+          "error": 26,
+          "test_errors": 26,
+          "generation_errors": 0,
+          "total": 202,
+          "accuracy": 52.48
+        }
+      },
+      "TD": {
+        "first_attempt": {
+          "passed": 76,
+          "failed": 90,
+          "error": 36,
+          "total": 202,
+          "accuracy": 37.62
+        },
+        "remediation": {
+          "passed": 102,
+          "failed": 73,
+          "error": 27,
+          "test_errors": 27,
+          "generation_errors": 0,
+          "total": 202,
+          "accuracy": 50.5
+        }
+      }
+    }
+  }
+}

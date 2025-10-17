@@ -1,0 +1,1478 @@
+[
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 0,
+    "solution": "===START===\nfrom typing import List\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n    return False\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n\n### Signature\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True",
+    "timestamp": "2025-10-17T17:59:28.292378",
+    "response_time": "4.84"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 1,
+    "solution": "```python\nfrom typing import List\n\n###START###\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    result = []\n    current_group = []\n    balance = 0\n\n    for char in paren_string.replace(\" \", \"\"):\n        if char == '(':\n            balance += 1\n            current_group.append(char)\n        elif char == ')':\n            balance -= 1\n            current_group.append(char)\n        \n        if balance == 0 and current_group:\n            result.append(''.join(current_group))\n            current_group = []\n\n    return result\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n\n### Signature\ndef separate_paren_groups(paren_string: str) -> List[str]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [ '(()())', '((()))', '()', '((())()())' ]\nassert candidate('() (()) ((())) (((())))') == [ '()', '(())', '((()))', '(((())))' ]",
+    "timestamp": "2025-10-17T17:59:33.795690",
+    "response_time": "5.50"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 2,
+    "solution": "===START===\nimport math\n\ndef truncate_number(number: float) -> float:\n    integer_part = math.floor(number)\n    decimal_part = number - integer_part\n    return decimal_part\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n\n### Test\nassert candidate(3.5) == 0.5",
+    "timestamp": "2025-10-17T17:59:35.858212",
+    "response_time": "2.06"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 3,
+    "solution": "```python\nfrom typing import List\n\n###START###\ndef below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n\n### Signature\ndef below_zero(operations: List[int]) -> bool:\n\n### Test\nassert candidate([]) == False\nassert candidate([1, 2, -3, 1, 2, -3]) == False\nassert candidate([1, 2, -4, 5, 6]) == True",
+    "timestamp": "2025-10-17T17:59:38.723560",
+    "response_time": "2.86"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 4,
+    "solution": "```python\nfrom typing import List\n\n###START###\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    mean = sum(numbers) / len(numbers)\n    mad = sum(abs(x - mean) for x in numbers) / len(numbers)\n    return mad\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n\n### Test\nassert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6",
+    "timestamp": "2025-10-17T17:59:41.619443",
+    "response_time": "2.89"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 5,
+    "solution": "```python\nfrom typing import List\n\n###START###\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    if not numbers:\n        return []\n    \n    result = []\n    for i, num in enumerate(numbers):\n        result.append(num)\n        if i < len(numbers) - 1:\n            result.append(delimeter)\n    \n    return result\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n\n### Signature\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n\n### Test\nassert candidate([], 7) == []",
+    "timestamp": "2025-10-17T17:59:45.436915",
+    "response_time": "3.81"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 6,
+    "solution": "```python\nfrom typing import List\n\n###START###\ndef parse_nested_parens(paren_string: str) -> List[int]:\n    def max_depth(s: str) -> int:\n        depth = 0\n        max_depth = 0\n        for char in s:\n            if char == '(':\n                depth += 1\n                if depth > max_depth:\n                    max_depth = depth\n            elif char == ')':\n                depth -= 1\n        return max_depth\n\n    return [max_depth(group) for group in paren_string.split()]\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Input to this function is a string represented multiple groups for nested parentheses separated by spaces.\n    For each of the group, output the deepest level of nesting of parentheses.\n    E.g. (()()) has maximum two levels of nesting while ((())) has three.\n\n### Signature\ndef parse_nested_parens(paren_string: str) -> List[int]:\n\n### Test\nassert candidate('(()()) ((())) () ((())()())') == [2, 3, 1, 3]",
+    "timestamp": "2025-10-17T17:59:50.771090",
+    "response_time": "5.33"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 7,
+    "solution": "===START===\nfrom typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []\nassert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']",
+    "timestamp": "2025-10-17T17:59:52.832456",
+    "response_time": "2.06"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 8,
+    "solution": "```python\nfrom typing import List, Tuple\n\n###START###\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    total_sum = sum(numbers)\n    total_product = 1\n    for number in numbers:\n        total_product *= number\n    return total_sum, total_product\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n\n### Signature\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n\n### Test\nassert candidate([]) == (0, 1)\nassert candidate([1, 1, 1]) == (3, 1)",
+    "timestamp": "2025-10-17T17:59:55.989644",
+    "response_time": "3.16"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 9,
+    "solution": "```python\nfrom typing import List\n\n###START###\ndef rolling_max(numbers: List[int]) -> List[int]:\n    if not numbers:\n        return []\n    \n    max_list = []\n    current_max = numbers[0]\n    \n    for number in numbers:\n        if number > current_max:\n            current_max = number\n        max_list.append(current_max)\n    \n    return max_list\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     From a given list of integers, generate a list of rolling maximum element found until given moment\n    in the sequence.\n    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n    [1, 2, 3, 3, 3, 4, 4]\n\n### Signature\ndef rolling_max(numbers: List[int]) -> List[int]:\n\n### Test\nassert candidate([]) == []\nassert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]",
+    "timestamp": "2025-10-17T17:59:59.877268",
+    "response_time": "3.89"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 10,
+    "solution": "===START===\n```python\ndef make_palindrome(string: str) -> str:\n    if not string:\n        return string\n    \n    # Helper function to check if a string is a palindrome\n    def is_palindrome(s: str) -> bool:\n        return s == s[::-1]\n    \n    # Find the longest palindromic suffix\n    for i in range(len(string)):\n        if is_palindrome(string[i:]):\n            # Append the reverse of the prefix before the palindromic suffix\n            return string + string[:i][::-1]\n    \n    # If no palindromic suffix is found, return the string with its reverse appended\n    return string + string[::-1]\n\n# Test cases\nassert make_palindrome('') == ''\nassert make_palindrome('x') == 'x'\nassert make_palindrome('cat') == 'catac'\nassert make_palindrome('cata') == 'catac'\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('x') == 'x'",
+    "timestamp": "2025-10-17T18:00:08.831506",
+    "response_time": "8.95"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 11,
+    "solution": "===START===\n```python\ndef string_xor(a: str, b: str) -> str:\n    return ''.join('1' if x != y else '0' for x, y in zip(a, b))\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Input are two strings a and b consisting only of 1s and 0s.\n    Perform binary XOR on these inputs and return result also as a string.\n    >>> string_xor('010', '110')\n    '100'\n\n### Signature\ndef string_xor(a: str, b: str) -> str:\n\n### Test\nassert candidate('111000', '101010') == '010010'",
+    "timestamp": "2025-10-17T18:00:11.266263",
+    "response_time": "2.43"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 12,
+    "solution": "```python\nfrom typing import List, Optional\n\n###START###\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    return max(strings, key=len)\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:\n\n### Test\nassert candidate([]) == None",
+    "timestamp": "2025-10-17T18:00:13.490756",
+    "response_time": "2.22"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 13,
+    "solution": "===START===\nfrom math import gcd\n\ndef greatest_common_divisor(a: int, b: int) -> int:\n    return gcd(a, b)\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Return a greatest common divisor of two integers a and b\n    >>> greatest_common_divisor(3, 5)\n    1\n    >>> greatest_common_divisor(25, 15)\n    5\n\n### Signature\ndef greatest_common_divisor(a: int, b: int) -> int:\n\n### Test\nassert candidate(3, 7) == 1\nassert candidate(10, 15) == 5",
+    "timestamp": "2025-10-17T18:00:15.249311",
+    "response_time": "1.76"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 14,
+    "solution": "```python\nfrom typing import List\n\n###START###\ndef all_prefixes(string: str) -> List[str]:\n    return [string[:i] for i in range(1, len(string) + 1)]\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:\n\n### Test\nassert candidate('') == []",
+    "timestamp": "2025-10-17T18:00:17.661052",
+    "response_time": "2.41"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 15,
+    "solution": "===START===\n```python\ndef string_sequence(n: int) -> str:\n    return ' '.join(str(i) for i in range(n + 1))\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n    >>> string_sequence(0)\n    '0'\n    >>> string_sequence(5)\n    '0 1 2 3 4 5'\n\n### Signature\ndef string_sequence(n: int) -> str:\n\n### Test\nassert candidate(0) == '0'",
+    "timestamp": "2025-10-17T18:00:19.598059",
+    "response_time": "1.93"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 16,
+    "solution": "===START===\nfrom collections import Counter\n\ndef count_distinct_characters(string: str) -> int:\n    return len(Counter(string.lower()))\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Given a string, find out how many distinct characters (regardless of case) does it consist of\n    >>> count_distinct_characters('xyzXYZ')\n    3\n    >>> count_distinct_characters('Jerry')\n    4\n\n### Signature\ndef count_distinct_characters(string: str) -> int:\n\n### Test\nassert candidate('') == 0\nassert candidate('abcde') == 5",
+    "timestamp": "2025-10-17T18:00:21.183947",
+    "response_time": "1.58"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 17,
+    "solution": "```python\nfrom typing import List\n\n###START###\ndef parse_music(music_string: str) -> List[int]:\n    # Split the input string by spaces to get individual note representations\n    notes = music_string.split()\n    \n    # Initialize an empty list to store the beats for each note\n    beats = []\n    \n    # Iterate over each note representation\n    for note in notes:\n        if note == 'o':\n            beats.append(4)\n        # Add more conditions here if there are other note representations\n    \n    return beats\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Input to this function is a string representing musical notes in a special ASCII format.\n    Your task is to parse this string and return list of integers corresponding to how many beats does each\n    not last.\n\n### Signature\ndef parse_music(music_string: str) -> List[int]:\n\n### Test\nassert candidate('') == []\nassert candidate('o o o o') == [4, 4, 4, 4]",
+    "timestamp": "2025-10-17T18:00:26.366453",
+    "response_time": "5.18"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 18,
+    "solution": "===START===\n```python\ndef how_many_times(string: str, substring: str) -> int:\n    count = 0\n    start = 0\n    while start <= len(string) - len(substring):\n        pos = string.find(substring, start)\n        if pos != -1:\n            count += 1\n            start = pos + 1\n        else:\n            break\n    return count\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Find how many times a given substring can be found in the original string. Count overlaping cases.\n    >>> how_many_times('', 'a')\n    0\n    >>> how_many_times('aaa', 'a')\n    3\n    >>> how_many_times('aaaa', 'aa')\n    3\n\n### Signature\ndef how_many_times(string: str, substring: str) -> int:\n\n### Test\nassert candidate('', 'x') == 0\nassert candidate('xyxyxyx', 'x') == 4",
+    "timestamp": "2025-10-17T18:00:30.658690",
+    "response_time": "4.29"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 19,
+    "solution": "===START===\n```python\ndef sort_numbers(numbers: str) -> str:\n    number_map = {\n        'zero': 0,\n        'one': 1,\n        'two': 2,\n        'three': 3,\n        'four': 4,\n        'five': 5,\n        'six': 6,\n        'seven': 7,\n        'eight': 8,\n        'nine': 9\n    }\n    \n    if not numbers:\n        return ''\n    \n    words = numbers.split()\n    sorted_words = sorted(words, key=lambda word: number_map[word])\n    return ' '.join(sorted_words)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Input is a space-delimited string of numberals from 'zero' to 'nine'.\n    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\n    Return the string with numbers sorted from smallest to largest\n    >>> sort_numbers('three one five')\n    'one three five'\n\n### Signature\ndef sort_numbers(numbers: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('three') == 'three'",
+    "timestamp": "2025-10-17T18:00:36.924668",
+    "response_time": "6.26"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 20,
+    "solution": "```python\nfrom typing import List, Tuple\n\n###START###\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n    numbers.sort()\n    closest_pair = (numbers[0], numbers[1])\n    min_diff = abs(numbers[1] - numbers[0])\n    \n    for i in range(1, len(numbers) - 1):\n        diff = abs(numbers[i + 1] - numbers[i])\n        if diff < min_diff:\n            min_diff = diff\n            closest_pair = (numbers[i], numbers[i + 1])\n    \n    return closest_pair\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     From a supplied list of numbers (of length at least two) select and return two that are the closest to each\n    other and return them in order (smaller number, larger number).\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n    (2.0, 2.2)\n    >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n    (2.0, 2.0)\n\n### Signature\ndef find_closest_elements(numbers: List[float]) -> Tuple[float, float]:\n\n### Test\nassert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2]) == (3.9, 4.0)\nassert candidate([1.0, 2.0, 5.9, 4.0, 5.0]) == (5.0, 5.9)",
+    "timestamp": "2025-10-17T18:00:42.708981",
+    "response_time": "5.78"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 21,
+    "solution": "===START===\nfrom typing import List\n\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n    min_num = min(numbers)\n    max_num = max(numbers)\n    range_num = max_num - min_num\n    if range_num == 0:\n        return [0.0] * len(numbers)\n    return [(num - min_num) / range_num for num in numbers]\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Given list of numbers (of at least two elements), apply a linear transform to that list,\n    such that the smallest number will become 0 and the largest will become 1\n    >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n    [0.0, 0.25, 0.5, 0.75, 1.0]\n\n### Signature\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\n\n### Test\nassert candidate([2.0, 49.9]) == [0.0, 1.0]\nassert candidate([100.0, 49.9]) == [1.0, 0.0]",
+    "timestamp": "2025-10-17T18:00:46.637409",
+    "response_time": "3.93"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 22,
+    "solution": "===START===\nfrom typing import List, Any\n\ndef filter_integers(values: List[Any]) -> List[int]:\n    return [value for value in values if isinstance(value, int)]\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Filter given list of any python values only for integers\n    >>> filter_integers(['a', 3.14, 5])\n    [5]\n    >>> filter_integers([1, 2, 3, 'abc', {}, []])\n    [1, 2, 3]\n\n### Signature\ndef filter_integers(values: List[Any]) -> List[int]:\n\n### Test\nassert candidate([]) == []",
+    "timestamp": "2025-10-17T18:00:48.647033",
+    "response_time": "2.01"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 23,
+    "solution": "===START===\ndef strlen(string: str) -> int:\n    return len(string)\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Return length of given string\n    >>> strlen('')\n    0\n    >>> strlen('abc')\n    3\n\n### Signature\ndef strlen(string: str) -> int:\n\n### Test\nassert candidate('') == 0",
+    "timestamp": "2025-10-17T18:00:49.804237",
+    "response_time": "1.15"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 24,
+    "solution": "===START===\n```python\ndef largest_divisor(n: int) -> int:\n    for i in range(n - 1, 0, -1):\n        if n % i == 0:\n            return i\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     For a given number n, find the largest number that divides n evenly, smaller than n\n    >>> largest_divisor(15)\n    5\n\n### Signature\ndef largest_divisor(n: int) -> int:\n\n### Test\nassert candidate(3) == 1\nassert candidate(7) == 1",
+    "timestamp": "2025-10-17T18:00:52.287015",
+    "response_time": "2.48"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 25,
+    "solution": "```python\nfrom typing import List\n\n###START###\ndef factorize(n: int) -> List[int]:\n    factors = []\n    divisor = 2\n    while n >= 2:\n        while n % divisor == 0:\n            factors.append(divisor)\n            n //= divisor\n        divisor += 1\n    return factors\n###END###\n```",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Return list of prime factors of given integer in the order from smallest to largest.\n    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.\n    Input number should be equal to the product of all factors\n    >>> factorize(8)\n    [2, 2, 2]\n    >>> factorize(25)\n    [5, 5]\n    >>> factorize(70)\n    [2, 5, 7]\n\n### Signature\ndef factorize(n: int) -> List[int]:\n\n### Test\nassert candidate(2) == [2]\nassert candidate(4) == [2, 2]\nassert candidate(8) == [2, 2, 2]\nassert candidate(3 * 19) == [3, 19]",
+    "timestamp": "2025-10-17T18:00:56.242408",
+    "response_time": "3.95"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 26,
+    "solution": "===START===\nfrom typing import List\n\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n    seen = set()\n    result = []\n    for number in numbers:\n        if number not in seen:\n            seen.add(number)\n            result.append(number)\n    return result\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     From a list of integers, remove all elements that occur more than once.\n    Keep order of elements left the same as in the input.\n    >>> remove_duplicates([1, 2, 3, 2, 4])\n    [1, 3, 4]\n\n### Signature\ndef remove_duplicates(numbers: List[int]) -> List[int]:\n\n### Test\nassert candidate([]) == []",
+    "timestamp": "2025-10-17T18:00:59.087599",
+    "response_time": "2.84"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 27,
+    "solution": "===START===\n```python\ndef flip_case(string: str) -> str:\n    return ''.join(char.lower() if char.isupper() else char.upper() for char in string)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     For a given string, flip lowercase characters to uppercase and uppercase to lowercase.\n    >>> flip_case('Hello')\n    'hELLO'\n\n### Signature\ndef flip_case(string: str) -> str:\n\n### Test\nassert candidate('') == ''",
+    "timestamp": "2025-10-17T18:01:01.134802",
+    "response_time": "2.04"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 28,
+    "solution": "===START===\nfrom typing import List\n\ndef concatenate(strings: List[str]) -> str:\n    return ''.join(strings)\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Concatenate list of strings into a single string\n    >>> concatenate([])\n    ''\n    >>> concatenate(['a', 'b', 'c'])\n    'abc'\n\n### Signature\ndef concatenate(strings: List[str]) -> str:\n\n### Test\nassert candidate([]) == ''",
+    "timestamp": "2025-10-17T18:01:02.568631",
+    "response_time": "1.43"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 29,
+    "solution": "===START===\nfrom typing import List\n\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n    return [s for s in strings if s.startswith(prefix)]\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Filter an input list of strings only for ones that start with a given prefix.\n    >>> filter_by_prefix([], 'a')\n    []\n    >>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n    ['abc', 'array']\n\n### Signature\ndef filter_by_prefix(strings: List[str], prefix: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []",
+    "timestamp": "2025-10-17T18:01:04.596026",
+    "response_time": "2.03"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 30,
+    "solution": "===START===\ndef get_positive(l: list):\n    return [num for num in l if num > 0]\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return only positive numbers in the list.\n    >>> get_positive([-1, 2, -4, 5, 6])\n    [2, 5, 6]\n    >>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    [5, 3, 2, 3, 9, 123, 1]\n\n### Signature\ndef get_positive(l: list):\n\n### Test\nassert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]\nassert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]",
+    "timestamp": "2025-10-17T18:01:06.010615",
+    "response_time": "1.41"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 31,
+    "solution": "===START===\n```python\nimport math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return true if a given number is prime, and false otherwise.\n    >>> is_prime(6)\n    False\n    >>> is_prime(101)\n    True\n    >>> is_prime(11)\n    True\n    >>> is_prime(13441)\n    True\n    >>> is_prime(61)\n    True\n    >>> is_prime(4)\n    False\n    >>> is_prime(1)\n    False\n\n### Signature\ndef is_prime(n):\n\n### Test\nassert candidate(6) == False\nassert candidate(101) == True\nassert candidate(11) == True\nassert candidate(13441) == True\nassert candidate(61) == True\nassert candidate(4) == False",
+    "timestamp": "2025-10-17T18:01:11.203427",
+    "response_time": "5.19"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 32,
+    "solution": "===START===\nimport math\n\ndef poly(xs: list, x: float) -> float:\n    return sum(coeff * (x ** i) for i, coeff in enumerate(xs))\n\ndef find_zero(xs: list) -> float:\n    assert len(xs) % 2 == 0, \"The list of coefficients must have an even number of elements.\"\n    \n    def evaluate_poly(x):\n        return poly(xs, x)\n    \n    # Initial bounds for the bisection method\n    a, b = -1000, 1000\n    \n    # Ensure that the function changes sign within the bounds\n    while evaluate_poly(a) * evaluate_poly(b) > 0:\n        a *= 2\n        b *= 2\n    \n    # Bisection method\n    while abs(b - a) > 1e-5:\n        mid = (a + b) / 2\n        if evaluate_poly(mid) * evaluate_poly(a) > 0:\n            a = mid\n        else:\n            b = mid\n    \n    return (a + b) / 2\n\n# Example usage\ncoeffs = [-6, 11, -6, 1]\nsolution = find_zero(coeffs)\nassert math.fabs(poly(coeffs, solution)) < 1e-4\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Evaluates polynomial with coefficients xs at point x.\n    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n\n\n### Signature\ndef poly(xs: list, x: float):\n\n### Prompt\n     xs are coefficients of a polynomial.\n    find_zero find x such that poly(x) = 0.\n    find_zero returns only only zero point, even if there are many.\n    Moreover, find_zero only takes list xs having even number of coefficients\n    and largest non zero coefficient as it guarantees\n    a solution.\n    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n    -0.5\n    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n    1.0\n\n### Signature\ndef find_zero(xs: list):\n\n### Test\nassert math.fabs(poly(coeffs, solution)) < 1e-4 ",
+    "timestamp": "2025-10-17T18:01:23.333844",
+    "response_time": "12.13"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 33,
+    "solution": "===START===\n```python\ndef sort_third(l: list):\n    # Extract elements at indices divisible by 3\n    divisible_by_three = [l[i] for i in range(len(l)) if i % 3 == 0]\n    # Sort these elements\n    divisible_by_three.sort()\n    \n    # Create a new list to store the result\n    result = l[:]\n    \n    # Replace elements at indices divisible by 3 with sorted elements\n    for i, value in enumerate(divisible_by_three):\n        result[i * 3] = value\n    \n    return result\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal\n    to the values of the corresponding indicies of l, but sorted.\n    >>> sort_third([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_third([5, 6, 3, 4, 8, 9, 2])\n    [2, 6, 3, 4, 8, 9, 5]\n\n### Signature\ndef sort_third(l: list):\n\n### Test\nassert tuple(candidate([1, 2, 3])) == tuple(sort_third([1, 2, 3]))\nassert tuple(candidate([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])) == tuple(sort_third([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10]))\nassert tuple(candidate([5, 8, -12, 4, 23, 2, 3, 11, 12, -10])) == tuple(sort_third([5, 8, -12, 4, 23, 2, 3, 11, 12, -10]))",
+    "timestamp": "2025-10-17T18:01:29.015150",
+    "response_time": "5.68"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 34,
+    "solution": "===START===\n```python\ndef unique(l: list):\n    return sorted(set(l))\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return sorted unique elements in a list\n    >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [0, 2, 3, 5, 9, 123]\n\n### Signature\ndef unique(l: list):\n\n### Test\nassert candidate([5, 3, 5, 2, 3, 3, 9, 0, 123]) == [0, 2, 3, 5, 9, 123] ",
+    "timestamp": "2025-10-17T18:01:30.272916",
+    "response_time": "1.26"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 35,
+    "solution": "===START===\ndef max_element(l: list):\n    if not l:\n        raise ValueError(\"The list is empty\")\n    max_value = l[0]\n    for value in l:\n        if value > max_value:\n            max_value = value\n    return max_value\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return maximum element in the list.\n    >>> max_element([1, 2, 3])\n    3\n    >>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n    123\n\n### Signature\ndef max_element(l: list):\n\n### Test\nassert candidate([1, 2, 3]) == 3",
+    "timestamp": "2025-10-17T18:01:33.055776",
+    "response_time": "2.78"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 36,
+    "solution": "===START===\n```python\ndef fizz_buzz(n: int) -> int:\n    count = 0\n    for i in range(n):\n        if i % 11 == 0 or i % 13 == 0:\n            count += str(i).count('7')\n    return count\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return the number of times the digit 7 appears in integers less than n which are divisible by 11 or 13.\n    >>> fizz_buzz(50)\n    0\n    >>> fizz_buzz(78)\n    2\n    >>> fizz_buzz(79)\n    3\n\n### Signature\ndef fizz_buzz(n: int):\n\n### Test\nassert candidate(50) == 0\nassert candidate(78) == 2\nassert candidate(79) == 3\nassert candidate(100) == 3",
+    "timestamp": "2025-10-17T18:01:36.320020",
+    "response_time": "3.26"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 37,
+    "solution": "===START===\n```python\ndef sort_even(l: list):\n    even_indices = [i for i in range(len(l)) if i % 2 == 0]\n    even_values = [l[i] for i in even_indices]\n    even_values.sort()\n    \n    l_prime = l[:]\n    for idx, value in zip(even_indices, even_values):\n        l_prime[idx] = value\n    \n    return l_prime\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    This function takes a list l and returns a list l' such that\n    l' is identical to l in the odd indicies, while its values at the even indicies are equal\n    to the values of the even indicies of l, but sorted.\n    >>> sort_even([1, 2, 3])\n    [1, 2, 3]\n    >>> sort_even([5, 6, 3, 4])\n    [3, 6, 5, 4]\n\n### Signature\ndef sort_even(l: list):\n\n### Test\nassert tuple(candidate([1, 2, 3])) == tuple([1, 2, 3])",
+    "timestamp": "2025-10-17T18:01:40.657325",
+    "response_time": "4.34"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 38,
+    "solution": "===START===\n```python\ndef encode_cyclic(s: str) -> str:\n    encoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            encoded.append(group[1:] + group[0])\n        else:\n            encoded.append(group)\n    return ''.join(encoded)\n\ndef decode_cyclic(s: str) -> str:\n    decoded = []\n    for i in range(0, len(s), 3):\n        group = s[i:i+3]\n        if len(group) == 3:\n            decoded.append(group[-1] + group[:-1])\n        else:\n            decoded.append(group)\n    return ''.join(decoded)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    returns encoded string by cycling groups of three characters.\n\n### Signature\ndef encode_cyclic(s: str):\n\n### Prompt\n    takes as input string encoded with encode_cyclic function. Returns decoded string.\n\n### Signature\ndef decode_cyclic(s: str):\n\n### Test\nassert candidate(encoded_str) == str ",
+    "timestamp": "2025-10-17T18:01:47.962750",
+    "response_time": "7.30"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 39,
+    "solution": "===START===\nfrom math import isqrt\n\ndef is_prime(num: int) -> bool:\n    if num <= 1:\n        return False\n    if num <= 3:\n        return True\n    if num % 2 == 0 or num % 3 == 0:\n        return False\n    for i in range(5, isqrt(num) + 1, 6):\n        if num % i == 0 or num % (i + 2) == 0:\n            return False\n    return True\n\ndef prime_fib(n: int) -> int:\n    if n <= 0:\n        raise ValueError(\"n must be a positive integer\")\n    \n    fib1, fib2 = 1, 1\n    count = 0\n    \n    while True:\n        fib1, fib2 = fib2, fib1 + fib2\n        if is_prime(fib2):\n            count += 1\n            if count == n:\n                return fib2\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n    >>> prime_fib(1)\n    2\n    >>> prime_fib(2)\n    3\n    >>> prime_fib(3)\n    5\n    >>> prime_fib(4)\n    13\n    >>> prime_fib(5)\n    89\n\n### Signature\ndef prime_fib(n: int):\n\n### Test\nassert candidate(1) == 2\nassert candidate(2) == 3\nassert candidate(3) == 5\nassert candidate(4) == 13\nassert candidate(5) == 89",
+    "timestamp": "2025-10-17T18:01:57.318639",
+    "response_time": "9.35"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 40,
+    "solution": "===START===\nfrom typing import List\n\ndef triples_sum_to_zero(l: List[int]) -> bool:\n    n = len(l)\n    l.sort()\n    for i in range(n - 2):\n        if i > 0 and l[i] == l[i - 1]:\n            continue\n        left, right = i + 1, n - 1\n        while left < right:\n            total = l[i] + l[left] + l[right]\n            if total == 0:\n                return True\n            elif total < 0:\n                left += 1\n            else:\n                right -= 1\n    return False\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    triples_sum_to_zero takes a list of integers as an input.\n    it returns True if there are three distinct elements in the list that\n    sum to zero, and False otherwise.\n\n### Signature\ndef triples_sum_to_zero(l: list):\n\n### Test\nassert candidate([1, 3, 5, 0]) == False\nassert candidate([1, 3, 5, -1]) == False\nassert candidate([1, 3, -2, 1]) == True\nassert candidate([1, 2, 3, 7]) == False",
+    "timestamp": "2025-10-17T18:02:03.575604",
+    "response_time": "6.25"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 41,
+    "solution": "===START===\n```python\ndef car_race_collision(n: int) -> int:\n    return n * n\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Imagine a road that's a perfectly straight infinitely long line.\n    n cars are driving left to right;  simultaneously, a different set of n cars\n    are driving right to left.   The two sets of cars start out being very far from\n    each other.  All cars move in the same speed.  Two cars are said to collide\n    when a car that's moving left to right hits a car that's moving right to left.\n    However, the cars are infinitely sturdy and strong; as a result, they continue moving\n    in their trajectory as if they did not collide.\n\n### Signature\ndef car_race_collision(n: int):\n\n### Test\nassert candidate(2) == 4\nassert candidate(3) == 9",
+    "timestamp": "2025-10-17T18:02:05.046957",
+    "response_time": "1.47"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 42,
+    "solution": "===START===\n```python\ndef incr_list(l: list):\n    return [x + 1 for x in l]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return list with elements incremented by 1.\n    >>> incr_list([1, 2, 3])\n    [2, 3, 4]\n    >>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n    [6, 4, 6, 3, 4, 4, 10, 1, 124]\n\n### Signature\ndef incr_list(l: list):\n\n### Test\nassert candidate([]) == []",
+    "timestamp": "2025-10-17T18:02:06.581117",
+    "response_time": "1.53"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 43,
+    "solution": "===START===\ndef pairs_sum_to_zero(l):\n    seen = set()\n    for num in l:\n        if -num in seen:\n            return True\n        seen.add(num)\n    return False\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    pairs_sum_to_zero takes a list of integers as an input.\n    it returns True if there are two distinct elements in the list that\n    sum to zero, and False otherwise.\n    >>> pairs_sum_to_zero([1, 3, 5, 0])\n    False\n    >>> pairs_sum_to_zero([1, 3, -2, 1])\n    False\n    >>> pairs_sum_to_zero([1, 2, 3, 7])\n    False\n    >>> pairs_sum_to_zero([2, 4, -5, 3, 5, 7])\n    True\n    >>> pairs_sum_to_zero([1])\n    False\n\n### Signature\ndef pairs_sum_to_zero(l):\n\n### Test\nassert candidate([1, 3, 5, 0]) == False\nassert candidate([1, 3, -2, 1]) == False\nassert candidate([1, 2, 3, 7]) == False\nassert candidate([2, 4, -5, 3, 5, 7]) == True",
+    "timestamp": "2025-10-17T18:02:08.782149",
+    "response_time": "2.19"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 44,
+    "solution": "===START===\n```python\ndef change_base(x: int, base: int) -> str:\n    if x == 0:\n        return \"0\"\n    \n    digits = []\n    while x > 0:\n        digits.append(str(x % base))\n        x //= base\n    \n    return ''.join(reversed(digits))\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Change numerical base of input number x to base.\n    return string representation after the conversion.\n    base numbers are less than 10.\n    >>> change_base(8, 3)\n    '22'\n    >>> change_base(8, 2)\n    '1000'\n    >>> change_base(7, 2)\n    '111'\n\n### Signature\ndef change_base(x: int, base: int):\n\n### Test\nassert candidate(8, 3) == \"22\"\nassert candidate(9, 3) == \"100\"\nassert candidate(234, 2) == \"11101010\"",
+    "timestamp": "2025-10-17T18:02:12.079684",
+    "response_time": "3.29"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 45,
+    "solution": "===START===\n```python\ndef triangle_area(a, h):\n    return 0.5 * a * h\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given length of a side and high return area for a triangle.\n    >>> triangle_area(5, 3)\n    7.5\n\n### Signature\ndef triangle_area(a, h):\n\n### Test\nassert candidate(5, 3) == 7.5",
+    "timestamp": "2025-10-17T18:02:13.575540",
+    "response_time": "1.49"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 46,
+    "solution": "===START===\n```python\ndef fib4(n: int) -> int:\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 2\n    elif n == 3:\n        return 0\n\n    # Initialize the first four elements of the sequence\n    fib4_values = [0, 0, 2, 0]\n\n    # Compute the sequence iteratively up to the n-th element\n    for i in range(4, n + 1):\n        next_value = fib4_values[-1] + fib4_values[-2] + fib4_values[-3] + fib4_values[-4]\n        fib4_values.append(next_value)\n\n    return fib4_values[n]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    The Fib4 number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fib4(0) -> 0\n    fib4(1) -> 0\n    fib4(2) -> 2\n    fib4(3) -> 0\n    fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).\n    Please write a function to efficiently compute the n-th element of the fib4 number sequence.  Do not use recursion.\n    >>> fib4(5)\n    4\n    >>> fib4(6)\n    8\n    >>> fib4(7)\n    14\n\n### Signature\ndef fib4(n: int):\n\n### Test\nassert candidate(5) == 4\nassert candidate(8) == 28",
+    "timestamp": "2025-10-17T18:02:21.313447",
+    "response_time": "7.73"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 47,
+    "solution": "===START===\n```python\ndef median(l: list):\n    sorted_l = sorted(l)\n    n = len(sorted_l)\n    mid = n // 2\n    if n % 2 == 1:\n        return sorted_l[mid]\n    else:\n        return (sorted_l[mid - 1] + sorted_l[mid]) / 2\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return median of elements in the list l.\n    >>> median([3, 1, 2, 4, 5])\n    3\n    >>> median([-10, 4, 6, 1000, 10, 20])\n    15.0\n\n### Signature\ndef median(l: list):\n\n### Test\nassert candidate([3, 1, 2, 4, 5]) == 3\nassert candidate([-10, 4, 6, 1000, 10, 20]) == 8.0",
+    "timestamp": "2025-10-17T18:02:25.011159",
+    "response_time": "3.70"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 48,
+    "solution": "===START===\n```python\ndef is_palindrome(text: str) -> bool:\n    return text == text[::-1]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Checks if given string is a palindrome\n    >>> is_palindrome('')\n    True\n    >>> is_palindrome('aba')\n    True\n    >>> is_palindrome('aaaaa')\n    True\n    >>> is_palindrome('zbcd')\n    False\n\n### Signature\ndef is_palindrome(text: str):\n\n### Test\nassert candidate('') == True\nassert candidate('aba') == True\nassert candidate('aaaaa') == True",
+    "timestamp": "2025-10-17T18:02:26.557547",
+    "response_time": "1.54"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 49,
+    "solution": "===START===\n```python\ndef modp(n: int, p: int) -> int:\n    return pow(2, n, p)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return 2^n modulo p (be aware of numerics).\n    >>> modp(3, 5)\n    3\n    >>> modp(1101, 101)\n    2\n    >>> modp(0, 101)\n    1\n    >>> modp(3, 11)\n    8\n    >>> modp(100, 101)\n    1\n\n### Signature\ndef modp(n: int, p: int):\n\n### Test\nassert candidate(3, 5) == 3\nassert candidate(1101, 101) == 2\nassert candidate(0, 101) == 1",
+    "timestamp": "2025-10-17T18:02:28.354416",
+    "response_time": "1.79"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 50,
+    "solution": "===START===\n```python\ndef encode_shift(s: str) -> str:\n    encoded_chars = []\n    for char in s:\n        if char.isalpha():\n            shift = 5\n            if char.islower():\n                base = ord('a')\n            else:\n                base = ord('A')\n            encoded_char = chr((ord(char) - base + shift) % 26 + base)\n            encoded_chars.append(encoded_char)\n        else:\n            encoded_chars.append(char)\n    return ''.join(encoded_chars)\n\ndef decode_shift(s: str) -> str:\n    decoded_chars = []\n    for char in s:\n        if char.isalpha():\n            shift = 5\n            if char.islower():\n                base = ord('a')\n            else:\n                base = ord('A')\n            decoded_char = chr((ord(char) - base - shift) % 26 + base)\n            decoded_chars.append(decoded_char)\n        else:\n            decoded_chars.append(char)\n    return ''.join(decoded_chars)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    returns encoded string by shifting every character by 5 in the alphabet.\n\n### Signature\ndef encode_shift(s: str):\n\n### Prompt\n    takes as input string encoded with encode_shift function. Returns decoded string.\n\n### Signature\ndef decode_shift(s: str):\n\n### Test\nassert candidate(copy.deepcopy(encoded_str)) == str ",
+    "timestamp": "2025-10-17T18:02:37.786848",
+    "response_time": "9.43"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 51,
+    "solution": "===START===\nimport re\n\ndef remove_vowels(text):\n    return re.sub(r'[aeiouAEIOU]', '', text)\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\\nghijklm\")\n    'bcdf\\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'\n\n### Signature\ndef remove_vowels(text):\n\n### Test\nassert candidate('') == ''\nassert candidate(\"abcdef\\nghijklm\") == 'bcdf\\nghjklm'\nassert candidate('fedcba') == 'fdcb'",
+    "timestamp": "2025-10-17T18:02:39.484561",
+    "response_time": "1.69"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 52,
+    "solution": "===START===\ndef below_threshold(l: list, t: int) -> bool:\n    return all(x < t for x in l)\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return True if all numbers in the list l are below threshold t.\n    >>> below_threshold([1, 2, 4, 10], 100)\n    True\n    >>> below_threshold([1, 20, 4, 10], 5)\n    False\n\n### Signature\ndef below_threshold(l: list, t: int):\n\n### Test\nassert candidate([1, 2, 4, 10], 100)\nassert not candidate([1, 20, 4, 10], 5)\nassert candidate([1, 20, 4, 10], 21)",
+    "timestamp": "2025-10-17T18:02:41.270297",
+    "response_time": "1.78"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 53,
+    "solution": "===START===\ndef add(x: int, y: int) -> int:\n    return x + y\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Add two numbers x and y\n    >>> add(2, 3)\n    5\n    >>> add(5, 7)\n    12\n\n### Signature\ndef add(x: int, y: int):\n\n### Test\nassert candidate(0, 1) == 1\nassert candidate(1, 0) == 1\nassert candidate(2, 3) == 5",
+    "timestamp": "2025-10-17T18:02:42.763091",
+    "response_time": "1.49"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 54,
+    "solution": "===START===\nfrom collections import Counter\n\ndef same_chars(s0: str, s1: str) -> bool:\n    return Counter(s0) == Counter(s1)\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Check if two words have the same characters.\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\n    True\n    >>> same_chars('abcd', 'dddddddabc')\n    True\n    >>> same_chars('dddddddabc', 'abcd')\n    True\n    >>> same_chars('eabcd', 'dddddddabc')\n    False\n    >>> same_chars('abcd', 'dddddddabce')\n    False\n    >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\n    False\n\n### Signature\ndef same_chars(s0: str, s1: str):\n\n### Test\nassert candidate('eabcdzzzz', 'dddzzzzzzzddeddabc') == True\nassert candidate('abcd', 'dddddddabc') == True\nassert candidate('dddddddabc', 'abcd') == True",
+    "timestamp": "2025-10-17T18:02:44.669023",
+    "response_time": "1.90"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 55,
+    "solution": "===START===\n```python\ndef fib(n: int) -> int:\n    if n <= 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return n-th Fibonacci number.\n    >>> fib(10)\n    55\n    >>> fib(1)\n    1\n    >>> fib(8)\n    21\n\n### Signature\ndef fib(n: int):\n\n### Test\nassert candidate(10) == 55\nassert candidate(1) == 1",
+    "timestamp": "2025-10-17T18:02:48.744093",
+    "response_time": "4.07"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 56,
+    "solution": "===START===\n```python\ndef correct_bracketing(brackets: str) -> bool:\n    balance = 0\n    for char in brackets:\n        if char == '<':\n            balance += 1\n        elif char == '>':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     brackets is a string of \"<\" and \">\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n### Signature\ndef correct_bracketing(brackets: str):\n\n### Test\nassert candidate(\"<>\")\nassert candidate(\"<<><>>\")\nassert candidate(\"<><><<><>><>\")\nassert candidate(\"<><><<<><><>><>><<><><<>>>\")\nassert not candidate(\"<<<><>>>>\")\nassert not candidate(\"><<>\")",
+    "timestamp": "2025-10-17T18:02:52.821304",
+    "response_time": "4.07"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 57,
+    "solution": "===START===\n```python\ndef monotonic(l: list) -> bool:\n    increasing = decreasing = True\n    \n    for i in range(1, len(l)):\n        if l[i] > l[i - 1]:\n            decreasing = False\n        elif l[i] < l[i - 1]:\n            increasing = False\n    \n    return increasing or decreasing\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return True is list elements are monotonically increasing or decreasing.\n    >>> monotonic([1, 2, 4, 20])\n    True\n    >>> monotonic([1, 20, 4, 10])\n    False\n    >>> monotonic([4, 1, 0, -10])\n    True\n\n### Signature\ndef monotonic(l: list):\n\n### Test\nassert candidate([1, 2, 4, 10]) == True\nassert candidate([1, 2, 4, 20]) == True\nassert candidate([1, 20, 4, 10]) == False\nassert candidate([4, 1, 0, -10]) == True",
+    "timestamp": "2025-10-17T18:02:57.914253",
+    "response_time": "5.09"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 58,
+    "solution": "===START===\ndef common(l1: list, l2: list):\n    # Convert both lists to sets to find common elements\n    set1 = set(l1)\n    set2 = set(l2)\n    \n    # Find the intersection of both sets\n    common_elements = set1.intersection(set2)\n    \n    # Convert the set back to a sorted list\n    return sorted(common_elements)\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return sorted unique common elements for two lists.\n    >>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n    [1, 5, 653]\n    >>> common([5, 3, 2, 8], [3, 2])\n    [2, 3]\n\n### Signature\ndef common(l1: list, l2: list):\n\n### Test\nassert candidate([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121]) == [1, 5, 653]\nassert candidate([5, 3, 2, 8], [3, 2]) == [2, 3]",
+    "timestamp": "2025-10-17T18:03:01.968738",
+    "response_time": "4.05"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 59,
+    "solution": "===START===\nimport math\n\ndef largest_prime_factor(n: int) -> int:\n    def is_prime(num: int) -> bool:\n        if num <= 1:\n            return False\n        if num <= 3:\n            return True\n        if num % 2 == 0 or num % 3 == 0:\n            return False\n        i = 5\n        while i * i <= num:\n            if num % i == 0 or num % (i + 2) == 0:\n                return False\n            i += 6\n        return True\n\n    largest_factor = None\n    # Check for number of 2s that divide n\n    while n % 2 == 0:\n        largest_factor = 2\n        n //= 2\n\n    # n must be odd at this point, so a skip of 2 (i.e., i = i + 2) can be used\n    for i in range(3, int(math.sqrt(n)) + 1, 2):\n        while n % i == 0:\n            largest_factor = i\n            n //= i\n\n    # This condition is to check if n is a prime number greater than 2\n    if n > 2:\n        largest_factor = n\n\n    return largest_factor\n\n# Test cases\nassert largest_prime_factor(15) == 5\nassert largest_prime_factor(27) == 3\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Return the largest prime factor of n. Assume n > 1 and is not a prime.\n    >>> largest_prime_factor(13195)\n    29\n    >>> largest_prime_factor(2048)\n    2\n\n### Signature\ndef largest_prime_factor(n: int):\n\n### Test\nassert candidate(15) == 5\nassert candidate(27) == 3",
+    "timestamp": "2025-10-17T18:03:15.335823",
+    "response_time": "13.36"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 60,
+    "solution": "===START===\n```python\ndef sum_to_n(n: int) -> int:\n    return n * (n + 1) // 2\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    sum_to_n is a function that sums numbers from 1 to n.\n    >>> sum_to_n(30)\n    465\n    >>> sum_to_n(100)\n    5050\n    >>> sum_to_n(5)\n    15\n    >>> sum_to_n(10)\n    55\n    >>> sum_to_n(1)\n    1\n\n### Signature\ndef sum_to_n(n: int):\n\n### Test\nassert candidate(1) == 1\nassert candidate(6) == 21",
+    "timestamp": "2025-10-17T18:03:18.067302",
+    "response_time": "2.73"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 61,
+    "solution": "===START===\n```python\ndef correct_bracketing(brackets: str) -> bool:\n    balance = 0\n    for char in brackets:\n        if char == '(':\n            balance += 1\n        elif char == ')':\n            balance -= 1\n        if balance < 0:\n            return False\n    return balance == 0\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     brackets is a string of \"(\" and \")\".\n    return True if every opening bracket has a corresponding closing bracket.\n\n### Signature\ndef correct_bracketing(brackets: str):\n\n### Test\nassert candidate(\"()\")\nassert candidate(\"(()())\")\nassert candidate(\"()()(()())()\")\nassert candidate(\"()()((()()())())(()()(()))\")\nassert not candidate(\"((()())))\")\nassert not candidate(\")(()\")",
+    "timestamp": "2025-10-17T18:03:21.698354",
+    "response_time": "3.63"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 62,
+    "solution": "===START===\n```python\ndef derivative(xs: list):\n    return [i * xs[i] for i in range(1, len(xs))]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     xs represent coefficients of a polynomial.\n    xs[0] + xs[1] * x + xs[2] * x^2 + ....\n     Return derivative of this polynomial in the same form.\n    >>> derivative([3, 1, 2, 4, 5])\n    [1, 4, 12, 20]\n    >>> derivative([1, 2, 3])\n    [2, 6]\n\n### Signature\ndef derivative(xs: list):\n\n### Test\nassert candidate([3, 1, 2, 4, 5]) == [1, 4, 12, 20]\nassert candidate([1, 2, 3]) == [2, 6]",
+    "timestamp": "2025-10-17T18:03:23.610099",
+    "response_time": "1.91"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 63,
+    "solution": "===START===\n```python\ndef fibfib(n: int) -> int:\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 0\n    elif n == 2:\n        return 1\n    \n    a, b, c = 0, 0, 1\n    for i in range(3, n + 1):\n        a, b, c = b, c, a + b + c\n    return c\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    The FibFib number sequence is a sequence similar to the Fibbonacci sequnece that's defined as follows:\n    fibfib(0) == 0\n    fibfib(1) == 0\n    fibfib(2) == 1\n    fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).\n    Please write a function to efficiently compute the n-th element of the fibfib number sequence.\n    >>> fibfib(1)\n    0\n    >>> fibfib(5)\n    4\n    >>> fibfib(8)\n    24\n\n### Signature\ndef fibfib(n: int):\n\n### Test\nassert candidate(2) == 1\nassert candidate(1) == 0\nassert candidate(5) == 4",
+    "timestamp": "2025-10-17T18:03:28.672741",
+    "response_time": "5.06"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 64,
+    "solution": "===START===\n```python\ndef vowels_count(s):\n    vowels = set('aeiou')\n    count = sum(1 for char in s.lower() if char in vowels)\n    if s.lower().endswith('y'):\n        count += 1\n    return count\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function vowels_count which takes a string representing\n    a word as input and returns the number of vowels in the string.\n    Vowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\n    vowel, but only when it is at the end of the given word.\n\n### Signature\ndef vowels_count(s):\n\n### Test\nassert candidate(\"abcde\") == 2, \"Test 1\"\nassert candidate(\"Alone\") == 3, \"Test 2\"\nassert candidate(\"key\") == 2, \"Test 3\"\nassert candidate(\"bye\") == 1, \"Test 4\"",
+    "timestamp": "2025-10-17T18:03:31.607032",
+    "response_time": "2.93"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 65,
+    "solution": "===START===\n```python\ndef circular_shift(x, shift):\n    digits = str(x)\n    num_digits = len(digits)\n    \n    if shift > num_digits:\n        return digits[::-1]\n    \n    shift = shift % num_digits\n    return digits[-shift:] + digits[:-shift]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Circular shift the digits of the integer x, shift the digits right by shift\n    and return the result as a string.\n    If shift > number of digits, return digits reversed.\n    >>> circular_shift(12, 1)\n    \"21\"\n    >>> circular_shift(12, 2)\n    \"12\"\n\n### Signature\ndef circular_shift(x, shift):\n\n### Test\nassert candidate(100, 2) == \"001\"\nassert candidate(12, 2) == \"12\"",
+    "timestamp": "2025-10-17T18:03:34.867269",
+    "response_time": "3.26"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 66,
+    "solution": "===START===\n```python\ndef digitSum(s):\n    return sum(ord(char) for char in s if char.isupper())\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Task\n    Write a function that takes a string as input and returns the sum of the upper characters only'\n    ASCII codes.\n\n### Signature\ndef digitSum(s):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(\"\") == 0, \"Error\"\nassert candidate(\"abAB\") == 131, \"Error\"\nassert candidate(\"abcCd\") == 67, \"Error\"\nassert candidate(\"helloE\") == 69, \"Error\"",
+    "timestamp": "2025-10-17T18:03:36.752655",
+    "response_time": "1.88"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 67,
+    "solution": "===START===\nimport re\n\ndef fruit_distribution(s, n):\n    # Use regular expressions to find the number of apples and oranges in the string\n    apples = int(re.search(r'(\\d+)\\s*apples', s).group(1))\n    oranges = int(re.search(r'(\\d+)\\s*oranges', s).group(1))\n    \n    # Calculate the number of mangoes\n    mangoes = n - apples - oranges\n    return mangoes\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    In this task, you will be given a string that represents a number of apples and oranges\n    that are distributed in a basket of fruit this basket contains\n    apples, oranges, and mango fruits. Given the string that represents the total number of\n    the oranges and apples and an integer that represent the total number of the fruits\n    in the basket return the number of the mango fruits in the basket.\n    for examble:\n    fruit_distribution(\"5 apples and 6 oranges\", 19) ->19 - 5 - 6 = 8\n    fruit_distribution(\"0 apples and 1 oranges\",3) -> 3 - 0 - 1 = 2\n    fruit_distribution(\"2 apples and 3 oranges\", 100) -> 100 - 2 - 3 = 95\n    fruit_distribution(\"100 apples and 1 oranges\",120) -> 120 - 100 - 1 = 19\n\n### Signature\ndef fruit_distribution(s,n):\n\n### Test\nassert candidate(\"5 apples and 6 oranges\",19) == 8\nassert candidate(\"5 apples and 6 oranges\",21) == 10\nassert candidate(\"0 apples and 1 oranges\",3) == 2",
+    "timestamp": "2025-10-17T18:03:41.561320",
+    "response_time": "4.81"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 68,
+    "solution": "===START===\ndef pluck(arr):\n    if not arr:\n        return []\n    \n    min_even_value = float('inf')\n    min_even_index = -1\n    \n    for index, value in enumerate(arr):\n        if value % 2 == 0 and value < min_even_value:\n            min_even_value = value\n            min_even_index = index\n    \n    if min_even_index == -1:\n        return []\n    \n    arr.pop(min_even_index)\n    return [min_even_value, min_even_index]\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    \"Given an array representing a branch of a tree that has non-negative integer nodes\n    your task is to pluck one of the nodes and return it.\n    The plucked node should be the node with the smallest even value.\n    If multiple nodes with the same smallest even value are found return the node that has smallest index.\n\n### Signature\ndef pluck(arr):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([4,2,3]) == [2, 1], \"Error\"\nassert candidate([1,2,3]) == [2, 1], \"Error\"\nassert candidate([]) == [], \"Error\"\nassert candidate([5, 0, 3, 0, 4, 2]) == [0, 1], \"Error\"  # Check some edge cases that are easy to work out by hand.",
+    "timestamp": "2025-10-17T18:03:46.656108",
+    "response_time": "5.09"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 69,
+    "solution": "===START===\nfrom collections import Counter\n\ndef search(lst):\n    frequency = Counter(lst)\n    max_value = -1\n    for num, freq in frequency.items():\n        if num <= freq and num > max_value:\n            max_value = num\n    return max_value\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a non-empty list of positive integers. Return the greatest integer that is greater than\n    zero, and has a frequency greater than or equal to the value of the integer itself.\n    The frequency of an integer is the number of times it appears in the list.\n    If no such a value exist, return -1.\n    Examples:\n        search([4, 1, 2, 2, 3, 1]) == 2\n        search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n        search([5, 5, 4, 4, 4]) == -1\n\n### Signature\ndef search(lst):\n\n### Test\nassert candidate([5, 5, 5, 5, 1]) == 1\nassert candidate([4, 1, 4, 1, 4, 4]) == 4\nassert candidate([3, 3]) == -1\nassert candidate([8, 8, 8, 8, 8, 8, 8, 8]) == 8\nassert candidate([2, 3, 3, 2, 2]) == 2  # automatically generated tests\nassert candidate([2, 7, 8, 8, 4, 8, 7, 3, 9, 6, 5, 10, 4, 3, 6, 7, 1, 7, 4, 10, 8, 1]) == 1\nassert candidate([3, 2, 8, 2]) == 2\nassert candidate([6, 7, 1, 8, 8, 10, 5, 8, 5, 3, 10]) == 1\nassert candidate([8, 8, 3, 6, 5, 6, 4]) == -1\nassert candidate([6, 9, 6, 7, 1, 4, 7, 1, 8, 8, 9, 8, 10, 10, 8, 4, 10, 4, 10, 1, 2, 9, 5, 7, 9]) == 1\nassert candidate([1, 9, 10, 1, 3]) == 1\nassert candidate([6, 9, 7, 5, 8, 7, 5, 3, 7, 5, 10, 10, 3, 6, 10, 2, 8, 6, 5, 4, 9, 5, 3, 10]) == 5",
+    "timestamp": "2025-10-17T18:03:49.556580",
+    "response_time": "2.90"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 70,
+    "solution": "===START===\ndef strange_sort_list(lst):\n    sorted_list = sorted(lst)\n    result = []\n    while sorted_list:\n        result.append(sorted_list.pop(0))\n        if sorted_list:\n            result.append(sorted_list.pop())\n    return result\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given list of integers, return list in strange order.\n    Strange sorting, is when you start with the minimum value,\n    then maximum of the remaining integers, then minimum and so on.\n\n### Signature\ndef strange_sort_list(lst):\n\n### Test\nassert candidate([1, 2, 3, 4]) == [1, 4, 2, 3]\nassert candidate([5, 6, 7, 8, 9]) == [5, 9, 6, 8, 7]\nassert candidate([1, 2, 3, 4, 5]) == [1, 5, 2, 4, 3]\nassert candidate([5, 6, 7, 8, 9, 1]) == [1, 9, 5, 8, 6, 7]\nassert candidate([5, 5, 5, 5]) == [5, 5, 5, 5]",
+    "timestamp": "2025-10-17T18:03:52.993353",
+    "response_time": "3.43"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 71,
+    "solution": "===START===\nimport math\n\ndef triangle_area(a, b, c):\n    # Check if the sides form a valid triangle\n    if a + b <= c or a + c <= b or b + c <= a:\n        return -1\n    \n    # Calculate the semi-perimeter\n    s = (a + b + c) / 2\n    \n    # Calculate the area using Heron's formula\n    area = math.sqrt(s * (s - a) * (s - b) * (s - c))\n    \n    # Return the area rounded to 2 decimal points\n    return round(area, 2)\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given the lengths of the three sides of a triangle. Return the area of\n    the triangle rounded to 2 decimal points if the three sides form a valid triangle.\n    Otherwise return -1\n    Three sides make a valid triangle when the sum of any two sides is greater\n    than the third side.\n    Example:\n    triangle_area(3, 4, 5) == 6.00\n    triangle_area(1, 2, 10) == -1\n\n### Signature\ndef triangle_area(a, b, c):\n\n### Test\nassert candidate(3, 4, 5) == 6.00, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(1, 2, 10) == -1\nassert candidate(4, 8, 5) == 8.18\nassert candidate(2, 2, 2) == 1.73",
+    "timestamp": "2025-10-17T18:03:59.039455",
+    "response_time": "6.04"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 72,
+    "solution": "===START===\n```python\ndef will_it_fly(q, w):\n    # Check if the list is palindromic\n    is_balanced = q == q[::-1]\n    # Check if the sum of elements is less than or equal to the maximum weight\n    is_within_weight = sum(q) <= w\n    # The object will fly if it is balanced and within weight\n    return is_balanced and is_within_weight\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that returns True if the object q will fly, and False otherwise.\n    The object q will fly if it's balanced (it is a palindromic list) and the sum of its elements is less than or equal the maximum possible weight w.\n\n### Signature\ndef will_it_fly(q,w):\n\n### Test\nassert candidate([3, 2, 3], 9) is True\nassert candidate([1, 2], 5) is False\nassert candidate([3], 5) is True",
+    "timestamp": "2025-10-17T18:04:03.472690",
+    "response_time": "4.43"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 73,
+    "solution": "===START===\n```python\ndef smallest_change(arr):\n    n = len(arr)\n    changes = 0\n    for i in range(n // 2):\n        if arr[i] != arr[n - i - 1]:\n            changes += 1\n    return changes\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given an array arr of integers, find the minimum number of elements that\n    need to be changed to make the array palindromic. A palindromic array is an array that\n    is read the same backwards and forwards. In one change, you can change one element to any other element.\n\n### Signature\ndef smallest_change(arr):\n\n### Test\nassert candidate([1,2,3,5,4,7,9,6]) == 4\nassert candidate([1, 2, 3, 4, 3, 2, 2]) == 1\nassert candidate([1, 4, 2]) == 1\nassert candidate([1, 4, 4, 2]) == 1  # Check some edge cases that are easy to work out by hand.",
+    "timestamp": "2025-10-17T18:04:06.474388",
+    "response_time": "2.99"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 74,
+    "solution": "===START===\n```python\ndef total_match(lst1, lst2):\n    total_chars_lst1 = sum(len(s) for s in lst1)\n    total_chars_lst2 = sum(len(s) for s in lst2)\n    \n    if total_chars_lst1 < total_chars_lst2:\n        return lst1\n    else:\n        return lst2\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that accepts two lists of strings and returns the list that has\n    total number of chars in the all strings of the list less than the other list.\n\n### Signature\ndef total_match(lst1, lst2):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([], []) == []\nassert candidate(['hi', 'admin'], ['hi', 'hi']) == ['hi', 'hi']\nassert candidate(['hi', 'admin'], ['hi', 'hi', 'admin', 'project']) == ['hi', 'admin']\nassert candidate(['4'], ['1', '2', '3', '4', '5']) == ['4']",
+    "timestamp": "2025-10-17T18:04:11.433756",
+    "response_time": "4.96"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 75,
+    "solution": "===START===\nfrom math import sqrt\n\ndef is_multiply_prime(a):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        for i in range(2, int(sqrt(n)) + 1):\n            if n % i == 0:\n                return False\n        return True\n\n    prime_factors = 0\n    for i in range(2, a + 1):\n        if a % i == 0 and is_prime(i):\n            prime_factors += 1\n            while a % i == 0:\n                a //= i\n        if prime_factors > 3:\n            return False\n\n    return prime_factors == 3\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that returns true if the given number is the multiplication of 3 prime numbers\n    and false otherwise.\n    Knowing that (a) is less then 100.\n    Example:\n    is_multiply_prime(30) == True\n    30 = 2 * 3 * 5\n\n### Signature\ndef is_multiply_prime(a):\n\n### Test\nassert candidate(5) == False\nassert candidate(30) == True\nassert candidate(8) == True\nassert candidate(10) == False\nassert candidate(125) == True",
+    "timestamp": "2025-10-17T18:04:17.877990",
+    "response_time": "6.44"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 76,
+    "solution": "===START===\nimport math\n\ndef is_simple_power(x, n):\n    if x == 1:\n        return True\n    if n <= 1:\n        return False\n    log_val = math.log(x, n)\n    return log_val.is_integer()\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Your task is to write a function that returns true if a number x is a simple\n    power of n and false in other cases.\n    x is a simple power of n if n**int=x\n    For example:\n    is_simple_power(1, 4) => true\n    is_simple_power(2, 2) => true\n    is_simple_power(8, 2) => true\n    is_simple_power(3, 2) => false\n    is_simple_power(3, 1) => false\n    is_simple_power(5, 3) => false\n\n### Signature\ndef is_simple_power(x, n):\n\n### Test\nassert candidate(16, 2)== True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(143214, 16)== False, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(4, 2)==True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(9, 3)==True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(16, 4)==True, \"This prints if this assert fails 1 (good for debugging!)\"",
+    "timestamp": "2025-10-17T18:04:21.275389",
+    "response_time": "3.39"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 77,
+    "solution": "===START===\nimport math\n\ndef iscube(a):\n    if a < 0:\n        a = -a\n    cube_root = round(a ** (1/3))\n    return cube_root ** 3 == a\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that takes an integer a and returns True\n    if this ingeger is a cube of some integer number.\n    Note: you may assume the input is always valid.\n    Examples:\n    iscube(1) ==> True\n    iscube(2) ==> False\n    iscube(-1) ==> True\n    iscube(64) ==> True\n    iscube(0) ==> True\n    iscube(180) ==> False\n\n### Signature\ndef iscube(a):\n\n### Test\nassert candidate(1) == True, \"First test error: \" + str(candidate(1))\nassert candidate(2) == False, \"Second test error: \" + str(candidate(2))\nassert candidate(-1) == True, \"Third test error: \" + str(candidate(-1))\nassert candidate(64) == True, \"Fourth test error: \" + str(candidate(64))",
+    "timestamp": "2025-10-17T18:04:23.719022",
+    "response_time": "2.44"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 78,
+    "solution": "===START===\n```python\ndef hex_key(num):\n    # Define the set of prime hexadecimal digits\n    prime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}\n    \n    # Initialize a counter for prime digits\n    prime_count = 0\n    \n    # Iterate over each character in the input string\n    for char in num:\n        # Check if the character is a prime hexadecimal digit\n        if char in prime_hex_digits:\n            prime_count += 1\n    \n    return prime_count\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You have been tasked to write a function that receives\n    a hexadecimal number as a string and counts the number of hexadecimal\n    digits that are primes (prime number, or a prime, is a natural number\n    greater than 1 that is not a product of two smaller natural numbers).\n    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.\n    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...\n    So you have to determine a number of the following digits: 2, 3, 5, 7,\n    B (=decimal 11), D (=decimal 13).\n    Note: you may assume the input is always correct or empty string,\n    and symbols A,B,C,D,E,F are always uppercase.\n    Examples:\n    For num = \"AB\" the output should be 1.\n    For num = \"1077E\" the output should be 2.\n    For num = \"ABED1A33\" the output should be 4.\n    For num = \"123456789ABCDEF0\" the output should be 6.\n    For num = \"2020\" the output should be 2.\n\n### Signature\ndef hex_key(num):\n\n### Test\nassert candidate(\"AB\") == 1, \"First test error: \" + str(candidate(\"AB\"))\nassert candidate(\"1077E\") == 2, \"Second test error: \" + str(candidate(\"1077E\"))\nassert candidate(\"ABED1A33\") == 4, \"Third test error: \" + str(candidate(\"ABED1A33\"))",
+    "timestamp": "2025-10-17T18:04:29.099257",
+    "response_time": "5.38"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 79,
+    "solution": "===START===\n```python\ndef decimal_to_binary(decimal):\n    if decimal == 0:\n        return \"db0db\"\n    binary = \"\"\n    while decimal > 0:\n        binary = str(decimal % 2) + binary\n        decimal = decimal // 2\n    return \"db\" + binary + \"db\"\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You will be given a number in decimal form and your task is to convert it to\n    binary format. The function should return a string, with each character representing a binary\n    number. Each character in the string will be '0' or '1'.\n\n### Signature\ndef decimal_to_binary(decimal):\n\n### Test\nassert candidate(0) == \"db0db\"\nassert candidate(32) == \"db100000db\"",
+    "timestamp": "2025-10-17T18:04:32.619160",
+    "response_time": "3.52"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 80,
+    "solution": "===START===\n```python\ndef is_happy(s):\n    if len(s) < 3:\n        return False\n    for i in range(len(s) - 2):\n        if s[i] == s[i+1] or s[i] == s[i+2] or s[i+1] == s[i+2]:\n            return False\n    return True\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a string s.\n    Your task is to check if the string is happy or not.\n    A string is happy if its length is at least 3 and every 3 consecutive letters are distinct\n    For example:\n    is_happy(a) => False\n    is_happy(aa) => False\n    is_happy(abcd) => True\n    is_happy(aabb) => False\n    is_happy(adb) => True\n    is_happy(xyy) => False\n\n### Signature\ndef is_happy(s):\n\n### Test\nassert candidate(\"a\") == False , \"a\"\nassert candidate(\"aa\") == False , \"aa\"\nassert candidate(\"abcd\") == True , \"abcd\"\nassert candidate(\"aabb\") == False , \"aabb\"",
+    "timestamp": "2025-10-17T18:04:37.577228",
+    "response_time": "4.95"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_td",
+    "dataset_row_id": 81,
+    "solution": "===START===\n```python\ndef numerical_letter_grade(grades):\n    def get_letter_grade(gpa):\n        if gpa == 4.0:\n            return 'A+'\n        elif gpa > 3.7:\n            return 'A'\n        elif gpa > 3.3:\n            return 'A-'\n        elif gpa > 3.0:\n            return 'B+'\n        elif gpa > 2.7:\n            return 'B'\n        elif gpa > 2.3:\n            return 'B-'\n        elif gpa > 2.0:\n            return 'C+'\n        elif gpa > 1.7:\n            return 'C'\n        elif gpa > 1.3:\n            return 'C-'\n        elif gpa > 1.0:\n            return 'D+'\n        elif gpa > 0.7:\n            return 'D'\n        elif gpa > 0.0:\n            return 'D-'\n        else:\n            return 'E'\n    \n    return [get_letter_grade(gpa) for gpa in grades]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    It is the last week of the semester and the teacher has to give the grades\n    to students. The teacher has been making her own algorithm for grading.\n    The only problem is, she has lost the code she used for grading.\n    She has given you a list of GPAs for some students and you have to write\n    a function that can output a list of letter grades using the following table:\n             GPA       |    Letter grade\n              4.0                A+\n            > 3.7                A\n            > 3.3                A-\n            > 3.0                B+\n            > 2.7                B\n            > 2.3                B-\n            > 2.0                C+\n            > 1.7                C\n            > 1.3                C-\n            > 1.0                D+\n            > 0.7                D\n            > 0.0                D-\n              0.0                E\n\n### Signature\ndef numerical_letter_grade(grades):\n\n### Test\nassert candidate([4.0, 3, 1.7, 2, 3.5]) == ['A+', 'B', 'C-', 'C', 'A-']\nassert candidate([1.2]) == ['D+']\nassert candidate([0.5]) == ['D-']",
+    "timestamp": "2025-10-17T18:04:48.306524",
+    "response_time": "10.72"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 82,
+    "solution": "===START===\nimport math\n\ndef prime_length(string):\n    length = len(string)\n    if length < 2:\n        return False\n    for i in range(2, int(math.sqrt(length)) + 1):\n        if length % i == 0:\n            return False\n    return True\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that takes a string and returns True if the string\n    length is a prime number or False otherwise\n    Examples\n    prime_length('Hello') == True\n    prime_length('abcdcba') == True\n    prime_length('kittens') == True\n    prime_length('orange') == False\n\n### Signature\ndef prime_length(string):\n\n### Test\nassert candidate('Hello') == True\nassert candidate('abcdcba') == True\nassert candidate('kittens') == True\nassert candidate('orange') == False\nassert candidate('wow') == True\nassert candidate('world') == True\nassert candidate('MadaM') == True\nassert candidate('Wow') == True",
+    "timestamp": "2025-10-17T17:59:27.922200",
+    "response_time": "4.53"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 83,
+    "solution": "===START===\n```python\ndef starts_one_ends(n):\n    if n == 1:\n        return 1\n    # Count numbers starting with 1: 10^(n-1)\n    # Count numbers ending with 1: 9 * 10^(n-2)\n    # Subtract the overlap (numbers starting and ending with 1): 10^(n-2)\n    return 10**(n-1) + 9 * 10**(n-2) - 10**(n-2)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a positive integer n, return the count of the numbers of n-digit\n    positive integers that start or end with 1.\n\n### Signature\ndef starts_one_ends(n):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(1) == 1\nassert candidate(2) == 18",
+    "timestamp": "2025-10-17T17:59:33.429626",
+    "response_time": "5.51"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 84,
+    "solution": "===START===\n```python\ndef solve(N):\n    # Convert the integer to a string to iterate over each digit\n    digit_sum = sum(int(digit) for digit in str(N))\n    # Convert the sum of digits to binary and return it as a string\n    return bin(digit_sum)[2:]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a positive integer N, return the total sum of its digits in binary.\n\n### Signature\ndef solve(N):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(1000) == \"1\", \"Error\"\nassert candidate(150) == \"110\", \"Error\"",
+    "timestamp": "2025-10-17T17:59:36.740966",
+    "response_time": "3.31"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 85,
+    "solution": "===START===\n```python\ndef add(lst):\n    return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 == 0)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n### Signature\ndef add(lst):\n\n### Test\nassert candidate([4, 88]) == 88\nassert candidate([4, 5, 6, 7, 2, 122]) == 122",
+    "timestamp": "2025-10-17T17:59:38.945802",
+    "response_time": "2.20"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 86,
+    "solution": "===START===\n```python\ndef anti_shuffle(s):\n    return ' '.join(''.join(sorted(word)) for word in s.split(' '))\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that takes a string and returns an ordered version of it.\n    Ordered version of string, is a string where all words (separated by space)\n    are replaced by a new word where all the characters arranged in\n    ascending order based on ascii value.\n    Note: You should keep the order of words and blank spaces in the sentence.\n\n### Signature\ndef anti_shuffle(s):\n\n### Test\nassert candidate('Hi') == 'Hi'\nassert candidate('hello') == 'ehllo'\nassert candidate('number') == 'bemnru'\nassert candidate('abcd') == 'abcd'",
+    "timestamp": "2025-10-17T17:59:40.655789",
+    "response_time": "1.71"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 87,
+    "solution": "===START===\n```python\ndef get_row(lst, x):\n    coordinates = []\n    for row_index, row in enumerate(lst):\n        for col_index, value in enumerate(row):\n            if value == x:\n                coordinates.append((row_index, col_index))\n    \n    # Sort by row in ascending order, then by column in descending order\n    coordinates.sort(key=lambda coord: (coord[0], -coord[1]))\n    \n    return coordinates\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a 2 dimensional data, as a nested lists,\n    which is similar to matrix, however, unlike matrices,\n    each row may contain a different number of columns.\n    Given lst, and integer x, find integers x in the list,\n    and return list of tuples, [(x1, y1), (x2, y2) ...] such that\n    each tuple is a coordinate - (row, columns), starting with 0.\n    Sort coordinates initially by rows in ascending order.\n    Also, sort coordinates of the row by columns in descending order.\n\n### Signature\ndef get_row(lst, x):\n\n### Test\nassert candidate([ [1,2,3,4,5,6], [1,2,3,4,1,6], [1,2,3,4,5,1]\nassert candidate([ [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6], [1,2,3,4,5,6]\nassert candidate([ [1,2,3,4,5,6], [1,2,3,4,5,6], [1,1,3,4,5,6], [1,2,1,4,5,6], [1,2,3,1,5,6], [1,2,3,4,1,6], [1,2,3,4,5,1]",
+    "timestamp": "2025-10-17T17:59:45.225994",
+    "response_time": "4.57"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 88,
+    "solution": "===START===\n```python\ndef sort_array(array):\n    if not array:\n        return array\n    \n    first_value = array[0]\n    last_value = array[-1]\n    \n    if (first_value + last_value) % 2 == 0:\n        return sorted(array, reverse=True)\n    else:\n        return sorted(array)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given an array of non-negative integers, return a copy of the given array after sorting,\n    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,\n    or sort it in descending order if the sum( first index value, last index value) is even.\n\n### Signature\ndef sort_array(array):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([]) == [], \"Error\"\nassert candidate([5]) == [5], \"Error\"\nassert candidate([2, 4, 3, 0, 1, 5]) == [0, 1, 2, 3, 4, 5], \"Error\"",
+    "timestamp": "2025-10-17T17:59:48.726060",
+    "response_time": "3.50"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 89,
+    "solution": "===START===\nimport string\n\ndef encrypt(s):\n    alphabet = string.ascii_lowercase\n    shift = 2 * 2  # Two multiplied by two places\n    encrypted_string = ''\n    \n    for char in s:\n        if char in alphabet:\n            new_index = (alphabet.index(char) + shift) % len(alphabet)\n            encrypted_string += alphabet[new_index]\n        else:\n            encrypted_string += char  # Non-alphabetic characters are not changed\n    \n    return encrypted_string\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Create a function encrypt that takes a string as an argument and\n    returns a string encrypted with the alphabet being rotated.\n    The alphabet should be rotated in a manner such that the letters\n    shift down by two multiplied to two places.\n    For example:\n    encrypt('hi') returns 'lm'\n    encrypt('asdfghjkl') returns 'ewhjklnop'\n    encrypt('gf') returns 'kj'\n    encrypt('et') returns 'ix'\n\n### Signature\ndef encrypt(s):\n\n### Test\nassert candidate('hi') == 'lm', \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('asdfghjkl') == 'ewhjklnop', \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('gf') == 'kj', \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('et') == 'ix', \"This prints if this assert fails 1 (good for debugging!)\" ",
+    "timestamp": "2025-10-17T17:59:53.558621",
+    "response_time": "4.83"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 90,
+    "solution": "===START===\n```python\ndef next_smallest(lst):\n    if len(lst) < 2:\n        return None\n    \n    unique_elements = set(lst)\n    if len(unique_elements) < 2:\n        return None\n    \n    sorted_elements = sorted(unique_elements)\n    return sorted_elements[1]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a list of integers.\n    Write a function next_smallest() that returns the 2nd smallest element of the list.\n    Return None if there is no such element.\n\n### Signature\ndef next_smallest(lst):\n\n### Test\nassert candidate([1, 2, 3, 4, 5]) == 2\nassert candidate([5, 1, 4, 3, 2]) == 2\nassert candidate([]) == None\nassert candidate([1, 1]) == None",
+    "timestamp": "2025-10-17T17:59:56.744690",
+    "response_time": "3.18"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 91,
+    "solution": "===START===\nimport re\n\ndef is_bored(S):\n    # Split the string into sentences using '.', '?', or '!' as delimiters\n    sentences = re.split(r'[.?!]', S)\n    # Count sentences that start with \"I\"\n    boredom_count = sum(1 for sentence in sentences if sentence.strip().startswith(\"I\"))\n    return boredom_count\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You'll be given a string of words, and your task is to count the number\n    of boredoms. A boredom is a sentence that starts with the word \"I\".\n    Sentences are delimited by '.', '?' or '!'.\n\n### Signature\ndef is_bored(S):\n\n### Test\nassert candidate(\"Hello world\") == 0, \"Test 1\"\nassert candidate(\"Is the sky blue?\") == 0, \"Test 2\"\nassert candidate(\"I love It !\") == 1, \"Test 3\"",
+    "timestamp": "2025-10-17T18:00:00.471073",
+    "response_time": "3.72"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 92,
+    "solution": "===START===\ndef any_int(x, y, z):\n    # Check if all numbers are integers\n    if all(isinstance(i, int) for i in (x, y, z)):\n        # Check if any one of the numbers is equal to the sum of the other two\n        return x + y == z or x + z == y or y + z == x\n    return False\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Create a function that takes 3 numbers.\n    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.\n    Returns false in any other cases.\n\n### Signature\ndef any_int(x, y, z):\n\n### Test\nassert candidate(2, 3, 1)==True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(2.5, 2, 3)==False, \"This prints if this assert fails 2 (good for debugging!)\"\nassert candidate(1.5, 5, 3.5)==False, \"This prints if this assert fails 3 (good for debugging!)\"\nassert candidate(2, 6, 2)==False, \"This prints if this assert fails 4 (good for debugging!)\"\nassert candidate(4, 2, 2)==True, \"This prints if this assert fails 5 (good for debugging!)\"",
+    "timestamp": "2025-10-17T18:00:04.430646",
+    "response_time": "3.96"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 93,
+    "solution": "===START===\n```python\ndef encode(message):\n    vowels = 'aeiouAEIOU'\n    shifted_vowels = {v: chr((ord(v.lower()) - 97 + 2) % 26 + 97).upper() if v.isupper() else chr((ord(v) - 97 + 2) % 26 + 97) for v in vowels}\n    \n    encoded_message = []\n    for char in message:\n        if char.isalpha():\n            if char in vowels:\n                encoded_message.append(shifted_vowels[char])\n            else:\n                encoded_message.append(char.swapcase())\n        else:\n            encoded_message.append(char)\n    \n    return ''.join(encoded_message)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that takes a message, and encodes in such a\n    way that it swaps case of all letters, replaces all vowels in\n    the message with the letter that appears 2 places ahead of that\n    vowel in the english alphabet.\n    Assume only letters.\n\n### Signature\ndef encode(message):\n\n### Test\nassert candidate('TEST') == 'tgst', \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('Mudasir') == 'mWDCSKR', \"This prints if this assert fails 2 (good for debugging!)\"",
+    "timestamp": "2025-10-17T18:00:11.445207",
+    "response_time": "7.01"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 94,
+    "solution": "===START===\nfrom math import isqrt\n\ndef skjkasdkd(lst):\n    def is_prime(n):\n        if n <= 1:\n            return False\n        if n <= 3:\n            return True\n        if n % 2 == 0 or n % 3 == 0:\n            return False\n        for i in range(5, isqrt(n) + 1, 6):\n            if n % i == 0 or n % (i + 2) == 0:\n                return False\n        return True\n\n    largest_prime = 0\n    for num in lst:\n        if is_prime(num) and num > largest_prime:\n            largest_prime = num\n\n    return sum(int(digit) for digit in str(largest_prime))\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a list of integers.\n    You need to find the largest prime value and return the sum of its digits.\n\n### Signature\ndef skjkasdkd(lst):\n\n### Test\nassert candidate([0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3]) == 10, \"This prints if this assert fails 1 (good for debugging!)\"  # Check some edge cases that are easy to work out by hand.\nassert candidate([1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5,1]) == 25, \"This prints if this assert fails 2 (also good for debugging!)\"  # Check some edge cases that are easy to work out by hand.\nassert candidate([1,3,1,32,5107,34,83278,109,163,23,2323,32,30,1,9,3]) == 13, \"This prints if this assert fails 3 (also good for debugging!)\"  # Check some edge cases that are easy to work out by hand.\nassert candidate([0,724,32,71,99,32,6,0,5,91,83,0,5,6]) == 11, \"This prints if this assert fails 4 (also good for debugging!)\"  # Check some edge cases that are easy to work out by hand.",
+    "timestamp": "2025-10-17T18:00:18.878694",
+    "response_time": "7.43"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 95,
+    "solution": "===START===\ndef check_dict_case(d):\n    if not d:\n        return False\n    \n    all_lower = all(isinstance(k, str) and k.islower() for k in d.keys())\n    all_upper = all(isinstance(k, str) and k.isupper() for k in d.keys())\n    \n    return all_lower or all_upper\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a dictionary, return True if all keys are strings in lower\n    case or all keys are strings in upper case, else return False.\n    The function should return False is the given dictionary is empty.\n    Examples:\n    check_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\n    check_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\n    check_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\n    check_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\n    check_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.\n\n### Signature\ndef check_dict_case(dict):\n\n### Test\nassert candidate({\"p\":\"pineapple\", \"b\":\"banana\"}) == True, \"First test error: \" + str(candidate({\"p\":\"pineapple\", \"b\":\"banana\"}))\nassert candidate({\"p\":\"pineapple\", \"A\":\"banana\", \"B\":\"banana\"}) == False, \"Second test error: \" + str(candidate({\"p\":\"pineapple\", \"A\":\"banana\", \"B\":\"banana\"}))\nassert candidate({\"p\":\"pineapple\", 5:\"banana\", \"a\":\"apple\"}) == False, \"Third test error: \" + str(candidate({\"p\":\"pineapple\", 5:\"banana\", \"a\":\"apple\"}))",
+    "timestamp": "2025-10-17T18:00:22.359103",
+    "response_time": "3.48"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 96,
+    "solution": "===START===\nfrom math import sqrt\n\ndef count_up_to(n):\n    def is_prime(num):\n        if num < 2:\n            return False\n        for i in range(2, int(sqrt(num)) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    primes = []\n    for i in range(2, n):\n        if is_prime(i):\n            primes.append(i)\n    return primes\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Implement a function that takes an non-negative integer and returns an array of the first n\n    integers that are prime numbers and less than n.\n    for example:\n    count_up_to(5) => [2,3]\n    count_up_to(11) => [2,3,5,7]\n    count_up_to(0) => []\n    count_up_to(20) => [2,3,5,7,11,13,17,19]\n    count_up_to(1) => []\n    count_up_to(18) => [2,3,5,7,11,13,17]\n\n### Signature\ndef count_up_to(n):\n\n### Test\nassert candidate(5) == [2,3]\nassert candidate(6) == [2,3,5]\nassert candidate(7) == [2,3,5]\nassert candidate(10) == [2,3,5,7]\nassert candidate(0) == []",
+    "timestamp": "2025-10-17T18:00:26.804699",
+    "response_time": "4.44"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 97,
+    "solution": "===START===\ndef multiply(a, b):\n    # Get the unit digit of each number\n    unit_digit_a = abs(a) % 10\n    unit_digit_b = abs(b) % 10\n    \n    # Return the product of the unit digits\n    return unit_digit_a * unit_digit_b\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Complete the function that takes two integers and returns\n    the product of their unit digits.\n    Assume the input is always valid.\n    Examples:\n    multiply(148, 412) should return 16.\n    multiply(19, 28) should return 72.\n    multiply(2020, 1851) should return 0.\n    multiply(14,-15) should return 20.\n\n### Signature\ndef multiply(a, b):\n\n### Test\nassert candidate(148, 412) == 16, \"First test error: \" + str(candidate(148, 412))\nassert candidate(19, 28) == 72, \"Second test error: \" + str(candidate(19, 28))\nassert candidate(2020, 1851) == 0, \"Third test error: \" + str(candidate(2020, 1851))\nassert candidate(14,-15) == 20, \"Fourth test error: \" + str(candidate(14,-15))",
+    "timestamp": "2025-10-17T18:00:30.051514",
+    "response_time": "3.24"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 98,
+    "solution": "===START===\n```python\ndef count_upper(s):\n    vowels = {'A', 'E', 'I', 'O', 'U'}\n    count = 0\n    for i in range(0, len(s), 2):\n        if s[i] in vowels:\n            count += 1\n    return count\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a string s, count the number of uppercase vowels in even indices.\n\n### Signature\ndef count_upper(s):\n\n### Test\nassert candidate('aBCdEf')  == 1\nassert candidate('abcdefg') == 0\nassert candidate('dBBE') == 0\nassert candidate('B')  == 0",
+    "timestamp": "2025-10-17T18:00:33.619643",
+    "response_time": "3.57"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 99,
+    "solution": "===START===\nimport math\n\ndef closest_integer(value):\n    return round(float(value))\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Create a function that takes a value (string) representing a number\n    and returns the closest integer to it. If the number is equidistant\n\n### Signature\ndef closest_integer(value):\n\n### Test\nassert candidate(\"10\") == 10, \"Test 1\"\nassert candidate(\"14.5\") == 15, \"Test 2\"",
+    "timestamp": "2025-10-17T18:00:34.734896",
+    "response_time": "1.11"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 100,
+    "solution": "===START===\n```python\ndef make_a_pile(n):\n    stones = []\n    current_stones = n\n    for _ in range(n):\n        stones.append(current_stones)\n        if n % 2 == 0:\n            current_stones += 2\n        else:\n            current_stones += 2\n    return stones\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a positive integer n, you have to make a pile of n levels of stones.\n    The first level has n stones.\n    The number of stones in the next level is:\n        - the next odd number if n is odd.\n        - the next even number if n is even.\n    Return the number of stones in each level in a list, where element at index\n    i represents the number of stones in the level (i+1).\n\n### Signature\ndef make_a_pile(n):\n\n### Test\nassert candidate(3) == [3, 5, 7], \"Test 3\"\nassert candidate(4) == [4,6,8,10], \"Test 4\"\nassert candidate(5) == [5, 7, 9, 11, 13]",
+    "timestamp": "2025-10-17T18:00:38.323183",
+    "response_time": "3.59"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 101,
+    "solution": "===START===\nimport re\n\ndef words_string(s):\n    # Use regular expression to split the string by commas or spaces\n    words = re.split(r'[,\\s]+', s)\n    # Filter out any empty strings that may result from consecutive delimiters\n    return [word for word in words if word]\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You will be given a string of words separated by commas or spaces. Your task is\n    to split the string into words and return an array of the words.\n\n### Signature\ndef words_string(s):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(\"Hi, my name is John\") == [\"Hi\", \"my\", \"name\", \"is\", \"John\"]\nassert candidate(\"One, two, three, four, five, six\") == [\"One\", \"two\", \"three\", \"four\", \"five\", \"six\"]\nassert candidate(\"Hi, my name\") == [\"Hi\", \"my\", \"name\"]",
+    "timestamp": "2025-10-17T18:00:41.506658",
+    "response_time": "3.18"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 102,
+    "solution": "===START===\n```python\ndef choose_num(x, y):\n    if x > y:\n        return -1\n    if y % 2 == 0:\n        return y\n    if (y - 1) >= x:\n        return y - 1\n    return -1\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    This function takes two positive numbers x and y and returns the\n    biggest even integer number that is in the range [x, y] inclusive. If\n    there's no such number, then the function should return -1.\n\n### Signature\ndef choose_num(x, y):\n\n### Test\nassert candidate(12, 15) == 14\nassert candidate(13, 12) == -1\nassert candidate(33, 12354) == 12354\nassert candidate(5234, 5233) == -1",
+    "timestamp": "2025-10-17T18:00:44.652260",
+    "response_time": "3.14"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 103,
+    "solution": "===START===\n```python\ndef rounded_avg(n, m):\n    if n > m:\n        return -1\n    total = sum(range(n, m + 1))\n    count = m - n + 1\n    average = round(total / count)\n    return bin(average)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given two positive integers n and m, and your task is to compute the\n    average of the integers from n through m (including n and m).\n    Round the answer to the nearest integer and convert that to binary.\n    If n is greater than m, return -1.\n    Example:\n    rounded_avg(1, 5) => \"0b11\"\n    rounded_avg(7, 5) => -1\n    rounded_avg(10, 20) => \"0b1111\"\n    rounded_avg(20, 33) => \"0b11010\"\n\n### Signature\ndef rounded_avg(n, m):\n\n### Test\nassert candidate(1, 5) == \"0b11\"\nassert candidate(7, 13) == \"0b1010\"\nassert candidate(964,977) == \"0b1111001010\"\nassert candidate(996,997) == \"0b1111100100\"\nassert candidate(560,851) == \"0b1011000010\"\nassert candidate(185,546) == \"0b101101110\"",
+    "timestamp": "2025-10-17T18:00:47.845360",
+    "response_time": "3.19"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 104,
+    "solution": "===START===\nfrom typing import List\n\ndef unique_digits(x: List[int]) -> List[int]:\n    def has_no_even_digit(n: int) -> bool:\n        while n > 0:\n            digit = n % 10\n            if digit % 2 == 0:\n                return False\n            n //= 10\n        return True\n    \n    result = [num for num in x if has_no_even_digit(num)]\n    result.sort()\n    return result\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a list of positive integers x. return a sorted list of all\n    elements that hasn't any even digit.\n\n### Signature\ndef unique_digits(x):\n\n### Test\nassert candidate([15, 33, 1422, 1]) == [1, 15, 33]\nassert candidate([152, 323, 1422, 10]) == []",
+    "timestamp": "2025-10-17T18:00:52.492069",
+    "response_time": "4.64"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 105,
+    "solution": "===START===\n```python\ndef by_length(arr):\n    # Filter the array to include only integers between 1 and 9\n    filtered = [x for x in arr if 1 <= x <= 9]\n    \n    # Sort the filtered array\n    sorted_filtered = sorted(filtered)\n    \n    # Reverse the sorted array\n    reversed_sorted = sorted_filtered[::-1]\n    \n    # Map each digit to its corresponding name\n    digit_names = [\"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\"]\n    result = [digit_names[x - 1] for x in reversed_sorted]\n    \n    return result\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given an array of integers, sort the integers that are between 1 and 9 inclusive,\n    reverse the resulting array, and then replace each digit by its corresponding name from\n    \"One\", \"Two\", \"Three\", \"Four\", \"Five\", \"Six\", \"Seven\", \"Eight\", \"Nine\".\n\n### Signature\ndef by_length(arr):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([2, 1, 1, 4, 5, 8, 2, 3]) == [\"Eight\", \"Five\", \"Four\", \"Three\", \"Two\", \"Two\", \"One\", \"One\"], \"Error\"\nassert candidate([]) == [], \"Error\"",
+    "timestamp": "2025-10-17T18:00:59.186633",
+    "response_time": "6.69"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 106,
+    "solution": "===START===\nfrom math import factorial\n\ndef f(n):\n    result = []\n    for i in range(1, n + 1):\n        if i % 2 == 0:\n            result.append(factorial(i))\n        else:\n            result.append(sum(range(1, i + 1)))\n    return result\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n     Implement the function f that takes n as a parameter,\n    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even\n    or the sum of numbers from 1 to i otherwise.\n    i starts from 1.\n    the factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).\n    Example:\n    f(5) == [1, 2, 6, 24, 15]\n\n### Signature\ndef f(n):\n\n### Test\nassert candidate(5) == [1, 2, 6, 24, 15]\nassert candidate(7) == [1, 2, 6, 24, 15, 720, 28]",
+    "timestamp": "2025-10-17T18:01:02.419928",
+    "response_time": "3.23"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 107,
+    "solution": "===START===\n```python\ndef even_odd_palindrome(n):\n    def is_palindrome(x):\n        return str(x) == str(x)[::-1]\n\n    even_count = 0\n    odd_count = 0\n\n    for i in range(1, n + 1):\n        if is_palindrome(i):\n            if i % 2 == 0:\n                even_count += 1\n            else:\n                odd_count += 1\n\n    return (even_count, odd_count)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a positive integer n, return a tuple that has the number of even and odd\n    integer palindromes that fall within the range(1, n), inclusive.\n\n### Signature\ndef even_odd_palindrome(n):\n\n### Test\nassert candidate(123) == (8, 13)\nassert candidate(12) == (4, 6)\nassert candidate(3) == (1, 2)\nassert candidate(63) == (6, 8)",
+    "timestamp": "2025-10-17T18:01:07.374208",
+    "response_time": "4.95"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 108,
+    "solution": "===START===\n```python\ndef count_nums(arr):\n    def sum_of_digits(num):\n        if num < 0:\n            return -int(str(num)[1]) + sum(int(digit) for digit in str(num)[2:])\n        else:\n            return sum(int(digit) for digit in str(num))\n    \n    return sum(1 for num in arr if sum_of_digits(num) > 0)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function count_nums which takes an array of integers and returns\n    the number of elements which has a sum of digits > 0.\n    If a number is negative, then its first signed digit will be negative:\n    e.g. -123 has signed digits -1, 2, and 3.\n    >>> count_nums([]) == 0\n    >>> count_nums([-1, 11, -11]) == 1\n    >>> count_nums([1, 1, 2]) == 3\n\n### Signature\ndef count_nums(arr):\n\n### Test\nassert candidate([]) == 0\nassert candidate([-1, -2, 0]) == 0\nassert candidate([1, 1, 2, -2, 3, 4, 5]) == 6\nassert candidate([1, 6, 9, -6, 0, 1, 5]) == 5",
+    "timestamp": "2025-10-17T18:01:11.557163",
+    "response_time": "4.18"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 109,
+    "solution": "===START===\n```python\ndef move_one_ball(arr):\n    n = len(arr)\n    if n <= 1:\n        return True\n    \n    # Find the number of places where the array is not in non-decreasing order\n    count = 0\n    for i in range(n):\n        if arr[i] > arr[(i + 1) % n]:\n            count += 1\n            if count > 1:\n                return False\n    \n    return True\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The\n    numbers in the array will be randomly ordered. Your task is to determine if\n    it is possible to get an array sorted in non-decreasing order by performing\n    the following operation on the given array:\n        You are allowed to perform right shift operation any number of times.\n\n### Signature\ndef move_one_ball(arr):\n\n### Test\nassert candidate([3, 4, 5, 1, 2])==True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([3, 5, 10, 1, 2])==True",
+    "timestamp": "2025-10-17T18:01:16.220703",
+    "response_time": "4.66"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 110,
+    "solution": "===START===\nfrom typing import List\n\ndef exchange(lst1: List[int], lst2: List[int]) -> str:\n    # Check if there is at least one even number in lst2\n    has_even_in_lst2 = any(num % 2 == 0 for num in lst2)\n    \n    # Check if all numbers in lst1 are even\n    all_even_in_lst1 = all(num % 2 == 0 for num in lst1)\n    \n    # If lst1 is already all even, return \"YES\"\n    if all_even_in_lst1:\n        return \"YES\"\n    \n    # If there is at least one even number in lst2, we can exchange to make lst1 all even\n    if has_even_in_lst2:\n        return \"YES\"\n    \n    # Otherwise, it's not possible to make lst1 all even\n    return \"NO\"\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    In this problem, you will implement a function that takes two lists of numbers,\n    and determines whether it is possible to perform an exchange of elements\n    between them to make lst1 a list of only even numbers.\n    There is no limit on the number of exchanged elements between lst1 and lst2.\n    If it is possible to exchange elements between the lst1 and lst2 to make\n    all the elements of lst1 to be even, return \"YES\".\n    Otherwise, return \"NO\".\n    For example:\n    exchange([1, 2, 3, 4], [1, 2, 3, 4]) => \"YES\"\n    exchange([1, 2, 3, 4], [1, 5, 3, 4]) => \"NO\"\n    It is assumed that the input lists will be non-empty.\n\n### Signature\ndef exchange(lst1, lst2):\n\n### Test\nassert candidate([1, 2, 3, 4], [1, 2, 3, 4]) == \"YES\"\nassert candidate([1, 2, 3, 4], [1, 5, 3, 4]) == \"NO\"\nassert candidate([1, 2, 3, 4], [2, 1, 4, 3]) == \"YES\"",
+    "timestamp": "2025-10-17T18:01:24.601064",
+    "response_time": "8.38"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 111,
+    "solution": "===START===\nfrom collections import Counter\n\ndef histogram(test):\n    # Split the input string into a list of letters\n    letters = test.split()\n    # Count the occurrences of each letter\n    letter_counts = Counter(letters)\n    # Find the maximum occurrence count\n    max_count = max(letter_counts.values())\n    # Create a dictionary of letters with the maximum occurrence count\n    result = {letter: count for letter, count in letter_counts.items() if count == max_count}\n    return result\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a string representing a space separated lowercase letters, return a dictionary\n    of the letter with the most repetition and containing the corresponding count.\n    If several letters have the same occurrence, return all of them.\n\n### Signature\ndef histogram(test):\n\n### Test\nassert candidate('a b b a') == {'a':2,'b': 2}, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('a b c a b') == {'a': 2, 'b': 2}, \"This prints if this assert fails 2 (good for debugging!)\"\nassert candidate('a b c d g') == {'a': 1, 'b': 1, 'c': 1, 'd': 1, 'g': 1}, \"This prints if this assert fails 3 (good for debugging!)\"\nassert candidate('r t g') == {'r': 1,'t': 1,'g': 1}, \"This prints if this assert fails 4 (good for debugging!)\"",
+    "timestamp": "2025-10-17T18:01:29.458882",
+    "response_time": "4.86"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 112,
+    "solution": "===START===\n```python\ndef reverse_delete(s, c):\n    # Remove all characters in s that are present in c\n    result = ''.join(char for char in s if char not in c)\n    # Check if the result string is a palindrome\n    is_palindrome = result == result[::-1]\n    return (result, is_palindrome)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Task\n    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c\n    then check if the result string is palindrome.\n    A string is called palindrome if it reads the same backward as forward.\n    You should return a tuple containing the result string and True/False for the check.\n    Example\n    For s = \"abcde\", c = \"ae\", the result should be ('bcd',False)\n    For s = \"abcdef\", c = \"b\"  the result should be ('acdef',False)\n    For s = \"abcdedcba\", c = \"ab\", the result should be ('cdedc',True)\n\n### Signature\ndef reverse_delete(s,c):\n\n### Test\nassert candidate(\"abcde\",\"ae\") == ('bcd',False)\nassert candidate(\"abcdef\", \"b\") == ('acdef',False)\nassert candidate(\"abcdedcba\",\"ab\") == ('cdedc',True)\nassert candidate(\"dwik\",\"w\") == ('dik',False)",
+    "timestamp": "2025-10-17T18:01:33.106505",
+    "response_time": "3.65"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 113,
+    "solution": "===START===\n```python\ndef odd_count(lst):\n    result = []\n    for s in lst:\n        odd_count = sum(1 for char in s if int(char) % 2 != 0)\n        result.append(f\"the number of odd elements {odd_count}n the str{odd_count}ng {odd_count} of the {odd_count}nput.\")\n    return result\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a list of strings, where each string consists of only digits, return a list.\n    Each element i of the output should be \"the number of odd elements in the\n    string i of the input.\" where all the i's should be replaced by the number\n    of odd digits in the i'th string of the input.\n\n### Signature\ndef odd_count(lst):\n\n### Test\nassert candidate(['1234567']) == [\"the number of odd elements 4n the str4ng 4 of the 4nput.\"], \"Test 1\"\nassert candidate(['3',\"11111111\"]) == [\"the number of odd elements 1n the str1ng 1 of the 1nput.\", \"the number of odd elements 8n the str8ng 8 of the 8nput.\"], \"Test 2\"",
+    "timestamp": "2025-10-17T18:01:37.224805",
+    "response_time": "4.12"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 114,
+    "solution": "===START===\nfrom typing import List\n\ndef minSubArraySum(nums: List[int]) -> int:\n    min_sum = float('inf')\n    current_sum = 0\n    \n    for num in nums:\n        current_sum = min(num, current_sum + num)\n        min_sum = min(min_sum, current_sum)\n    \n    return min_sum\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given an array of integers nums, find the minimum sum of any non-empty sub-array\n    of nums.\n    Example\n    minSubArraySum([2, 3, 4, 1, 2, 4]) == 1\n    minSubArraySum([-1, -2, -3]) == -6\n\n### Signature\ndef minSubArraySum(nums):\n\n### Test\nassert candidate([2, 3, 4, 1, 2, 4]) == 1, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([-1, -2, -3]) == -6\nassert candidate([-1, -2, -3, 2, -10]) == -14\nassert candidate([-9999999999999999]) == -9999999999999999\nassert candidate([0, 10, 20, 1000000]) == 0\nassert candidate([-1, -2, -3, 10, -5]) == -6",
+    "timestamp": "2025-10-17T18:01:40.687239",
+    "response_time": "3.46"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 115,
+    "solution": "===START===\n```python\ndef max_fill(grid, capacity):\n    total_drops = 0\n    for row in grid:\n        water_units = sum(row)\n        total_drops += (water_units + capacity - 1) // capacity\n    return total_drops\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a rectangular grid of wells. Each row represents a single well,\n    and each 1 in a row represents a single unit of water.\n    Each well has a corresponding bucket that can be used to extract water from it,\n    and all buckets have the same capacity.\n    Your task is to use the buckets to empty the wells.\n    Output the number of times you need to lower the buckets.\n\n### Signature\ndef max_fill(grid, capacity):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1) == 6, \"Error\"\nassert candidate([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2) == 5, \"Error\"",
+    "timestamp": "2025-10-17T18:01:43.764348",
+    "response_time": "3.07"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 116,
+    "solution": "===START===\n```python\ndef sort_array(arr):\n    return sorted(arr, key=lambda x: (bin(x).count('1'), x))\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    In this Kata, you have to sort an array of non-negative integers according to\n    number of ones in their binary representation in ascending order.\n    For similar number of ones, sort based on decimal value.\n\n### Signature\ndef sort_array(arr):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1,5,2,3,4]) == [1, 2, 4, 3, 5]\nassert candidate([-2,-3,-4,-5,-6]) == [-4, -2, -6, -5, -3]\nassert candidate([1,0,2,3,4]) == [0, 1, 2, 4, 3]\nassert candidate([]) == []",
+    "timestamp": "2025-10-17T18:01:45.549382",
+    "response_time": "1.78"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 117,
+    "solution": "===START===\nimport re\n\ndef select_words(s, n):\n    if not s:\n        return []\n    \n    words = s.split()\n    consonants = set(\"bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ\")\n    \n    result = []\n    for word in words:\n        consonant_count = sum(1 for char in word if char in consonants)\n        if consonant_count == n:\n            result.append(word)\n    \n    return result\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a string s and a natural number n, you have been tasked to implement\n    a function that returns a list of all words from string s that contain exactly\n    n consonants, in order these words appear in the string s.\n    If the string s is empty then the function should return an empty list.\n    Note: you may assume the input string contains only letters and spaces.\n    Examples:\n    select_words(\"Mary had a little lamb\", 4) ==> [\"little\"]\n    select_words(\"Mary had a little lamb\", 3) ==> [\"Mary\", \"lamb\"]\n    select_words(\"simple white space\", 2) ==> []\n    select_words(\"Hello world\", 4) ==> [\"world\"]\n    select_words(\"Uncle sam\", 3) ==> [\"Uncle\"]\n\n### Signature\ndef select_words(s, n):\n\n### Test\nassert candidate(\"Mary had a little lamb\", 4) == [\"little\"], \"First test error: \" + str(candidate(\"Mary had a little lamb\", 4))\nassert candidate(\"Mary had a little lamb\", 3) == [\"Mary\", \"lamb\"], \"Second test error: \" + str(candidate(\"Mary had a little lamb\", 3))\nassert candidate(\"simple white space\", 2) == [], \"Third test error: \" + str(candidate(\"simple white space\", 2))",
+    "timestamp": "2025-10-17T18:01:50.282513",
+    "response_time": "4.73"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 118,
+    "solution": "===START===\n```python\ndef get_closest_vowel(word):\n    vowels = \"aeiouAEIOU\"\n    length = len(word)\n    \n    for i in range(length - 2, 0, -1):\n        if word[i] in vowels and word[i-1] not in vowels and word[i+1] not in vowels:\n            return word[i]\n    \n    return \"\"\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a word. Your task is to find the closest vowel that stands between\n    two consonants from the right side of the word (case sensitive).\n\n### Signature\ndef get_closest_vowel(word):\n\n### Test\nassert candidate(\"yogurt\") == \"u\"\nassert candidate(\"full\") == \"u\"\nassert candidate(\"easy\") == \"\"\nassert candidate(\"eAsy\") == \"\"\nassert candidate(\"ali\") == \"\"\nassert candidate(\"bad\") == \"a\"\nassert candidate(\"most\") == \"o\"",
+    "timestamp": "2025-10-17T18:01:54.315817",
+    "response_time": "4.03"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 119,
+    "solution": "===START===\n```python\ndef match_parens(lst):\n    def is_balanced(s):\n        balance = 0\n        for char in s:\n            if char == '(':\n                balance += 1\n            else:\n                balance -= 1\n            if balance < 0:\n                return False\n        return balance == 0\n\n    s1, s2 = lst\n    return 'Yes' if is_balanced(s1 + s2) or is_balanced(s2 + s1) else 'No'\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a list of two strings, both strings consist of open\n    parentheses '(' or close parentheses ')' only.\n    Your job is to check if it is possible to concatenate the two strings in\n    some order, that the resulting string will be good.\n    A string S is considered to be good if and only if all parentheses in S\n    are balanced. For example: the string '(())()' is good, while the string\n    '())' is not.\n    Return 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\n### Signature\ndef match_parens(lst):\n\n### Test\nassert candidate(['()(', ')']) == 'Yes'\nassert candidate([')', ')']) == 'No'\nassert candidate(['(()(())', '())())']) == 'No'\nassert candidate([')())', '(()()(']) == 'Yes'\nassert candidate(['(())))', '(()())((']) == 'Yes'\nassert candidate(['()', '())']) == 'No'",
+    "timestamp": "2025-10-17T18:01:59.542124",
+    "response_time": "5.22"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 120,
+    "solution": "===START===\n```python\ndef maximum(arr, k):\n    return sorted(arr)[-k:]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given an array arr of integers and a positive integer k, return a sorted list\n    of length k with the maximum k numbers in arr.\n\n### Signature\ndef maximum(arr, k):\n\n### Test\nassert candidate([-3, -4, 5], 3) == [-4, -3, 5]\nassert candidate([4, -4, 4], 2) == [4, 4]\nassert candidate([-3, 2, 1, 2, -1, -2, 1], 1) == [2]\nassert candidate([123, -123, 20, 0 , 1, 2, -3], 3) == [2, 20, 123]\nassert candidate([-123, 20, 0 , 1, 2, -3], 4) == [0, 1, 2, 20]",
+    "timestamp": "2025-10-17T18:02:00.835621",
+    "response_time": "1.29"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 121,
+    "solution": "===START===\n```python\ndef solution(lst):\n    return sum(lst[i] for i in range(1, len(lst), 2) if lst[i] % 2 != 0)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n\n### Signature\ndef solution(lst):\n\n### Test\nassert candidate([5, 8, 7, 1])    == 12\nassert candidate([3, 3, 3, 3, 3]) == 9\nassert candidate([30, 13, 24, 321]) == 0",
+    "timestamp": "2025-10-17T18:02:03.019234",
+    "response_time": "2.18"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 122,
+    "solution": "===START===\n```python\ndef add_elements(arr, k):\n    return sum(x for x in arr[:k] if -99 <= x <= 99)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a non-empty array of integers arr and an integer k, return\n    the sum of the elements with at most two digits from the first k elements of arr.\n\n### Signature\ndef add_elements(arr, k):\n\n### Test\nassert candidate([1,-2,-3,41,57,76,87,88,99], 3) == -4\nassert candidate([111,121,3,4000,5,6], 2) == 0",
+    "timestamp": "2025-10-17T18:02:05.047244",
+    "response_time": "2.03"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 123,
+    "solution": "===START===\n```python\ndef get_odd_collatz(n):\n    odd_numbers = []\n    while n != 1:\n        if n % 2 == 1:\n            odd_numbers.append(n)\n        n = 3 * n + 1 if n % 2 else n // 2\n    odd_numbers.append(1)  # Include the final 1 in the sequence\n    return sorted(odd_numbers)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.\n\n### Signature\ndef get_odd_collatz(n):\n\n### Test\nassert candidate(14) == [1, 5, 7, 11, 13, 17]\nassert candidate(5) == [1, 5]",
+    "timestamp": "2025-10-17T18:02:09.309028",
+    "response_time": "4.26"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 124,
+    "solution": "===START===\nimport re\n\ndef valid_date(date):\n    if not date:\n        return False\n    \n    # Check the format using regex\n    if not re.match(r'^\\d{2}-\\d{2}-\\d{4}$', date):\n        return False\n    \n    month, day, year = map(int, date.split('-'))\n    \n    # Check month range\n    if month < 1 or month > 12:\n        return False\n    \n    # Check day range based on month\n    if month in {1, 3, 5, 7, 8, 10, 12}:\n        if day < 1 or day > 31:\n            return False\n    elif month in {4, 6, 9, 11}:\n        if day < 1 or day > 30:\n            return False\n    elif month == 2:\n        if day < 1 or day > 29:\n            return False\n    \n    return True\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You have to write a function which validates a given date string and\n    returns True if the date is valid otherwise False.\n    The date is valid if all of the following rules are satisfied:\n    1. The date string is not empty.\n    2. The number of days is not less than 1 or higher than 31 days for months 1,3,5,7,8,10,12. And the number of days is not less than 1 or higher than 30 days for months 4,6,9,11. And, the number of days is not less than 1 or higher than 29 for the month 2.\n    3. The months should not be less than 1 or higher than 12.\n    4. The date should be in the format: mm-dd-yyyy\n\n### Signature\ndef valid_date(date):\n\n### Test\nassert candidate('03-11-2000') == True \nassert candidate('15-01-2012') == False \nassert candidate('04-0-2040') == False \nassert candidate('06-04-2020') == True \nassert candidate('01-01-2007') == True \nassert candidate('03-32-2011') == False \nassert candidate('') == False \nassert candidate('04-31-3000') == False ",
+    "timestamp": "2025-10-17T18:02:18.996311",
+    "response_time": "9.68"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 125,
+    "solution": "===START===\n```python\ndef split_words(txt):\n    if ' ' in txt:\n        return txt.split()\n    elif ',' in txt:\n        return txt.split(',')\n    else:\n        return sum(1 for char in txt if char.islower() and (ord(char) - ord('a')) % 2 == 1)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\n    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\n    alphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\n    Examples\n    split_words(\"Hello world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"Hello,world!\") \u279e [\"Hello\", \"world!\"]\n    split_words(\"abcdef\") == 3\n\n### Signature\ndef split_words(txt):\n\n### Test\nassert candidate(\"Hello world!\") == [\"Hello\",\"world!\"]\nassert candidate(\"Hello,world!\") == [\"Hello\",\"world!\"]\nassert candidate(\"Hello world,!\") == [\"Hello\",\"world,!\"]\nassert candidate(\"Hello,Hello,world !\") == [\"Hello,Hello,world\",\"!\"]",
+    "timestamp": "2025-10-17T18:02:22.439473",
+    "response_time": "3.44"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 126,
+    "solution": "===START===\ndef is_sorted(lst):\n    if len(lst) <= 1:\n        return True\n    \n    for i in range(1, len(lst)):\n        if lst[i] < lst[i - 1]:\n            return False\n        if i > 1 and lst[i] == lst[i - 1] == lst[i - 2]:\n            return False\n    \n    return True\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a list of numbers, return whether or not they are sorted\n    in ascending order. If list has more than 1 duplicate of the same\n    number, return False. Assume no negative numbers and only integers.\n\n### Signature\ndef is_sorted(lst):\n\n### Test\nassert candidate([5]) == True\nassert candidate([1, 2, 3, 4, 5]) == True\nassert candidate([1, 3, 2, 4, 5]) == False\nassert candidate([1, 2, 3, 4, 5, 6]) == True\nassert candidate([1, 2, 3, 4, 5, 6, 7]) == True\nassert candidate([1, 3, 2, 4, 5, 6, 7]) == False, \"This prints if this assert fails 1 (good for debugging!)\"",
+    "timestamp": "2025-10-17T18:02:26.406985",
+    "response_time": "3.96"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 127,
+    "solution": "===START===\nfrom math import sqrt\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef intersection(interval1, interval2):\n    start1, end1 = interval1\n    start2, end2 = interval2\n    \n    # Calculate the intersection\n    start = max(start1, start2)\n    end = min(end1, end2)\n    \n    # Check if there is an intersection\n    if start > end:\n        return \"NO\"\n    \n    # Calculate the length of the intersection\n    length = end - start + 1\n    \n    # Check if the length is a prime number\n    if is_prime(length):\n        return \"YES\"\n    else:\n        return \"NO\"\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given two intervals,\n    where each interval is a pair of integers. For example, interval = (start, end) = (1, 2).\n    The given intervals are closed which means that the interval (start, end)\n    includes both start and end.\n    For each given interval, it is assumed that its start is less or equal its end.\n    Your task is to determine whether the length of intersection of these two\n    intervals is a prime number.\n    Example, the intersection of the intervals (1, 3), (2, 4) is (2, 3)\n    which its length is 1, which not a prime number.\n    If the length of the intersection is a prime number, return \"YES\",\n    otherwise, return \"NO\".\n    If the two intervals don't intersect, return \"NO\".\n\n### Signature\ndef intersection(interval1, interval2):\n\n### Test\nassert candidate((1, 2), (2, 3)) == \"NO\"\nassert candidate((-1, 1), (0, 4)) == \"NO\"\nassert candidate((-3, -1), (-5, 5)) == \"YES\"\nassert candidate((-2, 2), (-4, 0)) == \"YES\"  # Check some edge cases that are easy to work out by hand.",
+    "timestamp": "2025-10-17T18:02:36.913685",
+    "response_time": "10.50"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 128,
+    "solution": "===START===\n```python\ndef prod_signs(arr):\n    if not arr:\n        return None\n    \n    product_of_signs = 1\n    sum_of_magnitudes = 0\n    \n    for num in arr:\n        if num == 0:\n            return 0\n        product_of_signs *= (1 if num > 0 else -1)\n        sum_of_magnitudes += abs(num)\n    \n    return sum_of_magnitudes * product_of_signs\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given an array arr of integers and you need to return\n    sum of magnitudes of integers multiplied by product of all signs\n    of each number in the array, represented by 1, -1 or 0.\n    Note: return None for empty arr.\n\n### Signature\ndef prod_signs(arr):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1, 2, 2, -4]) == -9\nassert candidate([0, 1]) == 0\nassert candidate([1, 1, 1, 2, 3, -1, 1]) == -10\nassert candidate([]) == None",
+    "timestamp": "2025-10-17T18:02:41.772871",
+    "response_time": "4.86"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 129,
+    "solution": "===START===\nfrom typing import List\n\ndef minPath(grid: List[List[int]], k: int) -> List[int]:\n    N = len(grid)\n    path = []\n    \n    for i in range(k):\n        if i % 2 == 0:\n            # Move right\n            for j in range(N):\n                path.append(grid[i // 2][j])\n        else:\n            # Move left\n            for j in range(N - 1, -1, -1):\n                path.append(grid[i // 2 + 1][j])\n    \n    return path\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a grid with N rows and N columns (N >= 2) and a positive integer k,\n    each cell of the grid contains a value. Every integer in the range [1, N * N]\n    inclusive appears exactly once on the cells of the grid.\n\n### Signature\ndef minPath(grid, k):\n\n### Test\nassert candidate([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3) == [1, 2, 1]\nassert candidate([[5, 9, 3], [4, 1, 6], [7, 8, 2]], 1) == [1]\nassert candidate([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]], 4) == [1, 2, 1, 2]\nassert candidate([[6, 4, 13, 10], [5, 7, 12, 1], [3, 16, 11, 15], [8, 14, 9, 2]], 7) == [1, 10, 1, 10, 1, 10, 1]\nassert candidate([[8, 14, 9, 2], [6, 4, 13, 15], [5, 7, 1, 12], [3, 10, 11, 16]], 5) == [1, 7, 1, 7, 1]",
+    "timestamp": "2025-10-17T18:02:47.489198",
+    "response_time": "5.71"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 130,
+    "solution": "===START===\n```python\ndef tri(n):\n    if n < 0:\n        return []\n    \n    # Initialize the sequence with the first known value\n    sequence = [1]\n    \n    # Calculate the sequence up to the nth value\n    for i in range(1, n + 1):\n        if i == 1:\n            sequence.append(3)\n        elif i % 2 == 0:\n            sequence.append(1 + i / 2)\n        else:\n            # Ensure the sequence has enough elements for the recurrence\n            while len(sequence) < i + 2:\n                sequence.append(0)\n            sequence[i] = sequence[i - 1] + sequence[i - 2] + sequence[i + 1]\n    \n    return sequence\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Everyone knows Fibonacci sequence, it was studied deeply by mathematicians in\n    the last couple centuries. However, what people don't know is Tribonacci sequence.\n    Tribonacci sequence is defined by the recurrence:\n    tri(1) = 3\n    tri(n) = 1 + n / 2, if n is even.\n    tri(n) =  tri(n - 1) + tri(n - 2) + tri(n + 1), if n is odd.\n    For example:\n    tri(2) = 1 + (2 / 2) = 2\n    tri(4) = 3\n    tri(3) = tri(2) + tri(1) + tri(4)\n           = 2 + 3 + 3 = 8\n    You are given a non-negative integer number n, you have to a return a list of the\n    first n + 1 numbers of the Tribonacci sequence.\n    Examples:\n    tri(3) = [1, 3, 2, 8]\n\n### Signature\ndef tri(n):\n\n### Test\nassert candidate(3) == [1, 3, 2.0, 8.0]\nassert candidate(4) == [1, 3, 2.0, 8.0, 3.0]\nassert candidate(5) == [1, 3, 2.0, 8.0, 3.0, 15.0]\nassert candidate(6) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0]\nassert candidate(7) == [1, 3, 2.0, 8.0, 3.0, 15.0, 4.0, 24.0]",
+    "timestamp": "2025-10-17T18:02:54.937949",
+    "response_time": "7.45"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 131,
+    "solution": "===START===\n```python\ndef digits(n):\n    product = 1\n    has_odd = False\n    while n > 0:\n        digit = n % 10\n        if digit % 2 != 0:\n            product *= digit\n            has_odd = True\n        n //= 10\n    return product if has_odd else 0\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a positive integer n, return the product of the odd digits.\n    Return 0 if all digits are even.\n    For example:\n    digits(1)  == 1\n    digits(4)  == 0\n    digits(235) == 15\n\n### Signature\ndef digits(n):\n\n### Test\nassert candidate(5) == 5\nassert candidate(54) == 5\nassert candidate(120) ==1",
+    "timestamp": "2025-10-17T18:02:58.721491",
+    "response_time": "3.78"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 132,
+    "solution": "===START===\n```python\ndef is_nested(string):\n    stack = []\n    nested = False\n    \n    for char in string:\n        if char == '[':\n            stack.append(char)\n        elif char == ']' and stack:\n            stack.pop()\n            if stack:\n                nested = True\n    \n    return nested\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Create a function that takes a string as input which contains only square brackets.\n    The function should return True if and only if there is a valid subsequence of brackets\n    where at least one bracket in the subsequence is nested.\n\n### Signature\ndef is_nested(string):\n\n### Test\nassert candidate('[[]]') == True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate('[]]]]]]][[[[[]') == False\nassert candidate('[][]') == False\nassert candidate(('[]')) == False\nassert candidate('[[[[]]]]') == True\nassert candidate('[]]]]]]]]]]') == False\nassert candidate('[][][[]]') == True",
+    "timestamp": "2025-10-17T18:03:02.078192",
+    "response_time": "3.35"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 133,
+    "solution": "===START===\nimport math\n\ndef sum_squares(lst):\n    return sum(math.ceil(x) ** 2 for x in lst)\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a list of numbers.\n    You need to return the sum of squared numbers in the given list,\n    round each element in the list to the upper int(Ceiling) first.\n    Examples:\n    For lst = [1,2,3] the output should be 14\n    For lst = [1,4,9] the output should be 98\n    For lst = [1,3,5,7] the output should be 84\n    For lst = [1.4,4.2,0] the output should be 29\n    For lst = [-2.4,1,1] the output should be 6\n\n### Signature\ndef sum_squares(lst):\n\n### Test\nassert candidate([1,2,3])==14, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1.0,2,3])==14, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1,3,5,7])==84, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([1.4,4.2,0])==29, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([-2.4,1,1])==6, \"This prints if this assert fails 1 (good for debugging!)\" \nassert candidate([100,1,15,2])==10230, \"This prints if this assert fails 1 (good for debugging!)\"",
+    "timestamp": "2025-10-17T18:03:03.899215",
+    "response_time": "1.82"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 134,
+    "solution": "===START===\nimport string\n\ndef check_if_last_char_is_a_letter(txt):\n    # Strip any trailing whitespace\n    txt = txt.rstrip()\n    \n    # Check if the string is empty after stripping\n    if not txt:\n        return False\n    \n    # Get the last character\n    last_char = txt[-1]\n    \n    # Check if the last character is an alphabetical character\n    if last_char in string.ascii_letters:\n        # Check if the last character is not part of a word\n        if len(txt) == 1 or txt[-2] == ' ':\n            return True\n    \n    return False\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Create a function that returns True if the last character\n    of a given string is an alphabetical character and is not\n    a part of a word, and False otherwise.\n    Note: \"word\" is a group of characters separated by space.\n\n### Signature\ndef check_if_last_char_is_a_letter(txt):\n\n### Test\nassert candidate(\"apple\") == False\nassert candidate(\"apple pi e\") == True\nassert candidate(\"eeeee\") == False\nassert candidate(\"A\") == True\nassert candidate(\"Pumpkin pie \") == False",
+    "timestamp": "2025-10-17T18:03:10.027361",
+    "response_time": "6.13"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 135,
+    "solution": "===START===\n```python\ndef can_arrange(arr):\n    for i in range(len(arr) - 1, 0, -1):\n        if arr[i] < arr[i - 1]:\n            return i\n    return -1\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Create a function which returns the largest index of an element which\n    is not greater than or equal to the element immediately preceding it. If\n    no such element exists then return -1. The given array will not contain\n    duplicate values.\n\n### Signature\ndef can_arrange(arr):\n\n### Test\nassert candidate([1,2,4,3,5])==3\nassert candidate([1,2,4,5])==-1",
+    "timestamp": "2025-10-17T18:03:18.506213",
+    "response_time": "8.48"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 136,
+    "solution": "===START===\n```python\ndef largest_smallest_integers(lst):\n    largest_negative = None\n    smallest_positive = None\n    \n    for num in lst:\n        if num < 0:\n            if largest_negative is None or num > largest_negative:\n                largest_negative = num\n        elif num > 0:\n            if smallest_positive is None or num < smallest_positive:\n                smallest_positive = num\n    \n    return (largest_negative, smallest_positive)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Create a function that returns a tuple (a, b), where 'a' is\n    the largest of negative integers, and 'b' is the smallest\n    of positive integers in a list.\n    If there is no negative or positive integers, return them as None.\n\n### Signature\ndef largest_smallest_integers(lst):\n\n### Test\nassert candidate([2, 4, 1, 3, 5, 7]) == (None, 1)\nassert candidate([2, 4, 1, 3, 5, 7, 0]) == (None, 1)\nassert candidate([1, 3, 2, 4, 5, 6, -2]) == (-2, 1)\nassert candidate([4, 5, 3, 6, 2, 7, -7]) == (-7, 2)\nassert candidate([7, 3, 8, 4, 9, 2, 5, -9]) == (-9, 2)\nassert candidate([]) == (None, None)",
+    "timestamp": "2025-10-17T18:03:24.123547",
+    "response_time": "5.61"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 137,
+    "solution": "===START===\n```python\ndef compare_one(a, b):\n    def parse_number(value):\n        if isinstance(value, str):\n            value = value.replace(',', '.')\n            return float(value)\n        return float(value)\n    \n    num_a = parse_number(a)\n    num_b = parse_number(b)\n    \n    if num_a > num_b:\n        return a\n    elif num_b > num_a:\n        return b\n    else:\n        return None\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Create a function that takes integers, floats, or strings representing\n    real numbers, and returns the larger variable in its given variable type.\n    Return None if the values are equal.\n    Note: If a real number is represented as a string, the floating point might be . or ,\n\n### Signature\ndef compare_one(a, b):\n\n### Test\nassert candidate(1, 2) == 2\nassert candidate(1, 2.5) == 2.5\nassert candidate(2, 3) == 3\nassert candidate(5, 6) == 6",
+    "timestamp": "2025-10-17T18:03:28.770563",
+    "response_time": "4.64"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 138,
+    "solution": "===START===\n```python\ndef is_equal_to_sum_even(n):\n    # A number can be written as the sum of 4 positive even numbers if it is at least 8\n    # and is even itself.\n    return n >= 8 and n % 2 == 0\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\n    Example\n    is_equal_to_sum_even(4) == False\n    is_equal_to_sum_even(6) == False\n    is_equal_to_sum_even(8) == True\n\n### Signature\ndef is_equal_to_sum_even(n):\n\n### Test\nassert candidate(4) == False\nassert candidate(6) == False\nassert candidate(8) == True\nassert candidate(10) == True",
+    "timestamp": "2025-10-17T18:03:31.907296",
+    "response_time": "3.13"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 139,
+    "solution": "===START===\nfrom math import factorial\n\ndef special_factorial(n):\n    result = 1\n    for i in range(1, n + 1):\n        result *= factorial(i)\n    return result\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    The Brazilian factorial is defined as:\n    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\n    where n > 0\n\n### Signature\ndef special_factorial(n):\n\n### Test\nassert candidate(4) == 288, \"Test 4\"\nassert candidate(5) == 34560, \"Test 5\"",
+    "timestamp": "2025-10-17T18:03:34.188771",
+    "response_time": "2.28"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 140,
+    "solution": "===START===\nimport re\n\ndef fix_spaces(text):\n    # Replace more than 2 consecutive spaces with '-'\n    text = re.sub(r' {3,}', '-', text)\n    # Replace remaining spaces with '_'\n    text = text.replace(' ', '_')\n    return text\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a string text, replace all spaces in it with underscores,\n    and if a string has more than 2 consecutive spaces,\n    then replace all consecutive spaces with -\n\n### Signature\ndef fix_spaces(text):\n\n### Test\nassert candidate(\"Example\") == \"Example\", \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(\"Mudasir Hanif \") == \"Mudasir_Hanif_\", \"This prints if this assert fails 2 (good for debugging!)\"",
+    "timestamp": "2025-10-17T18:03:37.235901",
+    "response_time": "3.04"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 141,
+    "solution": "===START===\nimport re\n\ndef file_name_check(file_name):\n    # Check if there is exactly one dot\n    if file_name.count('.') != 1:\n        return 'No'\n    \n    # Split the file name into name and extension\n    name, extension = file_name.split('.')\n    \n    # Check if the extension is valid\n    if extension not in ['txt', 'exe', 'dll']:\n        return 'No'\n    \n    # Check if the name is not empty and starts with a letter\n    if not name or not name[0].isalpha():\n        return 'No'\n    \n    # Check if there are more than three digits in the name\n    if len(re.findall(r'\\d', name)) > 3:\n        return 'No'\n    \n    return 'Yes'\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Create a function which takes a string representing a file's name, and returns\n    'Yes' if the the file's name is valid, and returns 'No' otherwise.\n    A file's name is considered to be valid if and only if all the following conditions\n    are met:\n    - There should not be more than three digits ('0'-'9') in the file's name.\n    - The file's name contains exactly one dot '.'\n    - The substring before the dot should not be empty, and it starts with a letter from\n    the latin alphapet ('a'-'z' and 'A'-'Z').\n    - The substring after the dot should be one of these: ['txt', 'exe', 'dll']\n    Examples:\n    file_name_check(\"example.txt\") # => 'Yes'\n    file_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)\n\n### Signature\ndef file_name_check(file_name):\n\n### Test\nassert candidate(\"example.txt\") == 'Yes'\nassert candidate(\"1example.dll\") == 'No'\nassert candidate('s1sdf3.asd') == 'No'\nassert candidate('K.dll') == 'Yes'\nassert candidate('MY16FILE3.exe') == 'Yes'\nassert candidate('His12FILE94.exe') == 'No'\nassert candidate('_Y.txt') == 'No'\nassert candidate('?aREYA.exe') == 'No'\nassert candidate('/this_is_valid.dll') == 'No'\nassert candidate('this_is_valid.wow') == 'No'\nassert candidate('this_is_valid.txt') == 'Yes'\nassert candidate('this_is_valid.txtexe') == 'No'\nassert candidate('#this2_i4s_5valid.ten') == 'No'",
+    "timestamp": "2025-10-17T18:03:45.111857",
+    "response_time": "7.87"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 142,
+    "solution": "===START===\n```python\ndef sum_squares(lst):\n    total = 0\n    for i, num in enumerate(lst):\n        if i % 3 == 0:\n            total += num ** 2\n        elif i % 4 == 0:\n            total += num ** 3\n        else:\n            total += num\n    return total\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    \"\n    This function will take a list of integers. For all entries in the list, the function shall square the integer entry if its index is a\n    multiple of 3 and will cube the integer entry if its index is a multiple of 4 and not a multiple of 3. The function will not\n    change the entries in the list whose indexes are not a multiple of 3 or 4. The function shall then return the sum of all entries.\n\n### Signature\ndef sum_squares(lst):\n\n### Test\nassert candidate([1,2,3]) == 6\nassert candidate([1,4,9]) == 14\nassert candidate([]) == 0\nassert candidate([1,1,1,1,1,1,1,1,1]) == 9\nassert candidate([-1,-1,-1,-1,-1,-1,-1,-1,-1]) == -3",
+    "timestamp": "2025-10-17T18:03:49.205043",
+    "response_time": "4.09"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 143,
+    "solution": "===START===\nimport math\n\ndef is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef words_in_sentence(sentence):\n    words = sentence.split()\n    prime_length_words = [word for word in words if is_prime(len(word))]\n    return ' '.join(prime_length_words)\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a string representing a sentence,\n    the sentence contains some words separated by a space,\n    and you have to return a string that contains the words from the original sentence,\n    whose lengths are prime numbers,\n    the order of the words in the new string should be the same as the original one.\n\n### Signature\ndef words_in_sentence(sentence):\n\n### Test\nassert candidate(\"This is a test\") == \"is\"\nassert candidate(\"lets go for swimming\") == \"go for\"\nassert candidate(\"there is no place available here\") == \"there is no place\"",
+    "timestamp": "2025-10-17T18:03:55.894393",
+    "response_time": "6.68"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 144,
+    "solution": "===START===\nfrom fractions import Fraction\n\ndef simplify(x, n):\n    fraction_x = Fraction(x)\n    fraction_n = Fraction(n)\n    result = fraction_x * fraction_n\n    return result.denominator == 1\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Your task is to implement a function that will simplify the expression\n    x * n. The function returns True if x * n evaluates to a whole number and False\n    otherwise. Both x and n, are string representation of a fraction, and have the following format,\n    <numerator>/<denominator> where both numerator and denominator are positive whole numbers.\n\n### Signature\ndef simplify(x, n):\n\n### Test\nassert candidate(\"1/5\", \"5/1\") == True, 'test1'\nassert candidate(\"1/6\", \"2/1\") == False, 'test2'\nassert candidate(\"5/1\", \"3/1\") == True, 'test3'\nassert candidate(\"7/10\", \"10/2\") == False, 'test4'\nassert candidate(\"2/10\", \"50/10\") == True, 'test5'\nassert candidate(\"7/2\", \"4/2\") == True, 'test6'",
+    "timestamp": "2025-10-17T18:03:58.359190",
+    "response_time": "2.46"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 145,
+    "solution": "===START===\n```python\ndef order_by_points(nums):\n    def digit_sum(n):\n        return sum(int(digit) for digit in str(abs(n)))\n    \n    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))\n\n# Test cases\nassert order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\nassert order_by_points([1234, 423, 463, 145, 2, 423, 423, 53, 6, 37, 3457, 3, 56, 0, 46]) == [0, 2, 3, 6, 53, 423, 423, 423, 1234, 145, 37, 46, 56, 463, 3457]\nassert order_by_points([]) == []\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function which sorts the given list of integers\n    in ascending order according to the sum of their digits.\n    Note: if there are several items with similar sum of their digits,\n    order them based on their index in original list.\n\n### Signature\ndef order_by_points(nums):\n\n### Test\nassert candidate([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\nassert candidate([1234,423,463,145,2,423,423,53,6,37,3457,3,56,0,46]) == [0, 2, 3, 6, 53, 423, 423, 423, 1234, 145, 37, 46, 56, 463, 3457]\nassert candidate([]) == []",
+    "timestamp": "2025-10-17T18:04:09.243962",
+    "response_time": "10.88"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 146,
+    "solution": "===START===\n```python\ndef specialFilter(nums):\n    def is_odd_digit(digit):\n        return digit in {'1', '3', '5', '7', '9'}\n    \n    count = 0\n    for num in nums:\n        if num > 10:\n            num_str = str(num)\n            if is_odd_digit(num_str[0]) and is_odd_digit(num_str[-1]):\n                count += 1\n    return count\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that takes an array of numbers as input and returns\n    the number of elements in the array that are greater than 10 and both\n    first and last digits of a number are odd (1, 3, 5, 7, 9).\n    For example:\n    specialFilter([15, -73, 14, -15]) => 1\n    specialFilter([33, -2, -3, 45, 21, 109]) => 2\n\n### Signature\ndef specialFilter(nums):\n\n### Test\nassert candidate([5, -2, 1, -5]) == 0\nassert candidate([15, -73, 14, -15]) == 1\nassert candidate([33, -2, -3, 45, 21, 109]) == 2",
+    "timestamp": "2025-10-17T18:04:13.940046",
+    "response_time": "4.69"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 147,
+    "solution": "===START===\n```python\ndef get_max_triples(n):\n    a = [i * i - i + 1 for i in range(1, n + 1)]\n    count_mod = [0, 0, 0]\n    \n    for value in a:\n        count_mod[value % 3] += 1\n    \n    # Calculate the number of valid triples\n    # Case 1: All three numbers have the same remainder when divided by 3\n    result = (count_mod[0] * (count_mod[0] - 1) * (count_mod[0] - 2) // 6) + \\\n             (count_mod[1] * (count_mod[1] - 1) * (count_mod[1] - 2) // 6) + \\\n             (count_mod[2] * (count_mod[2] - 1) * (count_mod[2] - 2) // 6)\n    \n    # Case 2: All three numbers have different remainders when divided by 3\n    result += count_mod[0] * count_mod[1] * count_mod[2]\n    \n    return result\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a positive integer n. You have to create an integer array a of length n.\n        For each i (1 \u2264 i \u2264 n), the value of a[i] = i * i - i + 1.\n        Return the number of triples (a[i], a[j], a[k]) of a where i < j < k,\n    and a[i] + a[j] + a[k] is a multiple of 3.\n\n### Signature\ndef get_max_triples(n):\n\n### Test\nassert candidate(5) == 1\nassert candidate(6) == 4",
+    "timestamp": "2025-10-17T18:04:25.372569",
+    "response_time": "11.43"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 148,
+    "solution": "===START===\n```python\ndef bf(planet1, planet2):\n    planets = [\"Mercury\", \"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\", \"Uranus\", \"Neptune\"]\n    if planet1 not in planets or planet2 not in planets:\n        return ()\n    \n    index1 = planets.index(planet1)\n    index2 = planets.index(planet2)\n    \n    if index1 < index2:\n        return tuple(planets[index1 + 1:index2])\n    else:\n        return tuple(planets[index2 + 1:index1])\n\n# Test cases\nassert bf(\"Jupiter\", \"Neptune\") == (\"Saturn\", \"Uranus\"), \"First test error: \" + str(len(bf(\"Jupiter\", \"Neptune\")))\nassert bf(\"Earth\", \"Mercury\") == (\"Venus\",), \"Second test error: \" + str(bf(\"Earth\", \"Mercury\"))\nassert bf(\"Mercury\", \"Uranus\") == (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\"), \"Third test error: \" + str(bf(\"Mercury\", \"Uranus\"))\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    There are eight planets in our solar system: the closerst to the Sun\n    is Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn,\n    Uranus, Neptune.\n    Write a function that takes two planet names as strings planet1 and planet2.\n    The function should return a tuple containing all planets whose orbits are\n    located between the orbit of planet1 and the orbit of planet2, sorted by\n    the proximity to the sun.\n    The function should return an empty tuple if planet1 or planet2\n    are not correct planet names.\n    Examples\n    bf(\"Jupiter\", \"Neptune\") ==> (\"Saturn\", \"Uranus\")\n    bf(\"Earth\", \"Mercury\") ==> (\"Venus\")\n    bf(\"Mercury\", \"Uranus\") ==> (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\")\n\n### Signature\ndef bf(planet1, planet2):\n\n### Test\nassert candidate(\"Jupiter\", \"Neptune\") == (\"Saturn\", \"Uranus\"), \"First test error: \" + str(len(candidate(\"Jupiter\", \"Neptune\")))\nassert candidate(\"Earth\", \"Mercury\") == (\"Venus\",), \"Second test error: \" + str(candidate(\"Earth\", \"Mercury\"))\nassert candidate(\"Mercury\", \"Uranus\") == (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\"), \"Third test error: \" + str(candidate(\"Mercury\", \"Uranus\"))",
+    "timestamp": "2025-10-17T18:04:36.859212",
+    "response_time": "11.48"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 149,
+    "solution": "===START===\n```python\ndef sorted_list_sum(lst):\n    # Filter out strings with odd lengths\n    even_length_strings = [s for s in lst if len(s) % 2 == 0]\n    \n    # Sort the list by length, then alphabetically\n    sorted_strings = sorted(even_length_strings, key=lambda x: (len(x), x))\n    \n    return sorted_strings\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that accepts a list of strings as a parameter,\n    deletes the strings that have odd lengths from it,\n    and returns the resulted list with a sorted order,\n    The list is always a list of strings and never an array of numbers,\n    and it may contain duplicates.\n    The order of the list should be ascending by length of each word, and you\n    should return the list sorted by that rule.\n    If two words have the same length, sort the list alphabetically.\n    The function should return a list of strings in sorted order.\n    You may assume that all words will have the same length.\n    For example:\n    assert list_sort([\"aa\", \"a\", \"aaa\"]) => [\"aa\"]\n    assert list_sort([\"ab\", \"a\", \"aaa\", \"cd\"]) => [\"ab\", \"cd\"]\n\n### Signature\ndef sorted_list_sum(lst):\n\n### Test\nassert candidate([\"aa\", \"a\", \"aaa\"]) == [\"aa\"]\nassert candidate([\"school\", \"AI\", \"asdf\", \"b\"]) == [\"AI\", \"asdf\", \"school\"]\nassert candidate([\"d\", \"b\", \"c\", \"a\"]) == []",
+    "timestamp": "2025-10-17T18:04:41.762242",
+    "response_time": "4.90"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 150,
+    "solution": "===START===\nimport math\n\ndef x_or_y(n, x, y):\n    if n <= 1:\n        return y\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return y\n    return x\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    A simple program which should return the value of x if n is\n    a prime number and should return the value of y otherwise.\n\n### Signature\ndef x_or_y(n, x, y):\n\n### Test\nassert candidate(7, 34, 12) == 34\nassert candidate(15, 8, 5) == 5\nassert candidate(3, 33, 5212) == 33\nassert candidate(1259, 3, 52) == 3\nassert candidate(7919, -1, 12) == -1",
+    "timestamp": "2025-10-17T18:04:44.896112",
+    "response_time": "3.13"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 151,
+    "solution": "===START===\n```python\ndef double_the_difference(lst):\n    return sum(x**2 for x in lst if isinstance(x, int) and x > 0 and x % 2 != 0)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a list of numbers, return the sum of squares of the numbers\n    in the list that are odd. Ignore numbers that are negative or not integers.\n\n### Signature\ndef double_the_difference(lst):\n\n### Test\nassert candidate([]) == 0 , \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([5, 4]) == 25 , \"This prints if this assert fails 2 (good for debugging!)\"\nassert candidate([0.1, 0.2, 0.3]) == 0 , \"This prints if this assert fails 3 (good for debugging!)\"",
+    "timestamp": "2025-10-17T18:04:47.259571",
+    "response_time": "2.36"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 152,
+    "solution": "===START===\n```python\ndef compare(game, guess):\n    return [abs(g - s) for g, s in zip(guess, game)]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    I think we all remember that feeling when the result of some long-awaited\n    event is finally known. The feelings and thoughts you have at that moment are\n    definitely worth noting down and comparing.\n    Your task is to determine if a person correctly guessed the results of a number of matches.\n    You are given two arrays of scores and guesses of equal length, where each index shows a match.\n    Return an array of the same length denoting how far off each guess was. If they have guessed correctly,\n    the value is 0, and if not, the value is the absolute difference between the guess and the score.\n\n### Signature\ndef compare(game,guess):\n\n### Test\nassert candidate([1,2,3,4,5,1],[1,2,3,4,2,-2])==[0,0,0,0,3,3], \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate([0,0,0,0,0,0],[0,0,0,0,0,0])==[0,0,0,0,0,0], \"This prints if this assert fails 1 (good for debugging!)\"",
+    "timestamp": "2025-10-17T18:04:49.339135",
+    "response_time": "2.08"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 153,
+    "solution": "===START===\n```python\ndef Strongest_Extension(class_name, extensions):\n    def calculate_strength(extension):\n        cap = sum(1 for c in extension if c.isupper())\n        sm = sum(1 for c in extension if c.islower())\n        return cap - sm\n\n    strongest_extension = max(extensions, key=calculate_strength)\n    return f\"{class_name}.{strongest_extension}\"\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You will be given the name of a class (a string) and a list of extensions.\n    The extensions are to be used to load additional classes to the class. The\n    strength of the extension is as follows: Let CAP be the number of the uppercase\n    letters in the extension's name, and let SM be the number of lowercase letters\n    in the extension's name, the strength is given by the fraction CAP - SM.\n    You should find the strongest extension and return a string in this\n    format: ClassName.StrongestExtensionName.\n    If there are two or more extensions with the same strength, you should\n    choose the one that comes first in the list.\n    For example, if you are given \"Slices\" as the class and a list of the\n    extensions: ['SErviNGSliCes', 'Cheese', 'StuFfed'] then you should\n    return 'Slices.SErviNGSliCes' since 'SErviNGSliCes' is the strongest extension\n    (its strength is -1).\n    Example:\n    for Strongest_Extension('my_class', ['AA', 'Be', 'CC']) == 'my_class.AA'\n\n### Signature\ndef Strongest_Extension(class_name, extensions):\n\n### Test\nassert candidate('Watashi', ['tEN', 'niNE', 'eIGHt8OKe']) == 'Watashi.eIGHt8OKe'\nassert candidate('Boku123', ['nani', 'NazeDa', 'YEs.WeCaNe', '32145tggg']) == 'Boku123.YEs.WeCaNe'\nassert candidate('__YESIMHERE', ['t', 'eMptY', 'nothing', 'zeR00', 'NuLl__', '123NoooneB321']) == '__YESIMHERE.NuLl__'\nassert candidate('K', ['Ta', 'TAR', 't234An', 'cosSo']) == 'K.TAR'",
+    "timestamp": "2025-10-17T18:04:53.508573",
+    "response_time": "4.17"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 154,
+    "solution": "===START===\n```python\ndef cycpattern_check(a, b):\n    if len(b) > len(a):\n        return False\n    for i in range(len(b)):\n        rotated_b = b[i:] + b[:i]\n        if rotated_b in a:\n            return True\n    return False\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\n    cycpattern_check(\"abcd\",\"abd\") => False\n    cycpattern_check(\"hello\",\"ell\") => True\n    cycpattern_check(\"whassup\",\"psus\") => False\n    cycpattern_check(\"abab\",\"baa\") => True\n    cycpattern_check(\"efef\",\"eeff\") => False\n    cycpattern_check(\"himenss\",\"simen\") => True\n\n### Signature\ndef cycpattern_check(a , b):\n\n### Test\nassert  candidate(\"xyzw\",\"xyw\") == False , \"test #0\"\nassert  candidate(\"yello\",\"ell\") == True , \"test #1\"\nassert  candidate(\"whattup\",\"ptut\") == False , \"test #2\"",
+    "timestamp": "2025-10-17T18:04:56.932061",
+    "response_time": "3.42"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 155,
+    "solution": "===START===\n```python\ndef even_odd_count(num):\n    num_str = str(abs(num))\n    even_count = sum(1 for digit in num_str if int(digit) % 2 == 0)\n    odd_count = sum(1 for digit in num_str if int(digit) % 2 != 0)\n    return (even_count, odd_count)\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given an integer. return a tuple that has the number of even and odd digits respectively.\n\n### Signature\ndef even_odd_count(num):\n\n### Test\nassert candidate(7) == (0, 1)\nassert candidate(-78) == (1, 1)\nassert candidate(3452) == (2, 2)\nassert candidate(346211) == (3, 3)",
+    "timestamp": "2025-10-17T18:05:00.835529",
+    "response_time": "3.90"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 156,
+    "solution": "===START===\n```python\ndef int_to_mini_roman(number):\n    val = [\n        1000, 900, 500, 400,\n        100, 90, 50, 40,\n        10, 9, 5, 4,\n        1\n    ]\n    syms = [\n        \"m\", \"cm\", \"d\", \"cd\",\n        \"c\", \"xc\", \"l\", \"xl\",\n        \"x\", \"ix\", \"v\", \"iv\",\n        \"i\"\n    ]\n    roman_num = ''\n    i = 0\n    while number > 0:\n        for _ in range(number // val[i]):\n            roman_num += syms[i]\n            number -= val[i]\n        i += 1\n    return roman_num\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a positive integer, obtain its roman numeral equivalent as a string,\n    and return it in lowercase.\n    Restrictions: 1 <= num <= 1000\n\n### Signature\ndef int_to_mini_roman(number):\n\n### Test\nassert candidate(19) == 'xix'\nassert candidate(152) == 'clii'\nassert candidate(251) == 'ccli'\nassert candidate(426) == 'cdxxvi'\nassert candidate(500) == 'd'\nassert candidate(1) == 'i'\nassert candidate(4) == 'iv'",
+    "timestamp": "2025-10-17T18:05:09.346499",
+    "response_time": "8.51"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 157,
+    "solution": "===START===\nimport math\n\ndef right_angle_triangle(a, b, c):\n    sides = sorted([a, b, c])\n    return math.isclose(sides[0]**2 + sides[1]**2, sides[2]**2)\n\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given the lengths of the three sides of a triangle. Return True if the three\n    sides form a right-angled triangle, False otherwise.\n    A right-angled triangle is a triangle in which one angle is right angle or\n    90 degree.\n    Example:\n    right_angle_triangle(3, 4, 5) == True\n    right_angle_triangle(1, 2, 3) == False\n\n### Signature\ndef right_angle_triangle(a, b, c):\n\n### Test\nassert candidate(3, 4, 5) == True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(1, 2, 3) == False\nassert candidate(10, 6, 8) == True\nassert candidate(2, 2, 2) == False\nassert candidate(7, 24, 25) == True",
+    "timestamp": "2025-10-17T18:05:12.044275",
+    "response_time": "2.69"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 158,
+    "solution": "===START===\n```python\ndef find_max(words):\n    def unique_char_count(word):\n        return len(set(word))\n    \n    max_unique_count = 0\n    max_word = \"\"\n    \n    for word in words:\n        unique_count = unique_char_count(word)\n        if unique_count > max_unique_count or (unique_count == max_unique_count and word < max_word):\n            max_unique_count = unique_count\n            max_word = word\n    \n    return max_word\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Write a function that accepts a list of strings.\n    The list contains different words. Return the word with maximum number\n    of unique characters. If multiple strings have maximum number of unique\n    characters, return the one which comes first in lexicographical order.\n\n### Signature\ndef find_max(words):\n\n### Test\nassert (candidate([\"name\", \"of\", \"string\"]) == \"string\"), \"t1\"\nassert (candidate([\"name\", \"enam\", \"game\"]) == \"enam\"), 't2'\nassert (candidate([\"aaaaaaa\", \"bb\", \"cc\"]) == \"aaaaaaa\"), 't3'\nassert (candidate([\"abc\", \"cba\"]) == \"abc\"), 't4'\nassert (candidate([\"play\", \"this\", \"game\", \"of\",\"footbott\"]) == \"footbott\"), 't5'",
+    "timestamp": "2025-10-17T18:05:17.519412",
+    "response_time": "5.47"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 159,
+    "solution": "===START===\ndef eat(number, need, remaining):\n    if need <= remaining:\n        total_eaten = number + need\n        carrots_left = remaining - need\n    else:\n        total_eaten = number + remaining\n        carrots_left = 0\n    return [total_eaten, carrots_left]\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You're a hungry rabbit, and you already have eaten a certain number of carrots,\n    but now you need to eat more carrots to complete the day's meals.\n    you should return an array of [ total number of eaten carrots after your meals,\n                                    the number of carrots left after your meals ]\n    if there are not enough remaining carrots, you will eat all remaining carrots, but will still be hungry.\n\n### Signature\ndef eat(number, need, remaining):\n\n### Test\nassert True, \"This prints if this assert fails 1 (good for debugging!)\"\nassert candidate(5, 6, 10) == [11, 4], \"Error\"\nassert candidate(4, 8, 9) == [12, 1], \"Error\"\nassert candidate(1, 10, 10) == [11, 0], \"Error\"",
+    "timestamp": "2025-10-17T18:05:21.191518",
+    "response_time": "3.67"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 160,
+    "solution": "===START===\nfrom operator import add, sub, mul, pow\n\ndef do_algebra(operator, operand):\n    ops = {'+': add, '-': sub, '*': mul, '**': pow}\n    result = operand[0]\n    for i, op in enumerate(operator):\n        result = ops[op](result, operand[i + 1])\n    return result\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given two lists operator, and operand. The first list has basic algebra operations, and\n    the second list is a list of integers. Use the two given lists to build the algebric\n    expression and return the evaluation of this expression.\n\n### Signature\ndef do_algebra(operator, operand):\n\n### Test\nassert candidate(['**', '*', '+'], [2, 3, 4, 5]) == 37\nassert candidate(['+', '*', '-'], [2, 3, 4, 5]) == 9",
+    "timestamp": "2025-10-17T18:05:24.957250",
+    "response_time": "3.76"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 161,
+    "solution": "===START===\n```python\ndef solve(s):\n    if any(c.isalpha() for c in s):\n        return ''.join(c.swapcase() if c.isalpha() else c for c in s)\n    else:\n        return s[::-1]\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    You are given a string s.\n    if s[i] is a letter, reverse its case from lower to upper or vise versa,\n    otherwise keep it as it is.\n    If the string contains no letters, reverse the string.\n    The function should return the resulted string.\n    Examples\n    solve(\"1234\") = \"4321\"\n    solve(\"ab\") = \"AB\"\n    solve(\"#a@C\") = \"#A@c\"\n\n### Signature\ndef solve(s):\n\n### Test\nassert candidate(\"AsDf\") == \"aSdF\"\nassert candidate(\"1234\") == \"4321\"\nassert candidate(\"ab\") == \"AB\"\nassert candidate(\"#a@C\") == \"#A@c\"",
+    "timestamp": "2025-10-17T18:05:27.728114",
+    "response_time": "2.77"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 162,
+    "solution": "===START===\nimport hashlib\n\ndef string_to_md5(text):\n    if not text:\n        return None\n    return hashlib.md5(text.encode()).hexdigest()\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given a string 'text', return its md5 hash equivalent string.\n    If 'text' is an empty string, return None.\n\n### Signature\ndef string_to_md5(text):\n\n### Test\nassert candidate('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'\nassert candidate('') == None",
+    "timestamp": "2025-10-17T18:05:29.571364",
+    "response_time": "1.84"
+  },
+  {
+    "dataset_name": "human_eval_qwen25coder14b_second_half_td",
+    "dataset_row_id": 163,
+    "solution": "===START===\n```python\ndef generate_integers(a, b):\n    # Ensure a is less than or equal to b\n    if a > b:\n        a, b = b, a\n    \n    # Generate even digits between a and b\n    even_digits = [i for i in range(a, b + 1) if i % 2 == 0]\n    \n    return even_digits\n```\n===END===",
+    "llm_name": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "prompt": "### Prompt\n    Given two positive integers a and b, return the even digits between a\n    and b, in ascending order.\n\n### Signature\ndef generate_integers(a, b):\n\n### Test\nassert candidate(2, 10) == [2, 4, 6, 8], \"Test 1\"\nassert candidate(10, 2) == [2, 4, 6, 8], \"Test 2\"",
+    "timestamp": "2025-10-17T18:05:34.197873",
+    "response_time": "4.62"
+  }
+]

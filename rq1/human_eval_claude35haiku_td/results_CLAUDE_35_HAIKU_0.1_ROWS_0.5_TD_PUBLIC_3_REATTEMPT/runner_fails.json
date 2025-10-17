@@ -1,0 +1,84 @@
+{
+  "anthropic/claude-3.5-haiku": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\n     Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n### Signature\ndef truncate_number(number: float) -> float:\n\n### Test\nassert candidate(3.5) == 0.5",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(get_Char)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"abc\") == \"f\"\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import Union\n\ndef truncate_number(number: float) -> float:\n    \"\"\"\n    Decompose a positive floating point number into its decimal part.\n    \n    Args:\n        number (float): A positive floating point number\n    \n    Returns:\n        float: The decimal part of the number (always < 1)\n    \"\"\"\n    # Use the subtraction of integer part from original number to get decimal part\n    return number - int(number)",
+      "test_content": "from llm_output import truncate_number\n\ndef check(candidate):\n    assert candidate(3.5) == 0.5\n    assert abs(candidate(1.33) - 0.33) < 1e-6\n    assert abs(candidate(123.456) - 0.456) < 1e-6\n\ncheck(truncate_number)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\n     For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n\n### Signature\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n\n### Test\nassert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(text_lowercase_underscore)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(\"aab_cbbbc\")==(True)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import List\nimport statistics\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    # Calculate the mean of the input list\n    mean = statistics.mean(numbers)\n    \n    # Calculate absolute deviations from the mean\n    absolute_deviations = [abs(x - mean) for x in numbers]\n    \n    # Calculate the mean of absolute deviations\n    mad = statistics.mean(absolute_deviations)\n    \n    return mad",
+      "test_content": "from llm_output import mean_absolute_deviation\n\ndef check(candidate):\n    assert abs(candidate([1.0, 2.0, 3.0]) - 2.0/3.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0]) - 1.0) < 1e-6\n    assert abs(candidate([1.0, 2.0, 3.0, 4.0, 5.0]) - 6.0/5.0) < 1e-6\n\n\ncheck(mean_absolute_deviation)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\n     Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n\n### Signature\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n\n### Test\nassert candidate([], 'john') == []\nassert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 8, in <module>\n    check(is_woodall)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert candidate(383) == True\n           ^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import List\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    return [s for s in strings if substring in s]",
+      "test_content": "from llm_output import filter_by_substring\n\ndef check(candidate):\n    assert candidate([], 'john') == []\n    assert candidate(['xxx', 'asd', 'xxy', 'john doe', 'xxxAAA', 'xxx'], 'xxx') == ['xxx', 'xxxAAA', 'xxx']\n    assert candidate(['xxx', 'asd', 'aaaxxy', 'john doe', 'xxxAAA', 'xxx'], 'xx') == ['xxx', 'aaaxxy', 'xxxAAA', 'xxx']\n    assert candidate(['grunt', 'trumpet', 'prune', 'gruesome'], 'run') == ['grunt', 'prune']\n\ncheck(filter_by_substring)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('x') == 'x'",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 1, in <module>\n    from typing import str\nImportError: cannot import name 'str' from 'typing' (/opt/homebrew/anaconda3/envs/tdd_llm/lib/python3.11/typing.py)\n",
+      "solution": "from typing import str\n\ndef make_palindrome(string: str) -> str:\n    # If string is empty or single character, it's already a palindrome\n    if len(string) <= 1:\n        return string\n    \n    # Find the longest palindromic suffix\n    for i in range(len(string), 0, -1):\n        # Check if the substring from start to i is a palindrome\n        substr = string[:i]\n        if is_palindrome(substr):\n            # Append the reverse of the non-palindromic prefix\n            return string + string[:i-1][::-1]\n    \n    # Fallback case (should not happen given the problem constraints)\n    return string\n\ndef is_palindrome(s: str) -> bool:\n    # Helper function to check if a string is a palindrome\n    return s == s[::-1]",
+      "test_content": "from llm_output import make_palindrome\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('x') == 'x'\n    assert candidate('xyz') == 'xyzyx'\n    assert candidate('xyx') == 'xyx'\n    assert candidate('jerry') == 'jerryrrej'\n\ncheck(make_palindrome)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('x') == 'x'\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output.py\", line 1, in <module>\n    from typing import str\nImportError: cannot import name 'str' from 'typing' (/opt/homebrew/anaconda3/envs/tdd_llm/lib/python3.11/typing.py)\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 10, in <module>\n    check(make_palindrome)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 6, in check\n    assert candidate('xyz') == 'xyzyx'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def make_palindrome(string: str) -> str:\n    # If string is empty or single character, it's already a palindrome\n    if len(string) <= 1:\n        return string\n    \n    # Find the longest palindromic suffix\n    for i in range(len(string), 0, -1):\n        # Check if the substring from start to i is a palindrome\n        substr = string[:i]\n        if is_palindrome(substr):\n            # Append the reverse of the non-palindromic prefix\n            return string + string[:i-1][::-1]\n    \n    # Fallback case (should not happen given the problem constraints)\n    return string\n\ndef is_palindrome(s: str) -> bool:\n    # Helper function to check if a string is a palindrome\n    return s == s[::-1]",
+      "test_content": "from llm_output import make_palindrome\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('x') == 'x'\n    assert candidate('xyz') == 'xyzyx'\n    assert candidate('xyx') == 'xyx'\n    assert candidate('jerry') == 'jerryrrej'\n\ncheck(make_palindrome)",
+      "context": null,
+      "attempt_num": 2
+    },
+    {
+      "task_id": 10,
+      "prompt": "### Prompt\n     Find the shortest palindrome that begins with a supplied string.\n    Algorithm idea is simple:\n    - Find the longest postfix of supplied string that is a palindrome.\n    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n    >>> make_palindrome('')\n    ''\n    >>> make_palindrome('cat')\n    'catac'\n    >>> make_palindrome('cata')\n    'catac'\n\n### Signature\ndef make_palindrome(string: str) -> str:\n\n### Test\nassert candidate('') == ''\nassert candidate('x') == 'x'\n### Remediation Message\nThis code is not correct as it led to the following issues:\nTraceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 10, in <module>\n    check(make_palindrome)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 6, in check\n    assert candidate('xyz') == 'xyzyx'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 106, in <module>\n    check(solve_problem)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert solve_problem(\"2\\n20 14\\n20 16\") == \"3.00\\n4.15\\n\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "def make_palindrome(string: str) -> str:\n    # If string is empty, return empty string\n    if not string:\n        return ''\n    \n    # If string is already a palindrome, return it\n    if string == string[::-1]:\n        return string\n    \n    # Try to find the longest palindromic prefix\n    for i in range(len(string)):\n        # Check if the suffix from i to end is a palindrome\n        suffix = string[i:]\n        if suffix == suffix[::-1]:\n            # Prepend the reverse of the non-palindromic prefix\n            return string + string[:i][::-1]\n    \n    # If no palindromic suffix found, create palindrome by adding reverse\n    return string + string[::-1]",
+      "test_content": "from llm_output import make_palindrome\n\ndef check(candidate):\n    assert candidate('') == ''\n    assert candidate('x') == 'x'\n    assert candidate('xyz') == 'xyzyx'\n    assert candidate('xyx') == 'xyx'\n    assert candidate('jerry') == 'jerryrrej'\n\ncheck(make_palindrome)",
+      "context": null,
+      "attempt_num": 3
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\n     Out of list of strings, return the longest one. Return the first one in case of multiple\n    strings of the same length. Return None in case the input list is empty.\n    >>> longest([])\n\n### Signature\ndef longest(strings: List[str]) -> Optional[str]:\n\n### Test\nassert candidate([]) == None",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 106, in <module>\n    check(solve_problem)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert solve_problem(\"3\\n1\\n10\\n3\\n8 3 6\\n5\\n4 5 1 2 3\") == \"1\\n2\\n2\\n\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import List, Optional\n\ndef longest(strings: List[str]) -> Optional[str]:\n    if not strings:\n        return None\n    \n    return max(strings, key=len)",
+      "test_content": "from llm_output import longest\n\ndef check(candidate):\n    assert candidate([]) == None\n    assert candidate(['x', 'y', 'z']) == 'x'\n    assert candidate(['x', 'yyy', 'zzzz', 'www', 'kkkk', 'abc']) == 'zzzz'\n\ncheck(longest)",
+      "context": null,
+      "attempt_num": 1
+    },
+    {
+      "task_id": 14,
+      "prompt": "### Prompt\n     Return list of all prefixes from shortest to longest of the input string\n    >>> all_prefixes('abc')\n    ['a', 'ab', 'abc']\n\n### Signature\ndef all_prefixes(string: str) -> List[str]:\n\n### Test\nassert candidate('') == []",
+      "llm_name": "anthropic/claude-3.5-haiku",
+      "error": "Traceback (most recent call last):\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 106, in <module>\n    check(solve_problem)\n  File \"/Users/madnanrizqu/Code/Research/learn/thesis/languages/python/llm_output_test.py\", line 4, in check\n    assert solve_problem(\"4\\n10 1\\n10 2\\n10 3\\n1000000000 1234567\") == \"5.0000000000000000\\n2.5000000000000000\\n7.5000000000000000\\n177375316.6198730468750000\\n\"\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+      "solution": "from typing import List\n\ndef all_prefixes(string: str) -> List[str]:\n    # If string is empty, return empty list\n    if not string:\n        return []\n    \n    # Create list of prefixes from shortest to longest\n    prefixes = []\n    for i in range(1, len(string) + 1):\n        prefixes.append(string[:i])\n    \n    return prefixes",
+      "test_content": "from llm_output import all_prefixes\n\ndef check(candidate):\n    assert candidate('') == []\n    assert candidate('asdfgh') == ['a', 'as', 'asd', 'asdf', 'asdfg', 'asdfgh']\n    assert candidate('WWW') == ['W', 'WW', 'WWW']\n\ncheck(all_prefixes)",
+      "context": null,
+      "attempt_num": 1
+    }
+  ]
+}

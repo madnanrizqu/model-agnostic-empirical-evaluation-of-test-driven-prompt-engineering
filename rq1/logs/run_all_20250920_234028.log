@@ -1,0 +1,79 @@
+Log file created at: /Users/madnanrizqu/Code/Research/learn/thesis/rq2/logs/run_all_20250920_234028.log
+
+--- CONFIGURATION SETTINGS ---
+LLM_TO_USE: OPEN_LLM
+RATIO_OF_ROWS_TO_RUN: 0.5
+REATTEMPT_MAX_NUM: 5
+RESULT_DIR_NAME: results_OPEN_LLM_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT
+TEST_DRIVEN_RATIO: 0.5
+----------------------------
+
+Starting rq2/run_all.py in GENERATE-AND-TEST mode
+Found 2 subdirectories to process: ['mbpp_sanitized_qwen25coder14b_td', 'mbpp_sanitized_qwen25coder14b_second_half_td']
+Using 2 parallel workers
+Starting parallel processing of 2 subdirectories
+Processing: mbpp_sanitized_qwen25coder14b_td
+Running get_solution.py for mbpp_sanitized_qwen25coder14b_td
+Starting: get_solution.py
+Processing: mbpp_sanitized_qwen25coder14b_second_half_td
+Running get_solution.py for mbpp_sanitized_qwen25coder14b_second_half_td
+Starting: get_solution.py
+Completed: get_solution.py (1101.7s)
+Running test_solution.py for mbpp_sanitized_qwen25coder14b_second_half_td
+Starting: test_solution.py
+Error running test_solution.py: Command '['/opt/homebrew/anaconda3/envs/tdd_llm/bin/python', '/Users/madnanrizqu/Code/Research/learn/thesis/rq2/mbpp_sanitized_qwen25coder14b_second_half_td/test_solution.py']' returned non-zero exit status 1.
+
+--- STDOUT before failure ---
+Reading solutions from /Users/madnanrizqu/Code/Research/learn/thesis/rq2/mbpp_sanitized_qwen25coder14b_second_half_td/results_QWEN_14B_CODER_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT_second_half/mbpp_sanitized_qwen25coder14b_second_half_td_solution.json
+
+
+--- STDERR from failure ---
+Traceback (most recent call last):
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/rq2/mbpp_sanitized_qwen25coder14b_second_half_td/test_solution.py", line 27, in <module>
+    setup.format_solutions(formatter)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/rq2/test_solution_setup.py", line 51, in format_solutions
+    return super().format_solutions(formatter)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/experiment_runner/setup.py", line 333, in format_solutions
+    formatter.format_solutions_in_file(solutions_path, formatted_path)
+  File "/Users/madnanrizqu/Code/Research/learn/thesis/solution_formatter_module/main.py", line 106, in format_solutions_in_file
+    with open(input_json_path, "r") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/madnanrizqu/Code/Research/learn/thesis/rq2/mbpp_sanitized_qwen25coder14b_second_half_td/results_QWEN_14B_CODER_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT_second_half/mbpp_sanitized_qwen25coder14b_second_half_td_solution.json'
+
+Failed test_solution.py after 1.41 seconds
+Completed mbpp_sanitized_qwen25coder14b_second_half_td. Progress: 1/2 subdirectories completed (50.0%)
+Completed: get_solution.py (1109.4s)
+Running test_solution.py for mbpp_sanitized_qwen25coder14b_td
+Starting: test_solution.py
+Completed: test_solution.py (624.3s)
+Completed mbpp_sanitized_qwen25coder14b_td. Progress: 2/2 subdirectories completed (100.0%)
+Completed all 2 subdirectories
+
+--- PERFORMANCE BENCHMARK ---
+Total execution time: 1733.70 seconds
+
+Subdirectory processing times:
+  mbpp_sanitized_qwen25coder14b_second_half_td: 1103.08 seconds
+  mbpp_sanitized_qwen25coder14b_td: 1733.69 seconds
+
+get_solution.py execution times:
+  mbpp_sanitized_qwen25coder14b_second_half_td: 1101.67 seconds
+  mbpp_sanitized_qwen25coder14b_td: 1109.39 seconds
+
+test_solution.py execution times:
+  mbpp_sanitized_qwen25coder14b_second_half_td: 1.41 seconds
+  mbpp_sanitized_qwen25coder14b_td: 624.31 seconds
+
+--- CONFIGURATION SETTINGS ---
+LLM_TO_USE: OPEN_LLM
+RATIO_OF_ROWS_TO_RUN: 0.5
+REATTEMPT_MAX_NUM: 5
+RESULT_DIR_NAME: results_OPEN_LLM_0.5_ROWS_0.5_TD_PUBLIC_5_REATTEMPT
+TEST_DRIVEN_RATIO: 0.5
+----------------------------
+
+Forcing garbage collection to free memory...
+Garbage collection completed.
+
+All processes completed. Log saved to: /Users/madnanrizqu/Code/Research/learn/thesis/rq2/logs/run_all_20250920_234028.log

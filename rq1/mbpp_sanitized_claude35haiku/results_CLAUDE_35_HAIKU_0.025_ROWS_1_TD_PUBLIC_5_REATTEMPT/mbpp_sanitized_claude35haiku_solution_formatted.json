@@ -1,0 +1,102 @@
+[
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 2,
+    "solution": "from typing import List, Any\n\ndef similar_elements(test_tup1: List[Any], test_tup2: List[Any]) -> str:\n    # Convert lists to sets for efficient intersection\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    \n    # Find common elements\n    common_elements = list(set1.intersection(set2))\n    \n    # Convert result to string representation\n    return str(common_elements)",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):",
+    "timestamp": "2025-08-10T15:31:32.741022",
+    "response_time": "3.62",
+    "context": "{\"function_name\": \"similar_elements\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 3,
+    "solution": "from typing import Union\n\ndef is_not_prime(n: Union[int, float]) -> bool:\n    \"\"\"\n    Identify if a given number is not a prime number.\n    \n    Args:\n        n (int or float): The number to check for primality\n    \n    Returns:\n        bool: True if the number is not prime, False if it is prime\n    \"\"\"\n    # Handle edge cases\n    if not isinstance(n, int) or n <= 1:\n        return True\n    \n    # Check for divisibility from 2 to square root of n\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return True\n    \n    return False",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):",
+    "timestamp": "2025-08-10T15:31:36.752034",
+    "response_time": "4.01",
+    "context": "{\"function_name\": \"is_not_prime\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 4,
+    "solution": "from typing import List\nimport heapq\n\ndef heap_queue_largest(nums: List[int], n: int) -> List[int]:\n    # If n is larger than the list length, return the entire sorted list in descending order\n    if n >= len(nums):\n        return sorted(nums, reverse=True)\n    \n    # Use heapq to find the n largest elements\n    # Create a min heap of size n\n    heap = nums[:n]\n    heapq.heapify(heap)\n    \n    # For remaining elements, if an element is larger than the smallest in heap, \n    # replace the smallest element\n    for num in nums[n:]:\n        if num > heap[0]:\n            heapq.heapreplace(heap, num)\n    \n    # Return the heap sorted in descending order\n    return sorted(heap, reverse=True)",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):",
+    "timestamp": "2025-08-10T15:31:41.315483",
+    "response_time": "4.56",
+    "context": "{\"function_name\": \"heap_queue_largest\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 6,
+    "solution": "from typing import Union\n\ndef differ_At_One_Bit_Pos(x: Union[int, float]) -> bool:\n    \"\"\"\n    Check if two numbers differ at only one bit position.\n    \n    Args:\n        x (int): The input number to check\n    \n    Returns:\n        bool: True if the number differs at only one bit position, False otherwise\n    \"\"\"\n    # If x is 0, it cannot differ at only one bit position\n    if x == 0:\n        return False\n    \n    # Check if x is a power of 2 by using bitwise AND operation\n    # A number that is a power of 2 will have only one bit set\n    # Subtracting 1 from a power of 2 will give a number with all lower bits set\n    # So x & (x-1) will be 0 for a power of 2\n    return x & (x - 1) == 0",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):",
+    "timestamp": "2025-08-10T15:31:46.239512",
+    "response_time": "4.92",
+    "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 7,
+    "solution": "from typing import List\nimport re\n\ndef find_char_long(text: str) -> List[str]:\n    # Use regex to find all words that are at least 4 characters long\n    words = re.findall(r'\\b\\w{4,}\\b', text)\n    return words",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):",
+    "timestamp": "2025-08-10T15:31:48.937833",
+    "response_time": "2.70",
+    "context": "{\"function_name\": \"find_char_long\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 8,
+    "solution": "from typing import List\n\ndef square_nums(nums: List[int]) -> List[int]:\n    \"\"\"\n    Find squares of individual elements in a list.\n    \n    Args:\n        nums (List[int]): Input list of numbers\n    \n    Returns:\n        List[int]: List of squared numbers\n    \"\"\"\n    return [num * num for num in nums]",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):",
+    "timestamp": "2025-08-10T15:31:51.059385",
+    "response_time": "2.12",
+    "context": "{\"function_name\": \"square_nums\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 9,
+    "solution": "from typing import Union\n\ndef find_Rotations(str: str) -> Union[int, str]:\n    # If string is empty or has only one character, no rotations possible\n    if not str or len(str) <= 1:\n        return 0\n    \n    # Concatenate the string with itself \n    double_str = str + str\n    \n    # Try all possible rotations\n    for rotations in range(1, len(str)):\n        # Check if rotated substring exists in double string\n        rotated_str = str[rotations:] + str[:rotations]\n        if rotated_str in double_str[len(str):]:\n            return rotations\n    \n    # If no rotation makes the string same\n    return 0",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):",
+    "timestamp": "2025-08-10T15:31:54.730352",
+    "response_time": "3.67",
+    "context": "{\"function_name\": \"find_Rotations\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 11,
+    "solution": "from typing import Optional\n\ndef remove_Occ(s: str, ch: str) -> str:\n    # If string is empty or character not found, return original string\n    if not s or ch not in s:\n        return s\n    \n    # Find first occurrence\n    first_index = s.find(ch)\n    \n    # Find last occurrence \n    last_index = s.rfind(ch)\n    \n    # If first and last index are same, remove that single occurrence\n    if first_index == last_index:\n        return s[:first_index] + s[first_index+1:]\n    \n    # Remove first and last occurrence\n    return s[:first_index] + s[first_index+1:last_index] + s[last_index+1:]",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):",
+    "timestamp": "2025-08-10T15:31:58.298248",
+    "response_time": "3.57",
+    "context": "{\"function_name\": \"remove_Occ\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 12,
+    "solution": "from typing import List\n\ndef sort_matrix(M: List[List[int]]) -> List[List[int]]:\n    # If matrix is empty, return empty matrix\n    if not M:\n        return []\n    \n    # Create a list of tuples with (row sum, original row)\n    row_sums = [(sum(row), row) for row in M]\n    \n    # Sort the list of tuples based on row sums\n    row_sums.sort(key=lambda x: x[0])\n    \n    # Extract and return the sorted rows\n    return [row for _, row in row_sums]",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):",
+    "timestamp": "2025-08-10T15:32:02.290992",
+    "response_time": "3.99",
+    "context": "{\"function_name\": \"sort_matrix\"}"
+  },
+  {
+    "dataset_name": "mbpp_sanitized_claude35haiku",
+    "dataset_row_id": 14,
+    "solution": "from typing import Union\n\ndef find_Volume(l: Union[int, float], b: Union[int, float], h: Union[int, float]) -> float:\n    \"\"\"\n    Calculate the volume of a triangular prism.\n    \n    Args:\n        l (float/int): Length of the base triangle's base\n        b (float/int): Width/breadth of the base triangle\n        h (float/int): Height of the prism\n    \n    Returns:\n        float: Volume of the triangular prism\n    \"\"\"\n    # Calculate area of base triangle using 1/2 * base * height\n    base_area = 0.5 * l * b\n    \n    # Calculate volume by multiplying base area with height of prism\n    volume = base_area * h\n    \n    return volume",
+    "llm_name": "anthropic/claude-3.5-haiku",
+    "prompt": "### Prompt\nWrite a python function to find the volume of a triangular prism.\n\n### Signature\ndef find_Volume(l,b,h) :",
+    "timestamp": "2025-08-10T15:32:05.608207",
+    "response_time": "3.32",
+    "context": "{\"function_name\": \"find_Volume\"}"
+  }
+]

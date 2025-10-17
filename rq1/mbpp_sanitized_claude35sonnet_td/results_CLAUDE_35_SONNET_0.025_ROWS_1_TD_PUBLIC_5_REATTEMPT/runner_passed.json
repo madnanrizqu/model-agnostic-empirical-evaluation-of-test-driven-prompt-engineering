@@ -1,0 +1,94 @@
+{
+  "anthropic/claude-3.5-sonnet": [
+    {
+      "task_id": 2,
+      "prompt": "### Prompt\nWrite a function to find the shared elements from the given two lists.\n\n### Signature\ndef similar_elements(test_tup1, test_tup2):\n\n### Test\nassert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\nassert set(candidate((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))\nassert set(candidate((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def similar_elements(test_tup1, test_tup2):\n    # Convert tuples to sets and find intersection\n    set1 = set(test_tup1)\n    set2 = set(test_tup2)\n    return tuple(set1.intersection(set2))",
+      "test_content": "from llm_output import similar_elements\n\ndef check(candidate):\n    assert set(candidate((3, 4, 5, 6),(5, 7, 4, 10))) == set((4, 5))\n    assert set(candidate((1, 2, 3, 4),(5, 4, 3, 7))) == set((3, 4))\n    assert set(candidate((11, 12, 14, 13),(17, 15, 14, 13))) == set((13, 14))\n\ncheck(similar_elements)",
+      "context": "{\"function_name\": \"similar_elements\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 3,
+      "prompt": "### Prompt\nWrite a python function to identify non-prime numbers.\n\n### Signature\ndef is_not_prime(n):\n\n### Test\nassert candidate(2) == False\nassert candidate(10) == True\nassert candidate(35) == True\nassert candidate(37) == False",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def is_not_prime(n):\n    if n < 2:\n        return True\n    for i in range(2, int(n ** 0.5) + 1):\n        if n % i == 0:\n            return True\n    return False",
+      "test_content": "from llm_output import is_not_prime\n\ndef check(candidate):\n    assert candidate(2) == False\n    assert candidate(10) == True\n    assert candidate(35) == True\n    assert candidate(37) == False\n\ncheck(is_not_prime)",
+      "context": "{\"function_name\": \"is_not_prime\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 4,
+      "prompt": "### Prompt\nWrite a function to find the n largest integers from a given list of numbers, returned in descending order.\n\n### Signature\ndef heap_queue_largest(nums,n):\n\n### Test\nassert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\nassert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]\nassert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "from heapq import nlargest\n\ndef heap_queue_largest(nums, n):\n    return nlargest(n, nums)",
+      "test_content": "from llm_output import heap_queue_largest\n\ndef check(candidate):\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],3)==[85, 75, 65]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],2)==[85, 75]\n    assert candidate( [25, 35, 22, 85, 14, 65, 75, 22, 58],5)==[85, 75, 65, 58, 35]\n\ncheck(heap_queue_largest)",
+      "context": "{\"function_name\": \"heap_queue_largest\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 6,
+      "prompt": "### Prompt\nWrite a python function to check whether the two numbers differ at one bit position only or not.\n\n### Signature\ndef is_Power_Of_Two (x):\n\n### Test\nassert candidate(13,9) == True\nassert candidate(15,8) == False\nassert candidate(2,4) == False\nassert candidate(2, 3) == True\nassert candidate(5, 1) == True\nassert candidate(1, 5) == True",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def differ_At_One_Bit_Pos(x, y):\n    # Get XOR of the numbers\n    xor_result = x ^ y\n    \n    # If they differ at exactly one bit position,\n    # XOR will have exactly one bit set (a power of 2)\n    # We can check this by using the property that\n    # a number that is power of 2 has only one bit set\n    # and (n & (n-1)) will be 0 for such numbers\n    \n    # First check if XOR is not zero (numbers are different)\n    if xor_result == 0:\n        return False\n        \n    # Then check if only one bit is different\n    return (xor_result & (xor_result - 1)) == 0",
+      "test_content": "from llm_output import differ_At_One_Bit_Pos\n\ndef check(candidate):\n    assert candidate(13,9) == True\n    assert candidate(15,8) == False\n    assert candidate(2,4) == False\n    assert candidate(2, 3) == True\n    assert candidate(5, 1) == True\n    assert candidate(1, 5) == True\n\ncheck(differ_At_One_Bit_Pos)",
+      "context": "{\"function_name\": \"differ_At_One_Bit_Pos\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 7,
+      "prompt": "### Prompt\nWrite a function to find all words which are at least 4 characters long in a string.\n\n### Signature\ndef find_char_long(text):\n\n### Test\nassert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])\nassert set(candidate('Jing Eco and Tech')) == set(['Jing', 'Tech'])\nassert set(candidate('Jhingai wulu road Zone 3')) == set(['Jhingai', 'wulu', 'road', 'Zone'])",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "import re\nfrom typing import List\n\ndef find_char_long(text: str) -> List[str]:\n    # Use regex to find all words (sequences of letters) that are 4 or more characters long\n    pattern = r'\\b[A-Za-z]{4,}\\b'\n    words = re.findall(pattern, text)\n    return words",
+      "test_content": "from llm_output import find_char_long\n\ndef check(candidate):\n    assert set(candidate('Please move back to stream')) == set(['Please', 'move', 'back', 'stream'])\n    assert set(candidate('Jing Eco and Tech')) == set(['Jing', 'Tech'])\n    assert set(candidate('Jhingai wulu road Zone 3')) == set(['Jhingai', 'wulu', 'road', 'Zone'])\n\ncheck(find_char_long)",
+      "context": "{\"function_name\": \"find_char_long\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 8,
+      "prompt": "### Prompt\nWrite a function to find squares of individual elements in a list.\n\n### Signature\ndef square_nums(nums):\n\n### Test\nassert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\nassert candidate([10,20,30])==([100,400,900])\nassert candidate([12,15])==([144,225])",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def square_nums(nums):\n    return [num * num for num in nums]",
+      "test_content": "from llm_output import square_nums\n\ndef check(candidate):\n    assert candidate([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]\n    assert candidate([10,20,30])==([100,400,900])\n    assert candidate([12,15])==([144,225])\n\ncheck(square_nums)",
+      "context": "{\"function_name\": \"square_nums\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 9,
+      "prompt": "### Prompt\nWrite a python function to find the minimum number of rotations (greater than 0) required to get the same string.\n\n### Signature\ndef find_Rotations(str):\n\n### Test\nassert candidate(\"aaaa\") == 1\nassert candidate(\"ab\") == 2\nassert candidate(\"abc\") == 3",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def find_Rotations(str):\n    if not str:\n        return 0\n    \n    n = len(str)\n    if n <= 1:\n        return 1\n        \n    for i in range(1, n):\n        # Create rotated string by moving i characters to end\n        rotated = str[i:] + str[:i]\n        if rotated == str:\n            return i\n            \n    return n",
+      "test_content": "from llm_output import find_Rotations\n\ndef check(candidate):\n    assert candidate(\"aaaa\") == 1\n    assert candidate(\"ab\") == 2\n    assert candidate(\"abc\") == 3\n\ncheck(find_Rotations)",
+      "context": "{\"function_name\": \"find_Rotations\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 11,
+      "prompt": "### Prompt\nWrite a python function to remove first and last occurrence of a given character from the string.\n\n### Signature\ndef remove_Occ(s,ch):\n\n### Test\nassert candidate(\"hello\",\"l\") == \"heo\"\nassert candidate(\"abcda\",\"a\") == \"bcd\"\nassert candidate(\"PHP\",\"P\") == \"H\"",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def remove_Occ(s, ch):\n    # If character not in string or string is empty, return original string\n    if ch not in s or not s:\n        return s\n    \n    # Find first occurrence\n    first_pos = s.find(ch)\n    \n    # Find last occurrence\n    last_pos = s.rfind(ch)\n    \n    # If first and last occurrence are same (only one occurrence)\n    if first_pos == last_pos:\n        return s[:first_pos] + s[first_pos + 1:]\n    \n    # Remove both first and last occurrence\n    return s[:first_pos] + s[first_pos + 1:last_pos] + s[last_pos + 1:]",
+      "test_content": "from llm_output import remove_Occ\n\ndef check(candidate):\n    assert candidate(\"hello\",\"l\") == \"heo\"\n    assert candidate(\"abcda\",\"a\") == \"bcd\"\n    assert candidate(\"PHP\",\"P\") == \"H\"\n\ncheck(remove_Occ)",
+      "context": "{\"function_name\": \"remove_Occ\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 12,
+      "prompt": "### Prompt\nWrite a function to sort a given matrix in ascending order according to the sum of its rows.\n\n### Signature\ndef sort_matrix(M):\n\n### Test\nassert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\nassert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\nassert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def sort_matrix(M):\n    # Create a list of tuples containing (row_sum, row_index, row)\n    row_sums = [(sum(row), i, row) for i, row in enumerate(M)]\n    \n    # Sort based on row sums\n    row_sums.sort()\n    \n    # Return only the rows in sorted order\n    return [row for _, _, row in row_sums]",
+      "test_content": "from llm_output import sort_matrix\n\ndef check(candidate):\n    assert candidate([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n    assert candidate([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]\n    assert candidate([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]\n\ncheck(sort_matrix)",
+      "context": "{\"function_name\": \"sort_matrix\"}",
+      "attempt_num": 1
+    },
+    {
+      "task_id": 14,
+      "prompt": "### Prompt\nWrite a python function to find the volume of a triangular prism.\n\n### Signature\ndef find_Volume(l,b,h) :\n\n### Test\nassert candidate(10,8,6) == 240\nassert candidate(3,2,2) == 6\nassert candidate(1,2,1) == 1",
+      "llm_name": "anthropic/claude-3.5-sonnet",
+      "solution": "def find_Volume(l,b,h):\n    # Volume of triangular prism = (1/2 * base * height) * length\n    # where base and height are of the triangle\n    # and length is the length of the prism\n    volume = (1/2 * b * h) * l\n    return volume",
+      "test_content": "from llm_output import find_Volume\n\ndef check(candidate):\n    assert candidate(10,8,6) == 240\n    assert candidate(3,2,2) == 6\n    assert candidate(1,2,1) == 1\n\ncheck(find_Volume)",
+      "context": "{\"function_name\": \"find_Volume\"}",
+      "attempt_num": 1
+    }
+  ]
+}
