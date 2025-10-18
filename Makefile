@@ -7,7 +7,7 @@ SHELL = /bin/bash
 .DEFAULT_GOAL := help
 POETRY ?= poetry
 PORT ?= 8000
-DOCKER_IMAGE ?= llm-evaluation-system
+DOCKER_IMAGE ?= madnanrizqu/td-python-prompt-eval
 
 # Colors
 CYAN=\033[36m
@@ -88,11 +88,19 @@ rq2-exp: ## Run specific RQ2 experiment (make rq2-exp EXP=<name>)
 # Docker
 # ============================================================================
 
+docker-pull: ## Pull Docker image from Docker Hub
+	@echo "$(GREEN)==> Pulling Docker image from Docker Hub$(NC)"
+	docker pull $(DOCKER_IMAGE):latest
+
 docker-build: ## Build Docker image
 	@echo "$(GREEN)==> Building Docker image$(NC)"
 	docker build -t $(DOCKER_IMAGE) .
 
-docker-rq1: docker-build ## Run RQ1 experiments in Docker (with config & results persistence)
+docker-push: docker-build ## Build and push Docker image to Docker Hub
+	@echo "$(GREEN)==> Pushing Docker image to Docker Hub$(NC)"
+	docker push $(DOCKER_IMAGE):latest
+
+docker-rq1: docker-pull ## Run RQ1 experiments in Docker (with config & results persistence)
 	@echo "$(GREEN)==> Running RQ1 in Docker$(NC)"
 	docker run \
 		-v $(PWD)/.env:/app/.env \
@@ -101,7 +109,7 @@ docker-rq1: docker-build ## Run RQ1 experiments in Docker (with config & results
 		$(DOCKER_IMAGE) \
 		poetry run python rq1/run_all.py
 
-docker-rq1-exp: docker-build ## Run specific RQ1 in Docker (make docker-rq1-exp EXP=<name>)
+docker-rq1-exp: docker-pull ## Run specific RQ1 in Docker (make docker-rq1-exp EXP=<name>)
 	@if [ -z "$(EXP)" ]; then \
 		echo "$(YELLOW)Error: EXP variable required$(NC)"; \
 		echo "Usage: make docker-rq1-exp EXP=human_eval_chatgpt4o"; \
@@ -115,7 +123,7 @@ docker-rq1-exp: docker-build ## Run specific RQ1 in Docker (make docker-rq1-exp 
 		$(DOCKER_IMAGE) \
 		poetry run python rq1/run_all.py --folders $(EXP)
 
-docker-rq2: docker-build ## Run RQ2 experiments in Docker (with config & results persistence)
+docker-rq2: docker-pull ## Run RQ2 experiments in Docker (with config & results persistence)
 	@echo "$(GREEN)==> Running RQ2 in Docker$(NC)"
 	docker run \
 		-v $(PWD)/.env:/app/.env \
@@ -124,7 +132,7 @@ docker-rq2: docker-build ## Run RQ2 experiments in Docker (with config & results
 		$(DOCKER_IMAGE) \
 		poetry run python rq2/run_all.py
 
-docker-rq2-exp: docker-build ## Run specific RQ2 in Docker (make docker-rq2-exp EXP=<name>)
+docker-rq2-exp: docker-pull ## Run specific RQ2 in Docker (make docker-rq2-exp EXP=<name>)
 	@if [ -z "$(EXP)" ]; then \
 		echo "$(YELLOW)Error: EXP variable required$(NC)"; \
 		echo "Usage: make docker-rq2-exp EXP=code_contests_chatgpt4o"; \
@@ -138,7 +146,7 @@ docker-rq2-exp: docker-build ## Run specific RQ2 in Docker (make docker-rq2-exp 
 		$(DOCKER_IMAGE) \
 		poetry run python rq2/run_all.py --folders $(EXP)
 
-docker-shell: docker-build ## Start interactive Docker shell
+docker-shell: docker-pull ## Start interactive Docker shell
 	@echo "$(GREEN)==> Starting Docker shell$(NC)"
 	docker run -it \
 		-v $(PWD)/.env:/app/.env \
@@ -163,4 +171,4 @@ serve: ## Serve docs/ locally at http://localhost:$(PORT)
 		cd docs; \
 		$$PY -m http.server $(PORT)
 
-.PHONY: help setup activate-cmd rq1 rq1-exp rq2 rq2-exp docker-build docker-rq1 docker-rq1-exp docker-rq2 docker-rq2-exp docker-shell docker-clean serve
+.PHONY: help setup activate-cmd rq1 rq1-exp rq2 rq2-exp docker-build docker-push docker-pull docker-rq1 docker-rq1-exp docker-rq2 docker-rq2-exp docker-shell docker-clean serve

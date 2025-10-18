@@ -3,8 +3,8 @@
 ## Quick Start
 
 ```bash
-# 1. Build image
-docker build -t llm-evaluation-system .
+# 1. Pull the pre-built image from Docker Hub
+docker pull madnanrizqu/td-python-prompt-eval:latest
 
 # 2. Run experiments (results and config are persisted to host)
 # RQ1
@@ -13,7 +13,7 @@ docker run \
   -v $(pwd)/config:/app/config \
   -v $(pwd)/rq1:/app/rq1 \
   -v $(pwd)/rq2:/app/rq2 \
-  llm-evaluation-system \
+  madnanrizqu/td-python-prompt-eval \
   poetry run python rq1/run_all.py
 
 # RQ2
@@ -22,8 +22,16 @@ docker run \
   -v $(pwd)/config:/app/config \
   -v $(pwd)/rq1:/app/rq1 \
   -v $(pwd)/rq2:/app/rq2 \
-  llm-evaluation-system \
+  madnanrizqu/td-python-prompt-eval \
   poetry run python rq2/run_all.py
+```
+
+## Building Locally (Optional)
+
+If you want to build the image yourself instead of pulling from Docker Hub:
+
+```bash
+docker build -t madnanrizqu/td-python-prompt-eval .
 ```
 
 ## Essential Commands
@@ -32,21 +40,21 @@ docker run \
 
 ```bash
 docker run -v $(pwd)/.env:/app/.env -v $(pwd)/config:/app/config -v $(pwd)/rq1:/app/rq1 \
-  llm-evaluation-system poetry run python rq1/run_all.py
+  madnanrizqu/td-python-prompt-eval poetry run python rq1/run_all.py
 ```
 
 **Run specific experiments:**
 
 ```bash
 docker run -v $(pwd)/.env:/app/.env -v $(pwd)/config:/app/config -v $(pwd)/rq1:/app/rq1 \
-  llm-evaluation-system poetry run python rq1/run_all.py --folders human_eval_chatgpt4o
+  madnanrizqu/td-python-prompt-eval poetry run python rq1/run_all.py --folders human_eval_chatgpt4o
 ```
 
 **Interactive shell:**
 
 ```bash
 docker run -it -v $(pwd)/.env:/app/.env -v $(pwd)/config:/app/config -v $(pwd)/rq1:/app/rq1 -v $(pwd)/rq2:/app/rq2 \
-  llm-evaluation-system /bin/bash
+  madnanrizqu/td-python-prompt-eval /bin/bash
 ```
 
 ## Volume Mounts (Required)
@@ -70,7 +78,7 @@ nano config/rq1.py  # Change LLM_TO_USE, RATIO_OF_ROWS_TO_RUN, etc.
 
 # 2. Run (your changes are automatically used)
 docker run -v $(pwd)/.env:/app/.env -v $(pwd)/config:/app/config -v $(pwd)/rq1:/app/rq1 \
-  llm-evaluation-system poetry run python rq1/run_all.py
+  madnanrizqu/td-python-prompt-eval poetry run python rq1/run_all.py
 ```
 
 ## Troubleshooting
@@ -79,11 +87,11 @@ docker run -v $(pwd)/.env:/app/.env -v $(pwd)/config:/app/config -v $(pwd)/rq1:/
 
 ```bash
 docker run --user $(id -u):$(id -g) -v $(pwd)/.env:/app/.env -v $(pwd)/rq1:/app/rq1 \
-  llm-evaluation-system poetry run python rq1/run_all.py
+  madnanrizqu/td-python-prompt-eval poetry run python rq1/run_all.py
 ```
 
 **Rebuild after code changes:**
 
 ```bash
-docker build --no-cache -t llm-evaluation-system .
+docker build --no-cache -t madnanrizqu/td-python-prompt-eval .
 ```
