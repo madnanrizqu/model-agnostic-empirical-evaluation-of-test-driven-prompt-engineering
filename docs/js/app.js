@@ -58,7 +58,7 @@ class LeaderboardApp {
   }
 
   initialRender() {
-    this.handleSort("tdp_improvement", "desc");
+    this.handleSort("max_tdp", "desc");
   }
 }
 
