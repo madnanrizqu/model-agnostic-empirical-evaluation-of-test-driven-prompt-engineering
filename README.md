@@ -16,6 +16,7 @@ This system evaluates LLMs on programming tasks using:
 
 - Follow this README to set up and run existing experiments
 - See [EXPERIMENT_GUIDE.md](EXPERIMENT_GUIDE.md) to create new model benchmark experiments
+- See [docs/README.md](docs/README.md) to add your model results to the public leaderboard
 
 ## Prerequisites
 

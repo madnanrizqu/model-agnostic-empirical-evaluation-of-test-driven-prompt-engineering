@@ -6,6 +6,7 @@ SHELL = /bin/bash
 .ONESHELL:
 .DEFAULT_GOAL := help
 POETRY ?= poetry
+PORT ?= 8000
 
 # Colors
 CYAN=\033[36m
@@ -46,4 +47,11 @@ activate-cmd: ## Print the command to activate the Poetry venv in your current s
 	@echo "Run this to activate the environment in your current shell:"
 	@echo "source $$($(POETRY) env info --path)/bin/activate"
 
-.PHONY: help setup activate-cmd
+serve: ## Serve docs/ locally at http://localhost:$(PORT)
+	@if command -v python3 >/dev/null 2>&1; then PY=python3; else PY=python; fi; \
+		echo "Using $$PY"; \
+		echo "Serving docs/ at http://localhost:$(PORT) (Ctrl+C to stop)"; \
+		cd docs; \
+		$$PY -m http.server $(PORT)
+
+.PHONY: help setup activate-cmd serve
