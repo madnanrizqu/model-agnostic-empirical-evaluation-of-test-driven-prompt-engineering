@@ -16,8 +16,8 @@ This system evaluates LLMs on programming tasks using:
 - **Datasets**: HumanEval, MBPP, Code Contests
 - **Language**: Python
 - **Research Questions**:
-  - **RQ1**: Basic programming task evaluation
-  - **RQ2**: Competitive programming challenges and model comparison
+  - **RQ1**: Does TDP provide a significant and consistent improvement in generating more accurate code over standard prompting across a diverse suite of large language models?
+  - **RQ2**: Does TDP outperform standard prompting in generating more accurate code under different programming problem difficulties?
 
 **Getting Started:**
 

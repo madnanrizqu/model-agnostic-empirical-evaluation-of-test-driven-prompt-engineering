@@ -8,7 +8,7 @@
  * 4. The system will automatically calculate tdp_improvement
  *
  * Field definitions:
- * - dataset: "HumanEval" or "MBPP"
+ * - dataset: "HumanEval" or "MBPP" or "CodeContests"
  * - model: Name of the model
  * - first_normal: First attempt accuracy without TDP (%)
  * - first_tdp: First attempt accuracy with TDP (%)
@@ -198,5 +198,110 @@ export const leaderboardData = [
     remediation_tdp: 68.6,
     remediation_delta: 4.9,
     max_tdp: 68.6,
+  },
+
+  // Code Contests Results - Easy Difficulty
+  {
+    dataset: "CodeContests-Easy",
+    model: "Claude 3.5 Sonnet",
+    first_normal: 0.0,
+    first_tdp: 65.7,
+    first_delta: 65.7,
+    remediation_normal: 80.6,
+    remediation_tdp: 80.6,
+    remediation_delta: 0.0,
+    max_tdp: 80.6,
+  },
+  {
+    dataset: "CodeContests-Easy",
+    model: "GPT-4o",
+    first_normal: 0.0,
+    first_tdp: 40.3,
+    first_delta: 40.3,
+    remediation_normal: 52.2,
+    remediation_tdp: 49.2,
+    remediation_delta: -3.0,
+    max_tdp: 49.2,
+  },
+  {
+    dataset: "CodeContests-Easy",
+    model: "Qwen 32B Coder",
+    first_normal: 0.0,
+    first_tdp: 59.7,
+    first_delta: 59.7,
+    remediation_normal: 4.5,
+    remediation_tdp: 62.7,
+    remediation_delta: 58.2,
+    max_tdp: 62.7,
+  },
+
+  // Code Contests Results - Medium Difficulty
+  {
+    dataset: "CodeContests-Medium",
+    model: "Claude 3.5 Sonnet",
+    first_normal: 3.4,
+    first_tdp: 37.4,
+    first_delta: 34.0,
+    remediation_normal: 46.8,
+    remediation_tdp: 53.2,
+    remediation_delta: 6.4,
+    max_tdp: 53.2,
+  },
+  {
+    dataset: "CodeContests-Medium",
+    model: "GPT-4o",
+    first_normal: 2.6,
+    first_tdp: 23.0,
+    first_delta: 20.4,
+    remediation_normal: 17.4,
+    remediation_tdp: 28.7,
+    remediation_delta: 11.3,
+    max_tdp: 28.7,
+  },
+  {
+    dataset: "CodeContests-Medium",
+    model: "Qwen 32B Coder",
+    first_normal: 2.6,
+    first_tdp: 28.7,
+    first_delta: 26.0,
+    remediation_normal: 3.8,
+    remediation_tdp: 32.5,
+    remediation_delta: 28.7,
+    max_tdp: 32.5,
+  },
+
+  // Code Contests Results - Hard Difficulty
+  {
+    dataset: "CodeContests-Hard",
+    model: "Claude 3.5 Sonnet",
+    first_normal: 12.5,
+    first_tdp: 25.0,
+    first_delta: 12.5,
+    remediation_normal: 40.3,
+    remediation_tdp: 34.7,
+    remediation_delta: -5.6,
+    max_tdp: 34.7,
+  },
+  {
+    dataset: "CodeContests-Hard",
+    model: "GPT-4o",
+    first_normal: 11.1,
+    first_tdp: 25.0,
+    first_delta: 13.9,
+    remediation_normal: 23.6,
+    remediation_tdp: 25.0,
+    remediation_delta: 1.4,
+    max_tdp: 25.0,
+  },
+  {
+    dataset: "CodeContests-Hard",
+    model: "Qwen 32B Coder",
+    first_normal: 9.7,
+    first_tdp: 22.2,
+    first_delta: 12.5,
+    remediation_normal: 11.1,
+    remediation_tdp: 25.0,
+    remediation_delta: 13.9,
+    max_tdp: 25.0,
   },
 ];
