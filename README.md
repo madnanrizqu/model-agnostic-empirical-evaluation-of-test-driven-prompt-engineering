@@ -16,7 +16,9 @@ This system evaluates LLMs on programming tasks using:
 
 **Getting Started:**
 
-- Follow this README to set up and run existing experiments
+- Follow this README to set up and run existing experiments locally
+- Use `make help` to see all available Makefile commands for easy experiment execution
+- See [DOCKER.md](DOCKER.md) to run experiments using Docker (recommended for reproducibility)
 - See [EXPERIMENT_GUIDE.md](EXPERIMENT_GUIDE.md) to create new model benchmark experiments
 - See [docs/README.md](docs/README.md) to add your model results to the public leaderboard
 
@@ -60,11 +62,14 @@ brew install poetry
 
 ### 3. Project Setup and Environment Activation (Makefile)
 
-This project provides a Makefile to automate setup and environment activation:
+This project provides a Makefile to automate setup and running experiments:
 
 ```zsh
 # One-shot setup (installs dependencies, configures Poetry, sets up .venv)
 make setup
+
+# See all available commands
+make help
 
 # If Poetry is not installed, you'll see a message with install instructions.
 # After installing Poetry, re-run 'make setup'.
@@ -76,6 +81,9 @@ source $(poetry env info --path)/bin/activate
 
 # Or run scripts directly without activating:
 poetry run python path/to/script.py
+
+# Quick test - run a single experiment
+make rq1-exp EXP=human_eval_chatgpt4o
 ```
 
 This will:
@@ -246,7 +254,28 @@ poetry run python scripts/merge_results.py --base-dir rq1/human_eval_chatgpt4o -
 
 ## Running Experiments
 
-### Option 1: Batch Execution (Recommended)
+### Using Makefile (Recommended)
+
+The project includes convenient Make commands for running experiments. To see all available commands:
+
+```bash
+make help
+```
+
+**Quick examples:**
+
+```bash
+make rq1                                # Run all RQ1 experiments locally
+make rq1-exp EXP=human_eval_chatgpt4o  # Run specific RQ1 experiment
+make docker-rq1                         # Run RQ1 in Docker
+make docker-shell                       # Interactive Docker shell
+```
+
+### Manual Execution
+
+Alternatively, you can run experiments directly using Poetry:
+
+#### Option 1: Batch Execution
 
 Run multiple experiments at once using `run_all.py`:
 

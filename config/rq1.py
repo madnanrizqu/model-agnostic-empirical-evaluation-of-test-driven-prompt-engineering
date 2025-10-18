@@ -39,6 +39,6 @@ RESULT_DIR_NAME (str):
 
 TEST_DRIVEN_RATIO = 0.5
 LLM_TO_USE = "OPEN_LLM"
-RATIO_OF_ROWS_TO_RUN = 0.5  # 0.5 for first/second half split, 1.0 for full dataset
+RATIO_OF_ROWS_TO_RUN = 0.1  # 0.5 for first/second half split, 1.0 for full dataset
 REATTEMPT_MAX_NUM = 5
 RESULT_DIR_NAME = f"results_{LLM_TO_USE}_{RATIO_OF_ROWS_TO_RUN}_ROWS_{TEST_DRIVEN_RATIO}_TD_PUBLIC_{REATTEMPT_MAX_NUM}_REATTEMPT"
