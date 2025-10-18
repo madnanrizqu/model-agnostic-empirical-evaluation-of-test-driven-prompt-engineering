@@ -70,9 +70,15 @@ export class TableRenderer {
   }
 
   getDatasetBadgeClass(dataset) {
-    return dataset.toLowerCase() === "humaneval"
-      ? "bg-blue-50 text-blue-800 border border-blue-200"
-      : "bg-violet-50 text-violet-800 border border-violet-200";
+    const datasetLower = dataset.toLowerCase();
+    if (datasetLower === "humaneval") {
+      return "bg-blue-50 text-blue-800 border border-blue-200";
+    } else if (datasetLower === "mbpp") {
+      return "bg-violet-50 text-violet-800 border border-violet-200";
+    } else if (datasetLower.startsWith("codecontests")) {
+      return "bg-orange-50 text-orange-800 border border-orange-200";
+    }
+    return "bg-gray-50 text-gray-800 border border-gray-200";
   }
 
   getDeltaColor(delta) {
