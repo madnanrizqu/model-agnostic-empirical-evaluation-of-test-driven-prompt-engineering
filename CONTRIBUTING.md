@@ -1,6 +1,8 @@
-# TDP Leaderboard - Contributor Guide
+# Contributor Guide
 
-## Adding Your Results
+## TDP Leaderboards
+
+### Adding Your Results
 
 To add your model results to the leaderboard:
 
@@ -26,7 +28,7 @@ To add your model results to the leaderboard:
 5. Test locally by opening `index.html` in a browser
 6. Submit a pull request
 
-## Project Structure
+### Project Structure
 
 ```
 docs/
@@ -43,7 +45,7 @@ docs/
 └── README.md              # This file
 ```
 
-## Field Definitions
+### Field Definitions
 
 - **dataset**: "HumanEval" or "MBPP"
 - **model**: Name of the LLM model
@@ -55,7 +57,7 @@ docs/
 - **remediation_delta**: Difference (remediation_tdp - remediation_normal)
 - **max_tdp**: Maximum TDP accuracy achieved (%)
 
-## Development
+### Development
 
 The project uses ES6 modules. To develop locally:
 

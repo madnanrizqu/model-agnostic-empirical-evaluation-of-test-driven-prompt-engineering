@@ -1,6 +1,11 @@
 # Model Agnostic Empirical Evaluation of Test Driven Prompt Engineering
 
-A sophisticated research platform that evaluates Large Language Models (LLMs) using test-driven development approaches across multiple coding benchmarks.
+[![Python Version](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
+[![Poetry](https://img.shields.io/badge/dependency%20management-Poetry-blue)](https://python-poetry.org/)
+[![Docker Image Size](https://img.shields.io/docker/image-size/madnanrizqu/td-python-prompt-eval)](https://hub.docker.com/r/madnanrizqu/td-python-prompt-eval)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+A sophisticated platform that evaluates Large Language Models (LLMs) using test-driven development approaches across multiple coding benchmarks.
 
 <img width="2862" height="1628" alt="image" src="https://github.com/user-attachments/assets/d1b9111a-1112-4f46-9315-d28360dcae15" />
 
@@ -20,7 +25,7 @@ This system evaluates LLMs on programming tasks using:
 - Use `make help` to see all available Makefile commands for easy experiment execution
 - See [DOCKER.md](DOCKER.md) to run experiments using Docker (recommended for reproducibility)
 - See [EXPERIMENT_GUIDE.md](EXPERIMENT_GUIDE.md) to create new model benchmark experiments
-- See [docs/README.md](docs/README.md) to add your model results to the public leaderboard
+- See [CONTRIBUTING.md](CONTRIBUTING.md) to add your model results to the public leaderboard
 
 ## Prerequisites
 
