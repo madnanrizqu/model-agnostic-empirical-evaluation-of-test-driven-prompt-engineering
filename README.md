@@ -7,7 +7,7 @@
 
 A sophisticated platform that evaluates Large Language Models (LLMs) using test-driven development approaches across multiple coding benchmarks.
 
-<img width="2862" height="1628" alt="image" src="https://github.com/user-attachments/assets/d1b9111a-1112-4f46-9315-d28360dcae15" />
+<img width="5088" height="3446" alt="image" src="https://github.com/user-attachments/assets/221800d0-155c-4690-88c4-fcd23029eb07" />
 
 ## Overview
 
