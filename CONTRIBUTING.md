@@ -28,9 +28,11 @@ To add your model results to the leaderboard:
 5. Test locally by opening `index.html` in a browser
 6. Submit a pull request
 
+**Example:** See [PR #1](https://github.com/madnanrizqu/model-agnostic-empirical-evaluation-of-test-driven-prompt-engineering/pull/1) for an example of adding model results (ChatGPT-4o, Claude 3.5 Sonnet, and Qwen 2.5 32B Coder on Code Contests dataset).
+
 ### Project Structure
 
-```
+```text
 docs/
 ├── index.html              # Main HTML file
 ├── data/
